@@ -1,0 +1,17 @@
+<li class="list-group-item{{active ? ' active' : ''}}{{disabled ? ' disabled' : ''}}{{action ? ' list-group-item-action' : ''}}{{color ? ` list-group-item-${color}` : ''}} {{class}}">
+  {{yield}}
+</li>
+
+<script>
+  export default {
+    data() {
+      return {
+        active: false,
+        class: '',
+        disabled: false,
+        action: false,
+        color: false
+      }
+    }
+  }
+</script>

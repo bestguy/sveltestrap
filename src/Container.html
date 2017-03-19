@@ -1,0 +1,12 @@
+<div class="container{{fluid ? '-fluid' : ''}} {{class}}">{{yield}}</div>
+
+<script>
+  export default {
+    data() {
+      return {
+        class: '',
+        fluid: false
+      }
+    }
+  };
+</script>

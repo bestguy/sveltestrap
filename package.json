@@ -1,0 +1,12 @@
+{
+  "name": "sveltestrap",
+  "version": "0.1.1",
+  "files": ["dist"],
+  "scripts": {
+    "dist": "svelte compile -i src/ -o dist"
+  },
+  "dependencies": {
+    "lodash.isobject": "^3.0.2",
+    "svelte": "^1.12.1"
+  }
+}

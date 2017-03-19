@@ -1,0 +1,14 @@
+<ul class="list-group{{flush ? ' list-group-flush' : ''}} {{class}}">
+  {{yield}}
+</ul>
+
+<script>
+  export default {
+    data() {
+      return {
+        class: '',
+        flush: false
+      }
+    }
+  }
+</script>

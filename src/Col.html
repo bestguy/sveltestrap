@@ -1,0 +1,68 @@
+<div class="{{classes}} {{class}}">
+  {{yield}}
+</div>
+
+<script>
+  import isobject from 'lodash.isobject';
+  const widths = ['xs', 'sm', 'md', 'lg', 'xl'];
+
+  const getColumnSizeClass = (isXs, colWidth, colSize) => {
+    if (colSize === true || colSize === '') {
+      return isXs ? 'col' : `col-${colWidth}`;
+    } else if (colSize === 'auto') {
+      return isXs ? 'col-auto' : `col-${colWidth}-auto`;
+    }
+
+    return isXs ? `col-${colSize}` : `col-${colWidth}-${colSize}`;
+  };
+
+  export default {
+    data() {
+      return {
+        class: '',
+        widths
+      }
+    },
+    computed: {
+      classes(widths, xs, sm, md, lg, xl) {
+        const colClasses = [];
+        const props = {
+          xs,
+          sm,
+          md,
+          lg,
+          xl
+        };
+
+        widths.forEach((colWidth, i) => {
+          let columnProp = props[colWidth];
+
+          if (!i && columnProp === undefined) {
+            columnProp = true;
+          }
+
+          if (!columnProp) {
+            return;
+          }
+
+          const isXs = !i;
+          let colClass;
+
+          if (isobject(columnProp)) {
+            const colSizeInterfix = isXs ? '-' : `-${colWidth}-`;
+            colClass = getColumnSizeClass(isXs, colWidth, columnProp.size);
+
+            colClasses.push(classNames({
+              [colClass]: columnProp.size || columnProp.size === '', [`push${colSizeInterfix}${columnProp.push}`]: columnProp.push, [`pull${colSizeInterfix}${columnProp.pull}`]: columnProp.pull, [`offset${colSizeInterfix}${columnProp.offset}`]: columnProp.offset
+            }));
+          } else {
+            colClass = getColumnSizeClass(isXs, colWidth, columnProp);
+            colClasses.push(colClass);
+          }
+        });
+        
+        return colClasses.join(' ');
+      }
+    }
+  }
+</script>

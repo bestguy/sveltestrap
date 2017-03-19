@@ -1,0 +1,12 @@
+<div class="row{{noGutters ? ' no-gutters' : ''}} {{class}}">{{yield}}</div>
+
+<script>
+  export default {
+    data() {
+      return {
+        class: '',
+        noGutters: false
+      }
+    }
+  };
+</script>
