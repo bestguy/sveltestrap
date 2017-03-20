@@ -1,12 +1,28 @@
 {
   "name": "sveltestrap",
-  "version": "0.1.1",
-  "files": ["dist"],
+  "version": "0.1.2",
+  "main": "dist/sveltestrap.js",
+  "keywords": [
+    "svelte"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bestguy/sveltestrap.git"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "dist": "svelte compile -i src/ -o dist"
+    "dist": "rollup -c"
   },
   "dependencies": {
-    "lodash.isobject": "^3.0.2",
     "svelte": "^1.12.1"
+  },
+  "devDependencies": {
+    "lodash.isobject": "^3.0.2",
+    "rollup": "^0.41.6",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-svelte": "^1.6.1"
   }
 }
