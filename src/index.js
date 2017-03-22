@@ -7,4 +7,5 @@ export { default as Container } from './Container.html';
 export { default as Icon } from './Icon.html';
 export { default as ListGroup } from './ListGroup.html';
 export { default as ListGroupItem } from './ListGroupItem.html';
+export { default as Progress } from './Progress.html';
 export { default as Row } from './Row.html';

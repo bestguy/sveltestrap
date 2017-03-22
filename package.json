@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "lodash.isobject": "^3.0.2",
+    "lodash.tonumber": "^4.0.3",
     "rollup": "^0.41.6",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^2.0.0",
