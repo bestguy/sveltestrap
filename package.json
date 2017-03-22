@@ -13,7 +13,9 @@
     "dist"
   ],
   "scripts": {
-    "dist": "rollup -c"
+    "dist": "rollup -c",
+    "prepublish": "npm run dist",
+    "postpublish": "git push && git push --tags"
   },
   "dependencies": {
     "svelte": "^1.12.1"
