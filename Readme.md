@@ -68,6 +68,6 @@ In your svelte component:
 * [ ] Navbar
 * [ ] Pagination
 * [ ] Popovers
-* [ ] Progress
+* [x] Progress
 * [ ] Scrollspy
 * [ ] Tooltips
