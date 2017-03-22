@@ -1,0 +1,16 @@
+<div class="card{{inverse ? ' card-inverse' : ''}}{{block ? ' card-block' : ''}}{{color ? ` card${outline ? '-outline' : ''}-${color}` : ''}} {{class}}">
+  {{yield}}
+</div>
+
+<script>
+  export default {
+    data() {
+      return {
+        block: false,
+        class: '',
+        inverse: false,
+        outline: false
+      }
+    }
+  }
+</script>

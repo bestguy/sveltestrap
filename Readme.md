@@ -53,7 +53,19 @@ In your svelte component:
 * [x] Button
 * [x] ButtonGroup
 * [x] ButtonToolbar
-* [ ] Card
+* [x] Card
+* [x] CardBlock
+* [x] CardColumns
+* [x] CardDeck
+* [x] CardFooter
+* [x] CardGroup
+* [x] CardHeader
+* [ ] CardImg
+* [x] CardImgOverlay
+* [ ] CardLink
+* [x] CardSubtitle
+* [x] CardText
+* [x] CardTitle
 * [ ] Carousel
 * [ ] Collapse
 * [ ] Dropdowns
