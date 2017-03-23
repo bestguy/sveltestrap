@@ -1,0 +1,14 @@
+<li class="breadcrumb-item{{active ? ' active' : ''}} {{class}}">
+  {{yield}}
+</li>
+
+<script>
+  export default {
+    data() {
+      return {
+        active: false,
+        class: ''
+      }
+    }
+  }
+</script>
