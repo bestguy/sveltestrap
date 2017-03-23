@@ -4,6 +4,8 @@
 
 **Work in progress, check back soon - PRs are welcome!**
 
+The component names and interface are inspired by the [reactstrap](https://reactstrap.github.io) library for React.
+
 ----
 
 ## Install
@@ -37,7 +39,6 @@ In your svelte component:
 ```
 
 ## Status
-
 
 ### Layout
 
