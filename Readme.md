@@ -47,39 +47,67 @@ In your svelte component:
 
 ### Components
 
-* [ ] Alerts
+* [ ] Alert
 * [x] Badge
-* [ ] Breadcrumb
+* [x] Breadcrumb
+  * [x] BreadcrumbItem
 * [x] Button
+  * [ ] ButtonDropdown
 * [x] ButtonGroup
 * [x] ButtonToolbar
 * [x] Card
-* [x] CardBlock
-* [x] CardColumns
-* [x] CardDeck
-* [x] CardFooter
-* [x] CardGroup
-* [x] CardHeader
-* [ ] CardImg
-* [x] CardImgOverlay
-* [ ] CardLink
-* [x] CardSubtitle
-* [x] CardText
-* [x] CardTitle
-* [ ] Carousel
+  * [x] CardBlock
+  * [x] CardColumns
+  * [x] CardDeck
+  * [x] CardFooter
+  * [x] CardGroup
+  * [x] CardHeader
+  * [ ] CardImg
+  * [x] CardImgOverlay
+  * [ ] CardLink
+  * [x] CardSubtitle
+  * [x] CardText
+  * [x] CardTitle
 * [ ] Collapse
-* [ ] Dropdowns
-* [ ] Forms
+* [ ] Dropdown
+  * [ ] DropdownItem
+  * [ ] DropdownMenu
+  * [ ] DropdownToggle
+* [ ] Form
+  * [x] FormFeedback
+  * [ ] FormGroup
+  * [ ] FormText
 * [x] Icon (_FontAwesome helper_)
-* [ ] Input group
+* [ ] Input
+* [ ] InputGroup
+  * [ ] InputGroupAddon
+  * [ ] InputGroupButton
 * [ ] Jumbotron
+* [ ] Label
 * [x] ListGroup
 * [x] ListGroupItem
+  * [ ] ListGroupItemHeading
+  * [ ] ListGroupItemText
+* [ ] Media
 * [ ] Modal
-* [ ] Navs
+  * [ ] ModalBody
+  * [x] ModalFooter
+  * [ ] ModalHeader
+* [ ] Nav
+  * [x] NavDropdown
+  * [x] NavItem
+  * [ ] NavLink
 * [ ] Navbar
+  * [x] NavbarBrand
+  * [ ] NavbarToggler
 * [ ] Pagination
-* [ ] Popovers
+  * [ ] PaginationItem
+  * [ ] PaginationLink
+* [ ] Popover
+  * [ ] PopoverContent
+  * [ ] PopoverTitle
 * [x] Progress
-* [ ] Scrollspy
-* [ ] Tooltips
+* [ ] TabContent
+* [ ] TabPane
+* [ ] Table
+* [ ] Tooltip
