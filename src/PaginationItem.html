@@ -1,0 +1,15 @@
+<li class="page-item{{active ? ' active' : ''}}{{disabled ? ' disabled' : ''}} {{class}}">
+  {{yield}}
+</li>
+
+<script>
+  export default {
+    data() {
+      return {
+        active: false,
+        class: '',
+        disabled: false
+      }
+    }
+  }
+</script>
