@@ -1,0 +1,14 @@
+<ul class="pagination{{size ? ` pagination-${size}` : ''}} {{class}}">
+  {{yield}}
+</ul>
+
+<script>
+  export default {
+    data() {
+      return {
+        class: '',
+        size: null
+      }
+    }
+  }
+</script>

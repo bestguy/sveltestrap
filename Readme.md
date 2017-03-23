@@ -73,21 +73,21 @@ In your svelte component:
   * [ ] DropdownItem
   * [ ] DropdownMenu
   * [ ] DropdownToggle
-* [ ] Form
+* [x] Form
   * [x] FormFeedback
-  * [ ] FormGroup
-  * [ ] FormText
+  * [x] FormGroup
+  * [x] FormText
 * [x] Icon (_FontAwesome helper_)
 * [ ] Input
-* [ ] InputGroup
-  * [ ] InputGroupAddon
+* [x] InputGroup
+  * [x] InputGroupAddon
   * [ ] InputGroupButton
-* [ ] Jumbotron
+* [x] Jumbotron
 * [ ] Label
 * [x] ListGroup
 * [x] ListGroupItem
-  * [ ] ListGroupItemHeading
-  * [ ] ListGroupItemText
+  * [x] ListGroupItemHeading
+  * [x] ListGroupItemText
 * [ ] Media
 * [ ] Modal
   * [ ] ModalBody
@@ -100,9 +100,9 @@ In your svelte component:
 * [ ] Navbar
   * [x] NavbarBrand
   * [ ] NavbarToggler
-* [ ] Pagination
-  * [ ] PaginationItem
-  * [ ] PaginationLink
+* [x] Pagination
+  * [x] PaginationItem
+  * [x] PaginationLink
 * [ ] Popover
   * [ ] PopoverContent
   * [ ] PopoverTitle

@@ -1,0 +1,15 @@
+<small class="{{!inline ? 'form-text' : ''}}{{color ? ` text-${color}` : ''}} {{class}}">
+  {{yield}}
+</small>
+
+<script>
+  export default {
+    data() {
+      return {
+        class: '',
+        color: null,
+        inline: false
+      }
+    }
+  }
+</script>

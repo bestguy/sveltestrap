@@ -1,0 +1,22 @@
+<a class="page-link{{size ? ` pagination-${size}` : ''}} {{class}}">
+  {{#if previous}}
+    &#x00ab;
+  {{elseif next}}
+    &#x00bb;
+  {{else}}
+    {{yield}}
+  {{/if}}
+</a>
+
+<script>
+  // TODO add state to this component, generate PaginationItems, Links, on:click, etc
+  export default {
+    data() {
+      return {
+        class: '',
+        next: false,
+        previous: false
+      }
+    }
+  }
+</script>

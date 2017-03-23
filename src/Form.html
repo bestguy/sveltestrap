@@ -1,0 +1,14 @@
+<form class="{{inline ? 'form-inline' : ''}} {{class}}">
+  {{yield}}
+</form>
+
+<script>
+  export default {
+    data() {
+      return {
+        class: '',
+        inline: false
+      }
+    }
+  }
+</script>
