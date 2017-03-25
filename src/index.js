@@ -15,6 +15,7 @@ export { default as CardImgOverlay } from './CardImgOverlay.html';
 export { default as CardSubtitle } from './CardSubtitle.html';
 export { default as CardText } from './CardText.html';
 export { default as CardTitle } from './CardTitle.html';
+export { default as Close } from './Close.html';
 export { default as Col } from './Col.html';
 export { default as Container } from './Container.html';
 export { default as Form } from './Form.html';
