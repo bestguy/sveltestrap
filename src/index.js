@@ -39,3 +39,4 @@ export { default as PaginationItem } from './PaginationItem.html';
 export { default as PaginationLink } from './PaginationLink.html';
 export { default as Progress } from './Progress.html';
 export { default as Row } from './Row.html';
+export { default as Table } from './Table.html';

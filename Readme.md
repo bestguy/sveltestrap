@@ -69,6 +69,7 @@ In your svelte component:
   * [x] CardSubtitle
   * [x] CardText
   * [x] CardTitle
+* [x] Close
 * [ ] Collapse
 * [ ] Dropdown
   * [ ] DropdownItem
@@ -110,5 +111,5 @@ In your svelte component:
 * [x] Progress
 * [ ] TabContent
 * [ ] TabPane
-* [ ] Table
+* [x] Table
 * [ ] Tooltip
