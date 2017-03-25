@@ -90,7 +90,8 @@ In your svelte component:
 * [x] ListGroupItem
   * [x] ListGroupItemHeading
   * [x] ListGroupItemText
-* [ ] Media
+* [x] Media
+  * [x] MediaBody
 * [ ] Modal
   * [ ] ModalBody
   * [x] ModalFooter
