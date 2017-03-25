@@ -1,4 +1,4 @@
-<li class="nav-item {{class}}">
+<li class="nav-item{{active ? ' active' : ''}} {{class}}">
   {{yield}}
 </li>
 
@@ -6,6 +6,7 @@
   export default {
     data() {
       return {
+        active: false,
         class: ''
       }
     }
