@@ -30,6 +30,8 @@ export { default as ListGroup } from './ListGroup.html';
 export { default as ListGroupItem } from './ListGroupItem.html';
 export { default as ListGroupItemHeading } from './ListGroupItemHeading.html';
 export { default as ListGroupItemText } from './ListGroupItemText.html';
+export { default as Media } from './Media.html';
+export { default as MediaBody } from './MediaBody.html';
 export { default as ModalFooter } from './ModalFooter.html';
 export { default as NavDropdown } from './NavDropdown.html';
 export { default as NavItem } from './NavItem.html';
