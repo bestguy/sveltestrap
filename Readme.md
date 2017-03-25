@@ -96,7 +96,7 @@ In your svelte component:
   * [ ] ModalBody
   * [x] ModalFooter
   * [ ] ModalHeader
-* [ ] Nav
+* [x] Nav
   * [x] NavDropdown
   * [x] NavItem
   * [ ] NavLink
