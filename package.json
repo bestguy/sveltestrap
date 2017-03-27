@@ -14,8 +14,10 @@
   ],
   "scripts": {
     "dist": "rollup -c",
-    "prepublish": "npm run dist",
-    "postpublish": "git push && git push --tags"
+    "docs": "rollup -c -i src/Docs.html -o docs/index.js -f iife -n Docs",
+    "prepublish": "npm run docs; npm run dist",
+    "postpublish": "git push && git push --tags",
+    "watch": "rollup -c -w -i src/Docs.html -o docs/index.js -f iife -n Docs"
   },
   "dependencies": {
     "svelte": "^1.12.1"
