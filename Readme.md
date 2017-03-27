@@ -4,7 +4,7 @@
 
 **Work in progress, check back soon - PRs are welcome!**
 
-The philosophy of this library is to provide all Bootstrap 4 components for a Svelte-based app, without needing to use Bootstrap compenent classes or needing to include Bootstrap's JavaScript.
+The philosophy of this library is to provide all Bootstrap 4 components for a [Svelte](https://svelte.technology) app, without needing to use Bootstrap component classes or needing to include Bootstrap's JavaScript.
 
 However, to make using Bootstrap themes easier, this library does _not_ embed Bootstrap styles directly and you will need to include Bootstrap 4 CSS in your page.
 
@@ -46,7 +46,8 @@ In your svelte component:
 
 ## Status
 
-* [x] Most simple, stateless components are done (see below).
+* [x] Most simple, stateless components are visually done (see below).
+* [ ] Event handlers (on:click, etc), common optional attributes (id, href, data-, etc) are not applied to components! Ay!
 * [ ] Add stateful components and those that depend on tethering (e.g. Alerts, Dropdown, Modals, Popovers, Tooltips).  
 
 ### Layout
