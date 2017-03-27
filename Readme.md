@@ -40,6 +40,9 @@ In your svelte component:
 
 ## Status
 
+* [x] Most simple, stateless components are done (see below).
+* [ ] Add stateful components and those that depend on tethering (e.g. Alerts, Dropdown, Modals, Popovers).  
+
 ### Layout
 
 * [x] Container
