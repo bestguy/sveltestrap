@@ -10,6 +10,7 @@ However, to make using Bootstrap themes easier, this library does _not_ embed Bo
 
 The component names and interface are inspired by the [reactstrap](https://reactstrap.github.io) library for React.
 
+[Demo page](https://bestguy.github.io/sveltestrap/)
 
 ----
 
