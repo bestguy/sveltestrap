@@ -753,33 +753,23 @@
     <h1 id="indicators" class="text-muted my-4">Indicators</h1>
 
     <h2 class="text-muted my-4">Alerts</h2>
-    <div class="alert alert-dismissible alert-warning">
-      <Close />
-      <h4>Warning!</h4>
-      <p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, <a href="#" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
-    </div>
+    <Alert>
+      <h4>Default</h4>
+      <p>
+        Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,
+        <a href="#" class="alert-link">vel scelerisque nisl consectetur et</a>.
+      </p>
+    </Alert>
 
     <Row>
-      <Col lg="4">
-        <div class="alert alert-dismissible alert-danger">
-          <Close />
-          <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
-        </div>
-      </Col>
-      <Col lg="4">
-        <div class="alert alert-dismissible alert-success">
-          <Close />
-          <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
-        </div>
-      </Col>
-      <Col lg="4">
-        <div class="bs-component">
-          <div class="alert alert-dismissible alert-info">
-            <Close />
-            <strong>Heads up!</strong> This <a href="#" class="alert-link">alert needs your attention</a>, but it's not super important.
-          </div>
-        </div>
-      </Col>
+      {{#each ['success', 'info', 'warning', 'danger'] as color}}
+        <Col>
+          <Alert dismissible color="{{color}}">
+            <h4>{{color}}</h4>
+            <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+          </Alert>
+        </Col>
+      {{/each}}
     </Row>
 
     <div>
@@ -1072,6 +1062,7 @@
 
 <script>
   import {
+    Alert,
     Badge,
     Breadcrumb,
     BreadcrumbItem,
@@ -1111,6 +1102,7 @@
   
   export default {
     components: {
+      Alert,
       Badge,
       Breadcrumb,
       BreadcrumbItem,

@@ -1,3 +1,4 @@
+export { default as Alert } from './Alert.html';
 export { default as Badge } from './Badge.html';
 export { default as Breadcrumb } from './Breadcrumb.html';
 export { default as BreadcrumbItem } from './BreadcrumbItem.html';
