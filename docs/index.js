@@ -137,7 +137,265 @@ function dispatchObservers ( component, group, newState, oldState ) {
 	}
 }
 
+function renderMainFragment$2 ( root, component ) {
+	var button = createElement( 'button' );
+	button.type = "button";
+	button.className = "close";
+	setAttribute( button, 'aria-label', "Close" );
+	
+	function clickHandler ( event ) {
+		component.fire('click');
+	}
+	
+	addEventListener( button, 'click', clickHandler );
+	
+	var span = createElement( 'span' );
+	setAttribute( span, 'aria-hidden', "true" );
+	
+	appendNode( span, button );
+	appendNode( createText( "×" ), span );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( button, target, anchor );
+		},
+		
+		update: noop,
+		
+		teardown: function ( detach ) {
+			removeEventListener( button, 'click', clickHandler );
+			
+			if ( detach ) {
+				detachNode( button );
+			}
+		}
+	};
+}
+
+function Close ( options ) {
+	options = options || {};
+	this._state = options.data || {};
+	
+	this._observers = {
+		pre: Object.create( null ),
+		post: Object.create( null )
+	};
+	
+	this._handlers = Object.create( null );
+	
+	this._root = options._root;
+	this._yield = options._yield;
+	
+	this._torndown = false;
+	
+	this._fragment = renderMainFragment$2( this._state, this );
+	if ( options.target ) this._fragment.mount( options.target, null );
+}
+
+Close.prototype = Object.assign( {}, proto );
+
+Close.prototype._set = function _set ( newState ) {
+	var oldState = this._state;
+	this._state = Object.assign( {}, oldState, newState );
+	
+	dispatchObservers( this, this._observers.pre, newState, oldState );
+	if ( this._fragment ) this._fragment.update( newState, this._state );
+	dispatchObservers( this, this._observers.post, newState, oldState );
+};
+
+Close.prototype.teardown = Close.prototype.destroy = function destroy ( detach ) {
+	this.fire( 'destroy' );
+
+	this._fragment.teardown( detach !== false );
+	this._fragment = null;
+
+	this._state = {};
+	this._torndown = true;
+};
+
 var template$1 = (function () {
+  // TODO handle fade transition when dismissing
+
+  return {
+    components: {
+      Close
+    },
+    data() {
+      return {
+        class: '',
+        color: 'success',
+        isOpen: true,
+        dismissible: false
+      };
+    }
+  }
+}());
+
+function renderMainFragment$1 ( root, component ) {
+	var ifBlock_anchor = createComment();
+	
+	function getBlock ( root ) {
+		if ( root.isOpen ) return renderIfBlock_0$1;
+		return null;
+	}
+	
+	var currentBlock = getBlock( root );
+	var ifBlock = currentBlock && currentBlock( root, component );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( ifBlock_anchor, target, anchor );
+			if ( ifBlock ) ifBlock.mount( ifBlock_anchor.parentNode, ifBlock_anchor );
+		},
+		
+		update: function ( changed, root ) {
+			var __tmp;
+		
+			var _currentBlock = currentBlock;
+			currentBlock = getBlock( root );
+			if ( _currentBlock === currentBlock && ifBlock) {
+				ifBlock.update( changed, root );
+			} else {
+				if ( ifBlock ) ifBlock.teardown( true );
+				ifBlock = currentBlock && currentBlock( root, component );
+				if ( ifBlock ) ifBlock.mount( ifBlock_anchor.parentNode, ifBlock_anchor );
+			}
+		},
+		
+		teardown: function ( detach ) {
+			if ( ifBlock ) ifBlock.teardown( detach );
+			
+			if ( detach ) {
+				detachNode( ifBlock_anchor );
+			}
+		}
+	};
+}
+
+function renderIfBlock_0$1 ( root, component ) {
+	var div = createElement( 'div' );
+	div.className = "alert alert-" + ( root.color ) + ( root.dismissible ? ' alert-dismissible' : '' ) + " " + ( root.class );
+	setAttribute( div, 'role', "alert" );
+	
+	var ifBlock1_anchor = createComment();
+	appendNode( ifBlock1_anchor, div );
+	
+	function getBlock1 ( root ) {
+		if ( root.dismissible ) return renderIfBlock1_0;
+		return null;
+	}
+	
+	var currentBlock1 = getBlock1( root );
+	var ifBlock1 = currentBlock1 && currentBlock1( root, component );
+	
+	if ( ifBlock1 ) ifBlock1.mount( ifBlock1_anchor.parentNode, ifBlock1_anchor );
+	appendNode( createText( "\n    " ), div );
+	var yield_anchor = createComment();
+	appendNode( yield_anchor, div );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( div, target, anchor );
+			component._yield && component._yield.mount( div, yield_anchor );
+		},
+		
+		update: function ( changed, root ) {
+			var __tmp;
+		
+			div.className = "alert alert-" + ( root.color ) + ( root.dismissible ? ' alert-dismissible' : '' ) + " " + ( root.class );
+			
+			var _currentBlock1 = currentBlock1;
+			currentBlock1 = getBlock1( root );
+			if ( _currentBlock1 === currentBlock1 && ifBlock1) {
+				ifBlock1.update( changed, root );
+			} else {
+				if ( ifBlock1 ) ifBlock1.teardown( true );
+				ifBlock1 = currentBlock1 && currentBlock1( root, component );
+				if ( ifBlock1 ) ifBlock1.mount( ifBlock1_anchor.parentNode, ifBlock1_anchor );
+			}
+		},
+		
+		teardown: function ( detach ) {
+			if ( ifBlock1 ) ifBlock1.teardown( false );
+			component._yield && component._yield.teardown( detach );
+			
+			if ( detach ) {
+				detachNode( div );
+			}
+		}
+	};
+}
+
+function renderIfBlock1_0 ( root, component ) {
+	var close = new template$1.components.Close({
+		target: null,
+		_root: component._root || component
+	});
+	
+	close.on( 'click', function ( event ) {
+		component.set({ isOpen: false });
+	});
+
+	return {
+		mount: function ( target, anchor ) {
+			close._fragment.mount( target, anchor );
+		},
+		
+		update: noop,
+		
+		teardown: function ( detach ) {
+			close.destroy( detach );
+		}
+	};
+}
+
+function Alert ( options ) {
+	options = options || {};
+	this._state = Object.assign( template$1.data(), options.data );
+	
+	this._observers = {
+		pre: Object.create( null ),
+		post: Object.create( null )
+	};
+	
+	this._handlers = Object.create( null );
+	
+	this._root = options._root;
+	this._yield = options._yield;
+	
+	this._torndown = false;
+	this._renderHooks = [];
+	
+	this._fragment = renderMainFragment$1( this._state, this );
+	if ( options.target ) this._fragment.mount( options.target, null );
+	
+	this._flush();
+}
+
+Alert.prototype = Object.assign( {}, proto );
+
+Alert.prototype._set = function _set ( newState ) {
+	var oldState = this._state;
+	this._state = Object.assign( {}, oldState, newState );
+	
+	dispatchObservers( this, this._observers.pre, newState, oldState );
+	if ( this._fragment ) this._fragment.update( newState, this._state );
+	dispatchObservers( this, this._observers.post, newState, oldState );
+	
+	this._flush();
+};
+
+Alert.prototype.teardown = Alert.prototype.destroy = function destroy ( detach ) {
+	this.fire( 'destroy' );
+
+	this._fragment.teardown( detach !== false );
+	this._fragment = null;
+
+	this._state = {};
+	this._torndown = true;
+};
+
+var template$2 = (function () {
   return {
     data() {
       return {
@@ -149,7 +407,7 @@ var template$1 = (function () {
   };
 }());
 
-function renderMainFragment$1 ( root, component ) {
+function renderMainFragment$3 ( root, component ) {
 	var span = createElement( 'span' );
 	span.className = "badge badge-" + ( root.color ) + ( root.pill ? ' badge-pill' : '' ) + " " + ( root.class );
 	
@@ -180,7 +438,7 @@ function renderMainFragment$1 ( root, component ) {
 
 function Badge ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$1.data(), options.data );
+	this._state = Object.assign( template$2.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -194,7 +452,7 @@ function Badge ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$1( this._state, this );
+	this._fragment = renderMainFragment$3( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -219,7 +477,7 @@ Badge.prototype.teardown = Badge.prototype.destroy = function destroy ( detach )
 	this._torndown = true;
 };
 
-var template$2 = (function () {
+var template$3 = (function () {
   return {
     data() {
       return {
@@ -229,7 +487,7 @@ var template$2 = (function () {
   }
 }());
 
-function renderMainFragment$2 ( root, component ) {
+function renderMainFragment$4 ( root, component ) {
 	var ol = createElement( 'ol' );
 	ol.className = "breadcrumb " + ( root.class );
 	
@@ -260,7 +518,7 @@ function renderMainFragment$2 ( root, component ) {
 
 function Breadcrumb ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$2.data(), options.data );
+	this._state = Object.assign( template$3.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -274,7 +532,7 @@ function Breadcrumb ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$2( this._state, this );
+	this._fragment = renderMainFragment$4( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -299,7 +557,7 @@ Breadcrumb.prototype.teardown = Breadcrumb.prototype.destroy = function destroy 
 	this._torndown = true;
 };
 
-var template$3 = (function () {
+var template$4 = (function () {
   return {
     data() {
       return {
@@ -310,7 +568,7 @@ var template$3 = (function () {
   }
 }());
 
-function renderMainFragment$3 ( root, component ) {
+function renderMainFragment$5 ( root, component ) {
 	var li = createElement( 'li' );
 	li.className = "breadcrumb-item" + ( root.active ? ' active' : '' ) + " " + ( root.class );
 	
@@ -341,7 +599,7 @@ function renderMainFragment$3 ( root, component ) {
 
 function BreadcrumbItem ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$3.data(), options.data );
+	this._state = Object.assign( template$4.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -355,7 +613,7 @@ function BreadcrumbItem ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$3( this._state, this );
+	this._fragment = renderMainFragment$5( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -380,7 +638,7 @@ BreadcrumbItem.prototype.teardown = BreadcrumbItem.prototype.destroy = function 
 	this._torndown = true;
 };
 
-var template$4 = (function () {
+var template$5 = (function () {
   return {
     methods: {
       onClick(e) {
@@ -406,7 +664,7 @@ var template$4 = (function () {
   }
 }());
 
-function renderMainFragment$4 ( root, component ) {
+function renderMainFragment$6 ( root, component ) {
 	var Button = createElement( 'Button' );
 	Button.className = "btn btn" + ( root.outline ? '-outline' : '' ) + "-" + ( root.color ) + ( root.size ? ` btn-${root.size}` : '' ) + ( root.block ? ' btn-block' : '' ) + ( root.active ? ' active' : '' ) + ( root.disabled ? ' disabled' : '' );
 	
@@ -444,7 +702,7 @@ function renderMainFragment$4 ( root, component ) {
 
 function Button ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$4.data(), options.data );
+	this._state = Object.assign( template$5.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -458,11 +716,11 @@ function Button ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$4( this._state, this );
+	this._fragment = renderMainFragment$6( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
-Button.prototype = Object.assign( {}, template$4.methods, proto );
+Button.prototype = Object.assign( {}, template$5.methods, proto );
 
 Button.prototype._set = function _set ( newState ) {
 	var oldState = this._state;
@@ -483,7 +741,7 @@ Button.prototype.teardown = Button.prototype.destroy = function destroy ( detach
 	this._torndown = true;
 };
 
-var template$5 = (function () {
+var template$6 = (function () {
   return {
     data() {
       return {
@@ -493,7 +751,7 @@ var template$5 = (function () {
   }
 }());
 
-function renderMainFragment$5 ( root, component ) {
+function renderMainFragment$7 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "" + ( root.size ? `btn-group-${root.size} ` : '' ) + ( root.vertical ? 'btn-group-vertical' : 'btn-group' ) + " " + ( root.class );
 	
@@ -524,7 +782,7 @@ function renderMainFragment$5 ( root, component ) {
 
 function ButtonGroup ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$5.data(), options.data );
+	this._state = Object.assign( template$6.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -538,7 +796,7 @@ function ButtonGroup ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$5( this._state, this );
+	this._fragment = renderMainFragment$7( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -563,7 +821,7 @@ ButtonGroup.prototype.teardown = ButtonGroup.prototype.destroy = function destro
 	this._torndown = true;
 };
 
-var template$6 = (function () {
+var template$7 = (function () {
   return {
     data() {
       return {
@@ -573,7 +831,7 @@ var template$6 = (function () {
   }
 }());
 
-function renderMainFragment$6 ( root, component ) {
+function renderMainFragment$8 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "btn-toolbar " + ( root.class );
 	
@@ -604,7 +862,7 @@ function renderMainFragment$6 ( root, component ) {
 
 function ButtonToolbar ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$6.data(), options.data );
+	this._state = Object.assign( template$7.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -618,7 +876,7 @@ function ButtonToolbar ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$6( this._state, this );
+	this._fragment = renderMainFragment$8( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -643,7 +901,7 @@ ButtonToolbar.prototype.teardown = ButtonToolbar.prototype.destroy = function de
 	this._torndown = true;
 };
 
-var template$7 = (function () {
+var template$8 = (function () {
   return {
     data() {
       return {
@@ -656,7 +914,7 @@ var template$7 = (function () {
   }
 }());
 
-function renderMainFragment$7 ( root, component ) {
+function renderMainFragment$9 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "card" + ( root.inverse ? ' card-inverse' : '' ) + ( root.block ? ' card-block' : '' ) + ( root.color ? ` card${root.outline ? '-outline' : ''}-${root.color}` : '' ) + " " + ( root.class );
 	
@@ -687,7 +945,7 @@ function renderMainFragment$7 ( root, component ) {
 
 function Card ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$7.data(), options.data );
+	this._state = Object.assign( template$8.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -701,7 +959,7 @@ function Card ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$7( this._state, this );
+	this._fragment = renderMainFragment$9( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -726,7 +984,7 @@ Card.prototype.teardown = Card.prototype.destroy = function destroy ( detach ) {
 	this._torndown = true;
 };
 
-var template$8 = (function () {
+var template$9 = (function () {
   return {
     data() {
       return {
@@ -736,7 +994,7 @@ var template$8 = (function () {
   }
 }());
 
-function renderMainFragment$8 ( root, component ) {
+function renderMainFragment$10 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "card-block " + ( root.class );
 	
@@ -767,7 +1025,7 @@ function renderMainFragment$8 ( root, component ) {
 
 function CardBlock ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$8.data(), options.data );
+	this._state = Object.assign( template$9.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -781,7 +1039,7 @@ function CardBlock ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$8( this._state, this );
+	this._fragment = renderMainFragment$10( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -806,7 +1064,7 @@ CardBlock.prototype.teardown = CardBlock.prototype.destroy = function destroy ( 
 	this._torndown = true;
 };
 
-var template$9 = (function () {
+var template$10 = (function () {
   return {
     data() {
       return {
@@ -816,7 +1074,7 @@ var template$9 = (function () {
   }
 }());
 
-function renderMainFragment$9 ( root, component ) {
+function renderMainFragment$11 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "card-columns " + ( root.class );
 	
@@ -847,7 +1105,7 @@ function renderMainFragment$9 ( root, component ) {
 
 function CardColumns ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$9.data(), options.data );
+	this._state = Object.assign( template$10.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -861,7 +1119,7 @@ function CardColumns ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$9( this._state, this );
+	this._fragment = renderMainFragment$11( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -886,7 +1144,7 @@ CardColumns.prototype.teardown = CardColumns.prototype.destroy = function destro
 	this._torndown = true;
 };
 
-var template$10 = (function () {
+var template$11 = (function () {
   return {
     data() {
       return {
@@ -896,7 +1154,7 @@ var template$10 = (function () {
   }
 }());
 
-function renderMainFragment$10 ( root, component ) {
+function renderMainFragment$12 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "card-deck " + ( root.class );
 	
@@ -927,7 +1185,7 @@ function renderMainFragment$10 ( root, component ) {
 
 function CardDeck ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$10.data(), options.data );
+	this._state = Object.assign( template$11.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -941,7 +1199,7 @@ function CardDeck ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$10( this._state, this );
+	this._fragment = renderMainFragment$12( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -966,7 +1224,7 @@ CardDeck.prototype.teardown = CardDeck.prototype.destroy = function destroy ( de
 	this._torndown = true;
 };
 
-var template$11 = (function () {
+var template$12 = (function () {
   return {
     data() {
       return {
@@ -976,7 +1234,7 @@ var template$11 = (function () {
   }
 }());
 
-function renderMainFragment$11 ( root, component ) {
+function renderMainFragment$13 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "card-footer " + ( root.class );
 	
@@ -1007,7 +1265,7 @@ function renderMainFragment$11 ( root, component ) {
 
 function CardFooter ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$11.data(), options.data );
+	this._state = Object.assign( template$12.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -1021,7 +1279,7 @@ function CardFooter ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$11( this._state, this );
+	this._fragment = renderMainFragment$13( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -1046,7 +1304,7 @@ CardFooter.prototype.teardown = CardFooter.prototype.destroy = function destroy 
 	this._torndown = true;
 };
 
-var template$12 = (function () {
+var template$13 = (function () {
   return {
     data() {
       return {
@@ -1056,7 +1314,7 @@ var template$12 = (function () {
   }
 }());
 
-function renderMainFragment$12 ( root, component ) {
+function renderMainFragment$14 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "card-group " + ( root.class );
 	
@@ -1087,7 +1345,7 @@ function renderMainFragment$12 ( root, component ) {
 
 function CardGroup ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$12.data(), options.data );
+	this._state = Object.assign( template$13.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -1101,7 +1359,7 @@ function CardGroup ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$12( this._state, this );
+	this._fragment = renderMainFragment$14( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -1126,7 +1384,7 @@ CardGroup.prototype.teardown = CardGroup.prototype.destroy = function destroy ( 
 	this._torndown = true;
 };
 
-var template$13 = (function () {
+var template$14 = (function () {
   return {
     data() {
       return {
@@ -1136,7 +1394,7 @@ var template$13 = (function () {
   }
 }());
 
-function renderMainFragment$13 ( root, component ) {
+function renderMainFragment$15 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "card-header " + ( root.class );
 	
@@ -1167,7 +1425,7 @@ function renderMainFragment$13 ( root, component ) {
 
 function CardHeader ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$13.data(), options.data );
+	this._state = Object.assign( template$14.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -1181,7 +1439,7 @@ function CardHeader ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$13( this._state, this );
+	this._fragment = renderMainFragment$15( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -1206,7 +1464,7 @@ CardHeader.prototype.teardown = CardHeader.prototype.destroy = function destroy 
 	this._torndown = true;
 };
 
-var template$14 = (function () {
+var template$15 = (function () {
   return {
     data() {
       return {
@@ -1216,7 +1474,7 @@ var template$14 = (function () {
   }
 }());
 
-function renderMainFragment$14 ( root, component ) {
+function renderMainFragment$16 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "card-img-overlay " + ( root.class );
 	
@@ -1247,7 +1505,7 @@ function renderMainFragment$14 ( root, component ) {
 
 function CardImgOverlay ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$14.data(), options.data );
+	this._state = Object.assign( template$15.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -1261,7 +1519,7 @@ function CardImgOverlay ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$14( this._state, this );
+	this._fragment = renderMainFragment$16( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -1286,7 +1544,7 @@ CardImgOverlay.prototype.teardown = CardImgOverlay.prototype.destroy = function 
 	this._torndown = true;
 };
 
-var template$15 = (function () {
+var template$16 = (function () {
   return {
     data() {
       return {
@@ -1296,7 +1554,7 @@ var template$15 = (function () {
   }
 }());
 
-function renderMainFragment$15 ( root, component ) {
+function renderMainFragment$17 ( root, component ) {
 	var h6 = createElement( 'h6' );
 	h6.className = "card-subtitle " + ( root.class );
 	
@@ -1327,7 +1585,7 @@ function renderMainFragment$15 ( root, component ) {
 
 function CardSubtitle ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$15.data(), options.data );
+	this._state = Object.assign( template$16.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -1341,7 +1599,7 @@ function CardSubtitle ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$15( this._state, this );
+	this._fragment = renderMainFragment$17( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -1366,7 +1624,7 @@ CardSubtitle.prototype.teardown = CardSubtitle.prototype.destroy = function dest
 	this._torndown = true;
 };
 
-var template$16 = (function () {
+var template$17 = (function () {
   return {
     data() {
       return {
@@ -1376,7 +1634,7 @@ var template$16 = (function () {
   }
 }());
 
-function renderMainFragment$16 ( root, component ) {
+function renderMainFragment$18 ( root, component ) {
 	var p = createElement( 'p' );
 	p.className = "card-text " + ( root.class );
 	
@@ -1407,7 +1665,7 @@ function renderMainFragment$16 ( root, component ) {
 
 function CardText ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$16.data(), options.data );
+	this._state = Object.assign( template$17.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -1421,7 +1679,7 @@ function CardText ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$16( this._state, this );
+	this._fragment = renderMainFragment$18( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -1446,7 +1704,7 @@ CardText.prototype.teardown = CardText.prototype.destroy = function destroy ( de
 	this._torndown = true;
 };
 
-var template$17 = (function () {
+var template$18 = (function () {
   return {
     data() {
       return {
@@ -1456,7 +1714,7 @@ var template$17 = (function () {
   }
 }());
 
-function renderMainFragment$17 ( root, component ) {
+function renderMainFragment$19 ( root, component ) {
 	var h4 = createElement( 'h4' );
 	h4.className = "card-title " + ( root.class );
 	
@@ -1487,7 +1745,7 @@ function renderMainFragment$17 ( root, component ) {
 
 function CardTitle ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$17.data(), options.data );
+	this._state = Object.assign( template$18.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -1501,7 +1759,7 @@ function CardTitle ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$17( this._state, this );
+	this._fragment = renderMainFragment$19( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -1526,81 +1784,13 @@ CardTitle.prototype.teardown = CardTitle.prototype.destroy = function destroy ( 
 	this._torndown = true;
 };
 
-function renderMainFragment$18 ( root, component ) {
-	var button = createElement( 'button' );
-	button.type = "button";
-	button.className = "close";
-	setAttribute( button, 'aria-label', "Close" );
-	
-	var span = createElement( 'span' );
-	setAttribute( span, 'aria-hidden', "true" );
-	
-	appendNode( span, button );
-	appendNode( createText( "×" ), span );
-
-	return {
-		mount: function ( target, anchor ) {
-			insertNode( button, target, anchor );
-		},
-		
-		update: noop,
-		
-		teardown: function ( detach ) {
-			if ( detach ) {
-				detachNode( button );
-			}
-		}
-	};
-}
-
-function Close ( options ) {
-	options = options || {};
-	this._state = options.data || {};
-	
-	this._observers = {
-		pre: Object.create( null ),
-		post: Object.create( null )
-	};
-	
-	this._handlers = Object.create( null );
-	
-	this._root = options._root;
-	this._yield = options._yield;
-	
-	this._torndown = false;
-	
-	this._fragment = renderMainFragment$18( this._state, this );
-	if ( options.target ) this._fragment.mount( options.target, null );
-}
-
-Close.prototype = Object.assign( {}, proto );
-
-Close.prototype._set = function _set ( newState ) {
-	var oldState = this._state;
-	this._state = Object.assign( {}, oldState, newState );
-	
-	dispatchObservers( this, this._observers.pre, newState, oldState );
-	if ( this._fragment ) this._fragment.update( newState, this._state );
-	dispatchObservers( this, this._observers.post, newState, oldState );
-};
-
-Close.prototype.teardown = Close.prototype.destroy = function destroy ( detach ) {
-	this.fire( 'destroy' );
-
-	this._fragment.teardown( detach !== false );
-	this._fragment = null;
-
-	this._state = {};
-	this._torndown = true;
-};
-
 function applyComputations ( state, newState, oldState, isInitial ) {
 	if ( isInitial || ( 'widths' in newState && typeof state.widths === 'object' || state.widths !== oldState.widths ) || ( 'xs' in newState && typeof state.xs === 'object' || state.xs !== oldState.xs ) || ( 'sm' in newState && typeof state.sm === 'object' || state.sm !== oldState.sm ) || ( 'md' in newState && typeof state.md === 'object' || state.md !== oldState.md ) || ( 'lg' in newState && typeof state.lg === 'object' || state.lg !== oldState.lg ) || ( 'xl' in newState && typeof state.xl === 'object' || state.xl !== oldState.xl ) ) {
-		state.classes = newState.classes = template$18.computed.classes( state.widths, state.xs, state.sm, state.md, state.lg, state.xl );
+		state.classes = newState.classes = template$19.computed.classes( state.widths, state.xs, state.sm, state.md, state.lg, state.xl );
 	}
 }
 
-var template$18 = (function () {
+var template$19 = (function () {
   const widths = ['xs', 'sm', 'md', 'lg', 'xl'];
 
   function isObject(value) {
@@ -1670,7 +1860,7 @@ var template$18 = (function () {
   }
 }());
 
-function renderMainFragment$19 ( root, component ) {
+function renderMainFragment$20 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "" + ( root.classes ) + " " + ( root.class );
 	
@@ -1701,7 +1891,7 @@ function renderMainFragment$19 ( root, component ) {
 
 function Col ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$18.data(), options.data );
+	this._state = Object.assign( template$19.data(), options.data );
 	applyComputations( this._state, this._state, {}, true );
 	
 	this._observers = {
@@ -1716,7 +1906,7 @@ function Col ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$19( this._state, this );
+	this._fragment = renderMainFragment$20( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -1742,7 +1932,7 @@ Col.prototype.teardown = Col.prototype.destroy = function destroy ( detach ) {
 	this._torndown = true;
 };
 
-var template$19 = (function () {
+var template$20 = (function () {
   return {
     data() {
       return {
@@ -1753,7 +1943,7 @@ var template$19 = (function () {
   };
 }());
 
-function renderMainFragment$20 ( root, component ) {
+function renderMainFragment$21 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "container" + ( root.fluid ? '-fluid' : '' ) + " " + ( root.class );
 	
@@ -1784,7 +1974,7 @@ function renderMainFragment$20 ( root, component ) {
 
 function Container ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$19.data(), options.data );
+	this._state = Object.assign( template$20.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -1798,7 +1988,7 @@ function Container ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$20( this._state, this );
+	this._fragment = renderMainFragment$21( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -1823,7 +2013,7 @@ Container.prototype.teardown = Container.prototype.destroy = function destroy ( 
 	this._torndown = true;
 };
 
-var template$20 = (function () {
+var template$21 = (function () {
   return {
     data() {
       return {
@@ -1834,7 +2024,7 @@ var template$20 = (function () {
   }
 }());
 
-function renderMainFragment$21 ( root, component ) {
+function renderMainFragment$22 ( root, component ) {
 	var form = createElement( 'form' );
 	form.className = "" + ( root.inline ? 'form-inline' : '' ) + " " + ( root.class );
 	
@@ -1865,7 +2055,7 @@ function renderMainFragment$21 ( root, component ) {
 
 function Form ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$20.data(), options.data );
+	this._state = Object.assign( template$21.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -1879,7 +2069,7 @@ function Form ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$21( this._state, this );
+	this._fragment = renderMainFragment$22( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -1904,7 +2094,7 @@ Form.prototype.teardown = Form.prototype.destroy = function destroy ( detach ) {
 	this._torndown = true;
 };
 
-var template$21 = (function () {
+var template$22 = (function () {
   return {
     data() {
       return {
@@ -1914,7 +2104,7 @@ var template$21 = (function () {
   }
 }());
 
-function renderMainFragment$22 ( root, component ) {
+function renderMainFragment$23 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "form-control-feedback " + ( root.class );
 	
@@ -1945,7 +2135,7 @@ function renderMainFragment$22 ( root, component ) {
 
 function FormFeedback ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$21.data(), options.data );
+	this._state = Object.assign( template$22.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -1959,7 +2149,7 @@ function FormFeedback ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$22( this._state, this );
+	this._fragment = renderMainFragment$23( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -1984,7 +2174,7 @@ FormFeedback.prototype.teardown = FormFeedback.prototype.destroy = function dest
 	this._torndown = true;
 };
 
-var template$22 = (function () {
+var template$23 = (function () {
   return {
     data() {
       return {
@@ -1998,7 +2188,7 @@ var template$22 = (function () {
   }
 }());
 
-function renderMainFragment$23 ( root, component ) {
+function renderMainFragment$24 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "" + ( root.color ? `has-${root.color}` : '' ) + ( root.row ? ' row' : '' ) + ( root.check ? ' form-check' : ' form-group' ) + ( root.check && root.disabled ? ' disabled' : '' ) + " " + ( root.class );
 	
@@ -2029,7 +2219,7 @@ function renderMainFragment$23 ( root, component ) {
 
 function FormGroup ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$22.data(), options.data );
+	this._state = Object.assign( template$23.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2043,7 +2233,7 @@ function FormGroup ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$23( this._state, this );
+	this._fragment = renderMainFragment$24( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2068,7 +2258,7 @@ FormGroup.prototype.teardown = FormGroup.prototype.destroy = function destroy ( 
 	this._torndown = true;
 };
 
-var template$23 = (function () {
+var template$24 = (function () {
   return {
     data() {
       return {
@@ -2080,7 +2270,7 @@ var template$23 = (function () {
   }
 }());
 
-function renderMainFragment$24 ( root, component ) {
+function renderMainFragment$25 ( root, component ) {
 	var small = createElement( 'small' );
 	small.className = "" + ( !root.inline ? 'form-text' : '' ) + ( root.color ? ` text-${root.color}` : '' ) + " " + ( root.class );
 	
@@ -2111,7 +2301,7 @@ function renderMainFragment$24 ( root, component ) {
 
 function FormText ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$23.data(), options.data );
+	this._state = Object.assign( template$24.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2125,7 +2315,7 @@ function FormText ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$24( this._state, this );
+	this._fragment = renderMainFragment$25( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2150,7 +2340,7 @@ FormText.prototype.teardown = FormText.prototype.destroy = function destroy ( de
 	this._torndown = true;
 };
 
-var template$24 = (function () {
+var template$25 = (function () {
   return {
     data() {
       return {
@@ -2169,7 +2359,7 @@ var template$24 = (function () {
   }
 }());
 
-function renderMainFragment$25 ( root, component ) {
+function renderMainFragment$26 ( root, component ) {
 	var i = createElement( 'i' );
 	i.className = "fa fa-" + ( root.name ) + ( root.size ? ' fa-' + root.size : '' ) + ( root.spin ? ' fa-spin' : '' ) + ( root.pulse ? ' fa-pulse' : '' ) + ( root.border ? ' fa-border' : '' ) + ( root.fixedWidth ? ' fa-fw' : '' ) + ( root.inverse ? ' fa-inverse' : '' ) + ( root.flip ? ' fa-flip-' + root.flip : '' ) + ( root.rotate ? ' fa-rotate-' + root.rotate : '' ) + ( root.stack ? ' fa-stack-' + root.stack : '' ) + " " + ( root.class );
 
@@ -2194,7 +2384,7 @@ function renderMainFragment$25 ( root, component ) {
 
 function Icon ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$24.data(), options.data );
+	this._state = Object.assign( template$25.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2208,7 +2398,7 @@ function Icon ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$25( this._state, this );
+	this._fragment = renderMainFragment$26( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2233,7 +2423,7 @@ Icon.prototype.teardown = Icon.prototype.destroy = function destroy ( detach ) {
 	this._torndown = true;
 };
 
-var template$25 = (function () {
+var template$26 = (function () {
   return {
     data() {
       return {
@@ -2244,7 +2434,7 @@ var template$25 = (function () {
   }
 }());
 
-function renderMainFragment$26 ( root, component ) {
+function renderMainFragment$27 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "input-group" + ( root.size ? ` input-group-${root.size}` : '' ) + " " + ( root.class );
 	
@@ -2275,7 +2465,7 @@ function renderMainFragment$26 ( root, component ) {
 
 function InputGroup ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$25.data(), options.data );
+	this._state = Object.assign( template$26.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2289,7 +2479,7 @@ function InputGroup ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$26( this._state, this );
+	this._fragment = renderMainFragment$27( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2314,7 +2504,7 @@ InputGroup.prototype.teardown = InputGroup.prototype.destroy = function destroy 
 	this._torndown = true;
 };
 
-var template$26 = (function () {
+var template$27 = (function () {
   return {
     data() {
       return {
@@ -2324,7 +2514,7 @@ var template$26 = (function () {
   }
 }());
 
-function renderMainFragment$27 ( root, component ) {
+function renderMainFragment$28 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "input-group-addon " + ( root.class );
 	
@@ -2355,7 +2545,7 @@ function renderMainFragment$27 ( root, component ) {
 
 function InputGroupAddon ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$26.data(), options.data );
+	this._state = Object.assign( template$27.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2369,7 +2559,7 @@ function InputGroupAddon ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$27( this._state, this );
+	this._fragment = renderMainFragment$28( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2394,7 +2584,7 @@ InputGroupAddon.prototype.teardown = InputGroupAddon.prototype.destroy = functio
 	this._torndown = true;
 };
 
-var template$27 = (function () {
+var template$28 = (function () {
   return {
     data() {
       return {
@@ -2405,7 +2595,7 @@ var template$27 = (function () {
   }
 }());
 
-function renderMainFragment$28 ( root, component ) {
+function renderMainFragment$29 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "jumbotron" + ( root.fluid ? ' jumbotron-fluid' : '' ) + " " + ( root.class );
 	
@@ -2436,7 +2626,7 @@ function renderMainFragment$28 ( root, component ) {
 
 function Jumbotron ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$27.data(), options.data );
+	this._state = Object.assign( template$28.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2450,7 +2640,7 @@ function Jumbotron ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$28( this._state, this );
+	this._fragment = renderMainFragment$29( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2475,7 +2665,7 @@ Jumbotron.prototype.teardown = Jumbotron.prototype.destroy = function destroy ( 
 	this._torndown = true;
 };
 
-var template$28 = (function () {
+var template$29 = (function () {
   return {
     data() {
       return {
@@ -2486,7 +2676,7 @@ var template$28 = (function () {
   }
 }());
 
-function renderMainFragment$29 ( root, component ) {
+function renderMainFragment$30 ( root, component ) {
 	var ul = createElement( 'ul' );
 	ul.className = "list-group" + ( root.flush ? ' list-group-flush' : '' ) + " " + ( root.class );
 	
@@ -2517,7 +2707,7 @@ function renderMainFragment$29 ( root, component ) {
 
 function ListGroup ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$28.data(), options.data );
+	this._state = Object.assign( template$29.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2531,7 +2721,7 @@ function ListGroup ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$29( this._state, this );
+	this._fragment = renderMainFragment$30( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2556,7 +2746,7 @@ ListGroup.prototype.teardown = ListGroup.prototype.destroy = function destroy ( 
 	this._torndown = true;
 };
 
-var template$29 = (function () {
+var template$30 = (function () {
   return {
     data() {
       return {
@@ -2570,7 +2760,7 @@ var template$29 = (function () {
   }
 }());
 
-function renderMainFragment$30 ( root, component ) {
+function renderMainFragment$31 ( root, component ) {
 	var li = createElement( 'li' );
 	li.className = "list-group-item" + ( root.active ? ' active' : '' ) + ( root.disabled ? ' disabled' : '' ) + ( root.action ? ' list-group-item-action' : '' ) + ( root.color ? ` list-group-item-${root.color}` : '' ) + " " + ( root.class );
 	
@@ -2601,7 +2791,7 @@ function renderMainFragment$30 ( root, component ) {
 
 function ListGroupItem ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$29.data(), options.data );
+	this._state = Object.assign( template$30.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2615,7 +2805,7 @@ function ListGroupItem ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$30( this._state, this );
+	this._fragment = renderMainFragment$31( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2640,7 +2830,7 @@ ListGroupItem.prototype.teardown = ListGroupItem.prototype.destroy = function de
 	this._torndown = true;
 };
 
-var template$30 = (function () {
+var template$31 = (function () {
   return {
     data() {
       return {
@@ -2650,7 +2840,7 @@ var template$30 = (function () {
   }
 }());
 
-function renderMainFragment$31 ( root, component ) {
+function renderMainFragment$32 ( root, component ) {
 	var h5 = createElement( 'h5' );
 	h5.className = "list-group-item-heading " + ( root.class );
 	
@@ -2681,7 +2871,7 @@ function renderMainFragment$31 ( root, component ) {
 
 function ListGroupItemHeading ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$30.data(), options.data );
+	this._state = Object.assign( template$31.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2695,7 +2885,7 @@ function ListGroupItemHeading ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$31( this._state, this );
+	this._fragment = renderMainFragment$32( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2720,7 +2910,7 @@ ListGroupItemHeading.prototype.teardown = ListGroupItemHeading.prototype.destroy
 	this._torndown = true;
 };
 
-var template$31 = (function () {
+var template$32 = (function () {
   return {
     data() {
       return {
@@ -2730,7 +2920,7 @@ var template$31 = (function () {
   }
 }());
 
-function renderMainFragment$32 ( root, component ) {
+function renderMainFragment$33 ( root, component ) {
 	var p = createElement( 'p' );
 	p.className = "list-group-item-text " + ( root.class );
 	
@@ -2761,7 +2951,7 @@ function renderMainFragment$32 ( root, component ) {
 
 function ListGroupItemText ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$31.data(), options.data );
+	this._state = Object.assign( template$32.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2775,7 +2965,7 @@ function ListGroupItemText ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$32( this._state, this );
+	this._fragment = renderMainFragment$33( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2800,7 +2990,7 @@ ListGroupItemText.prototype.teardown = ListGroupItemText.prototype.destroy = fun
 	this._torndown = true;
 };
 
-var template$32 = (function () {
+var template$33 = (function () {
   return {
     data() {
       return {
@@ -2810,7 +3000,7 @@ var template$32 = (function () {
   };
 }());
 
-function renderMainFragment$33 ( root, component ) {
+function renderMainFragment$34 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "media " + ( root.class );
 	
@@ -2841,7 +3031,7 @@ function renderMainFragment$33 ( root, component ) {
 
 function Media ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$32.data(), options.data );
+	this._state = Object.assign( template$33.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2855,7 +3045,7 @@ function Media ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$33( this._state, this );
+	this._fragment = renderMainFragment$34( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2880,7 +3070,7 @@ Media.prototype.teardown = Media.prototype.destroy = function destroy ( detach )
 	this._torndown = true;
 };
 
-var template$33 = (function () {
+var template$34 = (function () {
   return {
     data() {
       return {
@@ -2890,7 +3080,7 @@ var template$33 = (function () {
   };
 }());
 
-function renderMainFragment$34 ( root, component ) {
+function renderMainFragment$35 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "media-body " + ( root.class );
 	
@@ -2921,7 +3111,7 @@ function renderMainFragment$34 ( root, component ) {
 
 function MediaBody ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$33.data(), options.data );
+	this._state = Object.assign( template$34.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2935,7 +3125,7 @@ function MediaBody ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$34( this._state, this );
+	this._fragment = renderMainFragment$35( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2960,7 +3150,7 @@ MediaBody.prototype.teardown = MediaBody.prototype.destroy = function destroy ( 
 	this._torndown = true;
 };
 
-var template$34 = (function () {
+var template$35 = (function () {
   return {
     data() {
       return {
@@ -2970,7 +3160,7 @@ var template$34 = (function () {
   }
 }());
 
-function renderMainFragment$35 ( root, component ) {
+function renderMainFragment$36 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "modal-footer " + ( root.class );
 	
@@ -3001,7 +3191,7 @@ function renderMainFragment$35 ( root, component ) {
 
 function ModalFooter ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$34.data(), options.data );
+	this._state = Object.assign( template$35.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3015,7 +3205,7 @@ function ModalFooter ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$35( this._state, this );
+	this._fragment = renderMainFragment$36( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3040,7 +3230,7 @@ ModalFooter.prototype.teardown = ModalFooter.prototype.destroy = function destro
 	this._torndown = true;
 };
 
-var template$35 = (function () {
+var template$36 = (function () {
   return {
     data() {
       return {
@@ -3050,7 +3240,7 @@ var template$35 = (function () {
   }
 }());
 
-function renderMainFragment$36 ( root, component ) {
+function renderMainFragment$37 ( root, component ) {
 	var li = createElement( 'li' );
 	li.className = "nav-item " + ( root.class );
 	
@@ -3081,7 +3271,7 @@ function renderMainFragment$36 ( root, component ) {
 
 function NavDropdown ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$35.data(), options.data );
+	this._state = Object.assign( template$36.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3095,7 +3285,7 @@ function NavDropdown ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$36( this._state, this );
+	this._fragment = renderMainFragment$37( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3120,7 +3310,7 @@ NavDropdown.prototype.teardown = NavDropdown.prototype.destroy = function destro
 	this._torndown = true;
 };
 
-var template$36 = (function () {
+var template$37 = (function () {
   return {
     data() {
       return {
@@ -3136,7 +3326,7 @@ var template$36 = (function () {
   }
 }());
 
-function renderMainFragment$37 ( root, component ) {
+function renderMainFragment$38 ( root, component ) {
 	var ul = createElement( 'ul' );
 	ul.className = "" + ( root.navbar ? 'navbar-nav' : 'nav' ) + ( root.tabs ? ' nav-tabs' : '' ) + ( root.pills ? ' nav-pills' : '' ) + ( root.fill ? ' nav-fill' : root.justified ? ' nav-justified' : '' ) + ( root.vertical ? ' flex-column' : '' ) + " " + ( root.class );
 	
@@ -3167,7 +3357,7 @@ function renderMainFragment$37 ( root, component ) {
 
 function Nav ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$36.data(), options.data );
+	this._state = Object.assign( template$37.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3181,7 +3371,7 @@ function Nav ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$37( this._state, this );
+	this._fragment = renderMainFragment$38( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3206,7 +3396,7 @@ Nav.prototype.teardown = Nav.prototype.destroy = function destroy ( detach ) {
 	this._torndown = true;
 };
 
-var template$37 = (function () {
+var template$38 = (function () {
   return {
     data() {
       return {
@@ -3217,7 +3407,7 @@ var template$37 = (function () {
   }
 }());
 
-function renderMainFragment$38 ( root, component ) {
+function renderMainFragment$39 ( root, component ) {
 	var li = createElement( 'li' );
 	li.className = "nav-item" + ( root.active ? ' active' : '' ) + " " + ( root.class );
 	
@@ -3248,7 +3438,7 @@ function renderMainFragment$38 ( root, component ) {
 
 function NavItem ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$37.data(), options.data );
+	this._state = Object.assign( template$38.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3262,7 +3452,7 @@ function NavItem ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$38( this._state, this );
+	this._fragment = renderMainFragment$39( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3287,7 +3477,7 @@ NavItem.prototype.teardown = NavItem.prototype.destroy = function destroy ( deta
 	this._torndown = true;
 };
 
-var template$38 = (function () {
+var template$39 = (function () {
   return {
     data() {
       return {
@@ -3297,7 +3487,7 @@ var template$38 = (function () {
   }
 }());
 
-function renderMainFragment$39 ( root, component ) {
+function renderMainFragment$40 ( root, component ) {
 	var a = createElement( 'a' );
 	a.className = "navbar-brand " + ( root.class );
 	
@@ -3328,7 +3518,7 @@ function renderMainFragment$39 ( root, component ) {
 
 function NavbarBrand ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$38.data(), options.data );
+	this._state = Object.assign( template$39.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3342,7 +3532,7 @@ function NavbarBrand ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$39( this._state, this );
+	this._fragment = renderMainFragment$40( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3367,7 +3557,7 @@ NavbarBrand.prototype.teardown = NavbarBrand.prototype.destroy = function destro
 	this._torndown = true;
 };
 
-var template$39 = (function () {
+var template$40 = (function () {
   return {
     data() {
       return {
@@ -3378,7 +3568,7 @@ var template$39 = (function () {
   }
 }());
 
-function renderMainFragment$40 ( root, component ) {
+function renderMainFragment$41 ( root, component ) {
 	var ul = createElement( 'ul' );
 	ul.className = "pagination" + ( root.size ? ` pagination-${root.size}` : '' ) + " " + ( root.class );
 	
@@ -3409,7 +3599,7 @@ function renderMainFragment$40 ( root, component ) {
 
 function Pagination ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$39.data(), options.data );
+	this._state = Object.assign( template$40.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3423,7 +3613,7 @@ function Pagination ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$40( this._state, this );
+	this._fragment = renderMainFragment$41( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3448,7 +3638,7 @@ Pagination.prototype.teardown = Pagination.prototype.destroy = function destroy 
 	this._torndown = true;
 };
 
-var template$40 = (function () {
+var template$41 = (function () {
   return {
     data() {
       return {
@@ -3460,7 +3650,7 @@ var template$40 = (function () {
   }
 }());
 
-function renderMainFragment$41 ( root, component ) {
+function renderMainFragment$42 ( root, component ) {
 	var li = createElement( 'li' );
 	li.className = "page-item" + ( root.active ? ' active' : '' ) + ( root.disabled ? ' disabled' : '' ) + " " + ( root.class );
 	
@@ -3491,7 +3681,7 @@ function renderMainFragment$41 ( root, component ) {
 
 function PaginationItem ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$40.data(), options.data );
+	this._state = Object.assign( template$41.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3505,7 +3695,7 @@ function PaginationItem ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$41( this._state, this );
+	this._fragment = renderMainFragment$42( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3530,7 +3720,7 @@ PaginationItem.prototype.teardown = PaginationItem.prototype.destroy = function 
 	this._torndown = true;
 };
 
-var template$41 = (function () {
+var template$42 = (function () {
   // TODO add state to this component, generate PaginationItems, Links, on:click, etc
   return {
     data() {
@@ -3543,7 +3733,7 @@ var template$41 = (function () {
   }
 }());
 
-function renderMainFragment$42 ( root, component ) {
+function renderMainFragment$43 ( root, component ) {
 	var a = createElement( 'a' );
 	a.className = "page-link" + ( root.size ? ` pagination-${root.size}` : '' ) + " " + ( root.class );
 	
@@ -3551,7 +3741,7 @@ function renderMainFragment$42 ( root, component ) {
 	appendNode( ifBlock_anchor, a );
 	
 	function getBlock ( root ) {
-		if ( root.previous ) return renderIfBlock_0$1;
+		if ( root.previous ) return renderIfBlock_0$2;
 		if ( root.next ) return renderIfBlock_1$1;
 		return renderIfBlock_2;
 	}
@@ -3631,7 +3821,7 @@ function renderIfBlock_1$1 ( root, component ) {
 	};
 }
 
-function renderIfBlock_0$1 ( root, component ) {
+function renderIfBlock_0$2 ( root, component ) {
 	var text = createText( "«" );
 
 	return {
@@ -3651,7 +3841,7 @@ function renderIfBlock_0$1 ( root, component ) {
 
 function PaginationLink ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$41.data(), options.data );
+	this._state = Object.assign( template$42.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3665,7 +3855,7 @@ function PaginationLink ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$42( this._state, this );
+	this._fragment = renderMainFragment$43( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3858,11 +4048,11 @@ var index = toNumber;
 
 function applyComputations$1 ( state, newState, oldState, isInitial ) {
 	if ( isInitial || ( 'value' in newState && typeof state.value === 'object' || state.value !== oldState.value ) || ( 'max' in newState && typeof state.max === 'object' || state.max !== oldState.max ) ) {
-		state.percent = newState.percent = template$42.computed.percent( state.value, state.max );
+		state.percent = newState.percent = template$43.computed.percent( state.value, state.max );
 	}
 }
 
-var template$42 = (function () {
+var template$43 = (function () {
 return {
   data() {
     return {
@@ -3881,11 +4071,11 @@ return {
 }
 }());
 
-function renderMainFragment$43 ( root, component ) {
+function renderMainFragment$44 ( root, component ) {
 	var ifBlock_anchor = createComment();
 	
 	function getBlock ( root ) {
-		if ( !root.bar ) return renderIfBlock_0$2;
+		if ( !root.bar ) return renderIfBlock_0$3;
 		return renderIfBlock_1$2;
 	}
 	
@@ -3953,7 +4143,7 @@ function renderIfBlock_1$2 ( root, component ) {
 	};
 }
 
-function renderIfBlock_0$2 ( root, component ) {
+function renderIfBlock_0$3 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "progress " + ( root.class );
 	
@@ -3961,7 +4151,7 @@ function renderIfBlock_0$2 ( root, component ) {
 	appendNode( ifBlock1_anchor, div );
 	
 	function getBlock1 ( root ) {
-		if ( root.multi ) return renderIfBlock1_0;
+		if ( root.multi ) return renderIfBlock1_0$1;
 		return renderIfBlock1_1;
 	}
 	
@@ -4032,7 +4222,7 @@ function renderIfBlock1_1 ( root, component ) {
 	};
 }
 
-function renderIfBlock1_0 ( root, component ) {
+function renderIfBlock1_0$1 ( root, component ) {
 	var yield_anchor = createComment();
 
 	return {
@@ -4055,7 +4245,7 @@ function renderIfBlock1_0 ( root, component ) {
 
 function Progress ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$42.data(), options.data );
+	this._state = Object.assign( template$43.data(), options.data );
 	applyComputations$1( this._state, this._state, {}, true );
 	
 	this._observers = {
@@ -4070,7 +4260,7 @@ function Progress ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$43( this._state, this );
+	this._fragment = renderMainFragment$44( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -4096,7 +4286,7 @@ Progress.prototype.teardown = Progress.prototype.destroy = function destroy ( de
 	this._torndown = true;
 };
 
-var template$43 = (function () {
+var template$44 = (function () {
   return {
     data() {
       return {
@@ -4107,7 +4297,7 @@ var template$43 = (function () {
   };
 }());
 
-function renderMainFragment$44 ( root, component ) {
+function renderMainFragment$45 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "row" + ( root.noGutters ? ' no-gutters' : '' ) + " " + ( root.class );
 	
@@ -4138,7 +4328,7 @@ function renderMainFragment$44 ( root, component ) {
 
 function Row ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$43.data(), options.data );
+	this._state = Object.assign( template$44.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -4152,7 +4342,7 @@ function Row ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$44( this._state, this );
+	this._fragment = renderMainFragment$45( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -4177,7 +4367,7 @@ Row.prototype.teardown = Row.prototype.destroy = function destroy ( detach ) {
 	this._torndown = true;
 };
 
-var template$44 = (function () {
+var template$45 = (function () {
   // TODO remove duplication of table above
   return {
     data() {
@@ -4194,11 +4384,11 @@ var template$44 = (function () {
   }
 }());
 
-function renderMainFragment$45 ( root, component ) {
+function renderMainFragment$46 ( root, component ) {
 	var ifBlock_anchor = createComment();
 	
 	function getBlock ( root ) {
-		if ( root.responsive ) return renderIfBlock_0$3;
+		if ( root.responsive ) return renderIfBlock_0$4;
 		return renderIfBlock_1$3;
 	}
 	
@@ -4264,7 +4454,7 @@ function renderIfBlock_1$3 ( root, component ) {
 	};
 }
 
-function renderIfBlock_0$3 ( root, component ) {
+function renderIfBlock_0$4 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "table-responsive";
 	
@@ -4299,7 +4489,7 @@ function renderIfBlock_0$3 ( root, component ) {
 
 function Table ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$44.data(), options.data );
+	this._state = Object.assign( template$45.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -4313,7 +4503,7 @@ function Table ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$45( this._state, this );
+	this._fragment = renderMainFragment$46( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -4342,6 +4532,7 @@ var template = (function () {
   
   return {
     components: {
+      Alert,
       Badge,
       Breadcrumb,
       BreadcrumbItem,
@@ -4725,37 +4916,14 @@ function rendercontainerYieldFragment ( root, component ) {
 	appendNode( h23, div7 );
 	appendNode( createText( "Alerts" ), h23 );
 	appendNode( createText( "\n    " ), div7 );
+	var alert_yieldFragment = renderalertYieldFragment( root, component );
 	
-	var div8 = createElement( 'div' );
-	div8.className = "alert alert-dismissible alert-warning";
-	
-	appendNode( div8, div7 );
-	
-	var close = new template.components.Close({
-		target: div8,
-		_root: component._root || component
+	var alert = new template.components.Alert({
+		target: div7,
+		_root: component._root || component,
+		_yield: alert_yieldFragment
 	});
 	
-	appendNode( createText( "\n      " ), div8 );
-	
-	var h4 = createElement( 'h4' );
-	
-	appendNode( h4, div8 );
-	appendNode( createText( "Warning!" ), h4 );
-	appendNode( createText( "\n      " ), div8 );
-	
-	var p = createElement( 'p' );
-	
-	appendNode( p, div8 );
-	appendNode( createText( "Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, " ), p );
-	
-	var a = createElement( 'a' );
-	a.href = "#";
-	a.className = "alert-link";
-	
-	appendNode( a, p );
-	appendNode( createText( "vel scelerisque nisl consectetur et" ), a );
-	appendNode( createText( "." ), p );
 	appendNode( createText( "\n\n    " ), div7 );
 	var row9_yieldFragment = renderrow9YieldFragment( root, component );
 	
@@ -4767,112 +4935,112 @@ function rendercontainerYieldFragment ( root, component ) {
 	
 	appendNode( createText( "\n\n    " ), div7 );
 	
-	var div9 = createElement( 'div' );
+	var div8 = createElement( 'div' );
 	
-	appendNode( div9, div7 );
+	appendNode( div8, div7 );
 	
 	var h24 = createElement( 'h2' );
 	h24.className = "text-muted my-4";
 	
-	appendNode( h24, div9 );
+	appendNode( h24, div8 );
 	appendNode( createText( "Badges" ), h24 );
-	appendNode( createText( "\n      " ), div9 );
+	appendNode( createText( "\n      " ), div8 );
 	
-	var div10 = createElement( 'div' );
-	div10.className = "mb-4";
+	var div9 = createElement( 'div' );
+	div9.className = "mb-4";
 	
-	appendNode( div10, div9 );
+	appendNode( div9, div8 );
 	var badge_yieldFragment = renderbadgeYieldFragment( root, component );
 	
 	var badge = new template.components.Badge({
-		target: div10,
+		target: div9,
 		_root: component._root || component,
 		_yield: badge_yieldFragment
 	});
 	
-	appendNode( createText( "\n        " ), div10 );
+	appendNode( createText( "\n        " ), div9 );
 	var badge1_yieldFragment = renderbadge1YieldFragment( root, component );
 	
 	var badge1_initialData = {
 		color: "primary"
 	};
 	var badge1 = new template.components.Badge({
-		target: div10,
+		target: div9,
 		_root: component._root || component,
 		_yield: badge1_yieldFragment,
 		data: badge1_initialData
 	});
 	
-	appendNode( createText( "\n        " ), div10 );
+	appendNode( createText( "\n        " ), div9 );
 	var badge2_yieldFragment = renderbadge2YieldFragment( root, component );
 	
 	var badge2_initialData = {
 		color: "success"
 	};
 	var badge2 = new template.components.Badge({
-		target: div10,
+		target: div9,
 		_root: component._root || component,
 		_yield: badge2_yieldFragment,
 		data: badge2_initialData
 	});
 	
-	appendNode( createText( "\n        " ), div10 );
+	appendNode( createText( "\n        " ), div9 );
 	var badge3_yieldFragment = renderbadge3YieldFragment( root, component );
 	
 	var badge3_initialData = {
 		color: "warning"
 	};
 	var badge3 = new template.components.Badge({
-		target: div10,
+		target: div9,
 		_root: component._root || component,
 		_yield: badge3_yieldFragment,
 		data: badge3_initialData
 	});
 	
-	appendNode( createText( "\n        " ), div10 );
+	appendNode( createText( "\n        " ), div9 );
 	var badge4_yieldFragment = renderbadge4YieldFragment( root, component );
 	
 	var badge4_initialData = {
 		color: "danger"
 	};
 	var badge4 = new template.components.Badge({
-		target: div10,
+		target: div9,
 		_root: component._root || component,
 		_yield: badge4_yieldFragment,
 		data: badge4_initialData
 	});
 	
-	appendNode( createText( "\n        " ), div10 );
+	appendNode( createText( "\n        " ), div9 );
 	var badge5_yieldFragment = renderbadge5YieldFragment( root, component );
 	
 	var badge5_initialData = {
 		color: "info"
 	};
 	var badge5 = new template.components.Badge({
-		target: div10,
+		target: div9,
 		_root: component._root || component,
 		_yield: badge5_yieldFragment,
 		data: badge5_initialData
 	});
 	
-	appendNode( createText( "\n      " ), div9 );
+	appendNode( createText( "\n      " ), div8 );
 	
-	var div11 = createElement( 'div' );
+	var div10 = createElement( 'div' );
 	
-	appendNode( div11, div9 );
+	appendNode( div10, div8 );
 	var badge6_yieldFragment = renderbadge6YieldFragment( root, component );
 	
 	var badge6_initialData = {
 		pill: true
 	};
 	var badge6 = new template.components.Badge({
-		target: div11,
+		target: div10,
 		_root: component._root || component,
 		_yield: badge6_yieldFragment,
 		data: badge6_initialData
 	});
 	
-	appendNode( createText( "\n        " ), div11 );
+	appendNode( createText( "\n        " ), div10 );
 	var badge7_yieldFragment = renderbadge7YieldFragment( root, component );
 	
 	var badge7_initialData = {
@@ -4880,13 +5048,13 @@ function rendercontainerYieldFragment ( root, component ) {
 		color: "primary"
 	};
 	var badge7 = new template.components.Badge({
-		target: div11,
+		target: div10,
 		_root: component._root || component,
 		_yield: badge7_yieldFragment,
 		data: badge7_initialData
 	});
 	
-	appendNode( createText( "\n        " ), div11 );
+	appendNode( createText( "\n        " ), div10 );
 	var badge8_yieldFragment = renderbadge8YieldFragment( root, component );
 	
 	var badge8_initialData = {
@@ -4894,13 +5062,13 @@ function rendercontainerYieldFragment ( root, component ) {
 		color: "success"
 	};
 	var badge8 = new template.components.Badge({
-		target: div11,
+		target: div10,
 		_root: component._root || component,
 		_yield: badge8_yieldFragment,
 		data: badge8_initialData
 	});
 	
-	appendNode( createText( "\n        " ), div11 );
+	appendNode( createText( "\n        " ), div10 );
 	var badge9_yieldFragment = renderbadge9YieldFragment( root, component );
 	
 	var badge9_initialData = {
@@ -4908,13 +5076,13 @@ function rendercontainerYieldFragment ( root, component ) {
 		color: "warning"
 	};
 	var badge9 = new template.components.Badge({
-		target: div11,
+		target: div10,
 		_root: component._root || component,
 		_yield: badge9_yieldFragment,
 		data: badge9_initialData
 	});
 	
-	appendNode( createText( "\n        " ), div11 );
+	appendNode( createText( "\n        " ), div10 );
 	var badge10_yieldFragment = renderbadge10YieldFragment( root, component );
 	
 	var badge10_initialData = {
@@ -4922,13 +5090,13 @@ function rendercontainerYieldFragment ( root, component ) {
 		color: "danger"
 	};
 	var badge10 = new template.components.Badge({
-		target: div11,
+		target: div10,
 		_root: component._root || component,
 		_yield: badge10_yieldFragment,
 		data: badge10_initialData
 	});
 	
-	appendNode( createText( "\n        " ), div11 );
+	appendNode( createText( "\n        " ), div10 );
 	var badge11_yieldFragment = renderbadge11YieldFragment( root, component );
 	
 	var badge11_initialData = {
@@ -4936,106 +5104,106 @@ function rendercontainerYieldFragment ( root, component ) {
 		color: "info"
 	};
 	var badge11 = new template.components.Badge({
-		target: div11,
+		target: div10,
 		_root: component._root || component,
 		_yield: badge11_yieldFragment,
 		data: badge11_initialData
 	});
 	
-	var text61 = createText( "\n\n  " );
-	var text62 = createText( "\n  " );
+	var text55 = createText( "\n\n  " );
+	var text56 = createText( "\n  " );
 	
-	var div12 = createElement( 'div' );
-	div12.className = "mt-3";
+	var div11 = createElement( 'div' );
+	div11.className = "mt-3";
 	
 	var row10_yieldFragment = renderrow10YieldFragment( root, component );
 	
 	var row10 = new template.components.Row({
-		target: div12,
+		target: div11,
 		_root: component._root || component,
 		_yield: row10_yieldFragment
 	});
 	
-	var text63 = createText( "\n\n  " );
-	var text64 = createText( "\n  " );
+	var text57 = createText( "\n\n  " );
+	var text58 = createText( "\n  " );
 	
-	var div13 = createElement( 'div' );
-	div13.className = "mt-3";
+	var div12 = createElement( 'div' );
+	div12.className = "mt-3";
 	
 	var row11_yieldFragment = renderrow11YieldFragment( root, component );
 	
 	var row11 = new template.components.Row({
-		target: div13,
+		target: div12,
 		_root: component._root || component,
 		_yield: row11_yieldFragment
 	});
 	
-	appendNode( createText( "\n\n\n    " ), div13 );
+	appendNode( createText( "\n\n\n    " ), div12 );
 	
 	var h25 = createElement( 'h2' );
 	
-	appendNode( h25, div13 );
+	appendNode( h25, div12 );
 	appendNode( createText( "List groups" ), h25 );
-	appendNode( createText( "\n    " ), div13 );
+	appendNode( createText( "\n    " ), div12 );
 	var row12_yieldFragment = renderrow12YieldFragment( root, component );
 	
 	var row12 = new template.components.Row({
-		target: div13,
+		target: div12,
 		_root: component._root || component,
 		_yield: row12_yieldFragment
 	});
 	
-	appendNode( createText( "\n\n    " ), div13 );
+	appendNode( createText( "\n\n    " ), div12 );
 	
 	var h26 = createElement( 'h2' );
 	
-	appendNode( h26, div13 );
+	appendNode( h26, div12 );
 	appendNode( createText( "Cards" ), h26 );
-	appendNode( createText( "\n    " ), div13 );
+	appendNode( createText( "\n    " ), div12 );
 	var row13_yieldFragment = renderrow13YieldFragment( root, component );
 	
 	var row13 = new template.components.Row({
-		target: div13,
+		target: div12,
 		_root: component._root || component,
 		_yield: row13_yieldFragment
 	});
 	
-	appendNode( createText( "\n\n    " ), div13 );
+	appendNode( createText( "\n\n    " ), div12 );
 	
 	var h27 = createElement( 'h2' );
 	
-	appendNode( h27, div13 );
+	appendNode( h27, div12 );
 	appendNode( createText( "Media" ), h27 );
-	appendNode( createText( "\n    " ), div13 );
+	appendNode( createText( "\n    " ), div12 );
 	var row14_yieldFragment = renderrow14YieldFragment( root, component );
 	
 	var row14 = new template.components.Row({
-		target: div13,
+		target: div12,
 		_root: component._root || component,
 		_yield: row14_yieldFragment
 	});
 	
-	var text74 = createText( "\n\n  " );
-	var text75 = createText( "\n  " );
+	var text68 = createText( "\n\n  " );
+	var text69 = createText( "\n  " );
 	
-	var div14 = createElement( 'div' );
-	div14.className = "mt-3";
+	var div13 = createElement( 'div' );
+	div13.className = "mt-3";
 	
 	var h16 = createElement( 'h1' );
 	h16.id = "dialogs";
 	
-	appendNode( h16, div14 );
+	appendNode( h16, div13 );
 	appendNode( createText( "Dialogs" ), h16 );
-	appendNode( createText( "\n    " ), div14 );
+	appendNode( createText( "\n    " ), div13 );
 	var row15_yieldFragment = renderrow15YieldFragment( root, component );
 	
 	var row15 = new template.components.Row({
-		target: div14,
+		target: div13,
 		_root: component._root || component,
 		_yield: row15_yieldFragment
 	});
 	
-	var text78 = createText( "\n\n  " );
+	var text72 = createText( "\n\n  " );
 
 	return {
 		mount: function ( target, anchor ) {
@@ -5061,16 +5229,16 @@ function rendercontainerYieldFragment ( root, component ) {
 			insertNode( text34, target, anchor );
 			insertNode( text35, target, anchor );
 			insertNode( div7, target, anchor );
-			insertNode( text61, target, anchor );
-			insertNode( text62, target, anchor );
+			insertNode( text55, target, anchor );
+			insertNode( text56, target, anchor );
+			insertNode( div11, target, anchor );
+			insertNode( text57, target, anchor );
+			insertNode( text58, target, anchor );
 			insertNode( div12, target, anchor );
-			insertNode( text63, target, anchor );
-			insertNode( text64, target, anchor );
+			insertNode( text68, target, anchor );
+			insertNode( text69, target, anchor );
 			insertNode( div13, target, anchor );
-			insertNode( text74, target, anchor );
-			insertNode( text75, target, anchor );
-			insertNode( div14, target, anchor );
-			insertNode( text78, target, anchor );
+			insertNode( text72, target, anchor );
 		},
 		
 		update: function ( changed, root ) {
@@ -5087,6 +5255,7 @@ function rendercontainerYieldFragment ( root, component ) {
 			nav_yieldFragment.update( changed, root );
 			nav1_yieldFragment.update( changed, root );
 			row8_yieldFragment.update( changed, root );
+			alert_yieldFragment.update( changed, root );
 			row9_yieldFragment.update( changed, root );
 			badge_yieldFragment.update( changed, root );
 			badge1_yieldFragment.update( changed, root );
@@ -5120,7 +5289,7 @@ function rendercontainerYieldFragment ( root, component ) {
 			nav.destroy( false );
 			nav1.destroy( false );
 			row8.destroy( false );
-			close.destroy( false );
+			alert.destroy( false );
 			row9.destroy( false );
 			badge.destroy( false );
 			badge1.destroy( false );
@@ -5164,16 +5333,16 @@ function rendercontainerYieldFragment ( root, component ) {
 				detachNode( text34 );
 				detachNode( text35 );
 				detachNode( div7 );
-				detachNode( text61 );
-				detachNode( text62 );
+				detachNode( text55 );
+				detachNode( text56 );
+				detachNode( div11 );
+				detachNode( text57 );
+				detachNode( text58 );
 				detachNode( div12 );
-				detachNode( text63 );
-				detachNode( text64 );
+				detachNode( text68 );
+				detachNode( text69 );
 				detachNode( div13 );
-				detachNode( text74 );
-				detachNode( text75 );
-				detachNode( div14 );
-				detachNode( text78 );
+				detachNode( text72 );
 			}
 		}
 	};
@@ -5193,7 +5362,7 @@ function renderrow15YieldFragment ( root, component ) {
 	});
 	
 	var text = createText( "\n      " );
-	var col1_yieldFragment = rendercol1YieldFragment8( root, component );
+	var col1_yieldFragment = rendercol1YieldFragment7( root, component );
 	
 	var col1_initialData = {
 		lg: 6
@@ -5230,7 +5399,7 @@ function renderrow15YieldFragment ( root, component ) {
 	};
 }
 
-function rendercol1YieldFragment8 ( root, component ) {
+function rendercol1YieldFragment7 ( root, component ) {
 	var h2 = createElement( 'h2' );
 	
 	appendNode( createText( "Popovers" ), h2 );
@@ -5503,7 +5672,7 @@ function renderrow13YieldFragment ( root, component ) {
 	});
 	
 	var text = createText( "\n\n      " );
-	var col1_yieldFragment = rendercol1YieldFragment7( root, component );
+	var col1_yieldFragment = rendercol1YieldFragment6( root, component );
 	
 	var col1_initialData = {
 		lg: 4
@@ -5516,7 +5685,7 @@ function renderrow13YieldFragment ( root, component ) {
 	});
 	
 	var text1 = createText( "\n\n      " );
-	var col2_yieldFragment = rendercol2YieldFragment2( root, component );
+	var col2_yieldFragment = rendercol2YieldFragment1( root, component );
 	
 	var col2_initialData = {
 		lg: 4
@@ -5558,7 +5727,7 @@ function renderrow13YieldFragment ( root, component ) {
 	};
 }
 
-function rendercol2YieldFragment2 ( root, component ) {
+function rendercol2YieldFragment1 ( root, component ) {
 	var card_yieldFragment = rendercardYieldFragment2( root, component );
 	
 	var card = new template.components.Card({
@@ -5832,7 +6001,198 @@ function rendercardHeaderYieldFragment ( root, component ) {
 	};
 }
 
-function rendercol1YieldFragment7 ( root, component ) {
+function rendercol1YieldFragment6 ( root, component ) {
+	var eachBlock4_anchor = createComment();
+	var eachBlock4_value = ['primary', 'secondary', 'success', 'info', 'warning', 'danger'];
+	var eachBlock4_iterations = [];
+	
+	for ( var i = 0; i < eachBlock4_value.length; i += 1 ) {
+		eachBlock4_iterations[i] = renderEachBlock4( root, eachBlock4_value, eachBlock4_value[i], i, component );
+	}
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( eachBlock4_anchor, target, anchor );
+			
+			for ( var i = 0; i < eachBlock4_iterations.length; i += 1 ) {
+				eachBlock4_iterations[i].mount( eachBlock4_anchor.parentNode, eachBlock4_anchor );
+			}
+		},
+		
+		update: function ( changed, root ) {
+			var __tmp;
+		
+			var eachBlock4_value = ['primary', 'secondary', 'success', 'info', 'warning', 'danger'];
+			
+			for ( var i = 0; i < eachBlock4_value.length; i += 1 ) {
+				if ( !eachBlock4_iterations[i] ) {
+					eachBlock4_iterations[i] = renderEachBlock4( root, eachBlock4_value, eachBlock4_value[i], i, component );
+					eachBlock4_iterations[i].mount( eachBlock4_anchor.parentNode, eachBlock4_anchor );
+				} else {
+					eachBlock4_iterations[i].update( changed, root, eachBlock4_value, eachBlock4_value[i], i );
+				}
+			}
+			
+			teardownEach( eachBlock4_iterations, true, eachBlock4_value.length );
+			
+			eachBlock4_iterations.length = eachBlock4_value.length;
+		},
+		
+		teardown: function ( detach ) {
+			teardownEach( eachBlock4_iterations, detach );
+			
+			if ( detach ) {
+				detachNode( eachBlock4_anchor );
+			}
+		}
+	};
+}
+
+function renderEachBlock4 ( root, eachBlock4_value, color, color__index, component ) {
+	var card_yieldFragment = rendercardYieldFragment1( root, eachBlock4_value, color, color__index, component );
+	
+	var card_initialData = {
+		outline: true,
+		class: "mb-3 text-xs-center",
+		color: color
+	};
+	var card = new template.components.Card({
+		target: null,
+		_root: component._root || component,
+		_yield: card_yieldFragment,
+		data: card_initialData
+	});
+
+	return {
+		mount: function ( target, anchor ) {
+			card._fragment.mount( target, anchor );
+		},
+		
+		update: function ( changed, root, eachBlock4_value, color, color__index ) {
+			var __tmp;
+		
+			card_yieldFragment.update( changed, root, eachBlock4_value, color, color__index );
+			
+			var card_changes = {};
+			
+			card_changes.color = color;
+			
+			if ( Object.keys( card_changes ).length ) card.set( card_changes );
+		},
+		
+		teardown: function ( detach ) {
+			card.destroy( detach );
+		}
+	};
+}
+
+function rendercardYieldFragment1 ( root, eachBlock4_value, color, color__index, component ) {
+	var cardBlock_yieldFragment = rendercardBlockYieldFragment1( root, eachBlock4_value, color, color__index, component );
+	
+	var cardBlock = new template.components.CardBlock({
+		target: null,
+		_root: component._root || component,
+		_yield: cardBlock_yieldFragment
+	});
+
+	return {
+		mount: function ( target, anchor ) {
+			cardBlock._fragment.mount( target, anchor );
+		},
+		
+		update: function ( changed, root, eachBlock4_value, color, color__index ) {
+			var __tmp;
+		
+			cardBlock_yieldFragment.update( changed, root, eachBlock4_value, color, color__index );
+		},
+		
+		teardown: function ( detach ) {
+			cardBlock.destroy( detach );
+		}
+	};
+}
+
+function rendercardBlockYieldFragment1 ( root, eachBlock4_value, color, color__index, component ) {
+	var cardTitle_yieldFragment = rendercardTitleYieldFragment1( root, eachBlock4_value, color, color__index, component );
+	
+	var cardTitle = new template.components.CardTitle({
+		target: null,
+		_root: component._root || component,
+		_yield: cardTitle_yieldFragment
+	});
+	
+	var text = createText( "\n              " );
+	
+	var blockquote = createElement( 'blockquote' );
+	blockquote.className = "card-blockquote";
+	
+	var p = createElement( 'p' );
+	
+	appendNode( p, blockquote );
+	appendNode( createText( "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante." ), p );
+	appendNode( createText( "\n                " ), blockquote );
+	
+	var footer = createElement( 'footer' );
+	
+	appendNode( footer, blockquote );
+	appendNode( createText( "Someone famous in " ), footer );
+	
+	var cite = createElement( 'cite' );
+	cite.title = "Source Title";
+	
+	appendNode( cite, footer );
+	appendNode( createText( "Source Title" ), cite );
+
+	return {
+		mount: function ( target, anchor ) {
+			cardTitle._fragment.mount( target, anchor );
+			insertNode( text, target, anchor );
+			insertNode( blockquote, target, anchor );
+		},
+		
+		update: function ( changed, root, eachBlock4_value, color, color__index ) {
+			var __tmp;
+		
+			cardTitle_yieldFragment.update( changed, root, eachBlock4_value, color, color__index );
+		},
+		
+		teardown: function ( detach ) {
+			cardTitle.destroy( detach );
+			
+			if ( detach ) {
+				detachNode( text );
+				detachNode( blockquote );
+			}
+		}
+	};
+}
+
+function rendercardTitleYieldFragment1 ( root, eachBlock4_value, color, color__index, component ) {
+	var last_text = color;
+	var text = createText( last_text );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( text, target, anchor );
+		},
+		
+		update: function ( changed, root, eachBlock4_value, color, color__index ) {
+			var __tmp;
+		
+			if ( ( __tmp = color ) !== last_text ) {
+				text.data = last_text = __tmp;
+			}
+		},
+		
+		teardown: function ( detach ) {
+			if ( detach ) {
+				detachNode( text );
+			}
+		}
+	};
+}
+
+function rendercolYieldFragment12 ( root, component ) {
 	var eachBlock3_anchor = createComment();
 	var eachBlock3_value = ['primary', 'secondary', 'success', 'info', 'warning', 'danger'];
 	var eachBlock3_iterations = [];
@@ -5880,10 +6240,9 @@ function rendercol1YieldFragment7 ( root, component ) {
 }
 
 function renderEachBlock3 ( root, eachBlock3_value, color, color__index, component ) {
-	var card_yieldFragment = rendercardYieldFragment1( root, eachBlock3_value, color, color__index, component );
+	var card_yieldFragment = rendercardYieldFragment( root, eachBlock3_value, color, color__index, component );
 	
 	var card_initialData = {
-		outline: true,
 		class: "mb-3 text-xs-center",
 		color: color
 	};
@@ -5917,8 +6276,8 @@ function renderEachBlock3 ( root, eachBlock3_value, color, color__index, compone
 	};
 }
 
-function rendercardYieldFragment1 ( root, eachBlock3_value, color, color__index, component ) {
-	var cardBlock_yieldFragment = rendercardBlockYieldFragment1( root, eachBlock3_value, color, color__index, component );
+function rendercardYieldFragment ( root, eachBlock3_value, color, color__index, component ) {
+	var cardBlock_yieldFragment = rendercardBlockYieldFragment( root, eachBlock3_value, color, color__index, component );
 	
 	var cardBlock = new template.components.CardBlock({
 		target: null,
@@ -5943,8 +6302,8 @@ function rendercardYieldFragment1 ( root, eachBlock3_value, color, color__index,
 	};
 }
 
-function rendercardBlockYieldFragment1 ( root, eachBlock3_value, color, color__index, component ) {
-	var cardTitle_yieldFragment = rendercardTitleYieldFragment1( root, eachBlock3_value, color, color__index, component );
+function rendercardBlockYieldFragment ( root, eachBlock3_value, color, color__index, component ) {
+	var cardTitle_yieldFragment = rendercardTitleYieldFragment( root, eachBlock3_value, color, color__index, component );
 	
 	var cardTitle = new template.components.CardTitle({
 		target: null,
@@ -5998,7 +6357,7 @@ function rendercardBlockYieldFragment1 ( root, eachBlock3_value, color, color__i
 	};
 }
 
-function rendercardTitleYieldFragment1 ( root, eachBlock3_value, color, color__index, component ) {
+function rendercardTitleYieldFragment ( root, eachBlock3_value, color, color__index, component ) {
 	var last_text = color;
 	var text = createText( last_text );
 
@@ -6008,196 +6367,6 @@ function rendercardTitleYieldFragment1 ( root, eachBlock3_value, color, color__i
 		},
 		
 		update: function ( changed, root, eachBlock3_value, color, color__index ) {
-			var __tmp;
-		
-			if ( ( __tmp = color ) !== last_text ) {
-				text.data = last_text = __tmp;
-			}
-		},
-		
-		teardown: function ( detach ) {
-			if ( detach ) {
-				detachNode( text );
-			}
-		}
-	};
-}
-
-function rendercolYieldFragment12 ( root, component ) {
-	var eachBlock2_anchor = createComment();
-	var eachBlock2_value = ['primary', 'secondary', 'success', 'info', 'warning', 'danger'];
-	var eachBlock2_iterations = [];
-	
-	for ( var i = 0; i < eachBlock2_value.length; i += 1 ) {
-		eachBlock2_iterations[i] = renderEachBlock2( root, eachBlock2_value, eachBlock2_value[i], i, component );
-	}
-
-	return {
-		mount: function ( target, anchor ) {
-			insertNode( eachBlock2_anchor, target, anchor );
-			
-			for ( var i = 0; i < eachBlock2_iterations.length; i += 1 ) {
-				eachBlock2_iterations[i].mount( eachBlock2_anchor.parentNode, eachBlock2_anchor );
-			}
-		},
-		
-		update: function ( changed, root ) {
-			var __tmp;
-		
-			var eachBlock2_value = ['primary', 'secondary', 'success', 'info', 'warning', 'danger'];
-			
-			for ( var i = 0; i < eachBlock2_value.length; i += 1 ) {
-				if ( !eachBlock2_iterations[i] ) {
-					eachBlock2_iterations[i] = renderEachBlock2( root, eachBlock2_value, eachBlock2_value[i], i, component );
-					eachBlock2_iterations[i].mount( eachBlock2_anchor.parentNode, eachBlock2_anchor );
-				} else {
-					eachBlock2_iterations[i].update( changed, root, eachBlock2_value, eachBlock2_value[i], i );
-				}
-			}
-			
-			teardownEach( eachBlock2_iterations, true, eachBlock2_value.length );
-			
-			eachBlock2_iterations.length = eachBlock2_value.length;
-		},
-		
-		teardown: function ( detach ) {
-			teardownEach( eachBlock2_iterations, detach );
-			
-			if ( detach ) {
-				detachNode( eachBlock2_anchor );
-			}
-		}
-	};
-}
-
-function renderEachBlock2 ( root, eachBlock2_value, color, color__index, component ) {
-	var card_yieldFragment = rendercardYieldFragment( root, eachBlock2_value, color, color__index, component );
-	
-	var card_initialData = {
-		class: "mb-3 text-xs-center",
-		color: color
-	};
-	var card = new template.components.Card({
-		target: null,
-		_root: component._root || component,
-		_yield: card_yieldFragment,
-		data: card_initialData
-	});
-
-	return {
-		mount: function ( target, anchor ) {
-			card._fragment.mount( target, anchor );
-		},
-		
-		update: function ( changed, root, eachBlock2_value, color, color__index ) {
-			var __tmp;
-		
-			card_yieldFragment.update( changed, root, eachBlock2_value, color, color__index );
-			
-			var card_changes = {};
-			
-			card_changes.color = color;
-			
-			if ( Object.keys( card_changes ).length ) card.set( card_changes );
-		},
-		
-		teardown: function ( detach ) {
-			card.destroy( detach );
-		}
-	};
-}
-
-function rendercardYieldFragment ( root, eachBlock2_value, color, color__index, component ) {
-	var cardBlock_yieldFragment = rendercardBlockYieldFragment( root, eachBlock2_value, color, color__index, component );
-	
-	var cardBlock = new template.components.CardBlock({
-		target: null,
-		_root: component._root || component,
-		_yield: cardBlock_yieldFragment
-	});
-
-	return {
-		mount: function ( target, anchor ) {
-			cardBlock._fragment.mount( target, anchor );
-		},
-		
-		update: function ( changed, root, eachBlock2_value, color, color__index ) {
-			var __tmp;
-		
-			cardBlock_yieldFragment.update( changed, root, eachBlock2_value, color, color__index );
-		},
-		
-		teardown: function ( detach ) {
-			cardBlock.destroy( detach );
-		}
-	};
-}
-
-function rendercardBlockYieldFragment ( root, eachBlock2_value, color, color__index, component ) {
-	var cardTitle_yieldFragment = rendercardTitleYieldFragment( root, eachBlock2_value, color, color__index, component );
-	
-	var cardTitle = new template.components.CardTitle({
-		target: null,
-		_root: component._root || component,
-		_yield: cardTitle_yieldFragment
-	});
-	
-	var text = createText( "\n              " );
-	
-	var blockquote = createElement( 'blockquote' );
-	blockquote.className = "card-blockquote";
-	
-	var p = createElement( 'p' );
-	
-	appendNode( p, blockquote );
-	appendNode( createText( "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante." ), p );
-	appendNode( createText( "\n                " ), blockquote );
-	
-	var footer = createElement( 'footer' );
-	
-	appendNode( footer, blockquote );
-	appendNode( createText( "Someone famous in " ), footer );
-	
-	var cite = createElement( 'cite' );
-	cite.title = "Source Title";
-	
-	appendNode( cite, footer );
-	appendNode( createText( "Source Title" ), cite );
-
-	return {
-		mount: function ( target, anchor ) {
-			cardTitle._fragment.mount( target, anchor );
-			insertNode( text, target, anchor );
-			insertNode( blockquote, target, anchor );
-		},
-		
-		update: function ( changed, root, eachBlock2_value, color, color__index ) {
-			var __tmp;
-		
-			cardTitle_yieldFragment.update( changed, root, eachBlock2_value, color, color__index );
-		},
-		
-		teardown: function ( detach ) {
-			cardTitle.destroy( detach );
-			
-			if ( detach ) {
-				detachNode( text );
-				detachNode( blockquote );
-			}
-		}
-	};
-}
-
-function rendercardTitleYieldFragment ( root, eachBlock2_value, color, color__index, component ) {
-	var last_text = color;
-	var text = createText( last_text );
-
-	return {
-		mount: function ( target, anchor ) {
-			insertNode( text, target, anchor );
-		},
-		
-		update: function ( changed, root, eachBlock2_value, color, color__index ) {
 			var __tmp;
 		
 			if ( ( __tmp = color ) !== last_text ) {
@@ -6227,7 +6396,7 @@ function renderrow12YieldFragment ( root, component ) {
 	});
 	
 	var text = createText( "\n\n      " );
-	var col1_yieldFragment = rendercol1YieldFragment6( root, component );
+	var col1_yieldFragment = rendercol1YieldFragment5( root, component );
 	
 	var col1_initialData = {
 		lg: 4
@@ -6240,7 +6409,7 @@ function renderrow12YieldFragment ( root, component ) {
 	});
 	
 	var text1 = createText( "\n\n      " );
-	var col2_yieldFragment = rendercol2YieldFragment1( root, component );
+	var col2_yieldFragment = rendercol2YieldFragment( root, component );
 	
 	var col2_initialData = {
 		lg: 4
@@ -6282,7 +6451,7 @@ function renderrow12YieldFragment ( root, component ) {
 	};
 }
 
-function rendercol2YieldFragment1 ( root, component ) {
+function rendercol2YieldFragment ( root, component ) {
 	var listGroup_yieldFragment = renderlistGroupYieldFragment3( root, component );
 	
 	var listGroup = new template.components.ListGroup({
@@ -6518,7 +6687,7 @@ function renderlistGroupItemHeadingYieldFragment ( root, component ) {
 	};
 }
 
-function rendercol1YieldFragment6 ( root, component ) {
+function rendercol1YieldFragment5 ( root, component ) {
 	var listGroup_yieldFragment = renderlistGroupYieldFragment2( root, component );
 	
 	var listGroup = new template.components.ListGroup({
@@ -7740,200 +7909,189 @@ function renderbadgeYieldFragment ( root, component ) {
 }
 
 function renderrow9YieldFragment ( root, component ) {
-	var col_yieldFragment = rendercolYieldFragment8( root, component );
+	var eachBlock2_anchor = createComment();
+	var eachBlock2_value = ['success', 'info', 'warning', 'danger'];
+	var eachBlock2_iterations = [];
 	
-	var col_initialData = {
-		lg: 4
-	};
-	var col = new template.components.Col({
-		target: null,
-		_root: component._root || component,
-		_yield: col_yieldFragment,
-		data: col_initialData
-	});
-	
-	var text = createText( "\n      " );
-	var col1_yieldFragment = rendercol1YieldFragment5( root, component );
-	
-	var col1_initialData = {
-		lg: 4
-	};
-	var col1 = new template.components.Col({
-		target: null,
-		_root: component._root || component,
-		_yield: col1_yieldFragment,
-		data: col1_initialData
-	});
-	
-	var text1 = createText( "\n      " );
-	var col2_yieldFragment = rendercol2YieldFragment( root, component );
-	
-	var col2_initialData = {
-		lg: 4
-	};
-	var col2 = new template.components.Col({
-		target: null,
-		_root: component._root || component,
-		_yield: col2_yieldFragment,
-		data: col2_initialData
-	});
+	for ( var i = 0; i < eachBlock2_value.length; i += 1 ) {
+		eachBlock2_iterations[i] = renderEachBlock2( root, eachBlock2_value, eachBlock2_value[i], i, component );
+	}
 
 	return {
 		mount: function ( target, anchor ) {
-			col._fragment.mount( target, anchor );
-			insertNode( text, target, anchor );
-			col1._fragment.mount( target, anchor );
-			insertNode( text1, target, anchor );
-			col2._fragment.mount( target, anchor );
+			insertNode( eachBlock2_anchor, target, anchor );
+			
+			for ( var i = 0; i < eachBlock2_iterations.length; i += 1 ) {
+				eachBlock2_iterations[i].mount( eachBlock2_anchor.parentNode, eachBlock2_anchor );
+			}
 		},
 		
 		update: function ( changed, root ) {
 			var __tmp;
 		
-			col_yieldFragment.update( changed, root );
-			col1_yieldFragment.update( changed, root );
-			col2_yieldFragment.update( changed, root );
+			var eachBlock2_value = ['success', 'info', 'warning', 'danger'];
+			
+			for ( var i = 0; i < eachBlock2_value.length; i += 1 ) {
+				if ( !eachBlock2_iterations[i] ) {
+					eachBlock2_iterations[i] = renderEachBlock2( root, eachBlock2_value, eachBlock2_value[i], i, component );
+					eachBlock2_iterations[i].mount( eachBlock2_anchor.parentNode, eachBlock2_anchor );
+				} else {
+					eachBlock2_iterations[i].update( changed, root, eachBlock2_value, eachBlock2_value[i], i );
+				}
+			}
+			
+			teardownEach( eachBlock2_iterations, true, eachBlock2_value.length );
+			
+			eachBlock2_iterations.length = eachBlock2_value.length;
+		},
+		
+		teardown: function ( detach ) {
+			teardownEach( eachBlock2_iterations, detach );
+			
+			if ( detach ) {
+				detachNode( eachBlock2_anchor );
+			}
+		}
+	};
+}
+
+function renderEachBlock2 ( root, eachBlock2_value, color, color__index, component ) {
+	var col_yieldFragment = rendercolYieldFragment8( root, eachBlock2_value, color, color__index, component );
+	
+	var col = new template.components.Col({
+		target: null,
+		_root: component._root || component,
+		_yield: col_yieldFragment
+	});
+
+	return {
+		mount: function ( target, anchor ) {
+			col._fragment.mount( target, anchor );
+		},
+		
+		update: function ( changed, root, eachBlock2_value, color, color__index ) {
+			var __tmp;
+		
+			col_yieldFragment.update( changed, root, eachBlock2_value, color, color__index );
 		},
 		
 		teardown: function ( detach ) {
 			col.destroy( detach );
-			col1.destroy( detach );
-			col2.destroy( detach );
-			
-			if ( detach ) {
-				detachNode( text );
-				detachNode( text1 );
-			}
 		}
 	};
 }
 
-function rendercol2YieldFragment ( root, component ) {
-	var div = createElement( 'div' );
-	div.className = "bs-component";
+function rendercolYieldFragment8 ( root, eachBlock2_value, color, color__index, component ) {
+	var alert_yieldFragment = renderalertYieldFragment1( root, eachBlock2_value, color, color__index, component );
 	
-	var div1 = createElement( 'div' );
-	div1.className = "alert alert-dismissible alert-info";
-	
-	appendNode( div1, div );
-	
-	var close = new template.components.Close({
-		target: div1,
-		_root: component._root || component
+	var alert_initialData = {
+		dismissible: true,
+		color: color
+	};
+	var alert = new template.components.Alert({
+		target: null,
+		_root: component._root || component,
+		_yield: alert_yieldFragment,
+		data: alert_initialData
 	});
-	
-	appendNode( createText( "\n            " ), div1 );
-	
-	var strong = createElement( 'strong' );
-	
-	appendNode( strong, div1 );
-	appendNode( createText( "Heads up!" ), strong );
-	appendNode( createText( " This " ), div1 );
-	
-	var a = createElement( 'a' );
-	a.href = "#";
-	a.className = "alert-link";
-	
-	appendNode( a, div1 );
-	appendNode( createText( "alert needs your attention" ), a );
-	appendNode( createText( ", but it's not super important." ), div1 );
 
 	return {
 		mount: function ( target, anchor ) {
-			insertNode( div, target, anchor );
+			alert._fragment.mount( target, anchor );
 		},
 		
-		update: noop,
+		update: function ( changed, root, eachBlock2_value, color, color__index ) {
+			var __tmp;
+		
+			alert_yieldFragment.update( changed, root, eachBlock2_value, color, color__index );
+			
+			var alert_changes = {};
+			
+			alert_changes.color = color;
+			
+			if ( Object.keys( alert_changes ).length ) alert.set( alert_changes );
+		},
 		
 		teardown: function ( detach ) {
-			close.destroy( false );
-			
-			if ( detach ) {
-				detachNode( div );
-			}
+			alert.destroy( detach );
 		}
 	};
 }
 
-function rendercol1YieldFragment5 ( root, component ) {
-	var div = createElement( 'div' );
-	div.className = "alert alert-dismissible alert-success";
+function renderalertYieldFragment1 ( root, eachBlock2_value, color, color__index, component ) {
+	var h4 = createElement( 'h4' );
 	
-	var close = new template.components.Close({
-		target: div,
-		_root: component._root || component
-	});
-	
-	appendNode( createText( "\n          " ), div );
-	
-	var strong = createElement( 'strong' );
-	
-	appendNode( strong, div );
-	appendNode( createText( "Well done!" ), strong );
-	appendNode( createText( " You successfully read " ), div );
+	var last_text = color;
+	var text = createText( last_text );
+	appendNode( text, h4 );
+	var text1 = createText( "\n            " );
 	
 	var a = createElement( 'a' );
 	a.href = "#";
 	a.className = "alert-link";
 	
-	appendNode( a, div );
-	appendNode( createText( "this important alert message" ), a );
-	appendNode( createText( "." ), div );
-
-	return {
-		mount: function ( target, anchor ) {
-			insertNode( div, target, anchor );
-		},
-		
-		update: noop,
-		
-		teardown: function ( detach ) {
-			close.destroy( false );
-			
-			if ( detach ) {
-				detachNode( div );
-			}
-		}
-	};
-}
-
-function rendercolYieldFragment8 ( root, component ) {
-	var div = createElement( 'div' );
-	div.className = "alert alert-dismissible alert-danger";
-	
-	var close = new template.components.Close({
-		target: div,
-		_root: component._root || component
-	});
-	
-	appendNode( createText( "\n          " ), div );
-	
-	var strong = createElement( 'strong' );
-	
-	appendNode( strong, div );
-	appendNode( createText( "Oh snap!" ), strong );
-	appendNode( createText( " " ), div );
-	
-	var a = createElement( 'a' );
-	a.href = "#";
-	a.className = "alert-link";
-	
-	appendNode( a, div );
 	appendNode( createText( "Change a few things up" ), a );
-	appendNode( createText( " and try submitting again." ), div );
+	var text3 = createText( " and try submitting again." );
 
 	return {
 		mount: function ( target, anchor ) {
-			insertNode( div, target, anchor );
+			insertNode( h4, target, anchor );
+			insertNode( text1, target, anchor );
+			insertNode( a, target, anchor );
+			insertNode( text3, target, anchor );
+		},
+		
+		update: function ( changed, root, eachBlock2_value, color, color__index ) {
+			var __tmp;
+		
+			if ( ( __tmp = color ) !== last_text ) {
+				text.data = last_text = __tmp;
+			}
+		},
+		
+		teardown: function ( detach ) {
+			if ( detach ) {
+				detachNode( h4 );
+				detachNode( text1 );
+				detachNode( a );
+				detachNode( text3 );
+			}
+		}
+	};
+}
+
+function renderalertYieldFragment ( root, component ) {
+	var h4 = createElement( 'h4' );
+	
+	appendNode( createText( "Default" ), h4 );
+	var text1 = createText( "\n      " );
+	
+	var p = createElement( 'p' );
+	
+	appendNode( createText( "Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,\n        " ), p );
+	
+	var a = createElement( 'a' );
+	a.href = "#";
+	a.className = "alert-link";
+	
+	appendNode( a, p );
+	appendNode( createText( "vel scelerisque nisl consectetur et" ), a );
+	appendNode( createText( "." ), p );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( h4, target, anchor );
+			insertNode( text1, target, anchor );
+			insertNode( p, target, anchor );
 		},
 		
 		update: noop,
 		
 		teardown: function ( detach ) {
-			close.destroy( false );
-			
 			if ( detach ) {
-				detachNode( div );
+				detachNode( h4 );
+				detachNode( text1 );
+				detachNode( p );
 			}
 		}
 	};
