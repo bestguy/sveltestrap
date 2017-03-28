@@ -58,7 +58,7 @@ In your svelte component:
 
 ### Components
 
-* [ ] Alert
+* [x] Alert
 * [x] Badge
 * [x] Breadcrumb
   * [x] BreadcrumbItem
