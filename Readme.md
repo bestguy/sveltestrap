@@ -81,9 +81,9 @@ In your svelte component:
   * [x] CardTitle
 * [x] Close
 * [ ] Collapse
-* [ ] Dropdown
-  * [ ] DropdownItem
-  * [ ] DropdownMenu
+* [x] Dropdown
+  * [x] DropdownItem
+  * [x] DropdownMenu
   * [ ] DropdownToggle
 * [x] Form
   * [x] FormFeedback
