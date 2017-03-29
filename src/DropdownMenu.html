@@ -1,0 +1,18 @@
+<div
+  class="dropdown-menu{{right ? ' dropdown-menu-right' : ''}} {{class}}"
+  tabIndex="-1"
+  role="menu"
+>
+  {{yield}}
+</div>
+
+<script>
+  export default {
+    data() {
+      return {
+        class: '',
+        right: false
+      }
+    }
+  }
+</script>

@@ -1,0 +1,13 @@
+<button class="dropdown-item{{disabled ? ' disabled' : ''}} {{class}}">{{yield}}</button>
+
+<script>
+  export default {
+    data() {
+      return {
+        class: '',
+        disabled: false
+      }
+    }
+  }
+
+</script>
