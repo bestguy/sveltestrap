@@ -666,7 +666,7 @@ var template$5 = (function () {
 
 function renderMainFragment$6 ( root, component ) {
 	var Button = createElement( 'Button' );
-	Button.className = "btn btn" + ( root.outline ? '-outline' : '' ) + "-" + ( root.color ) + ( root.size ? ` btn-${root.size}` : '' ) + ( root.block ? ' btn-block' : '' ) + ( root.active ? ' active' : '' ) + ( root.disabled ? ' disabled' : '' );
+	Button.className = "btn btn" + ( root.outline ? '-outline' : '' ) + "-" + ( root.color ) + ( root.size ? ` btn-${root.size}` : '' ) + ( root.block ? ' btn-block' : '' ) + ( root.active ? ' active' : '' ) + ( root.disabled ? ' disabled' : '' ) + " " + ( root.class );
 	
 	function clickHandler ( event ) {
 		component.onClick(event);
@@ -686,7 +686,7 @@ function renderMainFragment$6 ( root, component ) {
 		update: function ( changed, root ) {
 			var __tmp;
 		
-			Button.className = "btn btn" + ( root.outline ? '-outline' : '' ) + "-" + ( root.color ) + ( root.size ? ` btn-${root.size}` : '' ) + ( root.block ? ' btn-block' : '' ) + ( root.active ? ' active' : '' ) + ( root.disabled ? ' disabled' : '' );
+			Button.className = "btn btn" + ( root.outline ? '-outline' : '' ) + "-" + ( root.color ) + ( root.size ? ` btn-${root.size}` : '' ) + ( root.block ? ' btn-block' : '' ) + ( root.active ? ' active' : '' ) + ( root.disabled ? ' disabled' : '' ) + " " + ( root.class );
 		},
 		
 		teardown: function ( detach ) {
@@ -2014,6 +2014,411 @@ Container.prototype.teardown = Container.prototype.destroy = function destroy ( 
 };
 
 var template$21 = (function () {
+  // TODO manage open logic internally to this component, if possible
+  // TODO support closing from click outside
+  return {
+    data() {
+      return {
+        class: '',
+        dropup: false,
+        open: false
+      }
+    }
+  }
+}());
+
+function renderMainFragment$22 ( root, component ) {
+	var div = createElement( 'div' );
+	div.className = "dropdown" + ( root.dropup ? ' dropup' : '' ) + ( root.open ? ' show' : '' ) + " " + ( root.class );
+	
+	var yield_anchor = createComment();
+	appendNode( yield_anchor, div );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( div, target, anchor );
+			component._yield && component._yield.mount( div, yield_anchor );
+		},
+		
+		update: function ( changed, root ) {
+			var __tmp;
+		
+			div.className = "dropdown" + ( root.dropup ? ' dropup' : '' ) + ( root.open ? ' show' : '' ) + " " + ( root.class );
+		},
+		
+		teardown: function ( detach ) {
+			component._yield && component._yield.teardown( detach );
+			
+			if ( detach ) {
+				detachNode( div );
+			}
+		}
+	};
+}
+
+function Dropdown ( options ) {
+	options = options || {};
+	this._state = Object.assign( template$21.data(), options.data );
+	
+	this._observers = {
+		pre: Object.create( null ),
+		post: Object.create( null )
+	};
+	
+	this._handlers = Object.create( null );
+	
+	this._root = options._root;
+	this._yield = options._yield;
+	
+	this._torndown = false;
+	
+	this._fragment = renderMainFragment$22( this._state, this );
+	if ( options.target ) this._fragment.mount( options.target, null );
+}
+
+Dropdown.prototype = Object.assign( {}, proto );
+
+Dropdown.prototype._set = function _set ( newState ) {
+	var oldState = this._state;
+	this._state = Object.assign( {}, oldState, newState );
+	
+	dispatchObservers( this, this._observers.pre, newState, oldState );
+	if ( this._fragment ) this._fragment.update( newState, this._state );
+	dispatchObservers( this, this._observers.post, newState, oldState );
+};
+
+Dropdown.prototype.teardown = Dropdown.prototype.destroy = function destroy ( detach ) {
+	this.fire( 'destroy' );
+
+	this._fragment.teardown( detach !== false );
+	this._fragment = null;
+
+	this._state = {};
+	this._torndown = true;
+};
+
+var template$22 = (function () {
+  return {
+    data() {
+      return {
+        class: ''
+      }
+    }
+  }
+
+}());
+
+function renderMainFragment$23 ( root, component ) {
+	var div = createElement( 'div' );
+	div.className = "dropdown-divider " + ( root.class );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( div, target, anchor );
+		},
+		
+		update: function ( changed, root ) {
+			var __tmp;
+		
+			div.className = "dropdown-divider " + ( root.class );
+		},
+		
+		teardown: function ( detach ) {
+			if ( detach ) {
+				detachNode( div );
+			}
+		}
+	};
+}
+
+function DropdownDivider ( options ) {
+	options = options || {};
+	this._state = Object.assign( template$22.data(), options.data );
+	
+	this._observers = {
+		pre: Object.create( null ),
+		post: Object.create( null )
+	};
+	
+	this._handlers = Object.create( null );
+	
+	this._root = options._root;
+	this._yield = options._yield;
+	
+	this._torndown = false;
+	
+	this._fragment = renderMainFragment$23( this._state, this );
+	if ( options.target ) this._fragment.mount( options.target, null );
+}
+
+DropdownDivider.prototype = Object.assign( {}, proto );
+
+DropdownDivider.prototype._set = function _set ( newState ) {
+	var oldState = this._state;
+	this._state = Object.assign( {}, oldState, newState );
+	
+	dispatchObservers( this, this._observers.pre, newState, oldState );
+	if ( this._fragment ) this._fragment.update( newState, this._state );
+	dispatchObservers( this, this._observers.post, newState, oldState );
+};
+
+DropdownDivider.prototype.teardown = DropdownDivider.prototype.destroy = function destroy ( detach ) {
+	this.fire( 'destroy' );
+
+	this._fragment.teardown( detach !== false );
+	this._fragment = null;
+
+	this._state = {};
+	this._torndown = true;
+};
+
+var template$23 = (function () {
+  return {
+    data() {
+      return {
+        class: ''
+      }
+    }
+  }
+
+}());
+
+function renderMainFragment$24 ( root, component ) {
+	var h6 = createElement( 'h6' );
+	h6.className = "dropdown-header " + ( root.class );
+	
+	var yield_anchor = createComment();
+	appendNode( yield_anchor, h6 );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( h6, target, anchor );
+			component._yield && component._yield.mount( h6, yield_anchor );
+		},
+		
+		update: function ( changed, root ) {
+			var __tmp;
+		
+			h6.className = "dropdown-header " + ( root.class );
+		},
+		
+		teardown: function ( detach ) {
+			component._yield && component._yield.teardown( detach );
+			
+			if ( detach ) {
+				detachNode( h6 );
+			}
+		}
+	};
+}
+
+function DropdownHeader ( options ) {
+	options = options || {};
+	this._state = Object.assign( template$23.data(), options.data );
+	
+	this._observers = {
+		pre: Object.create( null ),
+		post: Object.create( null )
+	};
+	
+	this._handlers = Object.create( null );
+	
+	this._root = options._root;
+	this._yield = options._yield;
+	
+	this._torndown = false;
+	
+	this._fragment = renderMainFragment$24( this._state, this );
+	if ( options.target ) this._fragment.mount( options.target, null );
+}
+
+DropdownHeader.prototype = Object.assign( {}, proto );
+
+DropdownHeader.prototype._set = function _set ( newState ) {
+	var oldState = this._state;
+	this._state = Object.assign( {}, oldState, newState );
+	
+	dispatchObservers( this, this._observers.pre, newState, oldState );
+	if ( this._fragment ) this._fragment.update( newState, this._state );
+	dispatchObservers( this, this._observers.post, newState, oldState );
+};
+
+DropdownHeader.prototype.teardown = DropdownHeader.prototype.destroy = function destroy ( detach ) {
+	this.fire( 'destroy' );
+
+	this._fragment.teardown( detach !== false );
+	this._fragment = null;
+
+	this._state = {};
+	this._torndown = true;
+};
+
+var template$24 = (function () {
+  return {
+    data() {
+      return {
+        class: '',
+        disabled: false
+      }
+    }
+  }
+
+}());
+
+function renderMainFragment$25 ( root, component ) {
+	var button = createElement( 'button' );
+	button.className = "dropdown-item" + ( root.disabled ? ' disabled' : '' ) + " " + ( root.class );
+	
+	var yield_anchor = createComment();
+	appendNode( yield_anchor, button );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( button, target, anchor );
+			component._yield && component._yield.mount( button, yield_anchor );
+		},
+		
+		update: function ( changed, root ) {
+			var __tmp;
+		
+			button.className = "dropdown-item" + ( root.disabled ? ' disabled' : '' ) + " " + ( root.class );
+		},
+		
+		teardown: function ( detach ) {
+			component._yield && component._yield.teardown( detach );
+			
+			if ( detach ) {
+				detachNode( button );
+			}
+		}
+	};
+}
+
+function DropdownItem ( options ) {
+	options = options || {};
+	this._state = Object.assign( template$24.data(), options.data );
+	
+	this._observers = {
+		pre: Object.create( null ),
+		post: Object.create( null )
+	};
+	
+	this._handlers = Object.create( null );
+	
+	this._root = options._root;
+	this._yield = options._yield;
+	
+	this._torndown = false;
+	
+	this._fragment = renderMainFragment$25( this._state, this );
+	if ( options.target ) this._fragment.mount( options.target, null );
+}
+
+DropdownItem.prototype = Object.assign( {}, proto );
+
+DropdownItem.prototype._set = function _set ( newState ) {
+	var oldState = this._state;
+	this._state = Object.assign( {}, oldState, newState );
+	
+	dispatchObservers( this, this._observers.pre, newState, oldState );
+	if ( this._fragment ) this._fragment.update( newState, this._state );
+	dispatchObservers( this, this._observers.post, newState, oldState );
+};
+
+DropdownItem.prototype.teardown = DropdownItem.prototype.destroy = function destroy ( detach ) {
+	this.fire( 'destroy' );
+
+	this._fragment.teardown( detach !== false );
+	this._fragment = null;
+
+	this._state = {};
+	this._torndown = true;
+};
+
+var template$25 = (function () {
+  return {
+    data() {
+      return {
+        class: '',
+        right: false
+      }
+    }
+  }
+}());
+
+function renderMainFragment$26 ( root, component ) {
+	var div = createElement( 'div' );
+	div.className = "dropdown-menu" + ( root.right ? ' dropdown-menu-right' : '' ) + " " + ( root.class );
+	setAttribute( div, 'tabIndex', "-1" );
+	setAttribute( div, 'role', "menu" );
+	
+	var yield_anchor = createComment();
+	appendNode( yield_anchor, div );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( div, target, anchor );
+			component._yield && component._yield.mount( div, yield_anchor );
+		},
+		
+		update: function ( changed, root ) {
+			var __tmp;
+		
+			div.className = "dropdown-menu" + ( root.right ? ' dropdown-menu-right' : '' ) + " " + ( root.class );
+		},
+		
+		teardown: function ( detach ) {
+			component._yield && component._yield.teardown( detach );
+			
+			if ( detach ) {
+				detachNode( div );
+			}
+		}
+	};
+}
+
+function DropdownMenu ( options ) {
+	options = options || {};
+	this._state = Object.assign( template$25.data(), options.data );
+	
+	this._observers = {
+		pre: Object.create( null ),
+		post: Object.create( null )
+	};
+	
+	this._handlers = Object.create( null );
+	
+	this._root = options._root;
+	this._yield = options._yield;
+	
+	this._torndown = false;
+	
+	this._fragment = renderMainFragment$26( this._state, this );
+	if ( options.target ) this._fragment.mount( options.target, null );
+}
+
+DropdownMenu.prototype = Object.assign( {}, proto );
+
+DropdownMenu.prototype._set = function _set ( newState ) {
+	var oldState = this._state;
+	this._state = Object.assign( {}, oldState, newState );
+	
+	dispatchObservers( this, this._observers.pre, newState, oldState );
+	if ( this._fragment ) this._fragment.update( newState, this._state );
+	dispatchObservers( this, this._observers.post, newState, oldState );
+};
+
+DropdownMenu.prototype.teardown = DropdownMenu.prototype.destroy = function destroy ( detach ) {
+	this.fire( 'destroy' );
+
+	this._fragment.teardown( detach !== false );
+	this._fragment = null;
+
+	this._state = {};
+	this._torndown = true;
+};
+
+var template$26 = (function () {
   return {
     data() {
       return {
@@ -2024,7 +2429,7 @@ var template$21 = (function () {
   }
 }());
 
-function renderMainFragment$22 ( root, component ) {
+function renderMainFragment$27 ( root, component ) {
 	var form = createElement( 'form' );
 	form.className = "" + ( root.inline ? 'form-inline' : '' ) + " " + ( root.class );
 	
@@ -2055,7 +2460,7 @@ function renderMainFragment$22 ( root, component ) {
 
 function Form ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$21.data(), options.data );
+	this._state = Object.assign( template$26.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2069,7 +2474,7 @@ function Form ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$22( this._state, this );
+	this._fragment = renderMainFragment$27( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2094,7 +2499,7 @@ Form.prototype.teardown = Form.prototype.destroy = function destroy ( detach ) {
 	this._torndown = true;
 };
 
-var template$22 = (function () {
+var template$27 = (function () {
   return {
     data() {
       return {
@@ -2104,7 +2509,7 @@ var template$22 = (function () {
   }
 }());
 
-function renderMainFragment$23 ( root, component ) {
+function renderMainFragment$28 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "form-control-feedback " + ( root.class );
 	
@@ -2135,7 +2540,7 @@ function renderMainFragment$23 ( root, component ) {
 
 function FormFeedback ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$22.data(), options.data );
+	this._state = Object.assign( template$27.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2149,7 +2554,7 @@ function FormFeedback ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$23( this._state, this );
+	this._fragment = renderMainFragment$28( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2174,7 +2579,7 @@ FormFeedback.prototype.teardown = FormFeedback.prototype.destroy = function dest
 	this._torndown = true;
 };
 
-var template$23 = (function () {
+var template$28 = (function () {
   return {
     data() {
       return {
@@ -2188,7 +2593,7 @@ var template$23 = (function () {
   }
 }());
 
-function renderMainFragment$24 ( root, component ) {
+function renderMainFragment$29 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "" + ( root.color ? `has-${root.color}` : '' ) + ( root.row ? ' row' : '' ) + ( root.check ? ' form-check' : ' form-group' ) + ( root.check && root.disabled ? ' disabled' : '' ) + " " + ( root.class );
 	
@@ -2219,7 +2624,7 @@ function renderMainFragment$24 ( root, component ) {
 
 function FormGroup ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$23.data(), options.data );
+	this._state = Object.assign( template$28.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2233,7 +2638,7 @@ function FormGroup ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$24( this._state, this );
+	this._fragment = renderMainFragment$29( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2258,7 +2663,7 @@ FormGroup.prototype.teardown = FormGroup.prototype.destroy = function destroy ( 
 	this._torndown = true;
 };
 
-var template$24 = (function () {
+var template$29 = (function () {
   return {
     data() {
       return {
@@ -2270,7 +2675,7 @@ var template$24 = (function () {
   }
 }());
 
-function renderMainFragment$25 ( root, component ) {
+function renderMainFragment$30 ( root, component ) {
 	var small = createElement( 'small' );
 	small.className = "" + ( !root.inline ? 'form-text' : '' ) + ( root.color ? ` text-${root.color}` : '' ) + " " + ( root.class );
 	
@@ -2301,7 +2706,7 @@ function renderMainFragment$25 ( root, component ) {
 
 function FormText ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$24.data(), options.data );
+	this._state = Object.assign( template$29.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2315,7 +2720,7 @@ function FormText ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$25( this._state, this );
+	this._fragment = renderMainFragment$30( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2340,7 +2745,7 @@ FormText.prototype.teardown = FormText.prototype.destroy = function destroy ( de
 	this._torndown = true;
 };
 
-var template$25 = (function () {
+var template$30 = (function () {
   return {
     data() {
       return {
@@ -2359,7 +2764,7 @@ var template$25 = (function () {
   }
 }());
 
-function renderMainFragment$26 ( root, component ) {
+function renderMainFragment$31 ( root, component ) {
 	var i = createElement( 'i' );
 	i.className = "fa fa-" + ( root.name ) + ( root.size ? ' fa-' + root.size : '' ) + ( root.spin ? ' fa-spin' : '' ) + ( root.pulse ? ' fa-pulse' : '' ) + ( root.border ? ' fa-border' : '' ) + ( root.fixedWidth ? ' fa-fw' : '' ) + ( root.inverse ? ' fa-inverse' : '' ) + ( root.flip ? ' fa-flip-' + root.flip : '' ) + ( root.rotate ? ' fa-rotate-' + root.rotate : '' ) + ( root.stack ? ' fa-stack-' + root.stack : '' ) + " " + ( root.class );
 
@@ -2384,7 +2789,7 @@ function renderMainFragment$26 ( root, component ) {
 
 function Icon ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$25.data(), options.data );
+	this._state = Object.assign( template$30.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2398,7 +2803,7 @@ function Icon ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$26( this._state, this );
+	this._fragment = renderMainFragment$31( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2423,7 +2828,7 @@ Icon.prototype.teardown = Icon.prototype.destroy = function destroy ( detach ) {
 	this._torndown = true;
 };
 
-var template$26 = (function () {
+var template$31 = (function () {
   return {
     data() {
       return {
@@ -2434,7 +2839,7 @@ var template$26 = (function () {
   }
 }());
 
-function renderMainFragment$27 ( root, component ) {
+function renderMainFragment$32 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "input-group" + ( root.size ? ` input-group-${root.size}` : '' ) + " " + ( root.class );
 	
@@ -2465,7 +2870,7 @@ function renderMainFragment$27 ( root, component ) {
 
 function InputGroup ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$26.data(), options.data );
+	this._state = Object.assign( template$31.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2479,7 +2884,7 @@ function InputGroup ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$27( this._state, this );
+	this._fragment = renderMainFragment$32( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2504,7 +2909,7 @@ InputGroup.prototype.teardown = InputGroup.prototype.destroy = function destroy 
 	this._torndown = true;
 };
 
-var template$27 = (function () {
+var template$32 = (function () {
   return {
     data() {
       return {
@@ -2514,7 +2919,7 @@ var template$27 = (function () {
   }
 }());
 
-function renderMainFragment$28 ( root, component ) {
+function renderMainFragment$33 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "input-group-addon " + ( root.class );
 	
@@ -2545,7 +2950,7 @@ function renderMainFragment$28 ( root, component ) {
 
 function InputGroupAddon ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$27.data(), options.data );
+	this._state = Object.assign( template$32.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2559,7 +2964,7 @@ function InputGroupAddon ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$28( this._state, this );
+	this._fragment = renderMainFragment$33( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2584,7 +2989,7 @@ InputGroupAddon.prototype.teardown = InputGroupAddon.prototype.destroy = functio
 	this._torndown = true;
 };
 
-var template$28 = (function () {
+var template$33 = (function () {
   return {
     data() {
       return {
@@ -2595,7 +3000,7 @@ var template$28 = (function () {
   }
 }());
 
-function renderMainFragment$29 ( root, component ) {
+function renderMainFragment$34 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "jumbotron" + ( root.fluid ? ' jumbotron-fluid' : '' ) + " " + ( root.class );
 	
@@ -2626,7 +3031,7 @@ function renderMainFragment$29 ( root, component ) {
 
 function Jumbotron ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$28.data(), options.data );
+	this._state = Object.assign( template$33.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2640,7 +3045,7 @@ function Jumbotron ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$29( this._state, this );
+	this._fragment = renderMainFragment$34( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2665,7 +3070,7 @@ Jumbotron.prototype.teardown = Jumbotron.prototype.destroy = function destroy ( 
 	this._torndown = true;
 };
 
-var template$29 = (function () {
+var template$34 = (function () {
   return {
     data() {
       return {
@@ -2676,7 +3081,7 @@ var template$29 = (function () {
   }
 }());
 
-function renderMainFragment$30 ( root, component ) {
+function renderMainFragment$35 ( root, component ) {
 	var ul = createElement( 'ul' );
 	ul.className = "list-group" + ( root.flush ? ' list-group-flush' : '' ) + " " + ( root.class );
 	
@@ -2707,7 +3112,7 @@ function renderMainFragment$30 ( root, component ) {
 
 function ListGroup ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$29.data(), options.data );
+	this._state = Object.assign( template$34.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2721,7 +3126,7 @@ function ListGroup ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$30( this._state, this );
+	this._fragment = renderMainFragment$35( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2746,7 +3151,7 @@ ListGroup.prototype.teardown = ListGroup.prototype.destroy = function destroy ( 
 	this._torndown = true;
 };
 
-var template$30 = (function () {
+var template$35 = (function () {
   return {
     data() {
       return {
@@ -2760,7 +3165,7 @@ var template$30 = (function () {
   }
 }());
 
-function renderMainFragment$31 ( root, component ) {
+function renderMainFragment$36 ( root, component ) {
 	var li = createElement( 'li' );
 	li.className = "list-group-item" + ( root.active ? ' active' : '' ) + ( root.disabled ? ' disabled' : '' ) + ( root.action ? ' list-group-item-action' : '' ) + ( root.color ? ` list-group-item-${root.color}` : '' ) + " " + ( root.class );
 	
@@ -2791,7 +3196,7 @@ function renderMainFragment$31 ( root, component ) {
 
 function ListGroupItem ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$30.data(), options.data );
+	this._state = Object.assign( template$35.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2805,7 +3210,7 @@ function ListGroupItem ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$31( this._state, this );
+	this._fragment = renderMainFragment$36( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2830,7 +3235,7 @@ ListGroupItem.prototype.teardown = ListGroupItem.prototype.destroy = function de
 	this._torndown = true;
 };
 
-var template$31 = (function () {
+var template$36 = (function () {
   return {
     data() {
       return {
@@ -2840,7 +3245,7 @@ var template$31 = (function () {
   }
 }());
 
-function renderMainFragment$32 ( root, component ) {
+function renderMainFragment$37 ( root, component ) {
 	var h5 = createElement( 'h5' );
 	h5.className = "list-group-item-heading " + ( root.class );
 	
@@ -2871,7 +3276,7 @@ function renderMainFragment$32 ( root, component ) {
 
 function ListGroupItemHeading ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$31.data(), options.data );
+	this._state = Object.assign( template$36.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2885,7 +3290,7 @@ function ListGroupItemHeading ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$32( this._state, this );
+	this._fragment = renderMainFragment$37( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2910,7 +3315,7 @@ ListGroupItemHeading.prototype.teardown = ListGroupItemHeading.prototype.destroy
 	this._torndown = true;
 };
 
-var template$32 = (function () {
+var template$37 = (function () {
   return {
     data() {
       return {
@@ -2920,7 +3325,7 @@ var template$32 = (function () {
   }
 }());
 
-function renderMainFragment$33 ( root, component ) {
+function renderMainFragment$38 ( root, component ) {
 	var p = createElement( 'p' );
 	p.className = "list-group-item-text " + ( root.class );
 	
@@ -2951,7 +3356,7 @@ function renderMainFragment$33 ( root, component ) {
 
 function ListGroupItemText ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$32.data(), options.data );
+	this._state = Object.assign( template$37.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -2965,7 +3370,7 @@ function ListGroupItemText ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$33( this._state, this );
+	this._fragment = renderMainFragment$38( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -2990,7 +3395,7 @@ ListGroupItemText.prototype.teardown = ListGroupItemText.prototype.destroy = fun
 	this._torndown = true;
 };
 
-var template$33 = (function () {
+var template$38 = (function () {
   return {
     data() {
       return {
@@ -3000,7 +3405,7 @@ var template$33 = (function () {
   };
 }());
 
-function renderMainFragment$34 ( root, component ) {
+function renderMainFragment$39 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "media " + ( root.class );
 	
@@ -3031,7 +3436,7 @@ function renderMainFragment$34 ( root, component ) {
 
 function Media ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$33.data(), options.data );
+	this._state = Object.assign( template$38.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3045,7 +3450,7 @@ function Media ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$34( this._state, this );
+	this._fragment = renderMainFragment$39( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3070,7 +3475,7 @@ Media.prototype.teardown = Media.prototype.destroy = function destroy ( detach )
 	this._torndown = true;
 };
 
-var template$34 = (function () {
+var template$39 = (function () {
   return {
     data() {
       return {
@@ -3080,7 +3485,7 @@ var template$34 = (function () {
   };
 }());
 
-function renderMainFragment$35 ( root, component ) {
+function renderMainFragment$40 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "media-body " + ( root.class );
 	
@@ -3111,7 +3516,7 @@ function renderMainFragment$35 ( root, component ) {
 
 function MediaBody ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$34.data(), options.data );
+	this._state = Object.assign( template$39.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3125,7 +3530,7 @@ function MediaBody ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$35( this._state, this );
+	this._fragment = renderMainFragment$40( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3150,7 +3555,7 @@ MediaBody.prototype.teardown = MediaBody.prototype.destroy = function destroy ( 
 	this._torndown = true;
 };
 
-var template$35 = (function () {
+var template$40 = (function () {
   return {
     data() {
       return {
@@ -3160,7 +3565,7 @@ var template$35 = (function () {
   }
 }());
 
-function renderMainFragment$36 ( root, component ) {
+function renderMainFragment$41 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "modal-footer " + ( root.class );
 	
@@ -3191,7 +3596,7 @@ function renderMainFragment$36 ( root, component ) {
 
 function ModalFooter ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$35.data(), options.data );
+	this._state = Object.assign( template$40.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3205,7 +3610,7 @@ function ModalFooter ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$36( this._state, this );
+	this._fragment = renderMainFragment$41( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3230,7 +3635,7 @@ ModalFooter.prototype.teardown = ModalFooter.prototype.destroy = function destro
 	this._torndown = true;
 };
 
-var template$36 = (function () {
+var template$41 = (function () {
   return {
     data() {
       return {
@@ -3240,7 +3645,7 @@ var template$36 = (function () {
   }
 }());
 
-function renderMainFragment$37 ( root, component ) {
+function renderMainFragment$42 ( root, component ) {
 	var li = createElement( 'li' );
 	li.className = "nav-item " + ( root.class );
 	
@@ -3271,7 +3676,7 @@ function renderMainFragment$37 ( root, component ) {
 
 function NavDropdown ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$36.data(), options.data );
+	this._state = Object.assign( template$41.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3285,7 +3690,7 @@ function NavDropdown ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$37( this._state, this );
+	this._fragment = renderMainFragment$42( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3310,7 +3715,7 @@ NavDropdown.prototype.teardown = NavDropdown.prototype.destroy = function destro
 	this._torndown = true;
 };
 
-var template$37 = (function () {
+var template$42 = (function () {
   return {
     data() {
       return {
@@ -3326,7 +3731,7 @@ var template$37 = (function () {
   }
 }());
 
-function renderMainFragment$38 ( root, component ) {
+function renderMainFragment$43 ( root, component ) {
 	var ul = createElement( 'ul' );
 	ul.className = "" + ( root.navbar ? 'navbar-nav' : 'nav' ) + ( root.tabs ? ' nav-tabs' : '' ) + ( root.pills ? ' nav-pills' : '' ) + ( root.fill ? ' nav-fill' : root.justified ? ' nav-justified' : '' ) + ( root.vertical ? ' flex-column' : '' ) + " " + ( root.class );
 	
@@ -3357,7 +3762,7 @@ function renderMainFragment$38 ( root, component ) {
 
 function Nav ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$37.data(), options.data );
+	this._state = Object.assign( template$42.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3371,7 +3776,7 @@ function Nav ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$38( this._state, this );
+	this._fragment = renderMainFragment$43( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3396,7 +3801,7 @@ Nav.prototype.teardown = Nav.prototype.destroy = function destroy ( detach ) {
 	this._torndown = true;
 };
 
-var template$38 = (function () {
+var template$43 = (function () {
   return {
     data() {
       return {
@@ -3407,7 +3812,7 @@ var template$38 = (function () {
   }
 }());
 
-function renderMainFragment$39 ( root, component ) {
+function renderMainFragment$44 ( root, component ) {
 	var li = createElement( 'li' );
 	li.className = "nav-item" + ( root.active ? ' active' : '' ) + " " + ( root.class );
 	
@@ -3438,7 +3843,7 @@ function renderMainFragment$39 ( root, component ) {
 
 function NavItem ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$38.data(), options.data );
+	this._state = Object.assign( template$43.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3452,7 +3857,7 @@ function NavItem ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$39( this._state, this );
+	this._fragment = renderMainFragment$44( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3477,7 +3882,7 @@ NavItem.prototype.teardown = NavItem.prototype.destroy = function destroy ( deta
 	this._torndown = true;
 };
 
-var template$39 = (function () {
+var template$44 = (function () {
   return {
     data() {
       return {
@@ -3487,7 +3892,7 @@ var template$39 = (function () {
   }
 }());
 
-function renderMainFragment$40 ( root, component ) {
+function renderMainFragment$45 ( root, component ) {
 	var a = createElement( 'a' );
 	a.className = "navbar-brand " + ( root.class );
 	
@@ -3518,7 +3923,7 @@ function renderMainFragment$40 ( root, component ) {
 
 function NavbarBrand ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$39.data(), options.data );
+	this._state = Object.assign( template$44.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3532,7 +3937,7 @@ function NavbarBrand ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$40( this._state, this );
+	this._fragment = renderMainFragment$45( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3557,7 +3962,7 @@ NavbarBrand.prototype.teardown = NavbarBrand.prototype.destroy = function destro
 	this._torndown = true;
 };
 
-var template$40 = (function () {
+var template$45 = (function () {
   return {
     data() {
       return {
@@ -3568,7 +3973,7 @@ var template$40 = (function () {
   }
 }());
 
-function renderMainFragment$41 ( root, component ) {
+function renderMainFragment$46 ( root, component ) {
 	var ul = createElement( 'ul' );
 	ul.className = "pagination" + ( root.size ? ` pagination-${root.size}` : '' ) + " " + ( root.class );
 	
@@ -3599,7 +4004,7 @@ function renderMainFragment$41 ( root, component ) {
 
 function Pagination ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$40.data(), options.data );
+	this._state = Object.assign( template$45.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3613,7 +4018,7 @@ function Pagination ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$41( this._state, this );
+	this._fragment = renderMainFragment$46( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3638,7 +4043,7 @@ Pagination.prototype.teardown = Pagination.prototype.destroy = function destroy 
 	this._torndown = true;
 };
 
-var template$41 = (function () {
+var template$46 = (function () {
   return {
     data() {
       return {
@@ -3650,7 +4055,7 @@ var template$41 = (function () {
   }
 }());
 
-function renderMainFragment$42 ( root, component ) {
+function renderMainFragment$47 ( root, component ) {
 	var li = createElement( 'li' );
 	li.className = "page-item" + ( root.active ? ' active' : '' ) + ( root.disabled ? ' disabled' : '' ) + " " + ( root.class );
 	
@@ -3681,7 +4086,7 @@ function renderMainFragment$42 ( root, component ) {
 
 function PaginationItem ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$41.data(), options.data );
+	this._state = Object.assign( template$46.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3695,7 +4100,7 @@ function PaginationItem ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$42( this._state, this );
+	this._fragment = renderMainFragment$47( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -3720,7 +4125,7 @@ PaginationItem.prototype.teardown = PaginationItem.prototype.destroy = function 
 	this._torndown = true;
 };
 
-var template$42 = (function () {
+var template$47 = (function () {
   // TODO add state to this component, generate PaginationItems, Links, on:click, etc
   return {
     data() {
@@ -3733,7 +4138,7 @@ var template$42 = (function () {
   }
 }());
 
-function renderMainFragment$43 ( root, component ) {
+function renderMainFragment$48 ( root, component ) {
 	var a = createElement( 'a' );
 	a.className = "page-link" + ( root.size ? ` pagination-${root.size}` : '' ) + " " + ( root.class );
 	
@@ -3841,7 +4246,7 @@ function renderIfBlock_0$2 ( root, component ) {
 
 function PaginationLink ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$42.data(), options.data );
+	this._state = Object.assign( template$47.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -3855,7 +4260,7 @@ function PaginationLink ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$43( this._state, this );
+	this._fragment = renderMainFragment$48( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -4048,11 +4453,11 @@ var index = toNumber;
 
 function applyComputations$1 ( state, newState, oldState, isInitial ) {
 	if ( isInitial || ( 'value' in newState && typeof state.value === 'object' || state.value !== oldState.value ) || ( 'max' in newState && typeof state.max === 'object' || state.max !== oldState.max ) ) {
-		state.percent = newState.percent = template$43.computed.percent( state.value, state.max );
+		state.percent = newState.percent = template$48.computed.percent( state.value, state.max );
 	}
 }
 
-var template$43 = (function () {
+var template$48 = (function () {
 return {
   data() {
     return {
@@ -4071,7 +4476,7 @@ return {
 }
 }());
 
-function renderMainFragment$44 ( root, component ) {
+function renderMainFragment$49 ( root, component ) {
 	var ifBlock_anchor = createComment();
 	
 	function getBlock ( root ) {
@@ -4245,7 +4650,7 @@ function renderIfBlock1_0$1 ( root, component ) {
 
 function Progress ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$43.data(), options.data );
+	this._state = Object.assign( template$48.data(), options.data );
 	applyComputations$1( this._state, this._state, {}, true );
 	
 	this._observers = {
@@ -4260,7 +4665,7 @@ function Progress ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$44( this._state, this );
+	this._fragment = renderMainFragment$49( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -4286,7 +4691,7 @@ Progress.prototype.teardown = Progress.prototype.destroy = function destroy ( de
 	this._torndown = true;
 };
 
-var template$44 = (function () {
+var template$49 = (function () {
   return {
     data() {
       return {
@@ -4297,7 +4702,7 @@ var template$44 = (function () {
   };
 }());
 
-function renderMainFragment$45 ( root, component ) {
+function renderMainFragment$50 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "row" + ( root.noGutters ? ' no-gutters' : '' ) + " " + ( root.class );
 	
@@ -4328,7 +4733,7 @@ function renderMainFragment$45 ( root, component ) {
 
 function Row ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$44.data(), options.data );
+	this._state = Object.assign( template$49.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -4342,7 +4747,7 @@ function Row ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$45( this._state, this );
+	this._fragment = renderMainFragment$50( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -4367,7 +4772,7 @@ Row.prototype.teardown = Row.prototype.destroy = function destroy ( detach ) {
 	this._torndown = true;
 };
 
-var template$45 = (function () {
+var template$50 = (function () {
   // TODO remove duplication of table above
   return {
     data() {
@@ -4384,7 +4789,7 @@ var template$45 = (function () {
   }
 }());
 
-function renderMainFragment$46 ( root, component ) {
+function renderMainFragment$51 ( root, component ) {
 	var ifBlock_anchor = createComment();
 	
 	function getBlock ( root ) {
@@ -4489,7 +4894,7 @@ function renderIfBlock_0$4 ( root, component ) {
 
 function Table ( options ) {
 	options = options || {};
-	this._state = Object.assign( template$45.data(), options.data );
+	this._state = Object.assign( template$50.data(), options.data );
 	
 	this._observers = {
 		pre: Object.create( null ),
@@ -4503,7 +4908,7 @@ function Table ( options ) {
 	
 	this._torndown = false;
 	
-	this._fragment = renderMainFragment$46( this._state, this );
+	this._fragment = renderMainFragment$51( this._state, this );
 	if ( options.target ) this._fragment.mount( options.target, null );
 }
 
@@ -4548,6 +4953,11 @@ var template = (function () {
       Close,
       Col,
       Container,
+      Dropdown,
+      DropdownDivider,
+      DropdownHeader,
+      DropdownItem,
+      DropdownMenu,
       Form,
       FormGroup,
       InputGroup,
@@ -4735,8 +5145,17 @@ function rendercontainerYieldFragment ( root, component ) {
 		_yield: row2_yieldFragment
 	});
 	
-	var text6 = createText( "\n\n  " );
-	var text7 = createText( "\n  " );
+	appendNode( createText( "\n    \n    " ), div2 );
+	var row3_yieldFragment = renderrow3YieldFragment( root, component );
+	
+	var row3 = new template.components.Row({
+		target: div2,
+		_root: component._root || component,
+		_yield: row3_yieldFragment
+	});
+	
+	var text7 = createText( "\n\n  " );
+	var text8 = createText( "\n  " );
 	
 	var div3 = createElement( 'div' );
 	div3.className = "mt-3";
@@ -4749,12 +5168,12 @@ function rendercontainerYieldFragment ( root, component ) {
 	appendNode( createText( "Typography" ), h11 );
 	appendNode( createText( "\n\n    " ), div3 );
 	appendNode( createText( "\n\n    " ), div3 );
-	var row3_yieldFragment = renderrow3YieldFragment( root, component );
+	var row4_yieldFragment = renderrow4YieldFragment( root, component );
 	
-	var row3 = new template.components.Row({
+	var row4 = new template.components.Row({
 		target: div3,
 		_root: component._root || component,
-		_yield: row3_yieldFragment
+		_yield: row4_yieldFragment
 	});
 	
 	appendNode( createText( "\n\n    " ), div3 );
@@ -4767,16 +5186,16 @@ function rendercontainerYieldFragment ( root, component ) {
 	appendNode( h2, div3 );
 	appendNode( createText( "Blockquotes" ), h2 );
 	appendNode( createText( "\n\n    " ), div3 );
-	var row4_yieldFragment = renderrow4YieldFragment( root, component );
+	var row5_yieldFragment = renderrow5YieldFragment( root, component );
 	
-	var row4 = new template.components.Row({
+	var row5 = new template.components.Row({
 		target: div3,
 		_root: component._root || component,
-		_yield: row4_yieldFragment
+		_yield: row5_yieldFragment
 	});
 	
-	var text15 = createText( "\n\n  " );
-	var text16 = createText( "\n  " );
+	var text16 = createText( "\n\n  " );
+	var text17 = createText( "\n  " );
 	
 	var div4 = createElement( 'div' );
 	div4.className = "mt-3";
@@ -4788,16 +5207,16 @@ function rendercontainerYieldFragment ( root, component ) {
 	appendNode( h12, div4 );
 	appendNode( createText( "Tables" ), h12 );
 	appendNode( createText( "\n    " ), div4 );
-	var row5_yieldFragment = renderrow5YieldFragment( root, component );
+	var row6_yieldFragment = renderrow6YieldFragment( root, component );
 	
-	var row5 = new template.components.Row({
+	var row6 = new template.components.Row({
 		target: div4,
 		_root: component._root || component,
-		_yield: row5_yieldFragment
+		_yield: row6_yieldFragment
 	});
 	
-	var text19 = createText( "\n\n  " );
-	var text20 = createText( "\n  " );
+	var text20 = createText( "\n\n  " );
+	var text21 = createText( "\n  " );
 	
 	var div5 = createElement( 'div' );
 	div5.className = "mt-3";
@@ -4809,16 +5228,16 @@ function rendercontainerYieldFragment ( root, component ) {
 	appendNode( h13, div5 );
 	appendNode( createText( "Forms" ), h13 );
 	appendNode( createText( "\n\n    " ), div5 );
-	var row6_yieldFragment = renderrow6YieldFragment( root, component );
+	var row7_yieldFragment = renderrow7YieldFragment( root, component );
 	
-	var row6 = new template.components.Row({
+	var row7 = new template.components.Row({
 		target: div5,
 		_root: component._root || component,
-		_yield: row6_yieldFragment
+		_yield: row7_yieldFragment
 	});
 	
-	var text23 = createText( "\n\n  " );
-	var text24 = createText( "\n  " );
+	var text24 = createText( "\n\n  " );
+	var text25 = createText( "\n  " );
 	
 	var div6 = createElement( 'div' );
 	div6.className = "mt-3";
@@ -4830,16 +5249,16 @@ function rendercontainerYieldFragment ( root, component ) {
 	appendNode( h14, div6 );
 	appendNode( createText( "Navs" ), h14 );
 	appendNode( createText( "\n\n    " ), div6 );
-	var row7_yieldFragment = renderrow7YieldFragment( root, component );
+	var row8_yieldFragment = renderrow8YieldFragment( root, component );
 	
-	var row7_initialData = {
+	var row8_initialData = {
 		class: "mb-2"
 	};
-	var row7 = new template.components.Row({
+	var row8 = new template.components.Row({
 		target: div6,
 		_root: component._root || component,
-		_yield: row7_yieldFragment,
-		data: row7_initialData
+		_yield: row8_yieldFragment,
+		data: row8_initialData
 	});
 	
 	appendNode( createText( "\n\n    " ), div6 );
@@ -4888,16 +5307,16 @@ function rendercontainerYieldFragment ( root, component ) {
 	});
 	
 	appendNode( createText( "\n\n    " ), div6 );
-	var row8_yieldFragment = renderrow8YieldFragment( root, component );
+	var row9_yieldFragment = renderrow9YieldFragment( root, component );
 	
-	var row8 = new template.components.Row({
+	var row9 = new template.components.Row({
 		target: div6,
 		_root: component._root || component,
-		_yield: row8_yieldFragment
+		_yield: row9_yieldFragment
 	});
 	
-	var text34 = createText( "\n\n  " );
-	var text35 = createText( "\n  " );
+	var text35 = createText( "\n\n  " );
+	var text36 = createText( "\n  " );
 	
 	var div7 = createElement( 'div' );
 	div7.className = "mt-3";
@@ -4925,12 +5344,12 @@ function rendercontainerYieldFragment ( root, component ) {
 	});
 	
 	appendNode( createText( "\n\n    " ), div7 );
-	var row9_yieldFragment = renderrow9YieldFragment( root, component );
+	var row10_yieldFragment = renderrow10YieldFragment( root, component );
 	
-	var row9 = new template.components.Row({
+	var row10 = new template.components.Row({
 		target: div7,
 		_root: component._root || component,
-		_yield: row9_yieldFragment
+		_yield: row10_yieldFragment
 	});
 	
 	appendNode( createText( "\n\n    " ), div7 );
@@ -5110,41 +5529,26 @@ function rendercontainerYieldFragment ( root, component ) {
 		data: badge11_initialData
 	});
 	
-	var text55 = createText( "\n\n  " );
-	var text56 = createText( "\n  " );
+	var text56 = createText( "\n\n  " );
+	var text57 = createText( "\n  " );
 	
 	var div11 = createElement( 'div' );
 	div11.className = "mt-3";
 	
-	var row10_yieldFragment = renderrow10YieldFragment( root, component );
-	
-	var row10 = new template.components.Row({
-		target: div11,
-		_root: component._root || component,
-		_yield: row10_yieldFragment
-	});
-	
-	var text57 = createText( "\n\n  " );
-	var text58 = createText( "\n  " );
-	
-	var div12 = createElement( 'div' );
-	div12.className = "mt-3";
-	
 	var row11_yieldFragment = renderrow11YieldFragment( root, component );
 	
 	var row11 = new template.components.Row({
-		target: div12,
+		target: div11,
 		_root: component._root || component,
 		_yield: row11_yieldFragment
 	});
 	
-	appendNode( createText( "\n\n\n    " ), div12 );
+	var text58 = createText( "\n\n  " );
+	var text59 = createText( "\n  " );
 	
-	var h25 = createElement( 'h2' );
+	var div12 = createElement( 'div' );
+	div12.className = "mt-3";
 	
-	appendNode( h25, div12 );
-	appendNode( createText( "List groups" ), h25 );
-	appendNode( createText( "\n    " ), div12 );
 	var row12_yieldFragment = renderrow12YieldFragment( root, component );
 	
 	var row12 = new template.components.Row({
@@ -5153,12 +5557,12 @@ function rendercontainerYieldFragment ( root, component ) {
 		_yield: row12_yieldFragment
 	});
 	
-	appendNode( createText( "\n\n    " ), div12 );
+	appendNode( createText( "\n\n\n    " ), div12 );
 	
-	var h26 = createElement( 'h2' );
+	var h25 = createElement( 'h2' );
 	
-	appendNode( h26, div12 );
-	appendNode( createText( "Cards" ), h26 );
+	appendNode( h25, div12 );
+	appendNode( createText( "List groups" ), h25 );
 	appendNode( createText( "\n    " ), div12 );
 	var row13_yieldFragment = renderrow13YieldFragment( root, component );
 	
@@ -5170,10 +5574,10 @@ function rendercontainerYieldFragment ( root, component ) {
 	
 	appendNode( createText( "\n\n    " ), div12 );
 	
-	var h27 = createElement( 'h2' );
+	var h26 = createElement( 'h2' );
 	
-	appendNode( h27, div12 );
-	appendNode( createText( "Media" ), h27 );
+	appendNode( h26, div12 );
+	appendNode( createText( "Cards" ), h26 );
 	appendNode( createText( "\n    " ), div12 );
 	var row14_yieldFragment = renderrow14YieldFragment( root, component );
 	
@@ -5183,8 +5587,23 @@ function rendercontainerYieldFragment ( root, component ) {
 		_yield: row14_yieldFragment
 	});
 	
-	var text68 = createText( "\n\n  " );
-	var text69 = createText( "\n  " );
+	appendNode( createText( "\n\n    " ), div12 );
+	
+	var h27 = createElement( 'h2' );
+	
+	appendNode( h27, div12 );
+	appendNode( createText( "Media" ), h27 );
+	appendNode( createText( "\n    " ), div12 );
+	var row15_yieldFragment = renderrow15YieldFragment( root, component );
+	
+	var row15 = new template.components.Row({
+		target: div12,
+		_root: component._root || component,
+		_yield: row15_yieldFragment
+	});
+	
+	var text69 = createText( "\n\n  " );
+	var text70 = createText( "\n  " );
 	
 	var div13 = createElement( 'div' );
 	div13.className = "mt-3";
@@ -5195,15 +5614,15 @@ function rendercontainerYieldFragment ( root, component ) {
 	appendNode( h16, div13 );
 	appendNode( createText( "Dialogs" ), h16 );
 	appendNode( createText( "\n    " ), div13 );
-	var row15_yieldFragment = renderrow15YieldFragment( root, component );
+	var row16_yieldFragment = renderrow16YieldFragment( root, component );
 	
-	var row15 = new template.components.Row({
+	var row16 = new template.components.Row({
 		target: div13,
 		_root: component._root || component,
-		_yield: row15_yieldFragment
+		_yield: row16_yieldFragment
 	});
 	
-	var text72 = createText( "\n\n  " );
+	var text73 = createText( "\n\n  " );
 
 	return {
 		mount: function ( target, anchor ) {
@@ -5214,31 +5633,31 @@ function rendercontainerYieldFragment ( root, component ) {
 			insertNode( text2, target, anchor );
 			insertNode( text3, target, anchor );
 			insertNode( div2, target, anchor );
-			insertNode( text6, target, anchor );
 			insertNode( text7, target, anchor );
+			insertNode( text8, target, anchor );
 			insertNode( div3, target, anchor );
-			insertNode( text15, target, anchor );
 			insertNode( text16, target, anchor );
+			insertNode( text17, target, anchor );
 			insertNode( div4, target, anchor );
-			insertNode( text19, target, anchor );
 			insertNode( text20, target, anchor );
+			insertNode( text21, target, anchor );
 			insertNode( div5, target, anchor );
-			insertNode( text23, target, anchor );
 			insertNode( text24, target, anchor );
+			insertNode( text25, target, anchor );
 			insertNode( div6, target, anchor );
-			insertNode( text34, target, anchor );
 			insertNode( text35, target, anchor );
+			insertNode( text36, target, anchor );
 			insertNode( div7, target, anchor );
-			insertNode( text55, target, anchor );
 			insertNode( text56, target, anchor );
-			insertNode( div11, target, anchor );
 			insertNode( text57, target, anchor );
+			insertNode( div11, target, anchor );
 			insertNode( text58, target, anchor );
+			insertNode( text59, target, anchor );
 			insertNode( div12, target, anchor );
-			insertNode( text68, target, anchor );
 			insertNode( text69, target, anchor );
+			insertNode( text70, target, anchor );
 			insertNode( div13, target, anchor );
-			insertNode( text72, target, anchor );
+			insertNode( text73, target, anchor );
 		},
 		
 		update: function ( changed, root ) {
@@ -5252,11 +5671,12 @@ function rendercontainerYieldFragment ( root, component ) {
 			row5_yieldFragment.update( changed, root );
 			row6_yieldFragment.update( changed, root );
 			row7_yieldFragment.update( changed, root );
+			row8_yieldFragment.update( changed, root );
 			nav_yieldFragment.update( changed, root );
 			nav1_yieldFragment.update( changed, root );
-			row8_yieldFragment.update( changed, root );
-			alert_yieldFragment.update( changed, root );
 			row9_yieldFragment.update( changed, root );
+			alert_yieldFragment.update( changed, root );
+			row10_yieldFragment.update( changed, root );
 			badge_yieldFragment.update( changed, root );
 			badge1_yieldFragment.update( changed, root );
 			badge2_yieldFragment.update( changed, root );
@@ -5269,12 +5689,12 @@ function rendercontainerYieldFragment ( root, component ) {
 			badge9_yieldFragment.update( changed, root );
 			badge10_yieldFragment.update( changed, root );
 			badge11_yieldFragment.update( changed, root );
-			row10_yieldFragment.update( changed, root );
 			row11_yieldFragment.update( changed, root );
 			row12_yieldFragment.update( changed, root );
 			row13_yieldFragment.update( changed, root );
 			row14_yieldFragment.update( changed, root );
 			row15_yieldFragment.update( changed, root );
+			row16_yieldFragment.update( changed, root );
 		},
 		
 		teardown: function ( detach ) {
@@ -5286,11 +5706,12 @@ function rendercontainerYieldFragment ( root, component ) {
 			row5.destroy( false );
 			row6.destroy( false );
 			row7.destroy( false );
+			row8.destroy( false );
 			nav.destroy( false );
 			nav1.destroy( false );
-			row8.destroy( false );
-			alert.destroy( false );
 			row9.destroy( false );
+			alert.destroy( false );
+			row10.destroy( false );
 			badge.destroy( false );
 			badge1.destroy( false );
 			badge2.destroy( false );
@@ -5303,12 +5724,12 @@ function rendercontainerYieldFragment ( root, component ) {
 			badge9.destroy( false );
 			badge10.destroy( false );
 			badge11.destroy( false );
-			row10.destroy( false );
 			row11.destroy( false );
 			row12.destroy( false );
 			row13.destroy( false );
 			row14.destroy( false );
 			row15.destroy( false );
+			row16.destroy( false );
 			
 			if ( detach ) {
 				detachNode( div );
@@ -5318,37 +5739,37 @@ function rendercontainerYieldFragment ( root, component ) {
 				detachNode( text2 );
 				detachNode( text3 );
 				detachNode( div2 );
-				detachNode( text6 );
 				detachNode( text7 );
+				detachNode( text8 );
 				detachNode( div3 );
-				detachNode( text15 );
 				detachNode( text16 );
+				detachNode( text17 );
 				detachNode( div4 );
-				detachNode( text19 );
 				detachNode( text20 );
+				detachNode( text21 );
 				detachNode( div5 );
-				detachNode( text23 );
 				detachNode( text24 );
+				detachNode( text25 );
 				detachNode( div6 );
-				detachNode( text34 );
 				detachNode( text35 );
+				detachNode( text36 );
 				detachNode( div7 );
-				detachNode( text55 );
 				detachNode( text56 );
-				detachNode( div11 );
 				detachNode( text57 );
+				detachNode( div11 );
 				detachNode( text58 );
+				detachNode( text59 );
 				detachNode( div12 );
-				detachNode( text68 );
 				detachNode( text69 );
+				detachNode( text70 );
 				detachNode( div13 );
-				detachNode( text72 );
+				detachNode( text73 );
 			}
 		}
 	};
 }
 
-function renderrow15YieldFragment ( root, component ) {
+function renderrow16YieldFragment ( root, component ) {
 	var col_yieldFragment = rendercolYieldFragment13( root, component );
 	
 	var col_initialData = {
@@ -5568,7 +5989,7 @@ function rendercolYieldFragment13 ( root, component ) {
 	};
 }
 
-function renderrow14YieldFragment ( root, component ) {
+function renderrow15YieldFragment ( root, component ) {
 	var media_yieldFragment = rendermediaYieldFragment( root, component );
 	
 	var media = new template.components.Media({
@@ -5658,7 +6079,7 @@ function rendermediaBodyYieldFragment ( root, component ) {
 	};
 }
 
-function renderrow13YieldFragment ( root, component ) {
+function renderrow14YieldFragment ( root, component ) {
 	var col_yieldFragment = rendercolYieldFragment12( root, component );
 	
 	var col_initialData = {
@@ -6382,7 +6803,7 @@ function rendercardTitleYieldFragment ( root, eachBlock3_value, color, color__in
 	};
 }
 
-function renderrow12YieldFragment ( root, component ) {
+function renderrow13YieldFragment ( root, component ) {
 	var col_yieldFragment = rendercolYieldFragment11( root, component );
 	
 	var col_initialData = {
@@ -7095,7 +7516,7 @@ function renderbadgeYieldFragment1 ( root, component ) {
 	};
 }
 
-function renderrow11YieldFragment ( root, component ) {
+function renderrow12YieldFragment ( root, component ) {
 	var col_yieldFragment = rendercolYieldFragment10( root, component );
 	
 	var col_initialData = {
@@ -7177,7 +7598,7 @@ function renderjumbotronYieldFragment ( root, component ) {
 	
 	var p1 = createElement( 'p' );
 	
-	var button_yieldFragment = renderbuttonYieldFragment13( root, component );
+	var button_yieldFragment = renderbuttonYieldFragment11( root, component );
 	
 	var button_initialData = {
 		color: "primary",
@@ -7220,7 +7641,7 @@ function renderjumbotronYieldFragment ( root, component ) {
 	};
 }
 
-function renderbuttonYieldFragment13 ( root, component ) {
+function renderbuttonYieldFragment11 ( root, component ) {
 	var text = createText( "Learn more" );
 
 	return {
@@ -7238,7 +7659,7 @@ function renderbuttonYieldFragment13 ( root, component ) {
 	};
 }
 
-function renderrow10YieldFragment ( root, component ) {
+function renderrow11YieldFragment ( root, component ) {
 	var col_yieldFragment = rendercolYieldFragment9( root, component );
 	
 	var col_initialData = {
@@ -7908,7 +8329,7 @@ function renderbadgeYieldFragment ( root, component ) {
 	};
 }
 
-function renderrow9YieldFragment ( root, component ) {
+function renderrow10YieldFragment ( root, component ) {
 	var eachBlock2_anchor = createComment();
 	var eachBlock2_value = ['success', 'info', 'warning', 'danger'];
 	var eachBlock2_iterations = [];
@@ -8097,7 +8518,7 @@ function renderalertYieldFragment ( root, component ) {
 	};
 }
 
-function renderrow8YieldFragment ( root, component ) {
+function renderrow9YieldFragment ( root, component ) {
 	var col_yieldFragment = rendercolYieldFragment7( root, component );
 	
 	var col = new template.components.Col({
@@ -9160,7 +9581,7 @@ function rendernavItemYieldFragment4 ( root, component ) {
 	};
 }
 
-function renderrow7YieldFragment ( root, component ) {
+function renderrow8YieldFragment ( root, component ) {
 	var col_yieldFragment = rendercolYieldFragment6( root, component );
 	
 	var col_initialData = {
@@ -9993,7 +10414,7 @@ function rendernavItemYieldFragment1 ( root, component ) {
 	};
 }
 
-function renderrow6YieldFragment ( root, component ) {
+function renderrow7YieldFragment ( root, component ) {
 	var col_yieldFragment = rendercolYieldFragment5( root, component );
 	
 	var col_initialData = {
@@ -11096,7 +11517,7 @@ function renderformYieldFragment1 ( root, component ) {
 	};
 }
 
-function renderrow5YieldFragment ( root, component ) {
+function renderrow6YieldFragment ( root, component ) {
 	var col_yieldFragment = rendercolYieldFragment4( root, component );
 	
 	var col = new template.components.Col({
@@ -11408,7 +11829,7 @@ function rendertableYieldFragment ( root, component ) {
 	};
 }
 
-function renderrow4YieldFragment ( root, component ) {
+function renderrow5YieldFragment ( root, component ) {
 	var col_yieldFragment = rendercolYieldFragment3( root, component );
 	
 	var col_initialData = {
@@ -11533,7 +11954,7 @@ function rendercolYieldFragment3 ( root, component ) {
 	};
 }
 
-function renderrow3YieldFragment ( root, component ) {
+function renderrow4YieldFragment ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "col-lg-4";
 	
@@ -11749,6 +12170,456 @@ function renderrow3YieldFragment ( root, component ) {
 	};
 }
 
+function renderrow3YieldFragment ( root, component ) {
+	var div = createElement( 'div' );
+	
+	var h2 = createElement( 'h2' );
+	h2.className = "text-muted my-4";
+	
+	appendNode( h2, div );
+	appendNode( createText( "Dropdowns" ), h2 );
+	appendNode( createText( "\n        " ), div );
+	
+	var h4 = createElement( 'h4' );
+	h4.className = "text-muted";
+	
+	appendNode( h4, div );
+	appendNode( createText( "Dropdown" ), h4 );
+	appendNode( createText( "\n\n        " ), div );
+	var dropdown_yieldFragment = renderdropdownYieldFragment( root, component );
+	
+	var dropdown_initialData = {
+		open: root.open
+	};
+	var dropdown = new template.components.Dropdown({
+		target: div,
+		_root: component._root || component,
+		_yield: dropdown_yieldFragment,
+		data: dropdown_initialData
+	});
+	
+	appendNode( createText( "\n\n        " ), div );
+	
+	var h41 = createElement( 'h4' );
+	h41.className = "text-muted";
+	
+	appendNode( h41, div );
+	appendNode( createText( "Dropup" ), h41 );
+	appendNode( createText( "\n\n        " ), div );
+	var dropdown1_yieldFragment = renderdropdown1YieldFragment( root, component );
+	
+	var dropdown1_initialData = {
+		dropup: true,
+		open: root.open2
+	};
+	var dropdown1 = new template.components.Dropdown({
+		target: div,
+		_root: component._root || component,
+		_yield: dropdown1_yieldFragment,
+		data: dropdown1_initialData
+	});
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( div, target, anchor );
+		},
+		
+		update: function ( changed, root ) {
+			var __tmp;
+		
+			dropdown_yieldFragment.update( changed, root );
+			
+			var dropdown_changes = {};
+			
+			if ( 'open' in changed ) dropdown_changes.open = root.open;
+			
+			if ( Object.keys( dropdown_changes ).length ) dropdown.set( dropdown_changes );
+			
+			dropdown1_yieldFragment.update( changed, root );
+			
+			var dropdown1_changes = {};
+			
+			if ( 'open2' in changed ) dropdown1_changes.open = root.open2;
+			
+			if ( Object.keys( dropdown1_changes ).length ) dropdown1.set( dropdown1_changes );
+		},
+		
+		teardown: function ( detach ) {
+			dropdown.destroy( false );
+			dropdown1.destroy( false );
+			
+			if ( detach ) {
+				detachNode( div );
+			}
+		}
+	};
+}
+
+function renderdropdown1YieldFragment ( root, component ) {
+	var button_yieldFragment = renderbuttonYieldFragment10( root, component );
+	
+	var button_initialData = {
+		class: "dropdown-toggle",
+		color: "success"
+	};
+	var button = new template.components.Button({
+		target: null,
+		_root: component._root || component,
+		_yield: button_yieldFragment,
+		data: button_initialData
+	});
+	
+	button.on( 'click', function ( event ) {
+		var root = this._context.root;
+		
+		component.set({ open2: !root.open2 });
+	});
+	
+	button._context = {
+		root: root
+	};
+	
+	var text = createText( "\n          " );
+	var dropdownMenu_yieldFragment = renderdropdownMenuYieldFragment1( root, component );
+	
+	var dropdownMenu = new template.components.DropdownMenu({
+		target: null,
+		_root: component._root || component,
+		_yield: dropdownMenu_yieldFragment
+	});
+
+	return {
+		mount: function ( target, anchor ) {
+			button._fragment.mount( target, anchor );
+			insertNode( text, target, anchor );
+			dropdownMenu._fragment.mount( target, anchor );
+		},
+		
+		update: function ( changed, root ) {
+			var __tmp;
+		
+			button_yieldFragment.update( changed, root );
+			
+			button._context.root = root;
+			
+			dropdownMenu_yieldFragment.update( changed, root );
+		},
+		
+		teardown: function ( detach ) {
+			button.destroy( detach );
+			dropdownMenu.destroy( detach );
+			
+			if ( detach ) {
+				detachNode( text );
+			}
+		}
+	};
+}
+
+function renderdropdownMenuYieldFragment1 ( root, component ) {
+	var dropdownItem_yieldFragment = renderdropdownItemYieldFragment1( root, component );
+	
+	var dropdownItem = new template.components.DropdownItem({
+		target: null,
+		_root: component._root || component,
+		_yield: dropdownItem_yieldFragment
+	});
+	
+	var text = createText( "\n            " );
+	var dropdownItem1_yieldFragment = renderdropdownItem1YieldFragment1( root, component );
+	
+	var dropdownItem1 = new template.components.DropdownItem({
+		target: null,
+		_root: component._root || component,
+		_yield: dropdownItem1_yieldFragment
+	});
+
+	return {
+		mount: function ( target, anchor ) {
+			dropdownItem._fragment.mount( target, anchor );
+			insertNode( text, target, anchor );
+			dropdownItem1._fragment.mount( target, anchor );
+		},
+		
+		update: function ( changed, root ) {
+			var __tmp;
+		
+			dropdownItem_yieldFragment.update( changed, root );
+			dropdownItem1_yieldFragment.update( changed, root );
+		},
+		
+		teardown: function ( detach ) {
+			dropdownItem.destroy( detach );
+			dropdownItem1.destroy( detach );
+			
+			if ( detach ) {
+				detachNode( text );
+			}
+		}
+	};
+}
+
+function renderdropdownItem1YieldFragment1 ( root, component ) {
+	var text = createText( "Dropdown link" );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( text, target, anchor );
+		},
+		
+		update: noop,
+		
+		teardown: function ( detach ) {
+			if ( detach ) {
+				detachNode( text );
+			}
+		}
+	};
+}
+
+function renderdropdownItemYieldFragment1 ( root, component ) {
+	var text = createText( "Dropdown link" );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( text, target, anchor );
+		},
+		
+		update: noop,
+		
+		teardown: function ( detach ) {
+			if ( detach ) {
+				detachNode( text );
+			}
+		}
+	};
+}
+
+function renderbuttonYieldFragment10 ( root, component ) {
+	var text = createText( "Dropup" );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( text, target, anchor );
+		},
+		
+		update: noop,
+		
+		teardown: function ( detach ) {
+			if ( detach ) {
+				detachNode( text );
+			}
+		}
+	};
+}
+
+function renderdropdownYieldFragment ( root, component ) {
+	var button_yieldFragment = renderbuttonYieldFragment9( root, component );
+	
+	var button_initialData = {
+		class: "dropdown-toggle",
+		color: "primary"
+	};
+	var button = new template.components.Button({
+		target: null,
+		_root: component._root || component,
+		_yield: button_yieldFragment,
+		data: button_initialData
+	});
+	
+	button.on( 'click', function ( event ) {
+		var root = this._context.root;
+		
+		component.set({ open: !root.open });
+	});
+	
+	button._context = {
+		root: root
+	};
+	
+	var text = createText( "\n          " );
+	var dropdownMenu_yieldFragment = renderdropdownMenuYieldFragment( root, component );
+	
+	var dropdownMenu = new template.components.DropdownMenu({
+		target: null,
+		_root: component._root || component,
+		_yield: dropdownMenu_yieldFragment
+	});
+
+	return {
+		mount: function ( target, anchor ) {
+			button._fragment.mount( target, anchor );
+			insertNode( text, target, anchor );
+			dropdownMenu._fragment.mount( target, anchor );
+		},
+		
+		update: function ( changed, root ) {
+			var __tmp;
+		
+			button_yieldFragment.update( changed, root );
+			
+			button._context.root = root;
+			
+			dropdownMenu_yieldFragment.update( changed, root );
+		},
+		
+		teardown: function ( detach ) {
+			button.destroy( detach );
+			dropdownMenu.destroy( detach );
+			
+			if ( detach ) {
+				detachNode( text );
+			}
+		}
+	};
+}
+
+function renderdropdownMenuYieldFragment ( root, component ) {
+	var dropdownHeader_yieldFragment = renderdropdownHeaderYieldFragment( root, component );
+	
+	var dropdownHeader = new template.components.DropdownHeader({
+		target: null,
+		_root: component._root || component,
+		_yield: dropdownHeader_yieldFragment
+	});
+	
+	var text = createText( "\n            " );
+	var dropdownItem_yieldFragment = renderdropdownItemYieldFragment( root, component );
+	
+	var dropdownItem = new template.components.DropdownItem({
+		target: null,
+		_root: component._root || component,
+		_yield: dropdownItem_yieldFragment
+	});
+	
+	var text1 = createText( "\n            " );
+	
+	var dropdownDivider = new template.components.DropdownDivider({
+		target: null,
+		_root: component._root || component
+	});
+	
+	var text2 = createText( "\n            " );
+	var dropdownItem1_yieldFragment = renderdropdownItem1YieldFragment( root, component );
+	
+	var dropdownItem1 = new template.components.DropdownItem({
+		target: null,
+		_root: component._root || component,
+		_yield: dropdownItem1_yieldFragment
+	});
+
+	return {
+		mount: function ( target, anchor ) {
+			dropdownHeader._fragment.mount( target, anchor );
+			insertNode( text, target, anchor );
+			dropdownItem._fragment.mount( target, anchor );
+			insertNode( text1, target, anchor );
+			dropdownDivider._fragment.mount( target, anchor );
+			insertNode( text2, target, anchor );
+			dropdownItem1._fragment.mount( target, anchor );
+		},
+		
+		update: function ( changed, root ) {
+			var __tmp;
+		
+			dropdownHeader_yieldFragment.update( changed, root );
+			dropdownItem_yieldFragment.update( changed, root );
+			dropdownItem1_yieldFragment.update( changed, root );
+		},
+		
+		teardown: function ( detach ) {
+			dropdownHeader.destroy( detach );
+			dropdownItem.destroy( detach );
+			dropdownDivider.destroy( detach );
+			dropdownItem1.destroy( detach );
+			
+			if ( detach ) {
+				detachNode( text );
+				detachNode( text1 );
+				detachNode( text2 );
+			}
+		}
+	};
+}
+
+function renderdropdownItem1YieldFragment ( root, component ) {
+	var a = createElement( 'a' );
+	a.href = "#";
+	
+	appendNode( createText( "Dropdown link" ), a );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( a, target, anchor );
+		},
+		
+		update: noop,
+		
+		teardown: function ( detach ) {
+			if ( detach ) {
+				detachNode( a );
+			}
+		}
+	};
+}
+
+function renderdropdownItemYieldFragment ( root, component ) {
+	var a = createElement( 'a' );
+	a.href = "#";
+	
+	appendNode( createText( "Dropdown link" ), a );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( a, target, anchor );
+		},
+		
+		update: noop,
+		
+		teardown: function ( detach ) {
+			if ( detach ) {
+				detachNode( a );
+			}
+		}
+	};
+}
+
+function renderdropdownHeaderYieldFragment ( root, component ) {
+	var text = createText( "Heading" );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( text, target, anchor );
+		},
+		
+		update: noop,
+		
+		teardown: function ( detach ) {
+			if ( detach ) {
+				detachNode( text );
+			}
+		}
+	};
+}
+
+function renderbuttonYieldFragment9 ( root, component ) {
+	var text = createText( "Dropdown" );
+
+	return {
+		mount: function ( target, anchor ) {
+			insertNode( text, target, anchor );
+		},
+		
+		update: noop,
+		
+		teardown: function ( detach ) {
+			if ( detach ) {
+				detachNode( text );
+			}
+		}
+	};
+}
+
 function renderrow2YieldFragment ( root, component ) {
 	var col_yieldFragment = rendercolYieldFragment2( root, component );
 	
@@ -11804,7 +12675,7 @@ function rendercol1YieldFragment ( root, component ) {
 	var p = createElement( 'p' );
 	p.className = "bs-component";
 	
-	var button_yieldFragment = renderbuttonYieldFragment7( root, component );
+	var button_yieldFragment = renderbuttonYieldFragment3( root, component );
 	
 	var button_initialData = {
 		color: "primary",
@@ -11922,7 +12793,7 @@ function rendercol1YieldFragment ( root, component ) {
 	var div4 = createElement( 'div' );
 	div4.className = "bs-component";
 	
-	var buttonGroup_yieldFragment = renderbuttonGroupYieldFragment5( root, component );
+	var buttonGroup_yieldFragment = renderbuttonGroupYieldFragment( root, component );
 	
 	var buttonGroup_initialData = {
 		vertical: true
@@ -11940,7 +12811,7 @@ function rendercol1YieldFragment ( root, component ) {
 	div5.className = "bs-component";
 	div5.style.cssText = "margin-bottom: 15px;";
 	
-	var buttonGroup1_yieldFragment = renderbuttonGroup1YieldFragment1( root, component );
+	var buttonGroup1_yieldFragment = renderbuttonGroup1YieldFragment( root, component );
 	
 	var buttonGroup1 = new template.components.ButtonGroup({
 		target: div5,
@@ -12010,7 +12881,7 @@ function rendercol1YieldFragment ( root, component ) {
 }
 
 function renderbuttonToolbarYieldFragment ( root, component ) {
-	var buttonGroup_yieldFragment = renderbuttonGroupYieldFragment6( root, component );
+	var buttonGroup_yieldFragment = renderbuttonGroupYieldFragment1( root, component );
 	
 	var buttonGroup = new template.components.ButtonGroup({
 		target: null,
@@ -12019,7 +12890,7 @@ function renderbuttonToolbarYieldFragment ( root, component ) {
 	});
 	
 	var text = createText( "\n            " );
-	var buttonGroup1_yieldFragment = renderbuttonGroup1YieldFragment2( root, component );
+	var buttonGroup1_yieldFragment = renderbuttonGroup1YieldFragment1( root, component );
 	
 	var buttonGroup1 = new template.components.ButtonGroup({
 		target: null,
@@ -12028,7 +12899,7 @@ function renderbuttonToolbarYieldFragment ( root, component ) {
 	});
 	
 	var text1 = createText( "\n            " );
-	var buttonGroup2_yieldFragment = renderbuttonGroup2YieldFragment1( root, component );
+	var buttonGroup2_yieldFragment = renderbuttonGroup2YieldFragment( root, component );
 	
 	var buttonGroup2 = new template.components.ButtonGroup({
 		target: null,
@@ -12066,8 +12937,8 @@ function renderbuttonToolbarYieldFragment ( root, component ) {
 	};
 }
 
-function renderbuttonGroup2YieldFragment1 ( root, component ) {
-	var button_yieldFragment = renderbuttonYieldFragment12( root, component );
+function renderbuttonGroup2YieldFragment ( root, component ) {
+	var button_yieldFragment = renderbuttonYieldFragment8( root, component );
 	
 	var button_initialData = {
 		color: "secondary"
@@ -12096,7 +12967,7 @@ function renderbuttonGroup2YieldFragment1 ( root, component ) {
 	};
 }
 
-function renderbuttonYieldFragment12 ( root, component ) {
+function renderbuttonYieldFragment8 ( root, component ) {
 	var text = createText( "8" );
 
 	return {
@@ -12114,8 +12985,8 @@ function renderbuttonYieldFragment12 ( root, component ) {
 	};
 }
 
-function renderbuttonGroup1YieldFragment2 ( root, component ) {
-	var button_yieldFragment = renderbuttonYieldFragment11( root, component );
+function renderbuttonGroup1YieldFragment1 ( root, component ) {
+	var button_yieldFragment = renderbuttonYieldFragment7( root, component );
 	
 	var button_initialData = {
 		color: "secondary"
@@ -12219,7 +13090,7 @@ function renderbutton1YieldFragment4 ( root, component ) {
 	};
 }
 
-function renderbuttonYieldFragment11 ( root, component ) {
+function renderbuttonYieldFragment7 ( root, component ) {
 	var text = createText( "5" );
 
 	return {
@@ -12237,8 +13108,8 @@ function renderbuttonYieldFragment11 ( root, component ) {
 	};
 }
 
-function renderbuttonGroupYieldFragment6 ( root, component ) {
-	var button_yieldFragment = renderbuttonYieldFragment10( root, component );
+function renderbuttonGroupYieldFragment1 ( root, component ) {
+	var button_yieldFragment = renderbuttonYieldFragment6( root, component );
 	
 	var button_initialData = {
 		color: "secondary"
@@ -12378,7 +13249,7 @@ function renderbutton1YieldFragment3 ( root, component ) {
 	};
 }
 
-function renderbuttonYieldFragment10 ( root, component ) {
+function renderbuttonYieldFragment6 ( root, component ) {
 	var text = createText( "1" );
 
 	return {
@@ -12396,8 +13267,8 @@ function renderbuttonYieldFragment10 ( root, component ) {
 	};
 }
 
-function renderbuttonGroup1YieldFragment1 ( root, component ) {
-	var button_yieldFragment = renderbuttonYieldFragment9( root, component );
+function renderbuttonGroup1YieldFragment ( root, component ) {
+	var button_yieldFragment = renderbuttonYieldFragment5( root, component );
 	
 	var button_initialData = {
 		color: "secondary"
@@ -12501,7 +13372,7 @@ function renderbutton1YieldFragment2 ( root, component ) {
 	};
 }
 
-function renderbuttonYieldFragment9 ( root, component ) {
+function renderbuttonYieldFragment5 ( root, component ) {
 	var text = createText( "Left" );
 
 	return {
@@ -12519,8 +13390,8 @@ function renderbuttonYieldFragment9 ( root, component ) {
 	};
 }
 
-function renderbuttonGroupYieldFragment5 ( root, component ) {
-	var button_yieldFragment = renderbuttonYieldFragment8( root, component );
+function renderbuttonGroupYieldFragment ( root, component ) {
+	var button_yieldFragment = renderbuttonYieldFragment4( root, component );
 	
 	var button_initialData = {
 		color: "primary"
@@ -12732,7 +13603,7 @@ function renderbutton1YieldFragment1 ( root, component ) {
 	};
 }
 
-function renderbuttonYieldFragment8 ( root, component ) {
+function renderbuttonYieldFragment4 ( root, component ) {
 	var text = createText( "Button" );
 
 	return {
@@ -12750,7 +13621,7 @@ function renderbuttonYieldFragment8 ( root, component ) {
 	};
 }
 
-function renderbuttonYieldFragment7 ( root, component ) {
+function renderbuttonYieldFragment3 ( root, component ) {
 	var text = createText( "Block level button" );
 
 	return {
@@ -13057,46 +13928,6 @@ function rendercolYieldFragment2 ( root, component ) {
 	var div = createElement( 'div' );
 	div.className = "bs-component";
 	
-	var buttonGroup_yieldFragment = renderbuttonGroupYieldFragment( root, component );
-	
-	var buttonGroup = new template.components.ButtonGroup({
-		target: div,
-		_root: component._root || component,
-		_yield: buttonGroup_yieldFragment
-	});
-	
-	appendNode( createText( "\n\n          " ), div );
-	var buttonGroup1_yieldFragment = renderbuttonGroup1YieldFragment( root, component );
-	
-	var buttonGroup1 = new template.components.ButtonGroup({
-		target: div,
-		_root: component._root || component,
-		_yield: buttonGroup1_yieldFragment
-	});
-	
-	appendNode( createText( "\n\n          " ), div );
-	var buttonGroup2_yieldFragment = renderbuttonGroup2YieldFragment( root, component );
-	
-	var buttonGroup2 = new template.components.ButtonGroup({
-		target: div,
-		_root: component._root || component,
-		_yield: buttonGroup2_yieldFragment
-	});
-	
-	appendNode( createText( "\n\n          " ), div );
-	var buttonGroup3_yieldFragment = renderbuttonGroup3YieldFragment( root, component );
-	
-	var buttonGroup3 = new template.components.ButtonGroup({
-		target: div,
-		_root: component._root || component,
-		_yield: buttonGroup3_yieldFragment
-	});
-	
-	var text23 = createText( "\n\n        " );
-	
-	var div1 = createElement( 'div' );
-	div1.className = "bs-component";
-	
 	var button20_yieldFragment = renderbutton20YieldFragment( root, component );
 	
 	var button20_initialData = {
@@ -13104,26 +13935,26 @@ function rendercolYieldFragment2 ( root, component ) {
 		size: "lg"
 	};
 	var button20 = new template.components.Button({
-		target: div1,
+		target: div,
 		_root: component._root || component,
 		_yield: button20_yieldFragment,
 		data: button20_initialData
 	});
 	
-	appendNode( createText( "\n          " ), div1 );
+	appendNode( createText( "\n          " ), div );
 	var button21_yieldFragment = renderbutton21YieldFragment( root, component );
 	
 	var button21_initialData = {
 		color: "primary"
 	};
 	var button21 = new template.components.Button({
-		target: div1,
+		target: div,
 		_root: component._root || component,
 		_yield: button21_yieldFragment,
 		data: button21_initialData
 	});
 	
-	appendNode( createText( "\n          " ), div1 );
+	appendNode( createText( "\n          " ), div );
 	var button22_yieldFragment = renderbutton22YieldFragment( root, component );
 	
 	var button22_initialData = {
@@ -13131,7 +13962,7 @@ function rendercolYieldFragment2 ( root, component ) {
 		size: "sm"
 	};
 	var button22 = new template.components.Button({
-		target: div1,
+		target: div,
 		_root: component._root || component,
 		_yield: button22_yieldFragment,
 		data: button22_initialData
@@ -13146,8 +13977,6 @@ function rendercolYieldFragment2 ( root, component ) {
 			insertNode( p2, target, anchor );
 			insertNode( text19, target, anchor );
 			insertNode( div, target, anchor );
-			insertNode( text23, target, anchor );
-			insertNode( div1, target, anchor );
 		},
 		
 		update: function ( changed, root ) {
@@ -13173,10 +14002,6 @@ function rendercolYieldFragment2 ( root, component ) {
 			button17_yieldFragment.update( changed, root );
 			button18_yieldFragment.update( changed, root );
 			button19_yieldFragment.update( changed, root );
-			buttonGroup_yieldFragment.update( changed, root );
-			buttonGroup1_yieldFragment.update( changed, root );
-			buttonGroup2_yieldFragment.update( changed, root );
-			buttonGroup3_yieldFragment.update( changed, root );
 			button20_yieldFragment.update( changed, root );
 			button21_yieldFragment.update( changed, root );
 			button22_yieldFragment.update( changed, root );
@@ -13203,10 +14028,6 @@ function rendercolYieldFragment2 ( root, component ) {
 			button17.destroy( false );
 			button18.destroy( false );
 			button19.destroy( false );
-			buttonGroup.destroy( false );
-			buttonGroup1.destroy( false );
-			buttonGroup2.destroy( false );
-			buttonGroup3.destroy( false );
 			button20.destroy( false );
 			button21.destroy( false );
 			button22.destroy( false );
@@ -13219,8 +14040,6 @@ function rendercolYieldFragment2 ( root, component ) {
 				detachNode( p2 );
 				detachNode( text19 );
 				detachNode( div );
-				detachNode( text23 );
-				detachNode( div1 );
 			}
 		}
 	};
@@ -13264,462 +14083,6 @@ function renderbutton21YieldFragment ( root, component ) {
 
 function renderbutton20YieldFragment ( root, component ) {
 	var text = createText( "Large button" );
-
-	return {
-		mount: function ( target, anchor ) {
-			insertNode( text, target, anchor );
-		},
-		
-		update: noop,
-		
-		teardown: function ( detach ) {
-			if ( detach ) {
-				detachNode( text );
-			}
-		}
-	};
-}
-
-function renderbuttonGroup3YieldFragment ( root, component ) {
-	var button_yieldFragment = renderbuttonYieldFragment6( root, component );
-	
-	var button_initialData = {
-		color: "danger"
-	};
-	var button = new template.components.Button({
-		target: null,
-		_root: component._root || component,
-		_yield: button_yieldFragment,
-		data: button_initialData
-	});
-	
-	var text = createText( "\n            " );
-	var buttonGroup_yieldFragment = renderbuttonGroupYieldFragment4( root, component );
-	
-	var buttonGroup = new template.components.ButtonGroup({
-		target: null,
-		_root: component._root || component,
-		_yield: buttonGroup_yieldFragment
-	});
-
-	return {
-		mount: function ( target, anchor ) {
-			button._fragment.mount( target, anchor );
-			insertNode( text, target, anchor );
-			buttonGroup._fragment.mount( target, anchor );
-		},
-		
-		update: function ( changed, root ) {
-			var __tmp;
-		
-			button_yieldFragment.update( changed, root );
-			buttonGroup_yieldFragment.update( changed, root );
-		},
-		
-		teardown: function ( detach ) {
-			button.destroy( detach );
-			buttonGroup.destroy( detach );
-			
-			if ( detach ) {
-				detachNode( text );
-			}
-		}
-	};
-}
-
-function renderbuttonGroupYieldFragment4 ( root, component ) {
-	var button = createElement( 'button' );
-	button.id = "btnGroupDrop4";
-	button.type = "button";
-	button.className = "btn btn-danger dropdown-toggle";
-	setAttribute( button, 'data-toggle', "dropdown" );
-	setAttribute( button, 'aria-haspopup', "true" );
-	setAttribute( button, 'aria-expanded', "false" );
-	
-	var text = createText( "\n              " );
-	
-	var div = createElement( 'div' );
-	div.className = "dropdown-menu";
-	setAttribute( div, 'aria-labelledby', "btnGroupDrop4" );
-	
-	var a = createElement( 'a' );
-	a.className = "dropdown-item";
-	a.href = "#";
-	
-	appendNode( a, div );
-	appendNode( createText( "Dropdown link" ), a );
-	appendNode( createText( "\n                " ), div );
-	
-	var a1 = createElement( 'a' );
-	a1.className = "dropdown-item";
-	a1.href = "#";
-	
-	appendNode( a1, div );
-	appendNode( createText( "Dropdown link" ), a1 );
-
-	return {
-		mount: function ( target, anchor ) {
-			insertNode( button, target, anchor );
-			insertNode( text, target, anchor );
-			insertNode( div, target, anchor );
-		},
-		
-		update: noop,
-		
-		teardown: function ( detach ) {
-			if ( detach ) {
-				detachNode( button );
-				detachNode( text );
-				detachNode( div );
-			}
-		}
-	};
-}
-
-function renderbuttonYieldFragment6 ( root, component ) {
-	var text = createText( "Danger" );
-
-	return {
-		mount: function ( target, anchor ) {
-			insertNode( text, target, anchor );
-		},
-		
-		update: noop,
-		
-		teardown: function ( detach ) {
-			if ( detach ) {
-				detachNode( text );
-			}
-		}
-	};
-}
-
-function renderbuttonGroup2YieldFragment ( root, component ) {
-	var button_yieldFragment = renderbuttonYieldFragment5( root, component );
-	
-	var button_initialData = {
-		color: "info"
-	};
-	var button = new template.components.Button({
-		target: null,
-		_root: component._root || component,
-		_yield: button_yieldFragment,
-		data: button_initialData
-	});
-	
-	var text = createText( "\n            " );
-	var buttonGroup_yieldFragment = renderbuttonGroupYieldFragment3( root, component );
-	
-	var buttonGroup = new template.components.ButtonGroup({
-		target: null,
-		_root: component._root || component,
-		_yield: buttonGroup_yieldFragment
-	});
-
-	return {
-		mount: function ( target, anchor ) {
-			button._fragment.mount( target, anchor );
-			insertNode( text, target, anchor );
-			buttonGroup._fragment.mount( target, anchor );
-		},
-		
-		update: function ( changed, root ) {
-			var __tmp;
-		
-			button_yieldFragment.update( changed, root );
-			buttonGroup_yieldFragment.update( changed, root );
-		},
-		
-		teardown: function ( detach ) {
-			button.destroy( detach );
-			buttonGroup.destroy( detach );
-			
-			if ( detach ) {
-				detachNode( text );
-			}
-		}
-	};
-}
-
-function renderbuttonGroupYieldFragment3 ( root, component ) {
-	var button = createElement( 'button' );
-	button.id = "btnGroupDrop3";
-	button.type = "button";
-	button.className = "btn btn-info dropdown-toggle";
-	setAttribute( button, 'data-toggle', "dropdown" );
-	setAttribute( button, 'aria-haspopup', "true" );
-	setAttribute( button, 'aria-expanded', "false" );
-	
-	var text = createText( "\n              " );
-	
-	var div = createElement( 'div' );
-	div.className = "dropdown-menu";
-	setAttribute( div, 'aria-labelledby', "btnGroupDrop3" );
-	
-	var a = createElement( 'a' );
-	a.className = "dropdown-item";
-	a.href = "#";
-	
-	appendNode( a, div );
-	appendNode( createText( "Dropdown link" ), a );
-	appendNode( createText( "\n                " ), div );
-	
-	var a1 = createElement( 'a' );
-	a1.className = "dropdown-item";
-	a1.href = "#";
-	
-	appendNode( a1, div );
-	appendNode( createText( "Dropdown link" ), a1 );
-
-	return {
-		mount: function ( target, anchor ) {
-			insertNode( button, target, anchor );
-			insertNode( text, target, anchor );
-			insertNode( div, target, anchor );
-		},
-		
-		update: noop,
-		
-		teardown: function ( detach ) {
-			if ( detach ) {
-				detachNode( button );
-				detachNode( text );
-				detachNode( div );
-			}
-		}
-	};
-}
-
-function renderbuttonYieldFragment5 ( root, component ) {
-	var text = createText( "Info" );
-
-	return {
-		mount: function ( target, anchor ) {
-			insertNode( text, target, anchor );
-		},
-		
-		update: noop,
-		
-		teardown: function ( detach ) {
-			if ( detach ) {
-				detachNode( text );
-			}
-		}
-	};
-}
-
-function renderbuttonGroup1YieldFragment ( root, component ) {
-	var button_yieldFragment = renderbuttonYieldFragment4( root, component );
-	
-	var button_initialData = {
-		color: "success"
-	};
-	var button = new template.components.Button({
-		target: null,
-		_root: component._root || component,
-		_yield: button_yieldFragment,
-		data: button_initialData
-	});
-	
-	var text = createText( "\n            " );
-	var buttonGroup_yieldFragment = renderbuttonGroupYieldFragment2( root, component );
-	
-	var buttonGroup = new template.components.ButtonGroup({
-		target: null,
-		_root: component._root || component,
-		_yield: buttonGroup_yieldFragment
-	});
-
-	return {
-		mount: function ( target, anchor ) {
-			button._fragment.mount( target, anchor );
-			insertNode( text, target, anchor );
-			buttonGroup._fragment.mount( target, anchor );
-		},
-		
-		update: function ( changed, root ) {
-			var __tmp;
-		
-			button_yieldFragment.update( changed, root );
-			buttonGroup_yieldFragment.update( changed, root );
-		},
-		
-		teardown: function ( detach ) {
-			button.destroy( detach );
-			buttonGroup.destroy( detach );
-			
-			if ( detach ) {
-				detachNode( text );
-			}
-		}
-	};
-}
-
-function renderbuttonGroupYieldFragment2 ( root, component ) {
-	var button = createElement( 'button' );
-	button.id = "btnGroupDrop2";
-	button.type = "button";
-	button.className = "btn btn-success dropdown-toggle";
-	setAttribute( button, 'data-toggle', "dropdown" );
-	setAttribute( button, 'aria-haspopup', "true" );
-	setAttribute( button, 'aria-expanded', "false" );
-	
-	var text = createText( "\n              " );
-	
-	var div = createElement( 'div' );
-	div.className = "dropdown-menu";
-	setAttribute( div, 'aria-labelledby', "btnGroupDrop2" );
-	
-	var a = createElement( 'a' );
-	a.className = "dropdown-item";
-	a.href = "#";
-	
-	appendNode( a, div );
-	appendNode( createText( "Dropdown link" ), a );
-	appendNode( createText( "\n                " ), div );
-	
-	var a1 = createElement( 'a' );
-	a1.className = "dropdown-item";
-	a1.href = "#";
-	
-	appendNode( a1, div );
-	appendNode( createText( "Dropdown link" ), a1 );
-
-	return {
-		mount: function ( target, anchor ) {
-			insertNode( button, target, anchor );
-			insertNode( text, target, anchor );
-			insertNode( div, target, anchor );
-		},
-		
-		update: noop,
-		
-		teardown: function ( detach ) {
-			if ( detach ) {
-				detachNode( button );
-				detachNode( text );
-				detachNode( div );
-			}
-		}
-	};
-}
-
-function renderbuttonYieldFragment4 ( root, component ) {
-	var text = createText( "Success" );
-
-	return {
-		mount: function ( target, anchor ) {
-			insertNode( text, target, anchor );
-		},
-		
-		update: noop,
-		
-		teardown: function ( detach ) {
-			if ( detach ) {
-				detachNode( text );
-			}
-		}
-	};
-}
-
-function renderbuttonGroupYieldFragment ( root, component ) {
-	var button_yieldFragment = renderbuttonYieldFragment3( root, component );
-	
-	var button_initialData = {
-		color: "primary"
-	};
-	var button = new template.components.Button({
-		target: null,
-		_root: component._root || component,
-		_yield: button_yieldFragment,
-		data: button_initialData
-	});
-	
-	var text = createText( "\n            " );
-	var buttonGroup_yieldFragment = renderbuttonGroupYieldFragment1( root, component );
-	
-	var buttonGroup = new template.components.ButtonGroup({
-		target: null,
-		_root: component._root || component,
-		_yield: buttonGroup_yieldFragment
-	});
-
-	return {
-		mount: function ( target, anchor ) {
-			button._fragment.mount( target, anchor );
-			insertNode( text, target, anchor );
-			buttonGroup._fragment.mount( target, anchor );
-		},
-		
-		update: function ( changed, root ) {
-			var __tmp;
-		
-			button_yieldFragment.update( changed, root );
-			buttonGroup_yieldFragment.update( changed, root );
-		},
-		
-		teardown: function ( detach ) {
-			button.destroy( detach );
-			buttonGroup.destroy( detach );
-			
-			if ( detach ) {
-				detachNode( text );
-			}
-		}
-	};
-}
-
-function renderbuttonGroupYieldFragment1 ( root, component ) {
-	var button = createElement( 'button' );
-	button.id = "btnGroupDrop1";
-	button.type = "button";
-	button.className = "btn btn-primary dropdown-toggle";
-	setAttribute( button, 'data-toggle', "dropdown" );
-	setAttribute( button, 'aria-haspopup', "true" );
-	setAttribute( button, 'aria-expanded', "false" );
-	
-	var text = createText( "\n              " );
-	
-	var div = createElement( 'div' );
-	div.className = "dropdown-menu";
-	setAttribute( div, 'aria-labelledby', "btnGroupDrop1" );
-	
-	var a = createElement( 'a' );
-	a.className = "dropdown-item";
-	a.href = "#";
-	
-	appendNode( a, div );
-	appendNode( createText( "Dropdown link" ), a );
-	appendNode( createText( "\n                " ), div );
-	
-	var a1 = createElement( 'a' );
-	a1.className = "dropdown-item";
-	a1.href = "#";
-	
-	appendNode( a1, div );
-	appendNode( createText( "Dropdown link" ), a1 );
-
-	return {
-		mount: function ( target, anchor ) {
-			insertNode( button, target, anchor );
-			insertNode( text, target, anchor );
-			insertNode( div, target, anchor );
-		},
-		
-		update: noop,
-		
-		teardown: function ( detach ) {
-			if ( detach ) {
-				detachNode( button );
-				detachNode( text );
-				detachNode( div );
-			}
-		}
-	};
-}
-
-function renderbuttonYieldFragment3 ( root, component ) {
-	var text = createText( "Primary" );
 
 	return {
 		mount: function ( target, anchor ) {
