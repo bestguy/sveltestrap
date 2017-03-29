@@ -49,8 +49,8 @@
         <div class="bs-component">
           <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
+              <span class="navbar-toggler-icon"></span>
+            </button>
             <a class="navbar-brand" href="#">Navbar</a>
 
             <div class="collapse navbar-collapse" id="navbarColor01">
@@ -79,8 +79,8 @@
         <div class="bs-component">
           <nav class="navbar navbar-toggleable-md navbar-light bg-inverse">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
+              <span class="navbar-toggler-icon"></span>
+            </button>
             <NavbarBrand><a href="#">Navbar</a></NavbarBrand>
 
             <div class="collapse navbar-collapse" id="navbarColor01">
@@ -147,52 +147,6 @@
           <Button outline color="warning">Warning</Button>
           <Button outline color="danger">Danger</Button>
         </p>
-
-        <div class="bs-component">
-          <ButtonGroup>
-            <Button color="primary">Primary</Button>
-            <ButtonGroup>
-              <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                <a class="dropdown-item" href="#">Dropdown link</a>
-                <a class="dropdown-item" href="#">Dropdown link</a>
-              </div>
-            </ButtonGroup>
-          </ButtonGroup>
-
-          <ButtonGroup>
-            <Button color="success">Success</Button>
-            <ButtonGroup>
-              <button id="btnGroupDrop2" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-              <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
-                <a class="dropdown-item" href="#">Dropdown link</a>
-                <a class="dropdown-item" href="#">Dropdown link</a>
-              </div>
-            </ButtonGroup>
-          </ButtonGroup>
-
-          <ButtonGroup>
-            <Button color="info">Info</Button>
-            <ButtonGroup>
-              <button id="btnGroupDrop3" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-              <div class="dropdown-menu" aria-labelledby="btnGroupDrop3">
-                <a class="dropdown-item" href="#">Dropdown link</a>
-                <a class="dropdown-item" href="#">Dropdown link</a>
-              </div>
-            </ButtonGroup>
-          </ButtonGroup>
-
-          <ButtonGroup>
-            <Button color="danger">Danger</Button>
-            <ButtonGroup>
-              <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-              <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
-                <a class="dropdown-item" href="#">Dropdown link</a>
-                <a class="dropdown-item" href="#">Dropdown link</a>
-              </div>
-            </ButtonGroup>
-          </ButtonGroup>
-        </div>
 
         <div class="bs-component">
           <Button color="primary" size="lg">Large button</Button>
@@ -274,6 +228,50 @@
         </div>
 
       </Col>
+    </Row>
+    
+    <Row>
+      <div>
+        <h2 class="text-muted my-4">Dropdowns</h2>
+        <h4 class="text-muted">Dropdown</h4>
+
+        <Dropdown open={{open}}>
+          <Button
+            class="dropdown-toggle"
+            color="primary"
+            on:click="set({ open: !open })"
+          >
+            Dropdown
+          </Button>
+          <DropdownMenu>
+            <DropdownHeader>Heading</DropdownHeader>
+            <DropdownItem>
+              <a href="#">Dropdown link</a>
+            </DropdownItem>
+            <DropdownDivider />
+            <DropdownItem>
+              <a href="#">Dropdown link</a>
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+
+        <h4 class="text-muted">Dropup</h4>
+
+        <Dropdown open={{open2}} dropup>
+          <Button
+            class="dropdown-toggle"
+            color="success"
+            on:click="set({ open2: !open2 })"
+          >
+            Dropup
+          </Button>
+          <DropdownMenu>
+            <DropdownItem>Dropdown link</DropdownItem>
+            <DropdownItem>Dropdown link</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+
+      </div>
     </Row>
   </div>
 
@@ -1078,6 +1076,11 @@
     Close,
     Col,
     Container,
+    Dropdown,
+    DropdownDivider,
+    DropdownHeader,
+    DropdownItem,
+    DropdownMenu,
     Form,
     FormGroup,
     InputGroup,
@@ -1118,6 +1121,11 @@
       Close,
       Col,
       Container,
+      Dropdown,
+      DropdownDivider,
+      DropdownHeader,
+      DropdownItem,
+      DropdownMenu,
       Form,
       FormGroup,
       InputGroup,
