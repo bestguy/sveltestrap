@@ -42,6 +42,7 @@ export { default as ModalFooter } from './ModalFooter.html';
 export { default as NavDropdown } from './NavDropdown.html';
 export { default as Nav } from './Nav.html';
 export { default as NavItem } from './NavItem.html';
+export { default as NavLink } from './NavLink.html';
 export { default as NavbarBrand } from './NavbarBrand.html';
 export { default as Pagination } from './Pagination.html';
 export { default as PaginationItem } from './PaginationItem.html';

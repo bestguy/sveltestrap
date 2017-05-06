@@ -1,0 +1,35 @@
+<a
+  href="{{href}}"
+  on:click="onClick(event)"
+  class="nav-link{{disabled ? ' disabled' : ''}}{{active ? ' active' : ''}} {{class}}"
+>
+  {{yield}}
+</a>
+
+<script>
+  export default {
+    data() {
+      return {
+        active: false,
+        disabled: false,
+        href: '#',
+        class: ''
+      }
+    },
+    methods: {
+      onClick(e) {
+        const { disabled, href } = this.get();
+        if (disabled) {
+          e.preventDefault();
+          return;
+        }
+
+        if (href === '#') {
+          e.preventDefault();
+        }
+
+        this.fire('click', e);
+      }
+    }
+  }
+</script>

@@ -4,8 +4,8 @@
   </a>
   <ul class="navbar-nav ml-auto">
     {{#each themes as theme}}
-      <li class="nav-item {{current == theme.name ? 'active' : ''}}">
-        <a class="nav-link" on:click="changeTheme(theme)">
+      <NavItem active="{{current == theme.name}}">
+        <NavLink on:click="changeTheme(theme)">
           <small>
             {{#if current == theme.name}}
               <b>{{theme.name}}</b>
@@ -13,16 +13,16 @@
               {{theme.name}}
             {{/if}}
           </small>
-        </a>
-      </li>
+        </NavLink>
+      </NavItem>
     {{/each}}
     </ul>
 </nav>
 
-<Container>
-  <div class="mt-3">
-    <Row>
-      <Col lg="3" md="3" sm="4">
+<Container fluid>
+  <Row>
+    <Col sm="3" lg="2">
+      <div class="mt-3 sticky-top">
         <ListGroup>
           <ListGroupItem action><a href="#navbars">Navbars</a></ListGroupItem>
           <ListGroupItem action><a href="#buttons">Buttons</a></ListGroupItem>
@@ -35,12 +35,12 @@
           <ListGroupItem action><a href="#containers">Containers</a></ListGroupItem>
           <ListGroupItem action><a href="#dialogs">Dialogs</a></ListGroupItem>
         </ListGroup>
-      </Col>
-    </Row>
-  </div>
-
+      </div>
+    </Col>
+  
   <!-- Navbar
       ================================================== -->
+  <Col sm="9">
   <div class="mt-3">
     <Row>
       <Col lg="12">
@@ -56,16 +56,16 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
               <ul class="navbar-nav mr-auto">
                 <NavItem active>
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  <NavLink>Home <span class="sr-only">(current)</span></NavLink>
                 </NavItem>
                 <NavItem>
-                  <a class="nav-link" href="#">Features</a>
+                  <NavLink>Features</NavLink>
                 </NavItem>
                 <NavItem>
-                  <a class="nav-link" href="#">Pricing</a>
+                  <NavLink>Pricing</NavLink>
                 </NavItem>
                 <NavItem>
-                  <a class="nav-link" href="#">About</a>
+                  <NavLink>About</NavLink>
                 </NavItem>
               </ul>
               <Form inline>
@@ -86,16 +86,16 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
               <ul class="navbar-nav mr-auto">
                 <NavItem active>
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  <NavLink>Home <span class="sr-only">(current)</span></NavLink>
                 </NavItem>
                 <NavItem>
-                  <a class="nav-link" href="#">Features</a>
+                  <NavLink>Features</NavLink>
                 </NavItem>
                 <NavItem>
-                  <a class="nav-link" href="#">Pricing</a>
+                  <NavLink>Pricing</NavLink>
                 </NavItem>
                 <NavItem>
-                  <a class="nav-link" href="#">About</a>
+                  <NavLink>About</NavLink>
                 </NavItem>
               </ul>
               <Form inline>
@@ -568,13 +568,13 @@
         <div class="bs-component">
           <Nav tabs>
             <NavItem>
-              <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+              <NavLink active href="#home">Home</NavLink>
             </NavItem>
             <NavItem>
-              <a class="nav-link" data-toggle="tab" href="#profile">Profile</a>
+              <NavLink href="#profile">Profile</NavLink>
             </NavItem>
             <NavItem>
-              <a class="nav-link disabled" href="#">Disabled</a>
+              <NavLink disabled>Disabled</NavLink>
             </NavItem>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -608,7 +608,7 @@
         <h2 id="nav-pills" class="text-muted my-4">Pills</h2>
         <Nav pills>
           <NavItem>
-            <a class="nav-link active" href="#">Active</a>
+            <NavLink active>Active</NavLink>
           </NavItem>
           <NavDropdown>
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -621,10 +621,10 @@
             </div>
           </NavDropdown>
           <NavItem>
-            <a class="nav-link" href="#">Link</a>
+            <NavLink>Link</NavLink>
           </NavItem>
           <NavItem>
-            <a class="nav-link disabled" href="#">Disabled</a>
+            <NavLink disabled>Disabled</NavLink>
           </NavItem>
         </Nav>
 
@@ -632,7 +632,7 @@
         <div class="bs-component">
           <Nav pills stacked>
             <NavItem>
-              <a class="nav-link active" href="#">Active</a>
+              <NavLink active>Active</NavLink>
             </NavItem>
             <NavDropdown>
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -645,10 +645,10 @@
               </div>
             </NavDropdown>
             <NavItem>
-              <a class="nav-link" href="#">Link</a>
+              <NavLink>Link</NavLink>
             </NavItem>
             <NavItem>
-              <a class="nav-link disabled" href="#">Disabled</a>
+              <NavLink disabled>Disabled</NavLink>
             </NavItem>
           </Nav>
         </div>
@@ -658,32 +658,32 @@
     <h2 id="nav-fill" class="text-muted my-4">Fill</h2>
     <Nav pills fill class="mb-2">
       <NavItem>
-        <a class="nav-link active" data-toggle="tab" href="#home">My</a>
+        <NavLink active href="#home">My</NavLink>
       </NavItem>
       <NavItem>
-        <a class="nav-link" data-toggle="tab" href="#profile">Name</a>
+        <NavLink href="#profile">Name</NavLink>
       </NavItem>
       <NavItem>
-        <a class="nav-link" href="#">Is</a>
+        <NavLink>Is</NavLink>
       </NavItem>
       <NavItem>
-        <a class="nav-link disabled" href="#">Rufus Xavier Sarsaparilla</a>
+        <NavLink disabled>Rufus Xavier Sarsaparilla</NavLink>
       </NavItem>
     </Nav>
 
     <h2 id="nav-fill" class="text-muted my-4">Justified</h2>
     <Nav pills justified>
       <NavItem>
-        <a class="nav-link active" data-toggle="tab" href="#home">My</a>
+        <NavLink active href="#home">My</NavLink>
       </NavItem>
       <NavItem>
-        <a class="nav-link" data-toggle="tab" href="#profile">Name</a>
+        <NavLink href="#profile">Name</NavLink>
       </NavItem>
       <NavItem>
-        <a class="nav-link" href="#">Is</a>
+        <NavLink>Is</NavLink>
       </NavItem>
       <NavItem>
-        <a class="nav-link disabled" href="#">Rufus Xavier Sarsaparilla</a>
+        <NavLink disabled>Rufus Xavier Sarsaparilla</NavLink>
       </NavItem>
     </Nav>
 
@@ -1055,7 +1055,8 @@
       </div>
     </div>
   </div-->
-
+  </Col>
+  </Row>
 </Container>
 
 <script>
@@ -1096,6 +1097,7 @@
     NavDropdown,
     NavbarBrand,
     NavItem,
+    NavLink,
     Pagination,
     PaginationItem,
     Progress,
@@ -1141,6 +1143,7 @@
       NavDropdown,
       NavbarBrand,
       NavItem,
+      NavLink,
       Pagination,
       PaginationItem,
       Progress,
