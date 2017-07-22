@@ -109,7 +109,7 @@ In your svelte component:
 * [x] Nav
   * [x] NavDropdown
   * [x] NavItem
-  * [ ] NavLink
+  * [x] NavLink
 * [ ] Navbar
   * [x] NavbarBrand
   * [ ] NavbarToggler
