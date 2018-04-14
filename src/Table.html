@@ -2,13 +2,13 @@
 <div class="table-responsive">
   <table class="table{{size ? ` table-${size}` : ''}}{{bordered ? ' table-bordered' : ''}}{{striped ? ' table-striped' : ''}}{{inverse ? ' table-inverse' : ''}}{{hover ? ' table-hover' : ''}}{{reflow ? ' table-reflow' :''}}
    {{class}}">
-    {{yield}}
+    <slot />
   </table>
 </div>
 {{else}}
   <table class="table{{size ? ` table-${size}` : ''}}{{bordered ? ' table-bordered' : ''}}{{striped ? ' table-striped' : ''}}{{inverse ? ' table-inverse' : ''}}{{hover ? ' table-hover' : ''}}{{reflow ? ' table-reflow' :''}}
    {{class}}">
-    {{yield}}
+    <slot />
   </table>
 {{/if}}
 

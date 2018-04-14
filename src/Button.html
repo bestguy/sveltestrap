@@ -1,23 +1,13 @@
-<Button
+<button
   class="btn btn{{outline ? '-outline' : ''}}-{{color}}{{size ? ` btn-${size}` : ''}}{{block ? ' btn-block' : ''}}{{ active ? ' active' : ''}}{{ disabled ? ' disabled' : ''}} {{class}}"
-  on:click="onClick(event)"
+  on:click
+  {{...props}}
 >
-  {{yield}}
-</Button>
+  <slot />
+</button>
 
 <script>
   export default {
-    methods: {
-      onClick(e) {
-        const { disabled } = this.get();
-        if (disabled) {
-          e.preventDefault();
-          return;
-        } else {
-          this.fire('click', e);
-        }
-      }
-    },
     data() {
       return {
         active: false,

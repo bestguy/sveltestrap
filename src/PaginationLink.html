@@ -1,10 +1,13 @@
-<a class="page-link{{size ? ` pagination-${size}` : ''}} {{class}}">
+<a
+  class="page-link{{size ? ` pagination-${size}` : ''}} {{class}}"
+  on:click
+>
   {{#if previous}}
     &#x00ab;
   {{elseif next}}
     &#x00bb;
   {{else}}
-    {{yield}}
+    <slot />
   {{/if}}
 </a>
 

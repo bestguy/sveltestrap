@@ -21,14 +21,14 @@
     "watch": "rollup -c -w -i src/Docs.html -o docs/index.js -f iife -n Docs"
   },
   "dependencies": {
-    "svelte": "^1.25.1"
+    "svelte": "^1.60.3"
   },
   "devDependencies": {
     "lodash.tonumber": "^4.0.3",
     "rollup": "^0.45.2",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-svelte": "^3.0.1",
+    "rollup-plugin-svelte": "^4.1.0",
     "rollup-watch": "^4.3.1"
   }
 }

@@ -3,7 +3,7 @@
     {{#if dismissible}}
       <Close on:click="set({ isOpen: false })" />
     {{/if}}
-    {{yield}}
+    <slot />
   </div>
 {{/if}}
 

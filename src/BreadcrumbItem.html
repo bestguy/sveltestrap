@@ -1,5 +1,8 @@
-<li class="breadcrumb-item{{active ? ' active' : ''}} {{class}}">
-  {{yield}}
+<li
+  class="breadcrumb-item{{active ? ' active' : ''}} {{class}}"
+  on:click
+>
+  <slot />
 </li>
 
 <script>
