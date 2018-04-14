@@ -1,5 +1,5 @@
 <div class="{{color ? `has-${color}` : ''}}{{row ? ' row' : ''}}{{check ? ' form-check' : ' form-group'}}{{check && disabled ? ' disabled' : ''}} {{class}}">
-  {{yield}}
+  <slot />
 </div>
 
 <script>

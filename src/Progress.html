@@ -1,13 +1,13 @@
 {{#if !bar}}
   <div class="progress {{class}}">
     {{#if multi}}
-      {{yield}}
+      <slot />
     {{else}}
       <div
         class="progress-bar{{animated ? ' progress-bar-animated' : ''}}{{color ? ` bg-${color}` : ''}}{{striped || animated ? ' progress-bar-striped' : ''}}"
         style="width:{{percent}}%"
       >
-        {{yield}}
+        <slot />
       </div>
     {{/if}}
   </div>
@@ -16,7 +16,7 @@
     class="progress-bar{{animated ? ' progress-bar-animated' : ''}}{{color ? ` bg-${color}` : ''}}{{striped || animated ? ' progress-bar-striped' : ''}}"
     style="width:{{percent}}%"
   >
-    {{yield}}
+    <slot />
   </div>
 {{/if}}
 

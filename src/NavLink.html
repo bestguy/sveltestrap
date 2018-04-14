@@ -1,9 +1,9 @@
 <a
   href="{{href}}"
-  on:click="onClick(event)"
+  on:click
   class="nav-link{{disabled ? ' disabled' : ''}}{{active ? ' active' : ''}} {{class}}"
 >
-  {{yield}}
+  <slot />
 </a>
 
 <script>
@@ -14,21 +14,6 @@
         disabled: false,
         href: '#',
         class: ''
-      }
-    },
-    methods: {
-      onClick(e) {
-        const { disabled, href } = this.get();
-        if (disabled) {
-          e.preventDefault();
-          return;
-        }
-
-        if (href === '#') {
-          e.preventDefault();
-        }
-
-        this.fire('click', e);
       }
     }
   }

@@ -6,7 +6,7 @@ export { default as Button } from './Button.html';
 export { default as ButtonGroup } from './ButtonGroup.html';
 export { default as ButtonToolbar } from './ButtonToolbar.html';
 export { default as Card } from './Card.html';
-export { default as CardBlock } from './CardBlock.html';
+export { default as CardBody } from './CardBody.html';
 export { default as CardColumns } from './CardColumns.html';
 export { default as CardDeck } from './CardDeck.html';
 export { default as CardFooter } from './CardFooter.html';

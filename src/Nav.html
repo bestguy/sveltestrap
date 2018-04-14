@@ -1,5 +1,5 @@
 <ul class="{{navbar ? 'navbar-nav' : 'nav'}}{{tabs ? ' nav-tabs' : ''}}{{pills ? ' nav-pills' : ''}}{{fill ? ' nav-fill' : justified ? ' nav-justified' : ''}}{{vertical ? ' flex-column' : ''}} {{class}}">
-  {{yield}}
+  <slot />
 </ul>
 
 <script>

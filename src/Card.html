@@ -1,5 +1,5 @@
-<div class="card{{inverse ? ' card-inverse' : ''}}{{block ? ' card-block' : ''}}{{color ? ` card${outline ? '-outline' : ''}-${color}` : ''}} {{class}}">
-  {{yield}}
+<div class="card{{inverse ? ' card-inverse' : ''}}{{block ? ' card-body' : ''}}{{color ? ` ${outline ? 'border' : 'bg'}-${color}` : ''}} {{class}}">
+  <slot />
 </div>
 
 <script>

@@ -1,5 +1,5 @@
 <li class="list-group-item{{active ? ' active' : ''}}{{disabled ? ' disabled' : ''}}{{action ? ' list-group-item-action' : ''}}{{color ? ` list-group-item-${color}` : ''}} {{class}}">
-  {{yield}}
+  <slot />
 </li>
 
 <script>
