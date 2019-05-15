@@ -29,6 +29,7 @@ export { default as Container } from './Container.svelte';
 export { default as FormGroup } from './FormGroup.svelte';
 // export { default as FormText } from './FormText.html';
 // export { default as Icon } from './Icon.html';
+export { default as Input } from './Input.svelte';
 // export { default as InputGroup } from './InputGroup.html';
 // export { default as InputGroupAddon } from './InputGroupAddon.html';
 // export { default as Jumbotron } from './Jumbotron.html';
