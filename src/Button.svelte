@@ -7,6 +7,7 @@
 	export let color = 'secondary';
 	export let outline = false;
 	export let size;
+	export let value;
 
 	const classNames = [
 		'btn',
@@ -38,6 +39,7 @@
 <button
 	class="{classNames.join(' ')}"
 	on:click
+	{value}
 >
 	<slot />
 </button>

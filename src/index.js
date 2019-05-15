@@ -3,7 +3,7 @@
 // export { default as Breadcrumb } from './Breadcrumb.html';
 // export { default as BreadcrumbItem } from './BreadcrumbItem.html';
 export { default as Button } from './Button.svelte';
-// export { default as ButtonGroup } from './ButtonGroup.html';
+export { default as ButtonGroup } from './ButtonGroup.svelte';
 // export { default as ButtonToolbar } from './ButtonToolbar.html';
 export { default as Card } from './Card.svelte';
 export { default as CardBody } from './CardBody.svelte';
@@ -17,7 +17,7 @@ export { default as CardHeader } from './CardHeader.svelte';
 // export { default as CardText } from './CardText.html';
 // export { default as CardTitle } from './CardTitle.html';
 // export { default as Close } from './Close.html';
-// export { default as Col } from './Col.html';
+export { default as Col } from './Col.svelte';
 export { default as Container } from './Container.svelte';
 // export { default as Dropdown } from './Dropdown.html';
 // export { default as DropdownDivider } from './DropdownDivider.html';

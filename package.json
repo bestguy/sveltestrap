@@ -37,5 +37,8 @@
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-svelte": "^5.0.3",
     "svelte": "^3.3.0"
+  },
+  "dependencies": {
+    "lodash.isobject": "^3.0.2"
   }
 }
