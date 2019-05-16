@@ -3,6 +3,8 @@
 	let clazz;
     export { clazz as class };
 
+    export let id;
+
     const colClasses = [];
     if (clazz) {
     	colClasses.push(clazz);
@@ -52,6 +54,6 @@
 
 </script>
 
-<div class="{colClasses.join(' ')}">
+<div {id} class="{colClasses.join(' ')}">
 	<slot />
 </div>

@@ -5,29 +5,12 @@
 	export let row = false;
 	export let disabled = false;
 	export let check = false;
+	export let id;
 
-	const classNames = [];
-
-	if (color) {
-		classNames.push(`has-${color}`);
-	}
-
-	if (row) {
-		classNames.push('row');
-	}
-
-	classNames.push(check ? 'form-check' : 'form-group');
-
-	if (check && disabled) {
-		classNames.push('disabled');
-	}
-
-	if (clazz) {
-		classNames.push(clazz);
-	}
+	$: classNames = `${color ? `has-${color}` : ''}${row ? ' row' : ''}${check ? ' form-check' : ' form-group'}${check && disabled ? ' disabled' : ''}${clazz ? ` ${clazz}` : ''}`;
 
 </script>
 
-<div class="{classNames.join(' ')}">
+<div {id} class="{classNames}">
 	<slot />
 </div>

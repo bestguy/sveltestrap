@@ -9,35 +9,11 @@
 	export let size;
 	export let value;
 
-	const classNames = [
-		'btn',
-		`btn${outline ? '-outline' : ''}-${color}`,
-	];
-
-	if (block) {
-		classNames.push('btn-block');
-	}
-
-	if (active) {
-		classNames.push('active');
-	}
-
-	if (disabled) {
-		classNames.push('disabled');
-	}
-
-	if (size) {
-		classNames.push(`btn-${size}`);
-	}
-
-	if (clazz) {
-		classNames.push(clazz);
-	}
-
+	$: classNames = `btn btn${outline ? '-outline' : ''}-${color}${block ? ' btn-block' : ''}${active ? ' active' : ''}${disabled ? ' disabled' : ''}${size ? ` btn-${size}` : ''}${clazz ? ` ${clazz}` : ''}`;
 </script>
 
 <button
-	class="{classNames.join(' ')}"
+	class="{classNames}"
 	on:click
 	{value}
 >

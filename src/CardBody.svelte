@@ -1,15 +1,11 @@
 <script>
 	let clazz;
 	export { clazz as class };
-	const classNames = [
-		'card-body',
-	];
+	export let id;
 
-	if (clazz) {
-		classNames.push(clazz);
-	}
+	$: classNames = `card-body${clazz ? ` ${clazz}` : ''}`;
 </script>
 
-<div class="{classNames.join(' ')}">
+<div {id} class="{classNames}">
 	<slot />
 </div>

@@ -21,7 +21,7 @@
     "prepublish": "npm run dist",
     "postpublish": "git push && git push --tags",
     "version": "npm run docs && git add -A docs",
-    "watch": "rollup -c -w -i src/Docs.html -o docs/index.js -f iife -n Docs"
+    "watch": "rollup -c -w"
   },
   "peerDependencies": {
     "svelte": "^3.3.0"

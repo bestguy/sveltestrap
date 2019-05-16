@@ -3,20 +3,11 @@
 	export { clazz as class };
 	export let noGutters = false;
 	export let form = false;
+	export let id;
 
-	const classNames = [];
-
-	if (clazz) {
-		classNames.push(clazz);
-	}
-
-	if (noGutters) {
-		classNames.push('no-gutters');
-	}
-
-	classNames.push(form ? 'form-row' : 'row');
+	$: classNames = `${clazz ? clazz : ''}${noGutters ? ' no-gutters' : ''}${form ? ' form-row' : ' row'}`;
 </script>
 
-<div class="{classNames.join(' ')}">
+<div {id} class="{classNames}">
 	<slot />
 </div>

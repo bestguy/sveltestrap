@@ -1,16 +1,11 @@
 <script>
 	let clazz;
 	export { clazz as class };
+	export let id;
 
-	const classNames = [
-		'card-header',
-	];
-
-	if (clazz) {
-		classNames.push(clazz);
-	}
+	$: classNames = `card-header${clazz ? ` ${clazz}` : ''}`;
 </script>
 
-<div class="{classNames.join(' ')}">
+<div {id} class="{classNames}">
 	<slot />
 </div>

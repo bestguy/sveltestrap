@@ -2,16 +2,11 @@
 	let clazz;
 	export { clazz as class };
 	export let fluid = false;
+	export let id;
 
-	const classNames = [
-		`container${fluid ? '-fluid' : ''}`,
-	];
-
-	if (clazz) {
-		classNames.push(clazz);
-	}
+	$: classNames = `container${fluid ? '-fluid' : ''}${clazz ? ` ${clazz}` : ''}`;
 </script>
 
-<div class="{classNames.join(' ')}">
+<div {id} class="{classNames}">
 	<slot />
 </div>

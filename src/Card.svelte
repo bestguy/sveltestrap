@@ -5,30 +5,11 @@
 	export let block = false;
 	export let color = '';
 	export let outline = false;
+	export let id;
 
-	const classNames = [
-		'card',
-	];
-
-	if (inverse) {
-		classNames.push('card-inverse');
-	}
-
-	if (block) {
-		classNames.push('card-body');
-	}
-
-	if (color) {
-		classNames.push(`${outline ? 'border' : 'bg'}-${color}`);
-	}
-
-	if (clazz) {
-		classNames.push(clazz);
-	}
-
-
+	$: classNames = `card${inverse ? ' card-inverse' : ''}${block ? ' card-body' : ''}${color ? `${outline ? ' border' : ' bg'}-${color}` : ''}${clazz ? ` ${clazz}` : ''}`;
 </script>
 
-<div class="{classNames.join(' ')}">
+<div {id} class="{classNames}">
 	<slot />
 </div>

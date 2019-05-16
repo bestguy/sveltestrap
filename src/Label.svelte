@@ -6,27 +6,12 @@
 	export let size = '';
 	export let fore;
 	export { fore as for };
+	export let id;
 
-	const classNames = [];
-
-	if (hidden) {
-		classNames.push('sr-only');
-	}
-
-	if (check) {
-		classNames.push('form-check-label');
-	}
-
-	if (size) {
-		classNames.push(`col-form-label-${size}`);
-	}
-
-	if (clazz) {
-		classNames.push(clazz);
-	}
+	$: classNames = `${hidden ? ' sr-only' : ''}${check ? ' form-check-label' : ''}${size ? `col-form-label-${size}` : ''}${clazz ? ` ${clazz}` : ''}`;
 
 </script>
 
-<label class="{classNames.join(' ')}" for="{fore}">
+<label {id} class="{classNames}" for="{fore}">
 	<slot />
 </label>

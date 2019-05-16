@@ -12,6 +12,7 @@
 	export let value;
 	export let readonly = false;
 	export let multiple = false;
+	export let id;
 
 	const checkInput = ['radio', 'checkbox'].indexOf(type) > -1;
 	const isNotaNumber = new RegExp('\\D', 'g');
@@ -65,18 +66,41 @@
 	const combinedClasses = classNames.join(' ');
 </script>
 {#if tag === 'input'}
+	{#if type === 'text'}
+		<input {id} type="text" bind:value {readonly} class="{combinedClasses}" />
+	{:else if type === 'password'}
+		<input {id} type="password" bind:value {readonly} class="{combinedClasses}" />
+	{:else if type === 'email'}
+		<input {id} type="email" bind:value {readonly} class="{combinedClasses}" />
+	{:else if type === 'file'}
+		<input {id} type="file" bind:value {readonly} class="{combinedClasses}" />
+	{:else if type === 'checkbox'}
+		<input {id} type="checkbox" bind:value {readonly} class="{combinedClasses}" />
+	{:else if type === 'radio'}
+		<input {id} type="radio" bind:value {readonly} class="{combinedClasses}" />
+	{:else if type === 'url'}
+		<input {id} type="url" bind:value {readonly} class="{combinedClasses}" />
+	{:else if type === 'number'}
+		<input {id} type="number" bind:value {readonly} class="{combinedClasses}" />
+	{:else if type === 'date'}
+		<input {id} type="date" bind:value {readonly} class="{combinedClasses}" />
+	{:else if type === 'time'}
+		<input {id} type="time" bind:value {readonly} class="{combinedClasses}" />
+	{:else if type === 'color'}
+		<input {id} type="color" bind:value {readonly} class="{combinedClasses}" />
+	{:else if type === 'search'}
+		<input {id} type="search" bind:value {readonly} class="{combinedClasses}" />
+	{/if}
 
-	<input {type} {value} {readonly} class="{combinedClasses}" />
+
 
 {:else if tag === 'textarea'}
 
-	<textarea class="{combinedClasses}">
-		<slot />
-	</textarea>
+	<textarea {id} class="{combinedClasses}" bind:value></textarea>
 
 {:else if tag === 'select'}
 
-	<select {multiple} class="{combinedClasses}">
+	<select {id} {multiple} class="{combinedClasses}">
 		<slot />
 	</select>
 
