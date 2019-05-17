@@ -12,7 +12,7 @@
 	export let value;
 	export let readonly = false;
 	export let multiple = false;
-	export let id;
+	export let id = '';
 
 	const checkInput = ['radio', 'checkbox'].indexOf(type) > -1;
 	const isNotaNumber = new RegExp('\\D', 'g');

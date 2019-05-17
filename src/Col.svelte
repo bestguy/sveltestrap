@@ -3,7 +3,7 @@
 	let clazz;
     export { clazz as class };
 
-    export let id;
+    export let id = '';
 
     const colClasses = [];
     if (clazz) {

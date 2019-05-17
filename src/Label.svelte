@@ -6,7 +6,7 @@
 	export let size = '';
 	export let fore;
 	export { fore as for };
-	export let id;
+	export let id = '';
 
 	$: classNames = `${hidden ? ' sr-only' : ''}${check ? ' form-check-label' : ''}${size ? `col-form-label-${size}` : ''}${clazz ? ` ${clazz}` : ''}`;
 

@@ -5,7 +5,7 @@
 	export let row = false;
 	export let disabled = false;
 	export let check = false;
-	export let id;
+	export let id = '';
 
 	$: classNames = `${color ? `has-${color}` : ''}${row ? ' row' : ''}${check ? ' form-check' : ' form-group'}${check && disabled ? ' disabled' : ''}${clazz ? ` ${clazz}` : ''}`;
 

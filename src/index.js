@@ -18,6 +18,7 @@ export { default as CardHeader } from './CardHeader.svelte';
 // export { default as CardTitle } from './CardTitle.html';
 // export { default as Close } from './Close.html';
 export { default as Col } from './Col.svelte';
+export { default as Collapse } from './Collapse.svelte';
 export { default as Container } from './Container.svelte';
 // export { default as Dropdown } from './Dropdown.html';
 // export { default as DropdownDivider } from './DropdownDivider.html';
