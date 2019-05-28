@@ -1,5 +1,5 @@
 <script>
-	let clazz;
+	let clazz = '';
 	export { clazz as class };
 	export let hidden = false;
 	export let check = false;

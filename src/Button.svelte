@@ -1,12 +1,12 @@
 <script>
-	let clazz;
+	let clazz = '';
 	export { clazz as class };
 	export let active = false;
 	export let block = false;
 	export let disabled = false;
 	export let color = 'secondary';
 	export let outline = false;
-	export let size;
+	export let size = '';
 	export let value = '';
 	export let id = '';
 

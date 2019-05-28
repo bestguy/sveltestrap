@@ -1,6 +1,6 @@
 <script>
 	import isobject from 'lodash.isobject';
-	let clazz;
+	let clazz = '';
     export { clazz as class };
 
     export let id = '';

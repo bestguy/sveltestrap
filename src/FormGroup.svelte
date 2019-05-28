@@ -1,7 +1,7 @@
 <script>
-	export let clazz;
+	export let clazz = '';
 	export { clazz as class };
-	export let color;
+	export let color = '';
 	export let row = false;
 	export let disabled = false;
 	export let check = false;

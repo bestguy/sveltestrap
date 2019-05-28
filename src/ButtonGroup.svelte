@@ -1,7 +1,7 @@
 <script>
-	let clazz;
+	let clazz = '';
     export { clazz as class };
-    export let size;
+    export let size = '';
     export let vertical = false;
     export let id = '';
 

@@ -1,5 +1,5 @@
 <script>
-	let clazz;
+	let clazz = '';
 	export { clazz as class };
 	export let inverse = false;
 	export let block = false;

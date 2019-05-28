@@ -17,26 +17,25 @@
   "scripts": {
     "build": "npm run dist",
     "dist": "rollup -c",
-    "docs": "rollup -c -i src/Docs.html -o docs/index.js -f iife -n Docs",
     "prepublish": "npm run dist",
     "postpublish": "git push && git push --tags",
     "version": "npm run docs && git add -A docs",
     "watch": "rollup -c -w"
   },
   "peerDependencies": {
-    "svelte": "^3.3.0"
+    "svelte": "^3.4.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
     "lodash.tonumber": "^4.0.3",
-    "rollup": "^1.11.3",
+    "rollup": "^1.12.4",
     "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^9.3.4",
-    "rollup-plugin-node-resolve": "^4.2.4",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-node-resolve": "^5.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-svelte": "^5.0.3",
-    "svelte": "^3.3.0"
+    "svelte": "^3.4.4"
   },
   "dependencies": {
     "lodash.isobject": "^3.0.2"

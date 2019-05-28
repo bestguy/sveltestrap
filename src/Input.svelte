@@ -1,10 +1,10 @@
 <script>
-	let clazz;
+	let clazz = '';
     export { clazz as class };
 
 	export let type = 'text';
-	export let size;
-	export let bsSize;
+	export let size = undefined;
+	export let bsSize = undefined;
 	export let valid = false;
 	export let invalid = false;
 	export let plaintext = false;
