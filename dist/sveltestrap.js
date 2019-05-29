@@ -56,42 +56,6 @@ function _setPrototypeOf(o, p) {
   return _setPrototypeOf(o, p);
 }
 
-function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
-
-function _objectWithoutProperties(source, excluded) {
-  if (source == null) return {};
-
-  var target = _objectWithoutPropertiesLoose(source, excluded);
-
-  var key, i;
-
-  if (Object.getOwnPropertySymbols) {
-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
-    for (i = 0; i < sourceSymbolKeys.length; i++) {
-      key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-      target[key] = source[key];
-    }
-  }
-
-  return target;
-}
-
 function _assertThisInitialized(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -108,29 +72,65 @@ function _possibleConstructorReturn(self, call) {
   return _assertThisInitialized(self);
 }
 
+function toVal(mix) {
+  var k,
+      y,
+      str = '';
+
+  if (mix) {
+    if (_typeof(mix) === 'object') {
+      if (!!mix.push) {
+        for (k = 0; k < mix.length; k++) {
+          if (mix[k] && (y = toVal(mix[k]))) {
+            str && (str += ' ');
+            str += y;
+          }
+        }
+      } else {
+        for (k in mix) {
+          if (mix[k] && (y = toVal(k))) {
+            str && (str += ' ');
+            str += y;
+          }
+        }
+      }
+    } else if (typeof mix !== 'boolean' && !mix.call) {
+      str && (str += ' ');
+      str += mix;
+    }
+  }
+
+  return str;
+}
+
+function clsx () {
+  var i = 0,
+      x,
+      str = '';
+
+  while (i < arguments.length) {
+    if (x = toVal(arguments[i++])) {
+      str && (str += ' ');
+      str += x;
+    }
+  }
+
+  return str;
+}
+
 function create_if_block(ctx) {
   var div, t, div_transition, current;
   var if_block = ctx.toggle && create_if_block_1(ctx);
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
-  var div_levels = [ctx.rest, {
-    "class": ctx.classNames
-  }, {
-    role: "alert"
-  }];
-  var div_data = {};
-
-  for (var i = 0; i < div_levels.length; i += 1) {
-    div_data = internal.assign(div_data, div_levels[i]);
-  }
-
   return {
     c: function c() {
       div = internal.element("div");
       if (if_block) if_block.c();
       t = internal.space();
       if (default_slot) default_slot.c();
-      internal.set_attributes(div, div_data);
+      div.className = ctx.classes;
+      internal.attr(div, "role", "alert");
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -164,11 +164,9 @@ function create_if_block(ctx) {
         default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
       }
 
-      internal.set_attributes(div, internal.get_spread_update(div_levels, [changed.rest && ctx.rest, changed.classNames && {
-        "class": ctx.classNames
-      }, {
-        role: "alert"
-      }]));
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
+      }
     },
     i: function i(local) {
       if (current) return;
@@ -198,7 +196,7 @@ function create_if_block(ctx) {
       }
     }
   };
-} // (27:2) {#if toggle}
+} // (29:2) {#if toggle}
 
 
 function create_if_block_1(ctx) {
@@ -221,6 +219,10 @@ function create_if_block_1(ctx) {
     p: function p(changed, ctx) {
       if (changed.closeClassNames) {
         button.className = ctx.closeClassNames;
+      }
+
+      if (changed.closeAriaLabel) {
+        internal.attr(button, "aria-label", ctx.closeAriaLabel);
       }
     },
     d: function d(detaching) {
@@ -287,60 +289,66 @@ function create_fragment(ctx) {
 }
 
 function instance($$self, $$props, $$invalidate) {
-  var _$$props = $$props,
-      clazz = _$$props["class"];
+  var _$$props$class = $$props["class"],
+      className = _$$props$class === void 0 ? '' : _$$props$class,
+      _$$props$color = $$props.color,
+      color = _$$props$color === void 0 ? 'success' : _$$props$color,
+      _$$props$closeClassNa = $$props.closeClassName,
+      closeClassName = _$$props$closeClassNa === void 0 ? '' : _$$props$closeClassNa,
+      _$$props$closeAriaLab = $$props.closeAriaLabel,
+      closeAriaLabel = _$$props$closeAriaLab === void 0 ? 'Close' : _$$props$closeAriaLab,
+      _$$props$isOpen = $$props.isOpen,
+      isOpen = _$$props$isOpen === void 0 ? true : _$$props$isOpen,
+      _$$props$toggle = $$props.toggle,
+      toggle = _$$props$toggle === void 0 ? undefined : _$$props$toggle,
+      _$$props$fade = $$props.fade,
+      fade = _$$props$fade === void 0 ? true : _$$props$fade;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
 
-  var _$$props2 = $$props,
-      _$$props2$color = _$$props2.color,
-      color = _$$props2$color === void 0 ? 'success' : _$$props2$color,
-      closeClassName = _$$props2.closeClassName,
-      _$$props2$closeAriaLa = _$$props2.closeAriaLabel,
-      closeAriaLabel = _$$props2$closeAriaLa === void 0 ? 'Close' : _$$props2$closeAriaLa,
-      _$$props2$isOpen = _$$props2.isOpen,
-      isOpen = _$$props2$isOpen === void 0 ? true : _$$props2$isOpen,
-      toggle = _$$props2.toggle,
-      _$$props2$fade = _$$props2.fade,
-      rest = _objectWithoutProperties(_$$props2, ["color", "closeClassName", "closeAriaLabel", "isOpen", "toggle", "fade"]);
-
-  var _$$props3 = $$props,
-      _$$props3$$$slots = _$$props3.$$slots,
-      $$slots = _$$props3$$$slots === void 0 ? {} : _$$props3$$$slots,
-      $$scope = _$$props3.$$scope;
-
-  $$self.$set = function ($$new_props) {
-    $$invalidate('$$props', $$props = internal.assign(internal.assign({}, $$props), $$new_props));
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
-    if ('$$scope' in $$new_props) $$invalidate('$$scope', $$scope = $$new_props.$$scope);
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
+    if ('color' in $$props) $$invalidate('color', color = $$props.color);
+    if ('closeClassName' in $$props) $$invalidate('closeClassName', closeClassName = $$props.closeClassName);
+    if ('closeAriaLabel' in $$props) $$invalidate('closeAriaLabel', closeAriaLabel = $$props.closeAriaLabel);
+    if ('isOpen' in $$props) $$invalidate('isOpen', isOpen = $$props.isOpen);
+    if ('toggle' in $$props) $$invalidate('toggle', toggle = $$props.toggle);
+    if ('fade' in $$props) $$invalidate('fade', fade = $$props.fade);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
-  var classNames, closeClassNames;
+  var classes, closeClassNames;
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      clazz: 1,
+      className: 1,
       color: 1,
       toggle: 1,
       closeClassName: 1
     };
 
-    if ($$dirty.clazz || $$dirty.color || $$dirty.toggle) {
-      $$invalidate('classNames', classNames = "".concat(clazz ? "".concat(clazz, " ") : '', "alert alert-").concat(color).concat(toggle ? " ".concat(alert - dismissible, " ") : ''));
+    if ($$dirty.className || $$dirty.color || $$dirty.toggle) {
+      $$invalidate('classes', classes = clsx(className, 'alert', "alert-".concat(color), {
+        'alert-dismissible': toggle
+      }));
     }
 
     if ($$dirty.closeClassName) {
-      $$invalidate('closeClassNames', closeClassNames = "close".concat(closeClassName ? " ".concat(closeClassName) : ''));
+      $$invalidate('closeClassNames', closeClassNames = clsx('close', closeClassName));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
+    color: color,
+    closeClassName: closeClassName,
     closeAriaLabel: closeAriaLabel,
     isOpen: isOpen,
     toggle: toggle,
-    rest: rest,
-    classNames: classNames,
+    fade: fade,
+    classes: classes,
     closeClassNames: closeClassNames,
-    $$props: $$props = internal.exclude_internal_props($$props),
     $$slots: $$slots,
     $$scope: $$scope
   };
@@ -357,7 +365,7 @@ function (_SvelteComponent) {
     _classCallCheck(this, Alert);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Alert).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance, create_fragment, internal.safe_not_equal, ["class"]);
+    internal.init(_assertThisInitialized(_this), options, instance, create_fragment, internal.safe_not_equal, ["class", "color", "closeClassName", "closeAriaLabel", "isOpen", "toggle", "fade"]);
     return _this;
   }
 
@@ -365,6 +373,359 @@ function (_SvelteComponent) {
 }(internal.SvelteComponent);
 
 function create_fragment$1(ctx) {
+  var span, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      span = internal.element("span");
+      if (default_slot) default_slot.c();
+      span.className = ctx.classes;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(span_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, span, anchor);
+
+      if (default_slot) {
+        default_slot.m(span, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        span.className = ctx.classes;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(span);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function instance$1($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      _$$props$color = $$props.color,
+      color = _$$props$color === void 0 ? 'secondary' : _$$props$color,
+      _$$props$pill = $$props.pill,
+      pill = _$$props$pill === void 0 ? false : _$$props$pill;
+  var classes = '';
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('color' in $$props) $$invalidate('color', color = $$props.color);
+    if ('pill' in $$props) $$invalidate('pill', pill = $$props.pill);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      clazz: 1,
+      color: 1,
+      pill: 1
+    };
+
+    if ($$dirty.clazz || $$dirty.color || $$dirty.pill) {
+      {
+        var classNames = [];
+
+        if (clazz) {
+          classNames.push(clazz);
+        }
+
+        classNames.push('badge');
+        classNames.push("badge-".concat(color));
+
+        if (pill) {
+          classNames.push('badge-pill');
+        }
+
+        $$invalidate('classes', classes = classNames.join(' '));
+      }
+    }
+  };
+
+  return {
+    clazz: clazz,
+    color: color,
+    pill: pill,
+    classes: classes,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var Badge =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(Badge, _SvelteComponent);
+
+  function Badge(options) {
+    var _this;
+
+    _classCallCheck(this, Badge);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Badge).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$1, create_fragment$1, internal.safe_not_equal, ["class", "color", "pill"]);
+    return _this;
+  }
+
+  return Badge;
+}(internal.SvelteComponent);
+
+function create_fragment$2(ctx) {
+  var nav, ol, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      nav = internal.element("nav");
+      ol = internal.element("ol");
+      if (default_slot) default_slot.c();
+      ol.className = ctx.listClasses;
+      internal.attr(nav, "aria-label", ctx.ariaLabel);
+      nav.className = ctx.clazz;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(ol_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, nav, anchor);
+      internal.append(nav, ol);
+
+      if (default_slot) {
+        default_slot.m(ol, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.listClasses) {
+        ol.className = ctx.listClasses;
+      }
+
+      if (!current || changed.ariaLabel) {
+        internal.attr(nav, "aria-label", ctx.ariaLabel);
+      }
+
+      if (!current || changed.clazz) {
+        nav.className = ctx.clazz;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(nav);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function instance$2($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      _$$props$ariaLabel = $$props.ariaLabel,
+      ariaLabel = _$$props$ariaLabel === void 0 ? 'breadcrumb' : _$$props$ariaLabel,
+      _$$props$listClassNam = $$props.listClassName,
+      listClassName = _$$props$listClassNam === void 0 ? '' : _$$props$listClassNam;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('ariaLabel' in $$props) $$invalidate('ariaLabel', ariaLabel = $$props.ariaLabel);
+    if ('listClassName' in $$props) $$invalidate('listClassName', listClassName = $$props.listClassName);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var listClasses;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      listClassName: 1
+    };
+
+    if ($$dirty.listClassName) {
+      $$invalidate('listClasses', listClasses = "breadcrumb".concat(listClassName ? " ".concat(listClassName) : ''));
+    }
+  };
+
+  return {
+    clazz: clazz,
+    ariaLabel: ariaLabel,
+    listClassName: listClassName,
+    listClasses: listClasses,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var Breadcrumb =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(Breadcrumb, _SvelteComponent);
+
+  function Breadcrumb(options) {
+    var _this;
+
+    _classCallCheck(this, Breadcrumb);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Breadcrumb).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$2, create_fragment$2, internal.safe_not_equal, ["class", "ariaLabel", "listClassName"]);
+    return _this;
+  }
+
+  return Breadcrumb;
+}(internal.SvelteComponent);
+
+function create_fragment$3(ctx) {
+  var li, li_aria_current_value, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      li = internal.element("li");
+      if (default_slot) default_slot.c();
+      li.className = ctx.classes;
+      internal.attr(li, "aria-current", li_aria_current_value = ctx.active ? 'page' : undefined);
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(li_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, li, anchor);
+
+      if (default_slot) {
+        default_slot.m(li, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        li.className = ctx.classes;
+      }
+
+      if ((!current || changed.active) && li_aria_current_value !== (li_aria_current_value = ctx.active ? 'page' : undefined)) {
+        internal.attr(li, "aria-current", li_aria_current_value);
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(li);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function instance$3($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      _$$props$active = $$props.active,
+      active = _$$props$active === void 0 ? false : _$$props$active;
+  var classes = '';
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('active' in $$props) $$invalidate('active', active = $$props.active);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      clazz: 1,
+      active: 1
+    };
+
+    if ($$dirty.clazz || $$dirty.active) {
+      $$invalidate('classes', classes = "".concat(clazz).concat(active ? ' active' : '', " breadcrumb-item"));
+    }
+  };
+
+  return {
+    clazz: clazz,
+    active: active,
+    classes: classes,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var BreadcrumbItem =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(BreadcrumbItem, _SvelteComponent);
+
+  function BreadcrumbItem(options) {
+    var _this;
+
+    _classCallCheck(this, BreadcrumbItem);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BreadcrumbItem).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$3, create_fragment$3, internal.safe_not_equal, ["class", "active"]);
+    return _this;
+  }
+
+  return BreadcrumbItem;
+}(internal.SvelteComponent);
+
+function create_fragment$4(ctx) {
   var button, current, dispose;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
@@ -373,7 +734,7 @@ function create_fragment$1(ctx) {
       button = internal.element("button");
       if (default_slot) default_slot.c();
       button.id = ctx.id;
-      button.className = ctx.classNames;
+      button.className = ctx.classes;
       button.value = ctx.value;
       dispose = internal.listen(button, "click", ctx.click_handler);
     },
@@ -398,8 +759,8 @@ function create_fragment$1(ctx) {
         button.id = ctx.id;
       }
 
-      if (!current || changed.classNames) {
-        button.className = ctx.classNames;
+      if (!current || changed.classes) {
+        button.className = ctx.classes;
       }
 
       if (!current || changed.value) {
@@ -426,8 +787,9 @@ function create_fragment$1(ctx) {
   };
 }
 
-function instance$1($$self, $$props, $$invalidate) {
-  var clazz = $$props["class"],
+function instance$4($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$active = $$props.active,
       active = _$$props$active === void 0 ? false : _$$props$active,
       _$$props$block = $$props.block,
@@ -438,11 +800,13 @@ function instance$1($$self, $$props, $$invalidate) {
       color = _$$props$color === void 0 ? 'secondary' : _$$props$color,
       _$$props$outline = $$props.outline,
       outline = _$$props$outline === void 0 ? false : _$$props$outline,
-      size = $$props.size,
+      _$$props$size = $$props.size,
+      size = _$$props$size === void 0 ? '' : _$$props$size,
       _$$props$value = $$props.value,
       value = _$$props$value === void 0 ? '' : _$$props$value,
       _$$props$id = $$props.id,
       id = _$$props$id === void 0 ? '' : _$$props$id;
+  var classes = '';
   var _$$props$$$slots = $$props.$$slots,
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
@@ -464,8 +828,6 @@ function instance$1($$self, $$props, $$invalidate) {
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
-  var classNames;
-
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
       outline: 1,
@@ -478,7 +840,31 @@ function instance$1($$self, $$props, $$invalidate) {
     };
 
     if ($$dirty.outline || $$dirty.color || $$dirty.block || $$dirty.active || $$dirty.disabled || $$dirty.size || $$dirty.clazz) {
-      $$invalidate('classNames', classNames = "btn btn".concat(outline ? '-outline' : '', "-").concat(color).concat(block ? ' btn-block' : '').concat(active ? ' active' : '').concat(disabled ? ' disabled' : '').concat(size ? " btn-".concat(size) : '').concat(clazz ? " ".concat(clazz) : ''));
+      {
+        var classNames = ['btn', "btn".concat(outline ? '-outline' : '', "-").concat(color)];
+
+        if (block) {
+          classNames.push('btn-block');
+        }
+
+        if (active) {
+          classNames.push('active');
+        }
+
+        if (disabled) {
+          classNames.push('disabled');
+        }
+
+        if (size) {
+          classNames.push("btn-".concat(size));
+        }
+
+        if (clazz) {
+          classNames.push(clazz);
+        }
+
+        $$invalidate('classes', classes = classNames.join(' '));
+      }
     }
   };
 
@@ -492,7 +878,7 @@ function instance$1($$self, $$props, $$invalidate) {
     size: size,
     value: value,
     id: id,
-    classNames: classNames,
+    classes: classes,
     click_handler: click_handler,
     $$slots: $$slots,
     $$scope: $$scope
@@ -510,14 +896,14 @@ function (_SvelteComponent) {
     _classCallCheck(this, Button);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Button).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$1, create_fragment$1, internal.safe_not_equal, ["class", "active", "block", "disabled", "color", "outline", "size", "value", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$4, create_fragment$4, internal.safe_not_equal, ["class", "active", "block", "disabled", "color", "outline", "size", "value", "id"]);
     return _this;
   }
 
   return Button;
 }(internal.SvelteComponent);
 
-function create_fragment$2(ctx) {
+function create_fragment$5(ctx) {
   var div, current;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
@@ -526,7 +912,7 @@ function create_fragment$2(ctx) {
       div = internal.element("div");
       if (default_slot) default_slot.c();
       div.id = ctx.id;
-      div.className = ctx.classNames;
+      div.className = ctx.classes;
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -549,8 +935,8 @@ function create_fragment$2(ctx) {
         div.id = ctx.id;
       }
 
-      if (!current || changed.classNames) {
-        div.className = ctx.classNames;
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
       }
     },
     i: function i(local) {
@@ -572,9 +958,11 @@ function create_fragment$2(ctx) {
   };
 }
 
-function instance$2($$self, $$props, $$invalidate) {
-  var clazz = $$props["class"],
-      size = $$props.size,
+function instance$5($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      _$$props$size = $$props.size,
+      size = _$$props$size === void 0 ? '' : _$$props$size,
       _$$props$vertical = $$props.vertical,
       vertical = _$$props$vertical === void 0 ? false : _$$props$vertical,
       _$$props$id = $$props.id,
@@ -591,17 +979,17 @@ function instance$2($$self, $$props, $$invalidate) {
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
-  var classNames;
+  var classes;
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      vertical: 1,
       clazz: 1,
-      size: 1
+      size: 1,
+      vertical: 1
     };
 
-    if ($$dirty.vertical || $$dirty.clazz || $$dirty.size) {
-      $$invalidate('classNames', classNames = "".concat(vertical ? 'btn-group-vertical' : 'btn-group').concat(clazz ? " ".concat(clazz) : '').concat(size ? " btn-group-".concat(size) : ''));
+    if ($$dirty.clazz || $$dirty.size || $$dirty.vertical) {
+      $$invalidate('classes', classes = clsx(clazz, size ? "btn-group-".concat(size) : false, vertical ? 'btn-group-vertical' : 'btn-group'));
     }
   };
 
@@ -610,7 +998,7 @@ function instance$2($$self, $$props, $$invalidate) {
     size: size,
     vertical: vertical,
     id: id,
-    classNames: classNames,
+    classes: classes,
     $$slots: $$slots,
     $$scope: $$scope
   };
@@ -627,14 +1015,127 @@ function (_SvelteComponent) {
     _classCallCheck(this, ButtonGroup);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ButtonGroup).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$2, create_fragment$2, internal.safe_not_equal, ["class", "size", "vertical", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$5, create_fragment$5, internal.safe_not_equal, ["class", "size", "vertical", "id"]);
     return _this;
   }
 
   return ButtonGroup;
 }(internal.SvelteComponent);
 
-function create_fragment$3(ctx) {
+function create_fragment$6(ctx) {
+  var div, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      div = internal.element("div");
+      if (default_slot) default_slot.c();
+      internal.attr(div, "aria-label", ctx.ariaLabel);
+      div.className = ctx.classes;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(div_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, div, anchor);
+
+      if (default_slot) {
+        default_slot.m(div, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.ariaLabel) {
+        internal.attr(div, "aria-label", ctx.ariaLabel);
+      }
+
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(div);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function instance$6($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      _$$props$role = $$props.role,
+      role = _$$props$role === void 0 ? 'toolbar' : _$$props$role,
+      _$$props$ariaLabel = $$props.ariaLabel,
+      ariaLabel = _$$props$ariaLabel === void 0 ? '' : _$$props$ariaLabel;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('role' in $$props) $$invalidate('role', role = $$props.role);
+    if ('ariaLabel' in $$props) $$invalidate('ariaLabel', ariaLabel = $$props.ariaLabel);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      clazz: 1
+    };
+
+    if ($$dirty.clazz) {
+      $$invalidate('classes', classes = "".concat(clazz, " btn-toolbar"));
+    }
+  };
+
+  return {
+    clazz: clazz,
+    role: role,
+    ariaLabel: ariaLabel,
+    classes: classes,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var ButtonToolbar =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(ButtonToolbar, _SvelteComponent);
+
+  function ButtonToolbar(options) {
+    var _this;
+
+    _classCallCheck(this, ButtonToolbar);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ButtonToolbar).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$6, create_fragment$6, internal.safe_not_equal, ["class", "role", "ariaLabel"]);
+    return _this;
+  }
+
+  return ButtonToolbar;
+}(internal.SvelteComponent);
+
+function create_fragment$7(ctx) {
   var div, current, dispose;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
@@ -691,8 +1192,9 @@ function create_fragment$3(ctx) {
   };
 }
 
-function instance$3($$self, $$props, $$invalidate) {
-  var clazz = $$props["class"],
+function instance$7($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$inverse = $$props.inverse,
       inverse = _$$props$inverse === void 0 ? false : _$$props$inverse,
       _$$props$block = $$props.block,
@@ -762,14 +1264,14 @@ function (_SvelteComponent) {
     _classCallCheck(this, Card);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Card).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$3, create_fragment$3, internal.safe_not_equal, ["class", "inverse", "block", "color", "outline", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$7, create_fragment$7, internal.safe_not_equal, ["class", "inverse", "block", "color", "outline", "id"]);
     return _this;
   }
 
   return Card;
 }(internal.SvelteComponent);
 
-function create_fragment$4(ctx) {
+function create_fragment$8(ctx) {
   var div, current;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
@@ -824,8 +1326,9 @@ function create_fragment$4(ctx) {
   };
 }
 
-function instance$4($$self, $$props, $$invalidate) {
-  var clazz = $$props["class"],
+function instance$8($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$id = $$props.id,
       id = _$$props$id === void 0 ? '' : _$$props$id;
   var _$$props$$$slots = $$props.$$slots,
@@ -870,14 +1373,414 @@ function (_SvelteComponent) {
     _classCallCheck(this, CardBody);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CardBody).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$4, create_fragment$4, internal.safe_not_equal, ["class", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$8, create_fragment$8, internal.safe_not_equal, ["class", "id"]);
     return _this;
   }
 
   return CardBody;
 }(internal.SvelteComponent);
 
-function create_fragment$5(ctx) {
+function create_fragment$9(ctx) {
+  var div, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      div = internal.element("div");
+      if (default_slot) default_slot.c();
+      div.className = ctx.classes;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(div_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, div, anchor);
+
+      if (default_slot) {
+        default_slot.m(div, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(div);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function instance$9($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      clazz: 1
+    };
+
+    if ($$dirty.clazz) {
+      $$invalidate('classes', classes = "".concat(clazz, " card-columns"));
+    }
+  };
+
+  return {
+    clazz: clazz,
+    classes: classes,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var CardColumns =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(CardColumns, _SvelteComponent);
+
+  function CardColumns(options) {
+    var _this;
+
+    _classCallCheck(this, CardColumns);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CardColumns).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$9, create_fragment$9, internal.safe_not_equal, ["class"]);
+    return _this;
+  }
+
+  return CardColumns;
+}(internal.SvelteComponent);
+
+function create_fragment$a(ctx) {
+  var div, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      div = internal.element("div");
+      if (default_slot) default_slot.c();
+      div.className = ctx.classes;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(div_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, div, anchor);
+
+      if (default_slot) {
+        default_slot.m(div, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(div);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function instance$a($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      clazz: 1
+    };
+
+    if ($$dirty.clazz) {
+      $$invalidate('classes', classes = "".concat(clazz, " card-deck"));
+    }
+  };
+
+  return {
+    clazz: clazz,
+    classes: classes,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var CardDeck =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(CardDeck, _SvelteComponent);
+
+  function CardDeck(options) {
+    var _this;
+
+    _classCallCheck(this, CardDeck);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CardDeck).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$a, create_fragment$a, internal.safe_not_equal, ["class"]);
+    return _this;
+  }
+
+  return CardDeck;
+}(internal.SvelteComponent);
+
+function create_fragment$b(ctx) {
+  var div, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      div = internal.element("div");
+      if (default_slot) default_slot.c();
+      div.className = ctx.classes;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(div_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, div, anchor);
+
+      if (default_slot) {
+        default_slot.m(div, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(div);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function instance$b($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      clazz: 1
+    };
+
+    if ($$dirty.clazz) {
+      $$invalidate('classes', classes = "".concat(clazz, " card-footer"));
+    }
+  };
+
+  return {
+    clazz: clazz,
+    classes: classes,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var CardFooter =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(CardFooter, _SvelteComponent);
+
+  function CardFooter(options) {
+    var _this;
+
+    _classCallCheck(this, CardFooter);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CardFooter).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$b, create_fragment$b, internal.safe_not_equal, ["class"]);
+    return _this;
+  }
+
+  return CardFooter;
+}(internal.SvelteComponent);
+
+function create_fragment$c(ctx) {
+  var div, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      div = internal.element("div");
+      if (default_slot) default_slot.c();
+      div.className = ctx.classes;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(div_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, div, anchor);
+
+      if (default_slot) {
+        default_slot.m(div, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(div);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function instance$c($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      clazz: 1
+    };
+
+    if ($$dirty.clazz) {
+      $$invalidate('classes', classes = "".concat(clazz, " card-group"));
+    }
+  };
+
+  return {
+    clazz: clazz,
+    classes: classes,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var CardGroup =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(CardGroup, _SvelteComponent);
+
+  function CardGroup(options) {
+    var _this;
+
+    _classCallCheck(this, CardGroup);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CardGroup).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$c, create_fragment$c, internal.safe_not_equal, ["class"]);
+    return _this;
+  }
+
+  return CardGroup;
+}(internal.SvelteComponent);
+
+function create_fragment$d(ctx) {
   var div, current, dispose;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
@@ -934,8 +1837,9 @@ function create_fragment$5(ctx) {
   };
 }
 
-function instance$5($$self, $$props, $$invalidate) {
-  var clazz = $$props["class"],
+function instance$d($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$id = $$props.id,
       id = _$$props$id === void 0 ? '' : _$$props$id;
   var _$$props$$$slots = $$props.$$slots,
@@ -985,11 +1889,311 @@ function (_SvelteComponent) {
     _classCallCheck(this, CardHeader);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CardHeader).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$5, create_fragment$5, internal.safe_not_equal, ["class", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$d, create_fragment$d, internal.safe_not_equal, ["class", "id"]);
     return _this;
   }
 
   return CardHeader;
+}(internal.SvelteComponent);
+
+function create_fragment$e(ctx) {
+  var div, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      div = internal.element("div");
+      if (default_slot) default_slot.c();
+      div.className = ctx.classes;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(div_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, div, anchor);
+
+      if (default_slot) {
+        default_slot.m(div, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(div);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function instance$e($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      clazz: 1
+    };
+
+    if ($$dirty.clazz) {
+      $$invalidate('classes', classes = "".concat(clazz, " card-img-overlay"));
+    }
+  };
+
+  return {
+    clazz: clazz,
+    classes: classes,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var CardImgOverlay =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(CardImgOverlay, _SvelteComponent);
+
+  function CardImgOverlay(options) {
+    var _this;
+
+    _classCallCheck(this, CardImgOverlay);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CardImgOverlay).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$e, create_fragment$e, internal.safe_not_equal, ["class"]);
+    return _this;
+  }
+
+  return CardImgOverlay;
+}(internal.SvelteComponent);
+
+function create_fragment$f(ctx) {
+  var div, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      div = internal.element("div");
+      if (default_slot) default_slot.c();
+      div.className = ctx.classes;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(div_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, div, anchor);
+
+      if (default_slot) {
+        default_slot.m(div, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(div);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function instance$f($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      clazz: 1
+    };
+
+    if ($$dirty.clazz) {
+      $$invalidate('classes', classes = "".concat(clazz, " card-text"));
+    }
+  };
+
+  return {
+    clazz: clazz,
+    classes: classes,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var CardText =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(CardText, _SvelteComponent);
+
+  function CardText(options) {
+    var _this;
+
+    _classCallCheck(this, CardText);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CardText).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$f, create_fragment$f, internal.safe_not_equal, ["class"]);
+    return _this;
+  }
+
+  return CardText;
+}(internal.SvelteComponent);
+
+function create_fragment$g(ctx) {
+  var div, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      div = internal.element("div");
+      if (default_slot) default_slot.c();
+      div.className = ctx.classes;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(div_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, div, anchor);
+
+      if (default_slot) {
+        default_slot.m(div, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(div);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function instance$g($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      clazz: 1
+    };
+
+    if ($$dirty.clazz) {
+      $$invalidate('classes', classes = "".concat(clazz, " card-title"));
+    }
+  };
+
+  return {
+    clazz: clazz,
+    classes: classes,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var CardTitle =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(CardTitle, _SvelteComponent);
+
+  function CardTitle(options) {
+    var _this;
+
+    _classCallCheck(this, CardTitle);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CardTitle).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$g, create_fragment$g, internal.safe_not_equal, ["class"]);
+    return _this;
+  }
+
+  return CardTitle;
 }(internal.SvelteComponent);
 
 /**
@@ -1031,7 +2235,7 @@ function isObject(value) {
 
 var lodash_isobject = isObject;
 
-function create_fragment$6(ctx) {
+function create_fragment$h(ctx) {
   var div, div_class_value, current;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
@@ -1082,9 +2286,10 @@ function create_fragment$6(ctx) {
   };
 }
 
-function instance$6($$self, $$props, $$invalidate) {
+function instance$h($$self, $$props, $$invalidate) {
   var _$$props = $$props,
-      clazz = _$$props["class"],
+      _$$props$class = _$$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$id = _$$props.id,
       id = _$$props$id === void 0 ? '' : _$$props$id;
   var colClasses = [];
@@ -1169,7 +2374,7 @@ function (_SvelteComponent) {
     _classCallCheck(this, Col);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Col).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$6, create_fragment$6, internal.safe_not_equal, ["class", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$h, create_fragment$h, internal.safe_not_equal, ["class", "id"]);
     return _this;
   }
 
@@ -1234,7 +2439,7 @@ function create_if_block$1(ctx) {
   };
 }
 
-function create_fragment$7(ctx) {
+function create_fragment$i(ctx) {
   var if_block_anchor, current;
   var if_block = ctx.isOpen && create_if_block$1(ctx);
   return {
@@ -1287,7 +2492,7 @@ function create_fragment$7(ctx) {
   };
 }
 
-function instance$7($$self, $$props, $$invalidate) {
+function instance$i($$self, $$props, $$invalidate) {
   var _$$props$isOpen = $$props.isOpen,
       isOpen = _$$props$isOpen === void 0 ? false : _$$props$isOpen;
   var _$$props$$$slots = $$props.$$slots,
@@ -1337,14 +2542,14 @@ function (_SvelteComponent) {
     _classCallCheck(this, Collapse);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Collapse).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$7, create_fragment$7, internal.safe_not_equal, ["isOpen"]);
+    internal.init(_assertThisInitialized(_this), options, instance$i, create_fragment$i, internal.safe_not_equal, ["isOpen"]);
     return _this;
   }
 
   return Collapse;
 }(internal.SvelteComponent);
 
-function create_fragment$8(ctx) {
+function create_fragment$j(ctx) {
   var div, current;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
@@ -1399,8 +2604,9 @@ function create_fragment$8(ctx) {
   };
 }
 
-function instance$8($$self, $$props, $$invalidate) {
-  var clazz = $$props["class"],
+function instance$j($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$fluid = $$props.fluid,
       fluid = _$$props$fluid === void 0 ? false : _$$props$fluid,
       _$$props$id = $$props.id,
@@ -1450,14 +2656,14 @@ function (_SvelteComponent) {
     _classCallCheck(this, Container);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Container).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$8, create_fragment$8, internal.safe_not_equal, ["class", "fluid", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$j, create_fragment$j, internal.safe_not_equal, ["class", "fluid", "id"]);
     return _this;
   }
 
   return Container;
 }(internal.SvelteComponent);
 
-function create_fragment$9(ctx) {
+function create_fragment$k(ctx) {
   var div, current;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
@@ -1512,9 +2718,11 @@ function create_fragment$9(ctx) {
   };
 }
 
-function instance$9($$self, $$props, $$invalidate) {
-  var clazz = $$props["class"],
-      color = $$props.color,
+function instance$k($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      _$$props$color = $$props.color,
+      color = _$$props$color === void 0 ? '' : _$$props$color,
       _$$props$row = $$props.row,
       row = _$$props$row === void 0 ? false : _$$props$row,
       _$$props$disabled = $$props.disabled,
@@ -1577,7 +2785,7 @@ function (_SvelteComponent) {
     _classCallCheck(this, FormGroup);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(FormGroup).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$9, create_fragment$9, internal.safe_not_equal, ["class", "color", "row", "disabled", "check", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$k, create_fragment$k, internal.safe_not_equal, ["class", "color", "row", "disabled", "check", "id"]);
     return _this;
   }
 
@@ -2169,7 +3377,7 @@ function create_if_block_1$1(ctx) {
   };
 }
 
-function create_fragment$a(ctx) {
+function create_fragment$l(ctx) {
   var current_block_type_index, if_block, if_block_anchor, current;
   var if_block_creators = [create_if_block$2, create_if_block_13, create_if_block_14];
   var if_blocks = [];
@@ -2246,12 +3454,15 @@ function create_fragment$a(ctx) {
   };
 }
 
-function instance$a($$self, $$props, $$invalidate) {
-  var clazz = $$props["class"],
+function instance$l($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$type = $$props.type,
       type = _$$props$type === void 0 ? 'text' : _$$props$type,
-      size = $$props.size,
-      bsSize = $$props.bsSize,
+      _$$props$size = $$props.size,
+      size = _$$props$size === void 0 ? undefined : _$$props$size,
+      _$$props$bsSize = $$props.bsSize,
+      bsSize = _$$props$bsSize === void 0 ? undefined : _$$props$bsSize,
       _$$props$valid = $$props.valid,
       valid = _$$props$valid === void 0 ? false : _$$props$valid,
       _$$props$invalid = $$props.invalid,
@@ -2443,14 +3654,14 @@ function (_SvelteComponent) {
     _classCallCheck(this, Input);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Input).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$a, create_fragment$a, internal.safe_not_equal, ["class", "type", "size", "bsSize", "valid", "invalid", "plaintext", "addon", "value", "readonly", "multiple", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$l, create_fragment$l, internal.safe_not_equal, ["class", "type", "size", "bsSize", "valid", "invalid", "plaintext", "addon", "value", "readonly", "multiple", "id"]);
     return _this;
   }
 
   return Input;
 }(internal.SvelteComponent);
 
-function create_fragment$b(ctx) {
+function create_fragment$m(ctx) {
   var label, current;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
@@ -2510,8 +3721,9 @@ function create_fragment$b(ctx) {
   };
 }
 
-function instance$b($$self, $$props, $$invalidate) {
-  var clazz = $$props["class"],
+function instance$m($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$hidden = $$props.hidden,
       hidden = _$$props$hidden === void 0 ? false : _$$props$hidden,
       _$$props$check = $$props.check,
@@ -2574,14 +3786,14 @@ function (_SvelteComponent) {
     _classCallCheck(this, Label);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Label).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$b, create_fragment$b, internal.safe_not_equal, ["class", "hidden", "check", "size", "for", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$m, create_fragment$m, internal.safe_not_equal, ["class", "hidden", "check", "size", "for", "id"]);
     return _this;
   }
 
   return Label;
 }(internal.SvelteComponent);
 
-function create_fragment$c(ctx) {
+function create_fragment$n(ctx) {
   var div, current;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
@@ -2636,8 +3848,9 @@ function create_fragment$c(ctx) {
   };
 }
 
-function instance$c($$self, $$props, $$invalidate) {
-  var clazz = $$props["class"],
+function instance$n($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      clazz = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$noGutters = $$props.noGutters,
       noGutters = _$$props$noGutters === void 0 ? false : _$$props$noGutters,
       _$$props$form = $$props.form,
@@ -2692,21 +3905,32 @@ function (_SvelteComponent) {
     _classCallCheck(this, Row);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Row).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$c, create_fragment$c, internal.safe_not_equal, ["class", "noGutters", "form", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$n, create_fragment$n, internal.safe_not_equal, ["class", "noGutters", "form", "id"]);
     return _this;
   }
 
   return Row;
 }(internal.SvelteComponent);
 
-// export { default as Table } from './Table.html';
+// export { default as Table } from './Table.svelte';
 
 exports.Alert = Alert;
+exports.Badge = Badge;
+exports.Breadcrumb = Breadcrumb;
+exports.BreadcrumbItem = BreadcrumbItem;
 exports.Button = Button;
 exports.ButtonGroup = ButtonGroup;
+exports.ButtonToolbar = ButtonToolbar;
 exports.Card = Card;
 exports.CardBody = CardBody;
+exports.CardColumns = CardColumns;
+exports.CardDeck = CardDeck;
+exports.CardFooter = CardFooter;
+exports.CardGroup = CardGroup;
 exports.CardHeader = CardHeader;
+exports.CardImgOverlay = CardImgOverlay;
+exports.CardText = CardText;
+exports.CardTitle = CardTitle;
 exports.Col = Col;
 exports.Collapse = Collapse;
 exports.Container = Container;

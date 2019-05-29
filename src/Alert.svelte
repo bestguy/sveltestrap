@@ -1,8 +1,9 @@
 <script>
 	import { fade as fadeTransition } from 'svelte/transition';
+	import clsx from 'clsx';
 
-	let clazz = '';
-	export { clazz as class };
+	let className = '';
+	export { className as class };
 	export let color = 'success';
 	export let closeClassName = '';
 	export let closeAriaLabel = 'Close';
@@ -10,14 +11,20 @@
 	export let toggle = undefined;
 	export let fade = true;
 
-	$: classNames = `${clazz ? `${clazz} ` : ''}alert alert-${color}${toggle ? ` alert-dismissible` : ''}`;
-	$: closeClassNames = `close${closeClassName ? ` ${closeClassName}`: ''}`;
+	$: classes = clsx(
+		className,
+		'alert',
+		`alert-${color}`,
+		{ 'alert-dismissible': toggle }
+	);
+	$: closeClassNames = clsx('close', closeClassName);
+
 </script>
 
 {#if isOpen}
 	<div
 		transition:fadeTransition
-		class="{classNames}"
+		class="{classes}"
 		role="alert"
 	>
 		{#if toggle}

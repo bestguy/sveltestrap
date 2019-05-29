@@ -28,6 +28,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "clsx": "^1.0.4",
     "lodash.tonumber": "^4.0.3",
     "rollup": "^1.12.4",
     "rollup-plugin-babel": "^4.3.2",

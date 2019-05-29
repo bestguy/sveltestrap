@@ -14,6 +14,7 @@
 	import Form from './components/Form.svelte';
 	import Badge from './components/Badge.svelte';
 	import Breadcrumbs from './components/Breadcrumbs.svelte';
+	import Dropdown from './components/Dropdown.svelte';
 </script>
 
 <style>
@@ -41,6 +42,8 @@
 <CardImg />
 
 <CardImgOverlay />
+
+<Dropdown />
 
 <Grid />
 

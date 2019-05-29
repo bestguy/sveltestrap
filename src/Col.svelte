@@ -1,13 +1,15 @@
 <script>
+	import clsx from 'clsx';
 	import isobject from 'lodash.isobject';
-	let clazz = '';
-    export { clazz as class };
+
+	let className = '';
+    export { className as class };
 
     export let id = '';
 
     const colClasses = [];
-    if (clazz) {
-    	colClasses.push(clazz);
+    if (className) {
+    	colClasses.push(className);
     }
 
     const getColumnSizeClass = (isXs, colWidth, colSize) => {

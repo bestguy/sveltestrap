@@ -1,12 +1,17 @@
 <script>
-	let clazz = '';
-	export { clazz as class };
+	import clsx from 'clsx';
+
+	let className = '';
+	export { className as class };
 	export let fluid = false;
 	export let id = '';
 
-	$: classNames = `container${fluid ? '-fluid' : ''}${clazz ? ` ${clazz}` : ''}`;
+	$: classes = clsx(
+		className,
+		fluid ? 'container-fluid' : 'container',
+	);
 </script>
 
-<div {id} class="{classNames}">
+<div {id} class="{classes}">
 	<slot />
 </div>

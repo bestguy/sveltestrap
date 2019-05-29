@@ -6,10 +6,11 @@
 
 	$: classes = clsx(
 		className,
-		'card-group',
+		'card-link',
 	);
 </script>
 
-<div class="{classes}">
+
+<a class="{classes}">
 	<slot />
-</div>
+</a>

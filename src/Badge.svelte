@@ -1,12 +1,19 @@
 <script>
-	let clazz = '';
-	export { clazz as class };
+	import clsx from 'clsx';
+
+	let className = '';
+	export { className as class };
 	export let color = 'secondary';
 	export let pill = false;
 
-	$: classNames = `${clazz} badge badge-${color}${pill ? ' badge-pill' : ''}`;
+	$: classes = clsx(
+		className,
+		'badge',
+		`badge-${color}`,
+		pill ? 'badge-pill' : false
+	);
 </script>
 
-<span class="{classNames}">
+<span class="{classes}">
 	<slot />
 </span>

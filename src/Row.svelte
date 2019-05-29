@@ -1,13 +1,19 @@
 <script>
-	let clazz = '';
-	export { clazz as class };
+	import clsx from 'clsx';
+
+	let className = '';
+	export { className as class };
 	export let noGutters = false;
 	export let form = false;
 	export let id = '';
 
-	$: classNames = `${clazz ? clazz : ''}${noGutters ? ' no-gutters' : ''}${form ? ' form-row' : ' row'}`;
+	$: classes = clsx(
+		className,
+		noGutters ? 'no-gutters' : null,
+		form ? 'form-row' : 'row',
+	);
 </script>
 
-<div {id} class="{classNames}">
+<div {id} class="{classes}">
 	<slot />
 </div>

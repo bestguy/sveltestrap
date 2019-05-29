@@ -1,14 +1,20 @@
 <script>
-	let clazz = '';
-    export { clazz as class };
+	import clsx from 'clsx';
+
+	let className = '';
+    export { className as class };
     export let size = '';
     export let vertical = false;
     export let id = '';
 
-    $: classNames = `${vertical ? 'btn-group-vertical' : 'btn-group'}${clazz ? ` ${clazz}` : ''}${size ? ` btn-group-${size}`: ''}`;
+    $: classes = clsx(
+	    className,
+	    size ? `btn-group-${size}` : false,
+	    vertical ? 'btn-group-vertical' : 'btn-group',
+	);
 
 </script>
 
-<div {id} class="{classNames}">
+<div {id} class="{classes}">
 	<slot />
 </div>

@@ -1,11 +1,16 @@
 <script>
-	let clazz = '';
-	export { clazz as class };
+	import clsx from 'clsx';
+
+	let className = '';
+	export { className as class };
 	export let id = '';
 
-	$: classNames = `card-header${clazz ? ` ${clazz}` : ''}`;
+	$: classes = clsx(
+		className,
+		'card-header',
+	);
 </script>
 
-<div {id} class="{classNames}" on:click>
+<div {id} class="{classes}" on:click>
 	<slot />
 </div>

@@ -1,6 +1,8 @@
 <script>
-	let clazz = '';
-    export { clazz as class };
+	import clsx from 'clsx';
+
+	let className = '';
+    export { className as class };
 
 	export let type = 'text';
 	export let size = undefined;
@@ -14,93 +16,82 @@
 	export let multiple = false;
 	export let id = '';
 
-	const checkInput = ['radio', 'checkbox'].indexOf(type) > -1;
-	const isNotaNumber = new RegExp('\\D', 'g');
+	let classes;
+	let tag;
+	$: {
 
-	const fileInput = type === 'file';
-	const textareaInput = type === 'textarea';
-	const selectInput = type === 'select';
-	let tag = selectInput || textareaInput ? type : 'input';
+		const checkInput = ['radio', 'checkbox'].indexOf(type) > -1;
+		const isNotaNumber = new RegExp('\\D', 'g');
 
-	let formControlClass = 'form-control';
+		const fileInput = type === 'file';
+		const textareaInput = type === 'textarea';
+		const selectInput = type === 'select';
+		tag = selectInput || textareaInput ? type : 'input';
 
-	if (plaintext) {
-		formControlClass = `${formControlClass}-plaintext`;
-		tag = 'input';
-	} else if (fileInput) {
-		formControlClass = `${formControlClass}-file`;
-	} else if (checkInput) {
-		if (addon) {
-			formControlClass = null;
-		} else {
-			formControlClass = 'form-check-input';
+		let formControlClass = 'form-control';
+
+		if (plaintext) {
+			formControlClass = `${formControlClass}-plaintext`;
+			tag = 'input';
+		} else if (fileInput) {
+			formControlClass = `${formControlClass}-file`;
+		} else if (checkInput) {
+			if (addon) {
+				formControlClass = null;
+			} else {
+				formControlClass = 'form-check-input';
+			}
 		}
+
+		if (size && isNotaNumber.test(size)) {
+			console.warn('Please use the prop "bsSize" instead of the "size" to bootstrap\'s input sizing.');
+			bsSize = size;
+			size = undefined;
+		}
+
+		classes = clsx(
+			className,
+			invalid && 'is-invalid',
+			valid && 'is-valid',
+			bsSize ? `form-control-${bsSize}` : false,
+			formControlClass,
+		);
 	}
-
-	if (size && isNotaNumber.test(size)) {
-		console.warn('Please use the prop "bsSize" instead of the "size" to bootstrap\'s input sizing.');
-		bsSize = size;
-		size = undefined;
-	}
-
-	const classNames = [];
-
-	if (clazz) {
-		classNames.push(clazz);
-	}
-
-	if (invalid) {
-		classNames.push('is-invalid');
-	}
-
-	if (valid) {
-		classNames.push('is-valid');
-	}
-
-	if (bsSize) {
-		classNames.push(`form-control-${bsSize}`);
-	}
-
-	classNames.push(formControlClass);
-
-	const combinedClasses = classNames.join(' ');
 </script>
 {#if tag === 'input'}
 	{#if type === 'text'}
-		<input {id} type="text" bind:value {readonly} class="{combinedClasses}" />
+		<input {id} type="text" bind:value {readonly} class="{classes}" />
 	{:else if type === 'password'}
-		<input {id} type="password" bind:value {readonly} class="{combinedClasses}" />
+		<input {id} type="password" bind:value {readonly} class="{classes}" />
 	{:else if type === 'email'}
-		<input {id} type="email" bind:value {readonly} class="{combinedClasses}" />
+		<input {id} type="email" bind:value {readonly} class="{classes}" />
 	{:else if type === 'file'}
-		<input {id} type="file" bind:value {readonly} class="{combinedClasses}" />
+		<input {id} type="file" bind:value {readonly} class="{classes}" />
 	{:else if type === 'checkbox'}
-		<input {id} type="checkbox" bind:value {readonly} class="{combinedClasses}" />
+		<input {id} type="checkbox" bind:value {readonly} class="{classes}" />
 	{:else if type === 'radio'}
-		<input {id} type="radio" bind:value {readonly} class="{combinedClasses}" />
+		<input {id} type="radio" bind:value {readonly} class="{classes}" />
 	{:else if type === 'url'}
-		<input {id} type="url" bind:value {readonly} class="{combinedClasses}" />
+		<input {id} type="url" bind:value {readonly} class="{classes}" />
 	{:else if type === 'number'}
-		<input {id} type="number" bind:value {readonly} class="{combinedClasses}" />
+		<input {id} type="number" bind:value {readonly} class="{classes}" />
 	{:else if type === 'date'}
-		<input {id} type="date" bind:value {readonly} class="{combinedClasses}" />
+		<input {id} type="date" bind:value {readonly} class="{classes}" />
 	{:else if type === 'time'}
-		<input {id} type="time" bind:value {readonly} class="{combinedClasses}" />
+		<input {id} type="time" bind:value {readonly} class="{classes}" />
 	{:else if type === 'color'}
-		<input {id} type="color" bind:value {readonly} class="{combinedClasses}" />
+		<input {id} type="color" bind:value {readonly} class="{classes}" />
 	{:else if type === 'search'}
-		<input {id} type="search" bind:value {readonly} class="{combinedClasses}" />
+		<input {id} type="search" bind:value {readonly} class="{classes}" />
 	{/if}
-
-
 
 {:else if tag === 'textarea'}
 
-	<textarea {id} class="{combinedClasses}" bind:value></textarea>
+	<textarea {id} class="{classes}" bind:value></textarea>
 
 {:else if tag === 'select'}
 
-	<select {id} {multiple} class="{combinedClasses}">
+	<select {id} {multiple} class="{classes}">
 		<slot />
 	</select>
 

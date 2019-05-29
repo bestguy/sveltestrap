@@ -1,11 +1,16 @@
 <script>
-	let clazz = '';
-	export { clazz as class };
+	import clsx from 'clsx';
+
+	let className = '';
+	export { className as class };
 	export let id = '';
 
-	$: classNames = `card-body${clazz ? ` ${clazz}` : ''}`;
+	$: classes = clsx(
+		className,
+		'card-body'
+	);
 </script>
 
-<div {id} class="{classNames}">
+<div {id} class="{classes}">
 	<slot />
 </div>

@@ -1,6 +1,8 @@
 <script>
-	let clazz = '';
-	export { clazz as class };
+	import clsx from 'clsx';
+
+	let className = '';
+	export { className as class };
 	export let active = false;
 	export let block = false;
 	export let disabled = false;
@@ -9,13 +11,22 @@
 	export let size = '';
 	export let value = '';
 	export let id = '';
+	export let close = false;
 
-	$: classNames = `btn btn${outline ? '-outline' : ''}-${color}${block ? ' btn-block' : ''}${active ? ' active' : ''}${disabled ? ' disabled' : ''}${size ? ` btn-${size}` : ''}${clazz ? ` ${clazz}` : ''}`;
+	$: classes = clsx(
+		className,
+		{ close },
+		close || 'btn',
+		close || `btn${outline ? '-outline' : ''}-${color}`,
+		size ? `btn-${size}` : false,
+		block ? 'btn-block' : false,
+		{ active, disabled }
+	);
 </script>
 
 <button
 	{id}
-	class="{classNames}"
+	class="{classes}"
 	on:click
 	{value}
 >

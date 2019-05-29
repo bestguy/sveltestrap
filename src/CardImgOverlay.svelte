@@ -1,8 +1,13 @@
 <script>
-	let clazz = '';
-	export { clazz as class };
+	import clsx from 'clsx';
 
-	$: classes = `${clazz} card-img-overlay`;
+	let className = '';
+	export { className as class };
+
+	$: classes = clsx(
+		className,
+		'card-img-overlay',
+	);
 </script>
 
 

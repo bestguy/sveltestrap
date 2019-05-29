@@ -1,9 +1,13 @@
 <script>
-	let clazz = '';
-	export { clazz as class };
+	import clsx from 'clsx';
+
+	let className = '';
+	export { className as class };
 	export let top = false;
 	export let bottom = false;
 	export let src;
+	export let alt = '';
+
 	let classes = '';
 	$: {
 		let cardImgClassName = 'card-img';
@@ -13,8 +17,11 @@
 		if (bottom) {
 			cardImgClassName = 'card-img-bottom';
 		}
-		classes = `${clazz} card-group`;
+		classes = clsx(
+			className,
+			cardImgClassName,
+		);
 	}
 </script>
 
-<img class="{classes}" {src} />
+<img class="{classes}" {src} {alt} />
