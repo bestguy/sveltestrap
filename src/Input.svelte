@@ -11,10 +11,13 @@
 	export let invalid = false;
 	export let plaintext = false;
 	export let addon = false;
-	export let value;
+	export let value = '';
 	export let readonly = false;
 	export let multiple = false;
 	export let id = '';
+	export let name = '';
+	export let placeholder = '';
+	export let disabled = false;
 
 	let classes;
 	let tag;
@@ -60,38 +63,38 @@
 </script>
 {#if tag === 'input'}
 	{#if type === 'text'}
-		<input {id} type="text" bind:value {readonly} class="{classes}" />
+		<input {id} type="text" bind:value {readonly} class="{classes}" {name} {disabled} />
 	{:else if type === 'password'}
-		<input {id} type="password" bind:value {readonly} class="{classes}" />
+		<input {id} type="password" bind:value {readonly} class="{classes}" {name} {disabled} />
 	{:else if type === 'email'}
-		<input {id} type="email" bind:value {readonly} class="{classes}" />
+		<input {id} type="email" bind:value {readonly} class="{classes}" {name} {disabled} />
 	{:else if type === 'file'}
-		<input {id} type="file" bind:value {readonly} class="{classes}" />
+		<input {id} type="file" bind:value {readonly} class="{classes}" {name} {disabled} />
 	{:else if type === 'checkbox'}
-		<input {id} type="checkbox" bind:value {readonly} class="{classes}" />
+		<input {id} type="checkbox" bind:value {readonly} class="{classes}" {name} {disabled} />
 	{:else if type === 'radio'}
-		<input {id} type="radio" bind:value {readonly} class="{classes}" />
+		<input {id} type="radio" bind:value {readonly} class="{classes}" {name} {disabled} />
 	{:else if type === 'url'}
-		<input {id} type="url" bind:value {readonly} class="{classes}" />
+		<input {id} type="url" bind:value {readonly} class="{classes}" {name} {disabled} />
 	{:else if type === 'number'}
-		<input {id} type="number" bind:value {readonly} class="{classes}" />
+		<input {id} type="number" bind:value {readonly} class="{classes}" {name} {disabled} />
 	{:else if type === 'date'}
-		<input {id} type="date" bind:value {readonly} class="{classes}" />
+		<input {id} type="date" bind:value {readonly} class="{classes}" {name} {disabled} />
 	{:else if type === 'time'}
-		<input {id} type="time" bind:value {readonly} class="{classes}" />
+		<input {id} type="time" bind:value {readonly} class="{classes}" {name} {disabled} />
 	{:else if type === 'color'}
-		<input {id} type="color" bind:value {readonly} class="{classes}" />
+		<input {id} type="color" bind:value {readonly} class="{classes}" {name} {disabled} />
 	{:else if type === 'search'}
-		<input {id} type="search" bind:value {readonly} class="{classes}" />
+		<input {id} type="search" bind:value {readonly} class="{classes}" {name} {disabled} />
 	{/if}
 
 {:else if tag === 'textarea'}
 
-	<textarea {id} class="{classes}" bind:value></textarea>
+	<textarea {id} class="{classes}" bind:value {name} {disabled}></textarea>
 
 {:else if tag === 'select'}
 
-	<select {id} {multiple} class="{classes}">
+	<select {id} {multiple} class="{classes}" {name} {disabled}>
 		<slot />
 	</select>
 

@@ -8,7 +8,7 @@
 	export let hidden = false;
 	export let check = false;
 	export let size = '';
-	export let fore;
+	export let fore = '';
 	export { fore as for };
 	export let id = '';
 	export let xs = '';
