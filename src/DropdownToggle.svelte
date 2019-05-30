@@ -40,13 +40,13 @@
 {#if nav}
 	<a on:click on:click="{toggleButton}" href="#" class="{classes}">
 		<slot>
-			<span className="sr-only">{ariaLabel}</span>
+			<span class="sr-only">{ariaLabel}</span>
 		</slot>
 	</a>
 {:else}
 	<Button on:click on:click="{toggleButton}" class="{classes}" {color}>
 		<slot>
-			<span className="sr-only">{ariaLabel}</span>
+			<span class="sr-only">{ariaLabel}</span>
 		</slot>
 	</Button>
 {/if}

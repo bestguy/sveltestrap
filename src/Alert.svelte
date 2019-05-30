@@ -10,6 +10,7 @@
 	export let isOpen = true;
 	export let toggle = undefined;
 	export let fade = true;
+	export let transition = {duration: fade ? 400 : 0};
 
 	$: classes = clsx(
 		className,
@@ -23,7 +24,7 @@
 
 {#if isOpen}
 	<div
-		transition:fadeTransition
+		transition:fadeTransition="{transition}"
 		class="{classes}"
 		role="alert"
 	>

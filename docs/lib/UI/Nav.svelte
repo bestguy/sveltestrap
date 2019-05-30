@@ -6,21 +6,21 @@
 
 <Navbar class="header" color="faded" light expand="md">
 	<Container>
-		<NavbarBrand class="mr-auto" tag="a" href="/">reactstrap</NavbarBrand>
+		<NavbarBrand class="mr-auto" href="/#">sveltestrap</NavbarBrand>
 		<NavbarToggler on:click="{() => showNavBar = !showNavBar}" />
-		<Collapse navbar isOpen={showNavbar}>
+		<Collapse navbar isOpen={showNavBar}>
 			<Nav navbar class="ml-sm-auto">
 				<NavItem>
 
 				</NavItem>
 				<NavItem>
-					<NavLink tag={Link} to="/components/" activeClassName="active">Components</NavLink>
+					<NavLink href="/#components/" activeClassName="active">Components</NavLink>
 				</NavItem>
 				<NavItem>
-					<NavLink tag={Link} to="/utilities/" activeClassName="active">Utilities</NavLink>
+					<NavLink href="/#utilities/" activeClassName="active">Utilities</NavLink>
 				</NavItem>
 				<NavItem>
-					<NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+					<NavLink href="https://github.com/bestguy/sveltestrap">GitHub</NavLink>
 				</NavItem>
 			</Nav>
 		</Collapse>
