@@ -15,6 +15,8 @@
 	import Badge from './components/Badge.svelte';
 	import Breadcrumbs from './components/Breadcrumbs.svelte';
 	import Dropdown from './components/Dropdown.svelte';
+	import Jumbotron from './components/Jumbotron.svelte';
+	import Modal from './components/Modal.svelte';
 </script>
 
 <style>
@@ -54,3 +56,7 @@
 <Badge />
 
 <Breadcrumbs />
+
+<Jumbotron />
+
+<Modal />

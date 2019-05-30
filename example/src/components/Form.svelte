@@ -5,6 +5,8 @@
 	import FormGroup from '../../../src/FormGroup.svelte';
 	import FormText from '../../../src/FormText.svelte';
 	import Label from '../../../src/Label.svelte';
+	import Row from '../../../src/Row.svelte';
+	import Col from '../../../src/Col.svelte';
 
 	let inputValue = 'world';
 </script>
@@ -87,3 +89,4 @@
 	</FormGroup>
 	<Button>Submit</Button>
 </Form>
+
