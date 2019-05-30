@@ -12,6 +12,7 @@
 	export let value = '';
 	export let id = '';
 	export let close = false;
+	export let href = '';
 
 	$: classes = clsx(
 		className,
@@ -24,11 +25,22 @@
 	);
 </script>
 
-<button
-	{id}
-	class="{classes}"
-	on:click
-	{value}
->
-	<slot />
-</button>
+{#if href}
+	<a
+		{id}
+		class="{classes}"
+		on:click
+		{href}
+	>
+		<slot />
+	</a>
+{:else}
+	<button
+		{id}
+		class="{classes}"
+		on:click
+		{value}
+	>
+		<slot />
+	</button>
+{/if}

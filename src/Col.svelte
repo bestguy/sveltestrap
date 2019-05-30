@@ -8,9 +8,7 @@
     export let id = '';
 
     const colClasses = [];
-    if (className) {
-    	colClasses.push(className);
-    }
+
 
     const getColumnSizeClass = (isXs, colWidth, colSize) => {
       if (colSize === true || colSize === '') {
@@ -53,6 +51,14 @@
 		}
 
     });
+
+    if (!colClasses.length) {
+	    colClasses.push('col');
+    }
+
+	if (className) {
+		colClasses.push(className);
+	}
 
 </script>
 

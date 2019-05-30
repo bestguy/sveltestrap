@@ -32,7 +32,7 @@ export { default as FormGroup } from './FormGroup.svelte';
 export { default as Input } from './Input.svelte';
 // export { default as InputGroup } from './InputGroup.svelte';
 // export { default as InputGroupAddon } from './InputGroupAddon.svelte';
-// export { default as Jumbotron } from './Jumbotron.svelte';
+export { default as Jumbotron } from './Jumbotron.svelte';
 export { default as Label } from './Label.svelte';
 // export { default as ListGroup } from './ListGroup.svelte';
 // export { default as ListGroupItem } from './ListGroupItem.svelte';
