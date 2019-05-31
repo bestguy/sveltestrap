@@ -2,6 +2,7 @@
 	import { NavbarToggler, Container, Collapse, Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'sveltestrap';
 
 	let showNavBar = false;
+	export let segment;
 </script>
 
 <Navbar class="header" color="faded" light expand="md">
@@ -14,10 +15,10 @@
 
 				</NavItem>
 				<NavItem>
-					<NavLink href="/#components/" activeClassName="active">Components</NavLink>
+					<NavLink href="/#components/" class="{segment === 'components' ? 'active' : ''}">Components</NavLink>
 				</NavItem>
 				<NavItem>
-					<NavLink href="/#utilities/" activeClassName="active">Utilities</NavLink>
+					<NavLink href="/#utilities/" class="{segment === 'utilities' ? 'active' : ''}">Utilities</NavLink>
 				</NavItem>
 				<NavItem>
 					<NavLink href="https://github.com/bestguy/sveltestrap">GitHub</NavLink>

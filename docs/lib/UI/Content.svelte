@@ -3,6 +3,7 @@
 
 	export let title;
 	export let items;
+	export let selected = '';
 </script>
 
 <Container class="content">
@@ -13,7 +14,7 @@
 				<Nav class="flex-column">
 					{#each items.sort((a, b) => a.name.localeCompare(b.name)) as item}
 		                <NavItem key={item.to}>
-							<NavLink href="{`#${item.to}`}" activeClassName="active">
+							<NavLink href="{`#${item.to}`}" active="{selected.toLowerCase() === item.name.toLowerCase()}">
 								{item.name}
 							</NavLink>
 		                </NavItem>

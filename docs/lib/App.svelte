@@ -4,6 +4,8 @@
 	import Components from './Components/index.svelte';
 
 	import AlertsPage from './Components/AlertsPage.svelte';
+	import BadgePage from './Components/BadgePage.svelte';
+	import BreadcrumbsPage from './Components/BreadcrumbsPage';
 
 	let mainPage;
 	let subPage;
@@ -28,13 +30,17 @@
 </script>
 
 <svelte:window on:hashchange="{handleHashChange}" />
-<Layout>
+<Layout segment="{mainPage}">
 	{#if mainPage === 'Home'}
 		<Home />
 	{:else if mainPage === 'components'}
-		<Components>
+		<Components selected="{subPage}">
 		{#if subPage === 'alerts'}
 			<AlertsPage />
+		{:else if subPage === 'badge'}
+			<BadgePage />
+		{:else if subPage === 'breadcrumbs'}
+			<BreadcrumbsPage />
 		{:else}
 			<div>{subPage} not found</div>
 		{/if}

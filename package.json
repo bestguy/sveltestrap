@@ -23,7 +23,7 @@
 		"postpublish": "git push && git push --tags",
 		"version": "npm run docs && git add -A docs",
 		"watch": "rollup -c -w",
-		"postinstall": "patch-package"
+		"postinstall": "npx patch-package"
 	},
 	"peerDependencies": {
 		"svelte": "^3.4.4"
@@ -56,7 +56,6 @@
 		"webpack-dev-server": "^3.4.1"
 	},
 	"dependencies": {
-		"lodash.isobject": "^3.0.2",
-		"patch-package": "^6.1.2"
+		"lodash.isobject": "^3.0.2"
 	}
 }

@@ -1,6 +1,4 @@
 <script>
-	import {Alert} from 'sveltestrap';
-
 	import PrismCode from '../UI/PrismCode.svelte';
 	import PageTitle from '../UI/PageTitle.svelte';
 	import SectionTitle from '../UI/SectionTitle.svelte';
@@ -30,7 +28,7 @@
 		<AlertExample/>
 	</div>
 	<pre>
-		<PrismCode class="language-jsx">
+		<PrismCode class="language-html">
 			{AlertExampleSource}
 		</PrismCode>
     </pre>
@@ -39,7 +37,7 @@
 		<AlertLinkExample/>
 	</div>
 	<pre>
-		<PrismCode class="language-jsx">
+		<PrismCode class="language-html">
 			{AlertLinkExampleSource}
 		</PrismCode>
     </pre>
@@ -48,7 +46,7 @@
 		<AlertContentExample/>
 	</div>
 	<pre>
-		<PrismCode class="language-jsx">
+		<PrismCode class="language-html">
 			{AlertContentExampleSource}
 		</PrismCode>
     </pre>
@@ -57,7 +55,7 @@
 		<AlertDismissExample/>
 	</div>
 	<pre>
-		<PrismCode class="language-jsx">
+		<PrismCode class="language-html">
 			{AlertDismissExampleSource}
 		</PrismCode>
     </pre>
@@ -72,7 +70,7 @@
 		<AlertUncontrolledDismissExample/>
 	</div>
 	<pre>
-		<PrismCode class="language-jsx">
+		<PrismCode class="language-html">
 			{AlertUncontrolledDismissExampleSource}
 		</PrismCode>
     </pre>
@@ -84,7 +82,7 @@
 		<AlertFadelessExample/>
 	</div>
 	<pre>
-		<PrismCode class="language-jsx">
+		<PrismCode class="language-html">
 			{AlertFadelessExampleSource}
 		</PrismCode>
     </pre>

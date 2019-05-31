@@ -25,6 +25,21 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
@@ -172,14 +187,14 @@ function create_if_block(ctx) {
       if (current) return;
       if (default_slot && default_slot.i) default_slot.i(local);
       internal.add_render_callback(function () {
-        if (!div_transition) div_transition = internal.create_bidirectional_transition(div, transition.fade, {}, true);
+        if (!div_transition) div_transition = internal.create_bidirectional_transition(div, transition.fade, ctx.transition, true);
         div_transition.run(1);
       });
       current = true;
     },
     o: function o(local) {
       if (default_slot && default_slot.o) default_slot.o(local);
-      if (!div_transition) div_transition = internal.create_bidirectional_transition(div, transition.fade, {}, false);
+      if (!div_transition) div_transition = internal.create_bidirectional_transition(div, transition.fade, ctx.transition, false);
       div_transition.run(0);
       current = false;
     },
@@ -196,7 +211,7 @@ function create_if_block(ctx) {
       }
     }
   };
-} // (29:2) {#if toggle}
+} // (31:2) {#if toggle}
 
 
 function create_if_block_1(ctx) {
@@ -302,7 +317,11 @@ function instance($$self, $$props, $$invalidate) {
       _$$props$toggle = $$props.toggle,
       toggle = _$$props$toggle === void 0 ? undefined : _$$props$toggle,
       _$$props$fade = $$props.fade,
-      fade = _$$props$fade === void 0 ? true : _$$props$fade;
+      fade = _$$props$fade === void 0 ? true : _$$props$fade,
+      _$$props$transition = $$props.transition,
+      transition = _$$props$transition === void 0 ? {
+    duration: fade ? 400 : 0
+  } : _$$props$transition;
   var _$$props$$$slots = $$props.$$slots,
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
@@ -315,6 +334,7 @@ function instance($$self, $$props, $$invalidate) {
     if ('isOpen' in $$props) $$invalidate('isOpen', isOpen = $$props.isOpen);
     if ('toggle' in $$props) $$invalidate('toggle', toggle = $$props.toggle);
     if ('fade' in $$props) $$invalidate('fade', fade = $$props.fade);
+    if ('transition' in $$props) $$invalidate('transition', transition = $$props.transition);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
@@ -347,6 +367,7 @@ function instance($$self, $$props, $$invalidate) {
     isOpen: isOpen,
     toggle: toggle,
     fade: fade,
+    transition: transition,
     classes: classes,
     closeClassNames: closeClassNames,
     $$slots: $$slots,
@@ -365,7 +386,7 @@ function (_SvelteComponent) {
     _classCallCheck(this, Alert);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Alert).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance, create_fragment, internal.safe_not_equal, ["class", "color", "closeClassName", "closeAriaLabel", "isOpen", "toggle", "fade"]);
+    internal.init(_assertThisInitialized(_this), options, instance, create_fragment, internal.safe_not_equal, ["class", "color", "closeClassName", "closeAriaLabel", "isOpen", "toggle", "fade", "transition"]);
     return _this;
   }
 
@@ -424,52 +445,38 @@ function create_fragment$1(ctx) {
 
 function instance$1($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      className = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$color = $$props.color,
       color = _$$props$color === void 0 ? 'secondary' : _$$props$color,
       _$$props$pill = $$props.pill,
       pill = _$$props$pill === void 0 ? false : _$$props$pill;
-  var classes = '';
   var _$$props$$$slots = $$props.$$slots,
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('color' in $$props) $$invalidate('color', color = $$props.color);
     if ('pill' in $$props) $$invalidate('pill', pill = $$props.pill);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
+  var classes;
+
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      clazz: 1,
+      className: 1,
       color: 1,
       pill: 1
     };
 
-    if ($$dirty.clazz || $$dirty.color || $$dirty.pill) {
-      {
-        var classNames = [];
-
-        if (clazz) {
-          classNames.push(clazz);
-        }
-
-        classNames.push('badge');
-        classNames.push("badge-".concat(color));
-
-        if (pill) {
-          classNames.push('badge-pill');
-        }
-
-        $$invalidate('classes', classes = classNames.join(' '));
-      }
+    if ($$dirty.className || $$dirty.color || $$dirty.pill) {
+      $$invalidate('classes', classes = clsx(className, 'badge', "badge-".concat(color), pill ? 'badge-pill' : false));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     color: color,
     pill: pill,
     classes: classes,
@@ -507,7 +514,7 @@ function create_fragment$2(ctx) {
       if (default_slot) default_slot.c();
       ol.className = ctx.listClasses;
       internal.attr(nav, "aria-label", ctx.ariaLabel);
-      nav.className = ctx.clazz;
+      nav.className = ctx.className;
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(ol_nodes);
@@ -535,8 +542,8 @@ function create_fragment$2(ctx) {
         internal.attr(nav, "aria-label", ctx.ariaLabel);
       }
 
-      if (!current || changed.clazz) {
-        nav.className = ctx.clazz;
+      if (!current || changed.className) {
+        nav.className = ctx.className;
       }
     },
     i: function i(local) {
@@ -560,7 +567,7 @@ function create_fragment$2(ctx) {
 
 function instance$2($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      className = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$ariaLabel = $$props.ariaLabel,
       ariaLabel = _$$props$ariaLabel === void 0 ? 'breadcrumb' : _$$props$ariaLabel,
       _$$props$listClassNam = $$props.listClassName,
@@ -570,7 +577,7 @@ function instance$2($$self, $$props, $$invalidate) {
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('ariaLabel' in $$props) $$invalidate('ariaLabel', ariaLabel = $$props.ariaLabel);
     if ('listClassName' in $$props) $$invalidate('listClassName', listClassName = $$props.listClassName);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
@@ -584,12 +591,12 @@ function instance$2($$self, $$props, $$invalidate) {
     };
 
     if ($$dirty.listClassName) {
-      $$invalidate('listClasses', listClasses = "breadcrumb".concat(listClassName ? " ".concat(listClassName) : ''));
+      $$invalidate('listClasses', listClasses = clsx('breadcrumb', listClassName));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     ariaLabel: ariaLabel,
     listClassName: listClassName,
     listClasses: listClasses,
@@ -673,33 +680,34 @@ function create_fragment$3(ctx) {
 
 function instance$3($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      className = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$active = $$props.active,
       active = _$$props$active === void 0 ? false : _$$props$active;
-  var classes = '';
   var _$$props$$$slots = $$props.$$slots,
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('active' in $$props) $$invalidate('active', active = $$props.active);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
+  var classes;
+
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      clazz: 1,
+      className: 1,
       active: 1
     };
 
-    if ($$dirty.clazz || $$dirty.active) {
-      $$invalidate('classes', classes = "".concat(clazz).concat(active ? ' active' : '', " breadcrumb-item"));
+    if ($$dirty.className || $$dirty.active) {
+      $$invalidate('classes', classes = clsx(className, active ? 'active' : false, 'breadcrumb-item'));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     active: active,
     classes: classes,
     $$slots: $$slots,
@@ -725,7 +733,7 @@ function (_SvelteComponent) {
   return BreadcrumbItem;
 }(internal.SvelteComponent);
 
-function create_fragment$4(ctx) {
+function create_else_block(ctx) {
   var button, current, dispose;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
@@ -736,7 +744,7 @@ function create_fragment$4(ctx) {
       button.id = ctx.id;
       button.className = ctx.classes;
       button.value = ctx.value;
-      dispose = internal.listen(button, "click", ctx.click_handler);
+      dispose = internal.listen(button, "click", ctx.click_handler_1);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(button_nodes);
@@ -785,11 +793,140 @@ function create_fragment$4(ctx) {
       dispose();
     }
   };
+} // (28:0) {#if href}
+
+
+function create_if_block$1(ctx) {
+  var a, current, dispose;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      a = internal.element("a");
+      if (default_slot) default_slot.c();
+      a.id = ctx.id;
+      a.className = ctx.classes;
+      a.href = ctx.href;
+      dispose = internal.listen(a, "click", ctx.click_handler);
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(a_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, a, anchor);
+
+      if (default_slot) {
+        default_slot.m(a, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.id) {
+        a.id = ctx.id;
+      }
+
+      if (!current || changed.classes) {
+        a.className = ctx.classes;
+      }
+
+      if (!current || changed.href) {
+        a.href = ctx.href;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(a);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+      dispose();
+    }
+  };
+}
+
+function create_fragment$4(ctx) {
+  var current_block_type_index, if_block, if_block_anchor, current;
+  var if_block_creators = [create_if_block$1, create_else_block];
+  var if_blocks = [];
+
+  function select_block_type(ctx) {
+    if (ctx.href) return 0;
+    return 1;
+  }
+
+  current_block_type_index = select_block_type(ctx);
+  if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+  return {
+    c: function c() {
+      if_block.c();
+      if_block_anchor = internal.empty();
+    },
+    m: function m(target, anchor) {
+      if_blocks[current_block_type_index].m(target, anchor);
+      internal.insert(target, if_block_anchor, anchor);
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      var previous_block_index = current_block_type_index;
+      current_block_type_index = select_block_type(ctx);
+
+      if (current_block_type_index === previous_block_index) {
+        if_blocks[current_block_type_index].p(changed, ctx);
+      } else {
+        internal.group_outros();
+        internal.on_outro(function () {
+          if_blocks[previous_block_index].d(1);
+          if_blocks[previous_block_index] = null;
+        });
+        if_block.o(1);
+        internal.check_outros();
+        if_block = if_blocks[current_block_type_index];
+
+        if (!if_block) {
+          if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+          if_block.c();
+        }
+
+        if_block.i(1);
+        if_block.m(if_block_anchor.parentNode, if_block_anchor);
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (if_block) if_block.i();
+      current = true;
+    },
+    o: function o(local) {
+      if (if_block) if_block.o();
+      current = false;
+    },
+    d: function d(detaching) {
+      if_blocks[current_block_type_index].d(detaching);
+
+      if (detaching) {
+        internal.detach(if_block_anchor);
+      }
+    }
+  };
 }
 
 function instance$4($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      className = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$active = $$props.active,
       active = _$$props$active === void 0 ? false : _$$props$active,
       _$$props$block = $$props.block,
@@ -805,8 +942,11 @@ function instance$4($$self, $$props, $$invalidate) {
       _$$props$value = $$props.value,
       value = _$$props$value === void 0 ? '' : _$$props$value,
       _$$props$id = $$props.id,
-      id = _$$props$id === void 0 ? '' : _$$props$id;
-  var classes = '';
+      id = _$$props$id === void 0 ? '' : _$$props$id,
+      _$$props$close = $$props.close,
+      close = _$$props$close === void 0 ? false : _$$props$close,
+      _$$props$href = $$props.href,
+      href = _$$props$href === void 0 ? '' : _$$props$href;
   var _$$props$$$slots = $$props.$$slots,
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
@@ -815,8 +955,12 @@ function instance$4($$self, $$props, $$invalidate) {
     internal.bubble($$self, event);
   }
 
+  function click_handler_1(event) {
+    internal.bubble($$self, event);
+  }
+
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('active' in $$props) $$invalidate('active', active = $$props.active);
     if ('block' in $$props) $$invalidate('block', block = $$props.block);
     if ('disabled' in $$props) $$invalidate('disabled', disabled = $$props.disabled);
@@ -825,51 +969,37 @@ function instance$4($$self, $$props, $$invalidate) {
     if ('size' in $$props) $$invalidate('size', size = $$props.size);
     if ('value' in $$props) $$invalidate('value', value = $$props.value);
     if ('id' in $$props) $$invalidate('id', id = $$props.id);
+    if ('close' in $$props) $$invalidate('close', close = $$props.close);
+    if ('href' in $$props) $$invalidate('href', href = $$props.href);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
+  var classes;
+
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      className: 1,
+      close: 1,
       outline: 1,
       color: 1,
+      size: 1,
       block: 1,
       active: 1,
-      disabled: 1,
-      size: 1,
-      clazz: 1
+      disabled: 1
     };
 
-    if ($$dirty.outline || $$dirty.color || $$dirty.block || $$dirty.active || $$dirty.disabled || $$dirty.size || $$dirty.clazz) {
-      {
-        var classNames = ['btn', "btn".concat(outline ? '-outline' : '', "-").concat(color)];
-
-        if (block) {
-          classNames.push('btn-block');
-        }
-
-        if (active) {
-          classNames.push('active');
-        }
-
-        if (disabled) {
-          classNames.push('disabled');
-        }
-
-        if (size) {
-          classNames.push("btn-".concat(size));
-        }
-
-        if (clazz) {
-          classNames.push(clazz);
-        }
-
-        $$invalidate('classes', classes = classNames.join(' '));
-      }
+    if ($$dirty.className || $$dirty.close || $$dirty.outline || $$dirty.color || $$dirty.size || $$dirty.block || $$dirty.active || $$dirty.disabled) {
+      $$invalidate('classes', classes = clsx(className, {
+        close: close
+      }, close || 'btn', close || "btn".concat(outline ? '-outline' : '', "-").concat(color), size ? "btn-".concat(size) : false, block ? 'btn-block' : false, {
+        active: active,
+        disabled: disabled
+      }));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     active: active,
     block: block,
     disabled: disabled,
@@ -878,8 +1008,11 @@ function instance$4($$self, $$props, $$invalidate) {
     size: size,
     value: value,
     id: id,
+    close: close,
+    href: href,
     classes: classes,
     click_handler: click_handler,
+    click_handler_1: click_handler_1,
     $$slots: $$slots,
     $$scope: $$scope
   };
@@ -896,7 +1029,7 @@ function (_SvelteComponent) {
     _classCallCheck(this, Button);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Button).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$4, create_fragment$4, internal.safe_not_equal, ["class", "active", "block", "disabled", "color", "outline", "size", "value", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$4, create_fragment$4, internal.safe_not_equal, ["class", "active", "block", "disabled", "color", "outline", "size", "value", "id", "close", "href"]);
     return _this;
   }
 
@@ -960,7 +1093,7 @@ function create_fragment$5(ctx) {
 
 function instance$5($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      className = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$size = $$props.size,
       size = _$$props$size === void 0 ? '' : _$$props$size,
       _$$props$vertical = $$props.vertical,
@@ -972,7 +1105,7 @@ function instance$5($$self, $$props, $$invalidate) {
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('size' in $$props) $$invalidate('size', size = $$props.size);
     if ('vertical' in $$props) $$invalidate('vertical', vertical = $$props.vertical);
     if ('id' in $$props) $$invalidate('id', id = $$props.id);
@@ -983,18 +1116,18 @@ function instance$5($$self, $$props, $$invalidate) {
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      clazz: 1,
+      className: 1,
       size: 1,
       vertical: 1
     };
 
-    if ($$dirty.clazz || $$dirty.size || $$dirty.vertical) {
-      $$invalidate('classes', classes = clsx(clazz, size ? "btn-group-".concat(size) : false, vertical ? 'btn-group-vertical' : 'btn-group'));
+    if ($$dirty.className || $$dirty.size || $$dirty.vertical) {
+      $$invalidate('classes', classes = clsx(className, size ? "btn-group-".concat(size) : false, vertical ? 'btn-group-vertical' : 'btn-group'));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     size: size,
     vertical: vertical,
     id: id,
@@ -1079,7 +1212,7 @@ function create_fragment$6(ctx) {
 
 function instance$6($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      className = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$role = $$props.role,
       role = _$$props$role === void 0 ? 'toolbar' : _$$props$role,
       _$$props$ariaLabel = $$props.ariaLabel,
@@ -1089,7 +1222,7 @@ function instance$6($$self, $$props, $$invalidate) {
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('role' in $$props) $$invalidate('role', role = $$props.role);
     if ('ariaLabel' in $$props) $$invalidate('ariaLabel', ariaLabel = $$props.ariaLabel);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
@@ -1099,16 +1232,16 @@ function instance$6($$self, $$props, $$invalidate) {
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      clazz: 1
+      className: 1
     };
 
-    if ($$dirty.clazz) {
-      $$invalidate('classes', classes = "".concat(clazz, " btn-toolbar"));
+    if ($$dirty.className) {
+      $$invalidate('classes', classes = clsx(className, 'btn-toolbar'));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     role: role,
     ariaLabel: ariaLabel,
     classes: classes,
@@ -1144,7 +1277,7 @@ function create_fragment$7(ctx) {
       div = internal.element("div");
       if (default_slot) default_slot.c();
       div.id = ctx.id;
-      div.className = ctx.classNames;
+      div.className = ctx.classes;
       dispose = internal.listen(div, "click", ctx.click_handler);
     },
     l: function l(nodes) {
@@ -1168,8 +1301,8 @@ function create_fragment$7(ctx) {
         div.id = ctx.id;
       }
 
-      if (!current || changed.classNames) {
-        div.className = ctx.classNames;
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
       }
     },
     i: function i(local) {
@@ -1194,13 +1327,13 @@ function create_fragment$7(ctx) {
 
 function instance$7($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      className = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$inverse = $$props.inverse,
       inverse = _$$props$inverse === void 0 ? false : _$$props$inverse,
-      _$$props$block = $$props.block,
-      block = _$$props$block === void 0 ? false : _$$props$block,
       _$$props$color = $$props.color,
       color = _$$props$color === void 0 ? '' : _$$props$color,
+      _$$props$body = $$props.body,
+      body = _$$props$body === void 0 ? false : _$$props$body,
       _$$props$outline = $$props.outline,
       outline = _$$props$outline === void 0 ? false : _$$props$outline,
       _$$props$id = $$props.id,
@@ -1214,39 +1347,39 @@ function instance$7($$self, $$props, $$invalidate) {
   }
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('inverse' in $$props) $$invalidate('inverse', inverse = $$props.inverse);
-    if ('block' in $$props) $$invalidate('block', block = $$props.block);
     if ('color' in $$props) $$invalidate('color', color = $$props.color);
+    if ('body' in $$props) $$invalidate('body', body = $$props.body);
     if ('outline' in $$props) $$invalidate('outline', outline = $$props.outline);
     if ('id' in $$props) $$invalidate('id', id = $$props.id);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
-  var classNames;
+  var classes;
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      className: 1,
       inverse: 1,
-      block: 1,
+      body: 1,
       color: 1,
-      outline: 1,
-      clazz: 1
+      outline: 1
     };
 
-    if ($$dirty.inverse || $$dirty.block || $$dirty.color || $$dirty.outline || $$dirty.clazz) {
-      $$invalidate('classNames', classNames = "card".concat(inverse ? ' card-inverse' : '').concat(block ? ' card-body' : '').concat(color ? "".concat(outline ? ' border' : ' bg', "-").concat(color) : '').concat(clazz ? " ".concat(clazz) : ''));
+    if ($$dirty.className || $$dirty.inverse || $$dirty.body || $$dirty.color || $$dirty.outline) {
+      $$invalidate('classes', classes = clsx(className, 'card', inverse ? 'text-white' : false, body ? 'card-body' : false, color ? "".concat(outline ? 'border' : 'bg', "-").concat(color) : false));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     inverse: inverse,
-    block: block,
     color: color,
+    body: body,
     outline: outline,
     id: id,
-    classNames: classNames,
+    classes: classes,
     click_handler: click_handler,
     $$slots: $$slots,
     $$scope: $$scope
@@ -1264,7 +1397,7 @@ function (_SvelteComponent) {
     _classCallCheck(this, Card);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Card).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$7, create_fragment$7, internal.safe_not_equal, ["class", "inverse", "block", "color", "outline", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$7, create_fragment$7, internal.safe_not_equal, ["class", "inverse", "color", "body", "outline", "id"]);
     return _this;
   }
 
@@ -1280,7 +1413,7 @@ function create_fragment$8(ctx) {
       div = internal.element("div");
       if (default_slot) default_slot.c();
       div.id = ctx.id;
-      div.className = ctx.classNames;
+      div.className = ctx.classes;
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -1303,8 +1436,8 @@ function create_fragment$8(ctx) {
         div.id = ctx.id;
       }
 
-      if (!current || changed.classNames) {
-        div.className = ctx.classNames;
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
       }
     },
     i: function i(local) {
@@ -1328,7 +1461,7 @@ function create_fragment$8(ctx) {
 
 function instance$8($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      className = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$id = $$props.id,
       id = _$$props$id === void 0 ? '' : _$$props$id;
   var _$$props$$$slots = $$props.$$slots,
@@ -1336,27 +1469,27 @@ function instance$8($$self, $$props, $$invalidate) {
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('id' in $$props) $$invalidate('id', id = $$props.id);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
-  var classNames;
+  var classes;
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      clazz: 1
+      className: 1
     };
 
-    if ($$dirty.clazz) {
-      $$invalidate('classNames', classNames = "card-body".concat(clazz ? " ".concat(clazz) : ''));
+    if ($$dirty.className) {
+      $$invalidate('classes', classes = clsx(className, 'card-body'));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     id: id,
-    classNames: classNames,
+    classes: classes,
     $$slots: $$slots,
     $$scope: $$scope
   };
@@ -1432,13 +1565,13 @@ function create_fragment$9(ctx) {
 
 function instance$9($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class;
+      className = _$$props$class === void 0 ? '' : _$$props$class;
   var _$$props$$$slots = $$props.$$slots,
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
@@ -1446,16 +1579,16 @@ function instance$9($$self, $$props, $$invalidate) {
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      clazz: 1
+      className: 1
     };
 
-    if ($$dirty.clazz) {
-      $$invalidate('classes', classes = "".concat(clazz, " card-columns"));
+    if ($$dirty.className) {
+      $$invalidate('classes', classes = clsx(className, 'card-columns'));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     classes: classes,
     $$slots: $$slots,
     $$scope: $$scope
@@ -1532,13 +1665,13 @@ function create_fragment$a(ctx) {
 
 function instance$a($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class;
+      className = _$$props$class === void 0 ? '' : _$$props$class;
   var _$$props$$$slots = $$props.$$slots,
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
@@ -1546,16 +1679,16 @@ function instance$a($$self, $$props, $$invalidate) {
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      clazz: 1
+      className: 1
     };
 
-    if ($$dirty.clazz) {
-      $$invalidate('classes', classes = "".concat(clazz, " card-deck"));
+    if ($$dirty.className) {
+      $$invalidate('classes', classes = clsx(className, 'card-deck'));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     classes: classes,
     $$slots: $$slots,
     $$scope: $$scope
@@ -1632,13 +1765,13 @@ function create_fragment$b(ctx) {
 
 function instance$b($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class;
+      className = _$$props$class === void 0 ? '' : _$$props$class;
   var _$$props$$$slots = $$props.$$slots,
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
@@ -1646,16 +1779,16 @@ function instance$b($$self, $$props, $$invalidate) {
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      clazz: 1
+      className: 1
     };
 
-    if ($$dirty.clazz) {
-      $$invalidate('classes', classes = "".concat(clazz, " card-footer"));
+    if ($$dirty.className) {
+      $$invalidate('classes', classes = clsx(className, 'card-footer'));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     classes: classes,
     $$slots: $$slots,
     $$scope: $$scope
@@ -1732,13 +1865,13 @@ function create_fragment$c(ctx) {
 
 function instance$c($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class;
+      className = _$$props$class === void 0 ? '' : _$$props$class;
   var _$$props$$$slots = $$props.$$slots,
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
@@ -1746,16 +1879,16 @@ function instance$c($$self, $$props, $$invalidate) {
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      clazz: 1
+      className: 1
     };
 
-    if ($$dirty.clazz) {
-      $$invalidate('classes', classes = "".concat(clazz, " card-group"));
+    if ($$dirty.className) {
+      $$invalidate('classes', classes = clsx(className, 'card-group'));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     classes: classes,
     $$slots: $$slots,
     $$scope: $$scope
@@ -1789,7 +1922,7 @@ function create_fragment$d(ctx) {
       div = internal.element("div");
       if (default_slot) default_slot.c();
       div.id = ctx.id;
-      div.className = ctx.classNames;
+      div.className = ctx.classes;
       dispose = internal.listen(div, "click", ctx.click_handler);
     },
     l: function l(nodes) {
@@ -1813,8 +1946,8 @@ function create_fragment$d(ctx) {
         div.id = ctx.id;
       }
 
-      if (!current || changed.classNames) {
-        div.className = ctx.classNames;
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
       }
     },
     i: function i(local) {
@@ -1839,7 +1972,7 @@ function create_fragment$d(ctx) {
 
 function instance$d($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      className = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$id = $$props.id,
       id = _$$props$id === void 0 ? '' : _$$props$id;
   var _$$props$$$slots = $$props.$$slots,
@@ -1851,27 +1984,27 @@ function instance$d($$self, $$props, $$invalidate) {
   }
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('id' in $$props) $$invalidate('id', id = $$props.id);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
-  var classNames;
+  var classes;
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      clazz: 1
+      className: 1
     };
 
-    if ($$dirty.clazz) {
-      $$invalidate('classNames', classNames = "card-header".concat(clazz ? " ".concat(clazz) : ''));
+    if ($$dirty.className) {
+      $$invalidate('classes', classes = clsx(className, 'card-header'));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     id: id,
-    classNames: classNames,
+    classes: classes,
     click_handler: click_handler,
     $$slots: $$slots,
     $$scope: $$scope
@@ -1948,13 +2081,13 @@ function create_fragment$e(ctx) {
 
 function instance$e($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class;
+      className = _$$props$class === void 0 ? '' : _$$props$class;
   var _$$props$$$slots = $$props.$$slots,
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
@@ -1962,16 +2095,16 @@ function instance$e($$self, $$props, $$invalidate) {
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      clazz: 1
+      className: 1
     };
 
-    if ($$dirty.clazz) {
-      $$invalidate('classes', classes = "".concat(clazz, " card-img-overlay"));
+    if ($$dirty.className) {
+      $$invalidate('classes', classes = clsx(className, 'card-img-overlay'));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     classes: classes,
     $$slots: $$slots,
     $$scope: $$scope
@@ -1997,23 +2130,24 @@ function (_SvelteComponent) {
 }(internal.SvelteComponent);
 
 function create_fragment$f(ctx) {
-  var div, current;
+  var _p, current;
+
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
   return {
     c: function c() {
-      div = internal.element("div");
+      _p = internal.element("p");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      _p.className = ctx.classes;
     },
     l: function l(nodes) {
-      if (default_slot) default_slot.l(div_nodes);
+      if (default_slot) default_slot.l(p_nodes);
     },
     m: function m(target, anchor) {
-      internal.insert(target, div, anchor);
+      internal.insert(target, _p, anchor);
 
       if (default_slot) {
-        default_slot.m(div, null);
+        default_slot.m(_p, null);
       }
 
       current = true;
@@ -2024,7 +2158,7 @@ function create_fragment$f(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        _p.className = ctx.classes;
       }
     },
     i: function i(local) {
@@ -2038,7 +2172,7 @@ function create_fragment$f(ctx) {
     },
     d: function d(detaching) {
       if (detaching) {
-        internal.detach(div);
+        internal.detach(_p);
       }
 
       if (default_slot) default_slot.d(detaching);
@@ -2048,13 +2182,13 @@ function create_fragment$f(ctx) {
 
 function instance$f($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class;
+      className = _$$props$class === void 0 ? '' : _$$props$class;
   var _$$props$$$slots = $$props.$$slots,
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
@@ -2062,16 +2196,16 @@ function instance$f($$self, $$props, $$invalidate) {
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      clazz: 1
+      className: 1
     };
 
-    if ($$dirty.clazz) {
-      $$invalidate('classes', classes = "".concat(clazz, " card-text"));
+    if ($$dirty.className) {
+      $$invalidate('classes', classes = clsx(className, 'card-text'));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     classes: classes,
     $$slots: $$slots,
     $$scope: $$scope
@@ -2148,13 +2282,13 @@ function create_fragment$g(ctx) {
 
 function instance$g($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class;
+      className = _$$props$class === void 0 ? '' : _$$props$class;
   var _$$props$$$slots = $$props.$$slots,
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
@@ -2162,16 +2296,16 @@ function instance$g($$self, $$props, $$invalidate) {
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      clazz: 1
+      className: 1
     };
 
-    if ($$dirty.clazz) {
-      $$invalidate('classes', classes = "".concat(clazz, " card-title"));
+    if ($$dirty.className) {
+      $$invalidate('classes', classes = clsx(className, 'card-title'));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     classes: classes,
     $$slots: $$slots,
     $$scope: $$scope
@@ -2289,14 +2423,10 @@ function create_fragment$h(ctx) {
 function instance$h($$self, $$props, $$invalidate) {
   var _$$props = $$props,
       _$$props$class = _$$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      className = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$id = _$$props.id,
       id = _$$props$id === void 0 ? '' : _$$props$id;
   var colClasses = [];
-
-  if (clazz) {
-    colClasses.push(clazz);
-  }
 
   var getColumnSizeClass = function getColumnSizeClass(isXs, colWidth, colSize) {
     if (colSize === true || colSize === '') {
@@ -2341,6 +2471,15 @@ function instance$h($$self, $$props, $$invalidate) {
       colClasses.push(getColumnSizeClass(isXs, colWidth, columnProp));
     }
   });
+
+  if (!colClasses.length) {
+    colClasses.push('col');
+  }
+
+  if (className) {
+    colClasses.push(className);
+  }
+
   var _$$props2 = $$props,
       _$$props2$$$slots = _$$props2.$$slots,
       $$slots = _$$props2$$$slots === void 0 ? {} : _$$props2$$$slots,
@@ -2348,13 +2487,13 @@ function instance$h($$self, $$props, $$invalidate) {
 
   $$self.$set = function ($$new_props) {
     $$invalidate('$$props', $$props = internal.assign(internal.assign({}, $$props), $$new_props));
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('id' in $$props) $$invalidate('id', id = $$props.id);
     if ('$$scope' in $$new_props) $$invalidate('$$scope', $$scope = $$new_props.$$scope);
   };
 
   return {
-    clazz: clazz,
+    className: className,
     id: id,
     colClasses: colClasses,
     $$props: $$props = internal.exclude_internal_props($$props),
@@ -2381,7 +2520,7 @@ function (_SvelteComponent) {
   return Col;
 }(internal.SvelteComponent);
 
-function create_if_block$1(ctx) {
+function create_if_block$2(ctx) {
   var div, div_transition, current, dispose;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
@@ -2389,6 +2528,7 @@ function create_if_block$1(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
+      div.className = ctx.classes;
       dispose = [internal.listen(div, "introstart", ctx.introstart_handler), internal.listen(div, "introend", ctx.introend_handler), internal.listen(div, "outrostart", ctx.outrostart_handler), internal.listen(div, "outroend", ctx.outroend_handler)];
     },
     l: function l(nodes) {
@@ -2406,6 +2546,10 @@ function create_if_block$1(ctx) {
     p: function p(changed, ctx) {
       if (default_slot && default_slot.p && changed.$$scope) {
         default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
       }
     },
     i: function i(local) {
@@ -2440,12 +2584,14 @@ function create_if_block$1(ctx) {
 }
 
 function create_fragment$i(ctx) {
-  var if_block_anchor, current;
-  var if_block = ctx.isOpen && create_if_block$1(ctx);
+  var if_block_anchor, current, dispose;
+  internal.add_render_callback(ctx.onwindowresize);
+  var if_block = ctx.isOpen && create_if_block$2(ctx);
   return {
     c: function c() {
       if (if_block) if_block.c();
       if_block_anchor = internal.empty();
+      dispose = internal.listen(window, "resize", ctx.onwindowresize);
     },
     m: function m(target, anchor) {
       if (if_block) if_block.m(target, anchor);
@@ -2458,7 +2604,7 @@ function create_fragment$i(ctx) {
           if_block.p(changed, ctx);
           if_block.i(1);
         } else {
-          if_block = create_if_block$1(ctx);
+          if_block = create_if_block$2(ctx);
           if_block.c();
           if_block.i(1);
           if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -2488,13 +2634,21 @@ function create_fragment$i(ctx) {
       if (detaching) {
         internal.detach(if_block_anchor);
       }
+
+      dispose();
     }
   };
 }
 
 function instance$i($$self, $$props, $$invalidate) {
   var _$$props$isOpen = $$props.isOpen,
-      isOpen = _$$props$isOpen === void 0 ? false : _$$props$isOpen;
+      isOpen = _$$props$isOpen === void 0 ? false : _$$props$isOpen,
+      _$$props$class = $$props["class"],
+      className = _$$props$class === void 0 ? '' : _$$props$class,
+      _$$props$navbar = $$props.navbar,
+      navbar = _$$props$navbar === void 0 ? false : _$$props$navbar;
+  var _wasOpen = isOpen;
+  var windowWidth = window.innerWidth;
   var _$$props$$$slots = $$props.$$slots,
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
@@ -2515,17 +2669,55 @@ function instance$i($$self, $$props, $$invalidate) {
     internal.bubble($$self, event);
   }
 
+  function onwindowresize() {
+    windowWidth = window.innerWidth;
+    $$invalidate('windowWidth', windowWidth);
+  }
+
   $$self.$set = function ($$props) {
     if ('isOpen' in $$props) $$invalidate('isOpen', isOpen = $$props.isOpen);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
+    if ('navbar' in $$props) $$invalidate('navbar', navbar = $$props.navbar);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      className: 1,
+      navbar: 1,
+      windowWidth: 1,
+      _wasOpen: 1,
+      isOpen: 1
+    };
+
+    if ($$dirty.className || $$dirty.navbar) {
+      $$invalidate('classes', classes = clsx(className, // collapseClass,
+      navbar && 'navbar-collapse'));
+    }
+
+    if ($$dirty.windowWidth || $$dirty.navbar || $$dirty._wasOpen || $$dirty.isOpen) {
+      if (windowWidth >= 768 && navbar && _wasOpen === isOpen) {
+        $$invalidate('_wasOpen', _wasOpen = isOpen);
+        $$invalidate('isOpen', isOpen = true);
+      } else if (windowWidth < 768) {
+        $$invalidate('isOpen', isOpen = _wasOpen);
+      }
+    }
   };
 
   return {
     isOpen: isOpen,
+    className: className,
+    navbar: navbar,
+    windowWidth: windowWidth,
+    classes: classes,
     introstart_handler: introstart_handler,
     introend_handler: introend_handler,
     outrostart_handler: outrostart_handler,
     outroend_handler: outroend_handler,
+    onwindowresize: onwindowresize,
     $$slots: $$slots,
     $$scope: $$scope
   };
@@ -2542,7 +2734,7 @@ function (_SvelteComponent) {
     _classCallCheck(this, Collapse);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Collapse).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$i, create_fragment$i, internal.safe_not_equal, ["isOpen"]);
+    internal.init(_assertThisInitialized(_this), options, instance$i, create_fragment$i, internal.safe_not_equal, ["isOpen", "class", "navbar"]);
     return _this;
   }
 
@@ -2558,7 +2750,7 @@ function create_fragment$j(ctx) {
       div = internal.element("div");
       if (default_slot) default_slot.c();
       div.id = ctx.id;
-      div.className = ctx.classNames;
+      div.className = ctx.classes;
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -2581,8 +2773,8 @@ function create_fragment$j(ctx) {
         div.id = ctx.id;
       }
 
-      if (!current || changed.classNames) {
-        div.className = ctx.classNames;
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
       }
     },
     i: function i(local) {
@@ -2606,7 +2798,7 @@ function create_fragment$j(ctx) {
 
 function instance$j($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      className = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$fluid = $$props.fluid,
       fluid = _$$props$fluid === void 0 ? false : _$$props$fluid,
       _$$props$id = $$props.id,
@@ -2616,30 +2808,30 @@ function instance$j($$self, $$props, $$invalidate) {
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('fluid' in $$props) $$invalidate('fluid', fluid = $$props.fluid);
     if ('id' in $$props) $$invalidate('id', id = $$props.id);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
-  var classNames;
+  var classes;
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      fluid: 1,
-      clazz: 1
+      className: 1,
+      fluid: 1
     };
 
-    if ($$dirty.fluid || $$dirty.clazz) {
-      $$invalidate('classNames', classNames = "container".concat(fluid ? '-fluid' : '').concat(clazz ? " ".concat(clazz) : ''));
+    if ($$dirty.className || $$dirty.fluid) {
+      $$invalidate('classes', classes = clsx(className, fluid ? 'container-fluid' : 'container'));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     fluid: fluid,
     id: id,
-    classNames: classNames,
+    classes: classes,
     $$slots: $$slots,
     $$scope: $$scope
   };
@@ -2672,7 +2864,7 @@ function create_fragment$k(ctx) {
       div = internal.element("div");
       if (default_slot) default_slot.c();
       div.id = ctx.id;
-      div.className = ctx.classNames;
+      div.className = ctx.classes;
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -2695,8 +2887,8 @@ function create_fragment$k(ctx) {
         div.id = ctx.id;
       }
 
-      if (!current || changed.classNames) {
-        div.className = ctx.classNames;
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
       }
     },
     i: function i(local) {
@@ -2720,15 +2912,15 @@ function create_fragment$k(ctx) {
 
 function instance$k($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class,
-      _$$props$color = $$props.color,
-      color = _$$props$color === void 0 ? '' : _$$props$color,
+      className = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$row = $$props.row,
       row = _$$props$row === void 0 ? false : _$$props$row,
-      _$$props$disabled = $$props.disabled,
-      disabled = _$$props$disabled === void 0 ? false : _$$props$disabled,
       _$$props$check = $$props.check,
       check = _$$props$check === void 0 ? false : _$$props$check,
+      _$$props$inline = $$props.inline,
+      inline = _$$props$inline === void 0 ? false : _$$props$inline,
+      _$$props$disabled = $$props.disabled,
+      disabled = _$$props$disabled === void 0 ? false : _$$props$disabled,
       _$$props$id = $$props.id,
       id = _$$props$id === void 0 ? '' : _$$props$id;
   var _$$props$$$slots = $$props.$$slots,
@@ -2736,39 +2928,39 @@ function instance$k($$self, $$props, $$invalidate) {
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
-    if ('color' in $$props) $$invalidate('color', color = $$props.color);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('row' in $$props) $$invalidate('row', row = $$props.row);
-    if ('disabled' in $$props) $$invalidate('disabled', disabled = $$props.disabled);
     if ('check' in $$props) $$invalidate('check', check = $$props.check);
+    if ('inline' in $$props) $$invalidate('inline', inline = $$props.inline);
+    if ('disabled' in $$props) $$invalidate('disabled', disabled = $$props.disabled);
     if ('id' in $$props) $$invalidate('id', id = $$props.id);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
-  var classNames;
+  var classes;
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      color: 1,
+      className: 1,
       row: 1,
       check: 1,
-      disabled: 1,
-      clazz: 1
+      inline: 1,
+      disabled: 1
     };
 
-    if ($$dirty.color || $$dirty.row || $$dirty.check || $$dirty.disabled || $$dirty.clazz) {
-      $$invalidate('classNames', classNames = "".concat(color ? "has-".concat(color) : '').concat(row ? ' row' : '').concat(check ? ' form-check' : ' form-group').concat(check && disabled ? ' disabled' : '').concat(clazz ? " ".concat(clazz) : ''));
+    if ($$dirty.className || $$dirty.row || $$dirty.check || $$dirty.inline || $$dirty.disabled) {
+      $$invalidate('classes', classes = clsx(className, row ? 'row' : false, check ? 'form-check' : 'form-group', check && inline ? 'form-check-inline' : false, check && disabled ? 'disabled' : false));
     }
   };
 
   return {
-    clazz: clazz,
-    color: color,
+    className: className,
     row: row,
-    disabled: disabled,
     check: check,
+    inline: inline,
+    disabled: disabled,
     id: id,
-    classNames: classNames,
+    classes: classes,
     $$slots: $$slots,
     $$scope: $$scope
   };
@@ -2785,7 +2977,7 @@ function (_SvelteComponent) {
     _classCallCheck(this, FormGroup);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(FormGroup).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$k, create_fragment$k, internal.safe_not_equal, ["class", "color", "row", "disabled", "check", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$k, create_fragment$k, internal.safe_not_equal, ["class", "row", "check", "inline", "disabled", "id"]);
     return _this;
   }
 
@@ -2802,7 +2994,9 @@ function create_if_block_14(ctx) {
       if (default_slot) default_slot.c();
       select.id = ctx.id;
       select.multiple = ctx.multiple;
-      select.className = ctx.combinedClasses;
+      select.className = ctx.classes;
+      select.name = ctx.name;
+      select.disabled = ctx.disabled;
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(select_nodes);
@@ -2828,6 +3022,18 @@ function create_if_block_14(ctx) {
       if (!current || changed.multiple) {
         select.multiple = ctx.multiple;
       }
+
+      if (!current || changed.classes) {
+        select.className = ctx.classes;
+      }
+
+      if (!current || changed.name) {
+        select.name = ctx.name;
+      }
+
+      if (!current || changed.disabled) {
+        select.disabled = ctx.disabled;
+      }
     },
     i: function i(local) {
       if (current) return;
@@ -2846,7 +3052,7 @@ function create_if_block_14(ctx) {
       if (default_slot) default_slot.d(detaching);
     }
   };
-} // (97:29) 
+} // (91:29) 
 
 
 function create_if_block_13(ctx) {
@@ -2855,7 +3061,9 @@ function create_if_block_13(ctx) {
     c: function c() {
       textarea = internal.element("textarea");
       textarea.id = ctx.id;
-      textarea.className = ctx.combinedClasses;
+      textarea.className = ctx.classes;
+      textarea.name = ctx.name;
+      textarea.disabled = ctx.disabled;
       dispose = internal.listen(textarea, "input", ctx.textarea_input_handler);
     },
     m: function m(target, anchor) {
@@ -2868,6 +3076,18 @@ function create_if_block_13(ctx) {
       if (changed.id) {
         textarea.id = ctx.id;
       }
+
+      if (changed.classes) {
+        textarea.className = ctx.classes;
+      }
+
+      if (changed.name) {
+        textarea.name = ctx.name;
+      }
+
+      if (changed.disabled) {
+        textarea.disabled = ctx.disabled;
+      }
     },
     i: internal.noop,
     o: internal.noop,
@@ -2879,10 +3099,10 @@ function create_if_block_13(ctx) {
       dispose();
     }
   };
-} // (68:0) {#if tag === 'input'}
+} // (64:0) {#if tag === 'input'}
 
 
-function create_if_block$2(ctx) {
+function create_if_block$3(ctx) {
   var if_block_anchor;
 
   function select_block_type_1(ctx) {
@@ -2934,7 +3154,7 @@ function create_if_block$2(ctx) {
       }
     }
   };
-} // (91:29) 
+} // (87:29) 
 
 
 function create_if_block_12(ctx) {
@@ -2945,7 +3165,9 @@ function create_if_block_12(ctx) {
       input.id = ctx.id;
       internal.attr(input, "type", "search");
       input.readOnly = ctx.readonly;
-      input.className = ctx.combinedClasses;
+      input.className = ctx.classes;
+      input.name = ctx.name;
+      input.disabled = ctx.disabled;
       dispose = internal.listen(input, "input", ctx.input_input_handler_9);
     },
     m: function m(target, anchor) {
@@ -2962,6 +3184,18 @@ function create_if_block_12(ctx) {
       if (changed.readonly) {
         input.readOnly = ctx.readonly;
       }
+
+      if (changed.classes) {
+        input.className = ctx.classes;
+      }
+
+      if (changed.name) {
+        input.name = ctx.name;
+      }
+
+      if (changed.disabled) {
+        input.disabled = ctx.disabled;
+      }
     },
     d: function d(detaching) {
       if (detaching) {
@@ -2971,7 +3205,7 @@ function create_if_block_12(ctx) {
       dispose();
     }
   };
-} // (89:28) 
+} // (85:28) 
 
 
 function create_if_block_11(ctx) {
@@ -2982,7 +3216,9 @@ function create_if_block_11(ctx) {
       input.id = ctx.id;
       internal.attr(input, "type", "color");
       input.readOnly = ctx.readonly;
-      input.className = ctx.combinedClasses;
+      input.className = ctx.classes;
+      input.name = ctx.name;
+      input.disabled = ctx.disabled;
       dispose = internal.listen(input, "input", ctx.input_input_handler_8);
     },
     m: function m(target, anchor) {
@@ -2999,6 +3235,18 @@ function create_if_block_11(ctx) {
       if (changed.readonly) {
         input.readOnly = ctx.readonly;
       }
+
+      if (changed.classes) {
+        input.className = ctx.classes;
+      }
+
+      if (changed.name) {
+        input.name = ctx.name;
+      }
+
+      if (changed.disabled) {
+        input.disabled = ctx.disabled;
+      }
     },
     d: function d(detaching) {
       if (detaching) {
@@ -3008,7 +3256,7 @@ function create_if_block_11(ctx) {
       dispose();
     }
   };
-} // (87:27) 
+} // (83:27) 
 
 
 function create_if_block_10(ctx) {
@@ -3019,7 +3267,9 @@ function create_if_block_10(ctx) {
       input.id = ctx.id;
       internal.attr(input, "type", "time");
       input.readOnly = ctx.readonly;
-      input.className = ctx.combinedClasses;
+      input.className = ctx.classes;
+      input.name = ctx.name;
+      input.disabled = ctx.disabled;
       dispose = internal.listen(input, "input", ctx.input_input_handler_7);
     },
     m: function m(target, anchor) {
@@ -3036,6 +3286,18 @@ function create_if_block_10(ctx) {
       if (changed.readonly) {
         input.readOnly = ctx.readonly;
       }
+
+      if (changed.classes) {
+        input.className = ctx.classes;
+      }
+
+      if (changed.name) {
+        input.name = ctx.name;
+      }
+
+      if (changed.disabled) {
+        input.disabled = ctx.disabled;
+      }
     },
     d: function d(detaching) {
       if (detaching) {
@@ -3045,7 +3307,7 @@ function create_if_block_10(ctx) {
       dispose();
     }
   };
-} // (85:27) 
+} // (81:27) 
 
 
 function create_if_block_9(ctx) {
@@ -3056,7 +3318,9 @@ function create_if_block_9(ctx) {
       input.id = ctx.id;
       internal.attr(input, "type", "date");
       input.readOnly = ctx.readonly;
-      input.className = ctx.combinedClasses;
+      input.className = ctx.classes;
+      input.name = ctx.name;
+      input.disabled = ctx.disabled;
       dispose = internal.listen(input, "input", ctx.input_input_handler_6);
     },
     m: function m(target, anchor) {
@@ -3073,6 +3337,18 @@ function create_if_block_9(ctx) {
       if (changed.readonly) {
         input.readOnly = ctx.readonly;
       }
+
+      if (changed.classes) {
+        input.className = ctx.classes;
+      }
+
+      if (changed.name) {
+        input.name = ctx.name;
+      }
+
+      if (changed.disabled) {
+        input.disabled = ctx.disabled;
+      }
     },
     d: function d(detaching) {
       if (detaching) {
@@ -3082,7 +3358,7 @@ function create_if_block_9(ctx) {
       dispose();
     }
   };
-} // (83:29) 
+} // (79:29) 
 
 
 function create_if_block_8(ctx) {
@@ -3093,7 +3369,9 @@ function create_if_block_8(ctx) {
       input.id = ctx.id;
       internal.attr(input, "type", "number");
       input.readOnly = ctx.readonly;
-      input.className = ctx.combinedClasses;
+      input.className = ctx.classes;
+      input.name = ctx.name;
+      input.disabled = ctx.disabled;
       dispose = internal.listen(input, "input", ctx.input_input_handler_5);
     },
     m: function m(target, anchor) {
@@ -3110,6 +3388,18 @@ function create_if_block_8(ctx) {
       if (changed.readonly) {
         input.readOnly = ctx.readonly;
       }
+
+      if (changed.classes) {
+        input.className = ctx.classes;
+      }
+
+      if (changed.name) {
+        input.name = ctx.name;
+      }
+
+      if (changed.disabled) {
+        input.disabled = ctx.disabled;
+      }
     },
     d: function d(detaching) {
       if (detaching) {
@@ -3119,7 +3409,7 @@ function create_if_block_8(ctx) {
       dispose();
     }
   };
-} // (81:26) 
+} // (77:26) 
 
 
 function create_if_block_7(ctx) {
@@ -3130,7 +3420,9 @@ function create_if_block_7(ctx) {
       input.id = ctx.id;
       internal.attr(input, "type", "url");
       input.readOnly = ctx.readonly;
-      input.className = ctx.combinedClasses;
+      input.className = ctx.classes;
+      input.name = ctx.name;
+      input.disabled = ctx.disabled;
       dispose = internal.listen(input, "input", ctx.input_input_handler_4);
     },
     m: function m(target, anchor) {
@@ -3147,6 +3439,18 @@ function create_if_block_7(ctx) {
       if (changed.readonly) {
         input.readOnly = ctx.readonly;
       }
+
+      if (changed.classes) {
+        input.className = ctx.classes;
+      }
+
+      if (changed.name) {
+        input.name = ctx.name;
+      }
+
+      if (changed.disabled) {
+        input.disabled = ctx.disabled;
+      }
     },
     d: function d(detaching) {
       if (detaching) {
@@ -3156,7 +3460,7 @@ function create_if_block_7(ctx) {
       dispose();
     }
   };
-} // (79:28) 
+} // (75:28) 
 
 
 function create_if_block_6(ctx) {
@@ -3167,7 +3471,9 @@ function create_if_block_6(ctx) {
       input.id = ctx.id;
       internal.attr(input, "type", "radio");
       input.readOnly = ctx.readonly;
-      input.className = ctx.combinedClasses;
+      input.className = ctx.classes;
+      input.name = ctx.name;
+      input.disabled = ctx.disabled;
       dispose = internal.listen(input, "change", ctx.input_change_handler_1);
     },
     m: function m(target, anchor) {
@@ -3184,6 +3490,18 @@ function create_if_block_6(ctx) {
       if (changed.readonly) {
         input.readOnly = ctx.readonly;
       }
+
+      if (changed.classes) {
+        input.className = ctx.classes;
+      }
+
+      if (changed.name) {
+        input.name = ctx.name;
+      }
+
+      if (changed.disabled) {
+        input.disabled = ctx.disabled;
+      }
     },
     d: function d(detaching) {
       if (detaching) {
@@ -3193,7 +3511,7 @@ function create_if_block_6(ctx) {
       dispose();
     }
   };
-} // (77:31) 
+} // (73:31) 
 
 
 function create_if_block_5(ctx) {
@@ -3204,7 +3522,9 @@ function create_if_block_5(ctx) {
       input.id = ctx.id;
       internal.attr(input, "type", "checkbox");
       input.readOnly = ctx.readonly;
-      input.className = ctx.combinedClasses;
+      input.className = ctx.classes;
+      input.name = ctx.name;
+      input.disabled = ctx.disabled;
       dispose = internal.listen(input, "change", ctx.input_change_handler);
     },
     m: function m(target, anchor) {
@@ -3221,6 +3541,18 @@ function create_if_block_5(ctx) {
       if (changed.readonly) {
         input.readOnly = ctx.readonly;
       }
+
+      if (changed.classes) {
+        input.className = ctx.classes;
+      }
+
+      if (changed.name) {
+        input.name = ctx.name;
+      }
+
+      if (changed.disabled) {
+        input.disabled = ctx.disabled;
+      }
     },
     d: function d(detaching) {
       if (detaching) {
@@ -3230,7 +3562,7 @@ function create_if_block_5(ctx) {
       dispose();
     }
   };
-} // (75:27) 
+} // (71:27) 
 
 
 function create_if_block_4(ctx) {
@@ -3241,7 +3573,9 @@ function create_if_block_4(ctx) {
       input.id = ctx.id;
       internal.attr(input, "type", "file");
       input.readOnly = ctx.readonly;
-      input.className = ctx.combinedClasses;
+      input.className = ctx.classes;
+      input.name = ctx.name;
+      input.disabled = ctx.disabled;
       dispose = internal.listen(input, "input", ctx.input_input_handler_3);
     },
     m: function m(target, anchor) {
@@ -3255,6 +3589,18 @@ function create_if_block_4(ctx) {
       if (changed.readonly) {
         input.readOnly = ctx.readonly;
       }
+
+      if (changed.classes) {
+        input.className = ctx.classes;
+      }
+
+      if (changed.name) {
+        input.name = ctx.name;
+      }
+
+      if (changed.disabled) {
+        input.disabled = ctx.disabled;
+      }
     },
     d: function d(detaching) {
       if (detaching) {
@@ -3264,7 +3610,7 @@ function create_if_block_4(ctx) {
       dispose();
     }
   };
-} // (73:28) 
+} // (69:28) 
 
 
 function create_if_block_3(ctx) {
@@ -3275,7 +3621,9 @@ function create_if_block_3(ctx) {
       input.id = ctx.id;
       internal.attr(input, "type", "email");
       input.readOnly = ctx.readonly;
-      input.className = ctx.combinedClasses;
+      input.className = ctx.classes;
+      input.name = ctx.name;
+      input.disabled = ctx.disabled;
       dispose = internal.listen(input, "input", ctx.input_input_handler_2);
     },
     m: function m(target, anchor) {
@@ -3292,6 +3640,18 @@ function create_if_block_3(ctx) {
       if (changed.readonly) {
         input.readOnly = ctx.readonly;
       }
+
+      if (changed.classes) {
+        input.className = ctx.classes;
+      }
+
+      if (changed.name) {
+        input.name = ctx.name;
+      }
+
+      if (changed.disabled) {
+        input.disabled = ctx.disabled;
+      }
     },
     d: function d(detaching) {
       if (detaching) {
@@ -3301,7 +3661,7 @@ function create_if_block_3(ctx) {
       dispose();
     }
   };
-} // (71:31) 
+} // (67:31) 
 
 
 function create_if_block_2(ctx) {
@@ -3312,7 +3672,9 @@ function create_if_block_2(ctx) {
       input.id = ctx.id;
       internal.attr(input, "type", "password");
       input.readOnly = ctx.readonly;
-      input.className = ctx.combinedClasses;
+      input.className = ctx.classes;
+      input.name = ctx.name;
+      input.disabled = ctx.disabled;
       dispose = internal.listen(input, "input", ctx.input_input_handler_1);
     },
     m: function m(target, anchor) {
@@ -3329,6 +3691,18 @@ function create_if_block_2(ctx) {
       if (changed.readonly) {
         input.readOnly = ctx.readonly;
       }
+
+      if (changed.classes) {
+        input.className = ctx.classes;
+      }
+
+      if (changed.name) {
+        input.name = ctx.name;
+      }
+
+      if (changed.disabled) {
+        input.disabled = ctx.disabled;
+      }
     },
     d: function d(detaching) {
       if (detaching) {
@@ -3338,7 +3712,7 @@ function create_if_block_2(ctx) {
       dispose();
     }
   };
-} // (69:1) {#if type === 'text'}
+} // (65:1) {#if type === 'text'}
 
 
 function create_if_block_1$1(ctx) {
@@ -3349,7 +3723,9 @@ function create_if_block_1$1(ctx) {
       input.id = ctx.id;
       internal.attr(input, "type", "text");
       input.readOnly = ctx.readonly;
-      input.className = ctx.combinedClasses;
+      input.className = ctx.classes;
+      input.name = ctx.name;
+      input.disabled = ctx.disabled;
       dispose = internal.listen(input, "input", ctx.input_input_handler);
     },
     m: function m(target, anchor) {
@@ -3366,6 +3742,18 @@ function create_if_block_1$1(ctx) {
       if (changed.readonly) {
         input.readOnly = ctx.readonly;
       }
+
+      if (changed.classes) {
+        input.className = ctx.classes;
+      }
+
+      if (changed.name) {
+        input.name = ctx.name;
+      }
+
+      if (changed.disabled) {
+        input.disabled = ctx.disabled;
+      }
     },
     d: function d(detaching) {
       if (detaching) {
@@ -3379,7 +3767,7 @@ function create_if_block_1$1(ctx) {
 
 function create_fragment$l(ctx) {
   var current_block_type_index, if_block, if_block_anchor, current;
-  var if_block_creators = [create_if_block$2, create_if_block_13, create_if_block_14];
+  var if_block_creators = [create_if_block$3, create_if_block_13, create_if_block_14];
   var if_blocks = [];
 
   function select_block_type(ctx) {
@@ -3456,7 +3844,7 @@ function create_fragment$l(ctx) {
 
 function instance$l($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      className = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$type = $$props.type,
       type = _$$props$type === void 0 ? 'text' : _$$props$type,
       _$$props$size = $$props.size,
@@ -3471,60 +3859,22 @@ function instance$l($$self, $$props, $$invalidate) {
       plaintext = _$$props$plaintext === void 0 ? false : _$$props$plaintext,
       _$$props$addon = $$props.addon,
       addon = _$$props$addon === void 0 ? false : _$$props$addon,
-      value = $$props.value,
+      _$$props$value = $$props.value,
+      value = _$$props$value === void 0 ? '' : _$$props$value,
       _$$props$readonly = $$props.readonly,
       readonly = _$$props$readonly === void 0 ? false : _$$props$readonly,
       _$$props$multiple = $$props.multiple,
       multiple = _$$props$multiple === void 0 ? false : _$$props$multiple,
       _$$props$id = $$props.id,
-      id = _$$props$id === void 0 ? '' : _$$props$id;
-  var checkInput = ['radio', 'checkbox'].indexOf(type) > -1;
-  var isNotaNumber = new RegExp('\\D', 'g');
-  var fileInput = type === 'file';
-  var textareaInput = type === 'textarea';
-  var selectInput = type === 'select';
-  var tag = selectInput || textareaInput ? type : 'input';
-  var formControlClass = 'form-control';
-
-  if (plaintext) {
-    formControlClass = "".concat(formControlClass, "-plaintext");
-    $$invalidate('tag', tag = 'input');
-  } else if (fileInput) {
-    formControlClass = "".concat(formControlClass, "-file");
-  } else if (checkInput) {
-    if (addon) {
-      formControlClass = null;
-    } else {
-      formControlClass = 'form-check-input';
-    }
-  }
-
-  if (size && isNotaNumber.test(size)) {
-    console.warn('Please use the prop "bsSize" instead of the "size" to bootstrap\'s input sizing.');
-    $$invalidate('bsSize', bsSize = size);
-    $$invalidate('size', size = undefined);
-  }
-
-  var classNames = [];
-
-  if (clazz) {
-    classNames.push(clazz);
-  }
-
-  if (invalid) {
-    classNames.push('is-invalid');
-  }
-
-  if (valid) {
-    classNames.push('is-valid');
-  }
-
-  if (bsSize) {
-    classNames.push("form-control-".concat(bsSize));
-  }
-
-  classNames.push(formControlClass);
-  var combinedClasses = classNames.join(' ');
+      id = _$$props$id === void 0 ? '' : _$$props$id,
+      _$$props$name = $$props.name,
+      name = _$$props$name === void 0 ? '' : _$$props$name,
+      _$$props$placeholder = $$props.placeholder,
+      placeholder = _$$props$placeholder === void 0 ? '' : _$$props$placeholder,
+      _$$props$disabled = $$props.disabled,
+      disabled = _$$props$disabled === void 0 ? false : _$$props$disabled;
+  var classes;
+  var tag;
   var _$$props$$$slots = $$props.$$slots,
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
@@ -3595,7 +3945,7 @@ function instance$l($$self, $$props, $$invalidate) {
   }
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('type' in $$props) $$invalidate('type', type = $$props.type);
     if ('size' in $$props) $$invalidate('size', size = $$props.size);
     if ('bsSize' in $$props) $$invalidate('bsSize', bsSize = $$props.bsSize);
@@ -3607,11 +3957,60 @@ function instance$l($$self, $$props, $$invalidate) {
     if ('readonly' in $$props) $$invalidate('readonly', readonly = $$props.readonly);
     if ('multiple' in $$props) $$invalidate('multiple', multiple = $$props.multiple);
     if ('id' in $$props) $$invalidate('id', id = $$props.id);
+    if ('name' in $$props) $$invalidate('name', name = $$props.name);
+    if ('placeholder' in $$props) $$invalidate('placeholder', placeholder = $$props.placeholder);
+    if ('disabled' in $$props) $$invalidate('disabled', disabled = $$props.disabled);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      type: 1,
+      plaintext: 1,
+      addon: 1,
+      size: 1,
+      className: 1,
+      invalid: 1,
+      valid: 1,
+      bsSize: 1
+    };
+
+    if ($$dirty.type || $$dirty.plaintext || $$dirty.addon || $$dirty.size || $$dirty.className || $$dirty.invalid || $$dirty.valid || $$dirty.bsSize) {
+      {
+        var checkInput = ['radio', 'checkbox'].indexOf(type) > -1;
+        var isNotaNumber = new RegExp('\\D', 'g');
+        var fileInput = type === 'file';
+        var textareaInput = type === 'textarea';
+        var selectInput = type === 'select';
+        $$invalidate('tag', tag = selectInput || textareaInput ? type : 'input');
+        var formControlClass = 'form-control';
+
+        if (plaintext) {
+          formControlClass = "".concat(formControlClass, "-plaintext");
+          $$invalidate('tag', tag = 'input');
+        } else if (fileInput) {
+          formControlClass = "".concat(formControlClass, "-file");
+        } else if (checkInput) {
+          if (addon) {
+            formControlClass = null;
+          } else {
+            formControlClass = 'form-check-input';
+          }
+        }
+
+        if (size && isNotaNumber.test(size)) {
+          console.warn('Please use the prop "bsSize" instead of the "size" to bootstrap\'s input sizing.');
+          $$invalidate('bsSize', bsSize = size);
+          $$invalidate('size', size = undefined);
+        }
+
+        $$invalidate('classes', classes = clsx(className, invalid && 'is-invalid', valid && 'is-valid', bsSize ? "form-control-".concat(bsSize) : false, formControlClass));
+      }
+    }
+  };
+
   return {
-    clazz: clazz,
+    className: className,
     type: type,
     size: size,
     bsSize: bsSize,
@@ -3623,8 +4022,11 @@ function instance$l($$self, $$props, $$invalidate) {
     readonly: readonly,
     multiple: multiple,
     id: id,
+    name: name,
+    placeholder: placeholder,
+    disabled: disabled,
+    classes: classes,
     tag: tag,
-    combinedClasses: combinedClasses,
     input_input_handler: input_input_handler,
     input_input_handler_1: input_input_handler_1,
     input_input_handler_2: input_input_handler_2,
@@ -3654,14 +4056,240 @@ function (_SvelteComponent) {
     _classCallCheck(this, Input);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Input).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$l, create_fragment$l, internal.safe_not_equal, ["class", "type", "size", "bsSize", "valid", "invalid", "plaintext", "addon", "value", "readonly", "multiple", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$l, create_fragment$l, internal.safe_not_equal, ["class", "type", "size", "bsSize", "valid", "invalid", "plaintext", "addon", "value", "readonly", "multiple", "id", "name", "placeholder", "disabled"]);
     return _this;
   }
 
   return Input;
 }(internal.SvelteComponent);
 
+function create_else_block$1(ctx) {
+  var div, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      div = internal.element("div");
+      if (default_slot) default_slot.c();
+      div.className = ctx.classes;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(div_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, div, anchor);
+
+      if (default_slot) {
+        default_slot.m(div, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(div);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+} // (17:0) {#if tag === 'section'}
+
+
+function create_if_block$4(ctx) {
+  var section, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      section = internal.element("section");
+      if (default_slot) default_slot.c();
+      section.className = ctx.classes;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(section_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, section, anchor);
+
+      if (default_slot) {
+        default_slot.m(section, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        section.className = ctx.classes;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(section);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
 function create_fragment$m(ctx) {
+  var current_block_type_index, if_block, if_block_anchor, current;
+  var if_block_creators = [create_if_block$4, create_else_block$1];
+  var if_blocks = [];
+
+  function select_block_type(ctx) {
+    if (ctx.tag === 'section') return 0;
+    return 1;
+  }
+
+  current_block_type_index = select_block_type(ctx);
+  if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+  return {
+    c: function c() {
+      if_block.c();
+      if_block_anchor = internal.empty();
+    },
+    m: function m(target, anchor) {
+      if_blocks[current_block_type_index].m(target, anchor);
+      internal.insert(target, if_block_anchor, anchor);
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      var previous_block_index = current_block_type_index;
+      current_block_type_index = select_block_type(ctx);
+
+      if (current_block_type_index === previous_block_index) {
+        if_blocks[current_block_type_index].p(changed, ctx);
+      } else {
+        internal.group_outros();
+        internal.on_outro(function () {
+          if_blocks[previous_block_index].d(1);
+          if_blocks[previous_block_index] = null;
+        });
+        if_block.o(1);
+        internal.check_outros();
+        if_block = if_blocks[current_block_type_index];
+
+        if (!if_block) {
+          if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+          if_block.c();
+        }
+
+        if_block.i(1);
+        if_block.m(if_block_anchor.parentNode, if_block_anchor);
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (if_block) if_block.i();
+      current = true;
+    },
+    o: function o(local) {
+      if (if_block) if_block.o();
+      current = false;
+    },
+    d: function d(detaching) {
+      if_blocks[current_block_type_index].d(detaching);
+
+      if (detaching) {
+        internal.detach(if_block_anchor);
+      }
+    }
+  };
+}
+
+function instance$m($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      className = _$$props$class === void 0 ? '' : _$$props$class,
+      _$$props$fluid = $$props.fluid,
+      fluid = _$$props$fluid === void 0 ? false : _$$props$fluid,
+      _$$props$tag = $$props.tag,
+      tag = _$$props$tag === void 0 ? 'div' : _$$props$tag;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
+    if ('fluid' in $$props) $$invalidate('fluid', fluid = $$props.fluid);
+    if ('tag' in $$props) $$invalidate('tag', tag = $$props.tag);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      className: 1,
+      fluid: 1
+    };
+
+    if ($$dirty.className || $$dirty.fluid) {
+      $$invalidate('classes', classes = clsx(className, 'jumbotron', fluid ? 'jumbotron-fluid' : false));
+    }
+  };
+
+  return {
+    className: className,
+    fluid: fluid,
+    tag: tag,
+    classes: classes,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var Jumbotron =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(Jumbotron, _SvelteComponent);
+
+  function Jumbotron(options) {
+    var _this;
+
+    _classCallCheck(this, Jumbotron);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Jumbotron).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$m, create_fragment$m, internal.safe_not_equal, ["class", "fluid", "tag"]);
+    return _this;
+  }
+
+  return Jumbotron;
+}(internal.SvelteComponent);
+
+function create_fragment$n(ctx) {
   var label, current;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
@@ -3670,7 +4298,7 @@ function create_fragment$m(ctx) {
       label = internal.element("label");
       if (default_slot) default_slot.c();
       label.id = ctx.id;
-      label.className = ctx.classNames;
+      label.className = ctx.classes;
       label.htmlFor = ctx.fore;
     },
     l: function l(nodes) {
@@ -3694,8 +4322,8 @@ function create_fragment$m(ctx) {
         label.id = ctx.id;
       }
 
-      if (!current || changed.classNames) {
-        label.className = ctx.classNames;
+      if (!current || changed.classes) {
+        label.className = ctx.classes;
       }
 
       if (!current || changed.fore) {
@@ -3721,55 +4349,83 @@ function create_fragment$m(ctx) {
   };
 }
 
-function instance$m($$self, $$props, $$invalidate) {
+function instance$n($$self, $$props, $$invalidate) {
+  var colWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      className = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$hidden = $$props.hidden,
       hidden = _$$props$hidden === void 0 ? false : _$$props$hidden,
       _$$props$check = $$props.check,
       check = _$$props$check === void 0 ? false : _$$props$check,
       _$$props$size = $$props.size,
       size = _$$props$size === void 0 ? '' : _$$props$size,
-      fore = $$props["for"],
+      _$$props$for = $$props["for"],
+      fore = _$$props$for === void 0 ? '' : _$$props$for,
       _$$props$id = $$props.id,
-      id = _$$props$id === void 0 ? '' : _$$props$id;
+      id = _$$props$id === void 0 ? '' : _$$props$id,
+      _$$props$xs = $$props.xs,
+      xs = _$$props$xs === void 0 ? '' : _$$props$xs,
+      _$$props$sm = $$props.sm,
+      sm = _$$props$sm === void 0 ? '' : _$$props$sm,
+      _$$props$md = $$props.md,
+      md = _$$props$md === void 0 ? '' : _$$props$md,
+      _$$props$lg = $$props.lg,
+      lg = _$$props$lg === void 0 ? '' : _$$props$lg,
+      _$$props$xl = $$props.xl,
+      xl = _$$props$xl === void 0 ? '' : _$$props$xl,
+      _$$props$widths = $$props.widths,
+      widths = _$$props$widths === void 0 ? colWidths : _$$props$widths;
   var _$$props$$$slots = $$props.$$slots,
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('hidden' in $$props) $$invalidate('hidden', hidden = $$props.hidden);
     if ('check' in $$props) $$invalidate('check', check = $$props.check);
     if ('size' in $$props) $$invalidate('size', size = $$props.size);
     if ('for' in $$props) $$invalidate('fore', fore = $$props["for"]);
     if ('id' in $$props) $$invalidate('id', id = $$props.id);
+    if ('xs' in $$props) $$invalidate('xs', xs = $$props.xs);
+    if ('sm' in $$props) $$invalidate('sm', sm = $$props.sm);
+    if ('md' in $$props) $$invalidate('md', md = $$props.md);
+    if ('lg' in $$props) $$invalidate('lg', lg = $$props.lg);
+    if ('xl' in $$props) $$invalidate('xl', xl = $$props.xl);
+    if ('widths' in $$props) $$invalidate('widths', widths = $$props.widths);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
-  var classNames;
+  var classes;
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      className: 1,
       hidden: 1,
       check: 1,
-      size: 1,
-      clazz: 1
+      size: 1
     };
 
-    if ($$dirty.hidden || $$dirty.check || $$dirty.size || $$dirty.clazz) {
-      $$invalidate('classNames', classNames = "".concat(hidden ? ' sr-only' : '').concat(check ? ' form-check-label' : '').concat(size ? "col-form-label-".concat(size) : '').concat(clazz ? " ".concat(clazz) : ''));
+    if ($$dirty.className || $$dirty.hidden || $$dirty.check || $$dirty.size) {
+      $$invalidate('classes', classes = clsx(className, hidden ? 'sr-only' : false, check ? 'form-check-label' : false, size ? "col-form-label-".concat(size) : false // colClasses,
+      // colClasses.length ? 'col-form-label' : false,
+      ));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     hidden: hidden,
     check: check,
     size: size,
     fore: fore,
     id: id,
-    classNames: classNames,
+    xs: xs,
+    sm: sm,
+    md: md,
+    lg: lg,
+    xl: xl,
+    widths: widths,
+    classes: classes,
     $$slots: $$slots,
     $$scope: $$scope
   };
@@ -3786,14 +4442,839 @@ function (_SvelteComponent) {
     _classCallCheck(this, Label);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Label).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$m, create_fragment$m, internal.safe_not_equal, ["class", "hidden", "check", "size", "for", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$n, create_fragment$n, internal.safe_not_equal, ["class", "hidden", "check", "size", "for", "id", "xs", "sm", "md", "lg", "xl", "widths"]);
     return _this;
   }
 
   return Label;
 }(internal.SvelteComponent);
 
-function create_fragment$n(ctx) {
+function create_fragment$o(ctx) {
+  var ul, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      ul = internal.element("ul");
+      if (default_slot) default_slot.c();
+      ul.className = ctx.classes;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(ul_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, ul, anchor);
+
+      if (default_slot) {
+        default_slot.m(ul, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        ul.className = ctx.classes;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(ul);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function getVerticalClass(vertical) {
+  if (vertical === false) {
+    return false;
+  } else if (vertical === true || vertical === 'xs') {
+    return 'flex-column';
+  }
+
+  return "flex-".concat(vertical, "-column");
+}
+
+function instance$o($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      className = _$$props$class === void 0 ? '' : _$$props$class,
+      _$$props$tabs = $$props.tabs,
+      tabs = _$$props$tabs === void 0 ? false : _$$props$tabs,
+      _$$props$pills = $$props.pills,
+      pills = _$$props$pills === void 0 ? false : _$$props$pills,
+      _$$props$vertical = $$props.vertical,
+      vertical = _$$props$vertical === void 0 ? false : _$$props$vertical,
+      _$$props$horizontal = $$props.horizontal,
+      horizontal = _$$props$horizontal === void 0 ? '' : _$$props$horizontal,
+      _$$props$justified = $$props.justified,
+      justified = _$$props$justified === void 0 ? false : _$$props$justified,
+      _$$props$fill = $$props.fill,
+      fill = _$$props$fill === void 0 ? false : _$$props$fill,
+      _$$props$navbar = $$props.navbar,
+      navbar = _$$props$navbar === void 0 ? false : _$$props$navbar,
+      _$$props$card = $$props.card,
+      card = _$$props$card === void 0 ? false : _$$props$card;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
+    if ('tabs' in $$props) $$invalidate('tabs', tabs = $$props.tabs);
+    if ('pills' in $$props) $$invalidate('pills', pills = $$props.pills);
+    if ('vertical' in $$props) $$invalidate('vertical', vertical = $$props.vertical);
+    if ('horizontal' in $$props) $$invalidate('horizontal', horizontal = $$props.horizontal);
+    if ('justified' in $$props) $$invalidate('justified', justified = $$props.justified);
+    if ('fill' in $$props) $$invalidate('fill', fill = $$props.fill);
+    if ('navbar' in $$props) $$invalidate('navbar', navbar = $$props.navbar);
+    if ('card' in $$props) $$invalidate('card', card = $$props.card);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      className: 1,
+      navbar: 1,
+      horizontal: 1,
+      vertical: 1,
+      tabs: 1,
+      card: 1,
+      pills: 1,
+      justified: 1,
+      fill: 1
+    };
+
+    if ($$dirty.className || $$dirty.navbar || $$dirty.horizontal || $$dirty.vertical || $$dirty.tabs || $$dirty.card || $$dirty.pills || $$dirty.justified || $$dirty.fill) {
+      $$invalidate('classes', classes = clsx(className, navbar ? 'navbar-nav' : 'nav', horizontal ? "justify-content-".concat(horizontal) : false, getVerticalClass(vertical), {
+        'nav-tabs': tabs,
+        'card-header-tabs': card && tabs,
+        'nav-pills': pills,
+        'card-header-pills': card && pills,
+        'nav-justified': justified,
+        'nav-fill': fill
+      }));
+    }
+  };
+
+  return {
+    className: className,
+    tabs: tabs,
+    pills: pills,
+    vertical: vertical,
+    horizontal: horizontal,
+    justified: justified,
+    fill: fill,
+    navbar: navbar,
+    card: card,
+    classes: classes,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var Nav =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(Nav, _SvelteComponent);
+
+  function Nav(options) {
+    var _this;
+
+    _classCallCheck(this, Nav);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Nav).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$o, create_fragment$o, internal.safe_not_equal, ["class", "tabs", "pills", "vertical", "horizontal", "justified", "fill", "navbar", "card"]);
+    return _this;
+  }
+
+  return Nav;
+}(internal.SvelteComponent);
+
+function create_fragment$p(ctx) {
+  var nav, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      nav = internal.element("nav");
+      if (default_slot) default_slot.c();
+      nav.className = ctx.classes;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(nav_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, nav, anchor);
+
+      if (default_slot) {
+        default_slot.m(nav, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        nav.className = ctx.classes;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(nav);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function getExpandClass(expand) {
+  if (expand === false) {
+    return false;
+  } else if (expand === true || expand === 'xs') {
+    return 'navbar-expand';
+  }
+
+  return "navbar-expand-".concat(expand);
+}
+
+function instance$p($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      className = _$$props$class === void 0 ? '' : _$$props$class,
+      _$$props$light = $$props.light,
+      light = _$$props$light === void 0 ? false : _$$props$light,
+      _$$props$dark = $$props.dark,
+      dark = _$$props$dark === void 0 ? false : _$$props$dark,
+      _$$props$full = $$props.full,
+      full = _$$props$full === void 0 ? false : _$$props$full,
+      _$$props$fixed = $$props.fixed,
+      fixed = _$$props$fixed === void 0 ? '' : _$$props$fixed,
+      _$$props$sticky = $$props.sticky,
+      sticky = _$$props$sticky === void 0 ? '' : _$$props$sticky,
+      _$$props$color = $$props.color,
+      color = _$$props$color === void 0 ? '' : _$$props$color,
+      _$$props$role = $$props.role,
+      role = _$$props$role === void 0 ? '' : _$$props$role,
+      _$$props$expand = $$props.expand,
+      expand = _$$props$expand === void 0 ? false : _$$props$expand;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
+    if ('light' in $$props) $$invalidate('light', light = $$props.light);
+    if ('dark' in $$props) $$invalidate('dark', dark = $$props.dark);
+    if ('full' in $$props) $$invalidate('full', full = $$props.full);
+    if ('fixed' in $$props) $$invalidate('fixed', fixed = $$props.fixed);
+    if ('sticky' in $$props) $$invalidate('sticky', sticky = $$props.sticky);
+    if ('color' in $$props) $$invalidate('color', color = $$props.color);
+    if ('role' in $$props) $$invalidate('role', role = $$props.role);
+    if ('expand' in $$props) $$invalidate('expand', expand = $$props.expand);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      className: 1,
+      expand: 1,
+      light: 1,
+      dark: 1,
+      color: 1,
+      fixed: 1,
+      sticky: 1
+    };
+
+    if ($$dirty.className || $$dirty.expand || $$dirty.light || $$dirty.dark || $$dirty.color || $$dirty.fixed || $$dirty.sticky) {
+      var _clsx;
+
+      $$invalidate('classes', classes = clsx(className, 'navbar', getExpandClass(expand), (_clsx = {
+        'navbar-light': light,
+        'navbar-dark': dark
+      }, _defineProperty(_clsx, "bg-".concat(color), color), _defineProperty(_clsx, "fixed-".concat(fixed), fixed), _defineProperty(_clsx, "sticky-".concat(sticky), sticky), _clsx)));
+    }
+  };
+
+  return {
+    className: className,
+    light: light,
+    dark: dark,
+    full: full,
+    fixed: fixed,
+    sticky: sticky,
+    color: color,
+    role: role,
+    expand: expand,
+    classes: classes,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var Navbar =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(Navbar, _SvelteComponent);
+
+  function Navbar(options) {
+    var _this;
+
+    _classCallCheck(this, Navbar);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Navbar).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$p, create_fragment$p, internal.safe_not_equal, ["class", "light", "dark", "full", "fixed", "sticky", "color", "role", "expand"]);
+    return _this;
+  }
+
+  return Navbar;
+}(internal.SvelteComponent);
+
+function create_fragment$q(ctx) {
+  var li, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      li = internal.element("li");
+      if (default_slot) default_slot.c();
+      li.className = ctx.classes;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(li_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, li, anchor);
+
+      if (default_slot) {
+        default_slot.m(li, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        li.className = ctx.classes;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(li);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function instance$q($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      className = _$$props$class === void 0 ? '' : _$$props$class,
+      _$$props$active = $$props.active,
+      active = _$$props$active === void 0 ? false : _$$props$active;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
+    if ('active' in $$props) $$invalidate('active', active = $$props.active);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      className: 1,
+      active: 1
+    };
+
+    if ($$dirty.className || $$dirty.active) {
+      $$invalidate('classes', classes = clsx(className, 'nav-item', active ? 'active' : false));
+    }
+  };
+
+  return {
+    className: className,
+    active: active,
+    classes: classes,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var NavItem =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(NavItem, _SvelteComponent);
+
+  function NavItem(options) {
+    var _this;
+
+    _classCallCheck(this, NavItem);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(NavItem).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$q, create_fragment$q, internal.safe_not_equal, ["class", "active"]);
+    return _this;
+  }
+
+  return NavItem;
+}(internal.SvelteComponent);
+
+function create_fragment$r(ctx) {
+  var a, current, dispose;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      a = internal.element("a");
+      if (default_slot) default_slot.c();
+      a.href = ctx.href;
+      a.className = ctx.classes;
+      dispose = [internal.listen(a, "click", ctx.click_handler), internal.listen(a, "click", ctx.handleClick)];
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(a_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, a, anchor);
+
+      if (default_slot) {
+        default_slot.m(a, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.href) {
+        a.href = ctx.href;
+      }
+
+      if (!current || changed.classes) {
+        a.className = ctx.classes;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(a);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+      internal.run_all(dispose);
+    }
+  };
+}
+
+function instance$r($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      className = _$$props$class === void 0 ? '' : _$$props$class,
+      _$$props$disabled = $$props.disabled,
+      disabled = _$$props$disabled === void 0 ? false : _$$props$disabled,
+      _$$props$active = $$props.active,
+      active = _$$props$active === void 0 ? false : _$$props$active,
+      href = $$props.href;
+
+  function handleClick(e) {
+    if (disabled) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      return;
+    }
+
+    if (href === '#') {
+      e.preventDefault();
+    }
+  }
+
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  function click_handler(event) {
+    internal.bubble($$self, event);
+  }
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
+    if ('disabled' in $$props) $$invalidate('disabled', disabled = $$props.disabled);
+    if ('active' in $$props) $$invalidate('active', active = $$props.active);
+    if ('href' in $$props) $$invalidate('href', href = $$props.href);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      className: 1,
+      disabled: 1,
+      active: 1
+    };
+
+    if ($$dirty.className || $$dirty.disabled || $$dirty.active) {
+      $$invalidate('classes', classes = clsx(className, 'nav-link', {
+        disabled: disabled,
+        active: active
+      }));
+    }
+  };
+
+  return {
+    className: className,
+    disabled: disabled,
+    active: active,
+    href: href,
+    handleClick: handleClick,
+    classes: classes,
+    click_handler: click_handler,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var NavLink =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(NavLink, _SvelteComponent);
+
+  function NavLink(options) {
+    var _this;
+
+    _classCallCheck(this, NavLink);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(NavLink).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$r, create_fragment$r, internal.safe_not_equal, ["class", "disabled", "active", "href"]);
+    return _this;
+  }
+
+  return NavLink;
+}(internal.SvelteComponent);
+
+function create_fragment$s(ctx) {
+  var a, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      a = internal.element("a");
+      if (default_slot) default_slot.c();
+      a.className = ctx.classes;
+      a.href = ctx.href;
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(a_nodes);
+    },
+    m: function m(target, anchor) {
+      internal.insert(target, a, anchor);
+
+      if (default_slot) {
+        default_slot.m(a, null);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+
+      if (!current || changed.classes) {
+        a.className = ctx.classes;
+      }
+
+      if (!current || changed.href) {
+        a.href = ctx.href;
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (detaching) {
+        internal.detach(a);
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function instance$s($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      className = _$$props$class === void 0 ? '' : _$$props$class,
+      _$$props$href = $$props.href,
+      href = _$$props$href === void 0 ? '/' : _$$props$href;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
+    if ('href' in $$props) $$invalidate('href', href = $$props.href);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      className: 1
+    };
+
+    if ($$dirty.className) {
+      $$invalidate('classes', classes = clsx(className, 'navbar-brand'));
+    }
+  };
+
+  return {
+    className: className,
+    href: href,
+    classes: classes,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var NavbarBrand =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(NavbarBrand, _SvelteComponent);
+
+  function NavbarBrand(options) {
+    var _this;
+
+    _classCallCheck(this, NavbarBrand);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(NavbarBrand).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$s, create_fragment$s, internal.safe_not_equal, ["class", "href"]);
+    return _this;
+  }
+
+  return NavbarBrand;
+}(internal.SvelteComponent);
+
+function create_default_slot(ctx) {
+  var span, current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      if (!default_slot) {
+        span = internal.element("span");
+      }
+
+      if (default_slot) default_slot.c();
+
+      if (!default_slot) {
+        span.className = "navbar-toggler-icon";
+      }
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(nodes);
+    },
+    m: function m(target, anchor) {
+      if (!default_slot) {
+        internal.insert(target, span, anchor);
+      } else {
+        default_slot.m(target, anchor);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (!default_slot) {
+        if (detaching) {
+          internal.detach(span);
+        }
+      }
+
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function create_fragment$t(ctx) {
+  var current;
+  var button = new Button({
+    props: {
+      "class": ctx.classes,
+      $$slots: {
+        "default": [create_default_slot]
+      },
+      $$scope: {
+        ctx: ctx
+      }
+    }
+  });
+  button.$on("click", ctx.click_handler);
+  return {
+    c: function c() {
+      button.$$.fragment.c();
+    },
+    m: function m(target, anchor) {
+      internal.mount_component(button, target, anchor);
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      var button_changes = {};
+      if (changed.classes) button_changes["class"] = ctx.classes;
+      if (changed.$$scope) button_changes.$$scope = {
+        changed: changed,
+        ctx: ctx
+      };
+      button.$set(button_changes);
+    },
+    i: function i(local) {
+      if (current) return;
+      button.$$.fragment.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      button.$$.fragment.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      button.$destroy(detaching);
+    }
+  };
+}
+
+function instance$t($$self, $$props, $$invalidate) {
+  var _$$props$class = $$props["class"],
+      className = _$$props$class === void 0 ? '' : _$$props$class,
+      _$$props$type = $$props.type,
+      type = _$$props$type === void 0 ? 'button' : _$$props$type;
+  var _$$props$$$slots = $$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = $$props.$$scope;
+
+  function click_handler(event) {
+    internal.bubble($$self, event);
+  }
+
+  $$self.$set = function ($$props) {
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
+    if ('type' in $$props) $$invalidate('type', type = $$props.type);
+    if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+  };
+
+  var classes;
+
+  $$self.$$.update = function () {
+    var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      className: 1
+    };
+
+    if ($$dirty.className) {
+      $$invalidate('classes', classes = clsx(className, 'navbar-toggler'));
+    }
+  };
+
+  return {
+    className: className,
+    type: type,
+    classes: classes,
+    click_handler: click_handler,
+    $$slots: $$slots,
+    $$scope: $$scope
+  };
+}
+
+var NavbarToggler =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(NavbarToggler, _SvelteComponent);
+
+  function NavbarToggler(options) {
+    var _this;
+
+    _classCallCheck(this, NavbarToggler);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(NavbarToggler).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$t, create_fragment$t, internal.safe_not_equal, ["class", "type"]);
+    return _this;
+  }
+
+  return NavbarToggler;
+}(internal.SvelteComponent);
+
+function create_fragment$u(ctx) {
   var div, current;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
@@ -3802,7 +5283,7 @@ function create_fragment$n(ctx) {
       div = internal.element("div");
       if (default_slot) default_slot.c();
       div.id = ctx.id;
-      div.className = ctx.classNames;
+      div.className = ctx.classes;
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -3825,8 +5306,8 @@ function create_fragment$n(ctx) {
         div.id = ctx.id;
       }
 
-      if (!current || changed.classNames) {
-        div.className = ctx.classNames;
+      if (!current || changed.classes) {
+        div.className = ctx.classes;
       }
     },
     i: function i(local) {
@@ -3848,9 +5329,9 @@ function create_fragment$n(ctx) {
   };
 }
 
-function instance$n($$self, $$props, $$invalidate) {
+function instance$u($$self, $$props, $$invalidate) {
   var _$$props$class = $$props["class"],
-      clazz = _$$props$class === void 0 ? '' : _$$props$class,
+      className = _$$props$class === void 0 ? '' : _$$props$class,
       _$$props$noGutters = $$props.noGutters,
       noGutters = _$$props$noGutters === void 0 ? false : _$$props$noGutters,
       _$$props$form = $$props.form,
@@ -3862,33 +5343,33 @@ function instance$n($$self, $$props, $$invalidate) {
       $$scope = $$props.$$scope;
 
   $$self.$set = function ($$props) {
-    if ('class' in $$props) $$invalidate('clazz', clazz = $$props["class"]);
+    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
     if ('noGutters' in $$props) $$invalidate('noGutters', noGutters = $$props.noGutters);
     if ('form' in $$props) $$invalidate('form', form = $$props.form);
     if ('id' in $$props) $$invalidate('id', id = $$props.id);
     if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
   };
 
-  var classNames;
+  var classes;
 
   $$self.$$.update = function () {
     var $$dirty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-      clazz: 1,
+      className: 1,
       noGutters: 1,
       form: 1
     };
 
-    if ($$dirty.clazz || $$dirty.noGutters || $$dirty.form) {
-      $$invalidate('classNames', classNames = "".concat(clazz ? clazz : '').concat(noGutters ? ' no-gutters' : '').concat(form ? ' form-row' : ' row'));
+    if ($$dirty.className || $$dirty.noGutters || $$dirty.form) {
+      $$invalidate('classes', classes = clsx(className, noGutters ? 'no-gutters' : null, form ? 'form-row' : 'row'));
     }
   };
 
   return {
-    clazz: clazz,
+    className: className,
     noGutters: noGutters,
     form: form,
     id: id,
-    classNames: classNames,
+    classes: classes,
     $$slots: $$slots,
     $$scope: $$scope
   };
@@ -3905,14 +5386,153 @@ function (_SvelteComponent) {
     _classCallCheck(this, Row);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Row).call(this));
-    internal.init(_assertThisInitialized(_this), options, instance$n, create_fragment$n, internal.safe_not_equal, ["class", "noGutters", "form", "id"]);
+    internal.init(_assertThisInitialized(_this), options, instance$u, create_fragment$u, internal.safe_not_equal, ["class", "noGutters", "form", "id"]);
     return _this;
   }
 
   return Row;
 }(internal.SvelteComponent);
 
-// export { default as Table } from './Table.svelte';
+function create_default_slot$1(ctx) {
+  var current;
+  var default_slot_1 = ctx.$$slots["default"];
+  var default_slot = internal.create_slot(default_slot_1, ctx, null);
+  return {
+    c: function c() {
+      if (default_slot) default_slot.c();
+    },
+    l: function l(nodes) {
+      if (default_slot) default_slot.l(nodes);
+    },
+    m: function m(target, anchor) {
+      if (default_slot) {
+        default_slot.m(target, anchor);
+      }
+
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      if (default_slot && default_slot.p && changed.$$scope) {
+        default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
+      }
+    },
+    i: function i(local) {
+      if (current) return;
+      if (default_slot && default_slot.i) default_slot.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      if (default_slot && default_slot.o) default_slot.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      if (default_slot) default_slot.d(detaching);
+    }
+  };
+}
+
+function create_fragment$v(ctx) {
+  var current;
+  var alert_spread_levels = [{
+    isOpen: ctx.isOpen
+  }, {
+    toggle: ctx.func
+  }, ctx.$$props];
+  var alert_props = {
+    $$slots: {
+      "default": [create_default_slot$1]
+    },
+    $$scope: {
+      ctx: ctx
+    }
+  };
+
+  for (var i = 0; i < alert_spread_levels.length; i += 1) {
+    alert_props = internal.assign(alert_props, alert_spread_levels[i]);
+  }
+
+  var alert = new Alert({
+    props: alert_props
+  });
+  return {
+    c: function c() {
+      alert.$$.fragment.c();
+    },
+    m: function m(target, anchor) {
+      internal.mount_component(alert, target, anchor);
+      current = true;
+    },
+    p: function p(changed, ctx) {
+      var alert_changes = changed.isOpen || changed.$$props ? internal.get_spread_update(alert_spread_levels, [changed.isOpen && {
+        isOpen: ctx.isOpen
+      }, {
+        toggle: ctx.func
+      }, changed.$$props && ctx.$$props]) : {};
+      if (changed.$$scope) alert_changes.$$scope = {
+        changed: changed,
+        ctx: ctx
+      };
+      alert.$set(alert_changes);
+    },
+    i: function i(local) {
+      if (current) return;
+      alert.$$.fragment.i(local);
+      current = true;
+    },
+    o: function o(local) {
+      alert.$$.fragment.o(local);
+      current = false;
+    },
+    d: function d(detaching) {
+      alert.$destroy(detaching);
+    }
+  };
+}
+
+function instance$v($$self, $$props, $$invalidate) {
+  var _ref;
+
+  var isOpen = true;
+  var _$$props = $$props,
+      _$$props$$$slots = _$$props.$$slots,
+      $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
+      $$scope = _$$props.$$scope;
+
+  function func() {
+    var $$result = isOpen = false;
+    $$invalidate('isOpen', isOpen);
+    return $$result;
+  }
+
+  $$self.$set = function ($$new_props) {
+    $$invalidate('$$props', $$props = internal.assign(internal.assign({}, $$props), $$new_props));
+    if ('$$scope' in $$new_props) $$invalidate('$$scope', $$scope = $$new_props.$$scope);
+  };
+
+  return _ref = {
+    isOpen: isOpen,
+    $$props: $$props,
+    func: func
+  }, _defineProperty(_ref, "$$props", $$props = internal.exclude_internal_props($$props)), _defineProperty(_ref, "$$slots", $$slots), _defineProperty(_ref, "$$scope", $$scope), _ref;
+}
+
+var UncontrolledAlert =
+/*#__PURE__*/
+function (_SvelteComponent) {
+  _inherits(UncontrolledAlert, _SvelteComponent);
+
+  function UncontrolledAlert(options) {
+    var _this;
+
+    _classCallCheck(this, UncontrolledAlert);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(UncontrolledAlert).call(this));
+    internal.init(_assertThisInitialized(_this), options, instance$v, create_fragment$v, internal.safe_not_equal, []);
+    return _this;
+  }
+
+  return UncontrolledAlert;
+}(internal.SvelteComponent);
 
 exports.Alert = Alert;
 exports.Badge = Badge;
@@ -3936,6 +5556,14 @@ exports.Collapse = Collapse;
 exports.Container = Container;
 exports.FormGroup = FormGroup;
 exports.Input = Input;
+exports.Jumbotron = Jumbotron;
 exports.Label = Label;
+exports.Nav = Nav;
+exports.NavItem = NavItem;
+exports.NavLink = NavLink;
+exports.Navbar = Navbar;
+exports.NavbarBrand = NavbarBrand;
+exports.NavbarToggler = NavbarToggler;
 exports.Row = Row;
+exports.UncontrolledAlert = UncontrolledAlert;
 //# sourceMappingURL=sveltestrap.js.map

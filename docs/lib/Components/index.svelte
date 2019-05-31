@@ -1,5 +1,6 @@
 <script>
 	import Content from '../UI/Content.svelte';
+	export let selected;
 
 	const items = [
 		{
@@ -118,6 +119,6 @@
 
 </script>
 
-<Content title="Components" {items}>
+<Content title="Components" {items} {selected}>
 	<slot />
 </Content>

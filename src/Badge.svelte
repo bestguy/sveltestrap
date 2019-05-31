@@ -5,6 +5,7 @@
 	export { className as class };
 	export let color = 'secondary';
 	export let pill = false;
+	export let href = undefined;
 
 	$: classes = clsx(
 		className,
@@ -14,6 +15,12 @@
 	);
 </script>
 
+{#if href}
+<a {href} class="{classes}">
+	<slot />
+</a>
+{:else}
 <span class="{classes}">
 	<slot />
 </span>
+{/if}
