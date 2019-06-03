@@ -14,6 +14,7 @@
 	export let top = false;
 	export let href = '';
 	export let src = '';
+	export let alt = '';
 
 	$: classes = clsx(
 		className,
@@ -41,7 +42,7 @@
 		<slot/>
 	</a>
 {:else if src}
-	<img class="{classes}" {src} />
+	<img class="{classes}" {src} {alt} />
 {:else if list}
 	<ul class="{classes}">
 		<slot/>

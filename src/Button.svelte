@@ -14,6 +14,8 @@
 	export let close = false;
 	export let href = '';
 
+	$: ariaLabel = $$props['aria-label'];
+
 	$: classes = clsx(
 		className,
 		{ close },
@@ -23,6 +25,8 @@
 		block ? 'btn-block' : false,
 		{ active, disabled }
 	);
+
+	$: defaultAriaLabel = close ? 'Close' : null;
 </script>
 
 {#if href}
@@ -31,8 +35,13 @@
 		class="{classes}"
 		on:click
 		{href}
+		aria-label="{ariaLabel || defaultAriaLabel}"
 	>
-		<slot />
+		<slot>
+			{#if close}
+				<span aria-hidden="true">×</span>
+			{/if}
+		</slot>
 	</a>
 {:else}
 	<button
@@ -40,7 +49,12 @@
 		class="{classes}"
 		on:click
 		{value}
+		aria-label="{ariaLabel || defaultAriaLabel}"
 	>
-		<slot />
+		<slot>
+			{#if close}
+				<span aria-hidden="true">×</span>
+			{/if}
+		</slot>
 	</button>
 {/if}

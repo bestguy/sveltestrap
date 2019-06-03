@@ -13,6 +13,7 @@
 	export let ariaLabel = 'Toggle Dropdown';
 	export let split = false;
 	export let nav = false;
+	export let size = '';
 
 	$: classes = clsx(
 		className,
@@ -38,13 +39,13 @@
 </script>
 
 {#if nav}
-	<a on:click on:click="{toggleButton}" href="#" class="{classes}">
+	<a on:click on:click="{toggleButton}" href="#nav" class="{classes}">
 		<slot>
 			<span class="sr-only">{ariaLabel}</span>
 		</slot>
 	</a>
 {:else}
-	<Button on:click on:click="{toggleButton}" class="{classes}" {color}>
+	<Button on:click on:click="{toggleButton}" class="{classes}" {color} {size}>
 		<slot>
 			<span class="sr-only">{ariaLabel}</span>
 		</slot>

@@ -14,7 +14,7 @@
 				<Nav class="flex-column">
 					{#each items.sort((a, b) => a.name.localeCompare(b.name)) as item}
 		                <NavItem key={item.to}>
-							<NavLink href="{`#${item.to}`}" active="{selected.toLowerCase() === item.name.toLowerCase()}">
+							<NavLink href="{`#${item.to}`}" active="{`components/${selected.toLowerCase()}/` === item.to.toLowerCase()}">
 								{item.name}
 							</NavLink>
 		                </NavItem>
