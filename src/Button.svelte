@@ -13,6 +13,7 @@
 	export let id = '';
 	export let close = false;
 	export let href = '';
+	export let style = '';
 
 	$: ariaLabel = $$props['aria-label'];
 
@@ -36,6 +37,7 @@
 		on:click
 		{href}
 		aria-label="{ariaLabel || defaultAriaLabel}"
+		{style}
 	>
 		<slot>
 			{#if close}
@@ -50,6 +52,7 @@
 		on:click
 		{value}
 		aria-label="{ariaLabel || defaultAriaLabel}"
+		{style}
 	>
 		<slot>
 			{#if close}

@@ -58,3 +58,4 @@ export { default as Spinner } from './Spinner.svelte';
 export { default as Table } from './Table.svelte';
 export { default as UncontrolledAlert } from './UncontrolledAlert.svelte';
 export { default as UncontrolledButtonDropdown } from './UncontrolledButtonDropdown.svelte';
+export { default as UncontrolledCollapse } from './UncontrolledCollapse.svelte';
