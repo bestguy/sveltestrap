@@ -3,6 +3,7 @@
 
 	let className = '';
 	export { className as class };
+	export let href = '';
 
 	$: classes = clsx(
 		className,
@@ -11,6 +12,6 @@
 </script>
 
 
-<a class="{classes}">
+<a class="{classes}" {href}>
 	<slot />
 </a>

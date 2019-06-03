@@ -8,6 +8,7 @@
 	export let body = false;
 	export let outline = false;
 	export let id = '';
+	export let style = '';
 
 	$: classes = clsx(
 		className,
@@ -18,6 +19,6 @@
 	);
 </script>
 
-<div {id} class="{classes}" on:click>
+<div {id} class="{classes}" on:click {style}>
 	<slot />
 </div>
