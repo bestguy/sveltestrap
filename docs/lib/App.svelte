@@ -97,7 +97,7 @@
 			<JumbotronPage />
 		{:else if subPage === 'layout'}
 			<LayoutPage />
-		{:else if subPage === 'list-group'}
+		{:else if subPage === 'listgroup'}
 			<ListGroupPage />
 		{:else if subPage === 'media'}
 			<MediaPage />

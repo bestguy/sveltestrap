@@ -5,7 +5,7 @@
 	export {className as class};
 	export let disabled = false;
 	export let active = false;
-	export let href;
+	export let href = '#';
 
 	$: classes = clsx(
 		className,

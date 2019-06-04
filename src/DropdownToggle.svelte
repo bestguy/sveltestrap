@@ -14,6 +14,7 @@
 	export let split = false;
 	export let nav = false;
 	export let size = '';
+	export let tag = null;
 
 	$: classes = clsx(
 		className,
@@ -44,6 +45,12 @@
 			<span class="sr-only">{ariaLabel}</span>
 		</slot>
 	</a>
+{:else if tag === 'span'}
+	<span on:click on:click="{toggleButton}" class="{classes}" {color} {size}>
+		<slot>
+			<span class="sr-only">{ariaLabel}</span>
+		</slot>
+	</span>
 {:else}
 	<Button on:click on:click="{toggleButton}" class="{classes}" {color} {size}>
 		<slot>

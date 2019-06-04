@@ -24,11 +24,15 @@
 		throw new Error(`Invalid direction sent: '${direction}' is not one of 'up', 'down', 'left', 'right'`);
 	}
 
+	let component;
+
+	$: subItemIsActive = !!(setActiveFromChild && component && typeof component.querySelector === 'function' && component.querySelector('.active'));
+
 	$: classes = clsx(
 		className,
 		direction !== 'down' && `drop${direction}`,
 		nav && active ? 'active' : false,
-		// setActiveFromChild && subItemIsActive ? 'active' : false,
+		setActiveFromChild && subItemIsActive ? 'active' : false,
 		{
 			[`input-group-${addonType}`]: addonType,
 			'btn-group': group,
@@ -40,7 +44,7 @@
 	);
 
 	$: {
-		context.update(function () {
+		context.update(() => {
 			return {
 				toggle,
 				isOpen,
@@ -50,16 +54,15 @@
 		});
 	}
 
-	function handleToggle() {
-	}
+
 </script>
 
 {#if nav}
-	<li class="{classes}">
+	<li class="{classes}" bind:this="{component}">
 		<slot />
 	</li>
 {:else}
-	<div class="{classes}">
+	<div class="{classes}" bind:this="{component}">
 		<slot />
 	</div>
 {/if}
