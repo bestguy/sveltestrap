@@ -8,6 +8,7 @@
 	export let inline = false;
 	export let disabled = false;
 	export let id = '';
+	export let tag = null;
 
 	$: classes = clsx(
 		className,
@@ -19,6 +20,12 @@
 
 </script>
 
-<div {id} class="{classes}">
-	<slot />
-</div>
+{#if tag === 'fieldset'}
+	<fieldset {id} class="{classes}">
+		<slot />
+	</fieldset>
+{:else}
+	<div {id} class="{classes}">
+		<slot />
+	</div>
+{/if}

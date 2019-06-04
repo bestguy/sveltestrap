@@ -40,3 +40,13 @@ export function conditionallyUpdateScrollbar() {
 		setScrollbarWidth(bodyPadding + scrollbarWidth);
 	}
 }
+
+export function getColumnSizeClass(isXs, colWidth, colSize) {
+	if (colSize === true || colSize === '') {
+		return isXs ? 'col' : `col-${colWidth}`;
+	} else if (colSize === 'auto') {
+		return isXs ? 'col-auto' : `col-${colWidth}-auto`;
+	}
+
+	return isXs ? `col-${colSize}` : `col-${colWidth}-${colSize}`;
+}

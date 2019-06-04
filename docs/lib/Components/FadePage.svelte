@@ -1,1 +1,1 @@
-<div>Coming soon...</div>
+<div>Use the fade transition from Svelte</div>

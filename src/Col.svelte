@@ -2,23 +2,14 @@
 	import clsx from 'clsx';
 	import isobject from 'lodash.isobject';
 
+	import { getColumnSizeClass } from './utils';
+
 	let className = '';
     export { className as class };
 
     export let id = '';
 
     const colClasses = [];
-
-
-    const getColumnSizeClass = (isXs, colWidth, colSize) => {
-      if (colSize === true || colSize === '') {
-        return isXs ? 'col' : `col-${colWidth}`;
-      } else if (colSize === 'auto') {
-        return isXs ? 'col-auto' : `col-${colWidth}-auto`;
-      }
-
-      return isXs ? `col-${colSize}` : `col-${colWidth}-${colSize}`;
-    };
 
     const widths = ['xs', 'sm', 'md', 'lg', 'xl'];
 
