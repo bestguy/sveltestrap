@@ -41,7 +41,7 @@
 	<a class="{classes}" {href}>
 		<slot/>
 	</a>
-{:else if src}
+{:else if src || object}
 	<img class="{classes}" {src} {alt} />
 {:else if list}
 	<ul class="{classes}">
