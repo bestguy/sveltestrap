@@ -17,9 +17,9 @@
 				<NavItem>
 					<NavLink href="/#components/" class="{segment === 'components' ? 'active' : ''}">Components</NavLink>
 				</NavItem>
-				<NavItem>
-					<NavLink href="/#utilities/" class="{segment === 'utilities' ? 'active' : ''}">Utilities</NavLink>
-				</NavItem>
+<!--				<NavItem>-->
+<!--					<NavLink href="/#utilities/" class="{segment === 'utilities' ? 'active' : ''}">Utilities</NavLink>-->
+<!--				</NavItem>-->
 				<NavItem>
 					<NavLink href="https://github.com/bestguy/sveltestrap">GitHub</NavLink>
 				</NavItem>

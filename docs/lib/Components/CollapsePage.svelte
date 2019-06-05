@@ -21,16 +21,9 @@
 	<PrismCode class="language-html">{CollapseExampleSource}</PrismCode>
 </pre>
 
-<p>
-	Collapse is wrapped in a <code>Transition</code> component
-	from <code>react-transition-group/transition</code>. Transition props are passed through to
-	this wrapper. Refer to the <code>Transition</code> documentation for details: <a href="http://reactcommunity.org/react-transition-group/transition/">
-	http://reactcommunity.org/react-transition-group/transition/</a>.
-</p>
-
 <SectionTitle>Events</SectionTitle>
 <p>
-	Use the <code>onEnter</code>, onEntering, onEntered, onExiting and onExited props for
+	Use the <code>on:enter</code>, onEntering, onEntered, onExiting and onExited props for
 	callbacks when the Collapse has finished opening (entering) or closing (exiting).
 </p>
 <div class="docs-example">

@@ -4,7 +4,7 @@
 
 <Toast>
 	<ToastHeader icon="primary">
-		Reactstrap
+		Sveltestrap
 	</ToastHeader>
 	<ToastBody>
 		This is a toast with a primary icon — check it out!
@@ -12,7 +12,7 @@
 </Toast>
 <Toast>
 	<ToastHeader icon="secondary">
-		Reactstrap
+		Sveltestrap
 	</ToastHeader>
 	<ToastBody>
 		This is a toast with a secondary icon — check it out!
@@ -20,7 +20,7 @@
 </Toast>
 <Toast>
 	<ToastHeader icon="success">
-		Reactstrap
+		Sveltestrap
 	</ToastHeader>
 	<ToastBody>
 		This is a toast with a success icon — check it out!
@@ -28,7 +28,7 @@
 </Toast>
 <Toast>
 	<ToastHeader icon="danger">
-		Reactstrap
+		Sveltestrap
 	</ToastHeader>
 	<ToastBody>
 		This is a toast with a danger icon — check it out!
@@ -36,7 +36,7 @@
 </Toast>
 <Toast>
 	<ToastHeader icon="warning">
-		Reactstrap
+		Sveltestrap
 	</ToastHeader>
 	<ToastBody>
 		This is a toast with a warning icon — check it out!
@@ -44,7 +44,7 @@
 </Toast>
 <Toast>
 	<ToastHeader icon="info">
-		Reactstrap
+		Sveltestrap
 	</ToastHeader>
 	<ToastBody>
 		This is a toast with an info icon — check it out!
@@ -52,7 +52,7 @@
 </Toast>
 <Toast>
 	<ToastHeader icon="light">
-		Reactstrap
+		Sveltestrap
 	</ToastHeader>
 	<ToastBody>
 		This is a toast with a light icon — check it out!
@@ -60,7 +60,7 @@
 </Toast>
 <Toast>
 	<ToastHeader icon="dark">
-		Reactstrap
+		Sveltestrap
 	</ToastHeader>
 	<ToastBody>
 		This is a toast with a dark icon — check it out!
@@ -71,7 +71,7 @@
 		<span slot="icon" class="mr-2">
 			<Spinner size="sm" />
 		</span>
-		Reactstrap
+		Sveltestrap
 	</ToastHeader>
 	<ToastBody>
 		This is a toast with a custom icon — check it out!
