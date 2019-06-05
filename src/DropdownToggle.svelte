@@ -15,6 +15,7 @@
 	export let nav = false;
 	export let size = '';
 	export let tag = null;
+	export let outline = false;
 
 	$: classes = clsx(
 		className,
@@ -52,7 +53,7 @@
 		</slot>
 	</span>
 {:else}
-	<Button on:click on:click="{toggleButton}" class="{classes}" {color} {size}>
+	<Button on:click on:click="{toggleButton}" class="{classes}" {color} {size} {outline}>
 		<slot>
 			<span class="sr-only">{ariaLabel}</span>
 		</slot>
