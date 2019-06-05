@@ -82,6 +82,8 @@
 		<input {id} type="date" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
 	{:else if type === 'time'}
 		<input {id} type="time" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+	{:else if type === 'datetime'}
+		<input {id} type="datetime" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
 	{:else if type === 'color'}
 		<input {id} type="color" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
 	{:else if type === 'search'}

@@ -24,7 +24,6 @@
 	const colClasses = [];
 
 	colWidths.forEach((colWidth) => {
-		console.info('checking', colWidth);
 		let columnProp = $$props[colWidth];
 
 		if (!columnProp && columnProp !== '') {
