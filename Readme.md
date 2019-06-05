@@ -1,10 +1,10 @@
 ![Logo](./logo.png)
 
-## Bootstrap 4 components for Svelte
+## Bootstrap 4 components for Svelte v3
 
 **Work in progress, check back soon - PRs are welcome!**
 
-The philosophy of this library is to provide all Bootstrap 4 components for a [Svelte](https://svelte.technology) app, without needing to use Bootstrap component classes or needing to include Bootstrap's JavaScript.
+The philosophy of this library is to provide all Bootstrap 4 components for a [Svelte](https://svelte.dev) app, without needing to use Bootstrap component classes or needing to include Bootstrap's JavaScript.
 
 However, to make using Bootstrap themes easier, this library does _not_ embed Bootstrap styles directly and you will need to include Bootstrap 4 CSS in your page.
 
@@ -16,7 +16,7 @@ The component names and interface are inspired by the [reactstrap](https://react
 
 ## Install
 
-`npm install sveltestrap`
+`npm install --save svelte sveltestrap`
 
 ## Usage
 
@@ -25,30 +25,23 @@ _You need to include a link to Bootstrap 4 stylesheet in your page - these compo
 In your svelte component:
 
 ```html
+<script>
+  import { Button, Col, Row } from 'sveltestrap';
+</script>
+
 <Row>
   <Col>
     <Button color="primary" outline>Hello World!</Button>
   </Col>
 <Row>
-
-<script>
-  import { Button, Col, Row } from 'sveltestrap';
-
-  export default {
-    components: {
-      Button,
-      Col,
-      Row
-    }
-  }
-</script>
 ```
 
 ## Status
 
-* [x] Most simple, stateless components are visually done (see below).
-* [ ] Event handlers (on:click, etc), common optional attributes (id, href, data-, etc) are not applied to components! Ay!
-* [ ] Add stateful components and those that depend on tethering (e.g. Alerts, Dropdown, Modals, Popovers, Tooltips).  
+* See component list below
+* Some stateful components have issues
+  * Dropdowns all share the "open" and "closed" state. If one is open, all are open. Same with closed.
+  * Collapse uses the Svelte slide transistion. In Svelte, the component is removed from the DOM whereas in Reacstrap, it stays in the DOM, but is hidden. This interacts badly with nav bars on small screens.
 
 ### Layout
 
@@ -59,60 +52,64 @@ In your svelte component:
 ### Components
 
 * [x] Alert
+  * [x] UncontrolledAlert
 * [x] Badge
 * [x] Breadcrumb
   * [x] BreadcrumbItem
 * [x] Button
-  * [ ] ButtonDropdown
+  * [x] ButtonDropdown
+  * [x] UncontrolledButtonDropdown
 * [x] ButtonGroup
 * [x] ButtonToolbar
 * [x] Card
-  * [x] CardBlock
+  * [x] CardBody
   * [x] CardColumns
   * [x] CardDeck
   * [x] CardFooter
   * [x] CardGroup
   * [x] CardHeader
-  * [ ] CardImg
+  * [x] CardImg
   * [x] CardImgOverlay
-  * [ ] CardLink
+  * [x] CardLink
   * [x] CardSubtitle
   * [x] CardText
   * [x] CardTitle
 * [x] Close
-* [ ] Collapse
+* [x] Collapse
+  * [x] UncontrolledCollapse
 * [x] Dropdown
   * [x] DropdownItem
   * [x] DropdownMenu
-  * [ ] DropdownToggle
+  * [x] DropdownToggle
+  * [x] UncontrolledDropdown
 * [x] Form
   * [x] FormFeedback
   * [x] FormGroup
   * [x] FormText
-* [x] Icon (_FontAwesome helper_)
-* [ ] Input
+* [x] Input
+  * [x] CustomInput
 * [x] InputGroup
   * [x] InputGroupAddon
-  * [ ] InputGroupButton
+  * [x] InputGroupButtonDropdown
+  * [x] InputGroupText
 * [x] Jumbotron
-* [ ] Label
+* [x] Label
 * [x] ListGroup
 * [x] ListGroupItem
   * [x] ListGroupItemHeading
   * [x] ListGroupItemText
 * [x] Media
   * [x] MediaBody
-* [ ] Modal
-  * [ ] ModalBody
+* [x] Modal
+  * [x] ModalBody
   * [x] ModalFooter
-  * [ ] ModalHeader
+  * [x] ModalHeader
 * [x] Nav
-  * [x] NavDropdown
   * [x] NavItem
   * [x] NavLink
-* [ ] Navbar
+* [x] Navbar
   * [x] NavbarBrand
-  * [ ] NavbarToggler
+  * [x] NavbarToggler
 * [x] Pagination
   * [x] PaginationItem
   * [x] PaginationLink
@@ -120,7 +117,11 @@ In your svelte component:
   * [ ] PopoverContent
   * [ ] PopoverTitle
 * [x] Progress
-* [ ] TabContent
-* [ ] TabPane
+* [x] Spinner
+* [x] TabContent
+* [x] TabPane
 * [x] Table
+* [x] Toast
+  * [x] ToastBody
+  * [x] ToastHeader
 * [ ] Tooltip
