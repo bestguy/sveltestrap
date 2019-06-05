@@ -7,6 +7,8 @@
 	export let disabled = false;
 	export let color = '';
 	export let action = false;
+	export let href = null;
+	export let tag = null;
 
 	$: classes = clsx(
 		className,
@@ -18,6 +20,16 @@
 	);
 </script>
 
-<li class="{classes}">
+{#if href}
+	<a class="{classes}" {href} {disabled} {active}>
+		<slot/>
+	</a>
+{:else if tag === 'button'}
+	<button class="{classes}" type="button" on:click {disabled} {active}>
+		<slot/>
+	</button>
+{:else}
+<li class="{classes}" {disabled} {active}>
 	<slot/>
 </li>
+{/if}
