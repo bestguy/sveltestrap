@@ -1,7 +1,6 @@
 <script>
 	import clsx from 'clsx';
 
-
 	import { context } from './DropdownContext';
 
 	let className = '';
