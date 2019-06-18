@@ -4,6 +4,7 @@
 	"main": "dist/sveltestrap.js",
 	"module": "dist/sveltestrap.es.js",
 	"jsnext:main": "dist/sveltestrap.es.js",
+	"svelte": "src/index.js",
 	"keywords": [
 		"svelte"
 	],
@@ -12,7 +13,8 @@
 		"url": "git@github.com:bestguy/sveltestrap.git"
 	},
 	"files": [
-		"dist"
+		"dist",
+		"src"
 	],
 	"scripts": {
 		"start": "webpack-dev-server --config ./webpack.docs.config.js --watch --hot",
