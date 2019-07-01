@@ -73,10 +73,6 @@ function _setPrototypeOf(o, p) {
   return _setPrototypeOf(o, p);
 }
 
-function _objectDestructuringEmpty(obj) {
-  if (obj == null) throw new TypeError("Cannot destructure undefined");
-}
-
 function _assertThisInitialized(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -150,7 +146,7 @@ function create_if_block(ctx) {
       if (if_block) if_block.c();
       t = internal.space();
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
       internal.attr(div, "role", "alert");
     },
     l: function l(nodes) {
@@ -186,12 +182,12 @@ function create_if_block(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       internal.add_render_callback(function () {
         if (!div_transition) div_transition = internal.create_bidirectional_transition(div, transition.fade, ctx.transition, true);
         div_transition.run(1);
@@ -199,7 +195,7 @@ function create_if_block(ctx) {
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       if (!div_transition) div_transition = internal.create_bidirectional_transition(div, transition.fade, ctx.transition, false);
       div_transition.run(0);
       current = false;
@@ -228,8 +224,8 @@ function create_if_block_1(ctx) {
       span = internal.element("span");
       span.textContent = "×";
       internal.attr(span, "aria-hidden", "true");
-      button.type = "button";
-      button.className = ctx.closeClassNames;
+      internal.attr(button, "type", "button");
+      internal.attr(button, "class", ctx.closeClassNames);
       internal.attr(button, "aria-label", ctx.closeAriaLabel);
       dispose = internal.listen(button, "click", ctx.toggle);
     },
@@ -239,7 +235,7 @@ function create_if_block_1(ctx) {
     },
     p: function p(changed, ctx) {
       if (changed.closeClassNames) {
-        button.className = ctx.closeClassNames;
+        internal.attr(button, "class", ctx.closeClassNames);
       }
 
       if (changed.closeAriaLabel) {
@@ -273,30 +269,28 @@ function create_fragment(ctx) {
       if (ctx.isOpen) {
         if (if_block) {
           if_block.p(changed, ctx);
-          if_block.i(1);
+          internal.transition_in(if_block, 1);
         } else {
           if_block = create_if_block(ctx);
           if_block.c();
-          if_block.i(1);
+          internal.transition_in(if_block, 1);
           if_block.m(if_block_anchor.parentNode, if_block_anchor);
         }
       } else if (if_block) {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_block.d(1);
+        internal.transition_out(if_block, 1, function () {
           if_block = null;
         });
-        if_block.o(1);
         internal.check_outros();
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -407,7 +401,7 @@ function create_else_block(ctx) {
     c: function c() {
       span = internal.element("span");
       if (default_slot) default_slot.c();
-      span.className = ctx.classes;
+      internal.attr(span, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(span_nodes);
@@ -427,16 +421,16 @@ function create_else_block(ctx) {
       }
 
       if (!current || changed.classes) {
-        span.className = ctx.classes;
+        internal.attr(span, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -458,8 +452,8 @@ function create_if_block$1(ctx) {
     c: function c() {
       a = internal.element("a");
       if (default_slot) default_slot.c();
-      a.href = ctx.href;
-      a.className = ctx.classes;
+      internal.attr(a, "href", ctx.href);
+      internal.attr(a, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(a_nodes);
@@ -479,20 +473,20 @@ function create_if_block$1(ctx) {
       }
 
       if (!current || changed.href) {
-        a.href = ctx.href;
+        internal.attr(a, "href", ctx.href);
       }
 
       if (!current || changed.classes) {
-        a.className = ctx.classes;
+        internal.attr(a, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -535,11 +529,9 @@ function create_fragment$1(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -548,17 +540,17 @@ function create_fragment$1(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(if_block_anchor.parentNode, if_block_anchor);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -644,9 +636,9 @@ function create_fragment$2(ctx) {
       nav = internal.element("nav");
       ol = internal.element("ol");
       if (default_slot) default_slot.c();
-      ol.className = ctx.listClasses;
+      internal.attr(ol, "class", ctx.listClasses);
       internal.attr(nav, "aria-label", ctx.ariaLabel);
-      nav.className = ctx.className;
+      internal.attr(nav, "class", ctx.className);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(ol_nodes);
@@ -667,7 +659,7 @@ function create_fragment$2(ctx) {
       }
 
       if (!current || changed.listClasses) {
-        ol.className = ctx.listClasses;
+        internal.attr(ol, "class", ctx.listClasses);
       }
 
       if (!current || changed.ariaLabel) {
@@ -675,16 +667,16 @@ function create_fragment$2(ctx) {
       }
 
       if (!current || changed.className) {
-        nav.className = ctx.className;
+        internal.attr(nav, "class", ctx.className);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -763,7 +755,7 @@ function create_fragment$3(ctx) {
     c: function c() {
       li = internal.element("li");
       if (default_slot) default_slot.c();
-      li.className = ctx.classes;
+      internal.attr(li, "class", ctx.classes);
       internal.attr(li, "aria-current", li_aria_current_value = ctx.active ? 'page' : undefined);
     },
     l: function l(nodes) {
@@ -784,7 +776,7 @@ function create_fragment$3(ctx) {
       }
 
       if (!current || changed.classes) {
-        li.className = ctx.classes;
+        internal.attr(li, "class", ctx.classes);
       }
 
       if ((!current || changed.active) && li_aria_current_value !== (li_aria_current_value = ctx.active ? 'page' : undefined)) {
@@ -793,11 +785,11 @@ function create_fragment$3(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -869,7 +861,7 @@ function create_else_block$1(ctx) {
   var button, button_aria_label_value, current, dispose;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
-  var if_block = ctx.close && create_if_block_2(ctx);
+  var if_block = ctx.close && create_if_block_2();
   return {
     c: function c() {
       button = internal.element("button");
@@ -879,11 +871,11 @@ function create_else_block$1(ctx) {
       }
 
       if (default_slot) default_slot.c();
-      button.id = ctx.id;
-      button.className = ctx.classes;
+      internal.attr(button, "id", ctx.id);
+      internal.attr(button, "class", ctx.classes);
       button.value = ctx.value;
       internal.attr(button, "aria-label", button_aria_label_value = ctx.ariaLabel || ctx.defaultAriaLabel);
-      button.style.cssText = ctx.style;
+      internal.attr(button, "style", ctx.style);
       dispose = internal.listen(button, "click", ctx.click_handler_1);
     },
     l: function l(nodes) {
@@ -904,7 +896,7 @@ function create_else_block$1(ctx) {
       if (!default_slot) {
         if (ctx.close) {
           if (!if_block) {
-            if_block = create_if_block_2(ctx);
+            if_block = create_if_block_2();
             if_block.c();
             if_block.m(button, null);
           }
@@ -919,11 +911,11 @@ function create_else_block$1(ctx) {
       }
 
       if (!current || changed.id) {
-        button.id = ctx.id;
+        internal.attr(button, "id", ctx.id);
       }
 
       if (!current || changed.classes) {
-        button.className = ctx.classes;
+        internal.attr(button, "class", ctx.classes);
       }
 
       if (!current || changed.value) {
@@ -935,16 +927,16 @@ function create_else_block$1(ctx) {
       }
 
       if (!current || changed.style) {
-        button.style.cssText = ctx.style;
+        internal.attr(button, "style", ctx.style);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -967,7 +959,7 @@ function create_if_block$2(ctx) {
   var a, a_aria_label_value, current, dispose;
   var default_slot_1 = ctx.$$slots["default"];
   var default_slot = internal.create_slot(default_slot_1, ctx, null);
-  var if_block = ctx.close && create_if_block_1$1(ctx);
+  var if_block = ctx.close && create_if_block_1$1();
   return {
     c: function c() {
       a = internal.element("a");
@@ -977,11 +969,11 @@ function create_if_block$2(ctx) {
       }
 
       if (default_slot) default_slot.c();
-      a.id = ctx.id;
-      a.className = ctx.classes;
-      a.href = ctx.href;
+      internal.attr(a, "id", ctx.id);
+      internal.attr(a, "class", ctx.classes);
+      internal.attr(a, "href", ctx.href);
       internal.attr(a, "aria-label", a_aria_label_value = ctx.ariaLabel || ctx.defaultAriaLabel);
-      a.style.cssText = ctx.style;
+      internal.attr(a, "style", ctx.style);
       dispose = internal.listen(a, "click", ctx.click_handler);
     },
     l: function l(nodes) {
@@ -1002,7 +994,7 @@ function create_if_block$2(ctx) {
       if (!default_slot) {
         if (ctx.close) {
           if (!if_block) {
-            if_block = create_if_block_1$1(ctx);
+            if_block = create_if_block_1$1();
             if_block.c();
             if_block.m(a, null);
           }
@@ -1017,15 +1009,15 @@ function create_if_block$2(ctx) {
       }
 
       if (!current || changed.id) {
-        a.id = ctx.id;
+        internal.attr(a, "id", ctx.id);
       }
 
       if (!current || changed.classes) {
-        a.className = ctx.classes;
+        internal.attr(a, "class", ctx.classes);
       }
 
       if (!current || changed.href) {
-        a.href = ctx.href;
+        internal.attr(a, "href", ctx.href);
       }
 
       if ((!current || changed.ariaLabel || changed.defaultAriaLabel) && a_aria_label_value !== (a_aria_label_value = ctx.ariaLabel || ctx.defaultAriaLabel)) {
@@ -1033,16 +1025,16 @@ function create_if_block$2(ctx) {
       }
 
       if (!current || changed.style) {
-        a.style.cssText = ctx.style;
+        internal.attr(a, "style", ctx.style);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -1130,11 +1122,9 @@ function create_fragment$4(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -1143,17 +1133,17 @@ function create_fragment$4(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(if_block_anchor.parentNode, if_block_anchor);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -1207,18 +1197,18 @@ function instance$4($$self, $$props, $$invalidate) {
 
   $$self.$set = function ($$new_props) {
     $$invalidate('$$props', $$props = internal.assign(internal.assign({}, $$props), $$new_props));
-    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
-    if ('active' in $$props) $$invalidate('active', active = $$props.active);
-    if ('block' in $$props) $$invalidate('block', block = $$props.block);
-    if ('disabled' in $$props) $$invalidate('disabled', disabled = $$props.disabled);
-    if ('color' in $$props) $$invalidate('color', color = $$props.color);
-    if ('outline' in $$props) $$invalidate('outline', outline = $$props.outline);
-    if ('size' in $$props) $$invalidate('size', size = $$props.size);
-    if ('value' in $$props) $$invalidate('value', value = $$props.value);
-    if ('id' in $$props) $$invalidate('id', id = $$props.id);
-    if ('close' in $$props) $$invalidate('close', close = $$props.close);
-    if ('href' in $$props) $$invalidate('href', href = $$props.href);
-    if ('style' in $$props) $$invalidate('style', style = $$props.style);
+    if ('class' in $$new_props) $$invalidate('className', className = $$new_props["class"]);
+    if ('active' in $$new_props) $$invalidate('active', active = $$new_props.active);
+    if ('block' in $$new_props) $$invalidate('block', block = $$new_props.block);
+    if ('disabled' in $$new_props) $$invalidate('disabled', disabled = $$new_props.disabled);
+    if ('color' in $$new_props) $$invalidate('color', color = $$new_props.color);
+    if ('outline' in $$new_props) $$invalidate('outline', outline = $$new_props.outline);
+    if ('size' in $$new_props) $$invalidate('size', size = $$new_props.size);
+    if ('value' in $$new_props) $$invalidate('value', value = $$new_props.value);
+    if ('id' in $$new_props) $$invalidate('id', id = $$new_props.id);
+    if ('close' in $$new_props) $$invalidate('close', close = $$new_props.close);
+    if ('href' in $$new_props) $$invalidate('href', href = $$new_props.href);
+    if ('style' in $$new_props) $$invalidate('style', style = $$new_props.style);
     if ('$$scope' in $$new_props) $$invalidate('$$scope', $$scope = $$new_props.$$scope);
   };
 
@@ -1304,7 +1294,7 @@ function create_else_block$2(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -1317,7 +1307,7 @@ function create_else_block$2(ctx) {
       }
 
       internal.add_binding_callback(function () {
-        return ctx.div_binding(div, null);
+        return ctx.div_binding(div);
       });
       current = true;
     },
@@ -1326,22 +1316,17 @@ function create_else_block$2(ctx) {
         default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
       }
 
-      if (changed.items) {
-        ctx.div_binding(null, div);
-        ctx.div_binding(div, null);
-      }
-
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -1350,7 +1335,7 @@ function create_else_block$2(ctx) {
       }
 
       if (default_slot) default_slot.d(detaching);
-      ctx.div_binding(null, div);
+      ctx.div_binding(null);
     }
   };
 } // (60:0) {#if nav}
@@ -1364,7 +1349,7 @@ function create_if_block$3(ctx) {
     c: function c() {
       li = internal.element("li");
       if (default_slot) default_slot.c();
-      li.className = ctx.classes;
+      internal.attr(li, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(li_nodes);
@@ -1377,7 +1362,7 @@ function create_if_block$3(ctx) {
       }
 
       internal.add_binding_callback(function () {
-        return ctx.li_binding(li, null);
+        return ctx.li_binding(li);
       });
       current = true;
     },
@@ -1386,22 +1371,17 @@ function create_if_block$3(ctx) {
         default_slot.p(internal.get_slot_changes(default_slot_1, ctx, changed, null), internal.get_slot_context(default_slot_1, ctx, null));
       }
 
-      if (changed.items) {
-        ctx.li_binding(null, li);
-        ctx.li_binding(li, null);
-      }
-
       if (!current || changed.classes) {
-        li.className = ctx.classes;
+        internal.attr(li, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -1410,7 +1390,7 @@ function create_if_block$3(ctx) {
       }
 
       if (default_slot) default_slot.d(detaching);
-      ctx.li_binding(null, li);
+      ctx.li_binding(null);
     }
   };
 }
@@ -1445,11 +1425,9 @@ function create_fragment$5(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -1458,17 +1436,17 @@ function create_fragment$5(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(if_block_anchor.parentNode, if_block_anchor);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -1519,13 +1497,13 @@ function instance$5($$self, $$props, $$invalidate) {
       $$slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
       $$scope = $$props.$$scope;
 
-  function li_binding($$node, check) {
-    component = $$node;
+  function li_binding($$value) {
+    component = $$value;
     $$invalidate('component', component);
   }
 
-  function div_binding($$node, check) {
-    component = $$node;
+  function div_binding($$value) {
+    component = $$value;
     $$invalidate('component', component);
   }
 
@@ -1656,11 +1634,11 @@ function create_default_slot(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -1725,15 +1703,15 @@ function create_fragment$6(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      dropdown.$$.fragment.i(local);
+      internal.transition_in(dropdown.$$.fragment, local);
       current = true;
     },
     o: function o(local) {
-      dropdown.$$.fragment.o(local);
+      internal.transition_out(dropdown.$$.fragment, local);
       current = false;
     },
     d: function d(detaching) {
-      dropdown.$destroy(detaching);
+      internal.destroy_component(dropdown, detaching);
     }
   };
 }
@@ -1836,8 +1814,8 @@ function create_fragment$7(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.id = ctx.id;
-      div.className = ctx.classes;
+      internal.attr(div, "id", ctx.id);
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -1857,20 +1835,20 @@ function create_fragment$7(ctx) {
       }
 
       if (!current || changed.id) {
-        div.id = ctx.id;
+        internal.attr(div, "id", ctx.id);
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -1956,7 +1934,7 @@ function create_fragment$8(ctx) {
       div = internal.element("div");
       if (default_slot) default_slot.c();
       internal.attr(div, "aria-label", ctx.ariaLabel);
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -1980,16 +1958,16 @@ function create_fragment$8(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -2068,9 +2046,9 @@ function create_fragment$9(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.id = ctx.id;
-      div.className = ctx.classes;
-      div.style.cssText = ctx.style;
+      internal.attr(div, "id", ctx.id);
+      internal.attr(div, "class", ctx.classes);
+      internal.attr(div, "style", ctx.style);
       dispose = internal.listen(div, "click", ctx.click_handler);
     },
     l: function l(nodes) {
@@ -2091,24 +2069,24 @@ function create_fragment$9(ctx) {
       }
 
       if (!current || changed.id) {
-        div.id = ctx.id;
+        internal.attr(div, "id", ctx.id);
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
 
       if (!current || changed.style) {
-        div.style.cssText = ctx.style;
+        internal.attr(div, "style", ctx.style);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -2213,8 +2191,8 @@ function create_fragment$a(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.id = ctx.id;
-      div.className = ctx.classes;
+      internal.attr(div, "id", ctx.id);
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -2234,20 +2212,20 @@ function create_fragment$a(ctx) {
       }
 
       if (!current || changed.id) {
-        div.id = ctx.id;
+        internal.attr(div, "id", ctx.id);
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -2322,7 +2300,7 @@ function create_fragment$b(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -2342,16 +2320,16 @@ function create_fragment$b(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -2422,7 +2400,7 @@ function create_fragment$c(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -2442,16 +2420,16 @@ function create_fragment$c(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -2522,7 +2500,7 @@ function create_fragment$d(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -2542,16 +2520,16 @@ function create_fragment$d(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -2622,7 +2600,7 @@ function create_fragment$e(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -2642,16 +2620,16 @@ function create_fragment$e(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -2722,8 +2700,8 @@ function create_else_block$3(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.id = ctx.id;
-      div.className = ctx.classes;
+      internal.attr(div, "id", ctx.id);
+      internal.attr(div, "class", ctx.classes);
       dispose = internal.listen(div, "click", ctx.click_handler_1);
     },
     l: function l(nodes) {
@@ -2744,20 +2722,20 @@ function create_else_block$3(ctx) {
       }
 
       if (!current || changed.id) {
-        div.id = ctx.id;
+        internal.attr(div, "id", ctx.id);
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -2780,8 +2758,8 @@ function create_if_block$4(ctx) {
     c: function c() {
       h3 = internal.element("h3");
       if (default_slot) default_slot.c();
-      h3.id = ctx.id;
-      h3.className = ctx.classes;
+      internal.attr(h3, "id", ctx.id);
+      internal.attr(h3, "class", ctx.classes);
       dispose = internal.listen(h3, "click", ctx.click_handler);
     },
     l: function l(nodes) {
@@ -2802,20 +2780,20 @@ function create_if_block$4(ctx) {
       }
 
       if (!current || changed.id) {
-        h3.id = ctx.id;
+        internal.attr(h3, "id", ctx.id);
       }
 
       if (!current || changed.classes) {
-        h3.className = ctx.classes;
+        internal.attr(h3, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -2859,11 +2837,9 @@ function create_fragment$f(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -2872,17 +2848,17 @@ function create_fragment$f(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(if_block_anchor.parentNode, if_block_anchor);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -2968,24 +2944,24 @@ function create_fragment$g(ctx) {
   return {
     c: function c() {
       img = internal.element("img");
-      img.className = ctx.classes;
-      img.src = ctx.src;
-      img.alt = ctx.alt;
+      internal.attr(img, "class", ctx.classes);
+      internal.attr(img, "src", ctx.src);
+      internal.attr(img, "alt", ctx.alt);
     },
     m: function m(target, anchor) {
       internal.insert(target, img, anchor);
     },
     p: function p(changed, ctx) {
       if (changed.classes) {
-        img.className = ctx.classes;
+        internal.attr(img, "class", ctx.classes);
       }
 
       if (changed.src) {
-        img.src = ctx.src;
+        internal.attr(img, "src", ctx.src);
       }
 
       if (changed.alt) {
-        img.alt = ctx.alt;
+        internal.attr(img, "alt", ctx.alt);
       }
     },
     i: internal.noop,
@@ -3078,7 +3054,7 @@ function create_fragment$h(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -3098,16 +3074,16 @@ function create_fragment$h(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -3178,8 +3154,8 @@ function create_fragment$i(ctx) {
     c: function c() {
       a = internal.element("a");
       if (default_slot) default_slot.c();
-      a.className = ctx.classes;
-      a.href = ctx.href;
+      internal.attr(a, "class", ctx.classes);
+      internal.attr(a, "href", ctx.href);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(a_nodes);
@@ -3199,20 +3175,20 @@ function create_fragment$i(ctx) {
       }
 
       if (!current || changed.classes) {
-        a.className = ctx.classes;
+        internal.attr(a, "class", ctx.classes);
       }
 
       if (!current || changed.href) {
-        a.href = ctx.href;
+        internal.attr(a, "href", ctx.href);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -3287,7 +3263,7 @@ function create_fragment$j(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -3307,16 +3283,16 @@ function create_fragment$j(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -3388,7 +3364,7 @@ function create_fragment$k(ctx) {
     c: function c() {
       _p = internal.element("p");
       if (default_slot) default_slot.c();
-      _p.className = ctx.classes;
+      internal.attr(_p, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(p_nodes);
@@ -3408,16 +3384,16 @@ function create_fragment$k(ctx) {
       }
 
       if (!current || changed.classes) {
-        _p.className = ctx.classes;
+        internal.attr(_p, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -3488,7 +3464,7 @@ function create_fragment$l(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -3508,16 +3484,16 @@ function create_fragment$l(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -3637,8 +3613,8 @@ function create_fragment$m(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.id = ctx.id;
-      div.className = div_class_value = ctx.colClasses.join(' ');
+      internal.attr(div, "id", ctx.id);
+      internal.attr(div, "class", div_class_value = ctx.colClasses.join(' '));
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -3658,16 +3634,16 @@ function create_fragment$m(ctx) {
       }
 
       if (!current || changed.id) {
-        div.id = ctx.id;
+        internal.attr(div, "id", ctx.id);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -3736,8 +3712,8 @@ function instance$m($$self, $$props, $$invalidate) {
 
   $$self.$set = function ($$new_props) {
     $$invalidate('$$props', $$props = internal.assign(internal.assign({}, $$props), $$new_props));
-    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
-    if ('id' in $$props) $$invalidate('id', id = $$props.id);
+    if ('class' in $$new_props) $$invalidate('className', className = $$new_props["class"]);
+    if ('id' in $$new_props) $$invalidate('id', id = $$new_props.id);
     if ('$$scope' in $$new_props) $$invalidate('$$scope', $$scope = $$new_props.$$scope);
   };
 
@@ -3769,6 +3745,8 @@ function (_SvelteComponent) {
   return Col;
 }(internal.SvelteComponent);
 
+var window_1 = internal.globals.window;
+
 function create_if_block$5(ctx) {
   var div, div_transition, current, dispose;
   var default_slot_1 = ctx.$$slots["default"];
@@ -3777,7 +3755,7 @@ function create_if_block$5(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
       dispose = [internal.listen(div, "introstart", ctx.introstart_handler), internal.listen(div, "introend", ctx.introend_handler), internal.listen(div, "outrostart", ctx.outrostart_handler), internal.listen(div, "outroend", ctx.outroend_handler), internal.listen(div, "introstart", ctx.onEntering), internal.listen(div, "introend", ctx.onEntered), internal.listen(div, "outrostart", ctx.onExiting), internal.listen(div, "outroend", ctx.onExited)];
     },
     l: function l(nodes) {
@@ -3798,12 +3776,12 @@ function create_if_block$5(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       internal.add_render_callback(function () {
         if (!div_transition) div_transition = internal.create_bidirectional_transition(div, transition.slide, {}, true);
         div_transition.run(1);
@@ -3811,7 +3789,7 @@ function create_if_block$5(ctx) {
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       if (!div_transition) div_transition = internal.create_bidirectional_transition(div, transition.slide, {}, false);
       div_transition.run(0);
       current = false;
@@ -3840,7 +3818,7 @@ function create_fragment$n(ctx) {
     c: function c() {
       if (if_block) if_block.c();
       if_block_anchor = internal.empty();
-      dispose = internal.listen(window, "resize", ctx.onwindowresize);
+      dispose = internal.listen(window_1, "resize", ctx.onwindowresize);
     },
     m: function m(target, anchor) {
       if (if_block) if_block.m(target, anchor);
@@ -3851,30 +3829,28 @@ function create_fragment$n(ctx) {
       if (ctx.isOpen) {
         if (if_block) {
           if_block.p(changed, ctx);
-          if_block.i(1);
+          internal.transition_in(if_block, 1);
         } else {
           if_block = create_if_block$5(ctx);
           if_block.c();
-          if_block.i(1);
+          internal.transition_in(if_block, 1);
           if_block.m(if_block_anchor.parentNode, if_block_anchor);
         }
       } else if (if_block) {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_block.d(1);
+        internal.transition_out(if_block, 1, function () {
           if_block = null;
         });
-        if_block.o(1);
         internal.check_outros();
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -3931,7 +3907,7 @@ function instance$n($$self, $$props, $$invalidate) {
   }
 
   function onwindowresize() {
-    windowWidth = window.innerWidth;
+    windowWidth = window_1.innerWidth;
     $$invalidate('windowWidth', windowWidth);
   }
 
@@ -4018,8 +3994,8 @@ function create_fragment$o(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.id = ctx.id;
-      div.className = ctx.classes;
+      internal.attr(div, "id", ctx.id);
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -4039,20 +4015,20 @@ function create_fragment$o(ctx) {
       }
 
       if (!current || changed.id) {
-        div.id = ctx.id;
+        internal.attr(div, "id", ctx.id);
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -4137,15 +4113,15 @@ function create_else_block$4(ctx) {
       t1 = internal.text(ctx.label);
       t2 = internal.space();
       if (default_slot) default_slot.c();
-      input.id = ctx.id;
+      internal.attr(input, "id", ctx.id);
       internal.attr(input, "type", input_type_value = ctx.type === 'switch' ? 'checkbox' : ctx.type);
-      input.className = ctx.customControlClasses;
-      input.name = ctx.name;
+      internal.attr(input, "class", ctx.customControlClasses);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
-      label_1.className = "custom-control-label";
-      label_1.htmlFor = ctx.labelHtmlFor;
-      div.className = ctx.wrapperClasses;
+      internal.attr(input, "placeholder", ctx.placeholder);
+      internal.attr(label_1, "class", "custom-control-label");
+      internal.attr(label_1, "for", ctx.labelHtmlFor);
+      internal.attr(div, "class", ctx.wrapperClasses);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -4166,7 +4142,7 @@ function create_else_block$4(ctx) {
     },
     p: function p(changed, ctx) {
       if (!current || changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if ((!current || changed.type) && input_type_value !== (input_type_value = ctx.type === 'switch' ? 'checkbox' : ctx.type)) {
@@ -4174,11 +4150,11 @@ function create_else_block$4(ctx) {
       }
 
       if (!current || changed.customControlClasses) {
-        input.className = ctx.customControlClasses;
+        internal.attr(input, "class", ctx.customControlClasses);
       }
 
       if (!current || changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (!current || changed.disabled) {
@@ -4186,7 +4162,7 @@ function create_else_block$4(ctx) {
       }
 
       if (!current || changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
 
       if (!current || changed.label) {
@@ -4194,7 +4170,7 @@ function create_else_block$4(ctx) {
       }
 
       if (!current || changed.labelHtmlFor) {
-        label_1.htmlFor = ctx.labelHtmlFor;
+        internal.attr(label_1, "for", ctx.labelHtmlFor);
       }
 
       if (default_slot && default_slot.p && changed.$$scope) {
@@ -4202,16 +4178,16 @@ function create_else_block$4(ctx) {
       }
 
       if (!current || changed.wrapperClasses) {
-        div.className = ctx.wrapperClasses;
+        internal.attr(div, "class", ctx.wrapperClasses);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -4231,11 +4207,11 @@ function create_if_block_2$1(ctx) {
     c: function c() {
       input = internal.element("input");
       internal.attr(input, "type", ctx.type);
-      input.id = ctx.id;
-      input.className = ctx.combinedClasses;
-      input.name = ctx.name;
+      internal.attr(input, "id", ctx.id);
+      internal.attr(input, "class", ctx.combinedClasses);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
+      internal.attr(input, "placeholder", ctx.placeholder);
     },
     m: function m(target, anchor) {
       internal.insert(target, input, anchor);
@@ -4246,15 +4222,15 @@ function create_if_block_2$1(ctx) {
       }
 
       if (changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if (changed.combinedClasses) {
-        input.className = ctx.combinedClasses;
+        internal.attr(input, "class", ctx.combinedClasses);
       }
 
       if (changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -4262,7 +4238,7 @@ function create_if_block_2$1(ctx) {
       }
 
       if (changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
     },
     i: internal.noop,
@@ -4290,15 +4266,15 @@ function create_if_block_1$2(ctx) {
       t0 = internal.space();
       label_1 = internal.element("label");
       t1 = internal.text(t1_value);
-      input.id = ctx.id;
+      internal.attr(input, "id", ctx.id);
       internal.attr(input, "type", "file");
-      input.className = ctx.fileClasses;
-      input.name = ctx.name;
+      internal.attr(input, "class", ctx.fileClasses);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
-      label_1.className = "custom-file-label";
-      label_1.htmlFor = ctx.labelHtmlFor;
-      div.className = ctx.customClass;
+      internal.attr(input, "placeholder", ctx.placeholder);
+      internal.attr(label_1, "class", "custom-file-label");
+      internal.attr(label_1, "for", ctx.labelHtmlFor);
+      internal.attr(div, "class", ctx.customClass);
     },
     m: function m(target, anchor) {
       internal.insert(target, div, anchor);
@@ -4309,15 +4285,15 @@ function create_if_block_1$2(ctx) {
     },
     p: function p(changed, ctx) {
       if (changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if (changed.fileClasses) {
-        input.className = ctx.fileClasses;
+        internal.attr(input, "class", ctx.fileClasses);
       }
 
       if (changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -4325,7 +4301,7 @@ function create_if_block_1$2(ctx) {
       }
 
       if (changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
 
       if (changed.label && t1_value !== (t1_value = ctx.label || 'Choose file')) {
@@ -4333,11 +4309,11 @@ function create_if_block_1$2(ctx) {
       }
 
       if (changed.labelHtmlFor) {
-        label_1.htmlFor = ctx.labelHtmlFor;
+        internal.attr(label_1, "for", ctx.labelHtmlFor);
       }
 
       if (changed.customClass) {
-        div.className = ctx.customClass;
+        internal.attr(div, "class", ctx.customClass);
       }
     },
     i: internal.noop,
@@ -4359,9 +4335,9 @@ function create_if_block$6(ctx) {
     c: function c() {
       select = internal.element("select");
       if (default_slot) default_slot.c();
-      select.id = ctx.id;
-      select.className = ctx.combinedClasses;
-      select.name = ctx.name;
+      internal.attr(select, "id", ctx.id);
+      internal.attr(select, "class", ctx.combinedClasses);
+      internal.attr(select, "name", ctx.name);
       select.disabled = ctx.disabled;
       internal.attr(select, "placeholder", ctx.placeholder);
       select.multiple = ctx.multiple;
@@ -4384,15 +4360,15 @@ function create_if_block$6(ctx) {
       }
 
       if (!current || changed.id) {
-        select.id = ctx.id;
+        internal.attr(select, "id", ctx.id);
       }
 
       if (!current || changed.combinedClasses) {
-        select.className = ctx.combinedClasses;
+        internal.attr(select, "class", ctx.combinedClasses);
       }
 
       if (!current || changed.name) {
-        select.name = ctx.name;
+        internal.attr(select, "name", ctx.name);
       }
 
       if (!current || changed.disabled) {
@@ -4409,11 +4385,11 @@ function create_if_block$6(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -4458,11 +4434,9 @@ function create_fragment$p(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -4471,17 +4445,17 @@ function create_fragment$p(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(if_block_anchor.parentNode, if_block_anchor);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -4639,7 +4613,7 @@ function create_else_block$5(ctx) {
     c: function c() {
       button = internal.element("button");
       if (default_slot) default_slot.c();
-      button.className = ctx.classes;
+      internal.attr(button, "class", ctx.classes);
       dispose = [internal.listen(button, "click", ctx.click_handler_3), internal.listen(button, "click", ctx.handleItemClick)];
     },
     l: function l(nodes) {
@@ -4660,16 +4634,16 @@ function create_else_block$5(ctx) {
       }
 
       if (!current || changed.classes) {
-        button.className = ctx.classes;
+        internal.attr(button, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -4692,8 +4666,8 @@ function create_if_block_2$2(ctx) {
     c: function c() {
       a = internal.element("a");
       if (default_slot) default_slot.c();
-      a.href = ctx.href;
-      a.className = ctx.classes;
+      internal.attr(a, "href", ctx.href);
+      internal.attr(a, "class", ctx.classes);
       dispose = [internal.listen(a, "click", ctx.click_handler_2), internal.listen(a, "click", ctx.handleItemClick)];
     },
     l: function l(nodes) {
@@ -4714,20 +4688,20 @@ function create_if_block_2$2(ctx) {
       }
 
       if (!current || changed.href) {
-        a.href = ctx.href;
+        internal.attr(a, "href", ctx.href);
       }
 
       if (!current || changed.classes) {
-        a.className = ctx.classes;
+        internal.attr(a, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -4750,7 +4724,7 @@ function create_if_block_1$3(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
       dispose = [internal.listen(div, "click", ctx.click_handler_1), internal.listen(div, "click", ctx.handleItemClick)];
     },
     l: function l(nodes) {
@@ -4771,16 +4745,16 @@ function create_if_block_1$3(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -4803,7 +4777,7 @@ function create_if_block$7(ctx) {
     c: function c() {
       h6 = internal.element("h6");
       if (default_slot) default_slot.c();
-      h6.className = ctx.classes;
+      internal.attr(h6, "class", ctx.classes);
       dispose = [internal.listen(h6, "click", ctx.click_handler), internal.listen(h6, "click", ctx.handleItemClick)];
     },
     l: function l(nodes) {
@@ -4824,16 +4798,16 @@ function create_if_block$7(ctx) {
       }
 
       if (!current || changed.classes) {
-        h6.className = ctx.classes;
+        internal.attr(h6, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -4879,11 +4853,9 @@ function create_fragment$q(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -4892,17 +4864,17 @@ function create_fragment$q(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(if_block_anchor.parentNode, if_block_anchor);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -5045,7 +5017,7 @@ function create_fragment$r(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -5065,16 +5037,16 @@ function create_fragment$r(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -5199,15 +5171,15 @@ function create_else_block$6(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      button.$$.fragment.i(local);
+      internal.transition_in(button.$$.fragment, local);
       current = true;
     },
     o: function o(local) {
-      button.$$.fragment.o(local);
+      internal.transition_out(button.$$.fragment, local);
       current = false;
     },
     d: function d(detaching) {
-      button.$destroy(detaching);
+      internal.destroy_component(button, detaching);
     }
   };
 } // (49:25) 
@@ -5229,10 +5201,10 @@ function create_if_block_1$4(ctx) {
       if (default_slot) default_slot.c();
 
       if (!default_slot) {
-        span0.className = "sr-only";
+        internal.attr(span0, "class", "sr-only");
       }
 
-      span1.className = ctx.classes;
+      internal.attr(span1, "class", ctx.classes);
       internal.attr(span1, "color", ctx.color);
       internal.attr(span1, "size", ctx.size);
       dispose = [internal.listen(span1, "click", ctx.click_handler_1), internal.listen(span1, "click", ctx.toggleButton)];
@@ -5264,7 +5236,7 @@ function create_if_block_1$4(ctx) {
       }
 
       if (!current || changed.classes) {
-        span1.className = ctx.classes;
+        internal.attr(span1, "class", ctx.classes);
       }
 
       if (!current || changed.color) {
@@ -5277,11 +5249,11 @@ function create_if_block_1$4(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -5312,11 +5284,11 @@ function create_if_block$8(ctx) {
       if (default_slot) default_slot.c();
 
       if (!default_slot) {
-        span.className = "sr-only";
+        internal.attr(span, "class", "sr-only");
       }
 
-      a.href = "#nav";
-      a.className = ctx.classes;
+      internal.attr(a, "href", "#nav");
+      internal.attr(a, "class", ctx.classes);
       dispose = [internal.listen(a, "click", ctx.click_handler), internal.listen(a, "click", ctx.toggleButton)];
     },
     l: function l(nodes) {
@@ -5346,16 +5318,16 @@ function create_if_block$8(ctx) {
       }
 
       if (!current || changed.classes) {
-        a.className = ctx.classes;
+        internal.attr(a, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -5384,7 +5356,7 @@ function create_default_slot$1(ctx) {
       if (default_slot) default_slot.c();
 
       if (!default_slot) {
-        span.className = "sr-only";
+        internal.attr(span, "class", "sr-only");
       }
     },
     l: function l(nodes) {
@@ -5413,11 +5385,11 @@ function create_default_slot$1(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -5463,11 +5435,9 @@ function create_fragment$s(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -5476,17 +5446,17 @@ function create_fragment$s(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(if_block_anchor.parentNode, if_block_anchor);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -5639,7 +5609,7 @@ function create_fragment$t(ctx) {
     c: function c() {
       form = internal.element("form");
       if (default_slot) default_slot.c();
-      form.className = ctx.classes;
+      internal.attr(form, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(form_nodes);
@@ -5659,16 +5629,16 @@ function create_fragment$t(ctx) {
       }
 
       if (!current || changed.classes) {
-        form.className = ctx.classes;
+        internal.attr(form, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -5744,7 +5714,7 @@ function create_fragment$u(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -5764,16 +5734,16 @@ function create_fragment$u(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -5856,8 +5826,8 @@ function create_else_block$7(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.id = ctx.id;
-      div.className = ctx.classes;
+      internal.attr(div, "id", ctx.id);
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -5877,20 +5847,20 @@ function create_else_block$7(ctx) {
       }
 
       if (!current || changed.id) {
-        div.id = ctx.id;
+        internal.attr(div, "id", ctx.id);
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -5912,8 +5882,8 @@ function create_if_block$9(ctx) {
     c: function c() {
       fieldset = internal.element("fieldset");
       if (default_slot) default_slot.c();
-      fieldset.id = ctx.id;
-      fieldset.className = ctx.classes;
+      internal.attr(fieldset, "id", ctx.id);
+      internal.attr(fieldset, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(fieldset_nodes);
@@ -5933,20 +5903,20 @@ function create_if_block$9(ctx) {
       }
 
       if (!current || changed.id) {
-        fieldset.id = ctx.id;
+        internal.attr(fieldset, "id", ctx.id);
       }
 
       if (!current || changed.classes) {
-        fieldset.className = ctx.classes;
+        internal.attr(fieldset, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -5989,11 +5959,9 @@ function create_fragment$v(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -6002,17 +5970,17 @@ function create_fragment$v(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(if_block_anchor.parentNode, if_block_anchor);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -6111,7 +6079,7 @@ function create_fragment$w(ctx) {
     c: function c() {
       small = internal.element("small");
       if (default_slot) default_slot.c();
-      small.className = ctx.classes;
+      internal.attr(small, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(small_nodes);
@@ -6131,16 +6099,16 @@ function create_fragment$w(ctx) {
       }
 
       if (!current || changed.classes) {
-        small.className = ctx.classes;
+        internal.attr(small, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -6221,10 +6189,10 @@ function create_if_block_15(ctx) {
     c: function c() {
       select = internal.element("select");
       if (default_slot) default_slot.c();
-      select.id = ctx.id;
+      internal.attr(select, "id", ctx.id);
       select.multiple = ctx.multiple;
-      select.className = ctx.classes;
-      select.name = ctx.name;
+      internal.attr(select, "class", ctx.classes);
+      internal.attr(select, "name", ctx.name);
       select.disabled = ctx.disabled;
     },
     l: function l(nodes) {
@@ -6245,7 +6213,7 @@ function create_if_block_15(ctx) {
       }
 
       if (!current || changed.id) {
-        select.id = ctx.id;
+        internal.attr(select, "id", ctx.id);
       }
 
       if (!current || changed.multiple) {
@@ -6253,11 +6221,11 @@ function create_if_block_15(ctx) {
       }
 
       if (!current || changed.classes) {
-        select.className = ctx.classes;
+        internal.attr(select, "class", ctx.classes);
       }
 
       if (!current || changed.name) {
-        select.name = ctx.name;
+        internal.attr(select, "name", ctx.name);
       }
 
       if (!current || changed.disabled) {
@@ -6266,11 +6234,11 @@ function create_if_block_15(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -6289,9 +6257,9 @@ function create_if_block_14(ctx) {
   return {
     c: function c() {
       textarea = internal.element("textarea");
-      textarea.id = ctx.id;
-      textarea.className = ctx.classes;
-      textarea.name = ctx.name;
+      internal.attr(textarea, "id", ctx.id);
+      internal.attr(textarea, "class", ctx.classes);
+      internal.attr(textarea, "name", ctx.name);
       textarea.disabled = ctx.disabled;
       dispose = internal.listen(textarea, "input", ctx.textarea_input_handler);
     },
@@ -6303,15 +6271,15 @@ function create_if_block_14(ctx) {
       if (changed.value) textarea.value = ctx.value;
 
       if (changed.id) {
-        textarea.id = ctx.id;
+        internal.attr(textarea, "id", ctx.id);
       }
 
       if (changed.classes) {
-        textarea.className = ctx.classes;
+        internal.attr(textarea, "class", ctx.classes);
       }
 
       if (changed.name) {
-        textarea.name = ctx.name;
+        internal.attr(textarea, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -6392,13 +6360,13 @@ function create_if_block_13(ctx) {
   return {
     c: function c() {
       input = internal.element("input");
-      input.id = ctx.id;
+      internal.attr(input, "id", ctx.id);
       internal.attr(input, "type", "search");
       input.readOnly = ctx.readonly;
-      input.className = ctx.classes;
-      input.name = ctx.name;
+      internal.attr(input, "class", ctx.classes);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
+      internal.attr(input, "placeholder", ctx.placeholder);
       dispose = internal.listen(input, "input", ctx.input_input_handler_10);
     },
     m: function m(target, anchor) {
@@ -6409,7 +6377,7 @@ function create_if_block_13(ctx) {
       if (changed.value) input.value = ctx.value;
 
       if (changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if (changed.readonly) {
@@ -6417,11 +6385,11 @@ function create_if_block_13(ctx) {
       }
 
       if (changed.classes) {
-        input.className = ctx.classes;
+        internal.attr(input, "class", ctx.classes);
       }
 
       if (changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -6429,7 +6397,7 @@ function create_if_block_13(ctx) {
       }
 
       if (changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
     },
     d: function d(detaching) {
@@ -6448,13 +6416,13 @@ function create_if_block_12(ctx) {
   return {
     c: function c() {
       input = internal.element("input");
-      input.id = ctx.id;
+      internal.attr(input, "id", ctx.id);
       internal.attr(input, "type", "color");
       input.readOnly = ctx.readonly;
-      input.className = ctx.classes;
-      input.name = ctx.name;
+      internal.attr(input, "class", ctx.classes);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
+      internal.attr(input, "placeholder", ctx.placeholder);
       dispose = internal.listen(input, "input", ctx.input_input_handler_9);
     },
     m: function m(target, anchor) {
@@ -6465,7 +6433,7 @@ function create_if_block_12(ctx) {
       if (changed.value) input.value = ctx.value;
 
       if (changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if (changed.readonly) {
@@ -6473,11 +6441,11 @@ function create_if_block_12(ctx) {
       }
 
       if (changed.classes) {
-        input.className = ctx.classes;
+        internal.attr(input, "class", ctx.classes);
       }
 
       if (changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -6485,7 +6453,7 @@ function create_if_block_12(ctx) {
       }
 
       if (changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
     },
     d: function d(detaching) {
@@ -6504,13 +6472,13 @@ function create_if_block_11(ctx) {
   return {
     c: function c() {
       input = internal.element("input");
-      input.id = ctx.id;
+      internal.attr(input, "id", ctx.id);
       internal.attr(input, "type", "datetime");
       input.readOnly = ctx.readonly;
-      input.className = ctx.classes;
-      input.name = ctx.name;
+      internal.attr(input, "class", ctx.classes);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
+      internal.attr(input, "placeholder", ctx.placeholder);
       dispose = internal.listen(input, "input", ctx.input_input_handler_8);
     },
     m: function m(target, anchor) {
@@ -6521,7 +6489,7 @@ function create_if_block_11(ctx) {
       if (changed.value) input.value = ctx.value;
 
       if (changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if (changed.readonly) {
@@ -6529,11 +6497,11 @@ function create_if_block_11(ctx) {
       }
 
       if (changed.classes) {
-        input.className = ctx.classes;
+        internal.attr(input, "class", ctx.classes);
       }
 
       if (changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -6541,7 +6509,7 @@ function create_if_block_11(ctx) {
       }
 
       if (changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
     },
     d: function d(detaching) {
@@ -6560,13 +6528,13 @@ function create_if_block_10(ctx) {
   return {
     c: function c() {
       input = internal.element("input");
-      input.id = ctx.id;
+      internal.attr(input, "id", ctx.id);
       internal.attr(input, "type", "time");
       input.readOnly = ctx.readonly;
-      input.className = ctx.classes;
-      input.name = ctx.name;
+      internal.attr(input, "class", ctx.classes);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
+      internal.attr(input, "placeholder", ctx.placeholder);
       dispose = internal.listen(input, "input", ctx.input_input_handler_7);
     },
     m: function m(target, anchor) {
@@ -6577,7 +6545,7 @@ function create_if_block_10(ctx) {
       if (changed.value) input.value = ctx.value;
 
       if (changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if (changed.readonly) {
@@ -6585,11 +6553,11 @@ function create_if_block_10(ctx) {
       }
 
       if (changed.classes) {
-        input.className = ctx.classes;
+        internal.attr(input, "class", ctx.classes);
       }
 
       if (changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -6597,7 +6565,7 @@ function create_if_block_10(ctx) {
       }
 
       if (changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
     },
     d: function d(detaching) {
@@ -6616,13 +6584,13 @@ function create_if_block_9(ctx) {
   return {
     c: function c() {
       input = internal.element("input");
-      input.id = ctx.id;
+      internal.attr(input, "id", ctx.id);
       internal.attr(input, "type", "date");
       input.readOnly = ctx.readonly;
-      input.className = ctx.classes;
-      input.name = ctx.name;
+      internal.attr(input, "class", ctx.classes);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
+      internal.attr(input, "placeholder", ctx.placeholder);
       dispose = internal.listen(input, "input", ctx.input_input_handler_6);
     },
     m: function m(target, anchor) {
@@ -6633,7 +6601,7 @@ function create_if_block_9(ctx) {
       if (changed.value) input.value = ctx.value;
 
       if (changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if (changed.readonly) {
@@ -6641,11 +6609,11 @@ function create_if_block_9(ctx) {
       }
 
       if (changed.classes) {
-        input.className = ctx.classes;
+        internal.attr(input, "class", ctx.classes);
       }
 
       if (changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -6653,7 +6621,7 @@ function create_if_block_9(ctx) {
       }
 
       if (changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
     },
     d: function d(detaching) {
@@ -6672,13 +6640,13 @@ function create_if_block_8(ctx) {
   return {
     c: function c() {
       input = internal.element("input");
-      input.id = ctx.id;
+      internal.attr(input, "id", ctx.id);
       internal.attr(input, "type", "number");
       input.readOnly = ctx.readonly;
-      input.className = ctx.classes;
-      input.name = ctx.name;
+      internal.attr(input, "class", ctx.classes);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
+      internal.attr(input, "placeholder", ctx.placeholder);
       dispose = internal.listen(input, "input", ctx.input_input_handler_5);
     },
     m: function m(target, anchor) {
@@ -6689,7 +6657,7 @@ function create_if_block_8(ctx) {
       if (changed.value) input.value = ctx.value;
 
       if (changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if (changed.readonly) {
@@ -6697,11 +6665,11 @@ function create_if_block_8(ctx) {
       }
 
       if (changed.classes) {
-        input.className = ctx.classes;
+        internal.attr(input, "class", ctx.classes);
       }
 
       if (changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -6709,7 +6677,7 @@ function create_if_block_8(ctx) {
       }
 
       if (changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
     },
     d: function d(detaching) {
@@ -6728,13 +6696,13 @@ function create_if_block_7(ctx) {
   return {
     c: function c() {
       input = internal.element("input");
-      input.id = ctx.id;
+      internal.attr(input, "id", ctx.id);
       internal.attr(input, "type", "url");
       input.readOnly = ctx.readonly;
-      input.className = ctx.classes;
-      input.name = ctx.name;
+      internal.attr(input, "class", ctx.classes);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
+      internal.attr(input, "placeholder", ctx.placeholder);
       dispose = internal.listen(input, "input", ctx.input_input_handler_4);
     },
     m: function m(target, anchor) {
@@ -6745,7 +6713,7 @@ function create_if_block_7(ctx) {
       if (changed.value) input.value = ctx.value;
 
       if (changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if (changed.readonly) {
@@ -6753,11 +6721,11 @@ function create_if_block_7(ctx) {
       }
 
       if (changed.classes) {
-        input.className = ctx.classes;
+        internal.attr(input, "class", ctx.classes);
       }
 
       if (changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -6765,7 +6733,7 @@ function create_if_block_7(ctx) {
       }
 
       if (changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
     },
     d: function d(detaching) {
@@ -6784,13 +6752,13 @@ function create_if_block_6(ctx) {
   return {
     c: function c() {
       input = internal.element("input");
-      input.id = ctx.id;
+      internal.attr(input, "id", ctx.id);
       internal.attr(input, "type", "radio");
       input.readOnly = ctx.readonly;
-      input.className = ctx.classes;
-      input.name = ctx.name;
+      internal.attr(input, "class", ctx.classes);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
+      internal.attr(input, "placeholder", ctx.placeholder);
       dispose = internal.listen(input, "change", ctx.input_change_handler_1);
     },
     m: function m(target, anchor) {
@@ -6801,7 +6769,7 @@ function create_if_block_6(ctx) {
       if (changed.value) input.value = ctx.value;
 
       if (changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if (changed.readonly) {
@@ -6809,11 +6777,11 @@ function create_if_block_6(ctx) {
       }
 
       if (changed.classes) {
-        input.className = ctx.classes;
+        internal.attr(input, "class", ctx.classes);
       }
 
       if (changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -6821,7 +6789,7 @@ function create_if_block_6(ctx) {
       }
 
       if (changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
     },
     d: function d(detaching) {
@@ -6840,13 +6808,13 @@ function create_if_block_5(ctx) {
   return {
     c: function c() {
       input = internal.element("input");
-      input.id = ctx.id;
+      internal.attr(input, "id", ctx.id);
       internal.attr(input, "type", "checkbox");
       input.readOnly = ctx.readonly;
-      input.className = ctx.classes;
-      input.name = ctx.name;
+      internal.attr(input, "class", ctx.classes);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
+      internal.attr(input, "placeholder", ctx.placeholder);
       dispose = internal.listen(input, "change", ctx.input_change_handler);
     },
     m: function m(target, anchor) {
@@ -6857,7 +6825,7 @@ function create_if_block_5(ctx) {
       if (changed.value) input.value = ctx.value;
 
       if (changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if (changed.readonly) {
@@ -6865,11 +6833,11 @@ function create_if_block_5(ctx) {
       }
 
       if (changed.classes) {
-        input.className = ctx.classes;
+        internal.attr(input, "class", ctx.classes);
       }
 
       if (changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -6877,7 +6845,7 @@ function create_if_block_5(ctx) {
       }
 
       if (changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
     },
     d: function d(detaching) {
@@ -6896,13 +6864,13 @@ function create_if_block_4(ctx) {
   return {
     c: function c() {
       input = internal.element("input");
-      input.id = ctx.id;
+      internal.attr(input, "id", ctx.id);
       internal.attr(input, "type", "file");
       input.readOnly = ctx.readonly;
-      input.className = ctx.classes;
-      input.name = ctx.name;
+      internal.attr(input, "class", ctx.classes);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
+      internal.attr(input, "placeholder", ctx.placeholder);
       dispose = internal.listen(input, "input", ctx.input_input_handler_3);
     },
     m: function m(target, anchor) {
@@ -6910,7 +6878,7 @@ function create_if_block_4(ctx) {
     },
     p: function p(changed, ctx) {
       if (changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if (changed.readonly) {
@@ -6918,11 +6886,11 @@ function create_if_block_4(ctx) {
       }
 
       if (changed.classes) {
-        input.className = ctx.classes;
+        internal.attr(input, "class", ctx.classes);
       }
 
       if (changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -6930,7 +6898,7 @@ function create_if_block_4(ctx) {
       }
 
       if (changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
     },
     d: function d(detaching) {
@@ -6949,13 +6917,13 @@ function create_if_block_3(ctx) {
   return {
     c: function c() {
       input = internal.element("input");
-      input.id = ctx.id;
+      internal.attr(input, "id", ctx.id);
       internal.attr(input, "type", "email");
       input.readOnly = ctx.readonly;
-      input.className = ctx.classes;
-      input.name = ctx.name;
+      internal.attr(input, "class", ctx.classes);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
+      internal.attr(input, "placeholder", ctx.placeholder);
       dispose = internal.listen(input, "input", ctx.input_input_handler_2);
     },
     m: function m(target, anchor) {
@@ -6966,7 +6934,7 @@ function create_if_block_3(ctx) {
       if (changed.value) input.value = ctx.value;
 
       if (changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if (changed.readonly) {
@@ -6974,11 +6942,11 @@ function create_if_block_3(ctx) {
       }
 
       if (changed.classes) {
-        input.className = ctx.classes;
+        internal.attr(input, "class", ctx.classes);
       }
 
       if (changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -6986,7 +6954,7 @@ function create_if_block_3(ctx) {
       }
 
       if (changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
     },
     d: function d(detaching) {
@@ -7005,13 +6973,13 @@ function create_if_block_2$3(ctx) {
   return {
     c: function c() {
       input = internal.element("input");
-      input.id = ctx.id;
+      internal.attr(input, "id", ctx.id);
       internal.attr(input, "type", "password");
       input.readOnly = ctx.readonly;
-      input.className = ctx.classes;
-      input.name = ctx.name;
+      internal.attr(input, "class", ctx.classes);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
+      internal.attr(input, "placeholder", ctx.placeholder);
       dispose = internal.listen(input, "input", ctx.input_input_handler_1);
     },
     m: function m(target, anchor) {
@@ -7022,7 +6990,7 @@ function create_if_block_2$3(ctx) {
       if (changed.value) input.value = ctx.value;
 
       if (changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if (changed.readonly) {
@@ -7030,11 +6998,11 @@ function create_if_block_2$3(ctx) {
       }
 
       if (changed.classes) {
-        input.className = ctx.classes;
+        internal.attr(input, "class", ctx.classes);
       }
 
       if (changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -7042,7 +7010,7 @@ function create_if_block_2$3(ctx) {
       }
 
       if (changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
     },
     d: function d(detaching) {
@@ -7061,13 +7029,13 @@ function create_if_block_1$5(ctx) {
   return {
     c: function c() {
       input = internal.element("input");
-      input.id = ctx.id;
+      internal.attr(input, "id", ctx.id);
       internal.attr(input, "type", "text");
       input.readOnly = ctx.readonly;
-      input.className = ctx.classes;
-      input.name = ctx.name;
+      internal.attr(input, "class", ctx.classes);
+      internal.attr(input, "name", ctx.name);
       input.disabled = ctx.disabled;
-      input.placeholder = ctx.placeholder;
+      internal.attr(input, "placeholder", ctx.placeholder);
       dispose = internal.listen(input, "input", ctx.input_input_handler);
     },
     m: function m(target, anchor) {
@@ -7078,7 +7046,7 @@ function create_if_block_1$5(ctx) {
       if (changed.value && input.value !== ctx.value) input.value = ctx.value;
 
       if (changed.id) {
-        input.id = ctx.id;
+        internal.attr(input, "id", ctx.id);
       }
 
       if (changed.readonly) {
@@ -7086,11 +7054,11 @@ function create_if_block_1$5(ctx) {
       }
 
       if (changed.classes) {
-        input.className = ctx.classes;
+        internal.attr(input, "class", ctx.classes);
       }
 
       if (changed.name) {
-        input.name = ctx.name;
+        internal.attr(input, "name", ctx.name);
       }
 
       if (changed.disabled) {
@@ -7098,7 +7066,7 @@ function create_if_block_1$5(ctx) {
       }
 
       if (changed.placeholder) {
-        input.placeholder = ctx.placeholder;
+        internal.attr(input, "placeholder", ctx.placeholder);
       }
     },
     d: function d(detaching) {
@@ -7146,11 +7114,9 @@ function create_fragment$x(ctx) {
       } else {
         if (if_block) {
           internal.group_outros();
-          internal.on_outro(function () {
-            if_blocks[previous_block_index].d(1);
+          internal.transition_out(if_blocks[previous_block_index], 1, function () {
             if_blocks[previous_block_index] = null;
           });
-          if_block.o(1);
           internal.check_outros();
         }
 
@@ -7162,7 +7128,7 @@ function create_fragment$x(ctx) {
             if_block.c();
           }
 
-          if_block.i(1);
+          internal.transition_in(if_block, 1);
           if_block.m(if_block_anchor.parentNode, if_block_anchor);
         } else {
           if_block = null;
@@ -7171,11 +7137,11 @@ function create_fragment$x(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -7423,7 +7389,7 @@ function create_fragment$y(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -7443,16 +7409,16 @@ function create_fragment$y(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -7528,7 +7494,7 @@ function create_fragment$z(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -7548,16 +7514,16 @@ function create_fragment$z(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -7654,11 +7620,11 @@ function create_default_slot$2(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -7705,15 +7671,15 @@ function create_fragment$A(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      dropdown.$$.fragment.i(local);
+      internal.transition_in(dropdown.$$.fragment, local);
       current = true;
     },
     o: function o(local) {
-      dropdown.$$.fragment.o(local);
+      internal.transition_out(dropdown.$$.fragment, local);
       current = false;
     },
     d: function d(detaching) {
-      dropdown.$destroy(detaching);
+      internal.destroy_component(dropdown, detaching);
     }
   };
 }
@@ -7777,7 +7743,7 @@ function create_fragment$B(ctx) {
     c: function c() {
       span = internal.element("span");
       if (default_slot) default_slot.c();
-      span.className = ctx.classes;
+      internal.attr(span, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(span_nodes);
@@ -7797,16 +7763,16 @@ function create_fragment$B(ctx) {
       }
 
       if (!current || changed.classes) {
-        span.className = ctx.classes;
+        internal.attr(span, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -7877,7 +7843,7 @@ function create_else_block$8(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -7897,16 +7863,16 @@ function create_else_block$8(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -7928,7 +7894,7 @@ function create_if_block$b(ctx) {
     c: function c() {
       section = internal.element("section");
       if (default_slot) default_slot.c();
-      section.className = ctx.classes;
+      internal.attr(section, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(section_nodes);
@@ -7948,16 +7914,16 @@ function create_if_block$b(ctx) {
       }
 
       if (!current || changed.classes) {
-        section.className = ctx.classes;
+        internal.attr(section, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -8000,11 +7966,9 @@ function create_fragment$C(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -8013,17 +7977,17 @@ function create_fragment$C(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(if_block_anchor.parentNode, if_block_anchor);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -8103,9 +8067,9 @@ function create_fragment$D(ctx) {
     c: function c() {
       label = internal.element("label");
       if (default_slot) default_slot.c();
-      label.id = ctx.id;
-      label.className = ctx.classes;
-      label.htmlFor = ctx.fore;
+      internal.attr(label, "id", ctx.id);
+      internal.attr(label, "class", ctx.classes);
+      internal.attr(label, "for", ctx.fore);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(label_nodes);
@@ -8125,24 +8089,24 @@ function create_fragment$D(ctx) {
       }
 
       if (!current || changed.id) {
-        label.id = ctx.id;
+        internal.attr(label, "id", ctx.id);
       }
 
       if (!current || changed.classes) {
-        label.className = ctx.classes;
+        internal.attr(label, "class", ctx.classes);
       }
 
       if (!current || changed.fore) {
-        label.htmlFor = ctx.fore;
+        internal.attr(label, "for", ctx.fore);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -8211,18 +8175,18 @@ function instance$D($$self, $$props, $$invalidate) {
 
   $$self.$set = function ($$new_props) {
     $$invalidate('$$props', $$props = internal.assign(internal.assign({}, $$props), $$new_props));
-    if ('class' in $$props) $$invalidate('className', className = $$props["class"]);
-    if ('hidden' in $$props) $$invalidate('hidden', hidden = $$props.hidden);
-    if ('check' in $$props) $$invalidate('check', check = $$props.check);
-    if ('size' in $$props) $$invalidate('size', size = $$props.size);
-    if ('for' in $$props) $$invalidate('fore', fore = $$props["for"]);
-    if ('id' in $$props) $$invalidate('id', id = $$props.id);
-    if ('xs' in $$props) $$invalidate('xs', xs = $$props.xs);
-    if ('sm' in $$props) $$invalidate('sm', sm = $$props.sm);
-    if ('md' in $$props) $$invalidate('md', md = $$props.md);
-    if ('lg' in $$props) $$invalidate('lg', lg = $$props.lg);
-    if ('xl' in $$props) $$invalidate('xl', xl = $$props.xl);
-    if ('widths' in $$props) $$invalidate('widths', widths = $$props.widths);
+    if ('class' in $$new_props) $$invalidate('className', className = $$new_props["class"]);
+    if ('hidden' in $$new_props) $$invalidate('hidden', hidden = $$new_props.hidden);
+    if ('check' in $$new_props) $$invalidate('check', check = $$new_props.check);
+    if ('size' in $$new_props) $$invalidate('size', size = $$new_props.size);
+    if ('for' in $$new_props) $$invalidate('fore', fore = $$new_props["for"]);
+    if ('id' in $$new_props) $$invalidate('id', id = $$new_props.id);
+    if ('xs' in $$new_props) $$invalidate('xs', xs = $$new_props.xs);
+    if ('sm' in $$new_props) $$invalidate('sm', sm = $$new_props.sm);
+    if ('md' in $$new_props) $$invalidate('md', md = $$new_props.md);
+    if ('lg' in $$new_props) $$invalidate('lg', lg = $$new_props.lg);
+    if ('xl' in $$new_props) $$invalidate('xl', xl = $$new_props.xl);
+    if ('widths' in $$new_props) $$invalidate('widths', widths = $$new_props.widths);
     if ('$$scope' in $$new_props) $$invalidate('$$scope', $$scope = $$new_props.$$scope);
   };
 
@@ -8287,7 +8251,7 @@ function create_fragment$E(ctx) {
     c: function c() {
       ul = internal.element("ul");
       if (default_slot) default_slot.c();
-      ul.className = ctx.classes;
+      internal.attr(ul, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(ul_nodes);
@@ -8307,16 +8271,16 @@ function create_fragment$E(ctx) {
       }
 
       if (!current || changed.classes) {
-        ul.className = ctx.classes;
+        internal.attr(ul, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -8392,7 +8356,7 @@ function create_else_block$9(ctx) {
     c: function c() {
       li = internal.element("li");
       if (default_slot) default_slot.c();
-      li.className = ctx.classes;
+      internal.attr(li, "class", ctx.classes);
       internal.attr(li, "disabled", ctx.disabled);
       internal.attr(li, "active", ctx.active);
     },
@@ -8414,7 +8378,7 @@ function create_else_block$9(ctx) {
       }
 
       if (!current || changed.classes) {
-        li.className = ctx.classes;
+        internal.attr(li, "class", ctx.classes);
       }
 
       if (!current || changed.disabled) {
@@ -8427,11 +8391,11 @@ function create_else_block$9(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -8453,8 +8417,8 @@ function create_if_block_1$6(ctx) {
     c: function c() {
       button = internal.element("button");
       if (default_slot) default_slot.c();
-      button.className = ctx.classes;
-      button.type = "button";
+      internal.attr(button, "class", ctx.classes);
+      internal.attr(button, "type", "button");
       button.disabled = ctx.disabled;
       internal.attr(button, "active", ctx.active);
       dispose = internal.listen(button, "click", ctx.click_handler);
@@ -8477,7 +8441,7 @@ function create_if_block_1$6(ctx) {
       }
 
       if (!current || changed.classes) {
-        button.className = ctx.classes;
+        internal.attr(button, "class", ctx.classes);
       }
 
       if (!current || changed.disabled) {
@@ -8490,11 +8454,11 @@ function create_if_block_1$6(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -8517,8 +8481,8 @@ function create_if_block$c(ctx) {
     c: function c() {
       a = internal.element("a");
       if (default_slot) default_slot.c();
-      a.className = ctx.classes;
-      a.href = ctx.href;
+      internal.attr(a, "class", ctx.classes);
+      internal.attr(a, "href", ctx.href);
       internal.attr(a, "disabled", ctx.disabled);
       internal.attr(a, "active", ctx.active);
     },
@@ -8540,11 +8504,11 @@ function create_if_block$c(ctx) {
       }
 
       if (!current || changed.classes) {
-        a.className = ctx.classes;
+        internal.attr(a, "class", ctx.classes);
       }
 
       if (!current || changed.href) {
-        a.href = ctx.href;
+        internal.attr(a, "href", ctx.href);
       }
 
       if (!current || changed.disabled) {
@@ -8557,11 +8521,11 @@ function create_if_block$c(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -8605,11 +8569,9 @@ function create_fragment$F(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -8618,17 +8580,17 @@ function create_fragment$F(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(if_block_anchor.parentNode, if_block_anchor);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -8732,7 +8694,7 @@ function create_fragment$G(ctx) {
     c: function c() {
       h5 = internal.element("h5");
       if (default_slot) default_slot.c();
-      h5.className = ctx.classes;
+      internal.attr(h5, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(h5_nodes);
@@ -8752,16 +8714,16 @@ function create_fragment$G(ctx) {
       }
 
       if (!current || changed.classes) {
-        h5.className = ctx.classes;
+        internal.attr(h5, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -8833,7 +8795,7 @@ function create_fragment$H(ctx) {
     c: function c() {
       _p = internal.element("p");
       if (default_slot) default_slot.c();
-      _p.className = ctx.classes;
+      internal.attr(_p, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(p_nodes);
@@ -8853,16 +8815,16 @@ function create_fragment$H(ctx) {
       }
 
       if (!current || changed.classes) {
-        _p.className = ctx.classes;
+        internal.attr(_p, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -8933,7 +8895,7 @@ function create_else_block$a(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -8953,16 +8915,16 @@ function create_else_block$a(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -8984,7 +8946,7 @@ function create_if_block_3$1(ctx) {
     c: function c() {
       ul = internal.element("ul");
       if (default_slot) default_slot.c();
-      ul.className = ctx.classes;
+      internal.attr(ul, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(ul_nodes);
@@ -9004,16 +8966,16 @@ function create_if_block_3$1(ctx) {
       }
 
       if (!current || changed.classes) {
-        ul.className = ctx.classes;
+        internal.attr(ul, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -9032,24 +8994,24 @@ function create_if_block_2$4(ctx) {
   return {
     c: function c() {
       img = internal.element("img");
-      img.className = ctx.classes;
-      img.src = ctx.src;
-      img.alt = ctx.alt;
+      internal.attr(img, "class", ctx.classes);
+      internal.attr(img, "src", ctx.src);
+      internal.attr(img, "alt", ctx.alt);
     },
     m: function m(target, anchor) {
       internal.insert(target, img, anchor);
     },
     p: function p(changed, ctx) {
       if (changed.classes) {
-        img.className = ctx.classes;
+        internal.attr(img, "class", ctx.classes);
       }
 
       if (changed.src) {
-        img.src = ctx.src;
+        internal.attr(img, "src", ctx.src);
       }
 
       if (changed.alt) {
-        img.alt = ctx.alt;
+        internal.attr(img, "alt", ctx.alt);
       }
     },
     i: internal.noop,
@@ -9071,8 +9033,8 @@ function create_if_block_1$7(ctx) {
     c: function c() {
       a = internal.element("a");
       if (default_slot) default_slot.c();
-      a.className = ctx.classes;
-      a.href = ctx.href;
+      internal.attr(a, "class", ctx.classes);
+      internal.attr(a, "href", ctx.href);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(a_nodes);
@@ -9092,20 +9054,20 @@ function create_if_block_1$7(ctx) {
       }
 
       if (!current || changed.classes) {
-        a.className = ctx.classes;
+        internal.attr(a, "class", ctx.classes);
       }
 
       if (!current || changed.href) {
-        a.href = ctx.href;
+        internal.attr(a, "href", ctx.href);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -9127,7 +9089,7 @@ function create_if_block$d(ctx) {
     c: function c() {
       h4 = internal.element("h4");
       if (default_slot) default_slot.c();
-      h4.className = ctx.classes;
+      internal.attr(h4, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(h4_nodes);
@@ -9147,16 +9109,16 @@ function create_if_block$d(ctx) {
       }
 
       if (!current || changed.classes) {
-        h4.className = ctx.classes;
+        internal.attr(h4, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -9202,11 +9164,9 @@ function create_fragment$I(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -9215,17 +9175,17 @@ function create_fragment$I(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(if_block_anchor.parentNode, if_block_anchor);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -9364,7 +9324,7 @@ function create_fragment$J(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -9384,16 +9344,16 @@ function create_fragment$J(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -9464,7 +9424,7 @@ function create_fragment$K(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -9484,16 +9444,16 @@ function create_fragment$K(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -9556,27 +9516,19 @@ function (_SvelteComponent) {
   return ModalFooter;
 }(internal.SvelteComponent);
 
-var get_close_slot_changes = function get_close_slot_changes(_ref) {
-  _objectDestructuringEmpty(_ref);
-
+var get_close_slot_changes = function get_close_slot_changes() {
   return {};
 };
 
-var get_close_slot_context = function get_close_slot_context(_ref2) {
-  _objectDestructuringEmpty(_ref2);
-
+var get_close_slot_context = function get_close_slot_context() {
   return {};
 };
 
-var get_content_slot_changes = function get_content_slot_changes(_ref3) {
-  _objectDestructuringEmpty(_ref3);
-
+var get_content_slot_changes = function get_content_slot_changes() {
   return {};
 };
 
-var get_content_slot_context = function get_content_slot_context(_ref4) {
-  _objectDestructuringEmpty(_ref4);
-
+var get_content_slot_context = function get_content_slot_context() {
   return {};
 }; // (23:2) {#if typeof toggle === 'function'}
 
@@ -9589,8 +9541,8 @@ function create_if_block$e(ctx) {
       span = internal.element("span");
       t = internal.text(ctx.closeIcon);
       internal.attr(span, "aria-hidden", "true");
-      button.type = "button";
-      button.className = "close";
+      internal.attr(button, "type", "button");
+      internal.attr(button, "class", "close");
       internal.attr(button, "aria-label", ctx.closeAriaLabel);
       dispose = internal.listen(button, "click", ctx.toggle);
     },
@@ -9637,8 +9589,8 @@ function create_fragment$L(ctx) {
       }
 
       if (close_slot) close_slot.c();
-      h5.className = "modal-title";
-      div.className = ctx.classes;
+      internal.attr(h5, "class", "modal-title");
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (content_slot) content_slot.l(h5_nodes);
@@ -9687,18 +9639,18 @@ function create_fragment$L(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (content_slot && content_slot.i) content_slot.i(local);
-      if (close_slot && close_slot.i) close_slot.i(local);
+      internal.transition_in(content_slot, local);
+      internal.transition_in(close_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (content_slot && content_slot.o) content_slot.o(local);
-      if (close_slot && close_slot.o) close_slot.o(local);
+      internal.transition_out(content_slot, local);
+      internal.transition_out(close_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -9793,7 +9745,7 @@ function create_fragment$M(ctx) {
     c: function c() {
       ul = internal.element("ul");
       if (default_slot) default_slot.c();
-      ul.className = ctx.classes;
+      internal.attr(ul, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(ul_nodes);
@@ -9813,16 +9765,16 @@ function create_fragment$M(ctx) {
       }
 
       if (!current || changed.classes) {
-        ul.className = ctx.classes;
+        internal.attr(ul, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -9950,7 +9902,7 @@ function create_fragment$N(ctx) {
     c: function c() {
       nav = internal.element("nav");
       if (default_slot) default_slot.c();
-      nav.className = ctx.classes;
+      internal.attr(nav, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(nav_nodes);
@@ -9970,16 +9922,16 @@ function create_fragment$N(ctx) {
       }
 
       if (!current || changed.classes) {
-        nav.className = ctx.classes;
+        internal.attr(nav, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -10103,7 +10055,7 @@ function create_fragment$O(ctx) {
     c: function c() {
       li = internal.element("li");
       if (default_slot) default_slot.c();
-      li.className = ctx.classes;
+      internal.attr(li, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(li_nodes);
@@ -10123,16 +10075,16 @@ function create_fragment$O(ctx) {
       }
 
       if (!current || changed.classes) {
-        li.className = ctx.classes;
+        internal.attr(li, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -10208,8 +10160,8 @@ function create_fragment$P(ctx) {
     c: function c() {
       a = internal.element("a");
       if (default_slot) default_slot.c();
-      a.href = ctx.href;
-      a.className = ctx.classes;
+      internal.attr(a, "href", ctx.href);
+      internal.attr(a, "class", ctx.classes);
       dispose = [internal.listen(a, "click", ctx.click_handler), internal.listen(a, "click", ctx.handleClick)];
     },
     l: function l(nodes) {
@@ -10230,20 +10182,20 @@ function create_fragment$P(ctx) {
       }
 
       if (!current || changed.href) {
-        a.href = ctx.href;
+        internal.attr(a, "href", ctx.href);
       }
 
       if (!current || changed.classes) {
-        a.className = ctx.classes;
+        internal.attr(a, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -10351,8 +10303,8 @@ function create_fragment$Q(ctx) {
     c: function c() {
       a = internal.element("a");
       if (default_slot) default_slot.c();
-      a.className = ctx.classes;
-      a.href = ctx.href;
+      internal.attr(a, "class", ctx.classes);
+      internal.attr(a, "href", ctx.href);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(a_nodes);
@@ -10372,20 +10324,20 @@ function create_fragment$Q(ctx) {
       }
 
       if (!current || changed.classes) {
-        a.className = ctx.classes;
+        internal.attr(a, "class", ctx.classes);
       }
 
       if (!current || changed.href) {
-        a.href = ctx.href;
+        internal.attr(a, "href", ctx.href);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -10465,7 +10417,7 @@ function create_default_slot$3(ctx) {
       if (default_slot) default_slot.c();
 
       if (!default_slot) {
-        span.className = "navbar-toggler-icon";
+        internal.attr(span, "class", "navbar-toggler-icon");
       }
     },
     l: function l(nodes) {
@@ -10487,11 +10439,11 @@ function create_default_slot$3(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -10539,15 +10491,15 @@ function create_fragment$R(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      button.$$.fragment.i(local);
+      internal.transition_in(button.$$.fragment, local);
       current = true;
     },
     o: function o(local) {
-      button.$$.fragment.o(local);
+      internal.transition_out(button.$$.fragment, local);
       current = false;
     },
     d: function d(detaching) {
-      button.$destroy(detaching);
+      internal.destroy_component(button, detaching);
     }
   };
 }
@@ -10620,8 +10572,8 @@ function create_fragment$S(ctx) {
       nav = internal.element("nav");
       ul = internal.element("ul");
       if (default_slot) default_slot.c();
-      ul.className = ctx.listClasses;
-      nav.className = ctx.classes;
+      internal.attr(ul, "class", ctx.listClasses);
+      internal.attr(nav, "class", ctx.classes);
       internal.attr(nav, "aria-label", ctx.ariaLabel);
     },
     l: function l(nodes) {
@@ -10643,11 +10595,11 @@ function create_fragment$S(ctx) {
       }
 
       if (!current || changed.listClasses) {
-        ul.className = ctx.listClasses;
+        internal.attr(ul, "class", ctx.listClasses);
       }
 
       if (!current || changed.classes) {
-        nav.className = ctx.classes;
+        internal.attr(nav, "class", ctx.classes);
       }
 
       if (!current || changed.ariaLabel) {
@@ -10656,11 +10608,11 @@ function create_fragment$S(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -10750,7 +10702,7 @@ function create_fragment$T(ctx) {
     c: function c() {
       li = internal.element("li");
       if (default_slot) default_slot.c();
-      li.className = ctx.classes;
+      internal.attr(li, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(li_nodes);
@@ -10770,16 +10722,16 @@ function create_fragment$T(ctx) {
       }
 
       if (!current || changed.classes) {
-        li.className = ctx.classes;
+        internal.attr(li, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -10880,11 +10832,11 @@ function create_else_block$b(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -10911,7 +10863,7 @@ function create_if_block$f(ctx) {
       span1 = internal.element("span");
       t2 = internal.text(ctx.realLabel);
       internal.attr(span0, "aria-hidden", "true");
-      span1.className = "sr-only";
+      internal.attr(span1, "class", "sr-only");
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(span0_nodes);
@@ -10947,11 +10899,11 @@ function create_if_block$f(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -10985,8 +10937,8 @@ function create_fragment$U(ctx) {
     c: function c() {
       a = internal.element("a");
       if_block.c();
-      a.className = ctx.classes;
-      a.href = ctx.href;
+      internal.attr(a, "class", ctx.classes);
+      internal.attr(a, "href", ctx.href);
       dispose = internal.listen(a, "click", ctx.click_handler);
     },
     m: function m(target, anchor) {
@@ -11002,11 +10954,9 @@ function create_fragment$U(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -11015,25 +10965,25 @@ function create_fragment$U(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(a, null);
       }
 
       if (!current || changed.classes) {
-        a.className = ctx.classes;
+        internal.attr(a, "class", ctx.classes);
       }
 
       if (!current || changed.href) {
-        a.href = ctx.href;
+        internal.attr(a, "href", ctx.href);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -11351,7 +11301,7 @@ function create_else_block_1(ctx) {
     c: function c() {
       div = internal.element("div");
       if_block.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     m: function m(target, anchor) {
       internal.insert(target, div, anchor);
@@ -11366,11 +11316,9 @@ function create_else_block_1(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -11379,21 +11327,21 @@ function create_else_block_1(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(div, null);
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -11437,11 +11385,9 @@ function create_if_block$g(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -11450,17 +11396,17 @@ function create_if_block$g(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(if_block_anchor.parentNode, if_block_anchor);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -11482,7 +11428,7 @@ function create_else_block_2(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.progressBarClasses;
+      internal.attr(div, "class", ctx.progressBarClasses);
       internal.set_style(div, "width", "" + ctx.percent + "%");
       internal.attr(div, "role", "progressbar");
       internal.attr(div, "aria-valuenow", ctx.value);
@@ -11507,7 +11453,7 @@ function create_else_block_2(ctx) {
       }
 
       if (!current || changed.progressBarClasses) {
-        div.className = ctx.progressBarClasses;
+        internal.attr(div, "class", ctx.progressBarClasses);
       }
 
       if (!current || changed.percent) {
@@ -11524,11 +11470,11 @@ function create_else_block_2(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -11567,11 +11513,11 @@ function create_if_block_2$5(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -11589,7 +11535,7 @@ function create_else_block$c(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.progressBarClasses;
+      internal.attr(div, "class", ctx.progressBarClasses);
       internal.set_style(div, "width", "" + ctx.percent + "%");
       internal.attr(div, "role", "progressbar");
       internal.attr(div, "aria-valuenow", ctx.value);
@@ -11614,7 +11560,7 @@ function create_else_block$c(ctx) {
       }
 
       if (!current || changed.progressBarClasses) {
-        div.className = ctx.progressBarClasses;
+        internal.attr(div, "class", ctx.progressBarClasses);
       }
 
       if (!current || changed.percent) {
@@ -11631,11 +11577,11 @@ function create_else_block$c(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -11674,11 +11620,11 @@ function create_if_block_1$8(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -11717,11 +11663,9 @@ function create_fragment$V(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -11730,17 +11674,17 @@ function create_fragment$V(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(if_block_anchor.parentNode, if_block_anchor);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -11860,8 +11804,8 @@ function create_fragment$W(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.id = ctx.id;
-      div.className = ctx.classes;
+      internal.attr(div, "id", ctx.id);
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -11881,20 +11825,20 @@ function create_fragment$W(ctx) {
       }
 
       if (!current || changed.id) {
-        div.id = ctx.id;
+        internal.attr(div, "id", ctx.id);
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -11985,9 +11929,9 @@ function create_fragment$X(ctx) {
       }
 
       if (default_slot) default_slot.c();
-      span.className = "sr-only";
+      internal.attr(span, "class", "sr-only");
       internal.attr(div, "role", "status");
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(span_nodes);
@@ -12010,16 +11954,16 @@ function create_fragment$X(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -12105,7 +12049,7 @@ function create_else_block$d(ctx) {
     c: function c() {
       table = internal.element("table");
       if (default_slot) default_slot.c();
-      table.className = ctx.classes;
+      internal.attr(table, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(table_nodes);
@@ -12125,16 +12069,16 @@ function create_else_block$d(ctx) {
       }
 
       if (!current || changed.classes) {
-        table.className = ctx.classes;
+        internal.attr(table, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -12157,8 +12101,8 @@ function create_if_block$h(ctx) {
       div = internal.element("div");
       table = internal.element("table");
       if (default_slot) default_slot.c();
-      table.className = ctx.classes;
-      div.className = ctx.responsiveClassName;
+      internal.attr(table, "class", ctx.classes);
+      internal.attr(div, "class", ctx.responsiveClassName);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(table_nodes);
@@ -12179,20 +12123,20 @@ function create_if_block$h(ctx) {
       }
 
       if (!current || changed.classes) {
-        table.className = ctx.classes;
+        internal.attr(table, "class", ctx.classes);
       }
 
       if (!current || changed.responsiveClassName) {
-        div.className = ctx.responsiveClassName;
+        internal.attr(div, "class", ctx.responsiveClassName);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -12235,11 +12179,9 @@ function create_fragment$Y(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block.o(1);
         internal.check_outros();
         if_block = if_blocks[current_block_type_index];
 
@@ -12248,17 +12190,17 @@ function create_fragment$Y(ctx) {
           if_block.c();
         }
 
-        if_block.i(1);
+        internal.transition_in(if_block, 1);
         if_block.m(if_block_anchor.parentNode, if_block_anchor);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -12371,7 +12313,7 @@ function create_fragment$Z(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -12391,16 +12333,16 @@ function create_fragment$Z(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -12483,7 +12425,7 @@ function create_fragment$_(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -12503,16 +12445,16 @@ function create_fragment$_(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -12598,7 +12540,7 @@ function create_if_block$i(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
       internal.attr(div, "role", "alert");
     },
     l: function l(nodes) {
@@ -12619,12 +12561,12 @@ function create_if_block$i(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       internal.add_render_callback(function () {
         if (!div_transition) div_transition = internal.create_bidirectional_transition(div, transition.fade, {}, true);
         div_transition.run(1);
@@ -12632,7 +12574,7 @@ function create_if_block$i(ctx) {
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       if (!div_transition) div_transition = internal.create_bidirectional_transition(div, transition.fade, {}, false);
       div_transition.run(0);
       current = false;
@@ -12668,30 +12610,28 @@ function create_fragment$$(ctx) {
       if (ctx.isOpen) {
         if (if_block) {
           if_block.p(changed, ctx);
-          if_block.i(1);
+          internal.transition_in(if_block, 1);
         } else {
           if_block = create_if_block$i(ctx);
           if_block.c();
-          if_block.i(1);
+          internal.transition_in(if_block, 1);
           if_block.m(if_block_anchor.parentNode, if_block_anchor);
         }
       } else if (if_block) {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_block.d(1);
+        internal.transition_out(if_block, 1, function () {
           if_block = null;
         });
-        if_block.o(1);
         internal.check_outros();
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block) if_block.i();
+      internal.transition_in(if_block);
       current = true;
     },
     o: function o(local) {
-      if (if_block) if_block.o();
+      internal.transition_out(if_block);
       current = false;
     },
     d: function d(detaching) {
@@ -12773,7 +12713,7 @@ function create_fragment$10(ctx) {
     c: function c() {
       div = internal.element("div");
       if (default_slot) default_slot.c();
-      div.className = ctx.classes;
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(div_nodes);
@@ -12793,16 +12733,16 @@ function create_fragment$10(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -12865,15 +12805,11 @@ function (_SvelteComponent) {
   return ToastBody;
 }(internal.SvelteComponent);
 
-var get_icon_slot_changes = function get_icon_slot_changes(_ref) {
-  _objectDestructuringEmpty(_ref);
-
+var get_icon_slot_changes = function get_icon_slot_changes() {
   return {};
 };
 
-var get_icon_slot_context = function get_icon_slot_context(_ref2) {
-  _objectDestructuringEmpty(_ref2);
-
+var get_icon_slot_context = function get_icon_slot_context() {
   return {};
 }; // (38:1) {:else}
 
@@ -12903,11 +12839,11 @@ function create_else_block$e(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (icon_slot && icon_slot.i) icon_slot.i(local);
+      internal.transition_in(icon_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (icon_slot && icon_slot.o) icon_slot.o(local);
+      internal.transition_out(icon_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -12962,8 +12898,8 @@ function create_if_block_1$9(ctx) {
       span = internal.element("span");
       t = internal.text(ctx.closeIcon);
       internal.attr(span, "aria-hidden", "true");
-      button.type = "button";
-      button.className = "close";
+      internal.attr(button, "type", "button");
+      internal.attr(button, "class", "close");
       internal.attr(button, "aria-label", ctx.closeAriaLabel);
       dispose = internal.listen(button, "click", ctx.toggle);
     },
@@ -13045,8 +12981,8 @@ function create_fragment$11(ctx) {
       if (default_slot) default_slot.c();
       t1 = internal.space();
       if (if_block1) if_block1.c();
-      strong.className = ctx.tagClassName;
-      div.className = ctx.classes;
+      internal.attr(strong, "class", ctx.tagClassName);
+      internal.attr(div, "class", ctx.classes);
     },
     l: function l(nodes) {
       if (default_slot) default_slot.l(strong_nodes);
@@ -13073,11 +13009,9 @@ function create_fragment$11(ctx) {
         if_blocks[current_block_type_index].p(changed, ctx);
       } else {
         internal.group_outros();
-        internal.on_outro(function () {
-          if_blocks[previous_block_index].d(1);
+        internal.transition_out(if_blocks[previous_block_index], 1, function () {
           if_blocks[previous_block_index] = null;
         });
-        if_block0.o(1);
         internal.check_outros();
         if_block0 = if_blocks[current_block_type_index];
 
@@ -13086,7 +13020,7 @@ function create_fragment$11(ctx) {
           if_block0.c();
         }
 
-        if_block0.i(1);
+        internal.transition_in(if_block0, 1);
         if_block0.m(div, t0);
       }
 
@@ -13095,7 +13029,7 @@ function create_fragment$11(ctx) {
       }
 
       if (!current || changed.tagClassName) {
-        strong.className = ctx.tagClassName;
+        internal.attr(strong, "class", ctx.tagClassName);
       }
 
       if (current_block_type === (current_block_type = select_block_type_1(ctx)) && if_block1) {
@@ -13111,18 +13045,18 @@ function create_fragment$11(ctx) {
       }
 
       if (!current || changed.classes) {
-        div.className = ctx.classes;
+        internal.attr(div, "class", ctx.classes);
       }
     },
     i: function i(local) {
       if (current) return;
-      if (if_block0) if_block0.i();
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(if_block0);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (if_block0) if_block0.o();
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(if_block0);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -13246,11 +13180,11 @@ function create_default_slot$4(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -13304,15 +13238,15 @@ function create_fragment$12(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      alert.$$.fragment.i(local);
+      internal.transition_in(alert.$$.fragment, local);
       current = true;
     },
     o: function o(local) {
-      alert.$$.fragment.o(local);
+      internal.transition_out(alert.$$.fragment, local);
       current = false;
     },
     d: function d(detaching) {
-      alert.$destroy(detaching);
+      internal.destroy_component(alert, detaching);
     }
   };
 }
@@ -13387,11 +13321,11 @@ function create_default_slot$5(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -13453,15 +13387,15 @@ function create_fragment$13(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      buttondropdown.$$.fragment.i(local);
+      internal.transition_in(buttondropdown.$$.fragment, local);
       current = true;
     },
     o: function o(local) {
-      buttondropdown.$$.fragment.o(local);
+      internal.transition_out(buttondropdown.$$.fragment, local);
       current = false;
     },
     d: function d(detaching) {
-      buttondropdown.$destroy(detaching);
+      internal.destroy_component(buttondropdown, detaching);
     }
   };
 }
@@ -13585,11 +13519,11 @@ function create_default_slot$6(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -13640,15 +13574,15 @@ function create_fragment$14(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      collapse.$$.fragment.i(local);
+      internal.transition_in(collapse.$$.fragment, local);
       current = true;
     },
     o: function o(local) {
-      collapse.$$.fragment.o(local);
+      internal.transition_out(collapse.$$.fragment, local);
       current = false;
     },
     d: function d(detaching) {
-      collapse.$destroy(detaching);
+      internal.destroy_component(collapse, detaching);
     }
   };
 }
@@ -13808,11 +13742,11 @@ function create_default_slot$7(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      if (default_slot && default_slot.i) default_slot.i(local);
+      internal.transition_in(default_slot, local);
       current = true;
     },
     o: function o(local) {
-      if (default_slot && default_slot.o) default_slot.o(local);
+      internal.transition_out(default_slot, local);
       current = false;
     },
     d: function d(detaching) {
@@ -13876,15 +13810,15 @@ function create_fragment$15(ctx) {
     },
     i: function i(local) {
       if (current) return;
-      dropdown.$$.fragment.i(local);
+      internal.transition_in(dropdown.$$.fragment, local);
       current = true;
     },
     o: function o(local) {
-      dropdown.$$.fragment.o(local);
+      internal.transition_out(dropdown.$$.fragment, local);
       current = false;
     },
     d: function d(detaching) {
-      dropdown.$destroy(detaching);
+      internal.destroy_component(dropdown, detaching);
     }
   };
 }

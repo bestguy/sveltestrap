@@ -22,8 +22,7 @@
 		"prepublish": "npm run dist",
 		"postpublish": "git push && git push --tags",
 		"version": "npm run docs && git add -A docs",
-		"watch": "rollup -c -w",
-		"postinstall": "npx patch-package"
+		"watch": "rollup -c -w"
 	},
 	"peerDependencies": {
 		"svelte": "^3.4.4"
@@ -49,7 +48,7 @@
 		"rollup-plugin-peer-deps-external": "^2.2.0",
 		"rollup-plugin-svelte": "^5.0.3",
 		"static-site-generator-webpack-plugin": "^3.4.2",
-		"svelte": "^3.4.4",
+		"svelte": "^3.6.2",
 		"svelte-loader": "^2.13.4",
 		"webpack": "^4.32.2",
 		"webpack-cli": "^3.3.2",
