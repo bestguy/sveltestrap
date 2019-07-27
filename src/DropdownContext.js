@@ -1,3 +1,3 @@
 import { writable } from 'svelte/store';
 
-export const context = writable({});
+export const createContext = () => writable({});

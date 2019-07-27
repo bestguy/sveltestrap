@@ -1,8 +1,10 @@
 <script>
+	import { getContext } from 'svelte';
 	import clsx from 'clsx';
 
-	import { context } from './DropdownContext';
 	import Button from './Button.svelte';
+
+	const context = getContext("dropdownContext");
 
 	let className = '';
 	export { className as class };

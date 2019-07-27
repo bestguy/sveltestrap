@@ -1,7 +1,11 @@
 <script>
+	import { setContext } from 'svelte';
 	import clsx from 'clsx';
 
-	import { context } from './DropdownContext';
+	import { createContext } from './DropdownContext';
+
+	let context = createContext();
+	setContext("dropdownContext", context);
 
 	let className = '';
 	export { className as class };
