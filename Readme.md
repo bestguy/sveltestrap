@@ -40,7 +40,6 @@ In your svelte component:
 
 * See component list below
 * Some stateful components have issues
-  * Dropdowns all share the "open" and "closed" state. If one is open, all are open. Same with closed.
   * Collapse uses the Svelte slide transistion. In Svelte, the component is removed from the DOM whereas in Reacstrap, it stays in the DOM, but is hidden. This interacts badly with nav bars on small screens.
 
 ### Layout
