@@ -48,6 +48,18 @@
 	);
 
 	$: {
+		if (isOpen) {
+			['click', 'touchstart', 'keyup'].forEach(event =>
+				document.addEventListener(event, handleDocumentClick, true)
+			);
+		} else {
+			['click', 'touchstart', 'keyup'].forEach(event =>
+				document.removeEventListener(event, handleDocumentClick, true)
+			);
+		}
+	}
+
+	$: {
 		context.update(() => {
 			return {
 				toggle,
@@ -58,7 +70,15 @@
 		});
 	}
 
+	function handleDocumentClick(e) {
+		if (e && (e.which === 3 || (e.type === 'keyup' && e.which !== 9))) return;
 
+		if (component.contains(e.target) && component !== e.target && (e.type !== 'keyup' || e.which === 9)) {
+			return;
+		}
+
+		toggle(e);
+	}
 </script>
 
 {#if nav}
