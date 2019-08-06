@@ -1,40 +1,51 @@
+import analyze from 'rollup-plugin-analyzer';
+import autoPreprocess from 'svelte-preprocess';
+import bundleSize from 'rollup-plugin-bundle-size';
 import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 import svelte from 'rollup-plugin-svelte';
-import external from 'rollup-plugin-peer-deps-external';
-import babel from 'rollup-plugin-babel';
+import { terser } from 'rollup-plugin-terser';
+import pkg from './package.json';
 
-import pkg from './package.json'
+const production = !process.env.ROLLUP_WATCH;
+
+const { name } = pkg;
 
 export default {
   input: 'src/index.js',
-  output: [{
-    file: pkg.main,
-    format: 'cjs',
-    exports: 'named',
-    sourcemap: true,
-  }, {
-    file: pkg.module,
-    format: 'es',
-    exports: 'named',
-    sourcemap: true,
-  }],
+  output: [
+    {
+      file: pkg.module,
+      format: 'es',
+      sourcemap: true,
+      name,
+    },
+    {
+      file: pkg.main,
+      format: 'umd',
+      sourcemap: true,
+      name,
+    },
+  ],
   plugins: [
-    external(),
-    resolve({
-      mainFields: ['module', 'jsnext', 'main'],
-    }),
-    commonjs(),
     svelte({
-      include: 'src/**/*.(html|svelte)'
+      // enable run-time checks when not in production
+      dev: !production,
+      // generate: production ? 'dom' : 'ssr',
+      hydratable: true,
+      preprocess: autoPreprocess({
+        postcss: {
+          plugins: [require('autoprefixer')()],
+        },
+      })
     }),
-    babel({
-      extensions: ['.js', '.html', '.svelte', '.mjs'],
-      "presets": [
-        [
-          "@babel/preset-env",
-        ]
-      ]
-    }),
-  ]
+    resolve(),
+    commonjs(),
+    production && terser(),
+    production && analyze(),
+    production && bundleSize(),
+  ],
+  watch: {
+    clearScreen: false,
+  }
 }
