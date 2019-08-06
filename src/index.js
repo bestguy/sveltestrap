@@ -1,70 +1,216 @@
-export { default as Alert } from './Alert.svelte';
-export { default as Badge } from './Badge.svelte';
-export { default as Breadcrumb } from './Breadcrumb.svelte';
-export { default as BreadcrumbItem } from './BreadcrumbItem.svelte';
-export { default as Button } from './Button.svelte';
-export { default as ButtonDropdown } from './ButtonDropdown.svelte';
-export { default as ButtonGroup } from './ButtonGroup.svelte';
-export { default as ButtonToolbar } from './ButtonToolbar.svelte';
-export { default as Card } from './Card.svelte';
-export { default as CardBody } from './CardBody.svelte';
-export { default as CardColumns } from './CardColumns.svelte';
-export { default as CardDeck } from './CardDeck.svelte';
-export { default as CardFooter } from './CardFooter.svelte';
-export { default as CardGroup } from './CardGroup.svelte';
-export { default as CardHeader } from './CardHeader.svelte';
-export { default as CardImg } from './CardImg.svelte';
-export { default as CardImgOverlay } from './CardImgOverlay.svelte';
-export { default as CardLink } from './CardLink.svelte';
-export { default as CardSubtitle } from './CardSubtitle.svelte';
-export { default as CardText } from './CardText.svelte';
-export { default as CardTitle } from './CardTitle.svelte';
-export { default as Col } from './Col.svelte';
-export { default as Collapse } from './Collapse.svelte';
-export { default as Container } from './Container.svelte';
-export { default as CustomInput } from './CustomInput.svelte';
-export { default as Dropdown } from './Dropdown.svelte';
-export { default as DropdownItem } from './DropdownItem.svelte';
-export { default as DropdownMenu } from './DropdownMenu.svelte';
-export { default as DropdownToggle } from './DropdownToggle.svelte';
-export { default as Form } from './Form.svelte';
-export { default as FormFeedback } from './FormFeedback.svelte';
-export { default as FormGroup } from './FormGroup.svelte';
-export { default as FormText } from './FormText.svelte';
-export { default as Input } from './Input.svelte';
-export { default as InputGroup } from './InputGroup.svelte';
-export { default as InputGroupAddon } from './InputGroupAddon.svelte';
-export { default as InputGroupButtonDropdown } from './InputGroupButtonDropdown.svelte';
-export { default as InputGroupText } from './InputGroupText.svelte';
-export { default as Jumbotron } from './Jumbotron.svelte';
-export { default as Label } from './Label.svelte';
-export { default as ListGroup } from './ListGroup.svelte';
-export { default as ListGroupItem } from './ListGroupItem.svelte';
-export { default as ListGroupItemHeading } from './ListGroupItemHeading.svelte';
-export { default as ListGroupItemText } from './ListGroupItemText.svelte';
-export { default as Media } from './Media.svelte';
-export { default as ModalBody } from './ModalBody.svelte';
-export { default as ModalFooter } from './ModalFooter.svelte';
-export { default as ModalHeader } from './ModalHeader.svelte';
-export { default as Nav } from './Nav.svelte';
-export { default as Navbar } from './Navbar.svelte';
-export { default as NavItem } from './NavItem.svelte';
-export { default as NavLink } from './NavLink.svelte';
-export { default as NavbarBrand } from './NavbarBrand.svelte';
-export { default as NavbarToggler } from './NavbarToggler.svelte';
-export { default as Pagination } from './Pagination.svelte';
-export { default as PaginationItem } from './PaginationItem.svelte';
-export { default as PaginationLink } from './PaginationLink.svelte';
-export { default as Progress } from './Progress.svelte';
-export { default as Row } from './Row.svelte';
-export { default as Spinner } from './Spinner.svelte';
-export { default as Table } from './Table.svelte';
-export { default as TabContent } from './TabContent.svelte';
-export { default as TabPane } from './TabPane.svelte';
-export { default as Toast } from './Toast.svelte';
-export { default as ToastBody } from './ToastBody.svelte';
-export { default as ToastHeader } from './ToastHeader.svelte';
-export { default as UncontrolledAlert } from './UncontrolledAlert.svelte';
-export { default as UncontrolledButtonDropdown } from './UncontrolledButtonDropdown.svelte';
-export { default as UncontrolledCollapse } from './UncontrolledCollapse.svelte';
-export { default as UncontrolledDropdown } from './UncontrolledDropdown.svelte';
+import Alert from './Alert.svelte';
+import Badge from './Badge.svelte';
+import Breadcrumb from './Breadcrumb.svelte';
+import BreadcrumbItem from './BreadcrumbItem.svelte';
+import Button from './Button.svelte';
+import ButtonDropdown from './ButtonDropdown.svelte';
+import ButtonGroup from './ButtonGroup.svelte';
+import ButtonToolbar from './ButtonToolbar.svelte';
+import Card from './Card.svelte';
+import CardBody from './CardBody.svelte';
+import CardColumns from './CardColumns.svelte';
+import CardDeck from './CardDeck.svelte';
+import CardFooter from './CardFooter.svelte';
+import CardGroup from './CardGroup.svelte';
+import CardHeader from './CardHeader.svelte';
+import CardImg from './CardImg.svelte';
+import CardImgOverlay from './CardImgOverlay.svelte';
+import CardLink from './CardLink.svelte';
+import CardSubtitle from './CardSubtitle.svelte';
+import CardText from './CardText.svelte';
+import CardTitle from './CardTitle.svelte';
+import Col from './Col.svelte';
+import Collapse from './Collapse.svelte';
+import Container from './Container.svelte';
+import CustomInput from './CustomInput.svelte';
+import Dropdown from './Dropdown.svelte';
+import DropdownItem from './DropdownItem.svelte';
+import DropdownMenu from './DropdownMenu.svelte';
+import DropdownToggle from './DropdownToggle.svelte';
+import Form from './Form.svelte';
+import FormFeedback from './FormFeedback.svelte';
+import FormGroup from './FormGroup.svelte';
+import FormText from './FormText.svelte';
+import Input from './Input.svelte';
+import InputGroup from './InputGroup.svelte';
+import InputGroupAddon from './InputGroupAddon.svelte';
+import InputGroupButtonDropdown from './InputGroupButtonDropdown.svelte';
+import InputGroupText from './InputGroupText.svelte';
+import Jumbotron from './Jumbotron.svelte';
+import Label from './Label.svelte';
+import ListGroup from './ListGroup.svelte';
+import ListGroupItem from './ListGroupItem.svelte';
+import ListGroupItemHeading from './ListGroupItemHeading.svelte';
+import ListGroupItemText from './ListGroupItemText.svelte';
+import Media from './Media.svelte';
+import ModalBody from './ModalBody.svelte';
+import ModalFooter from './ModalFooter.svelte';
+import ModalHeader from './ModalHeader.svelte';
+import Nav from './Nav.svelte';
+import Navbar from './Navbar.svelte';
+import NavItem from './NavItem.svelte';
+import NavLink from './NavLink.svelte';
+import NavbarBrand from './NavbarBrand.svelte';
+import NavbarToggler from './NavbarToggler.svelte';
+import Pagination from './Pagination.svelte';
+import PaginationItem from './PaginationItem.svelte';
+import PaginationLink from './PaginationLink.svelte';
+import Progress from './Progress.svelte';
+import Row from './Row.svelte';
+import Spinner from './Spinner.svelte';
+import Table from './Table.svelte';
+import TabContent from './TabContent.svelte';
+import TabPane from './TabPane.svelte';
+import Toast from './Toast.svelte';
+import ToastBody from './ToastBody.svelte';
+import ToastHeader from './ToastHeader.svelte';
+import UncontrolledAlert from './UncontrolledAlert.svelte';
+import UncontrolledButtonDropdown from './UncontrolledButtonDropdown.svelte';
+import UncontrolledCollapse from './UncontrolledCollapse.svelte';
+import UncontrolledDropdown from './UncontrolledDropdown.svelte';
+
+export {
+  Alert,
+  Badge,
+  Breadcrumb,
+  BreadcrumbItem,
+  Button,
+  ButtonDropdown,
+  ButtonGroup,
+  ButtonToolbar,
+  Card,
+  CardBody,
+  CardColumns,
+  CardDeck,
+  CardFooter,
+  CardGroup,
+  CardHeader,
+  CardImg,
+  CardImgOverlay,
+  CardLink,
+  CardSubtitle,
+  CardText,
+  CardTitle,
+  Col,
+  Collapse,
+  Container,
+  CustomInput,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Form,
+  FormFeedback,
+  FormGroup,
+  FormText,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButtonDropdown,
+  InputGroupText,
+  Jumbotron,
+  Label,
+  ListGroup,
+  ListGroupItem,
+  ListGroupItemHeading,
+  ListGroupItemText,
+  Media,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  Nav,
+  Navbar,
+  NavItem,
+  NavLink,
+  NavbarBrand,
+  NavbarToggler,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
+  Progress,
+  Row,
+  Spinner,
+  Table,
+  TabContent,
+  TabPane,
+  Toast,
+  ToastBody,
+  ToastHeader,
+  UncontrolledAlert,
+  UncontrolledButtonDropdown,
+  UncontrolledCollapse,
+  UncontrolledDropdown
+};
+
+export const Sveltestrap = {
+  Alert,
+  Badge,
+  Breadcrumb,
+  BreadcrumbItem,
+  Button,
+  ButtonDropdown,
+  ButtonGroup,
+  ButtonToolbar,
+  Card,
+  CardBody,
+  CardColumns,
+  CardDeck,
+  CardFooter,
+  CardGroup,
+  CardHeader,
+  CardImg,
+  CardImgOverlay,
+  CardLink,
+  CardSubtitle,
+  CardText,
+  CardTitle,
+  Col,
+  Collapse,
+  Container,
+  CustomInput,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Form,
+  FormFeedback,
+  FormGroup,
+  FormText,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButtonDropdown,
+  InputGroupText,
+  Jumbotron,
+  Label,
+  ListGroup,
+  ListGroupItem,
+  ListGroupItemHeading,
+  ListGroupItemText,
+  Media,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  Nav,
+  Navbar,
+  NavItem,
+  NavLink,
+  NavbarBrand,
+  NavbarToggler,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
+  Progress,
+  Row,
+  Spinner,
+  Table,
+  TabContent,
+  TabPane,
+  Toast,
+  ToastBody,
+  ToastHeader,
+  UncontrolledAlert,
+  UncontrolledButtonDropdown,
+  UncontrolledCollapse,
+  UncontrolledDropdown
+};
