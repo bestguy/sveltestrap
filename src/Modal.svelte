@@ -1,4 +1,5 @@
 <script context="module">
+  // TODO fade option, esc key
   let openCount = 0;
 </script>
 
