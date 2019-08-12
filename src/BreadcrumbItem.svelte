@@ -1,17 +1,17 @@
 <script>
-	import clsx from 'clsx';
+  import clsx from 'clsx';
 
-	let className = '';
-	export { className as class };
-	export let active = false;
+  let className = '';
+  export { className as class };
+  export let active = false;
 
-	$: classes = clsx(
-		className,
-		active ? 'active' : false,
-		'breadcrumb-item'
-	);
+  $: classes = clsx(
+    className,
+    active ? 'active' : false,
+    'breadcrumb-item'
+  );
 </script>
 
 <li class="{classes}" aria-current="{active ? 'page' : undefined}">
-	<slot />
+  <slot />
 </li>

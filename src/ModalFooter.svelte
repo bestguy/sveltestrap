@@ -1,15 +1,15 @@
 <script>
-	import clsx from 'clsx';
+  import clsx from 'clsx';
 
-	let className = '';
-	export {className as class};
+  let className = '';
+  export {className as class};
 
-	$: classes = clsx(
-		className,
-		'modal-footer',
-	);
+  $: classes = clsx(
+    className,
+    'modal-footer',
+  );
 </script>
 
 <div class="{classes}">
-	<slot />
+  <slot />
 </div>
