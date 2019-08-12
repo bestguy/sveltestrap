@@ -27,6 +27,7 @@ import Dropdown from './Dropdown.svelte';
 import DropdownItem from './DropdownItem.svelte';
 import DropdownMenu from './DropdownMenu.svelte';
 import DropdownToggle from './DropdownToggle.svelte';
+import Fade from './Fade.svelte';
 import Form from './Form.svelte';
 import FormFeedback from './FormFeedback.svelte';
 import FormGroup from './FormGroup.svelte';
@@ -99,6 +100,7 @@ export {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
+  Fade,
   Form,
   FormFeedback,
   FormGroup,
