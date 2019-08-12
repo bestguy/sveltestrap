@@ -17,7 +17,7 @@
 
 <div class="{classes}">
 	<h5 class="modal-title">
-		<slot name="content"/>
+		<slot />
 	</h5>
 	<slot name="close">
 		{#if typeof toggle === 'function'}
