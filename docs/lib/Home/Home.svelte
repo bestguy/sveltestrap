@@ -12,17 +12,14 @@
 		<Container>
 			<Row>
 				<Col>
-				<p class="lead">
-					<img src="/assets/logo.png" alt="" width="150px" />
-				</p>
-				<h1 class="jumbotron-heading display-4">sveltestrap</h1>
-				<p class="lead">
-					Easy to use Svelte Bootstrap 4 components based on <a href="https://github.com/reactstrap/reactstrap" target="_blank" rel="noopener nofollow">reactstrap</a>.
-				</p>
-				<p>
-					<Button outline color="danger" href="https://github.com/bestguy/sveltestrap">GitHub</Button>
-					<Button color="danger" href="/#components/">Components</Button>
-				</p>
+					<h1 class="jumbotron-heading display-4">sveltestrap</h1>
+					<p class="lead">
+						Easy to use Svelte Bootstrap 4 components based on <a href="https://github.com/reactstrap/reactstrap" target="_blank" rel="noopener nofollow">reactstrap</a>.
+					</p>
+					<p>
+						<Button outline color="danger" href="https://github.com/bestguy/sveltestrap">GitHub</Button>
+						<Button color="danger" href="/#components/">Components</Button>
+					</p>
 				</Col>
 			</Row>
 		</Container>

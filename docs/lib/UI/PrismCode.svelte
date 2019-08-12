@@ -1,6 +1,6 @@
 <script>
 	import { afterUpdate } from 'svelte';
-
+	
 	let className = '';
 	export { className as class };
 	let isAsync = false;
