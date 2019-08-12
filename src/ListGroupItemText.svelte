@@ -1,15 +1,15 @@
 <script>
-	import clsx from 'clsx';
+  import clsx from 'clsx';
 
-	let className = '';
-	export {className as class};
+  let className = '';
+  export {className as class};
 
-	$: classes = clsx(
-		className,
-		'list-group-item-text',
-	);
+  $: classes = clsx(
+    className,
+    'list-group-item-text',
+  );
 </script>
 
 <p class="{classes}">
-	<slot/>
+  <slot/>
 </p>

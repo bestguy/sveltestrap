@@ -1,23 +1,23 @@
 <script>
-	import clsx from 'clsx';
-	import { context } from './TabContext';
+  import clsx from 'clsx';
+  import { context } from './TabContext';
 
-	let className = '';
-	export { className as class };
-	export let activeTab;
+  let className = '';
+  export { className as class };
+  export let activeTab;
 
-	$: classes = clsx(
-		'tab-content',
-		className,
-	);
+  $: classes = clsx(
+    'tab-content',
+    className,
+  );
 
-	$: context.update(() => {
-		return {
-			activeTabId: activeTab,
-		};
-	});
+  $: context.update(() => {
+    return {
+      activeTabId: activeTab,
+    };
+  });
 </script>
 
 <div class="{classes}">
-	<slot />
+  <slot />
 </div>

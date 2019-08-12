@@ -1,26 +1,26 @@
 <script>
-	import clsx from 'clsx';
+  import clsx from 'clsx';
 
-	let className = '';
-	export { className as class };
-	export let color = 'secondary';
-	export let pill = false;
-	export let href = undefined;
+  let className = '';
+  export { className as class };
+  export let color = 'secondary';
+  export let pill = false;
+  export let href = undefined;
 
-	$: classes = clsx(
-		className,
-		'badge',
-		`badge-${color}`,
-		pill ? 'badge-pill' : false
-	);
+  $: classes = clsx(
+    className,
+    'badge',
+    `badge-${color}`,
+    pill ? 'badge-pill' : false
+  );
 </script>
 
 {#if href}
 <a {href} class="{classes}">
-	<slot />
+  <slot />
 </a>
 {:else}
 <span class="{classes}">
-	<slot />
+  <slot />
 </span>
 {/if}
