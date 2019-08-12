@@ -44,6 +44,7 @@ import ListGroupItem from './ListGroupItem.svelte';
 import ListGroupItemHeading from './ListGroupItemHeading.svelte';
 import ListGroupItemText from './ListGroupItemText.svelte';
 import Media from './Media.svelte';
+import Modal from './Modal.svelte';
 import ModalBody from './ModalBody.svelte';
 import ModalFooter from './ModalFooter.svelte';
 import ModalHeader from './ModalHeader.svelte';
@@ -117,6 +118,7 @@ export {
   ListGroupItemHeading,
   ListGroupItemText,
   Media,
+  Modal,
   ModalBody,
   ModalFooter,
   ModalHeader,
@@ -190,6 +192,7 @@ export const Sveltestrap = {
   ListGroupItemHeading,
   ListGroupItemText,
   Media,
+  Modal,
   ModalBody,
   ModalFooter,
   ModalHeader,
