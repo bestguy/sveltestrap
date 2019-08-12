@@ -1,5 +1,6 @@
 <script>
-	import { Container, Row, Col, Nav, NavItem, NavLink } from 'sveltestrap';
+	import { Container, Row, Col, Nav, NavItem } from 'sveltestrap';
+	import NavLink from './NavLink.svelte';
 
 	export let title;
 	export let items;
@@ -9,15 +10,13 @@
 <Container class="content">
 	<Row>
 		<main class="docSearch-navigation col-md-3 order-md-2">
-			<div class="docs-sidebar mb-3">
+			<div class="mb-3">
 				<h1 class="h5">{title}</h1>
-				<Nav class="flex-column">
+				<Nav class="flex-column" pills>
 					{#each items.sort((a, b) => a.name.localeCompare(b.name)) as item}
-		                <NavItem key={item.to}>
-							<NavLink href="{`#${item.to}`}" active="{`components/${selected.toLowerCase()}/` === item.to.toLowerCase()}">
-								{item.name}
-							</NavLink>
-		                </NavItem>
+						<NavItem key={item.to}>
+							<NavLink to="{item.to}">{item.name}</NavLink>
+						</NavItem>
 					{/each}
 				</Nav>
 			</div>

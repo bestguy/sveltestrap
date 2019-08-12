@@ -1,4 +1,5 @@
 <script>
+	import { Router, Route } from "svelte-routing";
 	import Home from './Home/Home.svelte';
 	import Layout from './UI/Layout.svelte';
 	import Components from './Components/index.svelte';
@@ -35,101 +36,47 @@
 	let mainPage;
 	let subPage;
 	let windowScrollPostion;
-	setCurrentPage();
-
-	function handleHashChange(e) {
-		setCurrentPage();
-	}
-
-	function getCurrentPage() {
-		return window.location.hash.substring(1).split('/');
-	}
-
-	function setCurrentPage() {
-		const currentPage = getCurrentPage();
-		const oldMainPage = mainPage;
-		const oldSubPage = subPage;
-		mainPage = currentPage[0] || 'Home';
-		subPage = currentPage.length > 1 ? currentPage[1] : null;
-		if (mainPage === 'components' && !subPage) {
-			window.location.hash = '#components/alerts';
-		}
-
-		if (mainPage !== oldMainPage || subPage !== oldSubPage) {
-			windowScrollPostion = 0;
-		}
-	}
 </script>
 
-<svelte:window on:hashchange="{handleHashChange}" bind:scrollY="{windowScrollPostion}" />
-<Layout segment="{mainPage}">
-	{#if mainPage === 'Home'}
-		<Home />
-	{:else if mainPage === 'components'}
-		<Components selected="{subPage}">
-		{#if subPage === 'alerts'}
-			<AlertsPage />
-		{:else if subPage === 'badge'}
-			<BadgePage />
-		{:else if subPage === 'breadcrumbs'}
-			<BreadcrumbsPage />
-		{:else if subPage === 'button-dropdown'}
-			<ButtonDropdownPage />
-		{:else if subPage === 'button-group'}
-			<ButtonGroupPage />
-		{:else if subPage === 'buttons'}
-			<ButtonsPage />
-		{:else if subPage === 'card'}
-			<CardPage />
-		{:else if subPage === 'carousel'}
-			<CarouselPage />
-		{:else if subPage === 'collapse'}
-			<CollapsePage />
-		{:else if subPage === 'dropdowns'}
-			<DropdownsPage />
-		{:else if subPage === 'fade'}
-			<FadePage />
-		{:else if subPage === 'form'}
-			<FormPage />
-		{:else if subPage === 'input-group'}
-			<InputGroupPage />
-		{:else if subPage === 'jumbotron'}
-			<JumbotronPage />
-		{:else if subPage === 'layout'}
-			<LayoutPage />
-		{:else if subPage === 'listgroup'}
-			<ListGroupPage />
-		{:else if subPage === 'media'}
-			<MediaPage />
-		{:else if subPage === 'modals'}
-			<ModalsPage />
-		{:else if subPage === 'navbar'}
-			<NavbarPage />
-		{:else if subPage === 'navs'}
-			<NavsPage />
-		{:else if subPage === 'pagination'}
-			<PaginationPage />
-		{:else if subPage === 'popovers'}
-			<PopoversPage />
-		{:else if subPage === 'progress'}
-			<ProgressPage />
-		{:else if subPage === 'spinners'}
-			<SpinnersPage />
-		{:else if subPage === 'tables'}
-			<TablesPage />
-		{:else if subPage === 'tabs'}
-			<TabsPage />
-		{:else if subPage === 'toasts'}
-			<ToastsPage />
-		{:else if subPage === 'tooltips'}
-			<TooltipsPage />
-		{:else}
-			<div>{subPage} not found</div>
-		{/if}
-		</Components>
-	{:else if mainPage === 'utilities'}
-		<div>Utilities</div>
-	{:else}
-		<div>Unknown page {mainPage}</div>
-	{/if}
-</Layout>
+<svelte:window bind:scrollY="{windowScrollPostion}" />
+<Router basepath="/sveltestrap">
+	<Layout segment="{mainPage}">
+		<Route path="/" component="{Home}" />
+		<Route path="/components/*">
+			<Components>
+				<Router>
+					<Route path="/alerts" component="{AlertsPage}" />
+					<Route path="/badge" component="{BadgePage}" />
+					<Route path="/alert" component="{AlertsPage}" />
+					<Route path="/badge" component="{BadgePage}" />
+					<Route path="/breadcrumbs" component="{BreadcrumbsPage}" />
+					<Route path="/button-dropdown" component="{ButtonDropdownPage}" />
+					<Route path="/button-group" component="{ButtonGroupPage}" />
+					<Route path="/buttons" component="{ButtonsPage}" />
+					<Route path="/card" component="{CardPage}" />
+					<Route path="/carousels" component="{CarouselPage}" />
+					<Route path="/collapse" component="{CollapsePage}" />
+					<Route path="/dropdowns" component="{DropdownsPage}" />
+					<Route path="/fade" component="{FadePage}" />
+					<Route path="/form" component="{FormPage}" />
+					<Route path="/input-group" component="{InputGroupPage}" />
+					<Route path="/jumbotron" component="{JumbotronPage}" />
+					<Route path="/layout" component="{LayoutPage}" />
+					<Route path="/listgroup" component="{ListGroupPage}" />
+					<Route path="/media" component="{MediaPage}" />
+					<Route path="/modals" component="{ModalsPage}" />
+					<Route path="/navbar" component="{NavbarPage}" />
+					<Route path="/navs" component="{NavsPage}" />
+					<Route path="/pagination" component="{PaginationPage}" />
+					<Route path="/popovers" component="{PopoversPage}" />
+					<Route path="/progress" component="{ProgressPage}" />
+					<Route path="/spinners" component="{SpinnersPage}" />
+					<Route path="/tables" component="{TablesPage}" />
+					<Route path="/tabs" component="{TabsPage}" />
+					<Route path="/toasts" component="{ToastsPage}" />
+					<Route path="/tooltips" component="{TooltipsPage}" />
+				</Router>
+			</Components>
+		</Route>
+	</Layout>
+</Router>
