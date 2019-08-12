@@ -73,6 +73,11 @@ In your svelte component:
   * [x] CardSubtitle
   * [x] CardText
   * [x] CardTitle
+* [ ] Carousel
+  * [ ] CarouselCaption
+  * [ ] CarouselControl
+  * [ ] CarouselIndicators
+  * [ ] CarouselItem
 * [x] Close
 * [x] Collapse
   * [x] UncontrolledCollapse
