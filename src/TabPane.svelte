@@ -1,21 +1,21 @@
 <script>
-	import clsx from 'clsx';
-	import { context } from './TabContext';
+  import clsx from 'clsx';
+  import { context } from './TabContext';
 
-	let className = '';
-	export { className as class };
-	export let activeTab;
-	export let tabId;
+  let className = '';
+  export { className as class };
+  export let activeTab;
+  export let tabId;
 
-	$: classes = clsx(
-		'tab-pane',
-		className,
-		{
-			active: tabId === $context.activeTabId,
-		},
-	);
+  $: classes = clsx(
+    'tab-pane',
+    className,
+    {
+      active: tabId === $context.activeTabId,
+    },
+  );
 </script>
 
 <div class="{classes}">
-	<slot />
+  <slot />
 </div>

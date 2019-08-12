@@ -1,15 +1,15 @@
 <script>
-	import clsx from 'clsx';
+  import clsx from 'clsx';
 
-	let className = '';
-	export { className as class };
+  let className = '';
+  export { className as class };
 
-	$: classes = clsx(
-		className,
-		'card-group',
-	);
+  $: classes = clsx(
+    className,
+    'card-group',
+  );
 </script>
 
 <div class="{classes}">
-	<slot />
+  <slot />
 </div>
