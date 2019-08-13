@@ -39,8 +39,11 @@ In your svelte component:
 ## Status
 
 * See component list below
+  * Tooltip & Popover are not implemented yet due to lacking Popper/Tether support
+  * Carousel not implemented yet, need to port transitions/state/key handlers.
 * Some stateful components have issues
   * Collapse uses the Svelte slide transistion. In Svelte, the component is removed from the DOM whereas in Reacstrap, it stays in the DOM, but is hidden. This interacts badly with nav bars on small screens.
+
 
 ### Layout
 
