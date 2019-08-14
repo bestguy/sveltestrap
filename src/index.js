@@ -69,6 +69,7 @@ import ToastHeader from './ToastHeader.svelte';
 import UncontrolledAlert from './UncontrolledAlert.svelte';
 import UncontrolledButtonDropdown from './UncontrolledButtonDropdown.svelte';
 import UncontrolledCollapse from './UncontrolledCollapse.svelte';
+import UncontrolledFade from './UncontrolledFade.svelte';
 import UncontrolledDropdown from './UncontrolledDropdown.svelte';
 
 export {
@@ -143,7 +144,8 @@ export {
   UncontrolledAlert,
   UncontrolledButtonDropdown,
   UncontrolledCollapse,
-  UncontrolledDropdown
+  UncontrolledDropdown,
+  UncontrolledFade
 };
 
 export const Sveltestrap = {
@@ -217,5 +219,6 @@ export const Sveltestrap = {
   UncontrolledAlert,
   UncontrolledButtonDropdown,
   UncontrolledCollapse,
-  UncontrolledDropdown
+  UncontrolledDropdown,
+  UncontrolledFade
 };
