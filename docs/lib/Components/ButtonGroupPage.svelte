@@ -6,10 +6,10 @@
 	import {
 		Button,
 		ButtonGroup,
-		ButtonDropdown,
 		DropdownToggle,
 		DropdownItem,
 		DropdownMenu,
+		UncontrolledButtonDropdown
 	} from 'sveltestrap';
 
 	import ButtonGroupExample from '../examples/ButtonGroup';
@@ -17,8 +17,6 @@
 
 	import ButtonToolbarExample from '../examples/ButtonToolbar';
 	const ButtonToolbarExampleSource = require('!!raw-loader!../examples/ButtonToolbar').default;
-
-	let dropdownOpen = false;
 </script>
 
 <PageTitle title="Button Group" />
@@ -87,7 +85,7 @@
 	<ButtonGroup>
 		<Button>1</Button>
 		<Button>2</Button>
-		<ButtonDropdown isOpen={dropdownOpen} toggle="{() => dropdownOpen = !dropdownOpen}">
+		<UncontrolledButtonDropdown>
 			<DropdownToggle caret>
 				Dropdown
 			</DropdownToggle>
@@ -95,7 +93,7 @@
 				<DropdownItem>Dropdown Link</DropdownItem>
 				<DropdownItem>Dropdown Link</DropdownItem>
 			</DropdownMenu>
-		</ButtonDropdown>
+		</UncontrolledButtonDropdown>
 	</ButtonGroup>
 </div>
 <pre>
@@ -103,7 +101,7 @@
 {`<ButtonGroup>
 	<Button>1</Button>
 	<Button>2</Button>
-	<ButtonDropdown isOpen={dropdownOpen} toggle="{() => dropdownOpen = !dropdownOpen}">
+	<UncontrolledButtonDropdown>
 		<DropdownToggle caret>
 			Dropdown
 		</DropdownToggle>
@@ -111,7 +109,7 @@
 			<DropdownItem>Dropdown Link</DropdownItem>
 			<DropdownItem>Dropdown Link</DropdownItem>
 		</DropdownMenu>
-	</ButtonDropdown>
+	</UncontrolledButtonDropdown>
 </ButtonGroup>`}
 	</PrismCode>
 </pre>
@@ -120,7 +118,7 @@
 	<ButtonGroup vertical>
 		<Button>1</Button>
 		<Button>2</Button>
-		<ButtonDropdown isOpen={dropdownOpen} toggle="{() => dropdownOpen = !dropdownOpen}">
+		<UncontrolledButtonDropdown>
 			<DropdownToggle caret>
 				Dropdown
 			</DropdownToggle>
@@ -128,7 +126,7 @@
 				<DropdownItem>Dropdown Link</DropdownItem>
 				<DropdownItem>Dropdown Link</DropdownItem>
 			</DropdownMenu>
-		</ButtonDropdown>
+		</UncontrolledButtonDropdown>
 	</ButtonGroup>
 </div>
 <pre>
@@ -136,7 +134,7 @@
 {`<ButtonGroup vertical>
 	<Button>1</Button>
 	<Button>2</Button>
-	<ButtonDropdown isOpen={dropdownOpen} toggle="{() => dropdownOpen = !dropdownOpen}">
+	<UncontrolledButtonDropdown>
 		<DropdownToggle caret>
 			Dropdown
 		</DropdownToggle>
@@ -144,7 +142,7 @@
 			<DropdownItem>Dropdown Link</DropdownItem>
 			<DropdownItem>Dropdown Link</DropdownItem>
 		</DropdownMenu>
-	</ButtonDropdown>
+	</UncontrolledButtonDropdown>
 </ButtonGroup>`}
 	</PrismCode>
 </pre>
