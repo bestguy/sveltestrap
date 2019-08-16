@@ -4,6 +4,7 @@
   let className = '';
   export { className as class };
   export let active = false;
+  export let children;
 
   $: classes = clsx(
     className,
@@ -13,5 +14,9 @@
 </script>
 
 <li class="{classes}" aria-current="{active ? 'page' : undefined}">
-  <slot />
+  {#if children}
+    {children}
+  {:else}
+    <slot />
+  {/if}
 </li>
