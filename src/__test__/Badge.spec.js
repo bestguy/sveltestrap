@@ -29,5 +29,10 @@ describe('Badge', () => {
     expect(badge.className).toBe('badge badge-secondary badge-pill');
   });
 
-  test.todo('should render link with href');
+  test('should render link with href', () => {
+    const { container } = render(Badge, { props: { href: 'http://example.com/' } });
+    const link = container.querySelector('a');
+    expect(link.className).toBe('badge badge-secondary');
+    expect(link.href).toBe('http://example.com/');
+  });
 });
