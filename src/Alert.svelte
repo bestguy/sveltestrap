@@ -4,6 +4,7 @@
 
   let className = '';
   export { className as class };
+  export let children;
   export let color = 'success';
   export let closeClassName = '';
   export let closeAriaLabel = 'Close';
@@ -33,6 +34,10 @@
         <span aria-hidden="true">&times;</span>
       </button>
     {/if}
-    <slot />
+    {#if children}
+      {children}
+    {:else}
+      <slot />
+    {/if}
   </div>
 {/if}

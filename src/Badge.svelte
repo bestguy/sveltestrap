@@ -3,9 +3,10 @@
 
   let className = '';
   export { className as class };
+  export let children;
   export let color = 'secondary';
-  export let pill = false;
   export let href = undefined;
+  export let pill = false;
 
   $: classes = clsx(
     className,
@@ -17,10 +18,18 @@
 
 {#if href}
 <a {href} class="{classes}">
-  <slot />
+  {#if children}
+    {children}
+  {:else}
+    <slot />
+  {/if}
 </a>
 {:else}
 <span class="{classes}">
-  <slot />
+  {#if children}
+    {children}
+  {:else}
+    <slot />
+  {/if}
 </span>
 {/if}
