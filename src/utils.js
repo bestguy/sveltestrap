@@ -26,6 +26,11 @@ export function isBodyOverflowing() {
   return document.body.clientWidth < window.innerWidth;
 }
 
+export function isObject(value) {
+  const type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
+}
+
 export function conditionallyUpdateScrollbar() {
   const scrollbarWidth = getScrollbarWidth();
   // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.6/js/src/modal.js#L433

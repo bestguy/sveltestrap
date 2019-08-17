@@ -1,58 +1,52 @@
 <script>
   import clsx from 'clsx';
-  import isobject from 'lodash.isobject';
-
-  import { getColumnSizeClass } from './utils';
+  import { getColumnSizeClass, isObject } from './utils';
 
   let className = '';
-    export { className as class };
+  export { className as class };
+  export let id = '';
 
-    export let id = '';
+  const colClasses = [];
+  const widths = ['xs', 'sm', 'md', 'lg', 'xl'];
 
-    const colClasses = [];
+  widths.forEach(colWidth => {
+    const columnProp = $$props[colWidth];
+    if (!columnProp && columnProp !== '') {
+      return; //no value for this width
+    }
 
-    const widths = ['xs', 'sm', 'md', 'lg', 'xl'];
+    const isXs = colWidth === 'xs';
 
-    widths.forEach((colWidth) => {
-        const columnProp = $$props[colWidth];
-      if (!columnProp && columnProp !== '') {
-        return; //no value for this width
+    if (isObject(columnProp)) {
+      const colSizeInterfix = isXs ? '-' : `-${colWidth}-`;
+      const colClass = getColumnSizeClass(isXs, colWidth, columnProp.size);
+
+      if (columnProp.size || columnProp.size === '') {
+        colClasses.push(colClass);
       }
-
-      const isXs = colWidth === 'xs';
-
-      if (isobject(columnProp)) {
-        const colSizeInterfix = isXs ? '-' : `-${colWidth}-`;
-        const colClass = getColumnSizeClass(isXs, colWidth, columnProp.size);
-
-        if (columnProp.size || columnProp.size === '') {
-          colClasses.push(colClass);
-            }
-        if (columnProp.push) {
-          colClasses.push(`push${colSizeInterfix}${columnProp.push}`);
-            }
-            if (columnProp.pull) {
-              colClasses.push(`pull${colSizeInterfix}${columnProp.pull}`);
-            }
-            if (columnProp.offset) {
-              colClasses.push(`offset${colSizeInterfix}${columnProp.offset}`);
-            }
+      if (columnProp.push) {
+        colClasses.push(`push${colSizeInterfix}${columnProp.push}`);
+      }
+      if (columnProp.pull) {
+        colClasses.push(`pull${colSizeInterfix}${columnProp.pull}`);
+      }
+      if (columnProp.offset) {
+        colClasses.push(`offset${colSizeInterfix}${columnProp.offset}`);
+      }
     } else {
       colClasses.push(getColumnSizeClass(isXs, colWidth, columnProp));
     }
+  });
 
-    });
-
-    if (!colClasses.length) {
-      colClasses.push('col');
-    }
+  if (!colClasses.length) {
+    colClasses.push('col');
+  }
 
   if (className) {
     colClasses.push(className);
   }
-
 </script>
 
-<div {id} class="{colClasses.join(' ')}">
+<div {id} class={colClasses.join(' ')}>
   <slot />
 </div>
