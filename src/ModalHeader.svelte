@@ -6,6 +6,7 @@
   export let toggle = undefined;
   export let closeAriaLabel = 'Close';
   export let charCode = 215;
+  export let children;
 
   $: closeIcon = typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;
 
@@ -17,7 +18,11 @@
 
 <div class="{classes}">
   <h5 class="modal-title">
-    <slot />
+    {#if children}
+      {children}
+    {:else}
+      <slot />
+    {/if}
   </h5>
   <slot name="close">
     {#if typeof toggle === 'function'}
