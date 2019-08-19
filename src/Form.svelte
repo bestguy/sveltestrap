@@ -11,6 +11,6 @@
   );
 </script>
 
-<form class="{classes}">
+<form class="{classes}" {...$$props}>
   <slot />
 </form>
