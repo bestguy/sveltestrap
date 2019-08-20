@@ -44,6 +44,7 @@
     on:outrostart="{onExiting}"
     on:outroend="{onExited}"
     class="{classes}"
+    {...props}
   >
     <slot />
   </div>

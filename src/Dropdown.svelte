@@ -22,6 +22,8 @@
   export let setActiveFromChild = false;
   export let dropup = false;
 
+  let { children: _children, ...props } = $$props;
+
   const validDirections = ['up', 'down', 'left', 'right'];
 
   if (validDirections.indexOf(direction) === -1) {
@@ -82,11 +84,11 @@
 </script>
 
 {#if nav}
-  <li class="{classes}" bind:this="{component}">
+  <li class="{classes}" bind:this="{component}" {...props}>
     <slot />
   </li>
 {:else}
-  <div class="{classes}" bind:this="{component}">
+  <div class="{classes}" bind:this="{component}" {...props}>
     <slot />
   </div>
 {/if}

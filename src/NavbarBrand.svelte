@@ -5,12 +5,14 @@
   export {className as class};
   export let href = '/';
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'navbar-brand',
   );
 </script>
 
-<a class="{classes}" {href}>
+<a {...props} class="{classes}" {href}>
   <slot/>
 </a>

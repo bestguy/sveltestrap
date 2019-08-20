@@ -38,20 +38,20 @@
 </script>
 
 {#if header}
-  <h6 on:click on:click="{handleItemClick}" class="{classes}">
+  <h6 on:click on:click="{handleItemClick}" class="{classes}" {...props}>
     <slot />
   </h6>
 
 {:else if divider}
-  <div on:click on:click="{handleItemClick}" class="{classes}">
+  <div on:click on:click="{handleItemClick}" class="{classes}" {...props}>
     <slot />
   </div>
 {:else if href}
-  <a on:click on:click="{handleItemClick}" {href} class="{classes}">
+  <a on:click on:click="{handleItemClick}" {href} class="{classes}" {...props}>
     <slot />
   </a>
 {:else}
-  <button on:click on:click="{handleItemClick}" class="{classes}">
+  <button on:click on:click="{handleItemClick}" class="{classes}" {...props}>
     <slot />
   </button>
 {/if}

@@ -6,12 +6,14 @@
   export let fluid = false;
   export let id = '';
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     fluid ? 'container-fluid' : 'container',
   );
 </script>
 
-<div {id} class="{classes}">
+<div {...props} {id} class="{classes}">
   <slot />
 </div>

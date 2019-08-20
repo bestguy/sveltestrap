@@ -6,6 +6,8 @@
   export let fluid = false;
   export let tag = 'div';
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'jumbotron',
@@ -15,11 +17,11 @@
 
 
 {#if tag === 'section'}
-  <section class="{classes}">
+  <section {...props} class="{classes}">
     <slot/>
   </section>
 {:else}
-  <div class="{classes}">
+  <div {...props} class="{classes}">
     <slot/>
   </div>
 {/if}

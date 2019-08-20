@@ -5,6 +5,8 @@
   export {className as class};
   export let active = false;
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'nav-item',
@@ -12,6 +14,6 @@
   );
 </script>
 
-<li class="{classes}">
+<li {...props} class="{classes}">
   <slot/>
 </li>

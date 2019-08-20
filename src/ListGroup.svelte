@@ -5,6 +5,8 @@
   export {className as class};
   export let flush = false;
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'list-group',
@@ -12,6 +14,6 @@
   );
 </script>
 
-<ul class="{classes}">
+<ul {...props} class="{classes}">
   <slot/>
 </ul>

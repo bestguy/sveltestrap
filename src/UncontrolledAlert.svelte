@@ -2,8 +2,9 @@
   import Alert from './Alert.svelte';
 
   let isOpen = true;
+  let { children: _children, ...props } = $$props;
 </script>
 
-<Alert {isOpen} toggle="{() => isOpen = false}" {...$$props}>
+<Alert {...props} {isOpen} toggle="{() => isOpen = false}">
   <slot />
 </Alert>

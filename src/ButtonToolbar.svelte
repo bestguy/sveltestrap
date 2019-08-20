@@ -3,8 +3,10 @@
 
   let className = '';
   export { className as class };
-  export let role = 'toolbar';
   export let ariaLabel = '';
+  export let role = 'toolbar';
+
+  let { children: _children, ...props } = $$props;
 
   $: classes = clsx(
     className,
@@ -12,6 +14,6 @@
   );
 </script>
 
-<div aria-label="{ariaLabel}" class="{classes}">
+<div {...props} aria-label="{ariaLabel}" class="{classes}">
   <slot />
 </div>

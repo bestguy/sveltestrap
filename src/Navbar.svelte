@@ -12,6 +12,8 @@
   export let role = '';
   export let expand = false;
 
+  let { children: _children, ...props } = $$props;
+
   function getExpandClass(expand) {
     if (expand === false) {
       return false;
@@ -36,6 +38,6 @@
   );
 </script>
 
-<nav class="{classes}">
+<nav {...props} class="{classes}">
   <slot />
 </nav>

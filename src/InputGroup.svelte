@@ -5,6 +5,8 @@
   export { className as class };
   export let size = '';
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'input-group',
@@ -12,6 +14,6 @@
   );
 </script>
 
-<div class="{classes}">
+<div {...props} class="{classes}">
   <slot/>
 </div>

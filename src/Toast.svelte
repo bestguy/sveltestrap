@@ -7,6 +7,8 @@
   export let fade = true;
   export let isOpen = true;
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'toast',
@@ -18,6 +20,7 @@
 
 {#if isOpen}
 <div
+  {...props}
   class="{classes}"
   transition:fadeTrans
   role="alert"

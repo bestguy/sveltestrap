@@ -18,9 +18,11 @@
   export let defaultOpen = false;
 
   let isOpen = defaultOpen;
+  let { children: _children, ...props } = $$props;
 </script>
 
 <Dropdown
+  {...props}
   {isOpen}
   toggle="{() => isOpen = !isOpen}"
   class="{className}"

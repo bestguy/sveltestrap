@@ -17,6 +17,8 @@
   export let htmlFor = '';
   export { htmlFor as for };
 
+  let { children: _children, ...props } = $$props;
+
   $: customClass = clsx(
     className,
     `custom-${type}`,
@@ -50,23 +52,21 @@
   );
 
   $: labelHtmlFor = htmlFor || id;
-
-
 </script>
 
 {#if type === 'select'}
-  <select {id} class="{combinedClasses}" {name} {disabled} {placeholder} {multiple}>
+  <select {id} class="{combinedClasses}" {name} {disabled} {placeholder} {multiple} {...props}>
     <slot />
   </select>
 {:else if type === 'file'}
   <div class="{customClass}">
     <input {id} type="file" class="{fileClasses}" {name} {disabled} {placeholder} />
-    <label class="custom-file-label" for="{labelHtmlFor}">{label || 'Choose file'}</label>
+    <label class="custom-file-label" for="{labelHtmlFor}" {...props}>{label || 'Choose file'}</label>
   </div>
 {:else if type !== 'checkbox' && type !== 'radio' && type !== 'switch'}
-  <input {type} {id} class="{combinedClasses}" {name} {disabled} {placeholder} />
+  <input {type} {id} class="{combinedClasses}" {name} {disabled} {placeholder} {...props} />
 {:else}
-  <div class="{wrapperClasses}">
+  <div class="{wrapperClasses}" {...props}>
     <input {id} type="{type === 'switch' ? 'checkbox' : type}" class="{customControlClasses}" {name} {disabled} {placeholder} />
     <label class="custom-control-label" for="{labelHtmlFor}">{label}</label>
     <slot />

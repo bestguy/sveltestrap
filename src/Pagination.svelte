@@ -7,6 +7,8 @@
   export let size = '';
   export let ariaLabel = 'pagination';
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className
   );
@@ -20,7 +22,7 @@
   );
 </script>
 
-<nav class="{classes}" aria-label="{ariaLabel}">
+<nav {...props} class="{classes}" aria-label="{ariaLabel}">
   <ul class="{listClasses}">
     <slot />
   </ul>

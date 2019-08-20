@@ -4,12 +4,14 @@
   let className = '';
   export { className as class };
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'input-group-text',
   );
 </script>
 
-<span class="{classes}">
+<span {...props} class="{classes}">
   <slot />
 </span>

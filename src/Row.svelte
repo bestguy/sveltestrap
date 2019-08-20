@@ -7,6 +7,8 @@
   export let form = false;
   export let id = '';
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     noGutters ? 'no-gutters' : null,
@@ -14,6 +16,6 @@
   );
 </script>
 
-<div {id} class="{classes}">
+<div {...props} {id} class="{classes}">
   <slot />
 </div>

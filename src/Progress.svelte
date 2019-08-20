@@ -13,6 +13,8 @@
   export let color = '';
   export let barClassName = '';
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'progress'
@@ -34,24 +36,25 @@
     <slot />
   {:else}
     <div
-        class="{progressBarClasses}"
-        style="width: {percent}%"
-        role="progressbar"
-        aria-valuenow="{value}"
-        aria-valuemin="0"
-        aria-valuemax="{max}"
+      {...props} 
+      class="{progressBarClasses}"
+      style="width: {percent}%"
+      role="progressbar"
+      aria-valuenow="{value}"
+      aria-valuemin="0"
+      aria-valuemax="{max}"
     >
       <slot />
     </div>
   {/if}
 {:else}
-  <div class="{classes}">
+  <div {...props} class="{classes}">
     {#if multi}
       <slot />
     {:else}
       <div
         class="{progressBarClasses}"
-          style="width: {percent}%"
+        style="width: {percent}%"
         role="progressbar"
         aria-valuenow="{value}"
         aria-valuemin="0"

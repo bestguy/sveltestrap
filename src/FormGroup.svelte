@@ -10,6 +10,8 @@
   export let id = '';
   export let tag = null;
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     row ? 'row' : false,
@@ -21,11 +23,11 @@
 </script>
 
 {#if tag === 'fieldset'}
-  <fieldset {id} class="{classes}">
+  <fieldset {id} class="{classes}" {...props}>
     <slot />
   </fieldset>
 {:else}
-  <div {id} class="{classes}">
+  <div {id} class="{classes}" {...props}>
     <slot />
   </div>
 {/if}

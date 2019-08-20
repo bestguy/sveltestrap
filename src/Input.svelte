@@ -2,7 +2,7 @@
   import clsx from 'clsx';
 
   let className = '';
-    export { className as class };
+  export { className as class };
 
   export let type = 'text';
   export let size = undefined;
@@ -18,6 +18,8 @@
   export let name = '';
   export let placeholder = '';
   export let disabled = false;
+
+  let { children: _children, ...props } = $$props;
 
   let classes;
   let tag;
@@ -63,40 +65,40 @@
 </script>
 {#if tag === 'input'}
   {#if type === 'text'}
-    <input {id} type="text" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="text" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'password'}
-    <input {id} type="password" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="password" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'email'}
-    <input {id} type="email" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="email" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'file'}
-    <input {id} type="file" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="file" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'checkbox'}
-    <input {id} type="checkbox" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="checkbox" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'radio'}
-    <input {id} type="radio" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="radio" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'url'}
-    <input {id} type="url" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="url" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'number'}
-    <input {id} type="number" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="number" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'date'}
-    <input {id} type="date" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="date" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'time'}
-    <input {id} type="time" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="time" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'datetime'}
-    <input {id} type="datetime" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="datetime" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'color'}
-    <input {id} type="color" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="color" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'search'}
-    <input {id} type="search" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="search" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {/if}
 
 {:else if tag === 'textarea'}
 
-  <textarea {id} class="{classes}" bind:value {name} {disabled}></textarea>
+  <textarea {...props} {id} class="{classes}" bind:value {name} {disabled}></textarea>
 
 {:else if tag === 'select'}
 
-  <select {id} {multiple} class="{classes}" {name} {disabled}>
+  <select {...props} {id} {multiple} class="{classes}" {name} {disabled}>
     <slot />
   </select>
 

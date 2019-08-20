@@ -6,6 +6,8 @@
   export { className as class };
   export let activeTab;
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     'tab-content',
     className,
@@ -18,6 +20,6 @@
   });
 </script>
 
-<div class="{classes}">
+<div {...props} class="{classes}">
   <slot />
 </div>

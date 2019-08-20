@@ -13,6 +13,8 @@
   export let fade = true;
   export let transition = {duration: fade ? 400 : 0};
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'alert',
@@ -25,6 +27,7 @@
 
 {#if isOpen}
   <div
+    {...props}
     transition:fadeTransition="{transition}"
     class="{classes}"
     role="alert"

@@ -7,6 +7,8 @@
   export let size = '';
   export let color = '';
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     size ? `spinner-${type}-${size}` : false,
@@ -15,7 +17,7 @@
   );
 </script>
 
-<div role="status" class="{classes}">
+<div {...props} role="status" class="{classes}">
   <span class="sr-only">
     <slot>
       Loading...

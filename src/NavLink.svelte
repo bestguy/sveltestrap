@@ -7,6 +7,8 @@
   export let active = false;
   export let href = '#';
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'nav-link',
@@ -30,6 +32,7 @@
 </script>
 
 <a
+  {...props}
   {href}
   on:click on:click="{handleClick}"
   class="{classes}"

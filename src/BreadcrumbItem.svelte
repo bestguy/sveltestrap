@@ -6,6 +6,8 @@
   export let active = false;
   export let children;
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     active ? 'active' : false,
@@ -13,7 +15,7 @@
   );
 </script>
 
-<li class="{classes}" aria-current="{active ? 'page' : undefined}">
+<li {...props} class="{classes}" aria-current="{active ? 'page' : undefined}">
   {#if children}
     {children}
   {:else}

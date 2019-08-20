@@ -7,13 +7,15 @@
   export let children;
   export let listClassName = '';
 
+  let { children: _children, ...props } = $$props;
+
   $: listClasses = clsx(
     'breadcrumb',
     listClassName
   );
 </script>
 
-<nav aria-label="{ariaLabel}" class="{className}">
+<nav {...props} aria-label="{ariaLabel}" class="{className}">
   <ol class="{listClasses}">
     {#if children}
       {children}

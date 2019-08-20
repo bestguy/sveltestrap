@@ -10,6 +10,8 @@
   export let href = null;
   export let tag = null;
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     active ? 'active' : false,
@@ -21,15 +23,15 @@
 </script>
 
 {#if href}
-  <a class="{classes}" {href} {disabled} {active}>
+  <a {...props} class="{classes}" {href} {disabled} {active}>
     <slot/>
   </a>
 {:else if tag === 'button'}
-  <button class="{classes}" type="button" on:click {disabled} {active}>
+  <button {...props} class="{classes}" type="button" on:click {disabled} {active}>
     <slot/>
   </button>
 {:else}
-<li class="{classes}" {disabled} {active}>
+<li {...props} class="{classes}" {disabled} {active}>
   <slot/>
 </li>
 {/if}

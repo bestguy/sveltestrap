@@ -6,6 +6,9 @@
   export let valid = undefined;
   export let tooltip = false;
   let classes;
+
+  let { children: _children, ...props } = $$props;
+
   $: {
     const validMode = tooltip ? 'tooltip' : 'feedback';
 
@@ -16,6 +19,6 @@
   }
 </script>
 
-<div class="{classes}">
+<div class="{classes}" {...props}>
   <slot />
 </div>

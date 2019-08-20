@@ -17,8 +17,23 @@
   export let defaultOpen = false;
 
   let isOpen = defaultOpen;
+  let { children: _children, ...props } = $$props;
 </script>
 
-<ButtonDropdown {isOpen} toggle="{() => isOpen = !isOpen}" class="{className}" {disabled} {group} {nav} {active} {addonType} {size} {inNavbar} {setActiveFromChild} {dropup}>
+<ButtonDropdown
+  {...props}
+  {isOpen}
+  toggle={() => (isOpen = !isOpen)}
+  class={className}
+  {disabled}
+  {group}
+  {nav}
+  {active}
+  {addonType}
+  {size}
+  {inNavbar}
+  {setActiveFromChild}
+  {dropup}
+>
   <slot />
 </ButtonDropdown>

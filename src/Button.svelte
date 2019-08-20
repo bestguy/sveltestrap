@@ -16,6 +16,8 @@
   export let style = '';
   export let value = '';
 
+  let { children: _children, ...props } = $$props;
+
   $: ariaLabel = $$props['aria-label'];
 
   $: classes = clsx(
@@ -33,6 +35,7 @@
 
 {#if href}
   <a
+    {...props}
     {id}
     class="{classes}"
     {disabled}
@@ -49,6 +52,7 @@
   </a>
 {:else}
   <button
+    {...props}
     {id}
     class="{classes}"
     {disabled}

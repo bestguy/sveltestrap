@@ -8,6 +8,8 @@
   export let src;
   export let alt = '';
 
+  let { children: _children, ...props } = $$props;
+
   let classes = '';
   $: {
     let cardImgClassName = 'card-img';
@@ -24,4 +26,4 @@
   }
 </script>
 
-<img class="{classes}" {src} {alt} />
+<img {...props} class="{classes}" {src} {alt} />

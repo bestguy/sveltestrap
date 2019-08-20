@@ -9,6 +9,8 @@
   export let charCode = 215;
   export let close = null;
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'toast-header',
@@ -22,7 +24,7 @@
   $: closeIcon = typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;
 </script>
 
-<div class="{classes}">
+<div {...props} class="{classes}">
   {#if icon}
     <svg
       class="{`rounded text-${icon}`}"

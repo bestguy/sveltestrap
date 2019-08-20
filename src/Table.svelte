@@ -12,6 +12,8 @@
   export let hover = false;
   export let responsive = false;
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'table',
@@ -28,12 +30,12 @@
 
 {#if responsive}
   <div class="{responsiveClassName}">
-    <table class="{classes}">
+    <table {...props} class="{classes}">
       <slot />
     </table>
   </div>
 {:else}
-  <table class="{classes}">
+  <table {...props} class="{classes}">
     <slot />
   </table>
 {/if}

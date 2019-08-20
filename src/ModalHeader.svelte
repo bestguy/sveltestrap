@@ -8,6 +8,8 @@
   export let charCode = 215;
   export let children;
 
+  let { children: _children, ...props } = $$props;
+
   $: closeIcon = typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;
 
   $: classes = clsx(
@@ -16,7 +18,7 @@
   );
 </script>
 
-<div class="{classes}">
+<div {...props} class="{classes}">
   <h5 class="modal-title">
     {#if children}
       {children}

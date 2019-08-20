@@ -6,6 +6,9 @@
   const colWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
 
   let className = '';
+
+  let { children: _children, ...props } = $$props;
+
   export { className as class };
   export let hidden = false;
   export let check = false;
@@ -58,6 +61,6 @@
 
 </script>
 
-<label {id} class="{classes}" for="{fore}">
+<label {...props} {id} class="{classes}" for="{fore}">
   <slot />
 </label>

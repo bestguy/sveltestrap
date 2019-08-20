@@ -40,6 +40,8 @@
   export let unmountOnClose = true;
   export let returnFocusAfterClose = true;
 
+  let { children: _children, ...props } = $$props;
+
   let hasOpened = false;
   let _isMounted = false;
   let _triggeringElement;
@@ -191,7 +193,7 @@
 </script>
 
 {#if _isMounted}
-<div class="{wrapClassName}" tabindex="-1" style="position: relative; z-index: {zIndex}">
+<div {...props} class="{wrapClassName}" tabindex="-1" style="position: relative; z-index: {zIndex}">
   {#if isOpen}
     <div
       transition:fadeTransition

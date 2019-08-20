@@ -2,19 +2,21 @@
   import clsx from 'clsx';
 
   let className = '';
-    export { className as class };
-    export let size = '';
-    export let vertical = false;
-    export let id = '';
+  export { className as class };
+  export let id = '';
+  export let size = '';
+  export let vertical = false;
 
-    $: classes = clsx(
-      className,
-      size ? `btn-group-${size}` : false,
-      vertical ? 'btn-group-vertical' : 'btn-group',
+  let { children: _children, ...props } = $$props;
+
+  $: classes = clsx(
+    className,
+    size ? `btn-group-${size}` : false,
+    vertical ? 'btn-group-vertical' : 'btn-group',
   );
 
 </script>
 
-<div {id} class="{classes}">
+<div {...props} {id} class="{classes}">
   <slot />
 </div>

@@ -12,6 +12,8 @@
   export let navbar = false;
   export let card = false;
 
+  let { children: _children, ...props } = $$props;
+
   function getVerticalClass(vertical) {
     if (vertical === false) {
       return false;
@@ -37,6 +39,6 @@
   );
 </script>
 
-<ul class="{classes}">
+<ul {...props} class="{classes}">
   <slot />
 </ul>

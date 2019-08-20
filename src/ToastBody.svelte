@@ -4,12 +4,14 @@
   let className = '';
   export { className as class };
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'toast-body',
   );
 </script>
 
-<div class="{classes}">
+<div {...props} class="{classes}">
   <slot />
 </div>

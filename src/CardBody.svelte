@@ -5,12 +5,14 @@
   export { className as class };
   export let id = '';
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'card-body'
   );
 </script>
 
-<div {id} class="{classes}">
+<div {...props} {id} class="{classes}">
   <slot />
 </div>

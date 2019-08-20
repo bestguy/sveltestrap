@@ -43,19 +43,19 @@
 </script>
 
 {#if nav}
-  <a on:click on:click="{toggleButton}" href="#nav" class="{classes}">
+  <a on:click on:click="{toggleButton}" href="#nav" class="{classes}" {...props}>
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>
   </a>
 {:else if tag === 'span'}
-  <span on:click on:click="{toggleButton}" class="{classes}" {color} {size}>
+  <span on:click on:click="{toggleButton}" class="{classes}" {color} {size} {...props}>
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>
   </span>
 {:else}
-  <Button on:click on:click="{toggleButton}" class="{classes}" {color} {size} {outline}>
+  <Button on:click on:click="{toggleButton}" class="{classes}" {color} {size} {outline} {...props}>
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>

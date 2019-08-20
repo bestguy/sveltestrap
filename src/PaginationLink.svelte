@@ -10,6 +10,8 @@
   export let ariaLabel = '';
   export let href = '';
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'page-link',
@@ -42,6 +44,7 @@
 </script>
 
 <a
+  {...props}
   class="{classes}"
   on:click
   {href}

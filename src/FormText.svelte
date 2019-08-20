@@ -6,6 +6,8 @@
   export let inline = false;
   export let color = 'muted';
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     !inline ? 'form-text' : false,
@@ -13,6 +15,6 @@
   );
 </script>
 
-<small class="{classes}">
+<small class="{classes}" {...props}>
   <slot/>
 </small>

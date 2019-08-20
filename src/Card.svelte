@@ -3,12 +3,14 @@
 
   let className = '';
   export { className as class };
-  export let inverse = false;
-  export let color = '';
   export let body = false;
-  export let outline = false;
+  export let color = '';
   export let id = '';
+  export let inverse = false;
+  export let outline = false;
   export let style = '';
+
+  let { children: _children, ...props } = $$props;
 
   $: classes = clsx(
     className,
@@ -19,6 +21,6 @@
   );
 </script>
 
-<div {id} class="{classes}" on:click {style}>
+<div {...props} {id} class="{classes}" on:click {style}>
   <slot />
 </div>

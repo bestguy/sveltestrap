@@ -6,6 +6,8 @@
   export let active = false;
   export let disabled = false;
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'page-item',
@@ -16,6 +18,6 @@
   );
 </script>
 
-<li class="{classes}">
+<li {...props} class="{classes}">
   <slot />
 </li>

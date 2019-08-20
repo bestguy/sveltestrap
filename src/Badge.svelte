@@ -8,6 +8,8 @@
   export let href = undefined;
   export let pill = false;
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'badge',
@@ -17,7 +19,7 @@
 </script>
 
 {#if href}
-<a {href} class="{classes}">
+<a {...props} {href} class="{classes}">
   {#if children}
     {children}
   {:else}
@@ -25,7 +27,7 @@
   {/if}
 </a>
 {:else}
-<span class="{classes}">
+<span {...props} class="{classes}">
   {#if children}
     {children}
   {:else}

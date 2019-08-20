@@ -17,6 +17,8 @@
   export let onExiting = noop;
   export let onExited = noop;
 
+  let { children: _children, ...props } = $$props;
+
   let unbindEvents;
   let isOpen = defaultOpen;
   function togglerFn() {
@@ -68,6 +70,7 @@
 </script>
 
 <Fade
+  {...props}
   {isOpen}
   on:introstart
   on:introend

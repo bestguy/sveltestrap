@@ -4,6 +4,8 @@
   let className = '';
   export { className as class };
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'card-text',
@@ -11,6 +13,6 @@
 </script>
 
 
-<p class="{classes}">
+<p {...props} class="{classes}">
   <slot />
 </p>
