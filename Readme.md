@@ -104,8 +104,7 @@ In your svelte component:
 * [x] Label
 * [x] ListGroup
 * [x] ListGroupItem
-  * [x] ListGroupItemHeading
-  * [x] ListGroupItemText
+  * [ ] ListGroupItemAction
 * [x] Media
   * [x] MediaBody
 * [x] Modal

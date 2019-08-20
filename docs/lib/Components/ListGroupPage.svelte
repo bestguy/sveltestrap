@@ -18,9 +18,6 @@
 	import ListGroupContextualClassesExample from '../examples/ListGroupContextualClasses';
 	const ListGroupContextualClassesExampleSource = require('!!raw-loader!../examples/ListGroupContextualClasses').default;
 
-	import ListGroupCustomContentExample from '../examples/ListGroupCustomContent';
-	const ListGroupCustomContentExampleSource = require('!!raw-loader!../examples/ListGroupCustomContent').default;
-
 	import ListGroupFlushExample from '../examples/ListGroupFlush';
 	const ListGroupFlushExampleSource = require('!!raw-loader!../examples/ListGroupFlush')
 
@@ -74,16 +71,6 @@
 <pre>
 	<PrismCode class="language-html">
 		{ListGroupContextualClassesExampleSource}
-	</PrismCode>
-</pre>
-
-<legend>Custom content</legend>
-<div class="docs-example">
-	<ListGroupCustomContentExample />
-</div>
-<pre>
-	<PrismCode class="language-html">
-		{ListGroupCustomContentExampleSource}
 	</PrismCode>
 </pre>
 
