@@ -41,8 +41,6 @@ import Jumbotron from './Jumbotron.svelte';
 import Label from './Label.svelte';
 import ListGroup from './ListGroup.svelte';
 import ListGroupItem from './ListGroupItem.svelte';
-import ListGroupItemHeading from './ListGroupItemHeading.svelte';
-import ListGroupItemText from './ListGroupItemText.svelte';
 import Media from './Media.svelte';
 import Modal from './Modal.svelte';
 import ModalBody from './ModalBody.svelte';
@@ -116,8 +114,6 @@ export {
   Label,
   ListGroup,
   ListGroupItem,
-  ListGroupItemHeading,
-  ListGroupItemText,
   Media,
   Modal,
   ModalBody,
@@ -191,8 +187,6 @@ export const Sveltestrap = {
   Label,
   ListGroup,
   ListGroupItem,
-  ListGroupItemHeading,
-  ListGroupItemText,
   Media,
   Modal,
   ModalBody,
