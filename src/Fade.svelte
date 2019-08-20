@@ -13,6 +13,8 @@
   export let onExiting = noop;
   export let onExited = noop;
 
+  let { children: _children, ...props } = $$props;
+
   let _wasOpen = isOpen;
   $: classes = clsx(
     className,
@@ -34,6 +36,7 @@
 
 {#if isOpen}
   <div
+    {...props}
     transition:fade
     on:introstart
     on:introend
@@ -44,7 +47,6 @@
     on:outrostart="{onExiting}"
     on:outroend="{onExited}"
     class="{classes}"
-    {...props}
   >
     <slot />
   </div>

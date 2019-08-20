@@ -10,6 +10,8 @@
   export let flip = true;
   export let persist = false;
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     'dropdown-menu',
@@ -20,6 +22,6 @@
   );
 </script>
 
-<div class="{classes}" {...props}>
+<div {...props} class="{classes}">
   <slot />
 </div>

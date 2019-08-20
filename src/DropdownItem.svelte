@@ -14,6 +14,8 @@
   export let toggle = true;
   export let href = '';
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     {
@@ -38,20 +40,20 @@
 </script>
 
 {#if header}
-  <h6 on:click on:click="{handleItemClick}" class="{classes}" {...props}>
+  <h6 {...props} on:click on:click="{handleItemClick}" class="{classes}">
     <slot />
   </h6>
 
 {:else if divider}
-  <div on:click on:click="{handleItemClick}" class="{classes}" {...props}>
+  <div {...props} on:click on:click="{handleItemClick}" class="{classes}">
     <slot />
   </div>
 {:else if href}
-  <a on:click on:click="{handleItemClick}" {href} class="{classes}" {...props}>
+  <a on:{...props} click on:click="{handleItemClick}" {href} class="{classes}">
     <slot />
   </a>
 {:else}
-  <button on:click on:click="{handleItemClick}" class="{classes}" {...props}>
+  <button {...props} on:click on:click="{handleItemClick}" class="{classes}">
     <slot />
   </button>
 {/if}

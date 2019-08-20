@@ -19,6 +19,8 @@
   export let tag = null;
   export let outline = false;
 
+  let { children: _children, ...props } = $$props;
+
   $: classes = clsx(
     className,
     {
@@ -43,19 +45,19 @@
 </script>
 
 {#if nav}
-  <a on:click on:click="{toggleButton}" href="#nav" class="{classes}" {...props}>
+  <a {...props} on:click on:click="{toggleButton}" href="#nav" class="{classes}">
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>
   </a>
 {:else if tag === 'span'}
-  <span on:click on:click="{toggleButton}" class="{classes}" {color} {size} {...props}>
+  <span {...props} on:click on:click="{toggleButton}" class="{classes}" {color} {size}>
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>
   </span>
 {:else}
-  <Button on:click on:click="{toggleButton}" class="{classes}" {color} {size} {outline} {...props}>
+  <Button {...props} on:click on:click="{toggleButton}" class="{classes}" {color} {size} {outline}>
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>
