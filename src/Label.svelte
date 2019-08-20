@@ -1,8 +1,7 @@
 <script>
   import clsx from 'clsx';
-  import isobject from 'lodash.isobject';
-
-  import { getColumnSizeClass } from './utils';
+  
+  import { getColumnSizeClass, isObject } from './utils';
 
   const colWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
 
@@ -33,7 +32,7 @@
     const isXs = colWidth === 'xs';
     let colClass;
 
-    if (isobject(columnProp)) {
+    if (isObject(columnProp)) {
       const colSizeInterfix = isXs ? '-' : `-${colWidth}-`;
       colClass = getColumnSizeClass(isXs, colWidth, columnProp.size);
 
