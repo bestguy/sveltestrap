@@ -1,0 +1,16 @@
+<script>
+	import { UncontrolledFade, Button, CardBody, Card } from 'sveltestrap';
+</script>
+
+<Button color="primary" id="toggler" style="margin-bottom: 1rem;">
+	Toggle
+</Button>
+<UncontrolledFade toggler="#toggler">
+	<Card>
+		<CardBody>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt magni, voluptas debitis
+			similique porro a molestias consequuntur earum odio officiis natus, amet hic, iste sed
+			dignissimos esse fuga! Minus, alias.
+		</CardBody>
+	</Card>
+</UncontrolledFade>

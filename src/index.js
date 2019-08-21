@@ -27,6 +27,7 @@ import Dropdown from './Dropdown.svelte';
 import DropdownItem from './DropdownItem.svelte';
 import DropdownMenu from './DropdownMenu.svelte';
 import DropdownToggle from './DropdownToggle.svelte';
+import Fade from './Fade.svelte';
 import Form from './Form.svelte';
 import FormFeedback from './FormFeedback.svelte';
 import FormGroup from './FormGroup.svelte';
@@ -40,9 +41,8 @@ import Jumbotron from './Jumbotron.svelte';
 import Label from './Label.svelte';
 import ListGroup from './ListGroup.svelte';
 import ListGroupItem from './ListGroupItem.svelte';
-import ListGroupItemHeading from './ListGroupItemHeading.svelte';
-import ListGroupItemText from './ListGroupItemText.svelte';
 import Media from './Media.svelte';
+import Modal from './Modal.svelte';
 import ModalBody from './ModalBody.svelte';
 import ModalFooter from './ModalFooter.svelte';
 import ModalHeader from './ModalHeader.svelte';
@@ -67,6 +67,7 @@ import ToastHeader from './ToastHeader.svelte';
 import UncontrolledAlert from './UncontrolledAlert.svelte';
 import UncontrolledButtonDropdown from './UncontrolledButtonDropdown.svelte';
 import UncontrolledCollapse from './UncontrolledCollapse.svelte';
+import UncontrolledFade from './UncontrolledFade.svelte';
 import UncontrolledDropdown from './UncontrolledDropdown.svelte';
 
 export {
@@ -99,6 +100,7 @@ export {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
+  Fade,
   Form,
   FormFeedback,
   FormGroup,
@@ -112,9 +114,8 @@ export {
   Label,
   ListGroup,
   ListGroupItem,
-  ListGroupItemHeading,
-  ListGroupItemText,
   Media,
+  Modal,
   ModalBody,
   ModalFooter,
   ModalHeader,
@@ -139,7 +140,8 @@ export {
   UncontrolledAlert,
   UncontrolledButtonDropdown,
   UncontrolledCollapse,
-  UncontrolledDropdown
+  UncontrolledDropdown,
+  UncontrolledFade
 };
 
 export const Sveltestrap = {
@@ -185,9 +187,8 @@ export const Sveltestrap = {
   Label,
   ListGroup,
   ListGroupItem,
-  ListGroupItemHeading,
-  ListGroupItemText,
   Media,
+  Modal,
   ModalBody,
   ModalFooter,
   ModalHeader,
@@ -212,5 +213,6 @@ export const Sveltestrap = {
   UncontrolledAlert,
   UncontrolledButtonDropdown,
   UncontrolledCollapse,
-  UncontrolledDropdown
+  UncontrolledDropdown,
+  UncontrolledFade
 };

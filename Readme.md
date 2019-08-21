@@ -12,6 +12,16 @@ The component names and interface are inspired by the [reactstrap](https://react
 
 [Demo page](https://bestguy.github.io/sveltestrap/)
 
+### Status
+
+* See component list below
+  * Tooltip & Popover are not implemented yet due to lacking Popper/Tether support [#31](https://github.com/bestguy/sveltestrap/issues/31), [#32](https://github.com/bestguy/sveltestrap/issues/32)
+  * Carousel not implemented yet, need to port transitions/state/key handlers. [#30](https://github.com/bestguy/sveltestrap/issues/30)
+* Some stateful components have issues
+  * Collapse uses the Svelte slide transistion. In Svelte, the component is removed from the DOM whereas in Bootstrap, it stays in the DOM, but is hidden. This interacts badly with nav bars on small screens.
+  * Modal uses Svelte fade transition, which does not use the Bootstrap theme defaults for duration, etc.
+* Most components are missing general HTML attributes and DOM events, see [#36](https://github.com/bestguy/sveltestrap/issues/36)
+
 ----
 
 ## Install
@@ -35,12 +45,6 @@ In your svelte component:
   </Col>
 <Row>
 ```
-
-## Status
-
-* See component list below
-* Some stateful components have issues
-  * Collapse uses the Svelte slide transistion. In Svelte, the component is removed from the DOM whereas in Reacstrap, it stays in the DOM, but is hidden. This interacts badly with nav bars on small screens.
 
 ### Layout
 
@@ -73,6 +77,11 @@ In your svelte component:
   * [x] CardSubtitle
   * [x] CardText
   * [x] CardTitle
+* [ ] Carousel
+  * [ ] CarouselCaption
+  * [ ] CarouselControl
+  * [ ] CarouselIndicators
+  * [ ] CarouselItem
 * [x] Close
 * [x] Collapse
   * [x] UncontrolledCollapse
@@ -95,8 +104,7 @@ In your svelte component:
 * [x] Label
 * [x] ListGroup
 * [x] ListGroupItem
-  * [x] ListGroupItemHeading
-  * [x] ListGroupItemText
+  * [ ] ListGroupItemAction
 * [x] Media
   * [x] MediaBody
 * [x] Modal

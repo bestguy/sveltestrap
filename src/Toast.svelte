@@ -1,27 +1,27 @@
 <script>
-	import clsx from 'clsx';
-	import { fade as fadeTrans } from 'svelte/transition';
+  import clsx from 'clsx';
+  import { fade as fadeTrans } from 'svelte/transition';
 
-	let className = '';
-	export { className as class };
-	export let fade = true;
-	export let isOpen = true;
+  let className = '';
+  export { className as class };
+  export let fade = true;
+  export let isOpen = true;
 
-	$: classes = clsx(
-		className,
-		'toast',
-		{
-			show: isOpen,
-		},
-	);
+  $: classes = clsx(
+    className,
+    'toast',
+    {
+      show: isOpen,
+    },
+  );
 </script>
 
 {#if isOpen}
 <div
-	class="{classes}"
-	transition:fadeTrans
-	role="alert"
+  class="{classes}"
+  transition:fadeTrans
+  role="alert"
 >
-	<slot />
+  <slot />
 </div>
 {/if}

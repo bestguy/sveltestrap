@@ -1,63 +1,70 @@
 <script>
-	import clsx from 'clsx';
+  import clsx from 'clsx';
 
-	let className = '';
-	export { className as class };
-	export let active = false;
-	export let block = false;
-	export let disabled = false;
-	export let color = 'secondary';
-	export let outline = false;
-	export let size = '';
-	export let value = '';
-	export let id = '';
-	export let close = false;
-	export let href = '';
-	export let style = '';
+  let className = '';
+  export { className as class };
+  export let active = false;
+  export let block = false;
+  export let children;
+  export let close = false;
+  export let color = 'secondary';
+  export let disabled = false;
+  export let href = '';
+  export let id = '';
+  export let outline = false;
+  export let size = '';
+  export let style = '';
+  export let value = '';
 
-	$: ariaLabel = $$props['aria-label'];
+  $: ariaLabel = $$props['aria-label'];
 
-	$: classes = clsx(
-		className,
-		{ close },
-		close || 'btn',
-		close || `btn${outline ? '-outline' : ''}-${color}`,
-		size ? `btn-${size}` : false,
-		block ? 'btn-block' : false,
-		{ active, disabled }
-	);
+  $: classes = clsx(
+    className,
+    { close },
+    close || 'btn',
+    close || `btn${outline ? '-outline' : ''}-${color}`,
+    size ? `btn-${size}` : false,
+    block ? 'btn-block' : false,
+    { active }
+  );
 
-	$: defaultAriaLabel = close ? 'Close' : null;
+  $: defaultAriaLabel = close ? 'Close' : null;
 </script>
 
 {#if href}
-	<a
-		{id}
-		class="{classes}"
-		on:click
-		{href}
-		aria-label="{ariaLabel || defaultAriaLabel}"
-		{style}
-	>
-		<slot>
-			{#if close}
-				<span aria-hidden="true">×</span>
-			{/if}
-		</slot>
-	</a>
+  <a
+    {id}
+    class="{classes}"
+    {disabled}
+    on:click
+    {href}
+    aria-label="{ariaLabel || defaultAriaLabel}"
+    {style}
+  >
+    {#if children}
+      {children}
+    {:else}
+      <slot />
+    {/if}
+  </a>
 {:else}
-	<button
-		{id}
-		class="{classes}"
-		on:click
-		{value}
-		aria-label="{ariaLabel || defaultAriaLabel}"
-		{style}
-	>
-		<slot>
-			{#if close}
-				<span aria-hidden="true">×</span>
-			{/if}
-		</slot>
-	</button>
+  <button
+    {id}
+    class="{classes}"
+    {disabled}
+    on:click
+    {value}
+    aria-label="{ariaLabel || defaultAriaLabel}"
+    {style}
+  >
+    <slot>
+      {#if close}
+        <span aria-hidden="true">×</span>
+      {:else if children}
+        {children}
+      {:else}
+        <slot />
+      {/if}
+    </slot>
+  </button>
 {/if}
