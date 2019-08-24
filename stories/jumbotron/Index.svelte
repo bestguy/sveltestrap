@@ -7,7 +7,7 @@
 </script>
 
 <h1>Jumbotrons</h1>
-<a href="https://getbootstrap.com/docs/4.3/layout/jumbotron/" target="_blank">
+<a href="https://getbootstrap.com/docs/4.3/components/jumbotron/" target="_blank">
   Bootstrap Jumbotron
 </a>
 
