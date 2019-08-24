@@ -31,7 +31,7 @@
             </Button>
             <Button
               color="danger"
-              href="/?path=/story/components--layout">
+              href="https://bestguy.github.io/sveltestrap/?path=/story/components--layout">
               Components
             </Button>
           </p>
