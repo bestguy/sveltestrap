@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "start": "start-storybook -p 6006",
-    "docs": "build-storybook",
+    "docs": "build-storybook -o docs",
     "dist": "rollup -c",
     "prepublish": "npm run dist",
     "postpublish": "git push && git push --tags",
