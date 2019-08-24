@@ -15,15 +15,13 @@
     "dist"
   ],
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.docs.config.js --watch --hot",
-    "docs": "cross-env WEBPACK_BUILD=production webpack --config ./webpack.docs.config.js --progress --colors",
+    "start": "start-storybook -p 6006",
+    "docs": "build-storybook",
     "dist": "rollup -c",
     "prepublish": "npm run dist",
     "postpublish": "git push && git push --tags",
     "test": "jest --verbose",
-    "version": "npm run docs && git add -A docs",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "version": "npm run docs && git add -A docs"
   },
   "peerDependencies": {
     "svelte": "^3.4.4"
@@ -78,7 +76,6 @@
     "rollup-plugin-terser": "^4.0.4",
     "sirv-cli": "^0.3.1",
     "standard-version": "^6.0.1",
-    "static-site-generator-webpack-plugin": "^3.4.2",
     "svelte": "^3.7.0",
     "svelte-loader": "^2.13.6",
     "svelte-preprocess": "^2.12.0",

@@ -7,7 +7,8 @@ addParameters({
   options: {
     name: `sveltestrap ${pkg.version}`,
     url: 'https://github.com/bestguy/sveltestrap',
-    panelPosition: 'right'
+    panelPosition: 'right',
+    showPanel: false
   },
 });
 
