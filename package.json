@@ -15,14 +15,13 @@
     "dist"
   ],
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.docs.config.js --watch --hot",
-    "docs": "cross-env WEBPACK_BUILD=production webpack --config ./webpack.docs.config.js --progress --colors",
+    "start": "start-storybook -p 6006",
+    "docs": "build-storybook -o docs",
     "dist": "rollup -c",
     "prepublish": "npm run dist",
     "postpublish": "git push && git push --tags",
     "test": "jest --verbose",
-    "version": "npm run docs && git add -A docs",
-    "watch": "rollup -c -w"
+    "version": "npm run docs && git add -A docs"
   },
   "peerDependencies": {
     "svelte": "^3.4.4"
@@ -31,6 +30,13 @@
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.5.5",
+    "@storybook/addon-actions": "^5.1.10",
+    "@storybook/addon-knobs": "^5.1.10",
+    "@storybook/addon-links": "^5.1.10",
+    "@storybook/addon-options": "^5.1.10",
+    "@storybook/addon-storysource": "^5.1.10",
+    "@storybook/addons": "^5.1.10",
+    "@storybook/svelte": "^5.1.10",
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/svelte": "^1.8.0",
     "autoprefixer": "^9.6.0",
@@ -53,6 +59,7 @@
     "postcss": "^7.0.17",
     "prettier": "^1.17.1",
     "prettier-plugin-svelte": "^0.5.1",
+    "prismjs": "^1.17.1",
     "raw-loader": "^2.0.0",
     "rollup": "^1.18.0",
     "rollup-plugin-alias": "^1.5.1",
@@ -69,7 +76,6 @@
     "rollup-plugin-terser": "^4.0.4",
     "sirv-cli": "^0.3.1",
     "standard-version": "^6.0.1",
-    "static-site-generator-webpack-plugin": "^3.4.2",
     "svelte": "^3.7.0",
     "svelte-loader": "^2.13.6",
     "svelte-preprocess": "^2.12.0",
