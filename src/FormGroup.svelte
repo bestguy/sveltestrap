@@ -24,11 +24,11 @@
 </script>
 
 {#if tag === 'fieldset'}
-  <fieldset {id} class="{classes}" {...props}>
+  <fieldset {...props} {id} class="{classes}">
     <slot />
   </fieldset>
 {:else}
-  <div {id} class="{classes}" {...props}>
+  <div {...props} {id} class="{classes}">
     <slot />
   </div>
 {/if}

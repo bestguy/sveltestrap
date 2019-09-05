@@ -20,6 +20,6 @@
   }
 </script>
 
-<div class="{classes}" {...props}>
+<div {...props} class="{classes}">
   <slot />
 </div>

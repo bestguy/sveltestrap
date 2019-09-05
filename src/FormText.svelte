@@ -16,6 +16,6 @@
   );
 </script>
 
-<small class="{classes}" {...props}>
+<small {...props} class="{classes}">
   <slot/>
 </small>
