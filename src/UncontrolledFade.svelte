@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
   import { onMount, onDestroy } from 'svelte';
   import { slide } from 'svelte/transition';
 
@@ -16,6 +17,8 @@
   export let onEntered = noop;
   export let onExiting = noop;
   export let onExited = noop;
+
+  const props = clean($$props);
 
   let unbindEvents;
   let isOpen = defaultOpen;
@@ -68,6 +71,7 @@
 </script>
 
 <Fade
+  {...props}
   {isOpen}
   on:introstart
   on:introend

@@ -1,10 +1,13 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
   import { getColumnSizeClass, isObject } from './utils';
 
   let className = '';
   export { className as class };
   export let id = '';
+
+  const props = clean($$props);
 
   const colClasses = [];
   const widths = ['xs', 'sm', 'md', 'lg', 'xl'];
@@ -47,6 +50,6 @@
   }
 </script>
 
-<div {id} class={colClasses.join(' ')}>
+<div {...props} {id} class={colClasses.join(' ')}>
   <slot />
 </div>

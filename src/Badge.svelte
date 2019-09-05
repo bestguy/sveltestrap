@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -7,6 +8,8 @@
   export let color = 'secondary';
   export let href = undefined;
   export let pill = false;
+
+  const props = clean($$props);
 
   $: classes = clsx(
     className,
@@ -17,7 +20,7 @@
 </script>
 
 {#if href}
-<a {href} class="{classes}">
+<a {...props} {href} class="{classes}">
   {#if children}
     {children}
   {:else}
@@ -25,7 +28,7 @@
   {/if}
 </a>
 {:else}
-<span class="{classes}">
+<span {...props} class="{classes}">
   {#if children}
     {children}
   {:else}

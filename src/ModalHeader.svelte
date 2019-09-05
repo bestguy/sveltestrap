@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   let className = '';
   export {className as class};
@@ -7,6 +8,8 @@
   export let closeAriaLabel = 'Close';
   export let charCode = 215;
   export let children;
+
+  const props = clean($$props);
 
   $: closeIcon = typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;
 
@@ -16,7 +19,7 @@
   );
 </script>
 
-<div class="{classes}">
+<div {...props} class="{classes}">
   <h5 class="modal-title">
     {#if children}
       {children}

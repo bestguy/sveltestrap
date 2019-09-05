@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   let className = '';
   export {className as class};
@@ -11,6 +12,8 @@
   export let fill = false;
   export let navbar = false;
   export let card = false;
+
+  const props = clean($$props);
 
   function getVerticalClass(vertical) {
     if (vertical === false) {
@@ -37,6 +40,6 @@
   );
 </script>
 
-<ul class="{classes}">
+<ul {...props} class="{classes}">
   <slot />
 </ul>

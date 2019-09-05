@@ -1,6 +1,7 @@
 <script>
   import { getContext } from 'svelte';
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   import Button from './Button.svelte';
 
@@ -18,6 +19,8 @@
   export let size = '';
   export let tag = null;
   export let outline = false;
+
+  const props = clean($$props);
 
   $: classes = clsx(
     className,
@@ -43,19 +46,19 @@
 </script>
 
 {#if nav}
-  <a on:click on:click="{toggleButton}" href="#nav" class="{classes}">
+  <a {...props} on:click on:click="{toggleButton}" href="#nav" class="{classes}">
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>
   </a>
 {:else if tag === 'span'}
-  <span on:click on:click="{toggleButton}" class="{classes}" {color} {size}>
+  <span {...props} on:click on:click="{toggleButton}" class="{classes}" {color} {size}>
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>
   </span>
 {:else}
-  <Button on:click on:click="{toggleButton}" class="{classes}" {color} {size} {outline}>
+  <Button {...props} on:click on:click="{toggleButton}" class="{classes}" {color} {size} {outline}>
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>

@@ -1,11 +1,15 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
   
   import { getColumnSizeClass, isObject } from './utils';
 
   const colWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
 
   let className = '';
+
+  const props = clean($$props);
+
   export { className as class };
   export let hidden = false;
   export let check = false;
@@ -58,6 +62,6 @@
 
 </script>
 
-<label {id} class="{classes}" for="{fore}">
+<label {...props} {id} class="{classes}" for="{fore}">
   <slot />
 </label>

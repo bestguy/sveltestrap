@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   let className = '';
   export {className as class};
@@ -9,6 +10,8 @@
   export let action = false;
   export let href = null;
   export let tag = null;
+
+  const props = clean($$props);
 
   $: classes = clsx(
     className,
@@ -21,15 +24,15 @@
 </script>
 
 {#if href}
-  <a class="{classes}" {href} {disabled} {active}>
+  <a {...props} class="{classes}" {href} {disabled} {active}>
     <slot/>
   </a>
 {:else if tag === 'button'}
-  <button class="{classes}" type="button" on:click {disabled} {active}>
+  <button {...props} class="{classes}" type="button" on:click {disabled} {active}>
     <slot/>
   </button>
 {:else}
-<li class="{classes}" {disabled} {active}>
+<li {...props} class="{classes}" {disabled} {active}>
   <slot/>
 </li>
 {/if}

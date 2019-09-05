@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   import { slide } from 'svelte/transition';
   const noop = () => undefined;
@@ -12,6 +13,8 @@
   export let onEntered = noop;
   export let onExiting = noop;
   export let onExited = noop;
+
+  const props = clean($$props);
 
   let _wasOpen = isOpen;
   $: classes = clsx(
@@ -44,6 +47,7 @@
     on:outrostart="{onExiting}"
     on:outroend="{onExited}"
     class="{classes}"
+    {...props}
   >
     <slot />
   </div>

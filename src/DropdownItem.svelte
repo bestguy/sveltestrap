@@ -1,6 +1,7 @@
 <script>
   import { getContext } from 'svelte';
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   const context = getContext("dropdownContext");
 
@@ -13,6 +14,8 @@
   export let header = false;
   export let toggle = true;
   export let href = '';
+
+  const props = clean($$props);
 
   $: classes = clsx(
     className,
@@ -38,20 +41,20 @@
 </script>
 
 {#if header}
-  <h6 on:click on:click="{handleItemClick}" class="{classes}">
+  <h6 {...props} on:click on:click="{handleItemClick}" class="{classes}">
     <slot />
   </h6>
 
 {:else if divider}
-  <div on:click on:click="{handleItemClick}" class="{classes}">
+  <div {...props} on:click on:click="{handleItemClick}" class="{classes}">
     <slot />
   </div>
 {:else if href}
-  <a on:click on:click="{handleItemClick}" {href} class="{classes}">
+  <a on:{...props} click on:click="{handleItemClick}" {href} class="{classes}">
     <slot />
   </a>
 {:else}
-  <button on:click on:click="{handleItemClick}" class="{classes}">
+  <button {...props} on:click on:click="{handleItemClick}" class="{classes}">
     <slot />
   </button>
 {/if}

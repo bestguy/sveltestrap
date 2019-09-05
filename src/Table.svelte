@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
   import toNumber from 'lodash.tonumber';
 
   let className = '';
@@ -11,6 +12,8 @@
   export let dark = false;
   export let hover = false;
   export let responsive = false;
+
+  const props = clean($$props);
 
   $: classes = clsx(
     className,
@@ -28,12 +31,12 @@
 
 {#if responsive}
   <div class="{responsiveClassName}">
-    <table class="{classes}">
+    <table {...props} class="{classes}">
       <slot />
     </table>
   </div>
 {:else}
-  <table class="{classes}">
+  <table {...props} class="{classes}">
     <slot />
   </table>
 {/if}

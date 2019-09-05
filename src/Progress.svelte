@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
   import toNumber from 'lodash.tonumber';
 
   let className = '';
@@ -12,6 +13,8 @@
   export let striped = false;
   export let color = '';
   export let barClassName = '';
+
+  const props = clean($$props);
 
   $: classes = clsx(
     className,
@@ -34,24 +37,25 @@
     <slot />
   {:else}
     <div
-        class="{progressBarClasses}"
-        style="width: {percent}%"
-        role="progressbar"
-        aria-valuenow="{value}"
-        aria-valuemin="0"
-        aria-valuemax="{max}"
+      {...props} 
+      class="{progressBarClasses}"
+      style="width: {percent}%"
+      role="progressbar"
+      aria-valuenow="{value}"
+      aria-valuemin="0"
+      aria-valuemax="{max}"
     >
       <slot />
     </div>
   {/if}
 {:else}
-  <div class="{classes}">
+  <div {...props} class="{classes}">
     {#if multi}
       <slot />
     {:else}
       <div
         class="{progressBarClasses}"
-          style="width: {percent}%"
+        style="width: {percent}%"
         role="progressbar"
         aria-valuenow="{value}"
         aria-valuemin="0"

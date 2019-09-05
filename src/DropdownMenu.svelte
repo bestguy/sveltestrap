@@ -1,6 +1,7 @@
 <script>
   import { getContext } from 'svelte';
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   const context = getContext("dropdownContext");
 
@@ -9,6 +10,8 @@
   export let right = false;
   export let flip = true;
   export let persist = false;
+
+  const props = clean($$props);
 
   $: classes = clsx(
     className,
@@ -20,6 +23,6 @@
   );
 </script>
 
-<div class="{classes}">
+<div {...props} class="{classes}">
   <slot />
 </div>

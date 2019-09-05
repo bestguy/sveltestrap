@@ -5,6 +5,7 @@
 
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
   import { onDestroy, onMount, afterUpdate } from 'svelte';
   import { fade as fadeTransition} from 'svelte/transition';
 
@@ -39,6 +40,8 @@
   export let modalTransition = '';
   export let unmountOnClose = true;
   export let returnFocusAfterClose = true;
+
+  const props = clean($$props);
 
   let hasOpened = false;
   let _isMounted = false;
@@ -191,7 +194,7 @@
 </script>
 
 {#if _isMounted}
-<div class="{wrapClassName}" tabindex="-1" style="position: relative; z-index: {zIndex}">
+<div {...props} class="{wrapClassName}" tabindex="-1" style="position: relative; z-index: {zIndex}">
   {#if isOpen}
     <div
       transition:fadeTransition

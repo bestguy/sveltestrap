@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   let className = '';
   export {className as class};
@@ -15,6 +16,8 @@
   export let href = '';
   export let src = '';
   export let alt = '';
+
+  const props = clean($$props);
 
   $: classes = clsx(
     className,
@@ -34,21 +37,21 @@
 </script>
 
 {#if heading}
-  <h4 class="{classes}">
+  <h4 {...props} class="{classes}">
     <slot/>
   </h4>
 {:else if href}
-  <a class="{classes}" {href}>
+  <a {...props} class="{classes}" {href}>
     <slot/>
   </a>
 {:else if src || object}
-  <img class="{classes}" {src} {alt} />
+  <img {...props} class="{classes}" {src} {alt} />
 {:else if list}
-  <ul class="{classes}">
+  <ul {...props} class="{classes}">
     <slot/>
   </ul>
 {:else}
-  <div class="{classes}">
+  <div {...props} class="{classes}">
     <slot/>
   </div>
 {/if}

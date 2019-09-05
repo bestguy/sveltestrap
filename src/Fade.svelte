@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   import { fade } from 'svelte/transition';
   const noop = () => undefined;
@@ -12,6 +13,8 @@
   export let onEntered = noop;
   export let onExiting = noop;
   export let onExited = noop;
+
+  const props = clean($$props);
 
   let _wasOpen = isOpen;
   $: classes = clsx(
@@ -34,6 +37,7 @@
 
 {#if isOpen}
   <div
+    {...props}
     transition:fade
     on:introstart
     on:introend

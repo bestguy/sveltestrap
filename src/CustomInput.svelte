@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -16,6 +17,8 @@
   export let placeholder = '';
   export let htmlFor = '';
   export { htmlFor as for };
+
+  const { type: _omitType, ...props } = clean($$props);
 
   $: customClass = clsx(
     className,
@@ -50,23 +53,21 @@
   );
 
   $: labelHtmlFor = htmlFor || id;
-
-
 </script>
 
 {#if type === 'select'}
-  <select {id} class="{combinedClasses}" {name} {disabled} {placeholder} {multiple}>
+  <select {...props} {id} class="{combinedClasses}" {name} {disabled} {placeholder} {multiple}>
     <slot />
   </select>
 {:else if type === 'file'}
   <div class="{customClass}">
     <input {id} type="file" class="{fileClasses}" {name} {disabled} {placeholder} />
-    <label class="custom-file-label" for="{labelHtmlFor}">{label || 'Choose file'}</label>
+    <label {...props} class="custom-file-label" for="{labelHtmlFor}">{label || 'Choose file'}</label>
   </div>
 {:else if type !== 'checkbox' && type !== 'radio' && type !== 'switch'}
-  <input {type} {id} class="{combinedClasses}" {name} {disabled} {placeholder} />
+  <input {...props} {type} {id} class="{combinedClasses}" {name} {disabled} {placeholder} />
 {:else}
-  <div class="{wrapperClasses}">
+  <div {...props} class="{wrapperClasses}">
     <input {id} type="{type === 'switch' ? 'checkbox' : type}" class="{customControlClasses}" {name} {disabled} {placeholder} />
     <label class="custom-control-label" for="{labelHtmlFor}">{label}</label>
     <slot />
