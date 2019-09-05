@@ -20,7 +20,7 @@
   export let placeholder = '';
   export let disabled = false;
 
-  const props = clean($$props);
+  const { type: _omitType, ...props } = clean($$props);
 
   let classes;
   let tag;

@@ -18,7 +18,7 @@
   export let htmlFor = '';
   export { htmlFor as for };
 
-  const props = clean($$props);
+  const { type: _omitType, ...props } = clean($$props);
 
   $: customClass = clsx(
     className,
