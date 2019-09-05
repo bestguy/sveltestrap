@@ -1,6 +1,7 @@
 <script>
   import { getContext } from 'svelte';
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   import Button from './Button.svelte';
 
@@ -19,7 +20,7 @@
   export let tag = null;
   export let outline = false;
 
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 
   $: classes = clsx(
     className,

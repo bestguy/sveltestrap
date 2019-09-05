@@ -1,8 +1,9 @@
 <script>
   import Alert from './Alert.svelte';
+  import { clean } from './utils';
 
   let isOpen = true;
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 </script>
 
 <Alert {...props} {isOpen} toggle="{() => isOpen = false}">

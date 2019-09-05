@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
   import toNumber from 'lodash.tonumber';
 
   let className = '';
@@ -13,7 +14,7 @@
   export let color = '';
   export let barClassName = '';
 
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 
   $: classes = clsx(
     className,

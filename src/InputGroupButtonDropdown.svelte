@@ -1,5 +1,6 @@
 <script>
   import Dropdown from './Dropdown.svelte';
+  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -7,7 +8,7 @@
   export let toggle;
   export let isOpen;
 
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 
   if (['prepend', 'append'].indexOf(addonType) === -1) {
     throw new Error(`addonType must be one of 'prepend', 'append'. Received '${addonType}' instead.`);

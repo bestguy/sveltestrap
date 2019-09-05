@@ -1,6 +1,7 @@
 <script>
   import { getContext } from 'svelte';
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   const context = getContext("dropdownContext");
 
@@ -14,7 +15,7 @@
   export let toggle = true;
   export let href = '';
 
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 
   $: classes = clsx(
     className,

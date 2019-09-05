@@ -1,6 +1,7 @@
 <script>
   import { setContext } from 'svelte';
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   import { createContext } from './DropdownContext';
 
@@ -22,7 +23,7 @@
   export let setActiveFromChild = false;
   export let dropup = false;
 
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 
   const validDirections = ['up', 'down', 'left', 'right'];
 

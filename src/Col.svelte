@@ -1,12 +1,13 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
   import { getColumnSizeClass, isObject } from './utils';
 
   let className = '';
   export { className as class };
   export let id = '';
 
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 
   const colClasses = [];
   const widths = ['xs', 'sm', 'md', 'lg', 'xl'];

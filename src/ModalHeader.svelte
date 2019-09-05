@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   let className = '';
   export {className as class};
@@ -8,7 +9,7 @@
   export let charCode = 215;
   export let children;
 
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 
   $: closeIcon = typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;
 

@@ -1,6 +1,7 @@
 <script>
   import { fade as fadeTransition } from 'svelte/transition';
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -13,7 +14,7 @@
   export let fade = true;
   export let transition = {duration: fade ? 400 : 0};
 
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 
   $: classes = clsx(
     className,

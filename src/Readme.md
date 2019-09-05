@@ -3,9 +3,9 @@
 This pattern is used for omitting props from spread props:
 
 ```javascript
-let { children: _children, ...props } = $$props;
+const props = clean($$props);
 ```
-`children: _children` just renames `children` so that there is no conflict later in code.  The remaining props are then spread to component:
+The remaining props are then spread to component:
 
 ```html
 <div {...props} class="{classes}">

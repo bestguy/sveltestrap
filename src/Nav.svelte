@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   let className = '';
   export {className as class};
@@ -12,7 +13,7 @@
   export let navbar = false;
   export let card = false;
 
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 
   function getVerticalClass(vertical) {
     if (vertical === false) {

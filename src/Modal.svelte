@@ -5,6 +5,7 @@
 
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
   import { onDestroy, onMount, afterUpdate } from 'svelte';
   import { fade as fadeTransition} from 'svelte/transition';
 
@@ -40,7 +41,7 @@
   export let unmountOnClose = true;
   export let returnFocusAfterClose = true;
 
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 
   let hasOpened = false;
   let _isMounted = false;

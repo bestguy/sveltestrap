@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -7,7 +8,7 @@
   export let children;
   export let listClassName = '';
 
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 
   $: listClasses = clsx(
     'breadcrumb',

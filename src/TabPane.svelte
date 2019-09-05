@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
   import { context } from './TabContext';
 
   let className = '';
@@ -7,7 +8,7 @@
   export let activeTab;
   export let tabId;
 
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 
   $: classes = clsx(
     'tab-pane',

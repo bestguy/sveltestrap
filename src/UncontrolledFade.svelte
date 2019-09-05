@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
   import { onMount, onDestroy } from 'svelte';
   import { slide } from 'svelte/transition';
 
@@ -17,7 +18,7 @@
   export let onExiting = noop;
   export let onExited = noop;
 
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 
   let unbindEvents;
   let isOpen = defaultOpen;

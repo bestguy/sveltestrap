@@ -1,12 +1,13 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
   import { context } from './TabContext';
 
   let className = '';
   export { className as class };
   export let activeTab;
 
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 
   $: classes = clsx(
     'tab-content',

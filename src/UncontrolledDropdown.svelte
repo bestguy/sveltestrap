@@ -1,6 +1,7 @@
 <script>
 
   import Dropdown from './Dropdown.svelte';
+  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -18,7 +19,7 @@
   export let defaultOpen = false;
 
   let isOpen = defaultOpen;
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 </script>
 
 <Dropdown

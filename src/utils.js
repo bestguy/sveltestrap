@@ -55,3 +55,8 @@ export function getColumnSizeClass(isXs, colWidth, colSize) {
 
   return isXs ? `col-${colSize}` : `col-${colWidth}-${colSize}`;
 }
+
+export function clean($$props) {
+  const { children, $$scope, $$slots, ...rest } = $$props; // TODO support keys
+  return rest;
+}

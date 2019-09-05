@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   import { fade } from 'svelte/transition';
   const noop = () => undefined;
@@ -13,7 +14,7 @@
   export let onExiting = noop;
   export let onExited = noop;
 
-  let { children: _children, ...props } = $$props;
+  const props = clean($$props);
 
   let _wasOpen = isOpen;
   $: classes = clsx(
