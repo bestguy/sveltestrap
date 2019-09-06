@@ -56,19 +56,19 @@
 </script>
 
 {#if type === 'select'}
-  <select {...props} {id} class="{combinedClasses}" {name} {disabled} {placeholder} {multiple}>
+  <select {id} class="{combinedClasses}" {name} {disabled} {placeholder} {multiple} {...props}>
     <slot />
   </select>
 {:else if type === 'file'}
   <div class="{customClass}">
-    <input {id} type="file" class="{fileClasses}" {name} {disabled} {placeholder} />
-    <label {...props} class="custom-file-label" for="{labelHtmlFor}">{label || 'Choose file'}</label>
+    <input {id} type="file" class="{fileClasses}" {name} {disabled} {placeholder} {...props} />
+    <label class="custom-file-label" for="{labelHtmlFor}">{label || 'Choose file'}</label>
   </div>
 {:else if type !== 'checkbox' && type !== 'radio' && type !== 'switch'}
-  <input {...props} {type} {id} class="{combinedClasses}" {name} {disabled} {placeholder} />
+  <input {type} {id} class="{combinedClasses}" {name} {disabled} {placeholder} {...props} />
 {:else}
-  <div {...props} class="{wrapperClasses}">
-    <input {id} type="{type === 'switch' ? 'checkbox' : type}" class="{customControlClasses}" {name} {disabled} {placeholder} />
+  <div class="{wrapperClasses}">
+    <input {id} type="{type === 'switch' ? 'checkbox' : type}" class="{customControlClasses}" {name} {disabled} {placeholder} {...props} />
     <label class="custom-control-label" for="{labelHtmlFor}">{label}</label>
     <slot />
   </div>
