@@ -13,7 +13,7 @@
   export let plaintext = false;
   export let addon = false;
   export let value = '';
-  export let readonly = false;
+  export let readonly;
   export let multiple = false;
   export let id = '';
   export let name = '';
