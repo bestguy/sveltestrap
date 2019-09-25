@@ -5,7 +5,7 @@
   let className = '';
   export { className as class };
   export let active = false;
-  export let children;
+  export let children = undefined;
 
   const props = clean($$props);
 

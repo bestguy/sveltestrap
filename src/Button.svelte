@@ -6,7 +6,7 @@
   export { className as class };
   export let active = false;
   export let block = false;
-  export let children;
+  export let children = undefined;
   export let close = false;
   export let color = 'secondary';
   export let disabled = false;

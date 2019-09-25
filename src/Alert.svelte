@@ -5,7 +5,7 @@
 
   let className = '';
   export { className as class };
-  export let children;
+  export let children = undefined;
   export let color = 'success';
   export let closeClassName = '';
   export let closeAriaLabel = 'Close';
