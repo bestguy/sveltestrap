@@ -4,7 +4,7 @@
 
   let className = '';
   export { className as class };
-  export let children;
+  export let children = undefined;
   export let color = 'secondary';
   export let href = undefined;
   export let pill = false;

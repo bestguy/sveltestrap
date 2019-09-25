@@ -5,7 +5,7 @@
   let className = '';
   export { className as class };
   export let ariaLabel = 'breadcrumb';
-  export let children;
+  export let children = undefined;
   export let listClassName = '';
 
   const props = clean($$props);

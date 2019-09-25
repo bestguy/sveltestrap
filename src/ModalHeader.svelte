@@ -7,7 +7,7 @@
   export let toggle = undefined;
   export let closeAriaLabel = 'Close';
   export let charCode = 215;
-  export let children;
+  export let children = undefined;
 
   const props = clean($$props);
 
