@@ -14,12 +14,16 @@
   } from 'sveltestrap';
 
   let isOpen = false;
+
+  function handleUpdate(event) {
+    isOpen = event.detail.isOpen;
+  }
 </script>
 
 <Navbar color="light" light expand="md">
   <NavbarBrand href="/">sveltestrap</NavbarBrand>
   <NavbarToggler on:click={() => (isOpen = !isOpen)} />
-  <Collapse {isOpen} navbar>
+  <Collapse {isOpen} navbar expand="md" on:update={handleUpdate}>
     <Nav class="ml-auto" navbar>
       <NavItem>
         <NavLink href="#components/">Components</NavLink>
