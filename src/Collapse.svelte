@@ -15,7 +15,6 @@
   export let onExited = noop;
 
   const props = clean($$props);
-
   let _wasOpen = isOpen;
   $: classes = clsx(
     className,
@@ -23,17 +22,10 @@
     navbar && 'navbar-collapse',
   );
 
-  let windowWidth = window.innerWidth;
-
-  $: if (windowWidth >= 768 && navbar && _wasOpen === isOpen) {
-    _wasOpen = isOpen;
-    isOpen = true;
-  } else if (windowWidth < 768) {
-    isOpen = _wasOpen;
-  }
+  // TODO if navbar, then need to close when transitioning from md -> sm breakpoints.
+  // Can't hardcode 768, etc, as those can be diffrent in diffent themes.
+  // Needs to be breakpoint when navbar-toggler is display: block|none
 </script>
-
-<svelte:window bind:innerWidth="{windowWidth}" />
 
 {#if isOpen}
   <div
