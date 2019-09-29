@@ -53,9 +53,8 @@
       notify();
     }
   }
-</script>
 
-<svelte:window bind:innerWidth="{windowWidth}" />
+</script>
 
 {#if isOpen}
   <div
