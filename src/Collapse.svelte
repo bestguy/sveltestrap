@@ -56,6 +56,8 @@
 
 </script>
 
+<svelte:window bind:innerWidth="{windowWidth}" />
+
 {#if isOpen}
   <div
     transition:slide
