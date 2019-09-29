@@ -9,7 +9,7 @@
     NavLink
   } from 'sveltestrap';
 
-  let isOpen = true;
+  let isOpen = false;
   const toggle = () => (isOpen = !isOpen);
 </script>
 

@@ -2,6 +2,7 @@
   import clsx from 'clsx';
   import { clean } from './utils';
 
+  import { createEventDispatcher } from 'svelte';
   import { slide } from 'svelte/transition';
   const noop = () => undefined;
 
@@ -13,18 +14,46 @@
   export let onEntered = noop;
   export let onExiting = noop;
   export let onExited = noop;
+  export let expand = false;
 
   const props = clean($$props);
-  let _wasOpen = isOpen;
+
   $: classes = clsx(
     className,
     // collapseClass,
     navbar && 'navbar-collapse',
   );
 
-  // TODO if navbar, then need to close when transitioning from md -> sm breakpoints.
-  // Can't hardcode 768, etc, as those can be diffrent in diffent themes.
-  // Needs to be breakpoint when navbar-toggler is display: block|none
+  let windowWidth = window.innerWidth;
+  let _wasMaximazed = false;
+
+  const minWidth = {};
+  minWidth['xs'] = 0;
+  minWidth['sm'] = 576;
+  minWidth['md'] = 768;
+  minWidth['lg'] = 992;
+  minWidth['xl'] = 1200;
+
+  const dispatch = createEventDispatcher();
+
+  function notify() {
+    dispatch('update', {
+      isOpen: isOpen
+    });
+  }
+
+  $: if (navbar && expand) {
+    if (windowWidth >= minWidth[expand] && !isOpen) {
+      isOpen = true;
+      _wasMaximazed = true;
+      notify();
+    } else if (windowWidth < minWidth[expand] && _wasMaximazed) {
+      isOpen = false;
+      _wasMaximazed = false;
+      notify();
+    }
+  }
+
 </script>
 
 {#if isOpen}
