@@ -20,7 +20,7 @@ The component names and interface are inspired by the [reactstrap](https://react
 * Some stateful components have issues
   * Collapse uses the Svelte slide transistion. In Svelte, the component is removed from the DOM whereas in Bootstrap, it stays in the DOM, but is hidden. This interacts badly with nav bars on small screens.
   * Modal uses Svelte fade transition, which does not use the Bootstrap theme defaults for duration, etc.
-* Most components are missing general HTML attributes and DOM events, see [#36](https://github.com/bestguy/sveltestrap/issues/36)
+* Most components are missing general DOM events, see [#36](https://github.com/bestguy/sveltestrap/issues/36)
 
 ----
 
