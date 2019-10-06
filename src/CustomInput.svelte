@@ -8,6 +8,7 @@
   export let id = '';
   export let type;
   export let label = '';
+  export let checked = false;
   export let disabled = false;
   export let inline = false;
   export let valid = false;
@@ -63,14 +64,20 @@
   <div class="{customClass}">
     <input {id} type="file" class="{fileClasses}" {name} {disabled} {placeholder} {...props} />
     <label class="custom-file-label" for="{labelHtmlFor}">{label || 'Choose file'}</label>
-  </div>
-{:else if type !== 'checkbox' && type !== 'radio' && type !== 'switch'}
-  <input {type} {id} class="{combinedClasses}" {name} {disabled} {placeholder} {...props} />
-{:else}
+  </div>  
+{:else if type === 'switch' || type === 'checkbox'}
   <div class="{wrapperClasses}">
-    <input {id} type="{type === 'switch' ? 'checkbox' : type}" class="{customControlClasses}" {name} {disabled} {placeholder} {...props} />
+    <input {id} type="checkbox" class="{customControlClasses}" bind:checked {name} {disabled} {placeholder} {...props} />
     <label class="custom-control-label" for="{labelHtmlFor}">{label}</label>
     <slot />
   </div>
+{:else if type === 'radio'}
+  <div class="{wrapperClasses}">
+    <input {id} type="radio" class="{customControlClasses}" {name} {disabled} {placeholder} {...props} />
+    <label class="custom-control-label" for="{labelHtmlFor}">{label}</label>
+    <slot />
+  </div>
+{:else}
+  <input {type} {id} class="{combinedClasses}" {name} {disabled} {placeholder} {...props} />
 {/if}
 

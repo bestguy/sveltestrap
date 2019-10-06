@@ -8,6 +8,7 @@
   export let type = 'text';
   export let size = undefined;
   export let bsSize = undefined;
+  export let checked = false;
   export let valid = false;
   export let invalid = false;
   export let plaintext = false;
@@ -74,7 +75,7 @@
   {:else if type === 'file'}
     <input {...props} {id} type="file" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'checkbox'}
-    <input {...props} {id} type="checkbox" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="checkbox" bind:checked bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'radio'}
     <input {...props} {id} type="radio" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'url'}
