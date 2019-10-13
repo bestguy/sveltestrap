@@ -24,7 +24,7 @@
     navbar && 'navbar-collapse',
   );
 
-  let windowWidth = window.innerWidth;
+  let windowWidth = 0;
   let _wasMaximazed = false;
 
   const minWidth = {};

@@ -1,5 +1,5 @@
 export function getOriginalBodyPadding() {
-  const style = window.getComputedStyle(document.body, null);
+  const style = window ? window.getComputedStyle(document.body, null) : {};
 
   return parseInt((style && style.getPropertyValue('padding-right')) || 0, 10);
 }
@@ -23,7 +23,7 @@ export function setScrollbarWidth(padding) {
 }
 
 export function isBodyOverflowing() {
-  return document.body.clientWidth < window.innerWidth;
+  return window ? document.body.clientWidth < window.innerWidth : false;
 }
 
 export function isObject(value) {

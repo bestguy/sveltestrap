@@ -32,8 +32,8 @@
     if (
       typeof toggler === 'string' &&
       typeof window !== 'undefined' &&
-      window.document &&
-      window.document.createElement
+      document &&
+      document.createElement
     ) {
       let selection = document.querySelectorAll(toggler);
       if (!selection.length) {
