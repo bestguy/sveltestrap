@@ -57,13 +57,6 @@ export function getColumnSizeClass(isXs, colWidth, colSize) {
 }
 
 export function clean($$props) {
-  // TODO support keys
-  const { children, $$scope, $$slots } = $$props;
-  const rest = {};
-  for (const key of Object.keys($$props)) {
-    if (key !== "children" && key !== "$$scope" && key !== "$$slots") {
-      rest[key] = $$props[key];
-    }
-  }
+  const { children, $$scope, $$slots, ...rest } = $$props; // TODO support keys
   return rest;
 }
