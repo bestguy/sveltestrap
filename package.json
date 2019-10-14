@@ -87,6 +87,7 @@
   "dependencies": {
     "clsx": "^1.0.4",
     "lodash.isobject": "^3.0.2",
+    "lodash.omit": "^4.5.0",
     "lodash.tonumber": "^4.0.3"
   },
   "browserslist": "last 2 versions"

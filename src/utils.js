@@ -1,3 +1,5 @@
+import omit from 'lodash.omit';
+
 export function getOriginalBodyPadding() {
   const style = window ? window.getComputedStyle(document.body, null) : {};
 
@@ -56,14 +58,6 @@ export function getColumnSizeClass(isXs, colWidth, colSize) {
   return isXs ? `col-${colSize}` : `col-${colWidth}-${colSize}`;
 }
 
-export function clean($$props) {
-  // TODO support keys
-  const { children, $$scope, $$slots } = $$props;
-  const rest = {};
-  for (const key of Object.keys($$props)) {
-    if (key !== "children" && key !== "$$scope" && key !== "$$slots") {
-      rest[key] = $$props[key];
-    }
-  }
-  return rest;
+export function clean($$props, ...keys) {
+  return omit($$props, ['children', '$$scope', '$$slots', ...keys]);
 }

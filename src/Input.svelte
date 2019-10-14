@@ -21,7 +21,7 @@
   export let placeholder = '';
   export let disabled = false;
 
-  const { type: _omitType, ...props } = clean($$props);
+  const props = clean($$props, 'type');
 
   let classes;
   let tag;
