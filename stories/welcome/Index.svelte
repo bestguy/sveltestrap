@@ -64,6 +64,8 @@
         </p>
 
         <h5>1. Include in layout</h5>
+
+        <h6>Either static HTML layout</h6>
         <pre>
           <PrismCode class="language-html">
             {`<head>
@@ -71,6 +73,20 @@
 </head>`}
           </PrismCode>
         </pre>
+
+        <h6>or add from your Svelte app</h6>
+        <pre>
+          <PrismCode class="language-html">
+            {`<svelte:head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</svelte:head>`}
+          </PrismCode>
+        </pre>
+
+        <p>
+          You can also use any Bootstrap 4 compatible theme instead of the default Bootstrap theme.
+          For example: <a href="https://www.bootstrapcdn.com/bootswatch/" target="new">https://www.bootstrapcdn.com/bootswatch/</a>
+        </p>
 
         <h5>2. Install via npm</h5>
         <pre>
@@ -84,17 +100,19 @@
           file:
         </p>
         <pre>
-          <PrismCode class="language-bash">
+          <PrismCode class="language-javascript">
             import 'bootstrap/dist/css/bootstrap.min.css';
           </PrismCode>
         </pre>
+
+        <h3>Using in Svelte app</h3>
         <p>
           Import required sveltestrap components within
           <code>src/App.svelte</code>
           file or your custom component files:
         </p>
         <pre>
-          <PrismCode class="language-bash">
+          <PrismCode class="language-javascript">
             {`import { Button } from 'sveltestrap';`}
           </PrismCode>
         </pre>
@@ -102,6 +120,18 @@
           Now you are ready to use the imported sveltestrap components within
           your component hierarchy.
         </p>
+
+        <h4>Server-side Rendering (SSR) Note:</h4>
+        <p>
+          If you are using Sveltestrap in an SSR environment (such as Sapper),
+          it's recommended you import the component src directly:
+        </p>
+        <pre>
+          <PrismCode class="language-javascript">
+            {`import Card from 'sveltestrap/src/Card.svelte'`}
+          </PrismCode>
+        </pre>
+
         <h2 class="mt-5">About the Project</h2>
         <hr />
         <p>

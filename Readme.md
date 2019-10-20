@@ -32,6 +32,22 @@ The component names and interface are inspired by the [reactstrap](https://react
 
 _You need to include a link to Bootstrap 4 stylesheet in your page - these components do not include or embed any Bootstrap styles automatically._
 
+Either in your HTML layout:
+
+```html
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+```
+
+Or add from your Svelte app:
+
+```
+<svelte:head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</svelte:head>
+```
+
 In your svelte component:
 
 ```html
@@ -46,89 +62,49 @@ In your svelte component:
 <Row>
 ```
 
-### Layout
+### Note on server-side rendering (SSR) Usage:
 
-* [x] Container
-* [x] Col
-* [x] Row
+If you are using Sveltestrap in an SSR environment like Sapper, 
+it's recommended you import the component source directly, for example:
 
-### Components
+```html
+<script>
+  import Button from 'sveltestrap/src/Button.svelte';
+  import Col from 'sveltestrap/src/Col.svelte';
+  import Row from 'sveltestrap/src/Row.svelte';
+</script>
 
-* [x] Alert
-  * [x] UncontrolledAlert
-* [x] Badge
-* [x] Breadcrumb
-  * [x] BreadcrumbItem
-* [x] Button
-  * [x] ButtonDropdown
-  * [x] UncontrolledButtonDropdown
-* [x] ButtonGroup
-* [x] ButtonToolbar
-* [x] Card
-  * [x] CardBody
-  * [x] CardColumns
-  * [x] CardDeck
-  * [x] CardFooter
-  * [x] CardGroup
-  * [x] CardHeader
-  * [x] CardImg
-  * [x] CardImgOverlay
-  * [x] CardLink
-  * [x] CardSubtitle
-  * [x] CardText
-  * [x] CardTitle
+<Row>
+  <Col>
+    <Button color="primary" outline>Hello World!</Button>
+  </Col>
+<Row>
+```
+
+### Component status
+
+Sveltestrap is currently missing support for the following components:
+
 * [ ] Carousel
   * [ ] CarouselCaption
   * [ ] CarouselControl
   * [ ] CarouselIndicators
   * [ ] CarouselItem
-* [x] Close
-* [x] Collapse
-  * [x] UncontrolledCollapse
-* [x] Dropdown
-  * [x] DropdownItem
-  * [x] DropdownMenu
-  * [x] DropdownToggle
-  * [x] UncontrolledDropdown
-* [x] Form
-  * [x] FormFeedback
-  * [x] FormGroup
-  * [x] FormText
-* [x] Input
-  * [x] CustomInput
-* [x] InputGroup
-  * [x] InputGroupAddon
-  * [x] InputGroupButtonDropdown
-  * [x] InputGroupText
-* [x] Jumbotron
-* [x] Label
-* [x] ListGroup
-* [x] ListGroupItem
-  * [ ] ListGroupItemAction
-* [x] Media
-  * [x] MediaBody
-* [x] Modal
-  * [x] ModalBody
-  * [x] ModalFooter
-  * [x] ModalHeader
-* [x] Nav
-  * [x] NavItem
-  * [x] NavLink
-* [x] Navbar
-  * [x] NavbarBrand
-  * [x] NavbarToggler
-* [x] Pagination
-  * [x] PaginationItem
-  * [x] PaginationLink
 * [ ] Popover
   * [ ] PopoverContent
   * [ ] PopoverTitle
-* [x] Progress
-* [x] Spinner
-* [x] TabContent
-* [x] TabPane
-* [x] Table
-* [x] Toast
-  * [x] ToastBody
-  * [x] ToastHeader
 * [ ] Tooltip
+
+Please follow (or help out with) these issues for status:
+
+<a href="https://github.com/bestguy/sveltestrap/issues/30">
+  Missing Carousel (#30)
+</a>
+
+<a href="https://github.com/bestguy/sveltestrap/issues/31">
+  Missing Tooltip (#31)
+</a>
+
+<a href="https://github.com/bestguy/sveltestrap/issues/32">
+  Missing Popover (#32)
+</a>
