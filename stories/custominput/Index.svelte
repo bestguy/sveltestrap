@@ -1,5 +1,9 @@
 <script>
   import Example from '../Example.svelte';
+  import Binding from './Binding.svelte';
+  import bindingSource from '!!raw-loader!./Binding.svelte';
+  import On from './On.svelte';
+  import onSource from '!!raw-loader!./On.svelte';
   import Sample from './Sample.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
 </script>
@@ -11,4 +15,12 @@
 
 <Example source={sampleSource}>
   <Sample />
+</Example>
+
+<Example title="Binding" source={bindingSource}>
+  <Binding />
+</Example>
+
+<Example title="Event Binding" source={onSource}>
+  <On />
 </Example>
