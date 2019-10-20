@@ -67,40 +67,40 @@
 </script>
 {#if tag === 'input'}
   {#if type === 'text'}
-    <input {...props} {id} type="text" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="text" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'password'}
-    <input {...props} {id} type="password" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="password" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'email'}
-    <input {...props} {id} type="email" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="email" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'file'}
-    <input {...props} {id} type="file" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="file" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'checkbox'}
-    <input {...props} {id} type="checkbox" bind:checked bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="checkbox" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:checked bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'radio'}
-    <input {...props} {id} type="radio" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="radio" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'url'}
-    <input {...props} {id} type="url" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="url" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'number'}
-    <input {...props} {id} type="number" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="number" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'date'}
-    <input {...props} {id} type="date" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="date" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'time'}
-    <input {...props} {id} type="time" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="time" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'datetime'}
-    <input {...props} {id} type="datetime" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="datetime" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'color'}
-    <input {...props} {id} type="color" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="color" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'search'}
-    <input {...props} {id} type="search" bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="search" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {/if}
 
 {:else if tag === 'textarea'}
 
-  <textarea {...props} {id} class="{classes}" bind:value {name} {disabled}></textarea>
+  <textarea {...props} {id} class="{classes}" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {name} {disabled}></textarea>
 
 {:else if tag === 'select'}
 
-  <select {...props} {id} {multiple} class="{classes}" {name} {disabled}>
+  <select {...props} {id} {multiple} class="{classes}" on:blur on:focus on:change on:input {name} {disabled}>
     <slot />
   </select>
 

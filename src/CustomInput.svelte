@@ -12,6 +12,7 @@
   export let disabled = false;
   export let inline = false;
   export let valid = false;
+  export let value = '';
   export let invalid = false;
   export let multiple = false;
   export let bsSize = '';
@@ -57,12 +58,12 @@
 </script>
 
 {#if type === 'select'}
-  <select {id} class="{combinedClasses}" {name} {disabled} {placeholder} {multiple} {...props}>
+  <select {id} class="{combinedClasses}" on:blur on:focus on:change on:input bind:value {name} {disabled} {placeholder} {...props}>
     <slot />
   </select>
 {:else if type === 'file'}
   <div class="{customClass}">
-    <input {id} type="file" class="{fileClasses}" {name} {disabled} {placeholder} {...props} />
+    <input {id} type="file" class="{fileClasses}" on:blur on:focus on:change on:input {name} {disabled} {placeholder} {...props} />
     <label class="custom-file-label" for="{labelHtmlFor}">{label || 'Choose file'}</label>
   </div>  
 {:else if type === 'switch' || type === 'checkbox'}
@@ -78,6 +79,6 @@
     <slot />
   </div>
 {:else}
-  <input {type} {id} class="{combinedClasses}" {name} {disabled} {placeholder} {...props} />
+  <input {type} {id} class="{combinedClasses}" on:blur on:focus on:change on:input {name} {disabled} {placeholder} {...props} />
 {/if}
 
