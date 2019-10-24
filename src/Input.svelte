@@ -14,6 +14,7 @@
   export let plaintext = false;
   export let addon = false;
   export let value = '';
+  export let files = '';
   export let readonly;
   export let multiple = false;
   export let id = '';
@@ -73,7 +74,7 @@
   {:else if type === 'email'}
     <input {...props} {id} type="email" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'file'}
-    <input {...props} {id} type="file" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input {...props} {id} type="file" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:files {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'checkbox'}
     <input {...props} {id} type="checkbox" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:checked bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
   {:else if type === 'radio'}
