@@ -6,11 +6,13 @@
   export {className as class};
   export let light = false;
   export let dark = false;
-  export let full = false;
+  // TEMP
+  // export let full = false;
   export let fixed = '';
   export let sticky = '';
   export let color = '';
-  export let role = '';
+  // TEMP
+  // export let role = '';
   export let expand = false;
 
   const props = clean($$props);
