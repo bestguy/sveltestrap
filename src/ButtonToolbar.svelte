@@ -5,7 +5,8 @@
   let className = '';
   export { className as class };
   export let ariaLabel = '';
-  export let role = 'toolbar';
+  // TEMP
+  // export let role = 'toolbar';
 
   const props = clean($$props);
 
