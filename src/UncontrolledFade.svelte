@@ -10,7 +10,8 @@
 
   let className = '';
   export { className as class };
-  export let navbar = false;
+  // TEMP
+  // export let navbar = false;
   export let defaultOpen = false;
   export let toggler;
   export let onEntering = noop;
