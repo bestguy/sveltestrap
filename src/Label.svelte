@@ -1,7 +1,7 @@
 <script>
   import clsx from 'clsx';
   import { clean } from './utils';
-  
+
   import { getColumnSizeClass, isObject } from './utils';
 
   const colWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
@@ -17,12 +17,13 @@
   export let fore;
   export { fore as for };
   export let id = '';
-  export let xs = '';
-  export let sm = '';
-  export let md = '';
-  export let lg = '';
-  export let xl = '';
-  export let widths = colWidths;
+  // TEMP
+  // export let xs = '';
+  // export let sm = '';
+  // export let md = '';
+  // export let lg = '';
+  // export let xl = '';
+  // export let widths = colWidths;
 
   const colClasses = [];
 
