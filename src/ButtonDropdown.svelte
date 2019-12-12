@@ -22,7 +22,7 @@
 
 <Dropdown
   {...props}
-  group
+  {group}
   class={className}
   {disabled}
   {direction}
