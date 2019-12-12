@@ -5,7 +5,8 @@
 
   let className = '';
   export { className as class };
-  export let fade = true;
+  // TEMP
+  // export let fade = true;
   export let isOpen = true;
 
   const props = clean($$props);
