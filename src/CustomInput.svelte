@@ -14,7 +14,8 @@
   export let valid = false;
   export let value = '';
   export let invalid = false;
-  export let multiple = false;
+  // TEMP
+  // export let multiple = false;
   export let bsSize = '';
   export let placeholder = '';
   export let htmlFor = '';
@@ -65,7 +66,7 @@
   <div class="{customClass}">
     <input {id} type="file" class="{fileClasses}" on:blur on:focus on:change on:input {name} {disabled} {placeholder} {...props} />
     <label class="custom-file-label" for="{labelHtmlFor}">{label || 'Choose file'}</label>
-  </div>  
+  </div>
 {:else if type === 'switch' || type === 'checkbox'}
   <div class="{wrapperClasses}">
     <input {id} type="checkbox" class="{customControlClasses}" bind:checked {name} {disabled} {placeholder} {...props} />
