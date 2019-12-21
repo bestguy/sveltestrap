@@ -8,9 +8,6 @@
   let className = '';
   export { className as class };
   export let right = false;
-  // TEMP
-  // export let flip = true;
-  // export let persist = false;
 
   const props = clean($$props);
 
