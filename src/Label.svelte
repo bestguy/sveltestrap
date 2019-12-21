@@ -17,13 +17,6 @@
   export let fore;
   export { fore as for };
   export let id = '';
-  // TEMP
-  // export let xs = '';
-  // export let sm = '';
-  // export let md = '';
-  // export let lg = '';
-  // export let xl = '';
-  // export let widths = colWidths;
 
   const colClasses = [];
 
