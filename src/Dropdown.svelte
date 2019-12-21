@@ -10,8 +10,6 @@
 
   let className = '';
   export { className as class };
-  // TEMP
-  // export let disabled = false;
   export let direction = 'down';
   export let group = false;
   export let isOpen = false;
