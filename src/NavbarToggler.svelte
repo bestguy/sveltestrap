@@ -6,8 +6,6 @@
 
   let className = '';
   export {className as class};
-  // TEMP
-  // export let type = 'button';
 
   const props = clean($$props);
 
