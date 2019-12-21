@@ -12,8 +12,6 @@
   export let caret = false;
   export let color = 'secondary';
   export let disabled = false;
-  // TEMP
-  // export let ariaHaspopup = false;
   export let ariaLabel = 'Toggle Dropdown';
   export let split = false;
   export let nav = false;
