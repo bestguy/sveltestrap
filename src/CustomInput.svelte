@@ -14,8 +14,6 @@
   export let valid = false;
   export let value = '';
   export let invalid = false;
-  // TEMP
-  // export let multiple = false;
   export let bsSize = '';
   export let placeholder = '';
   export let htmlFor = '';
