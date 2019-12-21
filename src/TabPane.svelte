@@ -5,8 +5,6 @@
 
   let className = '';
   export { className as class };
-  // TEMP
-  // export let activeTab;
   export let tabId;
 
   const props = clean($$props);
