@@ -7,7 +7,7 @@
   import clsx from 'clsx';
   import { clean } from './utils';
   import { onDestroy, onMount, afterUpdate } from 'svelte';
-  import { fade } from 'svelte/transition';
+  import { fade as fadeTransition} from 'svelte/transition';
 
   import { conditionallyUpdateScrollbar, getOriginalBodyPadding, setScrollbarWidth } from './utils';
 
@@ -18,31 +18,19 @@
   export let isOpen;
   export let autoFocus = true;
   export let centered = false;
-  export let duration = 0;
-  export let backdropDuration = duration;
   export let scrollable = false;
   export let size = '';
   export let toggle = undefined;
-  // TEMP
-  // export let keyboard = true;
-  // export let role = 'dialog';
-  // export let labelledBy = '';
   export let backdrop = true;
   export let onEnter = undefined;
   export let onExit = undefined;
-  // TEMP
-  // export let onOpened = noop;
   export let onClosed = noop;
   export let wrapClassName = '';
   export let modalClassName = '';
   export let backdropClassName = '';
   export let contentClassName = '';
-  // TEMP
-  // export let external = undefined;
+  export let fade = true;
   export let zIndex = 1050;
-  // TEMP
-  // export let backdropTransition = '';
-  // export let modalTransition = '';
   export let unmountOnClose = true;
   export let returnFocusAfterClose = true;
 
@@ -202,7 +190,7 @@
 <div {...props} class="{wrapClassName}" tabindex="-1" style="position: relative; z-index: {zIndex}">
   {#if isOpen}
     <div
-      transition:fade={{duration}}
+      transition:fadeTransition
       class="{clsx('modal', 'show', modalClassName)}"
       style="display: block;"
       on:outroend="{onModalClosed}"
@@ -219,7 +207,7 @@
         </div>
       </div>
     </div>
-    <div transition:fade={{duration: backdropDuration}} class="{clsx('modal-backdrop', 'show', backdropClassName)}" />
+    <div transition:fadeTransition class="{clsx('modal-backdrop', 'show', backdropClassName)}" />
   {/if}
 </div>
 {/if}
