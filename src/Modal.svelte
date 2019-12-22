@@ -7,7 +7,7 @@
   import clsx from 'clsx';
   import { clean } from './utils';
   import { onDestroy, onMount, afterUpdate } from 'svelte';
-  import { fade as fadeTransition} from 'svelte/transition';
+  import { fade as fadeTransition } from 'svelte/transition';
 
   import { conditionallyUpdateScrollbar, getOriginalBodyPadding, setScrollbarWidth } from './utils';
 
@@ -18,6 +18,8 @@
   export let isOpen;
   export let autoFocus = true;
   export let centered = false;
+  export let duration = 0;
+  export let backdropDuration = duration;
   export let scrollable = false;
   export let size = '';
   export let toggle = undefined;
@@ -197,7 +199,7 @@
 <div {...props} class="{wrapClassName}" tabindex="-1" style="position: relative; z-index: {zIndex}">
   {#if isOpen}
     <div
-      transition:fadeTransition
+      transition:fadeTransition={{duration: fade && duration}}
       class="{clsx('modal', 'show', modalClassName)}"
       style="display: block;"
       on:outroend="{onModalClosed}"
@@ -214,7 +216,7 @@
         </div>
       </div>
     </div>
-    <div transition:fadeTransition class="{clsx('modal-backdrop', 'show', backdropClassName)}" />
+    <div transition:fadeTransition={{duration: fade && backdropDuration}} class="{clsx('modal-backdrop', 'show', backdropClassName)}" />
   {/if}
 </div>
 {/if}
