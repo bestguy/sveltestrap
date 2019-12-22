@@ -11,7 +11,6 @@
   export let active = false;
   export let addonType = false;
   export let size = '';
-  export let toggle = undefined;
   export let inNavbar = false;
   export let setActiveFromChild = false;
   export let dropup = false;
@@ -26,6 +25,7 @@
   {isOpen}
   toggle={() => (isOpen = !isOpen)}
   class={className}
+  {direction}
   {disabled}
   {group}
   {nav}
