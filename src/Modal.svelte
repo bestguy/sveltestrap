@@ -23,8 +23,6 @@
   export let scrollable = false;
   export let size = '';
   export let toggle = undefined;
-  export let keyboard = true;
-  export let role = 'dialog';
   export let labelledBy = '';
   export let backdrop = true;
   export let onEnter = undefined;
@@ -35,11 +33,8 @@
   export let modalClassName = '';
   export let backdropClassName = '';
   export let contentClassName = '';
-  export let external = undefined;
   export let fade = true;
   export let zIndex = 1050;
-  export let backdropTransition = '';
-  export let modalTransition = '';
   export let unmountOnClose = true;
   export let returnFocusAfterClose = true;
 
@@ -165,6 +160,10 @@
     }
   }
 
+  function onModalOpened() {
+    onOpened();
+  }
+
   function onModalClosed() {
     onClosed();
 
@@ -200,8 +199,11 @@
   {#if isOpen}
     <div
       transition:fadeTransition={{duration: fade && duration}}
+      ariaLabelledby={labelledBy}
       class="{clsx('modal', 'show', modalClassName)}"
+      role="dialog"
       style="display: block;"
+      on:introend="{onModalOpened}"
       on:outroend="{onModalClosed}"
       on:click="{handleBackdropClick}"
       on:mousedown="{handleBackdropMouseDown}"
@@ -212,6 +214,7 @@
         bind:this="{_dialog}"
       >
         <div class="{clsx('modal-content', contentClassName)}">
+          <slot name="external" />
           <slot />
         </div>
       </div>
