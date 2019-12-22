@@ -5,7 +5,6 @@
 
   let className = '';
   export { className as class };
-  export let activeTab;
   export let tabId;
 
   const props = clean($$props);
