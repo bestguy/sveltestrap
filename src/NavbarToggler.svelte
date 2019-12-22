@@ -6,7 +6,6 @@
 
   let className = '';
   export {className as class};
-  export let type = 'button';
 
   const props = clean($$props);
 
