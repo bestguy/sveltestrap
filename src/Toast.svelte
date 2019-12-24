@@ -5,6 +5,7 @@
 
   let className = '';
   export { className as class };
+  export let duration = 200;
   export let fade = true;
   export let isOpen = true;
 
@@ -23,7 +24,7 @@
 <div
   {...props}
   class="{classes}"
-  transition:fadeTrans
+  transition:fadeTrans={{duration: fade && duration}}
   role="alert"
 >
   <slot />

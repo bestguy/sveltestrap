@@ -12,7 +12,7 @@
   export let caret = false;
   export let color = 'secondary';
   export let disabled = false;
-  export let ariaHaspopup = false;
+  export let ariaHaspopup = true;
   export let ariaLabel = 'Toggle Dropdown';
   export let split = false;
   export let nav = false;
@@ -46,19 +46,19 @@
 </script>
 
 {#if nav}
-  <a {...props} on:click on:click="{toggleButton}" href="#nav" class="{classes}">
+  <a {...props} on:click on:click="{toggleButton}" href="#nav" {ariaHaspopup} class="{classes}">
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>
   </a>
 {:else if tag === 'span'}
-  <span {...props} on:click on:click="{toggleButton}" class="{classes}" {color} {size}>
+  <span {...props} on:click on:click="{toggleButton}" {ariaHaspopup} class="{classes}" {color} {size}>
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>
   </span>
 {:else}
-  <Button {...props} on:click on:click="{toggleButton}" class="{classes}" {color} {size} {outline}>
+  <Button {...props} on:click on:click="{toggleButton}" {ariaHaspopup} class="{classes}" {color} {size} {outline}>
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>

@@ -5,7 +5,6 @@
   let className = '';
   export { className as class };
   export let ariaLabel = '';
-  export let role = 'toolbar';
 
   const props = clean($$props);
 
@@ -15,6 +14,6 @@
   );
 </script>
 
-<div {...props} aria-label="{ariaLabel}" class="{classes}">
+<div {...props} aria-label="{ariaLabel}" role="toolbar" class="{classes}">
   <slot />
 </div>
