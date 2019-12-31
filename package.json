@@ -21,7 +21,7 @@
     "docs": "build-storybook -o docs",
     "dist": "rollup -c",
     "lint": "eslint ./src --ext .js --ext .svelte",
-    "prepublish": "npm run dist",
+    "prepublish": "npm run dist && git add -A dist",
     "postpublish": "git push && git push --tags",
     "test": "jest --verbose",
     "version": "npm run docs && git add -A docs"
