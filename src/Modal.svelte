@@ -1,5 +1,5 @@
 <script context="module">
-  // TODO fade option, esc key
+  // TODO fade option
   let openCount = 0;
 </script>
 
@@ -48,6 +48,13 @@
   let _lastHasOpened = hasOpened;
   let _dialog;
   let _mouseDownElement;
+  let _removeEscListener;
+
+  function browserEvent(target, ...args) {
+    target.addEventListener(...args)
+
+    return () => target.removeEventListener(...args)
+  }
 
   onMount(() => {
     if (isOpen) {
@@ -161,11 +168,21 @@
   }
 
   function onModalOpened() {
+    _removeEscListener = browserEvent(document, 'keydown', (event) => {
+      if(event.key && event.key === 'Escape') {
+        toggle(event)
+      }
+    })
+
     onOpened();
   }
 
   function onModalClosed() {
     onClosed();
+
+    if(_removeEscListener) {
+      _removeEscListener()
+    }
 
     if (unmountOnClose) {
       destroy();
