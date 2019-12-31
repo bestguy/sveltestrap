@@ -7,12 +7,9 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    'input-group-text',
-  );
+  $: classes = clsx(className, 'input-group-text');
 </script>
 
-<span {...props} class="{classes}">
+<span {...props} class={classes}>
   <slot />
 </span>

@@ -9,12 +9,16 @@
   import { onDestroy, onMount, afterUpdate } from 'svelte';
   import { fade as fadeTransition } from 'svelte/transition';
 
-  import { conditionallyUpdateScrollbar, getOriginalBodyPadding, setScrollbarWidth } from './utils';
+  import {
+    conditionallyUpdateScrollbar,
+    getOriginalBodyPadding,
+    setScrollbarWidth
+  } from './utils';
 
-  function noop() { }
+  function noop() {}
 
   let className = '';
-  export {className as class};
+  export { className as class };
   export let isOpen;
   export let autoFocus = true;
   export let centered = false;
@@ -51,9 +55,9 @@
   let _removeEscListener;
 
   function browserEvent(target, ...args) {
-    target.addEventListener(...args)
+    target.addEventListener(...args);
 
-    return () => target.removeEventListener(...args)
+    return () => target.removeEventListener(...args);
   }
 
   onMount(() => {
@@ -69,7 +73,6 @@
     if (hasOpened && autoFocus) {
       setFocus();
     }
-
   });
 
   onDestroy(() => {
@@ -83,7 +86,7 @@
     }
   });
 
-  afterUpdate (() => {
+  afterUpdate(() => {
     if (isOpen && !_lastIsOpen) {
       init();
       hasOpened = true;
@@ -97,10 +100,12 @@
     _lastHasOpened = hasOpened;
   });
 
-
   function setFocus() {
-
-    if (_dialog && _dialog.parentNode && typeof _dialog.parentNode.focus === 'function') {
+    if (
+      _dialog &&
+      _dialog.parentNode &&
+      typeof _dialog.parentNode.focus === 'function'
+    ) {
       _dialog.parentNode.focus();
     }
   }
@@ -115,10 +120,7 @@
     _originalBodyPadding = getOriginalBodyPadding();
     conditionallyUpdateScrollbar();
     if (openCount === 0) {
-      document.body.className = clsx(
-        document.body.className,
-        'modal-open',
-      );
+      document.body.className = clsx(document.body.className, 'modal-open');
     }
 
     ++openCount;
@@ -127,8 +129,11 @@
 
   function manageFocusAfterClose() {
     if (_triggeringElement) {
-      if (typeof _triggeringElement.focus === 'function' && returnFocusAfterClose) {
-        _triggeringElement.focus()
+      if (
+        typeof _triggeringElement.focus === 'function' &&
+        returnFocusAfterClose
+      ) {
+        _triggeringElement.focus();
       }
 
       _triggeringElement = null;
@@ -141,10 +146,13 @@
 
   function close() {
     if (openCount <= 1) {
-
       const modalOpenClassName = 'modal-open';
-      const modalOpenClassNameRegex = new RegExp(`(^| )${modalOpenClassName}( |$)`);
-      document.body.className = document.body.className.replace(modalOpenClassNameRegex, ' ').trim();
+      const modalOpenClassNameRegex = new RegExp(
+        `(^| )${modalOpenClassName}( |$)`
+      );
+      document.body.className = document.body.className
+        .replace(modalOpenClassNameRegex, ' ')
+        .trim();
     }
 
     manageFocusAfterClose();
@@ -168,11 +176,11 @@
   }
 
   function onModalOpened() {
-    _removeEscListener = browserEvent(document, 'keydown', (event) => {
-      if(event.key && event.key === 'Escape') {
-        toggle(event)
+    _removeEscListener = browserEvent(document, 'keydown', event => {
+      if (event.key && event.key === 'Escape') {
+        toggle(event);
       }
-    })
+    });
 
     onOpened();
   }
@@ -180,8 +188,8 @@
   function onModalClosed() {
     onClosed();
 
-    if(_removeEscListener) {
-      _removeEscListener()
+    if (_removeEscListener) {
+      _removeEscListener();
     }
 
     if (unmountOnClose) {
@@ -200,43 +208,40 @@
 
   const dialogBaseClass = 'modal-dialog';
 
-  $: classes = clsx(
-    dialogBaseClass,
-    className,
-    {
-      [`modal-${size}`]: size,
-      [`${dialogBaseClass}-centered`]: centered,
-      [`${dialogBaseClass}-scrollable`]: scrollable,
-    }
-  );
+  $: classes = clsx(dialogBaseClass, className, {
+    [`modal-${size}`]: size,
+    [`${dialogBaseClass}-centered`]: centered,
+    [`${dialogBaseClass}-scrollable`]: scrollable
+  });
 </script>
 
 {#if _isMounted}
-<div {...props} class="{wrapClassName}" tabindex="-1" style="position: relative; z-index: {zIndex}">
-  {#if isOpen}
-    <div
-      transition:fadeTransition={{duration: fade && duration}}
-      ariaLabelledby={labelledBy}
-      class="{clsx('modal', 'show', modalClassName)}"
-      role="dialog"
-      style="display: block;"
-      on:introend="{onModalOpened}"
-      on:outroend="{onModalClosed}"
-      on:click="{handleBackdropClick}"
-      on:mousedown="{handleBackdropMouseDown}"
-    >
+  <div
+    {...props}
+    class={wrapClassName}
+    tabindex="-1"
+    style="position: relative; z-index: {zIndex}">
+    {#if isOpen}
       <div
-        class="{classes}"
-        role="document"
-        bind:this="{_dialog}"
-      >
-        <div class="{clsx('modal-content', contentClassName)}">
-          <slot name="external" />
-          <slot />
+        transition:fadeTransition={{ duration: fade && duration }}
+        ariaLabelledby={labelledBy}
+        class={clsx('modal', 'show', modalClassName)}
+        role="dialog"
+        style="display: block;"
+        on:introend={onModalOpened}
+        on:outroend={onModalClosed}
+        on:click={handleBackdropClick}
+        on:mousedown={handleBackdropMouseDown}>
+        <div class={classes} role="document" bind:this={_dialog}>
+          <div class={clsx('modal-content', contentClassName)}>
+            <slot name="external" />
+            <slot />
+          </div>
         </div>
       </div>
-    </div>
-    <div transition:fadeTransition={{duration: fade && backdropDuration}} class="{clsx('modal-backdrop', 'show', backdropClassName)}" />
-  {/if}
-</div>
+      <div
+        transition:fadeTransition={{ duration: fade && backdropDuration }}
+        class={clsx('modal-backdrop', 'show', backdropClassName)} />
+    {/if}
+  </div>
 {/if}

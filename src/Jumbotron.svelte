@@ -9,20 +9,15 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    'jumbotron',
-    fluid ? 'jumbotron-fluid' : false,
-  );
+  $: classes = clsx(className, 'jumbotron', fluid ? 'jumbotron-fluid' : false);
 </script>
 
-
 {#if tag === 'section'}
-  <section {...props} class="{classes}">
-    <slot/>
+  <section {...props} class={classes}>
+    <slot />
   </section>
 {:else}
-  <div {...props} class="{classes}">
-    <slot/>
+  <div {...props} class={classes}>
+    <slot />
   </div>
 {/if}

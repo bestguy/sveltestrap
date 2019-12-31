@@ -3,7 +3,7 @@
   import clsx from 'clsx';
   import { clean } from './utils';
 
-  const context = getContext("dropdownContext");
+  const context = getContext('dropdownContext');
 
   let className = '';
   export { className as class };
@@ -17,16 +17,13 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    {
-      disabled,
-      'dropdown-item': !divider && !header,
-      active: active,
-      'dropdown-header': header,
-      'dropdown-divider': divider
-    },
-  );
+  $: classes = clsx(className, {
+    disabled,
+    'dropdown-item': !divider && !header,
+    active: active,
+    'dropdown-header': header,
+    'dropdown-divider': divider
+  });
 
   function handleItemClick(e) {
     if (disabled || header || divider) {
@@ -41,20 +38,20 @@
 </script>
 
 {#if header}
-  <h6 {...props} on:click on:click="{handleItemClick}" class="{classes}">
+  <h6 {...props} on:click on:click={handleItemClick} class={classes}>
     <slot />
   </h6>
 
 {:else if divider}
-  <div {...props} on:click on:click="{handleItemClick}" class="{classes}">
+  <div {...props} on:click on:click={handleItemClick} class={classes}>
     <slot />
   </div>
 {:else if href}
-  <a on:{...props} click on:click="{handleItemClick}" {href} class="{classes}">
+  <a on:{...props} click on:click={handleItemClick} {href} class={classes}>
     <slot />
   </a>
 {:else}
-  <button {...props} on:click on:click="{handleItemClick}" class="{classes}">
+  <button {...props} on:click on:click={handleItemClick} class={classes}>
     <slot />
   </button>
 {/if}

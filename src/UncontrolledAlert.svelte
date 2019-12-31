@@ -6,6 +6,6 @@
   const props = clean($$props);
 </script>
 
-<Alert {...props} {isOpen} toggle="{() => isOpen = false}">
+<Alert {...props} {isOpen} toggle={() => (isOpen = false)}>
   <slot />
 </Alert>

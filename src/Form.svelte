@@ -8,12 +8,9 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    inline ? 'form-inline' : false,
-  );
+  $: classes = clsx(className, inline ? 'form-inline' : false);
 </script>
 
-<form {...props} class="{classes}">
+<form {...props} class={classes}>
   <slot />
 </form>

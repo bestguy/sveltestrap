@@ -15,11 +15,11 @@
 
     classes = clsx(
       className,
-      valid ? `valid-${validMode}` : `invalid-${validMode}`,
+      valid ? `valid-${validMode}` : `invalid-${validMode}`
     );
   }
 </script>
 
-<div {...props} class="{classes}">
+<div {...props} class={classes}>
   <slot />
 </div>

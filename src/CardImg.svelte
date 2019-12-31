@@ -20,11 +20,8 @@
     if (bottom) {
       cardImgClassName = 'card-img-bottom';
     }
-    classes = clsx(
-      className,
-      cardImgClassName,
-    );
+    classes = clsx(className, cardImgClassName);
   }
 </script>
 
-<img {...props} class="{classes}" {src} {alt} />
+<img {...props} class={classes} {src} {alt} />

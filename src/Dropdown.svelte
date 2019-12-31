@@ -6,7 +6,7 @@
   import { createContext } from './DropdownContext';
 
   let context = createContext();
-  setContext("dropdownContext", context);
+  setContext('dropdownContext', context);
 
   let className = '';
   export { className as class };
@@ -27,12 +27,19 @@
   const validDirections = ['up', 'down', 'left', 'right'];
 
   if (validDirections.indexOf(direction) === -1) {
-    throw new Error(`Invalid direction sent: '${direction}' is not one of 'up', 'down', 'left', 'right'`);
+    throw new Error(
+      `Invalid direction sent: '${direction}' is not one of 'up', 'down', 'left', 'right'`
+    );
   }
 
   let component;
 
-  $: subItemIsActive = !!(setActiveFromChild && component && typeof component.querySelector === 'function' && component.querySelector('.active'));
+  $: subItemIsActive = !!(
+    setActiveFromChild &&
+    component &&
+    typeof component.querySelector === 'function' &&
+    component.querySelector('.active')
+  );
 
   $: classes = clsx(
     className,
@@ -46,7 +53,7 @@
       dropdown: !group && !addonType,
       show: isOpen,
       'nav-item': nav
-    },
+    }
   );
 
   $: {
@@ -68,8 +75,8 @@
       return {
         toggle,
         isOpen,
-        direction: (direction === 'down' && dropup) ? 'up' : direction,
-        inNavbar,
+        direction: direction === 'down' && dropup ? 'up' : direction,
+        inNavbar
       };
     });
   }
@@ -77,7 +84,11 @@
   function handleDocumentClick(e) {
     if (e && (e.which === 3 || (e.type === 'keyup' && e.which !== 9))) return;
 
-    if (component.contains(e.target) && component !== e.target && (e.type !== 'keyup' || e.which === 9)) {
+    if (
+      component.contains(e.target) &&
+      component !== e.target &&
+      (e.type !== 'keyup' || e.which === 9)
+    ) {
       return;
     }
 
@@ -86,11 +97,11 @@
 </script>
 
 {#if nav}
-  <li class="{classes}" bind:this="{component}" {...props}>
+  <li class={classes} bind:this={component} {...props}>
     <slot />
   </li>
 {:else}
-  <div class="{classes}" bind:this="{component}" {...props}>
+  <div class={classes} bind:this={component} {...props}>
     <slot />
   </div>
 {/if}

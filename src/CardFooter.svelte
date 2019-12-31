@@ -7,12 +7,9 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    'card-footer',
-  );
+  $: classes = clsx(className, 'card-footer');
 </script>
 
-<div {...props} class="{classes}">
+<div {...props} class={classes}>
   <slot />
 </div>
