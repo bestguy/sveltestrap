@@ -13,10 +13,10 @@
   $: classes = clsx(
     className,
     noGutters ? 'no-gutters' : null,
-    form ? 'form-row' : 'row',
+    form ? 'form-row' : 'row'
   );
 </script>
 
-<div {...props} {id} class="{classes}">
+<div {...props} {id} class={classes}>
   <slot />
 </div>

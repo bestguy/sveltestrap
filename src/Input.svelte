@@ -28,7 +28,6 @@
   let classes;
   let tag;
   $: {
-
     const checkInput = ['radio', 'checkbox'].indexOf(type) > -1;
     const isNotaNumber = new RegExp('\\D', 'g');
 
@@ -53,7 +52,9 @@
     }
 
     if (size && isNotaNumber.test(size)) {
-      console.warn('Please use the prop "bsSize" instead of the "size" to bootstrap\'s input sizing.');
+      console.warn(
+        'Please use the prop "bsSize" instead of the "size" to bootstrap\'s input sizing.'
+      );
       bsSize = size;
       size = undefined;
     }
@@ -63,46 +64,277 @@
       invalid && 'is-invalid',
       valid && 'is-valid',
       bsSize ? `form-control-${bsSize}` : false,
-      formControlClass,
+      formControlClass
     );
   }
 </script>
+
 {#if tag === 'input'}
   {#if type === 'text'}
-    <input {...props} {id} type="text" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input
+      {...props}
+      {id}
+      type="text"
+      on:blur
+      on:focus
+      on:keydown
+      on:keypress
+      on:keyup
+      on:change
+      on:input
+      bind:value
+      {readonly}
+      class={classes}
+      {name}
+      {disabled}
+      {placeholder} />
   {:else if type === 'password'}
-    <input {...props} {id} type="password" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input
+      {...props}
+      {id}
+      type="password"
+      on:blur
+      on:focus
+      on:keydown
+      on:keypress
+      on:keyup
+      on:change
+      on:input
+      bind:value
+      {readonly}
+      class={classes}
+      {name}
+      {disabled}
+      {placeholder} />
   {:else if type === 'email'}
-    <input {...props} {id} type="email" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input
+      {...props}
+      {id}
+      type="email"
+      on:blur
+      on:focus
+      on:keydown
+      on:keypress
+      on:keyup
+      on:change
+      on:input
+      bind:value
+      {readonly}
+      class={classes}
+      {name}
+      {disabled}
+      {placeholder} />
   {:else if type === 'file'}
-    <input {...props} {id} type="file" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:files {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input
+      {...props}
+      {id}
+      type="file"
+      on:blur
+      on:focus
+      on:keydown
+      on:keypress
+      on:keyup
+      on:change
+      on:input
+      bind:files
+      {readonly}
+      class={classes}
+      {name}
+      {disabled}
+      {placeholder} />
   {:else if type === 'checkbox'}
-    <input {...props} {id} type="checkbox" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:checked bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input
+      {...props}
+      {id}
+      type="checkbox"
+      on:blur
+      on:focus
+      on:keydown
+      on:keypress
+      on:keyup
+      on:change
+      on:input
+      bind:checked
+      bind:value
+      {readonly}
+      class={classes}
+      {name}
+      {disabled}
+      {placeholder} />
   {:else if type === 'radio'}
-    <input {...props} {id} type="radio" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input
+      {...props}
+      {id}
+      type="radio"
+      on:blur
+      on:focus
+      on:keydown
+      on:keypress
+      on:keyup
+      on:change
+      on:input
+      bind:value
+      {readonly}
+      class={classes}
+      {name}
+      {disabled}
+      {placeholder} />
   {:else if type === 'url'}
-    <input {...props} {id} type="url" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input
+      {...props}
+      {id}
+      type="url"
+      on:blur
+      on:focus
+      on:keydown
+      on:keypress
+      on:keyup
+      on:change
+      on:input
+      bind:value
+      {readonly}
+      class={classes}
+      {name}
+      {disabled}
+      {placeholder} />
   {:else if type === 'number'}
-    <input {...props} {id} type="number" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input
+      {...props}
+      {id}
+      type="number"
+      on:blur
+      on:focus
+      on:keydown
+      on:keypress
+      on:keyup
+      on:change
+      on:input
+      bind:value
+      {readonly}
+      class={classes}
+      {name}
+      {disabled}
+      {placeholder} />
   {:else if type === 'date'}
-    <input {...props} {id} type="date" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input
+      {...props}
+      {id}
+      type="date"
+      on:blur
+      on:focus
+      on:keydown
+      on:keypress
+      on:keyup
+      on:change
+      on:input
+      bind:value
+      {readonly}
+      class={classes}
+      {name}
+      {disabled}
+      {placeholder} />
   {:else if type === 'time'}
-    <input {...props} {id} type="time" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input
+      {...props}
+      {id}
+      type="time"
+      on:blur
+      on:focus
+      on:keydown
+      on:keypress
+      on:keyup
+      on:change
+      on:input
+      bind:value
+      {readonly}
+      class={classes}
+      {name}
+      {disabled}
+      {placeholder} />
   {:else if type === 'datetime'}
-    <input {...props} {id} type="datetime" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input
+      {...props}
+      {id}
+      type="datetime"
+      on:blur
+      on:focus
+      on:keydown
+      on:keypress
+      on:keyup
+      on:change
+      on:input
+      bind:value
+      {readonly}
+      class={classes}
+      {name}
+      {disabled}
+      {placeholder} />
   {:else if type === 'color'}
-    <input {...props} {id} type="color" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input
+      {...props}
+      {id}
+      type="color"
+      on:blur
+      on:focus
+      on:keydown
+      on:keypress
+      on:keyup
+      on:change
+      on:input
+      bind:value
+      {readonly}
+      class={classes}
+      {name}
+      {disabled}
+      {placeholder} />
   {:else if type === 'search'}
-    <input {...props} {id} type="search" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {readonly} class="{classes}" {name} {disabled} {placeholder} />
+    <input
+      {...props}
+      {id}
+      type="search"
+      on:blur
+      on:focus
+      on:keydown
+      on:keypress
+      on:keyup
+      on:change
+      on:input
+      bind:value
+      {readonly}
+      class={classes}
+      {name}
+      {disabled}
+      {placeholder} />
   {/if}
 
 {:else if tag === 'textarea'}
-
-  <textarea {...props} {id} class="{classes}" on:blur on:focus on:keydown on:keypress on:keyup on:change on:input bind:value {name} {disabled}></textarea>
+  <textarea
+    {...props}
+    {id}
+    class={classes}
+    on:blur
+    on:focus
+    on:keydown
+    on:keypress
+    on:keyup
+    on:change
+    on:input
+    bind:value
+    {name}
+    {disabled} />
 
 {:else if tag === 'select'}
-
-  <select {...props} {id} {multiple} class="{classes}" on:blur on:focus on:change on:input {name} {disabled}>
+  <select
+    {...props}
+    {id}
+    {multiple}
+    class={classes}
+    on:blur
+    on:focus
+    on:change
+    on:input
+    {name}
+    {disabled}>
     <slot />
   </select>
 

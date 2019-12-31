@@ -20,19 +20,19 @@
 </script>
 
 {#if href}
-<a {...props} {href} class="{classes}">
-  {#if children}
-    {children}
-  {:else}
-    <slot />
-  {/if}
-</a>
+  <a {...props} {href} class={classes}>
+    {#if children}
+      {children}
+    {:else}
+      <slot />
+    {/if}
+  </a>
 {:else}
-<span {...props} class="{classes}">
-  {#if children}
-    {children}
-  {:else}
-    <slot />
-  {/if}
-</span>
+  <span {...props} class={classes}>
+    {#if children}
+      {children}
+    {:else}
+      <slot />
+    {/if}
+  </span>
 {/if}

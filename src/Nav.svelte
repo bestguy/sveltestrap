@@ -3,7 +3,7 @@
   import { clean } from './utils';
 
   let className = '';
-  export {className as class};
+  export { className as class };
   export let tabs = false;
   export let pills = false;
   export let vertical = false;
@@ -35,11 +35,11 @@
       'nav-pills': pills,
       'card-header-pills': card && pills,
       'nav-justified': justified,
-      'nav-fill': fill,
-    },
+      'nav-fill': fill
+    }
   );
 </script>
 
-<ul {...props} class="{classes}">
+<ul {...props} class={classes}>
   <slot />
 </ul>

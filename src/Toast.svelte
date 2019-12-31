@@ -11,22 +11,17 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    'toast',
-    {
-      show: isOpen,
-    },
-  );
+  $: classes = clsx(className, 'toast', {
+    show: isOpen
+  });
 </script>
 
 {#if isOpen}
-<div
-  {...props}
-  class="{classes}"
-  transition:fadeTrans={{duration: fade && duration}}
-  role="alert"
->
-  <slot />
-</div>
+  <div
+    {...props}
+    class={classes}
+    transition:fadeTrans={{ duration: fade && duration }}
+    role="alert">
+    <slot />
+  </div>
 {/if}

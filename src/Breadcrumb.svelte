@@ -10,14 +10,11 @@
 
   const props = clean($$props);
 
-  $: listClasses = clsx(
-    'breadcrumb',
-    listClassName
-  );
+  $: listClasses = clsx('breadcrumb', listClassName);
 </script>
 
-<nav {...props} aria-label="{ariaLabel}" class="{className}">
-  <ol class="{listClasses}">
+<nav {...props} aria-label={ariaLabel} class={className}>
+  <ol class={listClasses}>
     {#if children}
       {children}
     {:else}
@@ -25,4 +22,3 @@
     {/if}
   </ol>
 </nav>
-

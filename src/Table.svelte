@@ -3,7 +3,7 @@
   import { clean } from './utils';
 
   let className = '';
-  export {className as class};
+  export { className as class };
   export let size = '';
   export let bordered = false;
   export let borderless = false;
@@ -22,21 +22,21 @@
     borderless ? 'table-borderless' : false,
     striped ? 'table-striped' : false,
     dark ? 'table-dark' : false,
-    hover ? 'table-hover' : false,
+    hover ? 'table-hover' : false
   );
 
-  $: responsiveClassName = responsive === true ? 'table-responsive' : `table-responsive-${responsive}`;
+  $: responsiveClassName =
+    responsive === true ? 'table-responsive' : `table-responsive-${responsive}`;
 </script>
 
 {#if responsive}
-  <div class="{responsiveClassName}">
-    <table {...props} class="{classes}">
+  <div class={responsiveClassName}>
+    <table {...props} class={classes}>
       <slot />
     </table>
   </div>
 {:else}
-  <table {...props} class="{classes}">
+  <table {...props} class={classes}>
     <slot />
   </table>
 {/if}
-

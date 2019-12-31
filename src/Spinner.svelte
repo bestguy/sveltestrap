@@ -14,14 +14,12 @@
     className,
     size ? `spinner-${type}-${size}` : false,
     `spinner-${type}`,
-    color ? `text-${color}` : false,
+    color ? `text-${color}` : false
   );
 </script>
 
-<div {...props} role="status" class="{classes}">
+<div {...props} role="status" class={classes}>
   <span class="sr-only">
-    <slot>
-      Loading...
-    </slot>
+    <slot>Loading...</slot>
   </span>
 </div>

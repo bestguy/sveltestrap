@@ -12,42 +12,40 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    'toast-header',
-  );
+  $: classes = clsx(className, 'toast-header');
 
-  $: tagClassName = clsx(
-    'mr-auto',
-    { "ml-2": icon != null },
-  );
+  $: tagClassName = clsx('mr-auto', { 'ml-2': icon != null });
 
-  $: closeIcon = typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;
+  $: closeIcon =
+    typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;
 </script>
 
-<div {...props} class="{classes}">
+<div {...props} class={classes}>
   {#if icon}
     <svg
-      class="{`rounded text-${icon}`}"
+      class={`rounded text-${icon}`}
       width="20"
       height="20"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid slice"
       focusable="false"
-      role="img"
-    >
-      <rect fill="currentColor" width="100%" height="100%"></rect>
+      role="img">
+      <rect fill="currentColor" width="100%" height="100%" />
     </svg>
   {:else}
-    <slot name="icon"></slot>
+    <slot name="icon" />
   {/if}
-  <strong class="{tagClassName}">
+  <strong class={tagClassName}>
     <slot />
   </strong>
   {#if close}
     {close}
   {:else if toggle}
-    <button type="button" on:click="{toggle}" class="close" aria-label="{closeAriaLabel}">
+    <button
+      type="button"
+      on:click={toggle}
+      class="close"
+      aria-label={closeAriaLabel}>
       <span aria-hidden="true">{closeIcon}</span>
     </button>
   {/if}

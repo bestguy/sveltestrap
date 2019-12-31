@@ -18,17 +18,16 @@
     row ? 'row' : false,
     check ? 'form-check' : 'form-group',
     check && inline ? 'form-check-inline' : false,
-    check && disabled ? 'disabled' : false,
+    check && disabled ? 'disabled' : false
   );
-
 </script>
 
 {#if tag === 'fieldset'}
-  <fieldset {...props} {id} class="{classes}">
+  <fieldset {...props} {id} class={classes}>
     <slot />
   </fieldset>
 {:else}
-  <div {...props} {id} class="{classes}">
+  <div {...props} {id} class={classes}>
     <slot />
   </div>
 {/if}

@@ -8,13 +8,9 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    'card-link',
-  );
+  $: classes = clsx(className, 'card-link');
 </script>
 
-
-<a {...props} class="{classes}" {href}>
+<a {...props} class={classes} {href}>
   <slot />
 </a>

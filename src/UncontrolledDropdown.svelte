@@ -1,5 +1,4 @@
 <script>
-
   import Dropdown from './Dropdown.svelte';
   import { clean } from './utils';
 
@@ -24,8 +23,8 @@
 <Dropdown
   {...props}
   {isOpen}
-  toggle="{() => isOpen = !isOpen}"
-  class="{className}"
+  toggle={() => (isOpen = !isOpen)}
+  class={className}
   {disabled}
   {direction}
   {group}
@@ -35,7 +34,6 @@
   {size}
   {inNavbar}
   {setActiveFromChild}
-  {dropup}
->
+  {dropup}>
   <slot />
 </Dropdown>
