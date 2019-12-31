@@ -19,6 +19,7 @@
   export let htmlFor = '';
   export { htmlFor as for };
 
+  // eslint-disable-next-line no-unused-vars
   const { type: _omitType, ...props } = clean($$props);
 
   $: customClass = clsx(
