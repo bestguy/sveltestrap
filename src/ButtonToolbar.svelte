@@ -8,12 +8,9 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    'btn-toolbar'
-  );
+  $: classes = clsx(className, 'btn-toolbar');
 </script>
 
-<div {...props} aria-label="{ariaLabel}" role="toolbar" class="{classes}">
+<div {...props} aria-label={ariaLabel} role="toolbar" class={classes}>
   <slot />
 </div>

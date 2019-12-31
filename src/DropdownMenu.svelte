@@ -3,7 +3,7 @@
   import clsx from 'clsx';
   import { clean } from './utils';
 
-  const context = getContext("dropdownContext");
+  const context = getContext('dropdownContext');
 
   let className = '';
   export { className as class };
@@ -11,16 +11,12 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    'dropdown-menu',
-    {
-      'dropdown-menu-right': right,
-      show: $context.isOpen,
-    },
-  );
+  $: classes = clsx(className, 'dropdown-menu', {
+    'dropdown-menu-right': right,
+    show: $context.isOpen
+  });
 </script>
 
-<div {...props} class="{classes}">
+<div {...props} class={classes}>
   <slot />
 </div>

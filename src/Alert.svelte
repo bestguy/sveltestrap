@@ -12,30 +12,29 @@
   export let isOpen = true;
   export let toggle = undefined;
   export let fade = true;
-  export let transition = {duration: fade ? 400 : 0};
+  export let transition = { duration: fade ? 400 : 0 };
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    'alert',
-    `alert-${color}`,
-    { 'alert-dismissible': toggle }
-  );
+  $: classes = clsx(className, 'alert', `alert-${color}`, {
+    'alert-dismissible': toggle
+  });
   $: closeClassNames = clsx('close', closeClassName);
-
 </script>
 
 {#if isOpen}
   <div
     {...props}
-    transition:fadeTransition="{transition}"
-    class="{classes}"
-    role="alert"
-  >
+    transition:fadeTransition={transition}
+    class={classes}
+    role="alert">
     {#if toggle}
-      <button type="button" class="{closeClassNames}" aria-label="{closeAriaLabel}" on:click="{toggle}">
-        <span aria-hidden="true">&times;</span>
+      <button
+        type="button"
+        class={closeClassNames}
+        aria-label={closeAriaLabel}
+        on:click={toggle}>
+        <span aria-hidden="true">×</span>
       </button>
     {/if}
     {#if children}

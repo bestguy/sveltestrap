@@ -9,15 +9,11 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    'tab-pane',
-    className,
-    {
-      active: tabId === $context.activeTabId,
-    },
-  );
+  $: classes = clsx('tab-pane', className, {
+    active: tabId === $context.activeTabId
+  });
 </script>
 
-<div {...props} class="{classes}">
+<div {...props} class={classes}>
   <slot />
 </div>

@@ -9,18 +9,15 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    'tab-content',
-    className,
-  );
+  $: classes = clsx('tab-content', className);
 
   $: context.update(() => {
     return {
-      activeTabId: activeTab,
+      activeTabId: activeTab
     };
   });
 </script>
 
-<div {...props} class="{classes}">
+<div {...props} class={classes}>
   <slot />
 </div>
