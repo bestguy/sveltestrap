@@ -1,8 +1,6 @@
 <script>
-  import clsx from 'clsx';
   import { clean } from './utils';
   import { onMount, onDestroy } from 'svelte';
-  import { slide } from 'svelte/transition';
 
   import Fade from './Fade.svelte';
 

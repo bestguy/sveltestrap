@@ -22,6 +22,7 @@
   export let placeholder = '';
   export let disabled = false;
 
+  // eslint-disable-next-line no-unused-vars
   const { type: _omitType, ...props } = clean($$props);
 
   let classes;

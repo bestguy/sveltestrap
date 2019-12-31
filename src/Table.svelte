@@ -1,7 +1,6 @@
 <script>
   import clsx from 'clsx';
   import { clean } from './utils';
-  import toNumber from 'lodash.tonumber';
 
   let className = '';
   export {className as class};

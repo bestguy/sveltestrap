@@ -1,5 +1,4 @@
 <script>
-  import clsx from 'clsx';
   import { clean } from './utils';
 
   import { fade } from 'svelte/transition';
