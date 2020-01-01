@@ -5,7 +5,7 @@
 
 <script>
   import clsx from 'clsx';
-  import { clean } from './utils';
+  import { clean, browserEvent } from './utils';
   import { onDestroy, onMount, afterUpdate } from 'svelte';
   import { fade as fadeTransition } from 'svelte/transition';
 
@@ -49,12 +49,6 @@
   let _dialog;
   let _mouseDownElement;
   let _removeEscListener;
-
-  function browserEvent(target, ...args) {
-    target.addEventListener(...args)
-
-    return () => target.removeEventListener(...args)
-  }
 
   onMount(() => {
     if (isOpen) {
