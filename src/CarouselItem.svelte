@@ -3,6 +3,7 @@
   //import { fade, slide, fly, blur } from 'svelte/transition';
   //import { quintOut } from 'svelte/easing';
 
+  let classes = '';
   let className = '';
   export let id = '';
   export let itemIndex = 0;

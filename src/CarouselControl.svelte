@@ -1,9 +1,10 @@
 <script>
   import clsx from 'clsx';
-  import { onDestroy } from 'svelte';
-  import { clean, browserEvent } from './utils';
+  import { clean, getNewCarouselActiveIndex } from './utils';
 
+  let classes = '';
   let className = '';
+  let srText = '';
   export { className as class };
   export let direction = '';
   export let directionText = '';
@@ -18,8 +19,6 @@
     className
   );
 
-  $: arrowKey = direction === 'prev' ? 'ArrowLeft' : 'ArrowRight';
-
   const getSrText = (direction) => {
     if(direction === 'next') {
       return 'Next';
@@ -28,42 +27,26 @@
     }
   };
 
-  onDestroy(() => {
-    if(_removeListener) {
-      _removeListener();
-    }
-  });
-
-  function changeActiveIndex(event) {
-    event.preventDefault();
-    
-    if(direction === 'prev') {
-      if(activeIndex -1 < 0 && !wrap) {
-        return;
-      }
-
-      activeIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-    } else if(direction === 'next') {
-      if(activeIndex + 1 > items.length - 1 && !wrap) {
-        return;
-      }
-
-      activeIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-    }
-  }
-
-  if(keyboard) {
-    _removeListener = browserEvent(document, 'keydown', (event) => {
-      if(event.key === arrowKey) {
-        changeActiveIndex(event);
-      }
-    })
-  }
-
   $: srText = directionText ? directionText : getSrText(direction);
+
+  function clickHandler() {
+    const endOrBeginning = (direction === 'next' && activeIndex + 1 > items.length - 1) ||
+      (direction === 'previous' && activeIndex - 1 < 0);
+
+    if(!wrap && endOrBeginning) {
+      return;
+    }
+    
+    activeIndex = getNewCarouselActiveIndex(direction, items, activeIndex);
+  }
 </script>
 
-<a class="{classes}" role="button" href="#{direction}" on:click="{ e => changeActiveIndex(e, direction) }">
+<a
+  class="{classes}"
+  role="button"
+  href="#{direction}"
+  on:click|preventDefault="{ clickHandler }"
+>
   <span class="carousel-control-{direction}-icon" aria-hidden="true"></span>
   <span class="sr-only">{srText}</span>
 </a>
