@@ -13,6 +13,7 @@
   export let ride = false;
   export let interval = 5000;
   export let pause = true;
+  export let keyboard = true;
   let _rideIntervalId = false;
 
   $: classes = clsx(
@@ -32,6 +33,10 @@
   });
 
   function handleKeydown(event) {
+    if(!keyboard) {
+      return
+    }
+    
     let direction = '';
     
     if(event.key === 'ArrowLeft') {

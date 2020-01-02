@@ -11,7 +11,6 @@
   export let activeIndex = 0;
   export let items = [];
   export let wrap = true;
-  export let keyboard = true;
   let _removeListener;
 
   $: classes = clsx(
