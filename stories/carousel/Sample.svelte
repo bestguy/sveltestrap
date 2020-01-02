@@ -21,7 +21,7 @@
   let activeIndex = 0;
 </script>
 
-<Carousel id="myCarousel" items="{items}" bind:activeIndex="{activeIndex}" ride="{ true }" interval="{ 2000 }" pause="{ false }">
+<Carousel id="myCarousel" items="{items}" bind:activeIndex="{activeIndex}" ride="{ true }" interval="{ 2000 }" pause="{ true }">
   <CarouselIndicators bind:activeIndex="{activeIndex}" items="{items}" />
   
   <div class="carousel-inner">

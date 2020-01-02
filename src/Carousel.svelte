@@ -51,13 +51,13 @@
   }
 
   function setRideInterval() {
-    if(ride && pause) {
+    if(ride) {
       _rideIntervalId = setInterval(autoNext, interval);
     }
   }
 
   function clearRideInterval() {
-    if(pause && _rideIntervalId) {
+    if(_rideIntervalId) {
       clearInterval(_rideIntervalId);
     }
   }
@@ -72,8 +72,8 @@
 <div
   id="{id}"
   class="{classes}" {style}
-  on:mouseenter="{ clearRideInterval }"
-  on:mouseleave="{ setRideInterval }"
+  on:mouseenter="{ () => pause ? clearRideInterval() : undefined }"
+  on:mouseleave="{ () => pause ? setRideInterval() : undefined }"
 >
   <slot />
 </div>
