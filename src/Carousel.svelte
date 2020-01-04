@@ -1,7 +1,7 @@
 <script>
   import { onDestroy, onMount } from 'svelte';
   import clsx from 'clsx';
-  import { getNewCarouselActiveIndex } from './utils';
+  import { getNewCarouselActiveIndex, browserEvent } from './utils';
   
   let classes = ''
   let className = '';
@@ -15,6 +15,8 @@
   export let pause = true;
   export let keyboard = true;
   let _rideTimeoutId = false;
+  let _windowVisible = true;
+  let _removeVisibilityChangeListener = false;
 
   $: classes = clsx(
     className,
@@ -26,9 +28,23 @@
     setRideTimeout();
   });
 
+  _removeVisibilityChangeListener = browserEvent(document, 'visibilitychange', () => {
+    if(document.visibilityState === 'hidden') {
+      console.log('hidden')
+      clearRideTimeout()
+    } else {
+      console.log('shown')
+      setRideTimeout()
+    }
+  })
+
   onDestroy(() => {
     if(_rideTimeoutId) {
       clearTimeout(_rideTimeoutId);
+    }
+
+    if(_removeVisibilityChangeListener) {
+      _removeVisibilityChangeListener()
     }
   });
 
