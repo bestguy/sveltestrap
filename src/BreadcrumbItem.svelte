@@ -9,14 +9,10 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    active ? 'active' : false,
-    'breadcrumb-item'
-  );
+  $: classes = clsx(className, active ? 'active' : false, 'breadcrumb-item');
 </script>
 
-<li {...props} class="{classes}" aria-current="{active ? 'page' : undefined}">
+<li {...props} class={classes} aria-current={active ? 'page' : undefined}>
   {#if children}
     {children}
   {:else}

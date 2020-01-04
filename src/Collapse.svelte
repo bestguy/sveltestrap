@@ -21,7 +21,7 @@
   $: classes = clsx(
     className,
     // collapseClass,
-    navbar && 'navbar-collapse',
+    navbar && 'navbar-collapse'
   );
 
   let windowWidth = 0;
@@ -53,10 +53,9 @@
       notify();
     }
   }
-
 </script>
 
-<svelte:window bind:innerWidth="{windowWidth}" />
+<svelte:window bind:innerWidth={windowWidth} />
 
 {#if isOpen}
   <div
@@ -65,13 +64,12 @@
     on:introend
     on:outrostart
     on:outroend
-    on:introstart="{onEntering}"
-    on:introend="{onEntered}"
-    on:outrostart="{onExiting}"
-    on:outroend="{onExited}"
-    class="{classes}"
-    {...props}
-  >
+    on:introstart={onEntering}
+    on:introend={onEntered}
+    on:outrostart={onExiting}
+    on:outroend={onExited}
+    class={classes}
+    {...props}>
     <slot />
   </div>
 {/if}

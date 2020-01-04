@@ -3,7 +3,7 @@
   import { clean } from './utils';
 
   let className = '';
-  export {className as class};
+  export { className as class };
   export let light = false;
   export let dark = false;
   export let fixed = '';
@@ -23,20 +23,15 @@
     return `navbar-expand-${expand}`;
   }
 
-  $: classes = clsx(
-    className,
-    'navbar',
-    getExpandClass(expand),
-    {
-      'navbar-light': light,
-      'navbar-dark': dark,
-      [`bg-${color}`]: color,
-      [`fixed-${fixed}`]: fixed,
-      [`sticky-${sticky}`]: sticky,
-    },
-  );
+  $: classes = clsx(className, 'navbar', getExpandClass(expand), {
+    'navbar-light': light,
+    'navbar-dark': dark,
+    [`bg-${color}`]: color,
+    [`fixed-${fixed}`]: fixed,
+    [`sticky-${sticky}`]: sticky
+  });
 </script>
 
-<nav {...props} class="{classes}">
+<nav {...props} class={classes}>
   <slot />
 </nav>

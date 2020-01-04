@@ -5,7 +5,7 @@
 
   import Button from './Button.svelte';
 
-  const context = getContext("dropdownContext");
+  const context = getContext('dropdownContext');
 
   let className = '';
   export { className as class };
@@ -22,14 +22,11 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    {
-      'dropdown-toggle': caret || split,
-      'dropdown-toggle-split': split,
-      'nav-link': nav
-    },
-  );
+  $: classes = clsx(className, {
+    'dropdown-toggle': caret || split,
+    'dropdown-toggle-split': split,
+    'nav-link': nav
+  });
 
   function toggleButton(e) {
     if (disabled) {
@@ -41,27 +38,47 @@
       e.preventDefault();
     }
 
-    $context.toggle(e)
+    $context.toggle(e);
   }
 </script>
 
 {#if nav}
-  <a {...props} on:click on:click="{toggleButton}" href="#nav" {ariaHaspopup} class="{classes}">
+  <a
+    {...props}
+    on:click
+    on:click={toggleButton}
+    href="#nav"
+    {ariaHaspopup}
+    class={classes}>
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>
   </a>
 {:else if tag === 'span'}
-  <span {...props} on:click on:click="{toggleButton}" {ariaHaspopup} class="{classes}" {color} {size}>
+  <span
+    {...props}
+    on:click
+    on:click={toggleButton}
+    {ariaHaspopup}
+    class={classes}
+    {color}
+    {size}>
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>
   </span>
 {:else}
-  <Button {...props} on:click on:click="{toggleButton}" {ariaHaspopup} class="{classes}" {color} {size} {outline}>
+  <Button
+    {...props}
+    on:click
+    on:click={toggleButton}
+    {ariaHaspopup}
+    class={classes}
+    {color}
+    {size}
+    {outline}>
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>
   </Button>
 {/if}
-

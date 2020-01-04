@@ -38,13 +38,12 @@
   <a
     {...props}
     {id}
-    class="{classes}"
+    class={classes}
     {disabled}
     on:click
     {href}
-    aria-label="{ariaLabel || defaultAriaLabel}"
-    {style}
-  >
+    aria-label={ariaLabel || defaultAriaLabel}
+    {style}>
     {#if children}
       {children}
     {:else}
@@ -55,13 +54,12 @@
   <button
     {...props}
     {id}
-    class="{classes}"
+    class={classes}
     {disabled}
     on:click
     {value}
-    aria-label="{ariaLabel || defaultAriaLabel}"
-    {style}
-  >
+    aria-label={ariaLabel || defaultAriaLabel}
+    {style}>
     <slot>
       {#if close}
         <span aria-hidden="true">×</span>

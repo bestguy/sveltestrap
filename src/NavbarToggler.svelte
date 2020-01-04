@@ -5,17 +5,14 @@
   import Button from './Button.svelte';
 
   let className = '';
-  export {className as class};
+  export { className as class };
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    'navbar-toggler',
-  );
+  $: classes = clsx(className, 'navbar-toggler');
 </script>
 
-<Button {...props} on:click class="{classes}">
+<Button {...props} on:click class={classes}>
   <slot>
     <span class="navbar-toggler-icon" />
   </slot>

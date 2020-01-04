@@ -22,6 +22,6 @@
   );
 </script>
 
-<div {...props} {id} class="{classes}" on:click {style}>
+<div {...props} {id} class={classes} on:click {style}>
   <slot />
 </div>

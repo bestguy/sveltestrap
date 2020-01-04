@@ -35,7 +35,6 @@
   {inNavbar}
   {setActiveFromChild}
   {dropup}
-  on:click
->
+  on:click>
   <slot />
 </Dropdown>

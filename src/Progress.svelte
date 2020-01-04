@@ -4,7 +4,7 @@
   import toNumber from 'lodash.tonumber';
 
   let className = '';
-  export {className as class};
+  export { className as class };
   export let bar = false;
   export let multi = false;
   export let value = 0;
@@ -16,10 +16,7 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    'progress'
-  );
+  $: classes = clsx(className, 'progress');
 
   $: progressBarClasses = clsx(
     'progress-bar',
@@ -29,7 +26,7 @@
     striped || animated ? 'progress-bar-striped' : null
   );
 
-  $: percent = ((toNumber(value) / toNumber(max)) * 100);
+  $: percent = (toNumber(value) / toNumber(max)) * 100;
 </script>
 
 {#if bar}
@@ -37,32 +34,30 @@
     <slot />
   {:else}
     <div
-      {...props} 
-      class="{progressBarClasses}"
+      {...props}
+      class={progressBarClasses}
       style="width: {percent}%"
       role="progressbar"
-      aria-valuenow="{value}"
+      aria-valuenow={value}
       aria-valuemin="0"
-      aria-valuemax="{max}"
-    >
+      aria-valuemax={max}>
       <slot />
     </div>
   {/if}
 {:else}
-  <div {...props} class="{classes}">
+  <div {...props} class={classes}>
     {#if multi}
       <slot />
     {:else}
       <div
-        class="{progressBarClasses}"
+        class={progressBarClasses}
         style="width: {percent}%"
         role="progressbar"
-        aria-valuenow="{value}"
+        aria-valuenow={value}
         aria-valuemin="0"
-        aria-valuemax="{max}"
-      >
+        aria-valuemax={max}>
         <slot />
       </div>
     {/if}
-</div>
+  </div>
 {/if}
