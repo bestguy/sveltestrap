@@ -7,12 +7,9 @@
 
   const props = clean($$props);
 
-  $: classes = clsx(
-    className,
-    'card-group',
-  );
+  $: classes = clsx(className, 'card-group');
 </script>
 
-<div {...props} class="{classes}">
+<div {...props} class={classes}>
   <slot />
 </div>

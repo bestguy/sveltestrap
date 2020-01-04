@@ -11,10 +11,10 @@
   $: classes = clsx(
     className,
     'input-group',
-    size ? `input-group-${size}` : null,
+    size ? `input-group-${size}` : null
   );
 </script>
 
-<div {...props} class="{classes}">
-  <slot/>
+<div {...props} class={classes}>
+  <slot />
 </div>

@@ -1,5 +1,4 @@
 <script>
-  import clsx from 'clsx';
   import { clean } from './utils';
 
   import { fade } from 'svelte/transition';
@@ -24,12 +23,11 @@
     on:introend
     on:outrostart
     on:outroend
-    on:introstart="{onEntering}"
-    on:introend="{onEntered}"
-    on:outrostart="{onExiting}"
-    on:outroend="{onExited}"
-    class="{className}"
-  >
+    on:introstart={onEntering}
+    on:introend={onEntered}
+    on:outrostart={onExiting}
+    on:outroend={onExited}
+    class={className}>
     <slot />
   </div>
 {/if}

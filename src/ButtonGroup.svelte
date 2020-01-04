@@ -13,11 +13,10 @@
   $: classes = clsx(
     className,
     size ? `btn-group-${size}` : false,
-    vertical ? 'btn-group-vertical' : 'btn-group',
+    vertical ? 'btn-group-vertical' : 'btn-group'
   );
-
 </script>
 
-<div {...props} {id} class="{classes}">
+<div {...props} {id} class={classes}>
   <slot />
 </div>

@@ -1,8 +1,6 @@
 <script>
-  import clsx from 'clsx';
   import { clean } from './utils';
   import { onMount, onDestroy } from 'svelte';
-  import { slide } from 'svelte/transition';
 
   import Fade from './Fade.svelte';
 
@@ -44,15 +42,15 @@
         );
       }
 
-      defaultToggleEvents.forEach((event) => {
-        selection.forEach((element) => {
+      defaultToggleEvents.forEach(event => {
+        selection.forEach(element => {
           element.addEventListener(event, togglerFn);
         });
       });
 
       unbindEvents = () => {
-        defaultToggleEvents.forEach((event) => {
-          selection.forEach((element) => {
+        defaultToggleEvents.forEach(event => {
+          selection.forEach(element => {
             element.removeEventListener(event, togglerFn);
           });
         });
@@ -66,7 +64,6 @@
       unbindEvents = undefined;
     }
   });
-
 </script>
 
 <Fade
@@ -76,11 +73,10 @@
   on:introend
   on:outrostart
   on:outroend
-  on:introstart="{onEntering}"
-  on:introend="{onEntered}"
-  on:outrostart="{onExiting}"
-  on:outroend="{onExited}"
-  class="{className}"
->
+  on:introstart={onEntering}
+  on:introend={onEntered}
+  on:outrostart={onExiting}
+  on:outroend={onExited}
+  class={className}>
   <slot />
 </Fade>

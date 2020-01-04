@@ -34,7 +34,6 @@
   {size}
   {inNavbar}
   {setActiveFromChild}
-  {dropup}
->
+  {dropup}>
   <slot />
 </ButtonDropdown>
