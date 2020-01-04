@@ -1,11 +1,12 @@
 <script>
   import clsx from 'clsx';
-  import { clean, getNewCarouselActiveIndex } from './utils';
+  import { getNewCarouselActiveIndex } from './utils';
 
   let classes = '';
   let className = '';
   let srText = '';
   export { className as class };
+  export let id = '';
   export let direction = '';
   export let directionText = '';
   export let activeIndex = 0;
@@ -41,6 +42,7 @@
 </script>
 
 <a
+  id="{id}"
   class="{classes}"
   role="button"
   href="#{direction}"

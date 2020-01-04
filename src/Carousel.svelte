@@ -1,5 +1,5 @@
 <script>
-  import { onDestroy, onMount, afterUpdate } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
   import clsx from 'clsx';
   import { getNewCarouselActiveIndex } from './utils';
   
@@ -10,11 +10,11 @@
   export let style = '';
   export let items = [];
   export let activeIndex = 0;
-  export let ride = false;
+  export let ride = true;
   export let interval = 5000;
   export let pause = true;
   export let keyboard = true;
-  let _rideIntervalId = false;
+  let _rideTimeoutId = false;
 
   $: classes = clsx(
     className,
@@ -23,12 +23,12 @@
   );
 
   onMount(() => {
-    setRideInterval();
+    setRideTimeout();
   });
 
   onDestroy(() => {
-    if(_rideIntervalId) {
-      clearInterval(_rideIntervalId);
+    if(_rideTimeoutId) {
+      clearTimeout(_rideTimeoutId);
     }
   });
 
@@ -50,15 +50,17 @@
     activeIndex = getNewCarouselActiveIndex(direction, items, activeIndex);
   }
 
-  function setRideInterval() {
+  function setRideTimeout() {
+    clearRideTimeout();
+
     if(ride) {
-      _rideIntervalId = setInterval(autoNext, interval);
+      _rideTimeoutId = setTimeout(autoNext, interval);
     }
   }
 
-  function clearRideInterval() {
-    if(_rideIntervalId) {
-      clearInterval(_rideIntervalId);
+  function clearRideTimeout() {
+    if(_rideTimeoutId) {
+      clearTimeout(_rideTimeoutId);
     }
   }
 
@@ -72,8 +74,8 @@
 <div
   id="{id}"
   class="{classes}" {style}
-  on:mouseenter="{ () => pause ? clearRideInterval() : undefined }"
-  on:mouseleave="{ () => pause ? setRideInterval() : undefined }"
+  on:mouseenter="{ () => pause ? clearRideTimeout() : undefined }"
+  on:mouseleave="{ () => pause ? setRideTimeout() : undefined }"
 >
   <slot />
 </div>

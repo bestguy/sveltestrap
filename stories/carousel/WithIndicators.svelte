@@ -1,5 +1,5 @@
 <script>
-  import { Carousel, CarouselItem } from "sveltestrap";
+  import { Carousel, CarouselControl, CarouselIndicators, CarouselItem } from "sveltestrap";
 
   let items = [
       'https://i.ytimg.com/vi/FfsmLgD2ZFM/hqdefault.jpg',
@@ -14,6 +14,8 @@
   bind:activeIndex="{activeIndex}"
   pause="{ true }"
 >  
+  <CarouselIndicators bind:activeIndex="{activeIndex}" items="{items}" />
+
   <div class="carousel-inner">
     {#each items as item, index}
     <CarouselItem bind:activeIndex="{activeIndex}" itemIndex="{index}">
@@ -21,4 +23,7 @@
     </CarouselItem>
     {/each}
   </div>
+
+  <CarouselControl direction="prev" bind:activeIndex="{activeIndex}" items="{items}" />
+  <CarouselControl direction="next" bind:activeIndex="{activeIndex}" items="{items}" />
 </Carousel>

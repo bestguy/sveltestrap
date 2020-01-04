@@ -1,7 +1,5 @@
 <script>
   import clsx from 'clsx';
-  //import { fade, slide, fly, blur } from 'svelte/transition';
-  //import { quintOut } from 'svelte/easing';
 
   let classes = '';
   let className = '';
@@ -16,6 +14,10 @@
   );
 </script>
 
-<div id="{id}" class="{classes} active" class:active="{itemIndex === activeIndex}">
+<div
+  id="{id}"
+  class="{classes} active"
+  class:active="{itemIndex === activeIndex}"
+>
   <slot />
 </div>
