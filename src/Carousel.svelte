@@ -30,10 +30,8 @@
 
   _removeVisibilityChangeListener = browserEvent(document, 'visibilitychange', () => {
     if(document.visibilityState === 'hidden') {
-      console.log('hidden')
       clearRideTimeout()
     } else {
-      console.log('shown')
       setRideTimeout()
     }
   })
