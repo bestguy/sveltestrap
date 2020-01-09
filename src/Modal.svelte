@@ -22,8 +22,7 @@
   export let isOpen;
   export let autoFocus = true;
   export let centered = false;
-  export let duration = 0;
-  export let backdropDuration = duration;
+  export let backdropDuration = 0;
   export let scrollable = false;
   export let size = '';
   export let toggle = undefined;
@@ -41,6 +40,8 @@
   export let zIndex = 1050;
   export let unmountOnClose = true;
   export let returnFocusAfterClose = true;
+  export let transitionType = fadeTransition;
+  export let transitionOptions = {};
 
   const props = clean($$props);
 
@@ -215,6 +216,7 @@
   });
 </script>
 
+
 {#if _isMounted}
   <div
     {...props}
@@ -223,7 +225,7 @@
     style="position: relative; z-index: {zIndex}">
     {#if isOpen}
       <div
-        transition:fadeTransition={{ duration: fade && duration }}
+        transition:transitionType="{transitionOptions}"
         ariaLabelledby={labelledBy}
         class={clsx('modal', 'show', modalClassName)}
         role="dialog"
