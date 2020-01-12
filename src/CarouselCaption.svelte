@@ -9,15 +9,12 @@
   export let captionHeader = '';
   export let captionText = '';
 
-  $: classes = clsx(
-    className,
-    'carousel-caption',
-    'd-none',
-    'd-md-block'
-  );
+  const props = clean($$props);
+
+  $: classes = clsx(className, 'carousel-caption', 'd-none', 'd-md-block');
 </script>
 
-<div id="{id}" class="{classes}">
+<div {...props} {id} class={classes}>
   <h5>{captionHeader}</h5>
   <p>{captionText}</p>
   <slot />

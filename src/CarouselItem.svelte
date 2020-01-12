@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   let classes = '';
   let className = '';
@@ -8,16 +9,15 @@
   export let activeIndex = 0;
   export { className as class };
 
-  $: classes = clsx(
-    className,
-    'carousel-item',
-  );
+  const props = clean($$props);
+
+  $: classes = clsx(className, 'carousel-item');
 </script>
 
 <div
-  id="{id}"
+  {...props}
+  {id}
   class="{classes} active"
-  class:active="{itemIndex === activeIndex}"
->
+  class:active={itemIndex === activeIndex}>
   <slot />
 </div>

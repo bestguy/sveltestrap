@@ -1,5 +1,6 @@
 <script>
   import clsx from 'clsx';
+  import { clean } from './utils';
 
   let className = '';
   let classes = '';
@@ -8,14 +9,15 @@
   export let activeIndex = 0;
   export let id = '';
 
-  $: classes = clsx(
-    className,
-    'carousel-indicators',
-  );
+  const props = clean($$props);
+
+  $: classes = clsx(className, 'carousel-indicators');
 </script>
 
-<ol id="{id}" class="{classes}">
+<ol {...props} {id} class={classes}>
   {#each items as item, index}
-    <li class:active={activeIndex === index} on:click="{ e => activeIndex = index }"></li>
+    <li
+      class:active={activeIndex === index}
+      on:click={() => (activeIndex = index)} />
   {/each}
 </ol>
