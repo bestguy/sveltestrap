@@ -85,21 +85,12 @@ it's recommended you import the component source directly, for example:
 
 Sveltestrap is currently missing support for the following components:
 
-* [ ] Carousel
-  * [ ] CarouselCaption
-  * [ ] CarouselControl
-  * [ ] CarouselIndicators
-  * [ ] CarouselItem
 * [ ] Popover
   * [ ] PopoverContent
   * [ ] PopoverTitle
 * [ ] Tooltip
 
 Please follow (or help out with) these issues for status:
-
-<a href="https://github.com/bestguy/sveltestrap/issues/30">
-  Missing Carousel (#30)
-</a>
 
 <a href="https://github.com/bestguy/sveltestrap/issues/31">
   Missing Tooltip (#31)

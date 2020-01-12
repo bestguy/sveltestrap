@@ -68,3 +68,17 @@ export function clean($$props) {
   }
   return rest;
 }
+
+export function browserEvent(target, ...args) {
+  target.addEventListener(...args);
+
+  return () => target.removeEventListener(...args);
+}
+
+export function getNewCarouselActiveIndex(direction, items, activeIndex) {
+  if (direction === 'prev') {
+    return activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+  } else if (direction === 'next') {
+    return activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+  }
+}
