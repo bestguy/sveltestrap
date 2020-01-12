@@ -2,8 +2,9 @@
   import { onDestroy, onMount } from 'svelte';
   import clsx from 'clsx';
   import { getNewCarouselActiveIndex, browserEvent } from './utils';
-  
-  let classes = ''
+  import { clean } from './utils';
+
+  let classes = '';
   let className = '';
   export { className as class };
   export let id = '';
@@ -15,47 +16,48 @@
   export let pause = true;
   export let keyboard = true;
   let _rideTimeoutId = false;
-  let _windowVisible = true;
   let _removeVisibilityChangeListener = false;
 
-  $: classes = clsx(
-    className,
-    'carousel',
-    'slide',
-  );
+  const props = clean($$props);
+
+  $: classes = clsx(className, 'carousel', 'slide');
 
   onMount(() => {
     setRideTimeout();
   });
 
-  _removeVisibilityChangeListener = browserEvent(document, 'visibilitychange', () => {
-    if(document.visibilityState === 'hidden') {
-      clearRideTimeout()
-    } else {
-      setRideTimeout()
+  _removeVisibilityChangeListener = browserEvent(
+    document,
+    'visibilitychange',
+    () => {
+      if (document.visibilityState === 'hidden') {
+        clearRideTimeout();
+      } else {
+        setRideTimeout();
+      }
     }
-  })
+  );
 
   onDestroy(() => {
-    if(_rideTimeoutId) {
+    if (_rideTimeoutId) {
       clearTimeout(_rideTimeoutId);
     }
 
-    if(_removeVisibilityChangeListener) {
-      _removeVisibilityChangeListener()
+    if (_removeVisibilityChangeListener) {
+      _removeVisibilityChangeListener();
     }
   });
 
   function handleKeydown(event) {
-    if(!keyboard) {
-      return
+    if (!keyboard) {
+      return;
     }
-    
+
     let direction = '';
-    
-    if(event.key === 'ArrowLeft') {
+
+    if (event.key === 'ArrowLeft') {
       direction = 'prev';
-    } else if(event.key === 'ArrowRight') {
+    } else if (event.key === 'ArrowRight') {
       direction = 'next';
     } else {
       return;
@@ -67,13 +69,13 @@
   function setRideTimeout() {
     clearRideTimeout();
 
-    if(ride) {
+    if (ride) {
       _rideTimeoutId = setTimeout(autoNext, interval);
     }
   }
 
   function clearRideTimeout() {
-    if(_rideTimeoutId) {
+    if (_rideTimeoutId) {
       clearTimeout(_rideTimeoutId);
     }
   }
@@ -83,13 +85,14 @@
   }
 </script>
 
-<svelte:window on:keydown|preventDefault={ handleKeydown }/>
+<svelte:window on:keydown|preventDefault={handleKeydown} />
 
 <div
-  id="{id}"
-  class="{classes}" {style}
-  on:mouseenter="{ () => pause ? clearRideTimeout() : undefined }"
-  on:mouseleave="{ () => pause ? setRideTimeout() : undefined }"
->
+  {...props}
+  {id}
+  class={classes}
+  {style}
+  on:mouseenter={() => (pause ? clearRideTimeout() : undefined)}
+  on:mouseleave={() => (pause ? setRideTimeout() : undefined)}>
   <slot />
 </div>
