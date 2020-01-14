@@ -15,7 +15,7 @@
 
 {#each colors as color}
   <div>
-    <Badge pill="true" {color}>
+    <Badge pill {color}>
       {color}
     </Badge>
   </div>
