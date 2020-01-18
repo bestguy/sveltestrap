@@ -1,13 +1,13 @@
 <script>
   import Example from '../Example.svelte';
-  import Actions from './Actions.svelte';
-  import Colors from './Colors.svelte';
-  import Flush from './Flush.svelte';
   import Sample from './Sample.svelte';
-  import actionsSource from '!!raw-loader!./Actions.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
-  import colorsSource from '!!raw-loader!./Flush.svelte';
-  import flushSource from '!!raw-loader!./Colors.svelte';
+  import Colors from './Colors.svelte';
+  import colorsSource from '!!raw-loader!./Colors.svelte';
+  import Actions from './Actions.svelte';
+  import actionsSource from '!!raw-loader!./Actions.svelte';
+  import Flush from './Flush.svelte';
+  import flushSource from '!!raw-loader!./Flush.svelte';
 </script>
 
 <h1>List Groups</h1>
@@ -33,4 +33,3 @@
 <Example title="Flush" source={flushSource}>
   <Flush />
 </Example>
-
