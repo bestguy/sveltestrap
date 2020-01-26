@@ -4,8 +4,6 @@
 
   import { getColumnSizeClass, isObject } from './utils';
 
-  const colWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
-
   let className = '';
 
   const props = clean($$props);
@@ -22,11 +20,19 @@
   export let md = '';
   export let lg = '';
   export let xl = '';
-  export let widths = colWidths;
+
+  const colWidths = {
+    xs,
+    sm,
+    md,
+    lg,
+    xl
+  };
+  export let widths = Object.keys(colWidths);
 
   const colClasses = [];
 
-  colWidths.forEach(colWidth => {
+  Object.keys(colWidths).forEach(colWidth => {
     let columnProp = $$props[colWidth];
 
     if (!columnProp && columnProp !== '') {
