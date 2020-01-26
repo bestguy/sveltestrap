@@ -32,7 +32,7 @@
 
   const colClasses = [];
 
-  Object.keys(colWidths).forEach(colWidth => {
+  widths.forEach(colWidth => {
     let columnProp = $$props[colWidth];
 
     if (!columnProp && columnProp !== '') {
