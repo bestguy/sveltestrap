@@ -11,6 +11,6 @@
   $: classes = clsx(className, inline ? 'form-inline' : false);
 </script>
 
-<form {...props} class={classes}>
+<form {...props} class={classes} on:submit>
   <slot />
 </form>
