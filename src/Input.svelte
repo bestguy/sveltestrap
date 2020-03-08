@@ -323,16 +323,32 @@
     {name}
     {disabled} />
 
-{:else if tag === 'select'}
+{:else if tag === 'select' && !multiple}
   <select
     {...props}
     {id}
-    {multiple}
     class={classes}
     on:blur
     on:focus
     on:change
     on:input
+    bind:value
+    {name}
+    {disabled}>
+    <slot />
+  </select>
+
+{:else if tag === 'select' && multiple}
+  <select
+    {...props}
+    {id}
+    multiple
+    class={classes}
+    on:blur
+    on:focus
+    on:change
+    on:input
+    bind:value
     {name}
     {disabled}>
     <slot />
