@@ -8,6 +8,7 @@
   export let type = 'text';
   export let size = undefined;
   export let bsSize = undefined;
+  export let color = undefined;
   export let checked = false;
   export let valid = false;
   export let invalid = false;
@@ -23,7 +24,7 @@
   export let disabled = false;
 
   // eslint-disable-next-line no-unused-vars
-  const { type: _omitType, ...props } = clean($$props);
+  const { type: _omitType, color: _omitColor, ...props } = clean($$props);
 
   let classes;
   let tag;
@@ -33,7 +34,10 @@
 
     const fileInput = type === 'file';
     const textareaInput = type === 'textarea';
+    const rangeInput = type === 'range';
     const selectInput = type === 'select';
+    const buttonInput = type === 'button' || type === 'reset' || type === 'submit';
+    const unsupportedInput = type === 'hidden' || type === 'image';
     tag = selectInput || textareaInput ? type : 'input';
 
     let formControlClass = 'form-control';
@@ -49,6 +53,12 @@
       } else {
         formControlClass = 'form-check-input';
       }
+    } else if (buttonInput) {
+      formControlClass = `btn btn-${color || 'secondary'}`;
+    } else if (rangeInput) {
+      formControlClass = 'form-control-range';
+    } else if (unsupportedInput) {
+      formControlClass = '';
     }
 
     if (size && isNotaNumber.test(size)) {
@@ -67,6 +77,10 @@
       formControlClass
     );
   }
+
+  const handleInput = (event) => {
+    value = event.target.value;
+  };
 </script>
 
 {#if tag === 'input'}
@@ -287,6 +301,24 @@
       {name}
       {disabled}
       {placeholder} />
+  {:else if type === 'range'}
+    <input
+      {...props}
+      {id}
+      type="range"
+      on:blur
+      on:focus
+      on:keydown
+      on:keypress
+      on:keyup
+      on:change
+      on:input
+      bind:value
+      {readonly}
+      class={classes}
+      {name}
+      {disabled}
+      {placeholder} />
   {:else if type === 'search'}
     <input
       {...props}
@@ -305,6 +337,24 @@
       {name}
       {disabled}
       {placeholder} />
+  {:else}
+    <input
+      {...props}
+      {id}
+      {type}
+      on:blur
+      on:focus
+      on:keydown
+      on:keypress
+      on:keyup
+      on:input={handleInput}
+      on:change={handleInput}
+      {readonly}
+      class={classes}
+      {name}
+      {disabled}
+      {placeholder}
+      {value} />
   {/if}
 
 {:else if tag === 'textarea'}
@@ -353,5 +403,4 @@
     {disabled}>
     <slot />
   </select>
-
 {/if}
