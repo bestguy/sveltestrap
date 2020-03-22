@@ -59,7 +59,7 @@
 
 {#if isOpen}
   <div
-    transition:slide
+    transition:slide|local
     on:introstart
     on:introend
     on:outrostart
