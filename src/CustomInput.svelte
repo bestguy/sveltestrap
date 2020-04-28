@@ -45,6 +45,7 @@
 
 {#if type === 'select'}
   <select
+    {...props}
     {id}
     class={combinedClasses}
     on:blur
@@ -54,13 +55,13 @@
     bind:value
     {name}
     {disabled}
-    {placeholder}
-    {...props}>
+    {placeholder}>
     <slot />
   </select>
 {:else if type === 'file'}
   <div class={customClass}>
     <input
+      {...props}
       {id}
       type="file"
       class={fileClasses}
@@ -70,8 +71,7 @@
       on:input
       {name}
       {disabled}
-      {placeholder}
-      {...props} />
+      {placeholder} />
     <label class="custom-file-label" for={labelHtmlFor}>
       {label || 'Choose file'}
     </label>
@@ -79,32 +79,33 @@
 {:else if type === 'switch' || type === 'checkbox'}
   <div class={wrapperClasses}>
     <input
+      {...props}
       {id}
       type="checkbox"
       class={customControlClasses}
       bind:checked
       {name}
       {disabled}
-      {placeholder}
-      {...props} />
+      {placeholder} />
     <label class="custom-control-label" for={labelHtmlFor}>{label}</label>
     <slot />
   </div>
 {:else if type === 'radio'}
   <div class={wrapperClasses}>
     <input
+      {...props}
       {id}
       type="radio"
       class={customControlClasses}
       {name}
       {disabled}
-      {placeholder}
-      {...props} />
+      {placeholder} />
     <label class="custom-control-label" for={labelHtmlFor}>{label}</label>
     <slot />
   </div>
 {:else}
   <input
+    {...props}
     {type}
     {id}
     class={combinedClasses}
@@ -114,6 +115,5 @@
     on:input
     {name}
     {disabled}
-    {placeholder}
-    {...props} />
+    {placeholder} />
 {/if}
