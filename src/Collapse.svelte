@@ -59,6 +59,8 @@
 
 {#if isOpen}
   <div
+    {...props}
+    class={classes}
     transition:slide
     on:introstart
     on:introend
@@ -67,9 +69,7 @@
     on:introstart={onEntering}
     on:introend={onEntered}
     on:outrostart={onExiting}
-    on:outroend={onExited}
-    class={classes}
-    {...props}>
+    on:outroend={onExited}>
     <slot />
   </div>
 {/if}
