@@ -18,7 +18,7 @@
 {#if isOpen}
   <div
     {...props}
-    transition:fade
+    transition:fade|local
     on:introstart
     on:introend
     on:outrostart
