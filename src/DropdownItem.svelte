@@ -47,7 +47,7 @@
     <slot />
   </div>
 {:else if href}
-  <a on:{...props} click on:click={handleItemClick} {href} class={classes}>
+  <a {...props} click on:click={handleItemClick} {href} class={classes}>
     <slot />
   </a>
 {:else}

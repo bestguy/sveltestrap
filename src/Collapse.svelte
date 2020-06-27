@@ -61,7 +61,7 @@
   <div
     {...props}
     class={classes}
-    transition:slide
+    transition:slide|local
     on:introstart
     on:introend
     on:outrostart
