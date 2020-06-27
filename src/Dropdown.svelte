@@ -97,11 +97,11 @@
 </script>
 
 {#if nav}
-  <li class={classes} bind:this={component} {...props}>
+  <li {...props} class={classes} bind:this={component}>
     <slot />
   </li>
 {:else}
-  <div class={classes} bind:this={component} {...props}>
+  <div {...props} class={classes} bind:this={component}>
     <slot />
   </div>
 {/if}
