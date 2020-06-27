@@ -4,6 +4,7 @@
 
   let className = '';
   export { className as class };
+  export let direction = 'down';
   export let disabled = false;
   export let group = false;
   export let nav = false;
