@@ -78,7 +78,7 @@ it's recommended you import the component source directly, for example:
   <Col>
     <Button color="primary" outline>Hello World!</Button>
   </Col>
-<Row>
+</Row>
 ```
 
 ### Component status
