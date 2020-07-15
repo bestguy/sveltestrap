@@ -5,11 +5,11 @@ on: [push]
 jobs:
   build:
 
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [10.x, 12.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -17,9 +17,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install and test
+    - name: npm install, build, and test
       run: |
-        npm install
+        npm ci
         npm test
       env:
         CI: true
