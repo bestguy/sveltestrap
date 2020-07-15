@@ -1,7 +1,6 @@
 <script>
   import clsx from 'clsx';
   import { getNewCarouselActiveIndex } from './utils';
-  import { clean } from './utils';
 
   let classes = '';
   let className = '';
@@ -14,7 +13,6 @@
   export let items = [];
   export let wrap = true;
 
-  const props = clean($$props);
 
   $: classes = clsx(`carousel-control-${direction}`, className);
 
@@ -42,7 +40,7 @@
 </script>
 
 <a
-  {...props}
+  {...$$restProps}
   {id}
   class={classes}
   role="button"

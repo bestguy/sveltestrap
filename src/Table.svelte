@@ -1,6 +1,5 @@
 <script>
   import clsx from 'clsx';
-  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -12,7 +11,6 @@
   export let hover = false;
   export let responsive = false;
 
-  const props = clean($$props);
 
   $: classes = clsx(
     className,
@@ -31,12 +29,12 @@
 
 {#if responsive}
   <div class={responsiveClassName}>
-    <table {...props} class={classes}>
+    <table {...$$restProps} class={classes}>
       <slot />
     </table>
   </div>
 {:else}
-  <table {...props} class={classes}>
+  <table {...$$restProps} class={classes}>
     <slot />
   </table>
 {/if}

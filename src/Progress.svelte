@@ -1,6 +1,5 @@
 <script>
   import clsx from 'clsx';
-  import { clean } from './utils';
   import toNumber from 'lodash.tonumber';
 
   let className = '';
@@ -14,7 +13,6 @@
   export let color = '';
   export let barClassName = '';
 
-  const props = clean($$props);
 
   $: classes = clsx(className, 'progress');
 
@@ -34,7 +32,7 @@
     <slot />
   {:else}
     <div
-      {...props}
+      {...$$restProps}
       class={progressBarClasses}
       style="width: {percent}%"
       role="progressbar"
@@ -45,7 +43,7 @@
     </div>
   {/if}
 {:else}
-  <div {...props} class={classes}>
+  <div {...$$restProps} class={classes}>
     {#if multi}
       <slot />
     {:else}

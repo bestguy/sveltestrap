@@ -1,6 +1,5 @@
 <script>
   import clsx from 'clsx';
-  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -18,9 +17,6 @@
   export let placeholder = '';
   export let htmlFor = '';
   export { htmlFor as for };
-
-  // eslint-disable-next-line no-unused-vars
-  const { type: _omitType, ...props } = clean($$props);
 
   $: customClass = clsx(
     className,
@@ -45,7 +41,7 @@
 
 {#if type === 'select'}
   <select
-    {...props}
+    {...$$restProps}
     {id}
     class={combinedClasses}
     on:blur
@@ -61,7 +57,7 @@
 {:else if type === 'file'}
   <div class={customClass}>
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="file"
       class={fileClasses}
@@ -79,7 +75,7 @@
 {:else if type === 'switch' || type === 'checkbox'}
   <div class={wrapperClasses}>
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="checkbox"
       class={customControlClasses}
@@ -93,7 +89,7 @@
 {:else if type === 'radio'}
   <div class={wrapperClasses}>
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="radio"
       class={customControlClasses}
@@ -105,7 +101,7 @@
   </div>
 {:else}
   <input
-    {...props}
+    {...$$restProps}
     {type}
     {id}
     class={combinedClasses}

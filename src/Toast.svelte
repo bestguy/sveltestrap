@@ -1,6 +1,5 @@
 <script>
   import clsx from 'clsx';
-  import { clean } from './utils';
   import { fade as fadeTrans } from 'svelte/transition';
 
   let className = '';
@@ -9,7 +8,6 @@
   export let fade = true;
   export let isOpen = true;
 
-  const props = clean($$props);
 
   $: classes = clsx(className, 'toast', {
     show: isOpen
@@ -18,7 +16,7 @@
 
 {#if isOpen}
   <div
-    {...props}
+    {...$$restProps}
     class={classes}
     transition:fadeTrans={{ duration: fade && duration }}
     role="alert">

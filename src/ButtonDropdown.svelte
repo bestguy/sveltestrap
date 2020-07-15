@@ -1,6 +1,5 @@
 <script>
   import Dropdown from './Dropdown.svelte';
-  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -17,11 +16,10 @@
   export let size = '';
   export let toggle = undefined;
 
-  const props = clean($$props);
 </script>
 
 <Dropdown
-  {...props}
+  {...$$restProps}
   {group}
   class={className}
   {disabled}

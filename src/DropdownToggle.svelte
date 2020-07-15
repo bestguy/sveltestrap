@@ -1,7 +1,6 @@
 <script>
   import { getContext } from 'svelte';
   import clsx from 'clsx';
-  import { clean } from './utils';
 
   import Button from './Button.svelte';
 
@@ -20,7 +19,6 @@
   export let tag = null;
   export let outline = false;
 
-  const props = clean($$props);
 
   $: classes = clsx(className, {
     'dropdown-toggle': caret || split,
@@ -44,7 +42,7 @@
 
 {#if nav}
   <a
-    {...props}
+    {...$$restProps}
     on:click
     on:click={toggleButton}
     href="#nav"
@@ -56,7 +54,7 @@
   </a>
 {:else if tag === 'span'}
   <span
-    {...props}
+    {...$$restProps}
     on:click
     on:click={toggleButton}
     {ariaHaspopup}
@@ -69,7 +67,7 @@
   </span>
 {:else}
   <Button
-    {...props}
+    {...$$restProps}
     on:click
     on:click={toggleButton}
     {ariaHaspopup}
