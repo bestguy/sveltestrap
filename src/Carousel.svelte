@@ -2,7 +2,6 @@
   import { onDestroy, onMount } from 'svelte';
   import clsx from 'clsx';
   import { getNewCarouselActiveIndex, browserEvent } from './utils';
-  import { clean } from './utils';
 
   let classes = '';
   let className = '';
@@ -18,7 +17,6 @@
   let _rideTimeoutId = false;
   let _removeVisibilityChangeListener = false;
 
-  const props = clean($$props);
 
   $: classes = clsx(className, 'carousel', 'slide');
 
@@ -88,7 +86,7 @@
 <svelte:window on:keydown={handleKeydown} />
 
 <div
-  {...props}
+  {...$$restProps}
   {id}
   class={classes}
   {style}

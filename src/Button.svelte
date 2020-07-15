@@ -1,6 +1,5 @@
 <script>
   import clsx from 'clsx';
-  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -17,7 +16,6 @@
   export let style = '';
   export let value = '';
 
-  const props = clean($$props);
 
   $: ariaLabel = $$props['aria-label'];
 
@@ -36,7 +34,7 @@
 
 {#if href}
   <a
-    {...props}
+    {...$$restProps}
     {id}
     class={classes}
     {disabled}
@@ -52,7 +50,7 @@
   </a>
 {:else}
   <button
-    {...props}
+    {...$$restProps}
     {id}
     class={classes}
     {disabled}

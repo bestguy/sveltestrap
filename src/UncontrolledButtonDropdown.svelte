@@ -1,6 +1,5 @@
 <script>
   import ButtonDropdown from './ButtonDropdown.svelte';
-  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -17,11 +16,10 @@
   export let defaultOpen = false;
 
   let isOpen = defaultOpen;
-  const props = clean($$props);
 </script>
 
 <ButtonDropdown
-  {...props}
+  {...$$restProps}
   {isOpen}
   toggle={() => (isOpen = !isOpen)}
   class={className}

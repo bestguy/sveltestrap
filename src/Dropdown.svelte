@@ -1,7 +1,6 @@
 <script>
   import { setContext } from 'svelte';
   import clsx from 'clsx';
-  import { clean } from './utils';
 
   import { createContext } from './DropdownContext';
 
@@ -22,7 +21,6 @@
   export let setActiveFromChild = false;
   export let dropup = false;
 
-  const props = clean($$props);
 
   const validDirections = ['up', 'down', 'left', 'right'];
 
@@ -97,11 +95,11 @@
 </script>
 
 {#if nav}
-  <li {...props} class={classes} bind:this={component}>
+  <li {...$$restProps} class={classes} bind:this={component}>
     <slot />
   </li>
 {:else}
-  <div {...props} class={classes} bind:this={component}>
+  <div {...$$restProps} class={classes} bind:this={component}>
     <slot />
   </div>
 {/if}

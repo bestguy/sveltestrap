@@ -1,5 +1,4 @@
 <script>
-  import { clean } from './utils';
 
   import { fade } from 'svelte/transition';
   const noop = () => undefined;
@@ -12,12 +11,11 @@
   export let onExiting = noop;
   export let onExited = noop;
 
-  const props = clean($$props);
 </script>
 
 {#if isOpen}
   <div
-    {...props}
+    {...$$restProps}
     transition:fade|local
     on:introstart
     on:introend

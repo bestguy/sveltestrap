@@ -1,7 +1,6 @@
 <script>
   import { fade as fadeTransition } from 'svelte/transition';
   import clsx from 'clsx';
-  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -14,7 +13,6 @@
   export let fade = true;
   export let transition = { duration: fade ? 400 : 0 };
 
-  const props = clean($$props);
 
   $: classes = clsx(className, 'alert', `alert-${color}`, {
     'alert-dismissible': toggle
@@ -24,7 +22,7 @@
 
 {#if isOpen}
   <div
-    {...props}
+    {...$$restProps}
     transition:fadeTransition={transition}
     class={classes}
     role="alert">

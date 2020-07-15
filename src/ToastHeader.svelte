@@ -1,6 +1,5 @@
 <script>
   import clsx from 'clsx';
-  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -10,7 +9,6 @@
   export let charCode = 215;
   export let close = null;
 
-  const props = clean($$props);
 
   $: classes = clsx(className, 'toast-header');
 
@@ -20,7 +18,7 @@
     typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;
 </script>
 
-<div {...props} class={classes}>
+<div {...$$restProps} class={classes}>
   {#if icon}
     <svg
       class={`rounded text-${icon}`}

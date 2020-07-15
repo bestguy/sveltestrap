@@ -1,6 +1,5 @@
 <script>
   import clsx from 'clsx';
-  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -9,7 +8,6 @@
   export let src;
   export let alt = '';
 
-  const props = clean($$props);
 
   let classes = '';
   $: {
@@ -24,4 +22,4 @@
   }
 </script>
 
-<img {...props} class={classes} {src} {alt} />
+<img {...$$restProps} class={classes} {src} {alt} />

@@ -1,6 +1,5 @@
 <script>
   import clsx from 'clsx';
-  import { clean } from './utils';
 
   export let className = '';
   export { className as class };
@@ -11,7 +10,6 @@
   export let id = '';
   export let tag = null;
 
-  const props = clean($$props);
 
   $: classes = clsx(
     className,
@@ -23,11 +21,11 @@
 </script>
 
 {#if tag === 'fieldset'}
-  <fieldset {...props} {id} class={classes}>
+  <fieldset {...$$restProps} {id} class={classes}>
     <slot />
   </fieldset>
 {:else}
-  <div {...props} {id} class={classes}>
+  <div {...$$restProps} {id} class={classes}>
     <slot />
   </div>
 {/if}

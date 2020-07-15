@@ -1,5 +1,4 @@
 <script>
-  import { clean } from './utils';
   import { onMount, onDestroy } from 'svelte';
 
   import Collapse from './Collapse.svelte';
@@ -15,7 +14,6 @@
   export let onExiting = noop;
   export let onExited = noop;
 
-  const props = clean($$props);
 
   let unbindEvents;
   let isOpen = defaultOpen;
@@ -67,7 +65,7 @@
 </script>
 
 <Collapse
-  {...props}
+  {...$$restProps}
   {isOpen}
   on:introstart
   on:introend

@@ -5,7 +5,7 @@
 
 <script>
   import clsx from 'clsx';
-  import { clean, browserEvent } from './utils';
+  import { browserEvent } from './utils';
   import { onDestroy, onMount, afterUpdate } from 'svelte';
   import { fade as fadeTransition } from 'svelte/transition';
 
@@ -43,7 +43,6 @@
   export let transitionType = fadeTransition;
   export let transitionOptions = {};
 
-  const props = clean($$props);
 
   let hasOpened = false;
   let _isMounted = false;
@@ -213,7 +212,7 @@
 
 {#if _isMounted}
   <div
-    {...props}
+    {...$$restProps}
     class={wrapClassName}
     tabindex="-1"
     style="position: relative; z-index: {zIndex}">

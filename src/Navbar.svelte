@@ -1,6 +1,5 @@
 <script>
   import clsx from 'clsx';
-  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -11,7 +10,6 @@
   export let color = '';
   export let expand = false;
 
-  const props = clean($$props);
 
   function getExpandClass(expand) {
     if (expand === false) {
@@ -32,6 +30,6 @@
   });
 </script>
 
-<nav {...props} class={classes}>
+<nav {...$$restProps} class={classes}>
   <slot />
 </nav>

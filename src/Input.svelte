@@ -1,6 +1,5 @@
 <script>
   import clsx from 'clsx';
-  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -22,9 +21,6 @@
   export let name = '';
   export let placeholder = '';
   export let disabled = false;
-
-  // eslint-disable-next-line no-unused-vars
-  const { type: _omitType, color: _omitColor, ...props } = clean($$props);
 
   let classes;
   let tag;
@@ -86,7 +82,7 @@
 {#if tag === 'input'}
   {#if type === 'text'}
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="text"
       on:blur
@@ -104,7 +100,7 @@
       {placeholder} />
   {:else if type === 'password'}
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="password"
       on:blur
@@ -122,7 +118,7 @@
       {placeholder} />
   {:else if type === 'email'}
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="email"
       on:blur
@@ -140,7 +136,7 @@
       {placeholder} />
   {:else if type === 'file'}
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="file"
       on:blur
@@ -158,7 +154,7 @@
       {placeholder} />
   {:else if type === 'checkbox'}
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="checkbox"
       on:blur
@@ -177,7 +173,7 @@
       {placeholder} />
   {:else if type === 'radio'}
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="radio"
       on:blur
@@ -195,7 +191,7 @@
       {placeholder} />
   {:else if type === 'url'}
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="url"
       on:blur
@@ -213,7 +209,7 @@
       {placeholder} />
   {:else if type === 'number'}
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="number"
       on:blur
@@ -231,7 +227,7 @@
       {placeholder} />
   {:else if type === 'date'}
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="date"
       on:blur
@@ -249,7 +245,7 @@
       {placeholder} />
   {:else if type === 'time'}
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="time"
       on:blur
@@ -267,7 +263,7 @@
       {placeholder} />
   {:else if type === 'datetime'}
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="datetime"
       on:blur
@@ -285,7 +281,7 @@
       {placeholder} />
   {:else if type === 'color'}
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="color"
       on:blur
@@ -303,7 +299,7 @@
       {placeholder} />
   {:else if type === 'range'}
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="range"
       on:blur
@@ -321,7 +317,7 @@
       {placeholder} />
   {:else if type === 'search'}
     <input
-      {...props}
+      {...$$restProps}
       {id}
       type="search"
       on:blur
@@ -339,7 +335,7 @@
       {placeholder} />
   {:else}
     <input
-      {...props}
+      {...$$restProps}
       {id}
       {type}
       on:blur
@@ -359,7 +355,7 @@
 
 {:else if tag === 'textarea'}
   <textarea
-    {...props}
+    {...$$restProps}
     {id}
     class={classes}
     on:blur
@@ -375,7 +371,7 @@
 
 {:else if tag === 'select' && !multiple}
   <select
-    {...props}
+    {...$$restProps}
     {id}
     class={classes}
     on:blur
@@ -388,9 +384,9 @@
     <slot />
   </select>
 
-{:else if tag === 'select' && multiple}
+<!-- {:else if tag === 'select' && multiple}
   <select
-    {...props}
+    {...$$restProps}
     {id}
     multiple
     class={classes}
@@ -402,5 +398,5 @@
     {name}
     {disabled}>
     <slot />
-  </select>
+  </select> -->
 {/if}

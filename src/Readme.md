@@ -1,18 +1,5 @@
 # Code Notes
 
-This pattern is used for omitting props from spread props:
-
-```javascript
-const props = clean($$props);
-```
-The remaining props are then spread to component:
-
-```html
-<div {...props} class="{classes}">
-```
-
-----
-
 This pattern is used to allow testing of Svelte slots:
 
 ```
