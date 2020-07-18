@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
   import { context } from './TabContext';
 
   let className = '';
@@ -7,7 +7,7 @@
   export let tabId;
 
 
-  $: classes = clsx('tab-pane', className, {
+  $: classes = classnames('tab-pane', className, {
     active: tabId === $context.activeTabId
   });
 </script>

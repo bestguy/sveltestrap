@@ -1,6 +1,6 @@
 <script>
   import { getContext } from 'svelte';
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   import Button from './Button.svelte';
 
@@ -20,7 +20,7 @@
   export let outline = false;
 
 
-  $: classes = clsx(className, {
+  $: classes = classnames(className, {
     'dropdown-toggle': caret || split,
     'dropdown-toggle-split': split,
     'nav-link': nav

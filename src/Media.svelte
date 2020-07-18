@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -17,7 +17,7 @@
   export let alt = '';
 
 
-  $: classes = clsx(className, {
+  $: classes = classnames(className, {
     'media-body': body,
     'media-heading': heading,
     'media-left': left,

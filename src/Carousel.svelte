@@ -1,6 +1,6 @@
 <script>
   import { onDestroy, onMount } from 'svelte';
-  import clsx from 'clsx';
+  import classnames from './utils';
   import { getNewCarouselActiveIndex, browserEvent } from './utils';
 
   let classes = '';
@@ -18,7 +18,7 @@
   let _removeVisibilityChangeListener = false;
 
 
-  $: classes = clsx(className, 'carousel', 'slide');
+  $: classes = classnames(className, 'carousel', 'slide');
 
   onMount(() => {
     setRideTimeout();

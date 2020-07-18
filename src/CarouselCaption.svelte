@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let classes = '';
   let className = '';
@@ -9,7 +9,7 @@
   export let captionText = '';
 
 
-  $: classes = clsx(className, 'carousel-caption', 'd-none', 'd-md-block');
+  $: classes = classnames(className, 'carousel-caption', 'd-none', 'd-md-block');
 </script>
 
 <div {...$$restProps} {id} class={classes}>

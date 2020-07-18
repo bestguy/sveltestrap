@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -12,7 +12,7 @@
     );
   }
 
-  $: classes = clsx(className, `input-group-${addonType}`);
+  $: classes = classnames(className, `input-group-${addonType}`);
 </script>
 
 <div {...$$restProps} class={classes}>

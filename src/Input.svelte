@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -65,7 +65,7 @@
       size = undefined;
     }
 
-    classes = clsx(
+    classes = classnames(
       className,
       invalid && 'is-invalid',
       valid && 'is-valid',

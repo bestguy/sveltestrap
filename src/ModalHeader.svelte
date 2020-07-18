@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -12,7 +12,7 @@
   $: closeIcon =
     typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;
 
-  $: classes = clsx(className, 'modal-header');
+  $: classes = classnames(className, 'modal-header');
 </script>
 
 <div {...$$restProps} class={classes}>

@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -21,7 +21,7 @@
     return `navbar-expand-${expand}`;
   }
 
-  $: classes = clsx(className, 'navbar', getExpandClass(expand), {
+  $: classes = classnames(className, 'navbar', getExpandClass(expand), {
     'navbar-light': light,
     'navbar-dark': dark,
     [`bg-${color}`]: color,

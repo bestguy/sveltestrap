@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -18,7 +18,7 @@
     if (bottom) {
       cardImgClassName = 'card-img-bottom';
     }
-    classes = clsx(className, cardImgClassName);
+    classes = classnames(className, cardImgClassName);
   }
 </script>
 

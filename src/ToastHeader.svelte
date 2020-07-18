@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -10,9 +10,9 @@
   export let close = null;
 
 
-  $: classes = clsx(className, 'toast-header');
+  $: classes = classnames(className, 'toast-header');
 
-  $: tagClassName = clsx('mr-auto', { 'ml-2': icon != null });
+  $: tagClassName = classnames('mr-auto', { 'ml-2': icon != null });
 
   $: closeIcon =
     typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;

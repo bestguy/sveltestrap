@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
   import { getNewCarouselActiveIndex } from './utils';
 
   let classes = '';
@@ -14,7 +14,7 @@
   export let wrap = true;
 
 
-  $: classes = clsx(`carousel-control-${direction}`, className);
+  $: classes = classnames(`carousel-control-${direction}`, className);
 
   const getSrText = direction => {
     if (direction === 'next') {

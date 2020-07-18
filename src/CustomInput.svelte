@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -18,23 +18,23 @@
   export let htmlFor = '';
   export { htmlFor as for };
 
-  $: customClass = clsx(
+  $: customClass = classnames(
     className,
     `custom-${type}`,
     bsSize ? `custom-${type}-${bsSize}` : false
   );
 
-  $: validationClassNames = clsx(invalid && 'is-invalid', valid && 'is-valid');
+  $: validationClassNames = classnames(invalid && 'is-invalid', valid && 'is-valid');
 
-  $: combinedClasses = clsx(customClass, validationClassNames);
+  $: combinedClasses = classnames(customClass, validationClassNames);
 
-  $: fileClasses = clsx(validationClassNames, 'custom-file-input');
+  $: fileClasses = classnames(validationClassNames, 'custom-file-input');
 
-  $: wrapperClasses = clsx(customClass, 'custom-control', {
+  $: wrapperClasses = classnames(customClass, 'custom-control', {
     'custom-control-inline': inline
   });
 
-  $: customControlClasses = clsx(validationClassNames, 'custom-control-input');
+  $: customControlClasses = classnames(validationClassNames, 'custom-control-input');
 
   $: labelHtmlFor = htmlFor || id;
 </script>

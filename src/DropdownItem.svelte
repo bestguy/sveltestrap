@@ -1,6 +1,6 @@
 <script>
   import { getContext } from 'svelte';
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   const context = getContext('dropdownContext');
 
@@ -15,7 +15,7 @@
   export let href = '';
 
 
-  $: classes = clsx(className, {
+  $: classes = classnames(className, {
     disabled,
     'dropdown-item': !divider && !header,
     active: active,
