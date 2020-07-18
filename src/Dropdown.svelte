@@ -1,6 +1,6 @@
 <script>
   import { setContext } from 'svelte';
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   import { createContext } from './DropdownContext';
 
@@ -39,7 +39,7 @@
     component.querySelector('.active')
   );
 
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     direction !== 'down' && `drop${direction}`,
     nav && active ? 'active' : false,

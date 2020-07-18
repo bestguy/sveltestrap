@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -19,7 +19,7 @@
 
   $: ariaLabel = $$props['aria-label'];
 
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     { close },
     close || 'btn',

@@ -1,12 +1,12 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
   export let id = '';
 
 
-  $: classes = clsx(className, 'card-body');
+  $: classes = classnames(className, 'card-body');
 </script>
 
 <div {...$$restProps} {id} class={classes}>

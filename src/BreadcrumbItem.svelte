@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -7,7 +7,7 @@
   export let children = undefined;
 
 
-  $: classes = clsx(className, active ? 'active' : false, 'breadcrumb-item');
+  $: classes = classnames(className, active ? 'active' : false, 'breadcrumb-item');
 </script>
 
 <li {...$$restProps} class={classes} aria-current={active ? 'page' : undefined}>

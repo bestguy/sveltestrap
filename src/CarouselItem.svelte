@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let classes = '';
   let className = '';
@@ -9,7 +9,7 @@
   export { className as class };
 
 
-  $: classes = clsx(className, 'carousel-item');
+  $: classes = classnames(className, 'carousel-item');
 </script>
 
 <div

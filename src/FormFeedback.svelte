@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -11,7 +11,7 @@
   $: {
     const validMode = tooltip ? 'tooltip' : 'feedback';
 
-    classes = clsx(
+    classes = classnames(
       className,
       valid ? `valid-${validMode}` : `invalid-${validMode}`
     );

@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -7,7 +7,7 @@
   export let id = '';
 
 
-  $: classes = clsx(className, fluid ? 'container-fluid' : 'container');
+  $: classes = classnames(className, fluid ? 'container-fluid' : 'container');
 </script>
 
 <div {...$$restProps} {id} class={classes}>

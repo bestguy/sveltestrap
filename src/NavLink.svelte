@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -8,7 +8,7 @@
   export let href = '#';
 
 
-  $: classes = clsx(className, 'nav-link', {
+  $: classes = classnames(className, 'nav-link', {
     disabled,
     active
   });

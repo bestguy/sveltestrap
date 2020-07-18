@@ -1,11 +1,11 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
 
 
-  $: classes = clsx(className, 'card-text');
+  $: classes = classnames(className, 'card-text');
 </script>
 
 <p {...$$restProps} class={classes}>

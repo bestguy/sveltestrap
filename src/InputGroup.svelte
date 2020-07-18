@@ -1,12 +1,12 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
   export let size = '';
 
 
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     'input-group',
     size ? `input-group-${size}` : null

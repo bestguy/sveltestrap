@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   export let className = '';
   export { className as class };
@@ -11,7 +11,7 @@
   export let tag = null;
 
 
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     row ? 'row' : false,
     check ? 'form-check' : 'form-group',

@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -8,7 +8,7 @@
   export let id = '';
 
 
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     noGutters ? 'no-gutters' : null,
     form ? 'form-row' : 'row'

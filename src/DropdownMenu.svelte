@@ -1,6 +1,6 @@
 <script>
   import { getContext } from 'svelte';
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   const context = getContext('dropdownContext');
 
@@ -9,7 +9,7 @@
   export let right = false;
 
 
-  $: classes = clsx(className, 'dropdown-menu', {
+  $: classes = classnames(className, 'dropdown-menu', {
     'dropdown-menu-right': right,
     show: $context.isOpen
   });
