@@ -1,12 +1,12 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
   export let href = '/';
 
 
-  $: classes = clsx(className, 'navbar-brand');
+  $: classes = classnames(className, 'navbar-brand');
 </script>
 
 <a {...$$restProps} class={classes} {href}>

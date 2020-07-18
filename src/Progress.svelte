@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
   import toNumber from 'lodash.tonumber';
 
   let className = '';
@@ -14,9 +14,9 @@
   export let barClassName = '';
 
 
-  $: classes = clsx(className, 'progress');
+  $: classes = classnames(className, 'progress');
 
-  $: progressBarClasses = clsx(
+  $: progressBarClasses = classnames(
     'progress-bar',
     bar ? className || barClassName : barClassName,
     animated ? 'progress-bar-animated' : null,

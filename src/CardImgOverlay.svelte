@@ -1,11 +1,11 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
 
 
-  $: classes = clsx(className, 'card-img-overlay');
+  $: classes = classnames(className, 'card-img-overlay');
 </script>
 
 <div {...$$restProps} class={classes}>

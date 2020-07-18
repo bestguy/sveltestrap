@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -7,7 +7,7 @@
   export let tag = 'div';
 
 
-  $: classes = clsx(className, 'jumbotron', fluid ? 'jumbotron-fluid' : false);
+  $: classes = classnames(className, 'jumbotron', fluid ? 'jumbotron-fluid' : false);
 </script>
 
 {#if tag === 'section'}

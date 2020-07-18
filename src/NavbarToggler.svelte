@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   import Button from './Button.svelte';
 
@@ -7,7 +7,7 @@
   export { className as class };
 
 
-  $: classes = clsx(className, 'navbar-toggler');
+  $: classes = classnames(className, 'navbar-toggler');
 </script>
 
 <Button {...$$restProps} on:click class={classes}>

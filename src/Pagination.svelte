@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -8,9 +8,9 @@
   export let ariaLabel = 'pagination';
 
 
-  $: classes = clsx(className);
+  $: classes = classnames(className);
 
-  $: listClasses = clsx(listClassName, 'pagination', {
+  $: listClasses = classnames(listClassName, 'pagination', {
     [`pagination-${size}`]: !!size
   });
 </script>

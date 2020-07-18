@@ -1,6 +1,6 @@
 <script>
   import { fade as fadeTransition } from 'svelte/transition';
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -14,10 +14,10 @@
   export let transition = { duration: fade ? 400 : 0 };
 
 
-  $: classes = clsx(className, 'alert', `alert-${color}`, {
+  $: classes = classnames(className, 'alert', `alert-${color}`, {
     'alert-dismissible': toggle
   });
-  $: closeClassNames = clsx('close', closeClassName);
+  $: closeClassNames = classnames('close', closeClassName);
 </script>
 
 {#if isOpen}

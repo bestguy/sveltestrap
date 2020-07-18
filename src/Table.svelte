@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -12,7 +12,7 @@
   export let responsive = false;
 
 
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     'table',
     size ? 'table-' + size : false,

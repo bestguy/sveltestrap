@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -8,7 +8,7 @@
   export let listClassName = '';
 
 
-  $: listClasses = clsx('breadcrumb', listClassName);
+  $: listClasses = classnames('breadcrumb', listClassName);
 </script>
 
 <nav {...$$restProps} aria-label={ariaLabel} class={className}>

@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -7,7 +7,7 @@
   export let disabled = false;
 
 
-  $: classes = clsx(className, 'page-item', {
+  $: classes = classnames(className, 'page-item', {
     active,
     disabled
   });

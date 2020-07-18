@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -22,7 +22,7 @@
     return `flex-${vertical}-column`;
   }
 
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     navbar ? 'navbar-nav' : 'nav',
     horizontal ? `justify-content-${horizontal}` : false,

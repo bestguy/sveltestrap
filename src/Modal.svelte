@@ -4,7 +4,7 @@
 </script>
 
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
   import { browserEvent } from './utils';
   import { onDestroy, onMount, afterUpdate } from 'svelte';
   import { fade as fadeTransition } from 'svelte/transition';
@@ -114,7 +114,7 @@
     _originalBodyPadding = getOriginalBodyPadding();
     conditionallyUpdateScrollbar();
     if (openCount === 0) {
-      document.body.className = clsx(document.body.className, 'modal-open');
+      document.body.className = classnames(document.body.className, 'modal-open');
     }
 
     ++openCount;
@@ -202,7 +202,7 @@
 
   const dialogBaseClass = 'modal-dialog';
 
-  $: classes = clsx(dialogBaseClass, className, {
+  $: classes = classnames(dialogBaseClass, className, {
     [`modal-${size}`]: size,
     [`${dialogBaseClass}-centered`]: centered,
     [`${dialogBaseClass}-scrollable`]: scrollable
@@ -220,7 +220,7 @@
       <div
         transition:transitionType="{transitionOptions}"
         ariaLabelledby={labelledBy}
-        class={clsx('modal', 'show', modalClassName)}
+        class={classnames('modal', 'show', modalClassName)}
         role="dialog"
         style="display: block;"
         on:introend={onModalOpened}
@@ -228,7 +228,7 @@
         on:click={handleBackdropClick}
         on:mousedown={handleBackdropMouseDown}>
         <div class={classes} role="document" bind:this={_dialog}>
-          <div class={clsx('modal-content', contentClassName)}>
+          <div class={classnames('modal-content', contentClassName)}>
             <slot name="external" />
             <slot />
           </div>
@@ -236,7 +236,7 @@
       </div>
       <div
         transition:fadeTransition={{ duration: fade && backdropDuration }}
-        class={clsx('modal-backdrop', 'show', backdropClassName)} />
+        class={classnames('modal-backdrop', 'show', backdropClassName)} />
     {/if}
   </div>
 {/if}
