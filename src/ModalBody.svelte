@@ -1,11 +1,11 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
 
 
-  $: classes = clsx(className, 'modal-body');
+  $: classes = classnames(className, 'modal-body');
 </script>
 
 <div {...$$restProps} class={classes}>

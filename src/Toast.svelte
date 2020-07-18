@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
   import { fade as fadeTrans } from 'svelte/transition';
 
   let className = '';
@@ -9,7 +9,7 @@
   export let isOpen = true;
 
 
-  $: classes = clsx(className, 'toast', {
+  $: classes = classnames(className, 'toast', {
     show: isOpen
   });
 </script>

@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   import { getColumnSizeClass, isObject } from './utils';
 
@@ -45,7 +45,7 @@
       colClass = getColumnSizeClass(isXs, colWidth, columnProp.size);
 
       colClasses.push(
-        clsx({
+        classnames({
           [colClass]: columnProp.size || columnProp.size === '',
           [`order${colSizeInterfix}${columnProp.order}`]:
             columnProp.order || columnProp.order === 0,
@@ -59,7 +59,7 @@
     }
   });
 
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     hidden ? 'sr-only' : false,
     check ? 'form-check-label' : false,

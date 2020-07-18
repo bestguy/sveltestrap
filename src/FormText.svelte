@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -7,7 +7,7 @@
   export let color = 'muted';
 
 
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     !inline ? 'form-text' : false,
     color ? `text-${color}` : false

@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   let classes = '';
@@ -9,7 +9,7 @@
   export let id = '';
 
 
-  $: classes = clsx(className, 'carousel-indicators');
+  $: classes = classnames(className, 'carousel-indicators');
 </script>
 
 <ol {...$$restProps} {id} class={classes}>

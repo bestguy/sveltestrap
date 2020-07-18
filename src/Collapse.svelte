@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   import { createEventDispatcher } from 'svelte';
   import { slide } from 'svelte/transition';
@@ -16,7 +16,7 @@
   export let expand = false;
 
 
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     // collapseClass,
     navbar && 'navbar-collapse'

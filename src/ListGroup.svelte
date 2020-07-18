@@ -1,12 +1,12 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
   export let flush = false;
 
 
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     'list-group',
     flush ? 'list-group-flush' : false

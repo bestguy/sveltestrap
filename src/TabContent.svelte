@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
   import { context } from './TabContext';
 
   let className = '';
@@ -7,7 +7,7 @@
   export let activeTab;
 
 
-  $: classes = clsx('tab-content', className);
+  $: classes = classnames('tab-content', className);
 
   $: context.update(() => {
     return {

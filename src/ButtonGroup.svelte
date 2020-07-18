@@ -1,5 +1,5 @@
 <script>
-  import clsx from 'clsx';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -8,7 +8,7 @@
   export let vertical = false;
 
 
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     size ? `btn-group-${size}` : false,
     vertical ? 'btn-group-vertical' : 'btn-group'
