@@ -4,6 +4,7 @@
   "main": "dist/sveltestrap.js",
   "module": "dist/sveltestrap.es.js",
   "jsnext:main": "dist/sveltestrap.es.js",
+  "types": "@types/index.d.ts",
   "svelte": "src/index.ts",
   "keywords": [
     "svelte"
