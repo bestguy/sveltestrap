@@ -1,5 +1,5 @@
-<script>
-  import { UncontrolledAlert } from "sveltestrap";
+<script lang="typescript">
+  import { UncontrolledAlert } from 'sveltestrap';
 </script>
 
 <UncontrolledAlert color="info">

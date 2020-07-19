@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import { fade as fadeTransition } from 'svelte/transition';
   import classnames from './utils';
 
@@ -12,7 +12,6 @@
   export let toggle = undefined;
   export let fade = true;
   export let transition = { duration: fade ? 400 : 0 };
-
 
   $: classes = classnames(className, 'alert', `alert-${color}`, {
     'alert-dismissible': toggle

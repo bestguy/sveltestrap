@@ -1,8 +1,8 @@
-<script>
-  import InputGroup from "../src/InputGroup.svelte";
-  import InputGroupAddon from "../src/InputGroupAddon.svelte";
-  import InputGroupText from "../src/InputGroupText.svelte";
-  import Input from "../src/Input.svelte";
+<script lang="typescript">
+  import InputGroup from '../src/InputGroup.svelte';
+  import InputGroupAddon from '../src/InputGroupAddon.svelte';
+  import InputGroupText from '../src/InputGroupText.svelte';
+  import Input from '../src/Input.svelte';
 </script>
 
 <div>

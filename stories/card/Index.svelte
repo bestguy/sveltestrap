@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import Example from '../Example.svelte';
   import Body from './Body.svelte';
   import bodySource from '!!raw-loader!./Body.svelte';

@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -10,7 +10,6 @@
   export let dark = false;
   export let hover = false;
   export let responsive = false;
-
 
   $: classes = classnames(
     className,

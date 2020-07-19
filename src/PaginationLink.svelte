@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -9,7 +9,6 @@
   export let last = false;
   export let ariaLabel = '';
   export let href = '';
-
 
   $: classes = classnames(className, 'page-link');
 
@@ -42,9 +41,9 @@
 <a {...$$restProps} class={classes} on:click {href}>
   {#if previous || next || first || last}
     <span aria-hidden="true">
-      <slot> {defaultCaret} </slot>
+      <slot>{defaultCaret}</slot>
     </span>
-    <span class="sr-only"> {realLabel} </span>
+    <span class="sr-only">{realLabel}</span>
   {:else}
     <slot />
   {/if}

@@ -1,5 +1,13 @@
-<script>
-  import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'sveltestrap';
+<script lang="typescript">
+  import {
+    Nav,
+    NavItem,
+    Dropdown,
+    DropdownItem,
+    DropdownToggle,
+    DropdownMenu,
+    NavLink
+  } from 'sveltestrap';
 
   let isOpen = false;
 </script>
@@ -8,10 +16,8 @@
   <NavItem>
     <NavLink href="#" active>Link</NavLink>
   </NavItem>
-  <Dropdown nav {isOpen} toggle="{() => isOpen = !isOpen}">
-    <DropdownToggle nav caret>
-      Dropdown
-    </DropdownToggle>
+  <Dropdown nav {isOpen} toggle={() => (isOpen = !isOpen)}>
+    <DropdownToggle nav caret>Dropdown</DropdownToggle>
     <DropdownMenu>
       <DropdownItem header>Header</DropdownItem>
       <DropdownItem disabled>Action</DropdownItem>

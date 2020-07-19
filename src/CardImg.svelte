@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -7,7 +7,6 @@
   export let bottom = false;
   export let src;
   export let alt = '';
-
 
   let classes = '';
   $: {

@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import { onDestroy, onMount } from 'svelte';
   import classnames from './utils';
   import { getNewCarouselActiveIndex, browserEvent } from './utils';
@@ -16,7 +16,6 @@
   export let keyboard = true;
   let _rideTimeoutId = false;
   let _removeVisibilityChangeListener = false;
-
 
   $: classes = classnames(className, 'carousel', 'slide');
 

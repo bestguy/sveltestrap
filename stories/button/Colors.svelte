@@ -1,15 +1,20 @@
-<script>
-  import { Button } from "sveltestrap";
+<script lang="typescript">
+  import { Button } from 'sveltestrap';
 
   const colors = [
-    "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"
+    'primary',
+    'secondary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'light',
+    'dark'
   ];
 </script>
 
 {#each colors as color}
   <div>
-    <Button {color}>
-      {color}
-    </Button>
+    <Button {color}>{color}</Button>
   </div>
 {/each}

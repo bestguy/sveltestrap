@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -6,7 +6,6 @@
   export let ariaLabel = 'breadcrumb';
   export let children = undefined;
   export let listClassName = '';
-
 
   $: listClasses = classnames('breadcrumb', listClassName);
 </script>

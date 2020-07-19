@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
   import { getNewCarouselActiveIndex } from './utils';
 
@@ -13,10 +13,9 @@
   export let items = [];
   export let wrap = true;
 
-
   $: classes = classnames(`carousel-control-${direction}`, className);
 
-  const getSrText = direction => {
+  const getSrText = (direction) => {
     if (direction === 'next') {
       return 'Next';
     } else if (direction === 'prev') {

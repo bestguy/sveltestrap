@@ -1,22 +1,20 @@
-<script>
-  import { Badge } from "sveltestrap";
+<script lang="typescript">
+  import { Badge } from 'sveltestrap';
 
   const colors = [
-    "primary",
-    "secondary",
-    "success",
-    "danger",
-    "warning",
-    "info",
-    "light",
-    "dark"
+    'primary',
+    'secondary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'light',
+    'dark'
   ];
 </script>
 
 {#each colors as color}
   <div>
-    <Badge {color}>
-      {color}
-    </Badge>
+    <Badge {color}>{color}</Badge>
   </div>
 {/each}

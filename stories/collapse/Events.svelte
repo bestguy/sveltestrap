@@ -1,13 +1,13 @@
-<script>
-  import { Collapse, Button, CardBody, Card } from "sveltestrap";
+<script lang="typescript">
+  import { Collapse, Button, CardBody, Card } from 'sveltestrap';
 
   let isOpen = false;
-  let status = "Closed";
+  let status = 'Closed';
 
-  const onEntering = () => (status = "Opening...");
-  const onEntered = () => (status = "Opened");
-  const onExiting = () => (status = "Closing...");
-  const onExited = () => (status = "Closed");
+  const onEntering = () => (status = 'Opening...');
+  const onEntered = () => (status = 'Opened');
+  const onExiting = () => (status = 'Closing...');
+  const onExited = () => (status = 'Closed');
 </script>
 
 <Button color="primary" on:click={() => (isOpen = !isOpen)} class="mb-3">

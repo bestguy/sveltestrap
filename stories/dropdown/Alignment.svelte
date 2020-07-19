@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import {
     Dropdown,
     DropdownItem,
@@ -9,10 +9,8 @@
   let isOpen = false;
 </script>
 
-<Dropdown isOpen={isOpen} toggle="{() => isOpen = !isOpen}">
-  <DropdownToggle caret>
-    Dropdown's menu is right-aligned
-  </DropdownToggle>
+<Dropdown {isOpen} toggle={() => (isOpen = !isOpen)}>
+  <DropdownToggle caret>Dropdown's menu is right-aligned</DropdownToggle>
   <DropdownMenu right>
     <DropdownItem header>Header</DropdownItem>
     <DropdownItem disabled>Action</DropdownItem>

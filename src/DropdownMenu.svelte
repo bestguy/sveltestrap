@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import { getContext } from 'svelte';
   import classnames from './utils';
 
@@ -7,7 +7,6 @@
   let className = '';
   export { className as class };
   export let right = false;
-
 
   $: classes = classnames(className, 'dropdown-menu', {
     'dropdown-menu-right': right,

@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import { onMount, onDestroy } from 'svelte';
 
   import Fade from './Fade.svelte';
@@ -13,7 +13,6 @@
   export let onEntered = noop;
   export let onExiting = noop;
   export let onExited = noop;
-
 
   let unbindEvents;
   let isOpen = defaultOpen;
@@ -40,15 +39,15 @@
         );
       }
 
-      defaultToggleEvents.forEach(event => {
-        selection.forEach(element => {
+      defaultToggleEvents.forEach((event) => {
+        selection.forEach((element) => {
           element.addEventListener(event, togglerFn);
         });
       });
 
       unbindEvents = () => {
-        defaultToggleEvents.forEach(event => {
-          selection.forEach(element => {
+        defaultToggleEvents.forEach((event) => {
+          selection.forEach((element) => {
             element.removeEventListener(event, togglerFn);
           });
         });

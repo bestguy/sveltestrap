@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import { Button, Container, Row, Col, Jumbotron } from 'sveltestrap';
   import PrismCode from '../PrismCode.svelte';
   import Example from '../Example.svelte';
@@ -84,8 +84,11 @@
         </pre>
 
         <p>
-          You can also use any Bootstrap 4 compatible theme instead of the default Bootstrap theme.
-          For example: <a href="https://www.bootstrapcdn.com/bootswatch/" target="new">https://www.bootstrapcdn.com/bootswatch/</a>
+          You can also use any Bootstrap 4 compatible theme instead of the
+          default Bootstrap theme. For example:
+          <a href="https://www.bootstrapcdn.com/bootswatch/" target="new">
+            https://www.bootstrapcdn.com/bootswatch/
+          </a>
         </p>
 
         <h5>2. Install via npm</h5>

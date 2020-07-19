@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   export let className = '';
@@ -9,7 +9,6 @@
   export let disabled = false;
   export let id = '';
   export let tag = null;
-
 
   $: classes = classnames(
     className,

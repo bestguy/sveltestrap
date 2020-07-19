@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import { Col, Row } from 'sveltestrap';
   import Example from '../Example.svelte';
   import Colors from './Colors.svelte';
@@ -26,15 +26,19 @@
 
 <Example title="Uncontrolled Alerts" source={uncontrolledSource}>
   <p slot="info">
-    For the most basic use-case an uncontrolled component can provide the functionality wanted without the need to manage/control the state of the component.
-    UncontrolledAlert does not require isOpen nor toggle props to work.
+    For the most basic use-case an uncontrolled component can provide the
+    functionality wanted without the need to manage/control the state of the
+    component. UncontrolledAlert does not require isOpen nor toggle props to
+    work.
   </p>
   <NoFade />
 </Example>
 
 <Example title="Alerts without fade" source={noFadeSource}>
   <p slot="info">
-    Fade can be disabled using <code>fade=false</code>.
+    Fade can be disabled using
+    <code>fade=false</code>
+    .
   </p>
   <NoFade />
 </Example>

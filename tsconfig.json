@@ -4,6 +4,11 @@
   "compilerOptions": {
     "target": "es2017",
     "moduleResolution": "node",
-    "types": ["svelte"]
+    "types": ["svelte"],
+
+    "baseUrl": ".",
+    "paths": {
+      "sveltestrap": ["src/index"]
+    }
   }
 }

@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -24,7 +24,10 @@
     bsSize ? `custom-${type}-${bsSize}` : false
   );
 
-  $: validationClassNames = classnames(invalid && 'is-invalid', valid && 'is-valid');
+  $: validationClassNames = classnames(
+    invalid && 'is-invalid',
+    valid && 'is-valid'
+  );
 
   $: combinedClasses = classnames(customClass, validationClassNames);
 
@@ -34,7 +37,10 @@
     'custom-control-inline': inline
   });
 
-  $: customControlClasses = classnames(validationClassNames, 'custom-control-input');
+  $: customControlClasses = classnames(
+    validationClassNames,
+    'custom-control-input'
+  );
 
   $: labelHtmlFor = htmlFor || id;
 </script>

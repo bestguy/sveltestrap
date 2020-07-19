@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import Example from '../Example.svelte';
   import Colors from './Colors.svelte';
   import colorsSource from '!!raw-loader!./Colors.svelte';
@@ -19,9 +19,15 @@
 
 <Example title="Colors" source={colorsSource} stacked>
   <p slot="info">
-    Change the Navbar's background color using the <code>color</code> prop.
-    Use the <code>light</code> or <code>dark</code> props to change
-    Navbar text color for lighter or darker <code>color</code> values.
+    Change the Navbar's background color using the
+    <code>color</code>
+    prop. Use the
+    <code>light</code>
+    or
+    <code>dark</code>
+    props to change Navbar text color for lighter or darker
+    <code>color</code>
+    values.
   </p>
   <Colors />
 </Example>

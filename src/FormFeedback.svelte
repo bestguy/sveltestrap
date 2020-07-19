@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -6,7 +6,6 @@
   export let valid = undefined;
   export let tooltip = false;
   let classes;
-
 
   $: {
     const validMode = tooltip ? 'tooltip' : 'feedback';

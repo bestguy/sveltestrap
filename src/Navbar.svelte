@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -9,7 +9,6 @@
   export let sticky = '';
   export let color = '';
   export let expand = false;
-
 
   function getExpandClass(expand) {
     if (expand === false) {

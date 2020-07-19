@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   import { createEventDispatcher } from 'svelte';
@@ -14,7 +14,6 @@
   export let onExiting = noop;
   export let onExited = noop;
   export let expand = false;
-
 
   $: classes = classnames(
     className,

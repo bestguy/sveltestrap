@@ -1,5 +1,5 @@
-<script>
-  import { Fade, Button, CardBody, Card } from "sveltestrap";
+<script lang="typescript">
+  import { Fade, Button, CardBody, Card } from 'sveltestrap';
   let isOpen = false;
 </script>
 

@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import { FormGroup, CustomInput, Label } from 'sveltestrap';
 
   let inputValue = '';
@@ -6,11 +6,8 @@
 
 <FormGroup>
   <Label>Pick an option</Label>
-  <CustomInput
-    type="select"
-    bind:value={inputValue}
-  >
-    <option></option>
+  <CustomInput type="select" bind:value={inputValue}>
+    <option />
     <option value={1}>Uno</option>
     <option value={2}>Dos</option>
     <option value={3}>Tres</option>

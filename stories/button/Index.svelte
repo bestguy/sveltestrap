@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import Example from '../Example.svelte';
   import Colors from './Colors.svelte';
   import Disabled from './Disabled.svelte';
@@ -19,7 +19,7 @@
   Bootstrap Buttons
 </a>
 
-<Example title="Colors" source={source}>
+<Example title="Colors" {source}>
   <Colors />
 </Example>
 

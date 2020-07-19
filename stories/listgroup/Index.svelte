@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import Example from '../Example.svelte';
   import Sample from './Sample.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
@@ -11,7 +11,9 @@
 </script>
 
 <h1>List Groups</h1>
-<a href="https://getbootstrap.com/docs/4.3/components/list-group/" target="_blank">
+<a
+  href="https://getbootstrap.com/docs/4.3/components/list-group/"
+  target="_blank">
   Bootstrap List Groups
 </a>
 
@@ -25,7 +27,10 @@
 
 <Example title="Actions" source={actionsSource}>
   <p slot="info">
-    The <code>action</code> prop will fill the ListGroupItem with the clickable area for anchors and buttons.
+    The
+    <code>action</code>
+    prop will fill the ListGroupItem with the clickable area for anchors and
+    buttons.
   </p>
   <Actions />
 </Example>

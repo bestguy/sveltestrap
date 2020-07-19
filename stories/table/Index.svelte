@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import Example from '../Example.svelte';
   import Bordered from './Bordered.svelte';
   import Borderless from './Borderless.svelte';
@@ -46,4 +46,3 @@
 <Example title="Responsive" source={responsiveSource}>
   <Responsive />
 </Example>
-

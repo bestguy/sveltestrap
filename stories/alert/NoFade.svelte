@@ -1,5 +1,5 @@
-<script>
-  import { Alert, UncontrolledAlert } from "sveltestrap";
+<script lang="typescript">
+  import { Alert, UncontrolledAlert } from 'sveltestrap';
 
   let visible = true;
 </script>

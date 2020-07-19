@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
   import { fade as fadeTrans } from 'svelte/transition';
 
@@ -7,7 +7,6 @@
   export let duration = 200;
   export let fade = true;
   export let isOpen = true;
-
 
   $: classes = classnames(className, 'toast', {
     show: isOpen

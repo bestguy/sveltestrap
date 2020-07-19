@@ -1,10 +1,9 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
   export { className as class };
   export let ariaLabel = '';
-
 
   $: classes = classnames(className, 'btn-toolbar');
 </script>

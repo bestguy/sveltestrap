@@ -1,5 +1,5 @@
-<script>
-  import { Card } from "sveltestrap";
+<script lang="typescript">
+  import { Card } from 'sveltestrap';
 </script>
 
 <Card body color="primary" inverse class="mb-3">Primary</Card>

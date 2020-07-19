@@ -1,7 +1,10 @@
 export function getOriginalBodyPadding() {
   const style = window ? window.getComputedStyle(document.body, null) : {};
 
-  return parseInt((style && style.getPropertyValue('padding-right')) || 0, 10);
+  return parseInt(
+    (style && (style as any).getPropertyValue('padding-right')) || 0,
+    10
+  );
 }
 
 export function getScrollbarWidth() {
@@ -38,7 +41,7 @@ export function conditionallyUpdateScrollbar() {
     '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top'
   )[0];
   const bodyPadding = fixedContent
-    ? parseInt(fixedContent.style.paddingRight || 0, 10)
+    ? parseInt((fixedContent as any).style.paddingRight || 0, 10)
     : 0;
 
   if (isBodyOverflowing()) {
@@ -62,7 +65,7 @@ export function clean($$props) {
   const { children, $$scope, $$slots } = $$props;
   const rest = {};
   for (const key of Object.keys($$props)) {
-    if (key !== "children" && key !== "$$scope" && key !== "$$slots") {
+    if (key !== 'children' && key !== '$$scope' && key !== '$$slots') {
       rest[key] = $$props[key];
     }
   }
@@ -107,4 +110,3 @@ function toClassName(value) {
 export default function classnames(...args) {
   return args.map(toClassName).filter(Boolean).join(' ');
 }
-

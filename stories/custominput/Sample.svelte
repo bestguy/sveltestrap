@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import {
     Button,
     CustomInput,
@@ -7,7 +7,7 @@
     FormText,
     Input,
     Label
-  } from "sveltestrap";
+  } from 'sveltestrap';
 </script>
 
 <Form>

@@ -1,5 +1,5 @@
-<script>
-  import { Breadcrumb, BreadcrumbItem } from "sveltestrap";
+<script lang="typescript">
+  import { Breadcrumb, BreadcrumbItem } from 'sveltestrap';
 </script>
 
 <Breadcrumb>

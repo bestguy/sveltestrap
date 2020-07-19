@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -7,7 +7,6 @@
   export let closeAriaLabel = 'Close';
   export let charCode = 215;
   export let children = undefined;
-
 
   $: closeIcon =
     typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;

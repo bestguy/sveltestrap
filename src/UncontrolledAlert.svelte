@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import Alert from './Alert.svelte';
 
   let isOpen = true;

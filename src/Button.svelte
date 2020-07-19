@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -15,7 +15,6 @@
   export let size = '';
   export let style = '';
   export let value = '';
-
 
   $: ariaLabel = $$props['aria-label'];
 

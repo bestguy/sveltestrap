@@ -1,11 +1,10 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   import Button from './Button.svelte';
 
   let className = '';
   export { className as class };
-
 
   $: classes = classnames(className, 'navbar-toggler');
 </script>

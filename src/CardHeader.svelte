@@ -1,11 +1,10 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
   export { className as class };
   export let id = '';
   export let tag = 'div';
-
 
   $: classes = classnames(className, 'card-header');
 </script>

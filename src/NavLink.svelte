@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -6,7 +6,6 @@
   export let disabled = false;
   export let active = false;
   export let href = '#';
-
 
   $: classes = classnames(className, 'nav-link', {
     disabled,

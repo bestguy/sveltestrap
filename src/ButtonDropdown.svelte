@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import Dropdown from './Dropdown.svelte';
 
   let className = '';
@@ -15,7 +15,6 @@
   export let setActiveFromChild = false;
   export let size = '';
   export let toggle = undefined;
-
 </script>
 
 <Dropdown

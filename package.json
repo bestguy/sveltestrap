@@ -4,7 +4,7 @@
   "main": "dist/sveltestrap.js",
   "module": "dist/sveltestrap.es.js",
   "jsnext:main": "dist/sveltestrap.es.js",
-  "svelte": "src/index.js",
+  "svelte": "src/index.ts",
   "keywords": [
     "svelte"
   ],
@@ -85,6 +85,7 @@
     "svelte-jester": "^1.0.6",
     "svelte-loader": "^2.13.6",
     "svelte-preprocess": "^4.0.8",
+    "typescript": "^3.9.7",
     "wait-for-localhost-cli": "^2.0.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",

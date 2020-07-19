@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -15,7 +15,6 @@
   export let href = '';
   export let src = '';
   export let alt = '';
-
 
   $: classes = classnames(className, {
     'media-body': body,

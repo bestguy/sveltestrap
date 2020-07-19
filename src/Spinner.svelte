@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -6,7 +6,6 @@
   export let type = 'border';
   export let size = '';
   export let color = '';
-
 
   $: classes = classnames(
     className,

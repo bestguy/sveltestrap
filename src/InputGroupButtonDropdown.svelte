@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import Dropdown from './Dropdown.svelte';
 
   let className = '';
@@ -6,7 +6,6 @@
   export let addonType;
   export let toggle;
   export let isOpen;
-
 
   if (['prepend', 'append'].indexOf(addonType) === -1) {
     throw new Error(

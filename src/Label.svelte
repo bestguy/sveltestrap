@@ -1,10 +1,9 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   import { getColumnSizeClass, isObject } from './utils';
 
   let className = '';
-
 
   export { className as class };
   export let hidden = false;
@@ -30,7 +29,7 @@
 
   const colClasses = [];
 
-  widths.forEach(colWidth => {
+  widths.forEach((colWidth) => {
     let columnProp = $$props[colWidth];
 
     if (!columnProp && columnProp !== '') {

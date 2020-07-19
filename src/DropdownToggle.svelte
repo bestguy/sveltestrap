@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import { getContext } from 'svelte';
   import classnames from './utils';
 
@@ -18,7 +18,6 @@
   export let size = '';
   export let tag = null;
   export let outline = false;
-
 
   $: classes = classnames(className, {
     'dropdown-toggle': caret || split,

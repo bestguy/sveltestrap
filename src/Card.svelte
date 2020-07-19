@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -9,7 +9,6 @@
   export let inverse = false;
   export let outline = false;
   export let style = '';
-
 
   $: classes = classnames(
     className,

@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -11,7 +11,6 @@
   export let fill = false;
   export let navbar = false;
   export let card = false;
-
 
   function getVerticalClass(vertical) {
     if (vertical === false) {

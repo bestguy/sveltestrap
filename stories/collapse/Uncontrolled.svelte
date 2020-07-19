@@ -1,5 +1,5 @@
-<script>
-  import { UncontrolledCollapse, Button, CardBody, Card } from "sveltestrap";
+<script lang="typescript">
+  import { UncontrolledCollapse, Button, CardBody, Card } from 'sveltestrap';
 </script>
 
 <Button color="primary" id="toggler" class="mb-3">Toggle</Button>

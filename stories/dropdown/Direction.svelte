@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import {
     Dropdown,
     DropdownItem,
@@ -11,11 +11,7 @@
   let rightIsOpen = false;
 </script>
 
-<Dropdown
-  direction="up"
-  {isOpen}
-  toggle={() => (isOpen = !isOpen)}
->
+<Dropdown direction="up" {isOpen} toggle={() => (isOpen = !isOpen)}>
   <DropdownToggle caret>Dropup</DropdownToggle>
   <DropdownMenu>
     <DropdownItem>Another Action</DropdownItem>
@@ -26,8 +22,7 @@
 <Dropdown
   direction="left"
   isOpen={leftIsOpen}
-  toggle={() => (leftIsOpen = !leftIsOpen)}
->
+  toggle={() => (leftIsOpen = !leftIsOpen)}>
   <DropdownToggle caret>Dropleft</DropdownToggle>
   <DropdownMenu>
     <DropdownItem>Another Action</DropdownItem>
@@ -38,8 +33,7 @@
 <Dropdown
   direction="right"
   isOpen={rightIsOpen}
-  toggle={() => (rightIsOpen = !rightIsOpen)}
->
+  toggle={() => (rightIsOpen = !rightIsOpen)}>
   <DropdownToggle caret>Dropright</DropdownToggle>
   <DropdownMenu>
     <DropdownItem>Another Action</DropdownItem>

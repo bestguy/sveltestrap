@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import {
     Dropdown,
     DropdownItem,

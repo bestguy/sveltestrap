@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import Dropdown from './Dropdown.svelte';
 
   let className = '';

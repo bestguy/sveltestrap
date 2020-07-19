@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import Example from '../Example.svelte';
   import Binding from './Binding.svelte';
   import bindingSource from '!!raw-loader!./Binding.svelte';
@@ -11,7 +11,9 @@
 </script>
 
 <h1>Inputs</h1>
-<a href="https://getbootstrap.com/docs/4.3/components/forms/#form-controls" target="_blank">
+<a
+  href="https://getbootstrap.com/docs/4.3/components/forms/#form-controls"
+  target="_blank">
   Bootstrap Inputs
 </a>
 
@@ -21,7 +23,8 @@
 
 <Example title="Binding" source={bindingSource}>
   <p slot="info">
-    The recommended way to bind values to Inputs is via <code>{snippet}</code>
+    The recommended way to bind values to Inputs is via
+    <code>{snippet}</code>
   </p>
   <Binding />
 </Example>
@@ -30,16 +33,17 @@
   <p slot="info">
     You can also bind directly to these event handlers:
     <code>
-      on:blur
-      on:focus
-      on:keydown
-      on:keypress
-      on:keyup
-      on:change
-      on:input 
-    </code><br />
-    but this is not recommended if you are just binding to a simple value - Svelte is not React. :-)<br />
-    If you need more exotic events please follow issue <a href="https://github.com/bestguy/sveltestrap/issues/36" target="new">#36</a>.
+      on:blur on:focus on:keydown on:keypress on:keyup on:change on:input
+    </code>
+    <br />
+    but this is not recommended if you are just binding to a simple value -
+    Svelte is not React. :-)
+    <br />
+    If you need more exotic events please follow issue
+    <a href="https://github.com/bestguy/sveltestrap/issues/36" target="new">
+      #36
+    </a>
+    .
   </p>
   <On />
 </Example>

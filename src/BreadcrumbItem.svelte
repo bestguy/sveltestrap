@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -6,8 +6,11 @@
   export let active = false;
   export let children = undefined;
 
-
-  $: classes = classnames(className, active ? 'active' : false, 'breadcrumb-item');
+  $: classes = classnames(
+    className,
+    active ? 'active' : false,
+    'breadcrumb-item'
+  );
 </script>
 
 <li {...$$restProps} class={classes} aria-current={active ? 'page' : undefined}>

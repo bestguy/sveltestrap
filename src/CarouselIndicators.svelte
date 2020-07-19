@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -7,7 +7,6 @@
   export let items = [];
   export let activeIndex = 0;
   export let id = '';
-
 
   $: classes = classnames(className, 'carousel-indicators');
 </script>

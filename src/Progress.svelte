@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
   import toNumber from 'lodash.tonumber';
 
@@ -12,7 +12,6 @@
   export let striped = false;
   export let color = '';
   export let barClassName = '';
-
 
   $: classes = classnames(className, 'progress');
 

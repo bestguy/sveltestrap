@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import classnames from './utils';
 
   let className = '';
@@ -6,7 +6,6 @@
   export let listClassName = '';
   export let size = '';
   export let ariaLabel = 'pagination';
-
 
   $: classes = classnames(className);
 
