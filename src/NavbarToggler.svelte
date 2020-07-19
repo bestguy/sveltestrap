@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import classnames from './utils';
 
   import Button from './Button.svelte';

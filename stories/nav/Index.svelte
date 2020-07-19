@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import Example from '../Example.svelte';
   import Sample from './Sample.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';

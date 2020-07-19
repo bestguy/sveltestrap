@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { fade } from 'svelte/transition';
   const noop = () => undefined;
 

@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { Pagination, PaginationItem, PaginationLink } from 'sveltestrap';
 </script>
 

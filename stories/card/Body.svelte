@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { Card } from 'sveltestrap';
 </script>
 

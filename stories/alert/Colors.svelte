@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { Alert } from 'sveltestrap';
 
   const colors = [
@@ -23,5 +23,3 @@
     .
   </Alert>
 {/each}
-
-<Alert color={223} />

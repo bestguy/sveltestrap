@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import InputGroup from '../src/InputGroup.svelte';
   import InputGroupAddon from '../src/InputGroupAddon.svelte';
   import InputGroupText from '../src/InputGroupText.svelte';

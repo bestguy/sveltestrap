@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { getContext } from 'svelte';
   import classnames from './utils';
 

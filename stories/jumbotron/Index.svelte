@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import Example from '../Example.svelte';
   import Fluid from './Fluid.svelte';
   import fluidSource from '!!raw-loader!./Fluid.svelte';

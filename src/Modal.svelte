@@ -3,7 +3,7 @@
   let openCount = 0;
 </script>
 
-<script lang="typescript">
+<script>
   import classnames from './utils';
   import { browserEvent } from './utils';
   import { onDestroy, onMount, afterUpdate } from 'svelte';

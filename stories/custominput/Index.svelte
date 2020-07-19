@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import Example from '../Example.svelte';
   import Binding from './Binding.svelte';
   import bindingSource from '!!raw-loader!./Binding.svelte';

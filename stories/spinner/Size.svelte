@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { Spinner } from 'sveltestrap';
 </script>
 

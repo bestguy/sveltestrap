@@ -1,10 +1,7 @@
 export function getOriginalBodyPadding() {
   const style = window ? window.getComputedStyle(document.body, null) : {};
 
-  return parseInt(
-    (style && (style as any).getPropertyValue('padding-right')) || 0,
-    10
-  );
+  return parseInt((style && style.getPropertyValue('padding-right')) || 0, 10);
 }
 
 export function getScrollbarWidth() {
@@ -41,7 +38,7 @@ export function conditionallyUpdateScrollbar() {
     '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top'
   )[0];
   const bodyPadding = fixedContent
-    ? parseInt((fixedContent as any).style.paddingRight || 0, 10)
+    ? parseInt(fixedContent.style.paddingRight || 0, 10)
     : 0;
 
   if (isBodyOverflowing()) {

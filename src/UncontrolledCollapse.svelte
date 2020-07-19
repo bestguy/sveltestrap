@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { onMount, onDestroy } from 'svelte';
 
   import Collapse from './Collapse.svelte';

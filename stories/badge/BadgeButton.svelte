@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { Badge, Button } from 'sveltestrap';
 </script>
 

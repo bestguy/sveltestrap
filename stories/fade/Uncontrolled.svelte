@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { UncontrolledFade, Button, CardBody, Card } from 'sveltestrap';
 </script>
 

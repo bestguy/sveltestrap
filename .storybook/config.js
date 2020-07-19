@@ -9,7 +9,7 @@ addParameters({
     url: 'https://github.com/bestguy/sveltestrap',
     panelPosition: 'right',
     showPanel: false
-  },
+  }
 });
 
 addDecorator(withKnobs());
@@ -17,7 +17,7 @@ addDecorator(withKnobs());
 // automatically import all files ending in *.stories.js
 const req = require.context('../stories', true, /\.stories\.js$/);
 function loadStories() {
-  req.keys().forEach(filename => req(filename));
+  req.keys().forEach((filename) => req(filename));
 }
 
 configure(loadStories, module);

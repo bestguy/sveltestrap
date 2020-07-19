@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import ButtonDropdown from './ButtonDropdown.svelte';
 
   let className = '';

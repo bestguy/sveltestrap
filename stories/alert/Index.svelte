@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { Col, Row } from 'sveltestrap';
   import Example from '../Example.svelte';
   import Colors from './Colors.svelte';

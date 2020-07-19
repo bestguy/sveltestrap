@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import classnames from './utils';
   import { fade as fadeTrans } from 'svelte/transition';
 

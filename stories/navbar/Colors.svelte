@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { Navbar, NavbarBrand } from 'sveltestrap';
 
   const colors = [

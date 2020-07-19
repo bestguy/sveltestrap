@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import Example from '../Example.svelte';
   import Bordered from './Bordered.svelte';
   import Borderless from './Borderless.svelte';

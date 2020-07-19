@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { ListGroup, ListGroupItem } from 'sveltestrap';
 </script>
 

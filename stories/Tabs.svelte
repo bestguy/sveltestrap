@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import Nav from '../src/Nav.svelte';
 </script>
 

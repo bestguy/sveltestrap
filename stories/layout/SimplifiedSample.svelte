@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { Col, Container, Row } from 'sveltestrap';
 </script>
 

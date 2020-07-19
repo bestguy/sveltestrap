@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { Carousel, CarouselItem } from 'sveltestrap';
 
   const items = [

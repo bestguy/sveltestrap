@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { Alert, UncontrolledAlert } from 'sveltestrap';
 
   let visible = true;

@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { Nav, NavItem, NavLink } from 'sveltestrap';
 </script>
 

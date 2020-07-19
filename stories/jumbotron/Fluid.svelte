@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { Container, Jumbotron } from 'sveltestrap';
 </script>
 

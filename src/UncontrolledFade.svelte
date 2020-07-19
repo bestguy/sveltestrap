@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { onMount, onDestroy } from 'svelte';
 
   import Fade from './Fade.svelte';

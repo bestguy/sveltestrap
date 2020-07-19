@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { Button, Form, FormGroup, FormText, Input, Label } from 'sveltestrap';
 </script>
 

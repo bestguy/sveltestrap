@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { Button } from 'sveltestrap';
   const handleClick = () => alert('I warned you!');
 </script>

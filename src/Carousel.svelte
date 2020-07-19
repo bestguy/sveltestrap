@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { onDestroy, onMount } from 'svelte';
   import classnames from './utils';
   import { getNewCarouselActiveIndex, browserEvent } from './utils';

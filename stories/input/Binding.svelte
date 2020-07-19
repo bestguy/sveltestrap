@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { FormGroup, Input, Label } from 'sveltestrap';
 
   let inputValue = '';

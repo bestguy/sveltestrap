@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import { Button, Container, Row, Col, Jumbotron } from 'sveltestrap';
   import PrismCode from '../PrismCode.svelte';
   import Example from '../Example.svelte';

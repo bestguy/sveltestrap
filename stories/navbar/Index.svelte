@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import Example from '../Example.svelte';
   import Colors from './Colors.svelte';
   import colorsSource from '!!raw-loader!./Colors.svelte';

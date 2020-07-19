@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script>
   import Example from '../Example.svelte';
   import Events from './Events.svelte';
   import eventsSource from '!!raw-loader!./Events.svelte';

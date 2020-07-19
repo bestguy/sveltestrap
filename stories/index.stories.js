@@ -28,14 +28,13 @@ import Toast from './toast/Index.svelte';
 import Tooltip from './tooltip/Index.svelte';
 import Welcome from './welcome/Index.svelte';
 
-const story = Component => () => ({
+const story = (Component) => () => ({
   Component
 });
 
-storiesOf('Introduction', module)
-  .add('Get Started', story(Welcome))
-  
-  storiesOf('Components', module)
+storiesOf('Introduction', module).add('Get Started', story(Welcome));
+
+storiesOf('Components', module)
   .add('Layout', story(Grid))
   .add('Alert', story(Alert))
   .add('Badge', story(Badge))
