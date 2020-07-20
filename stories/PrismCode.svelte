@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script lang="ts">
   import classnames from '../src/utils';
   import { afterUpdate } from 'svelte';
   import Prism from 'prismjs';

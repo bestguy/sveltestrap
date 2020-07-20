@@ -1,6 +1,7 @@
 <script lang="ts">
+  // can import without requiring parent script
   import { Button } from 'sveltestrap';
-  const colors: any[] = [
+  const colors: any = [
     'primary',
     'secondary',
     'success',
