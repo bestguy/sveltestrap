@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Alert } from 'sveltestrap';
 
   let visible = true;

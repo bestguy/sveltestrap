@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Button, Toast, ToastBody, ToastHeader } from 'sveltestrap';
 
   let isOpen = false;

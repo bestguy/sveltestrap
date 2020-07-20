@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Badge } from 'sveltestrap';
 
   const colors = [

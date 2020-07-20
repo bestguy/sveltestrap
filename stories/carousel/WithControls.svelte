@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Carousel, CarouselControl, CarouselItem } from 'sveltestrap';
 
   const items = [

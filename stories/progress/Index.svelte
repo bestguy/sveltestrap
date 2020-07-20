@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Example from '../Example.svelte';
 
   import Animated from './Animated.svelte';

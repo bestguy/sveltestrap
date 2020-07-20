@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Card, Col, Container, Row } from 'sveltestrap';
 
   const cell = 'bg-white rounded m-1 small p-2';

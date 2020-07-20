@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Button, Jumbotron } from 'sveltestrap';
 </script>
 

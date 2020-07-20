@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Button } from 'sveltestrap';
 
   const colors = [

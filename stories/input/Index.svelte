@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Example from '../Example.svelte';
   import Binding from './Binding.svelte';
   import bindingSource from '!!raw-loader!./Binding.svelte';

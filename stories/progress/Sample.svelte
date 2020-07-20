@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Progress } from 'sveltestrap';
 </script>
 

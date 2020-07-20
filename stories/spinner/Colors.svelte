@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Spinner } from 'sveltestrap';
   const colors = [
     'primary',

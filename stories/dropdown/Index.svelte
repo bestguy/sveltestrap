@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Example from '../Example.svelte';
   import Alignment from './Alignment.svelte';
   import alignmentSource from '!!raw-loader!./Alignment.svelte';

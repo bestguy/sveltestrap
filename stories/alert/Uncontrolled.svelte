@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { UncontrolledAlert } from 'sveltestrap';
 </script>
 

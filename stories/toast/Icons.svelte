@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Toast, ToastBody, ToastHeader } from 'sveltestrap';
   const colors = [
     'primary',

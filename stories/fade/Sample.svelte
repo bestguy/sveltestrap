@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Fade, Button, CardBody, Card } from 'sveltestrap';
   let isOpen = false;
 </script>

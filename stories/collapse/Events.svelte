@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Collapse, Button, CardBody, Card } from 'sveltestrap';
 
   let isOpen = false;

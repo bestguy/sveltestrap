@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Card, CardBody } from 'sveltestrap';
 </script>
 

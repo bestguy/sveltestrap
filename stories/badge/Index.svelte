@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Col, Row } from 'sveltestrap';
   import PrismCode from '../PrismCode.svelte';
   import Example from '../Example.svelte';

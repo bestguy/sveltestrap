@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Example from '../Example.svelte';
   import Colors from './Colors.svelte';
   import Size from './Size.svelte';

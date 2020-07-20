@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Col, Row } from 'sveltestrap';
   import Example from '../Example.svelte';
   import Colors from './Colors.svelte';
