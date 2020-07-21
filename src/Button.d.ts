@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from '.';
+import { LocalSvelteComponent } from './index.d';
 
 export declare type ButtonColor =
   | 'primary'

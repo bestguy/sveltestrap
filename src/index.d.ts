@@ -161,6 +161,8 @@ export interface CSSModule {
 
 type LocalSvelteProps = {
   children?: any;
+  class?: string;
+  [key: string]: any;
 };
 
 /**
