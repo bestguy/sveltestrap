@@ -1,29 +1,18 @@
-<script lang="ts">
+<script>
   import classnames from './utils';
-  type ButtonColor =
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'danger'
-    | 'warning'
-    | 'info'
-    | 'light'
-    | 'dark';
-
-  type ButtonSize = 'lg' | 'sm';
 
   let className = '';
   export { className as class };
-  export let active: boolean = false;
-  export let block: boolean = false;
+  export let active = false;
+  export let block = false;
   export let children = undefined;
-  export let close: boolean = false;
-  export let color: ButtonColor = 'secondary';
-  export let disabled: boolean = false;
-  export let href: string = '';
-  export let id: string = '';
-  export let outline: boolean = false;
-  export let size: ButtonSize;
+  export let close = false;
+  export let color = 'secondary';
+  export let disabled = false;
+  export let href = '';
+  export let id = '';
+  export let outline = false;
+  export let size;
   export let style = '';
   export let value = '';
 
