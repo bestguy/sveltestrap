@@ -16,7 +16,6 @@ export interface IButtonProps {
   outline?: boolean;
   disabled?: boolean;
   active?: boolean;
-  testeee?: boolean;
 }
 
 /**
