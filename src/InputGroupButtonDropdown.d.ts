@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { DropdownProps } from './Dropdown';
+import { IDropdownProps } from './Dropdown';
+import { LocalSvelteComponent } from './shared';
 
-export interface InputGroupButtonDropdownProps extends DropdownProps {
-    addonType: 'prepend' | 'append';
+export interface IInputGroupButtonDropdownProps extends IDropdownProps {
+  addonType: 'prepend' | 'append';
 }
 
-declare class InputGroupButtonDropdown<T = {[key: string]: any}> extends React.Component<InputGroupButtonDropdownProps> {}
+declare class InputGroupButtonDropdown extends LocalSvelteComponent<
+  IInputGroupButtonDropdownProps
+> {}
 export default InputGroupButtonDropdown;

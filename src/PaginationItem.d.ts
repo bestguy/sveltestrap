@@ -1,16 +1,11 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface PaginationItemProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  className?: string;
-  cssModule?: CSSModule;
+export interface IPaginationItemProps {
   active?: boolean;
   disabled?: boolean;
-  tag?: string | React.ReactType;
 }
 
-declare class PaginationItem<
-  T = { [key: string]: any }
-> extends React.Component<PaginationItemProps> {}
+declare class PaginationItem extends LocalSvelteComponent<
+  IPaginationItemProps
+> {}
 export default PaginationItem;

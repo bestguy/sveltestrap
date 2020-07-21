@@ -1,8 +1,6 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface NavProps extends React.HTMLProps<HTMLUListElement> {
-  [key: string]: any;
+export interface INavProps {
   tabs?: boolean;
   pills?: boolean;
   vertical?: boolean | string;
@@ -11,12 +9,7 @@ export interface NavProps extends React.HTMLProps<HTMLUListElement> {
   fill?: boolean;
   navbar?: boolean;
   card?: boolean;
-  tag?: string | React.ReactType;
-  className?: string;
-  cssModule?: CSSModule;
 }
 
-declare class Nav<T = { [key: string]: any }> extends React.Component<
-  NavProps
-> {}
+declare class Nav extends LocalSvelteComponent<INavProps> {}
 export default Nav;

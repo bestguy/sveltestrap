@@ -1,29 +1,28 @@
-import * as React from 'react';
+import { LocalSvelteComponent } from './shared';
 
-export type ColumnProps
-  = string
+export type ColumnProps =
+  | string
   | boolean
   | number
   | {
-    size?: boolean | number | string
-    push?: string | number
-    pull?: string | number
-    offset?: string | number
-    order?: string | number
-  };
+      size?: boolean | number | string;
+      push?: string | number;
+      pull?: string | number;
+      offset?: string | number;
+      order?: string | number;
+    };
 
-export interface ColProps extends React.HTMLProps<HTMLDivElement> {
-    [key: string]: any;
-    tag?: string | React.ReactType;
-    xs?: ColumnProps;
-    sm?: ColumnProps;
-    md?: ColumnProps;
-    lg?: ColumnProps;
-    xl?: ColumnProps;
+export interface IColProps {
+  id?: string;
+  xs?: ColumnProps;
+  sm?: ColumnProps;
+  md?: ColumnProps;
+  lg?: ColumnProps;
+  xl?: ColumnProps;
 
-    // custom widths
-    widths?: string[];
+  // custom widths
+  widths?: string[];
 }
 
-declare class Col<T = {[key: string]: any}> extends React.Component<ColProps> {}
+declare class Col extends LocalSvelteComponent<IColProps> {}
 export default Col;

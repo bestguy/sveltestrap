@@ -1,17 +1,10 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { Color, LocalSvelteComponent } from './shared';
 
-export interface SpinnerProps extends React.HTMLProps<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
+export interface ISpinnerProps {
   type?: string;
   size?: any;
-  color?: string;
-  className?: string;
-  cssModule?: CSSModule;
+  color?: Color;
 }
 
-declare class Spinner<T = { [key: string]: any }> extends React.Component<
-  SpinnerProps
-> {}
+declare class Spinner extends LocalSvelteComponent<ISpinnerProps> {}
 export default Spinner;

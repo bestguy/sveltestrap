@@ -1,15 +1,8 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface InputGroupProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
-  size?: string;
-  className?: string;
-  cssModule?: CSSModule;
+export interface IInputGroupProps {
+  size?: 'sm' | 'lg';
 }
 
-declare class InputGroup<T = { [key: string]: any }> extends React.Component<
-  InputGroupProps
-> {}
+declare class InputGroup extends LocalSvelteComponent<IInputGroupProps> {}
 export default InputGroup;

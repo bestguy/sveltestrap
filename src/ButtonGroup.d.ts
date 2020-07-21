@@ -1,18 +1,10 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface ButtonGroupProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
-  'aria-label'?: string;
-  className?: string;
-  cssModule?: CSSModule;
-  role?: string;
+export interface IButtonGroupProps {
+  id?: string;
   size?: string;
   vertical?: boolean;
 }
 
-declare class ButtonGroup<T = { [key: string]: any }> extends React.Component<
-  ButtonGroupProps
-> {}
+declare class ButtonGroup extends LocalSvelteComponent<IButtonGroupProps> {}
 export default ButtonGroup;

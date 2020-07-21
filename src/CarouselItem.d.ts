@@ -1,21 +1,10 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface CarouselItemProps extends React.HTMLProps<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
-  in?: boolean;
-  cssModule?: CSSModule;
-  slide?: boolean;
-  onEnter?: () => void;
-  onEntering?: () => void;
-  onEntered?: () => void;
-  onExit?: () => void;
-  onExiting?: () => void;
-  onExited?: () => void;
+export interface ICarouselItemProps {
+  id?: string;
+  itemIndex?: number;
+  activeIndex?: number;
 }
 
-declare class CarouselItem<T = { [key: string]: any }> extends React.Component<
-  CarouselItemProps
-> {}
+declare class CarouselItem extends LocalSvelteComponent<ICarouselItemProps> {}
 export default CarouselItem;

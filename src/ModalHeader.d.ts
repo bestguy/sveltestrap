@@ -1,16 +1,10 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface ModalHeaderProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
-  className?: string;
-  cssModule?: CSSModule;
-  wrapTag?: string | React.ReactType;
-  toggle?: React.MouseEventHandler<any>;
+export interface IModalHeaderProps {
+  ariaToggle?: string;
+  toggle?: () => void;
+  charCode?: number;
 }
 
-declare class ModalHeader<T = { [key: string]: any }> extends React.Component<
-  ModalHeaderProps
-> {}
+declare class ModalHeader extends LocalSvelteComponent<IModalHeaderProps> {}
 export default ModalHeader;

@@ -1,14 +1,4 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface ModalFooterProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
-  className?: string;
-  cssModule?: CSSModule;
-}
-
-declare class ModalFooter<T = { [key: string]: any }> extends React.Component<
-  ModalFooterProps
-> {}
+declare class ModalFooter extends LocalSvelteComponent {}
 export default ModalFooter;

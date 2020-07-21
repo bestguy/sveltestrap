@@ -1,15 +1,8 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface TabPaneProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
-  className?: string;
-  cssModule?: CSSModule;
+export interface ITabPaneProps {
   tabId?: number | string;
 }
 
-declare class TabPane<T = { [key: string]: any }> extends React.Component<
-  TabPaneProps
-> {}
+declare class TabPane extends LocalSvelteComponent<ITabPaneProps> {}
 export default TabPane;

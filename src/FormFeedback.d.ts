@@ -1,15 +1,9 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface FormFeedbackProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string;
-  className?: string;
-  cssModule?: CSSModule;
+export interface IFormFeedbackProps {
   valid?: boolean;
+  tooltip?: boolean;
 }
 
-declare class FormFeedback<T = { [key: string]: any }> extends React.Component<
-  FormFeedbackProps
-> {}
+declare class FormFeedback extends LocalSvelteComponent<IFormFeedbackProps> {}
 export default FormFeedback;

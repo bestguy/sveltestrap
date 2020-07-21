@@ -1,14 +1,14 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface CarouselControlProps extends React.HTMLProps<HTMLElement> {
-  [s: string]: any;
+export interface ICarouselControlProps {
+  id?: string;
   direction: 'prev' | 'next';
-  onClickHandler: () => void;
-  cssModule?: CSSModule;
   directionText: string;
+  activeIndex?: number;
+  items?: any[];
+  wrap?: boolean;
 }
 
-export default class CarouselControl<T = {}> extends React.Component<
-  CarouselControlProps
+export default class CarouselControl extends LocalSvelteComponent<
+  ICarouselControlProps
 > {}

@@ -1,18 +1,13 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface FormGroupProps extends React.HTMLProps<HTMLDivElement> {
-  [key: string]: any;
+export interface FormGroupProps {
   row?: boolean;
   check?: boolean;
   inline?: boolean;
   disabled?: boolean;
+  id?: string;
   tag?: string | React.ReactType;
-  className?: string;
-  cssModule?: CSSModule;
 }
 
-declare class FormGroup<T = { [key: string]: any }> extends React.Component<
-  FormGroupProps
-> {}
+declare class FormGroup extends LocalSvelteComponent<FormGroupProps> {}
 export default FormGroup;

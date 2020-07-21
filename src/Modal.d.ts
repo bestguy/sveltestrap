@@ -1,13 +1,12 @@
-import * as React from 'react';
-import { CSSModule } from './index';
-import { FadeProps } from './Fade';
+import { IFadeProps } from './Fade';
+import { LocalSvelteComponent } from './shared';
 
-export interface ModalProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
+export interface IModalProps {
   isOpen?: boolean;
   autoFocus?: boolean;
+  backdropDuration?: number;
   size?: string;
-  toggle?: React.KeyboardEventHandler<any> | React.MouseEventHandler<any>;
+  toggle?: () => void;
   keyboard?: boolean;
   backdrop?: boolean | 'static';
   scrollable?: boolean;
@@ -15,24 +14,19 @@ export interface ModalProps extends React.HTMLAttributes<HTMLElement> {
   onExit?: () => void;
   onOpened?: () => void;
   onClosed?: () => void;
-  className?: string;
-  cssModule?: CSSModule;
   wrapClassName?: string;
   modalClassName?: string;
   backdropClassName?: string;
   contentClassName?: string;
   zIndex?: number | string;
   fade?: boolean;
-  backdropTransition?: FadeProps;
-  modalTransition?: FadeProps;
   centered?: boolean;
   external?: React.ReactNode;
   labelledBy?: string;
-  role?: string;
   unmountOnClose?: boolean;
   returnFocusAfterClose?: boolean;
-  container?: string | HTMLElement | React.RefObject<HTMLElement>;
+  transitionOptions: IFadeProps | {};
 }
 
-declare class Modal<T> extends React.Component<ModalProps> {}
+declare class Modal extends LocalSvelteComponent<IModalProps> {}
 export default Modal;

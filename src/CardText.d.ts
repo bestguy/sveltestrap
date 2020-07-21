@@ -1,14 +1,4 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface CardTextProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
-  className?: string;
-  cssModule?: CSSModule;
-}
-
-declare class CardText<T = { [key: string]: any }> extends React.Component<
-  CardTextProps
-> {}
+declare class CardText extends LocalSvelteComponent {}
 export default CardText;

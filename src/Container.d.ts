@@ -1,15 +1,10 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface ContainerProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
+export interface ContainerProps {
+  id?: string;
+
   fluid?: boolean | string;
-  className?: string;
-  cssModule?: CSSModule;
 }
 
-declare class Container<T = { [key: string]: any }> extends React.Component<
-  ContainerProps
-> {}
+declare class Container extends LocalSvelteComponent<ContainerProps> {}
 export default Container;

@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent, Color } from './shared';
 
 export type InputType =
   | 'text'
@@ -28,21 +27,25 @@ export type InputType =
   | 'time'
   | 'color';
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  [key: string]: any;
+export interface IInputProps {
   type?: InputType;
+  size: string;
   bsSize?: 'lg' | 'sm';
-  state?: string;
+  color?: Color;
+  checked?: boolean;
   valid?: boolean;
   invalid?: boolean;
-  tag?: string | React.ReactType;
-  innerRef?: React.Ref<HTMLInputElement>;
   plaintext?: boolean;
   addon?: boolean;
-  className?: string;
-  cssModule?: CSSModule;
+  value?: string;
+  files?: string;
+  readonly: boolean;
+  multiple?: boolean;
+  id?: string;
+  name?: string;
+  placeholder?: string;
+  disabled?: boolean;
 }
 
-declare class Input<T> extends React.Component<InputProps> {}
+declare class Input extends LocalSvelteComponent<IInputProps> {}
 export default Input;

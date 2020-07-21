@@ -1,16 +1,9 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string;
-  className?: string;
-  listTag?: string;
+export interface IBreadcrumbProps {
+  ariaLabel?: string;
   listClassName?: string;
-  cssModule?: CSSModule;
 }
 
-declare class Breadcrumb<T = { [key: string]: any }> extends React.Component<
-  BreadcrumbProps
-> {}
+declare class Breadcrumb extends LocalSvelteComponent<IBreadcrumbProps> {}
 export default Breadcrumb;

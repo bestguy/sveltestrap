@@ -1,14 +1,12 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface CarouselCaptionProps extends React.HTMLProps<HTMLElement> {
-  [key: string]: any;
+export interface ICarouselCaptionProps {
+  id?: string;
   captionHeader?: string;
   captionText: string;
-  cssModule?: CSSModule;
 }
 
-declare class CarouselCaption<
-  T = { [key: string]: any }
-> extends React.Component<CarouselCaptionProps> {}
+declare class CarouselCaption extends LocalSvelteComponent<
+  ICarouselCaptionProps
+> {}
 export default CarouselCaption;

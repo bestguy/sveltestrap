@@ -1,6 +1,6 @@
-import { LocalSvelteComponent } from './index.d';
+import { LocalSvelteComponent } from './shared';
 
-export declare type ButtonColor =
+declare type ButtonColor =
   | 'primary'
   | 'secondary'
   | 'success'
@@ -9,13 +9,16 @@ export declare type ButtonColor =
   | 'info'
   | 'light'
   | 'dark';
-export declare type ButtonSize = 'lg' | 'sm';
-export interface IButtonProps {
-  color?: ButtonColor;
-  size?: ButtonSize;
-  outline?: boolean;
-  disabled?: boolean;
+declare type ButtonSize = 'lg' | 'sm';
+interface IButtonProps {
   active?: boolean;
+  block?: boolean;
+  close?: boolean;
+  color?: ButtonColor;
+  disabled?: boolean;
+  href: boolean;
+  outline?: boolean;
+  size?: ButtonSize;
 }
 
 /**

@@ -1,20 +1,8 @@
-import * as React from 'react';
-import * as Popper from 'popper.js';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface DropdownMenuProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
+export interface IDropdownMenuProps {
   right?: boolean;
-  className?: string;
-  cssModule?: CSSModule;
-  flip?: boolean;
-  modifiers?: Popper.Modifiers;
-  persist?: boolean;
-  positionFixed?: boolean;
 }
 
-declare class DropdownMenu<T = { [key: string]: any }> extends React.Component<
-  DropdownMenuProps
-> {}
+declare class DropdownMenu extends LocalSvelteComponent<IDropdownMenuProps> {}
 export default DropdownMenu;

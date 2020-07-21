@@ -1,14 +1,8 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface FormProps extends React.HTMLProps<HTMLFormElement> {
-  [key: string]: any;
+export interface IFormProps {
   inline?: boolean;
-  tag?: string | React.ReactType;
-  innerRef?: React.Ref<HTMLFormElement>;
-  className?: string;
-  cssModule?: CSSModule;
 }
 
-declare class Form<T> extends React.Component<FormProps> {}
+declare class Form extends LocalSvelteComponent<IFormProps> {}
 export default Form;

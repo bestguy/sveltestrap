@@ -1,15 +1,9 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface JumbotronProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
+export interface IJumbotronProps {
+  tag?: string;
   fluid?: boolean;
-  className?: string;
-  cssModule?: CSSModule;
 }
 
-declare class Jumbotron<T = { [key: string]: any }> extends React.Component<
-  JumbotronProps
-> {}
+declare class Jumbotron extends LocalSvelteComponent<IJumbotronProps> {}
 export default Jumbotron;

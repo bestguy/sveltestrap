@@ -1,14 +1,4 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface CardImgOverlayProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
-  className?: string;
-  cssModule?: CSSModule;
-}
-
-declare class CardImgOverlay<
-  T = { [key: string]: any }
-> extends React.Component<CardImgOverlayProps> {}
+declare class CardImgOverlay extends LocalSvelteComponent {}
 export default CardImgOverlay;

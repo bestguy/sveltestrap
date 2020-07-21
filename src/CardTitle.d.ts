@@ -1,14 +1,4 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface CardTitleProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
-  className?: string;
-  cssModule?: CSSModule;
-}
-
-declare class CardTitle<T = { [key: string]: any }> extends React.Component<
-  CardTitleProps
-> {}
+declare class CardTitle extends LocalSvelteComponent {}
 export default CardTitle;

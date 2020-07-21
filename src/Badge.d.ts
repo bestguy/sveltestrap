@@ -1,16 +1,11 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { Color } from './shared';
+import { LocalSvelteComponent } from './shared';
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  color?: string;
+export interface IBadgeProps {
+  color?: Color;
+  href?: string;
   pill?: boolean;
-  tag?: string | React.ReactType;
-  className?: string;
-  cssModule?: CSSModule;
 }
 
-declare class Badge<T = { [key: string]: any }> extends React.Component<
-  BadgeProps
-> {}
+declare class Badge extends LocalSvelteComponent<IBadgeProps> {}
 export default Badge;

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { SvelteComponent } from 'svelte';
+import { LocalSvelteComponent } from './shared';
 
 export type CustomInputType =
   | 'select'
@@ -9,21 +9,21 @@ export type CustomInputType =
   | 'switch'
   | 'range';
 
-export interface CustomInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  [key: string]: any;
+export interface ICustomInputProps {
+  id?: string;
   type: CustomInputType;
-  label?: React.ReactNode;
+  name?: string;
+  label?: any;
+  checked?: boolean;
+  disabled?: boolean;
   inline?: boolean;
   bsSize?: 'lg' | 'sm';
   valid?: boolean;
+  value?: string;
   invalid?: boolean;
-  className?: string;
-  cssModule?: CSSModule;
-  htmlFor?: string;
+  placeholder?: string;
+  for?: string;
 }
 
-declare class CustomInput<T = { [key: string]: any }> extends React.Component<
-  CustomInputProps
-> {}
+declare class CustomInput extends LocalSvelteComponent<ICustomInputProps> {}
 export default CustomInput;

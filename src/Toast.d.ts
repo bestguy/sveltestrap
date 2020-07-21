@@ -1,17 +1,10 @@
-import * as React from 'react';
-import { CSSModule } from './index';
-import { FadeProps } from './Fade';
+import { LocalSvelteComponent } from './shared';
 
-export interface ToastProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
-  className?: string;
-  cssModule?: CSSModule;
-  innerRef?: React.Ref<HTMLElement>;
+export interface IToastProps {
   isOpen?: boolean;
   fade?: boolean;
-  transition?: FadeProps;
+  duration?: number;
 }
 
-declare class Toast<T> extends React.Component<ToastProps> {}
+declare class Toast extends LocalSvelteComponent<IToastProps> {}
 export default Toast;

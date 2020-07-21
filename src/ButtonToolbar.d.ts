@@ -1,16 +1,8 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface ButtonToolbarProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
+export interface IButtonToolbarProps {
   'aria-label'?: string;
-  className?: string;
-  cssModule?: CSSModule;
-  role?: string;
 }
 
-declare class ButtonToolbar<T = { [key: string]: any }> extends React.Component<
-  ButtonToolbarProps
-> {}
+declare class ButtonToolbar extends LocalSvelteComponent<IButtonToolbarProps> {}
 export default ButtonToolbar;

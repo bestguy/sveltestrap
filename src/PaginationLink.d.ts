@@ -1,20 +1,16 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface PaginationLinkProps
-  extends React.HTMLProps<HTMLAnchorElement> {
-  [key: string]: any;
-  'aria-label'?: string;
-  className?: string;
-  cssModule?: CSSModule;
+export interface IPaginationLinkProps {
+  arialabel?: string;
+
   next?: boolean;
   previous?: boolean;
   first?: boolean;
   last?: boolean;
-  tag?: string | React.ReactType;
+  href?: string | React.ReactType;
 }
 
-declare class PaginationLink<
-  T = { [key: string]: any }
-> extends React.Component<PaginationLinkProps> {}
+declare class PaginationLink extends LocalSvelteComponent<
+  IPaginationLinkProps
+> {}
 export default PaginationLink;

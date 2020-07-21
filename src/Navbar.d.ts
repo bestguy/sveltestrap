@@ -1,22 +1,13 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { Color, LocalSvelteComponent } from './shared';
 
-export interface NavbarProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
+export interface INavbarProps {
   light?: boolean;
   dark?: boolean;
-  full?: boolean;
   fixed?: string;
   sticky?: string;
-  color?: string;
-  role?: string;
-  tag?: string | React.ReactType;
-  className?: string;
-  cssModule?: CSSModule;
+  color?: Color;
   expand?: boolean | string;
 }
 
-declare class Navbar<T = { [key: string]: any }> extends React.Component<
-  NavbarProps
-> {}
+declare class Navbar extends LocalSvelteComponent<INavbarProps> {}
 export default Navbar;

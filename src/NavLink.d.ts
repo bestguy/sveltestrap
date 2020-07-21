@@ -1,17 +1,10 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface NavLinkProps extends React.HTMLProps<HTMLAnchorElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
-  innerRef?: React.Ref<HTMLAnchorElement>;
+export interface INavLinkProps {
   disabled?: boolean;
   active?: boolean;
-  className?: string;
-  cssModule?: CSSModule;
-  onClick?: React.MouseEventHandler<any>;
   href?: string;
 }
 
-declare class NavLink<T> extends React.Component<NavLinkProps> {}
+declare class NavLink extends LocalSvelteComponent<INavLinkProps> {}
 export default NavLink;

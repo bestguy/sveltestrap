@@ -1,12 +1,6 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { Direction, LocalSvelteComponent } from './shared';
 
-export type Direction = 'up' | 'down' | 'left' | 'right';
-
-export interface DropdownProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  a11y?: boolean;
-  disabled?: boolean;
+export interface IDropdownProps {
   direction?: Direction;
   group?: boolean;
   isOpen?: boolean;
@@ -14,25 +8,14 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLElement> {
   active?: boolean;
   addonType?: boolean | 'prepend' | 'append';
   size?: string;
-  tag?: string | React.ReactType;
-  toggle?: React.KeyboardEventHandler<any> | React.MouseEventHandler<any>;
-  children?: React.ReactNode;
-  className?: string;
-  cssModule?: CSSModule;
+
+  toggle?: () => void;
+
   inNavbar?: boolean;
   setActiveFromChild?: boolean;
+  dropup?: boolean;
 }
 
-export interface UncontrolledDropdownProps extends DropdownProps {
-  defaultOpen?: boolean;
-  onToggle?: (
-    event: React.KeyboardEvent | React.MouseEvent,
-    isOpen: boolean
-  ) => void;
-}
-
-declare class Dropdown<T = { [key: string]: any }> extends React.Component<
-  DropdownProps
-> {}
+declare class Dropdown extends LocalSvelteComponent<IDropdownProps> {}
 
 export default Dropdown;

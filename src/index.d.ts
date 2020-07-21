@@ -75,7 +75,6 @@ import {
   UncontrolledCollapse,
   UncontrolledDropdown
 } from './Uncontrolled';
-import { SvelteComponentDev } from 'svelte/internal';
 
 export {
   Alert,
@@ -154,29 +153,3 @@ export {
   UncontrolledCollapse,
   UncontrolledDropdown
 };
-
-export interface CSSModule {
-  [className: string]: string;
-}
-
-type LocalSvelteProps = {
-  children?: any;
-  class?: string;
-  [key: string]: any;
-};
-
-/**
- * Local svelte class for adding typescript definitions for svelte components
- *
- */
-export declare class LocalSvelteComponent<Props> extends SvelteComponentDev {
-  constructor(props: Props & LocalSvelteProps);
-
-  render: undefined;
-  context: undefined;
-  setState: undefined;
-  forceUpdate: undefined;
-  props: undefined;
-  state: undefined;
-  refs: undefined;
-}

@@ -1,15 +1,12 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface CarouselIndicatorsProps extends React.HTMLProps<HTMLElement> {
-  [key: string]: any;
+export interface ICarouselIndicatorsProps {
   items: object[];
   activeIndex: number;
-  cssModule?: CSSModule;
-  onClickHandler: (idx: number) => void;
+  id?: string;
 }
 
-declare class CarouselIndicators<
-  T = { [key: string]: any }
-> extends React.Component<CarouselIndicatorsProps> {}
+declare class CarouselIndicators extends LocalSvelteComponent<
+  ICarouselIndicatorsProps
+> {}
 export default CarouselIndicators;

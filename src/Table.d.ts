@@ -1,23 +1,14 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface TableProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  className?: string;
-  cssModule?: CSSModule;
+export interface TableProps {
   size?: string;
   bordered?: boolean;
   borderless?: boolean;
   striped?: boolean;
-  inverse?: boolean;
+  dark?: boolean;
   hover?: boolean;
-  reflow?: boolean;
   responsive?: boolean | string;
-  tag?: string | React.ReactType;
-  responsiveTag?: React.ReactType;
 }
 
-declare class Table<T = { [key: string]: any }> extends React.Component<
-  TableProps
-> {}
+declare class Table extends LocalSvelteComponent<TableProps> {}
 export default Table;

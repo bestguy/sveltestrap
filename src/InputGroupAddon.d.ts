@@ -1,16 +1,10 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface InputGroupAddonProps
-  extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
-  className?: string;
-  cssModule?: CSSModule;
+export interface IInputGroupAddonProps {
   addonType: 'prepend' | 'append';
 }
 
-declare class InputGroupAddon<
-  T = { [key: string]: any }
-> extends React.Component<InputGroupAddonProps> {}
+declare class InputGroupAddon extends LocalSvelteComponent<
+  IInputGroupAddonProps
+> {}
 export default InputGroupAddon;

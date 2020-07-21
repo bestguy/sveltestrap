@@ -1,20 +1,12 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface ToastHeaderProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
-  className?: string;
-  cssModule?: CSSModule;
-  wrapTag?: string | React.ReactType;
-  toggle?: React.MouseEventHandler<any>;
-  icon?: string | React.ReactNode;
+export interface IToastHeaderProps {
+  toggle?: () => void;
+  icon?: any;
   close?: React.ReactNode;
   charCode?: string | number;
   closeAriaLabel?: string;
 }
 
-declare class ToastHeader<T = { [key: string]: any }> extends React.Component<
-  ToastHeaderProps
-> {}
+declare class ToastHeader extends LocalSvelteComponent<IToastHeaderProps> {}
 export default ToastHeader;

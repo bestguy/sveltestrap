@@ -1,13 +1,8 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface TabContentProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
+export interface ITabContentProps {
   activeTab?: number | string;
-  className?: string;
-  cssModule?: CSSModule;
 }
 
-declare class TabContent<T> extends React.Component<TabContentProps> {}
+declare class TabContent extends LocalSvelteComponent<ITabContentProps> {}
 export default TabContent;

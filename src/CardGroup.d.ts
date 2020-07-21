@@ -1,14 +1,4 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface CardGroupProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
-  className?: string;
-  cssModule?: CSSModule;
-}
-
-declare class CardGroup<T = { [key: string]: any }> extends React.Component<
-  CardGroupProps
-> {}
+declare class CardGroup extends LocalSvelteComponent {}
 export default CardGroup;

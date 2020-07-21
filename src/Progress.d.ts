@@ -1,25 +1,15 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent, Color } from './shared';
 
-export interface ProgressProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
+export interface IProgressProps {
   bar?: boolean;
   multi?: boolean;
-  tag?: string;
   value?: string | number;
-  min?: string | number;
   max?: string | number;
   animated?: boolean;
   striped?: boolean;
-  color?: string;
-  className?: string;
-  cssModule?: CSSModule;
+  color?: Color;
   barClassName?: string;
-  barAriaValueText?: string;
-  barAriaLabelledBy?: string;
 }
 
-declare class Progress<T = { [key: string]: any }> extends React.Component<
-  ProgressProps
-> {}
+declare class Progress extends LocalSvelteComponent<IProgressProps> {}
 export default Progress;

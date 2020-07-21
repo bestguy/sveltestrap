@@ -1,22 +1,20 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent, Color } from './shared';
 
-export interface DropdownToggleProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
+export interface IDropdownToggleProps {
   caret?: boolean;
-  className?: string;
-  cssModule?: CSSModule;
+  color?: Color;
   disabled?: boolean;
-  onClick?: React.MouseEventHandler<any>;
   outline?: boolean;
-  'data-toggle'?: string;
-  'aria-haspopup'?: boolean;
+  ariaHaspopup?: boolean;
+  ariaLabel?: string;
   split?: boolean;
-  tag?: string | React.ReactType;
+  tag?: string;
   nav?: boolean;
-  color?: string;
+
   size?: string;
 }
 
-declare class DropdownToggle<T> extends React.Component<DropdownToggleProps> {}
+declare class DropdownToggle extends LocalSvelteComponent<
+  IDropdownToggleProps
+> {}
 export default DropdownToggle;

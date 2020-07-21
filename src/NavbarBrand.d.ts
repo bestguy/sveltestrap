@@ -1,14 +1,8 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { LocalSvelteComponent } from './shared';
 
-export interface NavbarBrandProps extends React.HTMLProps<HTMLAnchorElement> {
-  [key: string]: any;
-  tag?: string | React.ReactType;
-  className?: string;
-  cssModule?: CSSModule;
+export interface INavbarBrandProps {
+  href?: string;
 }
 
-declare class NavbarBrand<T = { [key: string]: any }> extends React.Component<
-  NavbarBrandProps
-> {}
+declare class NavbarBrand extends LocalSvelteComponent<INavbarBrandProps> {}
 export default NavbarBrand;

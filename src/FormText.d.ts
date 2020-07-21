@@ -1,16 +1,9 @@
-import * as React from 'react';
-import { CSSModule } from './index';
+import { Color, LocalSvelteComponent } from './shared';
 
-export interface FormTextProps extends React.HTMLAttributes<HTMLElement> {
-  [key: string]: any;
+export interface FormTextProps {
   inline?: boolean;
-  tag?: string | React.ReactType;
-  color?: string;
-  className?: string;
-  cssModule?: CSSModule;
+  color?: Color;
 }
 
-declare class FormText<T = { [key: string]: any }> extends React.Component<
-  FormTextProps
-> {}
+declare class FormText extends LocalSvelteComponent<FormTextProps> {}
 export default FormText;

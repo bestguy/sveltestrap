@@ -1,6 +1,9 @@
-import * as React from 'react';
-import { UncontrolledDropdownProps, DropdownProps } from './Dropdown';
-export { UncontrolledDropdownProps as UncontrolledButtonDropdownProps, DropdownProps as ButtonDropdownProps };
+import { UncontrolledDropdownProps, IDropdownProps } from './Dropdown';
+import { LocalSvelteComponent } from './shared';
+export {
+  UncontrolledDropdownProps as UncontrolledButtonDropdownProps,
+  IDropdownProps as ButtonDropdownProps
+};
 
-declare class ButtonDropdown<T = {[key: string]: any}> extends React.Component<DropdownProps> {}
+declare class ButtonDropdown extends LocalSvelteComponent<IDropdownProps> {}
 export default ButtonDropdown;
