@@ -4,6 +4,15 @@
   let changeValue = '';
   let inputValue = '';
   let focused = false;
+
+  // need events outside template, typescript is not first-class supported inline :(
+  const changeEvent = (e: Event) => {
+    changeValue = (e.target as HTMLInputElement).value;
+  };
+
+  const inputEvent = (e: Event) => {
+    inputValue = (e.target as HTMLInputElement).value;
+  };
 </script>
 
 <FormGroup>
@@ -13,8 +22,8 @@
     value={inputValue}
     on:blur={() => (focused = false)}
     on:focus={() => (focused = true)}
-    on:change={(e) => (changeValue = e.target.value)}
-    on:input={(e) => (inputValue = e.target.value)} />
+    on:change={changeEvent}
+    on:input={inputEvent} />
 </FormGroup>
 {#if changeValue}
   <p>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Alert } from 'sveltestrap';
 
-  const colors = [
+  const colors: any = [
     'primary',
     'secondary',
     'success',

@@ -8,7 +8,7 @@
   export let fixed = '';
   export let sticky = '';
   export let color = '';
-  export let expand = false;
+  export let expand = false || '';
 
   function getExpandClass(expand) {
     if (expand === false) {

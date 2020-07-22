@@ -3,7 +3,6 @@
 
   import Animated from './Animated.svelte';
   import Colors from './Colors.svelte';
-  import Index from './Index.svelte';
   import Labels from './Labels.svelte';
   import Max from './Max.svelte';
   import Multi from './Multi.svelte';
@@ -12,7 +11,6 @@
 
   import animatedSource from '!!raw-loader!./Animated.svelte';
   import colorsSource from '!!raw-loader!./Colors.svelte';
-  import indexSource from '!!raw-loader!./Index.svelte';
   import labelsSource from '!!raw-loader!./Labels.svelte';
   import maxSource from '!!raw-loader!./Max.svelte';
   import multiSource from '!!raw-loader!./Multi.svelte';

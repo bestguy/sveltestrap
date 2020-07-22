@@ -1,9 +1,9 @@
-<script lang="ts">
+<script>
   import classnames from './utils';
 
   let className = '';
   export { className as class };
-  export let addonType;
+  export let addonType = '';
 
   if (['prepend', 'append'].indexOf(addonType) === -1) {
     throw new Error(

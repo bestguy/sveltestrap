@@ -8,7 +8,7 @@
   let className = '';
   export { className as class };
   export let defaultOpen = false;
-  export let toggler;
+  export let toggler = null;
   export let onEntering = noop;
   export let onEntered = noop;
   export let onExiting = noop;

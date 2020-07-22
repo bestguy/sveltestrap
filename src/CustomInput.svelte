@@ -5,7 +5,7 @@
   export { className as class };
   export let name = '';
   export let id = '';
-  export let type;
+  export let type = null;
   export let label = '';
   export let checked = false;
   export let disabled = false;

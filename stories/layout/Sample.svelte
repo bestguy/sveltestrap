@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Card, Col, Container, Row } from 'sveltestrap';
+  import { Col, Container, Row } from 'sveltestrap';
 
   const cell = 'bg-white rounded m-1 small p-2';
   const row = 'bg-secondary rounded mb-2';

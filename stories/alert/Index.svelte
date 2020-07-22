@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { Col, Row } from 'sveltestrap';
   import Example from '../Example.svelte';
   import Colors from './Colors.svelte';
   import colorsSource from '!!raw-loader!./Colors.svelte';
@@ -7,7 +6,6 @@
   import dismissableSource from '!!raw-loader!./Dismissable.svelte';
   import NoFade from './NoFade.svelte';
   import noFadeSource from '!!raw-loader!./NoFade.svelte';
-  import Uncontrolled from './Uncontrolled.svelte';
   import uncontrolledSource from '!!raw-loader!./Uncontrolled.svelte';
 </script>
 

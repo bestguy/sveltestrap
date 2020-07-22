@@ -2,9 +2,9 @@
   import { Col, Row } from 'sveltestrap';
   import PrismCode from './PrismCode.svelte';
 
-  export let stacked = false;
-  export let source;
-  export let title;
+  export let stacked: boolean = false;
+  export let source: any;
+  export let title: any;
 </script>
 
 <div class="py-3">

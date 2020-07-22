@@ -5,7 +5,6 @@
     CardBody,
     CardFooter,
     CardHeader,
-    CardImg,
     CardSubtitle,
     CardText,
     CardTitle

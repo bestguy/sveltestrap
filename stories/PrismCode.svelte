@@ -9,7 +9,7 @@
   export { isAsync as async };
 
   let classes = classnames('language-html', className);
-  let _domNode;
+  let _domNode: any;
 
   afterUpdate(() => {
     Prism.highlightElement(_domNode, isAsync);

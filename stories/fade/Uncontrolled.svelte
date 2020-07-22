@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { UncontrolledFade, Button, CardBody, Card } from 'sveltestrap';
+  import { UncontrolledFade, Button, Card } from 'sveltestrap';
 </script>
 
 <Button color="primary" id="toggler" class="mb-3">Toggle</Button>

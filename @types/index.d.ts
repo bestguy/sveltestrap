@@ -69,12 +69,10 @@ import TabPane from './TabPane';
 import Toast from './Toast';
 import ToastBody from './ToastBody';
 import ToastHeader from './ToastHeader';
-import {
-  UncontrolledAlert,
-  UncontrolledButtonDropdown,
-  UncontrolledCollapse,
-  UncontrolledDropdown
-} from './Uncontrolled';
+import { UncontrolledAlert } from './UncontrolledAlert';
+import { UncontrolledButtonDropdown } from './UncontrolledButtonDropdown';
+import UncontrolledCollapse from './UncontrolledCollapse';
+import UncontrolledDropdown from './UncontrolledDropdown';
 
 export {
   Alert,

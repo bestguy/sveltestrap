@@ -8,7 +8,7 @@
     ModalHeader
   } from 'sveltestrap';
   let open = false;
-  let size;
+  let size: any;
   const toggle = () => {
     size = undefined;
     open = !open;

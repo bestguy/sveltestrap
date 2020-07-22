@@ -19,7 +19,7 @@
 
   let className = '';
   export { className as class };
-  export let isOpen;
+  export let isOpen = false;
   export let autoFocus = true;
   export let centered = false;
   export let backdropDuration = 0;

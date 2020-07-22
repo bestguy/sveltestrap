@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { Col, Row } from 'sveltestrap';
   import Example from '../Example.svelte';
   import Sample from './Sample.svelte';
   import source from '!!raw-loader!./Sample.svelte';

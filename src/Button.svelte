@@ -12,7 +12,7 @@
   export let href = '';
   export let id = '';
   export let outline = false;
-  export let size;
+  export let size = null;
   export let style = '';
   export let value = '';
 

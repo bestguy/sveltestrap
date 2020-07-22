@@ -4,8 +4,8 @@
   "main": "dist/sveltestrap.js",
   "module": "dist/sveltestrap.es.js",
   "jsnext:main": "dist/sveltestrap.es.js",
-  "svelte": "src/index.js",
-  "types": "src/index.d.ts",
+  "svelte": "src/index.ts",
+  "types": "@types/index.d.ts",
   "keywords": [
     "svelte"
   ],
@@ -22,7 +22,7 @@
     "docs": "build-storybook -o docs",
     "dist": "rollup -c",
     "lint": "eslint ./src --ext .js --ext .svelte",
-    "check": "svelte-check",
+    "typecheck": "svelte-check",
     "prepublish": "npm run dist && git add -A dist",
     "postpublish": "git push && git push --tags",
     "test": "jest --maxWorkers=2 --verbose",

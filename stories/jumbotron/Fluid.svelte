@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Container, Jumbotron } from 'sveltestrap';
+  import { Jumbotron } from 'sveltestrap';
 </script>
 
 <Jumbotron fluid class="p-3">
