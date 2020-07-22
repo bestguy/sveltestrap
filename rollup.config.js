@@ -13,7 +13,7 @@ const production = !process.env.ROLLUP_WATCH;
 const { name } = pkg;
 
 export default {
-  input: 'src/index.ts',
+  input: 'src/index.js',
   output: [
     {
       file: pkg.module,
@@ -42,7 +42,7 @@ export default {
     }),
     resolve(),
     commonjs(),
-    typescript(),
+    typescript({ sourceMap: !production || true }),
     production && terser(),
     production && analyze(),
     production && bundleSize()
