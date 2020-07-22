@@ -42,7 +42,7 @@ export default {
     }),
     resolve(),
     commonjs(),
-    typescript({ sourceMap: !production || true }),
+    typescript(),
     production && terser(),
     production && analyze(),
     production && bundleSize()
