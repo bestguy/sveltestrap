@@ -1,3 +1,5 @@
+# sveltestrap
+
 ![Logo](./logo.png)
 
 ## Bootstrap 4 components for Svelte v3
@@ -14,15 +16,15 @@ The component names and interface are inspired by the [reactstrap](https://react
 
 ### Status
 
-* See component list below
-  * Tooltip & Popover are not implemented yet due to lacking Popper/Tether support [#31](https://github.com/bestguy/sveltestrap/issues/31), [#32](https://github.com/bestguy/sveltestrap/issues/32)
-  * Carousel not implemented yet, need to port transitions/state/key handlers. [#30](https://github.com/bestguy/sveltestrap/issues/30)
-* Some stateful components have issues
-  * Collapse uses the Svelte slide transistion. In Svelte, the component is removed from the DOM whereas in Bootstrap, it stays in the DOM, but is hidden. This interacts badly with nav bars on small screens.
-  * Modal uses Svelte fade transition, which does not use the Bootstrap theme defaults for duration, etc.
-* Most components are missing general DOM events, see [#36](https://github.com/bestguy/sveltestrap/issues/36)
+- See component list below
+  - Tooltip & Popover are not implemented yet due to lacking Popper/Tether support [#31](https://github.com/bestguy/sveltestrap/issues/31), [#32](https://github.com/bestguy/sveltestrap/issues/32)
+  - Carousel not implemented yet, need to port transitions/state/key handlers. [#30](https://github.com/bestguy/sveltestrap/issues/30)
+- Some stateful components have issues
+  - Collapse uses the Svelte slide transistion. In Svelte, the component is removed from the DOM whereas in Bootstrap, it stays in the DOM, but is hidden. This interacts badly with nav bars on small screens.
+  - Modal uses Svelte fade transition, which does not use the Bootstrap theme defaults for duration, etc.
+- Most components are missing general DOM events, see [#36](https://github.com/bestguy/sveltestrap/issues/36)
 
-----
+---
 
 ## Install
 
@@ -36,13 +38,16 @@ Either in your HTML layout:
 
 ```html
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  />
 </head>
 ```
 
 Or add from your Svelte app:
 
-```
+```html
 <svelte:head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </svelte:head>
@@ -62,9 +67,9 @@ In your svelte component:
 </Row>
 ```
 
-### Note on server-side rendering (SSR) Usage:
+### ~~Note on server-side rendering (SSR) Usage~~ [Fixed](https://github.com/bestguy/sveltestrap/pull/165)
 
-If you are using Sveltestrap in an SSR environment like Sapper, 
+<!-- If you are using Sveltestrap in an SSR environment like Sapper,
 it's recommended you import the component source directly, for example:
 
 ```html
@@ -79,23 +84,19 @@ it's recommended you import the component source directly, for example:
     <Button color="primary" outline>Hello World!</Button>
   </Col>
 </Row>
-```
+``` -->
 
 ### Component status
 
 Sveltestrap is currently missing support for the following components:
 
-* [ ] Popover
-  * [ ] PopoverContent
-  * [ ] PopoverTitle
-* [ ] Tooltip
+- [ ] Popover
+  - [ ] PopoverContent
+  - [ ] PopoverTitle
+- [ ] Tooltip
 
 Please follow (or help out with) these issues for status:
 
-<a href="https://github.com/bestguy/sveltestrap/issues/31">
-  Missing Tooltip (#31)
-</a>
+[Missing Tooltip (#31)](https://github.com/bestguy/sveltestrap/issues/31)
 
-<a href="https://github.com/bestguy/sveltestrap/issues/32">
-  Missing Popover (#32)
-</a>
+[Missing Popover (#32)](https://github.com/bestguy/sveltestrap/issues/32)
