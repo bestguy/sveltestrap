@@ -67,9 +67,9 @@ In your svelte component:
 </Row>
 ```
 
-### ~~Note on server-side rendering (SSR) Usage~~ [Fixed](https://github.com/bestguy/sveltestrap/pull/165)
+### Note on server-side rendering (SSR) Usage [Fixed](https://github.com/bestguy/sveltestrap/pull/165)
 
-<!-- If you are using Sveltestrap in an SSR environment like Sapper,
+If you are using Sveltestrap in an SSR environment like Sapper,
 it's recommended you import the component source directly, for example:
 
 ```html
@@ -84,7 +84,16 @@ it's recommended you import the component source directly, for example:
     <Button color="primary" outline>Hello World!</Button>
   </Col>
 </Row>
-``` -->
+```
+
+if you prefer the 'sveltestrap' import, you can move the package to DevDependencies so that sapper will parse the es bundle
+
+```json
+"devDependencies": {
+    "sveltestrap": "*.*.*",
+    ...
+  },
+```
 
 ### Component status
 
