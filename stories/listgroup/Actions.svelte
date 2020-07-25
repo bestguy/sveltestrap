@@ -1,5 +1,5 @@
-<script>
-  import { ListGroup, ListGroupItem } from "sveltestrap";
+<script lang="ts">
+  import { ListGroup, ListGroupItem } from 'sveltestrap';
 </script>
 
 <h4>Anchors</h4>
@@ -7,15 +7,11 @@
   <ListGroupItem active tag="a" href="https://svelte.dev" action>
     Active
   </ListGroupItem>
-  <ListGroupItem tag="a" href="https://svelte.dev" action>
-    Bravo
-  </ListGroupItem>
+  <ListGroupItem tag="a" href="https://svelte.dev" action>Bravo</ListGroupItem>
   <ListGroupItem tag="a" href="https://svelte.dev" action>
     Charlie
   </ListGroupItem>
-  <ListGroupItem tag="a" href="https://svelte.dev" action>
-    Delta
-  </ListGroupItem>
+  <ListGroupItem tag="a" href="https://svelte.dev" action>Delta</ListGroupItem>
   <ListGroupItem disabled tag="a" href="https://svelte.dev" action>
     Disabled
   </ListGroupItem>

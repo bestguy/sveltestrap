@@ -13,7 +13,6 @@
   export let color = '';
   export let barClassName = '';
 
-
   $: classes = classnames(className, 'progress');
 
   $: progressBarClasses = classnames(

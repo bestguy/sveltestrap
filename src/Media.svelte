@@ -16,7 +16,6 @@
   export let src = '';
   export let alt = '';
 
-
   $: classes = classnames(className, {
     'media-body': body,
     'media-heading': heading,

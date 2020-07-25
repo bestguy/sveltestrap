@@ -8,12 +8,11 @@
   export let activeIndex = 0;
   export let id = '';
 
-
   $: classes = classnames(className, 'carousel-indicators');
 </script>
 
 <ol {...$$restProps} {id} class={classes}>
-  {#each items as item, index}
+  {#each items as _item, index}
     <li
       class:active={activeIndex === index}
       on:click={() => (activeIndex = index)} />

@@ -7,7 +7,6 @@
   export let tooltip = false;
   let classes;
 
-
   $: {
     const validMode = tooltip ? 'tooltip' : 'feedback';
 

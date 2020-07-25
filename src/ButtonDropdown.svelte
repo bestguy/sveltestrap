@@ -15,7 +15,6 @@
   export let setActiveFromChild = false;
   export let size = '';
   export let toggle = undefined;
-
 </script>
 
 <Dropdown

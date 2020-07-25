@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Sample from './Sample.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
 

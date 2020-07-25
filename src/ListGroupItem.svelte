@@ -10,7 +10,6 @@
   export let href = null;
   export let tag = null;
 
-
   $: classes = classnames(
     className,
     active ? 'active' : false,
@@ -26,7 +25,13 @@
     <slot />
   </a>
 {:else if tag === 'button'}
-  <button {...$$restProps} class={classes} type="button" on:click {disabled} {active}>
+  <button
+    {...$$restProps}
+    class={classes}
+    type="button"
+    on:click
+    {disabled}
+    {active}>
     <slot />
   </button>
 {:else}

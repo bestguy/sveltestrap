@@ -11,7 +11,6 @@
   export let hover = false;
   export let responsive = false;
 
-
   $: classes = classnames(
     className,
     'table',

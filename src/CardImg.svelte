@@ -8,7 +8,6 @@
   export let src;
   export let alt = '';
 
-
   let classes = '';
   $: {
     let cardImgClassName = 'card-img';

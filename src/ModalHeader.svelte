@@ -8,7 +8,6 @@
   export let charCode = 215;
   export let children = undefined;
 
-
   $: closeIcon =
     typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;
 

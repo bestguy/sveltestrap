@@ -7,7 +7,6 @@
   export let toggle;
   export let isOpen;
 
-
   if (['prepend', 'append'].indexOf(addonType) === -1) {
     throw new Error(
       `addonType must be one of 'prepend', 'append'. Received '${addonType}' instead.`

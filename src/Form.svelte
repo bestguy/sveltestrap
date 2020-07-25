@@ -5,7 +5,6 @@
   export { className as class };
   export let inline = false;
 
-
   $: classes = classnames(className, inline ? 'form-inline' : false);
 </script>
 

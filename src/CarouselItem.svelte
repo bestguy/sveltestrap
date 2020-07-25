@@ -8,7 +8,6 @@
   export let activeIndex = 0;
   export { className as class };
 
-
   $: classes = classnames(className, 'carousel-item');
 </script>
 

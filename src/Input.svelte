@@ -32,7 +32,8 @@
     const textareaInput = type === 'textarea';
     const rangeInput = type === 'range';
     const selectInput = type === 'select';
-    const buttonInput = type === 'button' || type === 'reset' || type === 'submit';
+    const buttonInput =
+      type === 'button' || type === 'reset' || type === 'submit';
     const unsupportedInput = type === 'hidden' || type === 'image';
     tag = selectInput || textareaInput ? type : 'input';
 
@@ -352,7 +353,6 @@
       {placeholder}
       {value} />
   {/if}
-
 {:else if tag === 'textarea'}
   <textarea
     {...$$restProps}
@@ -368,7 +368,6 @@
     bind:value
     {name}
     {disabled} />
-
 {:else if tag === 'select' && !multiple}
   <select
     {...$$restProps}
@@ -384,7 +383,7 @@
     <slot />
   </select>
 
-<!-- {:else if tag === 'select' && multiple}
+  <!-- {:else if tag === 'select' && multiple}
   <select
     {...$$restProps}
     {id}

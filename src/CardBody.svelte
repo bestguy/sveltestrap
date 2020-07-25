@@ -5,7 +5,6 @@
   export { className as class };
   export let id = '';
 
-
   $: classes = classnames(className, 'card-body');
 </script>
 

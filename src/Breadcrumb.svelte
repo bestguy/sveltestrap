@@ -7,7 +7,6 @@
   export let children = undefined;
   export let listClassName = '';
 
-
   $: listClasses = classnames('breadcrumb', listClassName);
 </script>
 

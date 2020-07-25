@@ -1,5 +1,4 @@
 <script>
-
   import { fade } from 'svelte/transition';
   const noop = () => undefined;
 
@@ -10,7 +9,6 @@
   export let onEntered = noop;
   export let onExiting = noop;
   export let onExited = noop;
-
 </script>
 
 {#if isOpen}

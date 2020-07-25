@@ -7,7 +7,6 @@
   export let size = '';
   export let color = '';
 
-
   $: classes = classnames(
     className,
     size ? `spinner-${type}-${size}` : false,

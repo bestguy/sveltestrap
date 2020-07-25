@@ -5,11 +5,10 @@
   export { className as class };
   export let id = '';
 
-
   const colClasses = [];
   const widths = ['xs', 'sm', 'md', 'lg', 'xl'];
 
-  widths.forEach(colWidth => {
+  widths.forEach((colWidth) => {
     const columnProp = $$props[colWidth];
     if (!columnProp && columnProp !== '') {
       return; //no value for this width

@@ -7,7 +7,6 @@
   export let size = '';
   export let ariaLabel = 'pagination';
 
-
   $: classes = classnames(className);
 
   $: listClasses = classnames(listClassName, 'pagination', {

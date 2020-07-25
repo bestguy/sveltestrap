@@ -1,5 +1,5 @@
-<script>
-  import { Button, ButtonToolbar } from "sveltestrap";
+<script lang="ts">
+  import { Button, ButtonToolbar } from 'sveltestrap';
 </script>
 
 <ButtonToolbar>

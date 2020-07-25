@@ -19,7 +19,7 @@
 
   let className = '';
   export { className as class };
-  export let isOpen;
+  export let isOpen = false;
   export let autoFocus = true;
   export let centered = false;
   export let backdropDuration = 0;
@@ -42,7 +42,6 @@
   export let returnFocusAfterClose = true;
   export let transitionType = fadeTransition;
   export let transitionOptions = {};
-
 
   let hasOpened = false;
   let _isMounted = false;
@@ -114,7 +113,10 @@
     _originalBodyPadding = getOriginalBodyPadding();
     conditionallyUpdateScrollbar();
     if (openCount === 0) {
-      document.body.className = classnames(document.body.className, 'modal-open');
+      document.body.className = classnames(
+        document.body.className,
+        'modal-open'
+      );
     }
 
     ++openCount;
@@ -170,7 +172,7 @@
   }
 
   function onModalOpened() {
-    _removeEscListener = browserEvent(document, 'keydown', event => {
+    _removeEscListener = browserEvent(document, 'keydown', (event) => {
       if (event.key && event.key === 'Escape') {
         toggle(event);
       }
@@ -209,7 +211,6 @@
   });
 </script>
 
-
 {#if _isMounted}
   <div
     {...$$restProps}
@@ -218,7 +219,7 @@
     style="position: relative; z-index: {zIndex}">
     {#if isOpen}
       <div
-        transition:transitionType="{transitionOptions}"
+        transition:transitionType={transitionOptions}
         ariaLabelledby={labelledBy}
         class={classnames('modal', 'show', modalClassName)}
         role="dialog"

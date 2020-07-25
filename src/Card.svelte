@@ -10,7 +10,6 @@
   export let outline = false;
   export let style = '';
 
-
   $: classes = classnames(
     className,
     'card',

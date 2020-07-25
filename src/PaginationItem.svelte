@@ -6,7 +6,6 @@
   export let active = false;
   export let disabled = false;
 
-
   $: classes = classnames(className, 'page-item', {
     active,
     disabled

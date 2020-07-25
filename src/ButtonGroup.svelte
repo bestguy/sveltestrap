@@ -7,7 +7,6 @@
   export let size = '';
   export let vertical = false;
 
-
   $: classes = classnames(
     className,
     size ? `btn-group-${size}` : false,

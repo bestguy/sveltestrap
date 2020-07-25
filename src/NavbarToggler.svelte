@@ -6,7 +6,6 @@
   let className = '';
   export { className as class };
 
-
   $: classes = classnames(className, 'navbar-toggler');
 </script>
 

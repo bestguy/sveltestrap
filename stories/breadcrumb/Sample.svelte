@@ -1,5 +1,5 @@
-<script>
-  import { Breadcrumb, BreadcrumbItem } from "sveltestrap";
+<script lang="ts">
+  import { Breadcrumb, BreadcrumbItem } from 'sveltestrap';
 </script>
 
 <Breadcrumb>

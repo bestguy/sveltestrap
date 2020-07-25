@@ -5,7 +5,6 @@
   export { className as class };
   export let size = '';
 
-
   $: classes = classnames(
     className,
     'input-group',

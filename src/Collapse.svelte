@@ -15,7 +15,6 @@
   export let onExited = noop;
   export let expand = false;
 
-
   $: classes = classnames(
     className,
     // collapseClass,

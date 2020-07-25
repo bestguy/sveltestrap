@@ -5,7 +5,7 @@
   export { className as class };
   export let name = '';
   export let id = '';
-  export let type;
+  export let type = null;
   export let label = '';
   export let checked = false;
   export let disabled = false;
@@ -24,7 +24,10 @@
     bsSize ? `custom-${type}-${bsSize}` : false
   );
 
-  $: validationClassNames = classnames(invalid && 'is-invalid', valid && 'is-valid');
+  $: validationClassNames = classnames(
+    invalid && 'is-invalid',
+    valid && 'is-valid'
+  );
 
   $: combinedClasses = classnames(customClass, validationClassNames);
 
@@ -34,7 +37,10 @@
     'custom-control-inline': inline
   });
 
-  $: customControlClasses = classnames(validationClassNames, 'custom-control-input');
+  $: customControlClasses = classnames(
+    validationClassNames,
+    'custom-control-input'
+  );
 
   $: labelHtmlFor = htmlFor || id;
 </script>

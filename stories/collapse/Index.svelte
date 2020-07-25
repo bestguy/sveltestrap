@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Example from '../Example.svelte';
   import Events from './Events.svelte';
   import eventsSource from '!!raw-loader!./Events.svelte';
@@ -9,7 +9,9 @@
 </script>
 
 <h1>Collapse</h1>
-<a href="https://getbootstrap.com/docs/4.3/components/collapse/" target="_blank">
+<a
+  href="https://getbootstrap.com/docs/4.3/components/collapse/"
+  target="_blank">
   Bootstrap Collapse
 </a>
 
@@ -19,20 +21,20 @@
 
 <Example title="Events" source={eventsSource}>
   <p slot="info">
-    Use the on:enter, onEntering, onEntered, onExiting and onExited
-    props for callbacks when the Collapse has finished opening (entering)
-    or closing (exiting).
+    Use the on:enter, onEntering, onEntered, onExiting and onExited props for
+    callbacks when the Collapse has finished opening (entering) or closing
+    (exiting).
   </p>
   <Events />
 </Example>
 
 <Example title="Uncontrolled Collapse" source={uncontrolledSource}>
   <p slot="info">
-    For the most basic use-case, an uncontrolled component can provide
-    the functionality wanted without the need to manage/control the state
-    of the component. UncontrolledCollapse does not require an isOpen prop.
-    Instead pass a toggler prop. The toggler prop is a string which will
-    run querySelectorAll to find dom elements which will trigger toggle.
+    For the most basic use-case, an uncontrolled component can provide the
+    functionality wanted without the need to manage/control the state of the
+    component. UncontrolledCollapse does not require an isOpen prop. Instead
+    pass a toggler prop. The toggler prop is a string which will run
+    querySelectorAll to find dom elements which will trigger toggle.
   </p>
   <Uncontrolled />
 </Example>

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Example from '../Example.svelte';
   import Alignment from './Alignment.svelte';
   import alignmentSource from '!!raw-loader!./Alignment.svelte';
@@ -15,7 +15,9 @@
 </script>
 
 <h1>Dropdowns</h1>
-<a href="https://getbootstrap.com/docs/4.3/components/dropdowns/" target="_blank">
+<a
+  href="https://getbootstrap.com/docs/4.3/components/dropdowns/"
+  target="_blank">
   Bootstrap Dropdowns
 </a>
 

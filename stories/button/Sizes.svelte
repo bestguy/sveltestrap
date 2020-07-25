@@ -1,5 +1,5 @@
-<script>
-  import { Button } from "sveltestrap";
+<script lang="ts">
+  import { Button } from 'sveltestrap';
 </script>
 
 <Button size="lg">Large</Button>

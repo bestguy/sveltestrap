@@ -1,13 +1,5 @@
-<script>
-  import {
-    Button,
-    CustomInput,
-    Form,
-    FormGroup,
-    FormText,
-    Input,
-    Label
-  } from "sveltestrap";
+<script lang="ts">
+  import { CustomInput, Form, FormGroup, Label } from 'sveltestrap';
 </script>
 
 <Form>

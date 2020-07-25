@@ -17,7 +17,6 @@
   let _rideTimeoutId = false;
   let _removeVisibilityChangeListener = false;
 
-
   $: classes = classnames(className, 'carousel', 'slide');
 
   onMount(() => {

@@ -1,5 +1,5 @@
-<script>
-  import { Collapse, Button, CardBody, Card } from "sveltestrap";
+<script lang="ts">
+  import { Collapse, Button, Card } from 'sveltestrap';
   let isOpen = false;
 </script>
 

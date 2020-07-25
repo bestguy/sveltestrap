@@ -1,5 +1,5 @@
-<script>
-  import { Button, Form, FormGroup, FormText, Input, Label } from 'sveltestrap';
+<script lang="ts">
+  import { Form, FormGroup, FormText, Input, Label } from 'sveltestrap';
 </script>
 
 <Form>

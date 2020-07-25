@@ -5,12 +5,11 @@
 
   let className = '';
 
-
   export { className as class };
   export let hidden = false;
   export let check = false;
   export let size = '';
-  export let fore;
+  export let fore = null;
   export { fore as for };
   export let id = '';
   export let xs = '';
@@ -30,7 +29,7 @@
 
   const colClasses = [];
 
-  widths.forEach(colWidth => {
+  widths.forEach((colWidth) => {
     let columnProp = $$props[colWidth];
 
     if (!columnProp && columnProp !== '') {

@@ -6,7 +6,6 @@
   export { className as class };
   export let activeTab;
 
-
   $: classes = classnames('tab-content', className);
 
   $: context.update(() => {

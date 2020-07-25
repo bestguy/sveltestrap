@@ -21,7 +21,6 @@
   export let setActiveFromChild = false;
   export let dropup = false;
 
-
   const validDirections = ['up', 'down', 'left', 'right'];
 
   if (validDirections.indexOf(direction) === -1) {
@@ -57,11 +56,11 @@
   $: {
     if (typeof document !== 'undefined') {
       if (isOpen) {
-        ['click', 'touchstart', 'keyup'].forEach(event =>
+        ['click', 'touchstart', 'keyup'].forEach((event) =>
           document.addEventListener(event, handleDocumentClick, true)
         );
       } else {
-        ['click', 'touchstart', 'keyup'].forEach(event =>
+        ['click', 'touchstart', 'keyup'].forEach((event) =>
           document.removeEventListener(event, handleDocumentClick, true)
         );
       }

@@ -13,7 +13,6 @@
   export let fade = true;
   export let transition = { duration: fade ? 400 : 0 };
 
-
   $: classes = classnames(className, 'alert', `alert-${color}`, {
     'alert-dismissible': toggle
   });

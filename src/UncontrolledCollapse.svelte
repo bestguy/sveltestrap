@@ -8,12 +8,11 @@
   let className = '';
   export { className as class };
   export let defaultOpen = false;
-  export let toggler;
+  export let toggler = null;
   export let onEntering = noop;
   export let onEntered = noop;
   export let onExiting = noop;
   export let onExited = noop;
-
 
   let unbindEvents;
   let isOpen = defaultOpen;
@@ -40,15 +39,15 @@
         );
       }
 
-      defaultToggleEvents.forEach(event => {
-        selection.forEach(element => {
+      defaultToggleEvents.forEach((event) => {
+        selection.forEach((element) => {
           element.addEventListener(event, togglerFn);
         });
       });
 
       unbindEvents = () => {
-        defaultToggleEvents.forEach(event => {
-          selection.forEach(element => {
+        defaultToggleEvents.forEach((event) => {
+          selection.forEach((element) => {
             element.removeEventListener(event, togglerFn);
           });
         });

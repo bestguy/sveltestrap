@@ -12,7 +12,6 @@
   export let navbar = false;
   export let card = false;
 
-
   function getVerticalClass(vertical) {
     if (vertical === false) {
       return false;

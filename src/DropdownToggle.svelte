@@ -19,7 +19,6 @@
   export let tag = null;
   export let outline = false;
 
-
   $: classes = classnames(className, {
     'dropdown-toggle': caret || split,
     'dropdown-toggle-split': split,

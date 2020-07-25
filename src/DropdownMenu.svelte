@@ -8,7 +8,6 @@
   export { className as class };
   export let right = false;
 
-
   $: classes = classnames(className, 'dropdown-menu', {
     'dropdown-menu-right': right,
     show: $context.isOpen

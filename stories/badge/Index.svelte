@@ -1,6 +1,4 @@
-<script>
-  import { Col, Row } from 'sveltestrap';
-  import PrismCode from '../PrismCode.svelte';
+<script lang="ts">
   import Example from '../Example.svelte';
   import Badge from './Badge.svelte';
   import BadgeButton from './BadgeButton.svelte';
@@ -20,9 +18,7 @@
 </a>
 
 <Example source={badgeSource}>
-  <p slot="info">
-    Badges scale to parent.
-  </p>
+  <p slot="info">Badges scale to parent.</p>
   <Badge />
 </Example>
 
@@ -42,8 +38,6 @@
 </Example>
 
 <Example title="Links" source={badgeLinksSource}>
-  <p slot="info">
-    Adding the href prop will default the badge to a link.
-  </p>
+  <p slot="info">Adding the href prop will default the badge to a link.</p>
   <BadgeLinks />
 </Example>

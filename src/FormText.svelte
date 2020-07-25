@@ -6,7 +6,6 @@
   export let inline = false;
   export let color = 'muted';
 
-
   $: classes = classnames(
     className,
     !inline ? 'form-text' : false,

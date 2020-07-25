@@ -5,7 +5,6 @@
   export { className as class };
   export let href = '/';
 
-
   $: classes = classnames(className, 'navbar-brand');
 </script>
 

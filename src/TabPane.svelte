@@ -6,7 +6,6 @@
   export { className as class };
   export let tabId;
 
-
   $: classes = classnames('tab-pane', className, {
     active: tabId === $context.activeTabId
   });

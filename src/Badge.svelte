@@ -8,7 +8,6 @@
   export let href = undefined;
   export let pill = false;
 
-
   $: classes = classnames(
     className,
     'badge',

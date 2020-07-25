@@ -8,7 +8,6 @@
   export let fade = true;
   export let isOpen = true;
 
-
   $: classes = classnames(className, 'toast', {
     show: isOpen
   });

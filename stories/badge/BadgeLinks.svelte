@@ -1,5 +1,5 @@
-<script>
-  import { Badge } from "sveltestrap";
+<script lang="ts">
+  import { Badge } from 'sveltestrap';
 </script>
 
 <Badge href="#" color="primary">Primary</Badge>

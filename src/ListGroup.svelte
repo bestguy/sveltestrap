@@ -5,7 +5,6 @@
   export { className as class };
   export let flush = false;
 
-
   $: classes = classnames(
     className,
     'list-group',

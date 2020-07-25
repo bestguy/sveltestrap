@@ -6,7 +6,6 @@
   export let fluid = false;
   export let id = '';
 
-
   $: classes = classnames(className, fluid ? 'container-fluid' : 'container');
 </script>
 

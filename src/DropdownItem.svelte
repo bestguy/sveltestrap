@@ -14,7 +14,6 @@
   export let toggle = true;
   export let href = '';
 
-
   $: classes = classnames(className, {
     disabled,
     'dropdown-item': !divider && !header,
@@ -39,7 +38,6 @@
   <h6 {...$$restProps} on:click on:click={handleItemClick} class={classes}>
     <slot />
   </h6>
-
 {:else if divider}
   <div {...$$restProps} on:click on:click={handleItemClick} class={classes}>
     <slot />

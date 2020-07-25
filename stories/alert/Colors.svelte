@@ -1,15 +1,15 @@
-<script>
-  import { Alert } from "sveltestrap";
+<script lang="ts">
+  import { Alert } from 'sveltestrap';
 
-  const colors = [
-    "primary",
-    "secondary",
-    "success",
-    "danger",
-    "warning",
-    "info",
-    "light",
-    "dark"
+  const colors: any = [
+    'primary',
+    'secondary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'light',
+    'dark'
   ];
 </script>
 
@@ -19,6 +19,7 @@
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     <a href="#todo" class="alert-link">
       Also, alert-links are colored to match
-    </a>.
+    </a>
+    .
   </Alert>
 {/each}

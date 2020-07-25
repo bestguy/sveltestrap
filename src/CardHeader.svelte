@@ -6,7 +6,6 @@
   export let id = '';
   export let tag = 'div';
 
-
   $: classes = classnames(className, 'card-header');
 </script>
 

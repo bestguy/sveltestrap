@@ -6,8 +6,11 @@
   export let fluid = false;
   export let tag = 'div';
 
-
-  $: classes = classnames(className, 'jumbotron', fluid ? 'jumbotron-fluid' : false);
+  $: classes = classnames(
+    className,
+    'jumbotron',
+    fluid ? 'jumbotron-fluid' : false
+  );
 </script>
 
 {#if tag === 'section'}

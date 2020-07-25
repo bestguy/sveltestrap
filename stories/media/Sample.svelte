@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Media } from 'sveltestrap';
 </script>
 
@@ -7,8 +7,7 @@
     <Media
       object
       src="https://via.placeholder.com/64x64.png?text=64%C3%9764"
-      alt="Generic placeholder image"
-    />
+      alt="Generic placeholder image" />
   </Media>
   <Media body>
     <Media heading>Media heading</Media>

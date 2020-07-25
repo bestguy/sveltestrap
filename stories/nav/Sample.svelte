@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Nav, NavItem, NavLink } from 'sveltestrap';
 </script>
 
