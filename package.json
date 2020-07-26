@@ -15,7 +15,8 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "@types"
   ],
   "scripts": {
     "start": "start-storybook -p 6006",
