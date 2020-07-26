@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "start": "start-storybook -p 6006",
-    "docs": "build-storybook -o docs",
+    "docs": "build-storybook -o docs && cp CNAME ./docs",
     "dist": "rollup -c",
     "lint": "eslint ./src --ext .js --ext .svelte",
     "typecheck": "svelte-check",
