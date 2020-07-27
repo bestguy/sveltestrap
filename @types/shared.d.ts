@@ -1,5 +1,3 @@
-import { SvelteComponentDev } from 'svelte/internal';
-
 /**
  * Valid Bootstrap colors
  */
@@ -25,11 +23,9 @@ type LocalSvelteProps = {
  * Local svelte class for adding typescript definitions for svelte components
  *
  */
-export declare class LocalSvelteComponent<
-  Props = {}
-> extends SvelteComponentDev {
+export declare class LocalSvelteComponent<Props = {}> {
   constructor(props: Props & LocalSvelteProps);
-
+  $$prop_def: Props & LocalSvelteProps;
   render: undefined;
   context: undefined;
   setState: undefined;
