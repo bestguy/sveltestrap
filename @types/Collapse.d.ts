@@ -1,7 +1,7 @@
 import { LocalSvelteComponent } from './shared';
 
 export interface ICollapseProps {
-  expand?: boolean;
+  expand?: boolean | string;
   isOpen?: boolean;
   navbar?: boolean;
 
