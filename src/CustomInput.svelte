@@ -86,6 +86,10 @@
       type="checkbox"
       class={customControlClasses}
       bind:checked
+      on:blur
+      on:focus
+      on:change
+      on:input
       {name}
       {disabled}
       {placeholder} />
@@ -99,6 +103,10 @@
       {id}
       type="radio"
       class={customControlClasses}
+      on:blur
+      on:focus
+      on:change
+      on:input
       {name}
       {disabled}
       {placeholder} />
