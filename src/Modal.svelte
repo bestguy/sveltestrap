@@ -23,6 +23,7 @@
   export let autoFocus = true;
   export let centered = false;
   export let backdropDuration = 0;
+  export let fullscreen = false;
   export let scrollable = false;
   export let size = '';
   export let toggle = undefined;
@@ -206,6 +207,8 @@
 
   $: classes = classnames(dialogBaseClass, className, {
     [`modal-${size}`]: size,
+    'modal-fullscreen': fullscreen === true,
+    [`modal-fullscreen-${fullscreen}-down`]: fullscreen && (typeof fullscreen === 'string'),
     [`${dialogBaseClass}-centered`]: centered,
     [`${dialogBaseClass}-scrollable`]: scrollable
   });
