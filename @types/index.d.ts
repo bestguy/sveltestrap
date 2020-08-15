@@ -27,7 +27,6 @@ import CarouselCaption from './CarouselCaption';
 import Col from './Col';
 import Collapse from './Collapse';
 import Container from './Container';
-import CustomInput from './CustomInput';
 import Dropdown from './Dropdown';
 import DropdownItem from './DropdownItem';
 import DropdownMenu from './DropdownMenu';
@@ -104,7 +103,6 @@ export {
   Col,
   Collapse,
   Container,
-  CustomInput,
   Dropdown,
   DropdownItem,
   DropdownMenu,

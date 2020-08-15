@@ -27,7 +27,6 @@ export { default as CarouselCaption } from './CarouselCaption.svelte';
 export { default as Col } from './Col.svelte';
 export { default as Collapse } from './Collapse.svelte';
 export { default as Container } from './Container.svelte';
-export { default as CustomInput } from './CustomInput.svelte';
 export { default as Dropdown } from './Dropdown.svelte';
 export { default as DropdownItem } from './DropdownItem.svelte';
 export { default as DropdownMenu } from './DropdownMenu.svelte';

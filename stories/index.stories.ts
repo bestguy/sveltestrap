@@ -7,7 +7,6 @@ import Button from './button/Index.svelte';
 import Card from './card/Index.svelte';
 import Carousel from './carousel/Index.svelte';
 import Collapse from './collapse/Index.svelte';
-import CustomInputs from './custominput/Index.svelte';
 import Dropdown from './dropdown/Index.svelte';
 import Fade from './fade/Index.svelte';
 import InputGroup from './InputGroup.svelte';
@@ -46,7 +45,6 @@ storiesOf('Components', module)
   .add('Dropdown', story(Dropdown))
   .add('Fade', story(Fade))
   .add('Inputs', story(Inputs))
-  .add('CustomInputs', story(CustomInputs))
   .add('InputGroup', story(InputGroup))
   .add('Jumbotron', story(Jumbotron))
   .add('ListGroup', story(ListGroup))
