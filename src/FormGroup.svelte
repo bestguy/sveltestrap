@@ -7,7 +7,7 @@
   export let check = false;
   export let inline = false;
   export let disabled = false;
-  export let id = '';
+  export let id = undefined;
   export let tag = null;
 
   $: classes = classnames(

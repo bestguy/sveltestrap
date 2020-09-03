@@ -17,7 +17,7 @@
   export let files = '';
   export let readonly;
   export let multiple = false;
-  export let id = '';
+  export let id = undefined;
   export let name = '';
   export let placeholder = '';
   export let disabled = false;

@@ -6,7 +6,7 @@
   export { className as class };
   export let items = [];
   export let activeIndex = 0;
-  export let id = '';
+  export let id = undefined;
 
   $: classes = classnames(className, 'carousel-indicators');
 </script>

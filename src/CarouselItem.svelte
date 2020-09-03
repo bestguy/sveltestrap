@@ -3,7 +3,7 @@
 
   let classes = '';
   let className = '';
-  export let id = '';
+  export let id = undefined;
   export let itemIndex = 0;
   export let activeIndex = 0;
   export { className as class };

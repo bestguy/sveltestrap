@@ -3,7 +3,7 @@
 
   let className = '';
   export { className as class };
-  export let id = '';
+  export let id = undefined;
   export let size = '';
   export let vertical = false;
 
