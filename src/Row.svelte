@@ -5,7 +5,7 @@
   export { className as class };
   export let noGutters = false;
   export let form = false;
-  export let id = '';
+  export let id = undefined;
 
   $: classes = classnames(
     className,

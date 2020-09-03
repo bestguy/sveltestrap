@@ -6,7 +6,7 @@
   let className = '';
   let srText = '';
   export { className as class };
-  export let id = '';
+  export let id = undefined;
   export let direction = '';
   export let directionText = '';
   export let activeIndex = 0;

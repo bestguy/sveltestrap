@@ -11,7 +11,7 @@
   export let size = '';
   export let fore = null;
   export { fore as for };
-  export let id = '';
+  export let id = undefined;
   export let xs = '';
   export let sm = '';
   export let md = '';

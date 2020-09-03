@@ -5,7 +5,7 @@
   export { className as class };
   export let body = false;
   export let color = '';
-  export let id = '';
+  export let id = undefined;
   export let inverse = false;
   export let outline = false;
   export let style = '';

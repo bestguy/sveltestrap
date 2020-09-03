@@ -4,7 +4,7 @@
   let classes = '';
   let className = '';
   export { className as class };
-  export let id = '';
+  export let id = undefined;
   export let captionHeader = '';
   export let captionText = '';
 

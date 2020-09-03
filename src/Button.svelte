@@ -10,7 +10,7 @@
   export let color = 'secondary';
   export let disabled = false;
   export let href = '';
-  export let id = '';
+  export let id = undefined;
   export let outline = false;
   export let size = null;
   export let style = '';
