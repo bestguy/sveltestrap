@@ -3,11 +3,10 @@
 
   let className = '';
   export { className as class };
-  export let id = undefined;
 
   $: classes = classnames(className, 'card-body');
 </script>
 
-<div {...$$restProps} {id} class={classes}>
+<div {...$$restProps} class={classes}>
   <slot />
 </div>

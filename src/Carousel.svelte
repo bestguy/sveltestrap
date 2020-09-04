@@ -6,7 +6,6 @@
   let classes = '';
   let className = '';
   export { className as class };
-  export let id = undefined;
   export let style = '';
   export let items = [];
   export let activeIndex = 0;
@@ -86,7 +85,6 @@
 
 <div
   {...$$restProps}
-  {id}
   class={classes}
   {style}
   on:mouseenter={() => (pause ? clearRideTimeout() : undefined)}

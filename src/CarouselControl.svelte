@@ -6,7 +6,6 @@
   let className = '';
   let srText = '';
   export { className as class };
-  export let id = undefined;
   export let direction = '';
   export let directionText = '';
   export let activeIndex = 0;
@@ -40,7 +39,6 @@
 
 <a
   {...$$restProps}
-  {id}
   class={classes}
   role="button"
   href="#{direction}"

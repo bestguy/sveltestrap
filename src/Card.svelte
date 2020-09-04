@@ -5,7 +5,6 @@
   export { className as class };
   export let body = false;
   export let color = '';
-  export let id = undefined;
   export let inverse = false;
   export let outline = false;
   export let style = '';
@@ -19,6 +18,6 @@
   );
 </script>
 
-<div {...$$restProps} {id} class={classes} on:click {style}>
+<div {...$$restProps} class={classes} on:click {style}>
   <slot />
 </div>
