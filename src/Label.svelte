@@ -11,7 +11,6 @@
   export let size = '';
   export let fore = null;
   export { fore as for };
-  export let id = undefined;
   export let xs = '';
   export let sm = '';
   export let md = '';
@@ -68,6 +67,6 @@
   );
 </script>
 
-<label {...$$restProps} {id} class={classes} for={fore}>
+<label {...$$restProps} class={classes} for={fore}>
   <slot />
 </label>

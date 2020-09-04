@@ -4,7 +4,6 @@
   let className = '';
   export { className as class };
   export let name = '';
-  export let id = undefined;
   export let type = null;
   export let label = '';
   export let checked = false;
@@ -48,7 +47,6 @@
 {#if type === 'select'}
   <select
     {...$$restProps}
-    {id}
     class={combinedClasses}
     on:blur
     on:focus
@@ -64,7 +62,6 @@
   <div class={customClass}>
     <input
       {...$$restProps}
-      {id}
       type="file"
       class={fileClasses}
       on:blur
@@ -82,7 +79,6 @@
   <div class={wrapperClasses}>
     <input
       {...$$restProps}
-      {id}
       type="checkbox"
       class={customControlClasses}
       bind:checked
@@ -100,7 +96,6 @@
   <div class={wrapperClasses}>
     <input
       {...$$restProps}
-      {id}
       type="radio"
       class={customControlClasses}
       on:blur
@@ -117,7 +112,6 @@
   <input
     {...$$restProps}
     {type}
-    {id}
     class={combinedClasses}
     on:blur
     on:focus

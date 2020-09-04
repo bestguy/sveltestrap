@@ -3,7 +3,6 @@
 
   let className = '';
   export { className as class };
-  export let id = undefined;
 
   const colClasses = [];
   const widths = ['xs', 'sm', 'md', 'lg', 'xl'];
@@ -46,6 +45,6 @@
   }
 </script>
 
-<div {...$$restProps} {id} class={colClasses.join(' ')}>
+<div {...$$restProps} class={colClasses.join(' ')}>
   <slot />
 </div>
