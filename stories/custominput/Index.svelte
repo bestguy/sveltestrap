@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Alert } from 'sveltestrap';
   import Example from '../Example.svelte';
   import Binding from './Binding.svelte';
   import bindingSource from '!!raw-loader!./Binding.svelte';
@@ -16,6 +17,12 @@
 </a>
 
 <Example source={sampleSource}>
+  <p slot="info">
+    <Alert color="warning">
+      Note: Custom Inputs <i>require</i> you add an <code>id</code> attribute to work correctly.
+      This is a limitation of Bootstrap's CSS implementation.
+    </Alert>
+  </p>
   <Sample />
 </Example>
 
