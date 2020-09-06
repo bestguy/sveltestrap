@@ -104,6 +104,18 @@ function toClassName(value) {
   return result;
 }
 
+export function cleanRestProps(restProps, excludeProperties) {
+    if (!excludeProperties) {
+      return restProps;
+    }
+    const keys = Object.keys(restProps).filter(key => excludeProperties.indexOf(key) === -1);
+    const rest = {};
+    for (const key of keys) {
+      rest[key] = restProps[key];
+    }
+    return rest;
+}
+
 export default function classnames(...args) {
   return args.map(toClassName).filter(Boolean).join(' ');
 }

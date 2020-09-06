@@ -1,5 +1,5 @@
 <script>
-  import { getColumnSizeClass, isObject } from './utils';
+  import { getColumnSizeClass, isObject, cleanRestProps } from './utils';
 
   let className = '';
   export { className as class };
@@ -45,6 +45,6 @@
   }
 </script>
 
-<div {...$$restProps} class={colClasses.join(' ')}>
+<div {...cleanRestProps($$restProps, widths)} class={colClasses.join(' ')}>
   <slot />
 </div>
