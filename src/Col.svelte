@@ -3,12 +3,24 @@
 
   let className = '';
   export { className as class };
+  export let xs = undefined;
+  export let sm = undefined;
+  export let md = undefined;
+  export let lg = undefined;
+  export let xl = undefined;
 
   const colClasses = [];
   const widths = ['xs', 'sm', 'md', 'lg', 'xl'];
+  const lookup = {
+    xs,
+    sm,
+    md,
+    lg,
+    xl
+  };
 
   widths.forEach((colWidth) => {
-    const columnProp = $$props[colWidth];
+    const columnProp = lookup[colWidth];
     if (!columnProp && columnProp !== '') {
       return; //no value for this width
     }
