@@ -10,7 +10,6 @@
   export let xl = undefined;
 
   const colClasses = [];
-  const widths = ['xs', 'sm', 'md', 'lg', 'xl'];
   const lookup = {
     xs,
     sm,
@@ -19,7 +18,7 @@
     xl
   };
 
-  widths.forEach((colWidth) => {
+  Object.keys(lookup).forEach((colWidth) => {
     const columnProp = lookup[colWidth];
     if (!columnProp && columnProp !== '') {
       return; //no value for this width
