@@ -56,6 +56,7 @@
 
 {#if isOpen}
   <div
+    style="overflow: hidden;"
     {...$$restProps}
     class={classes}
     transition:slide|local
