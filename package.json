@@ -27,7 +27,7 @@
     "prepublish": "npm run dist && git add -A dist",
     "postpublish": "git push && git push --tags",
     "test": "jest --maxWorkers=2 --verbose",
-    "version": "npm run docs && git add -A docs"
+    "version": "npm run dist && npm run docs && git add -A"
   },
   "peerDependencies": {
     "svelte": "^3.4.4"
