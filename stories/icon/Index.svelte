@@ -11,10 +11,10 @@
 </a>
 
 <Alert color="info">
-  <b>Note:</b> This component uses a CDN URL for the Bootstrap Icon file:
-  <code>https://cdn.jsdelivr.net/gh/twbs/icons/bootstrap-icons.svg</code>.<br />
+  <b>Note:</b> This component uses a CDN base URL for the Bootstrap Icon files:
+  <code>https://cdn.jsdelivr.net/gh/twbs/icons/icons/</code>.<br />
   You can customize this using the <code>url</code> prop, for example:
-  <code>&lt;Icon name="whatever" url="/bootstrap-icons.svg" /&gt;</code>
+  <code>&lt;Icon name="whatever" url="/icons/" /&gt;</code>
 </Alert>
 
 <Example source={sampleSource}>

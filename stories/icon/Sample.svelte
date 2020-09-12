@@ -1136,10 +1136,9 @@
 
 {#each icons as name, i}
   <Icon
-    size="1.5rem"
     color={colors[i % colors.length]}
     {name}
     title={name}
-    class="mr-1 mb-1"
+    class="mr-2 mb-2"
   />
 {/each}
