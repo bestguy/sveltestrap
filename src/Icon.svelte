@@ -3,7 +3,7 @@
   export let name = undefined;
   export let size = '1rem';
   export let color = undefined;
-  export let url = 'https://cdn.jsdelivr.net/gh/twbs/icons/bootstrap-icons.svg';
+  export let url = 'https://cdn.jsdelivr.net/gh/twbs/icons/icons/';
   let className = undefined;
   export { className as class };
 
@@ -14,10 +14,10 @@
   );
 </script>
 
-<svg
+<img
+  alt={name}
   class={classes}
+  src={`${url}${name}.svg`}
   style={`width:${size}; height:${size}`}
-  fill="currentColor"
-  {...$$restProps}>
-  <use xlink:href={`${url}#${name}`} />
-</svg>
+  {...$$restProps}
+/>
