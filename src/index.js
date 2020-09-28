@@ -37,7 +37,6 @@ export { default as Form } from './Form.svelte';
 export { default as FormFeedback } from './FormFeedback.svelte';
 export { default as FormGroup } from './FormGroup.svelte';
 export { default as FormText } from './FormText.svelte';
-export { default as Icon } from './Icon.svelte';
 export { default as Input } from './Input.svelte';
 export { default as InputGroup } from './InputGroup.svelte';
 export { default as InputGroupAddon } from './InputGroupAddon.svelte';
