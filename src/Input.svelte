@@ -15,7 +15,7 @@
   export let addon = false;
   export let value = '';
   export let files = '';
-  export let readonly;
+  export let readonly = false;
   export let multiple = false;
   export let name = '';
   export let placeholder = '';
@@ -350,7 +350,8 @@
     on:input
     bind:value
     {name}
-    {disabled} />
+    {disabled}
+    {placeholder} />
 {:else if tag === 'select' && !multiple}
   <select
     {...$$restProps}
