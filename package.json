@@ -5,7 +5,7 @@
   "module": "dist/sveltestrap.es.js",
   "jsnext:main": "dist/sveltestrap.es.js",
   "svelte": "src/index.js",
-  "types": "@types/index.d.ts",
+  "types": "src/@types/index.d.ts",
   "keywords": [
     "svelte"
   ],
@@ -15,8 +15,7 @@
   },
   "files": [
     "dist",
-    "src",
-    "@types"
+    "src"
   ],
   "scripts": {
     "start": "start-storybook -p 6006",
