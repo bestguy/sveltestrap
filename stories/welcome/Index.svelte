@@ -131,7 +131,7 @@
         </p>
         <pre>
           <PrismCode class="language-javascript">
-            {`import Card from 'sveltestrap/src/Card.svelte'`}
+            {`import { Card } from 'sveltestrap/src'`}
           </PrismCode>
         </pre>
 

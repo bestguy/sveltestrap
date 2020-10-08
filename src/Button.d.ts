@@ -16,7 +16,7 @@ interface IButtonProps {
   close?: boolean;
   color?: ButtonColor;
   disabled?: boolean;
-  href?: boolean;
+  href?: string;
   outline?: boolean;
   size?: ButtonSize;
 }

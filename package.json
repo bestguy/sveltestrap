@@ -1,11 +1,11 @@
 {
   "name": "sveltestrap",
-  "version": "3.9.0",
+  "version": "3.9.1-2",
   "main": "dist/sveltestrap.js",
   "module": "dist/sveltestrap.es.js",
   "jsnext:main": "dist/sveltestrap.es.js",
   "svelte": "src/index.js",
-  "types": "@types/index.d.ts",
+  "types": "src/index.d.ts",
   "keywords": [
     "svelte"
   ],
@@ -15,8 +15,7 @@
   },
   "files": [
     "dist",
-    "src",
-    "@types"
+    "src"
   ],
   "scripts": {
     "start": "start-storybook -p 6006",

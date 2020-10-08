@@ -74,9 +74,7 @@ it's recommended you import the component source directly, for example:
 
 ```html
 <script>
-  import Button from 'sveltestrap/src/Button.svelte';
-  import Col from 'sveltestrap/src/Col.svelte';
-  import Row from 'sveltestrap/src/Row.svelte';
+  import { Button, Col, Row } from 'sveltestrap/src';
 </script>
 
 <Row>
