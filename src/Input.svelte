@@ -351,7 +351,8 @@
     bind:value
     {name}
     {disabled}
-    {placeholder} />
+    {placeholder}
+    {readonly} />
 {:else if tag === 'select' && !multiple}
   <select
     {...$$restProps}
@@ -362,7 +363,8 @@
     on:input
     bind:value
     {name}
-    {disabled}>
+    {disabled}
+    {readonly}>
     <slot />
   </select>
 
