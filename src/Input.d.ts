@@ -29,7 +29,7 @@ export type InputType =
 
 export interface IInputProps {
   type?: InputType;
-  size: string;
+  size?: string;
   bsSize?: 'lg' | 'sm';
   color?: Color;
   checked?: boolean;
@@ -39,7 +39,7 @@ export interface IInputProps {
   addon?: boolean;
   value?: string;
   files?: string;
-  readonly: boolean;
+  readonly?: boolean;
   multiple?: boolean;
   id?: string;
   name?: string;
