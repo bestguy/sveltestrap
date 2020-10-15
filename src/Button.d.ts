@@ -8,7 +8,8 @@ declare type ButtonColor =
   | 'warning'
   | 'info'
   | 'light'
-  | 'dark';
+  | 'dark'
+  | 'link';
 declare type ButtonSize = 'lg' | 'sm';
 interface IButtonProps {
   active?: boolean;
