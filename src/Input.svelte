@@ -15,11 +15,11 @@
   export let addon = false;
   export let value = '';
   export let files = '';
-  export let readonly = false;
-  export let multiple = false;
+  export let readonly = undefined;
+  export let multiple = undefined;
   export let name = '';
   export let placeholder = '';
-  export let disabled = false;
+  export let disabled = undefined;
 
   let classes;
   let tag;
