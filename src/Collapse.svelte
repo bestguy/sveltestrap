@@ -56,7 +56,7 @@
 
 {#if isOpen}
   <div
-    style="overflow: hidden;"
+    style={navbar ? undefined : 'overflow: hidden;'}
     {...$$restProps}
     class={classes}
     transition:slide|local
