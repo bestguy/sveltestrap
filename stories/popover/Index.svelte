@@ -5,7 +5,7 @@
 <h1>Popover</h1>
 
 <a
-  href="https://getbootstrap.com/docs/4.3/components/popovers/"
+  href="https://getbootstrap.com/docs/4.5/components/popovers/"
   target="_blank">
   Bootstrap Popover
 </a>
