@@ -1,6 +1,4 @@
-# sveltestrap
-
-![Logo](./logo.svg)
+![sveltestrap](./logo.svg)
 
 ## Bootstrap 4 components for Svelte v3
 
