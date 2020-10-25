@@ -32,9 +32,8 @@ const story = (Component) => () => ({
   Component
 });
 
-storiesOf('Introduction', module).add('Get Started', story(Welcome));
-
 storiesOf('Components', module)
+  .add('Get Started', story(Welcome))
   .add('Layout', story(Grid))
   .add('Alert', story(Alert))
   .add('Badge', story(Badge))
