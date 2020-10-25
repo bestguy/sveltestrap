@@ -11,16 +11,26 @@
     <Container>
       <Row>
         <Col>
-          <h1 class="jumbotron-heading display-4">sveltestrap</h1>
+          <h1
+            class="jumbotron-heading display-4 d-flex align-items-center justify-content-center"
+            style="color: purple; font-weight: 200; letter-spacing: .2rem">
+            <svg height=".8em" viewBox="0 0 39.6 45" xmlns="http://www.w3.org/2000/svg" class="mr-2">
+              <g transform="translate(2.5, 2.5)">
+                <polyline
+                   points="0,30 17.3,40 34.6,30 34.6,20 17.3,30 0,20 0,10
+                           17.3,0 34.6,10 17.3,20 0,10"
+                   fill="none"
+                   stroke="currentcolor"
+                   stroke-linecap="round"
+                   stroke-linejoin="round"
+                   stroke-width="3"
+                 />
+              </g>
+            </svg>
+            SVELTESTRAP
+          </h1>
           <p class="lead">
-            Easy to use Svelte Bootstrap 4 components based on
-            <a
-              href="https://github.com/reactstrap/reactstrap"
-              target="_blank"
-              rel="noopener nofollow">
-              reactstrap
-            </a>
-            .
+            <a href="https://getbootstrap.com" target="new" class="text-body">Bootstrap 4</a> components for <a href="https://svelte.dev" target="new" class="text-body">Svelte 3</a>.
           </p>
           <p>
             <Button
@@ -31,7 +41,7 @@
             </Button>
             <Button
               color="danger"
-              href="https://bestguy.github.io/sveltestrap/?path=/story/components--layout">
+              href="/?path=/story/components--layout">
               Components
             </Button>
           </p>
@@ -69,7 +79,7 @@
         <pre>
           <PrismCode class="language-html">
             {`<head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>`}
           </PrismCode>
         </pre>
@@ -78,7 +88,7 @@
         <pre>
           <PrismCode class="language-html">
             {`<svelte:head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </svelte:head>`}
           </PrismCode>
         </pre>
@@ -138,9 +148,8 @@
         <h2 class="mt-5">About the Project</h2>
         <hr />
         <p>
-          This library contains Svelte 3 Bootstrap 4 components that favor
-          composition and control. The library does not depend on jQuery or
-          Bootstrap javascript.
+          This library was inspired by the <a href="https://reactstrap.github.io">reactstrap</a> library for React.
+          This does not depend on jQuery or Bootstrap's JavaScript, and instead uses Svelte.
         </p>
       </Col>
     </Row>
