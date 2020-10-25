@@ -10,7 +10,7 @@ import Collapse from './collapse/Index.svelte';
 import CustomInputs from './custominput/Index.svelte';
 import Dropdown from './dropdown/Index.svelte';
 import Fade from './fade/Index.svelte';
-import InputGroup from './InputGroup.svelte';
+import InputGroup from './inputgroup/Index.svelte';
 import Inputs from './input/Index.svelte';
 import ListGroup from './listgroup/Index.svelte';
 import Jumbotron from './jumbotron/Index.svelte';

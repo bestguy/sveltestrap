@@ -17,7 +17,7 @@
 <h1>Carousel</h1>
 
 <a
-  href="https://getbootstrap.com/docs/4.3/components/carousel/"
+  href="https://getbootstrap.com/docs/4.5/components/carousel/"
   target="_blank">
   Bootstrap Carousel
 </a>

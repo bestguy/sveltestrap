@@ -6,7 +6,7 @@
 
 <h1>Breadcrumbs</h1>
 <a
-  href="https://getbootstrap.com/docs/4.3/components/breadcrumb/"
+  href="https://getbootstrap.com/docs/4.5/components/breadcrumb/"
   target="_blank">
   Bootstrap Breadcrumbs
 </a>
