@@ -4,7 +4,6 @@ export interface IToastHeaderProps {
   toggle?: () => void;
   icon?: any;
   close?: React.ReactNode;
-  charCode?: string | number;
   closeAriaLabel?: string;
 }
 

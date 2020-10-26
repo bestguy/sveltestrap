@@ -6,15 +6,11 @@
   export let icon = null;
   export let toggle = null;
   export let closeAriaLabel = 'Close';
-  export let charCode = 215;
   export let close = null;
 
   $: classes = classnames(className, 'toast-header');
 
   $: tagClassName = classnames('mr-auto', { 'ml-2': icon != null });
-
-  $: closeIcon =
-    typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;
 </script>
 
 <div {...$$restProps} class={classes}>
@@ -41,9 +37,7 @@
     <button
       type="button"
       on:click={toggle}
-      class="close"
-      aria-label={closeAriaLabel}>
-      <span aria-hidden="true">{closeIcon}</span>
-    </button>
+      class="btn-close"
+      aria-label={closeAriaLabel} />
   {/if}
 </div>
