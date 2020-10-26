@@ -16,7 +16,7 @@
   $: classes = classnames(className, 'alert', `alert-${color}`, {
     'alert-dismissible': toggle
   });
-  $: closeClassNames = classnames('close', closeClassName);
+  $: closeClassNames = classnames('btn-close', closeClassName);
 </script>
 
 {#if isOpen}
@@ -30,9 +30,7 @@
         type="button"
         class={closeClassNames}
         aria-label={closeAriaLabel}
-        on:click={toggle}>
-        <span aria-hidden="true">×</span>
-      </button>
+        on:click={toggle} />
     {/if}
     {#if children}
       {children}
