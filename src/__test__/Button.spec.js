@@ -60,8 +60,8 @@ describe('Button', () => {
 
   test('should render as close', () => {
     const container = renderButton({ close: true });
-    const button = container.querySelector('.close');
-    expect(button.className).toBe('close');
+    const button = container.querySelector('.btn-close');
+    expect(button.className).toBe('btn-close');
   });
 
   test('should render as link if href specified', () => {
