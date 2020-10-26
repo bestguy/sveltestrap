@@ -1,11 +1,11 @@
 {
   "name": "sveltestrap",
-  "version": "3.7.3",
+  "version": "3.9.5",
   "main": "dist/sveltestrap.js",
   "module": "dist/sveltestrap.es.js",
   "jsnext:main": "dist/sveltestrap.es.js",
   "svelte": "src/index.js",
-  "types": "@types/index.d.ts",
+  "types": "src/index.d.ts",
   "keywords": [
     "svelte"
   ],
@@ -15,8 +15,7 @@
   },
   "files": [
     "dist",
-    "src",
-    "@types"
+    "src"
   ],
   "scripts": {
     "start": "start-storybook -p 6006",
@@ -27,7 +26,7 @@
     "prepublish": "npm run dist && git add -A dist",
     "postpublish": "git push && git push --tags",
     "test": "jest --maxWorkers=2 --verbose",
-    "version": "npm run docs && git add -A docs"
+    "version": "npm run dist && npm run docs && git add -A"
   },
   "peerDependencies": {
     "svelte": "^3.4.4"
@@ -40,13 +39,13 @@
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
     "@rollup/plugin-typescript": "^5.0.2",
-    "@storybook/addon-actions": "^5.3.19",
-    "@storybook/addon-knobs": "^5.3.19",
-    "@storybook/addon-links": "^5.3.19",
-    "@storybook/addon-options": "^5.3.19",
-    "@storybook/addon-storysource": "^5.3.19",
-    "@storybook/addons": "^5.3.19",
-    "@storybook/svelte": "^5.3.19",
+    "@storybook/addon-actions": "^6.0.27",
+    "@storybook/addon-knobs": "^6.0.27",
+    "@storybook/addon-links": "^6.0.27",
+    "@storybook/addon-options": "^5.3.21",
+    "@storybook/addon-storysource": "^6.0.27",
+    "@storybook/addons": "^6.0.27",
+    "@storybook/svelte": "^6.0.27",
     "@testing-library/jest-dom": "^5.11.1",
     "@testing-library/svelte": "^3.0.0",
     "@tsconfig/svelte": "^1.0.2",

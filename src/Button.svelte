@@ -10,7 +10,6 @@
   export let color = 'secondary';
   export let disabled = false;
   export let href = '';
-  export let id = '';
   export let outline = false;
   export let size = null;
   export let style = '';
@@ -34,7 +33,6 @@
 {#if href}
   <a
     {...$$restProps}
-    {id}
     class={classes}
     {disabled}
     on:click
@@ -50,7 +48,6 @@
 {:else}
   <button
     {...$$restProps}
-    {id}
     class={classes}
     {disabled}
     on:click

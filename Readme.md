@@ -1,6 +1,4 @@
-# sveltestrap
-
-![Logo](./logo.png)
+![sveltestrap](./logo.svg)
 
 ## Bootstrap 4 components for Svelte v3
 
@@ -40,7 +38,7 @@ Either in your HTML layout:
 <head>
   <link
     rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
   />
 </head>
 ```
@@ -49,7 +47,7 @@ Or add from your Svelte app:
 
 ```html
 <svelte:head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </svelte:head>
 ```
 
@@ -67,16 +65,14 @@ In your svelte component:
 </Row>
 ```
 
-### Note on server-side rendering (SSR) Usage [Fixed](https://github.com/bestguy/sveltestrap/pull/165)
+### Note on server-side rendering (SSR) Usage
 
 If you are using Sveltestrap in an SSR environment like Sapper,
 it's recommended you import the component source directly, for example:
 
 ```html
 <script>
-  import Button from 'sveltestrap/src/Button.svelte';
-  import Col from 'sveltestrap/src/Col.svelte';
-  import Row from 'sveltestrap/src/Row.svelte';
+  import { Button, Col, Row } from 'sveltestrap/src';
 </script>
 
 <Row>

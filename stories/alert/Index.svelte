@@ -10,7 +10,7 @@
 </script>
 
 <h1>Alerts</h1>
-<a href="https://getbootstrap.com/docs/4.3/components/alerts/" target="_blank">
+<a href="https://getbootstrap.com/docs/4.5/components/alerts/" target="_blank">
   Bootstrap Alerts
 </a>
 

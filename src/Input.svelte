@@ -15,12 +15,11 @@
   export let addon = false;
   export let value = '';
   export let files = '';
-  export let readonly;
-  export let multiple = false;
-  export let id = '';
+  export let readonly = undefined;
+  export let multiple = undefined;
   export let name = '';
   export let placeholder = '';
-  export let disabled = false;
+  export let disabled = undefined;
 
   let classes;
   let tag;
@@ -84,7 +83,6 @@
   {#if type === 'text'}
     <input
       {...$$restProps}
-      {id}
       type="text"
       on:blur
       on:focus
@@ -102,7 +100,6 @@
   {:else if type === 'password'}
     <input
       {...$$restProps}
-      {id}
       type="password"
       on:blur
       on:focus
@@ -120,7 +117,6 @@
   {:else if type === 'email'}
     <input
       {...$$restProps}
-      {id}
       type="email"
       on:blur
       on:focus
@@ -138,7 +134,6 @@
   {:else if type === 'file'}
     <input
       {...$$restProps}
-      {id}
       type="file"
       on:blur
       on:focus
@@ -156,7 +151,6 @@
   {:else if type === 'checkbox'}
     <input
       {...$$restProps}
-      {id}
       type="checkbox"
       on:blur
       on:focus
@@ -175,7 +169,6 @@
   {:else if type === 'radio'}
     <input
       {...$$restProps}
-      {id}
       type="radio"
       on:blur
       on:focus
@@ -193,7 +186,6 @@
   {:else if type === 'url'}
     <input
       {...$$restProps}
-      {id}
       type="url"
       on:blur
       on:focus
@@ -211,7 +203,6 @@
   {:else if type === 'number'}
     <input
       {...$$restProps}
-      {id}
       type="number"
       on:blur
       on:focus
@@ -229,7 +220,6 @@
   {:else if type === 'date'}
     <input
       {...$$restProps}
-      {id}
       type="date"
       on:blur
       on:focus
@@ -247,7 +237,6 @@
   {:else if type === 'time'}
     <input
       {...$$restProps}
-      {id}
       type="time"
       on:blur
       on:focus
@@ -265,7 +254,6 @@
   {:else if type === 'datetime'}
     <input
       {...$$restProps}
-      {id}
       type="datetime"
       on:blur
       on:focus
@@ -283,7 +271,6 @@
   {:else if type === 'color'}
     <input
       {...$$restProps}
-      {id}
       type="color"
       on:blur
       on:focus
@@ -301,7 +288,6 @@
   {:else if type === 'range'}
     <input
       {...$$restProps}
-      {id}
       type="range"
       on:blur
       on:focus
@@ -319,7 +305,6 @@
   {:else if type === 'search'}
     <input
       {...$$restProps}
-      {id}
       type="search"
       on:blur
       on:focus
@@ -337,7 +322,6 @@
   {:else}
     <input
       {...$$restProps}
-      {id}
       {type}
       on:blur
       on:focus
@@ -356,7 +340,6 @@
 {:else if tag === 'textarea'}
   <textarea
     {...$$restProps}
-    {id}
     class={classes}
     on:blur
     on:focus
@@ -367,11 +350,12 @@
     on:input
     bind:value
     {name}
-    {disabled} />
+    {disabled}
+    {placeholder}
+    {readonly} />
 {:else if tag === 'select' && !multiple}
   <select
     {...$$restProps}
-    {id}
     class={classes}
     on:blur
     on:focus
@@ -379,14 +363,14 @@
     on:input
     bind:value
     {name}
-    {disabled}>
+    {disabled}
+    {readonly}>
     <slot />
   </select>
 
   <!-- {:else if tag === 'select' && multiple}
   <select
     {...$$restProps}
-    {id}
     multiple
     class={classes}
     on:blur

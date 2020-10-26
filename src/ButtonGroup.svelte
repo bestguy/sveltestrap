@@ -3,7 +3,6 @@
 
   let className = '';
   export { className as class };
-  export let id = '';
   export let size = '';
   export let vertical = false;
 
@@ -14,6 +13,6 @@
   );
 </script>
 
-<div {...$$restProps} {id} class={classes}>
+<div {...$$restProps} class={classes}>
   <slot />
 </div>

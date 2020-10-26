@@ -4,7 +4,6 @@
   let classes = '';
   let className = '';
   export { className as class };
-  export let id = '';
   export let captionHeader = '';
   export let captionText = '';
 
@@ -16,7 +15,7 @@
   );
 </script>
 
-<div {...$$restProps} {id} class={classes}>
+<div {...$$restProps} class={classes}>
   <h5>{captionHeader}</h5>
   <p>{captionText}</p>
   <slot />

@@ -7,7 +7,6 @@
   export let check = false;
   export let inline = false;
   export let disabled = false;
-  export let id = '';
   export let tag = null;
 
   $: classes = classnames(
@@ -20,11 +19,11 @@
 </script>
 
 {#if tag === 'fieldset'}
-  <fieldset {...$$restProps} {id} class={classes}>
+  <fieldset {...$$restProps} class={classes}>
     <slot />
   </fieldset>
 {:else}
-  <div {...$$restProps} {id} class={classes}>
+  <div {...$$restProps} class={classes}>
     <slot />
   </div>
 {/if}

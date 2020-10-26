@@ -9,7 +9,7 @@ import Carousel from './carousel/Index.svelte';
 import Collapse from './collapse/Index.svelte';
 import Dropdown from './dropdown/Index.svelte';
 import Fade from './fade/Index.svelte';
-import InputGroup from './InputGroup.svelte';
+import InputGroup from './inputgroup/Index.svelte';
 import Inputs from './input/Index.svelte';
 import ListGroup from './listgroup/Index.svelte';
 import Jumbotron from './jumbotron/Index.svelte';
@@ -31,9 +31,8 @@ const story = (Component) => () => ({
   Component
 });
 
-storiesOf('Introduction', module).add('Get Started', story(Welcome));
-
 storiesOf('Components', module)
+  .add('Get Started', story(Welcome))
   .add('Layout', story(Grid))
   .add('Alert', story(Alert))
   .add('Badge', story(Badge))

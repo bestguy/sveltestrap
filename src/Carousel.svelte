@@ -6,7 +6,6 @@
   let classes = '';
   let className = '';
   export { className as class };
-  export let id = '';
   export let style = '';
   export let items = [];
   export let activeIndex = 0;
@@ -21,19 +20,19 @@
 
   onMount(() => {
     setRideTimeout();
-  });
 
-  _removeVisibilityChangeListener = browserEvent(
-    document,
-    'visibilitychange',
-    () => {
-      if (document.visibilityState === 'hidden') {
-        clearRideTimeout();
-      } else {
-        setRideTimeout();
+    _removeVisibilityChangeListener = browserEvent(
+      document,
+      'visibilitychange',
+      () => {
+        if (document.visibilityState === 'hidden') {
+          clearRideTimeout();
+        } else {
+          setRideTimeout();
+        }
       }
-    }
-  );
+    );
+  });
 
   onDestroy(() => {
     if (_rideTimeoutId) {
@@ -86,7 +85,6 @@
 
 <div
   {...$$restProps}
-  {id}
   class={classes}
   {style}
   on:mouseenter={() => (pause ? clearRideTimeout() : undefined)}
