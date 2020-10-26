@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, Container, Row, Col, Jumbotron } from 'sveltestrap';
+  import { Button, Container, Row, Col } from 'sveltestrap';
   import PrismCode from '../PrismCode.svelte';
   import Example from '../Example.svelte';
   import Sample from './Sample.svelte';
@@ -7,12 +7,12 @@
 </script>
 
 <div>
-  <Jumbotron tag="section" class="jumbotron-header text-center mb-3">
+  <section class="bg-light text-center mb-3 p-5">
     <Container>
       <Row>
         <Col>
           <h1
-            class="jumbotron-heading display-4 d-flex align-items-center justify-content-center"
+            class="display-4 d-flex align-items-center justify-content-center"
             style="color: purple; font-weight: 200; letter-spacing: .2rem">
             <svg height=".8em" viewBox="0 0 39.6 45" xmlns="http://www.w3.org/2000/svg" class="mr-2">
               <g transform="translate(2.5, 2.5)">
@@ -48,7 +48,7 @@
         </Col>
       </Row>
     </Container>
-  </Jumbotron>
+  </section>
   <Container>
     <Row class="justify-content-sm-center">
       <Col sm={8} class="docSearch-content">

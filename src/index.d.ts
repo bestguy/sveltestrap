@@ -41,7 +41,6 @@ import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 import InputGroupButtonDropdown from './InputGroupButtonDropdown';
 import InputGroupText from './InputGroupText';
-import Jumbotron from './Jumbotron';
 import Label from './Label';
 import ListGroup from './ListGroup';
 import ListGroupItem from './ListGroupItem';
@@ -117,7 +116,6 @@ export {
   InputGroupAddon,
   InputGroupButtonDropdown,
   InputGroupText,
-  Jumbotron,
   Label,
   ListGroup,
   ListGroupItem,

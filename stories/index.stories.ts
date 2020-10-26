@@ -12,7 +12,6 @@ import Fade from './fade/Index.svelte';
 import InputGroup from './inputgroup/Index.svelte';
 import Inputs from './input/Index.svelte';
 import ListGroup from './listgroup/Index.svelte';
-import Jumbotron from './jumbotron/Index.svelte';
 import Media from './media/Index.svelte';
 import Modals from './modal/Index.svelte';
 import Navbar from './navbar/Index.svelte';
@@ -45,7 +44,6 @@ storiesOf('Components', module)
   .add('Fade', story(Fade))
   .add('Inputs', story(Inputs))
   .add('InputGroup', story(InputGroup))
-  .add('Jumbotron', story(Jumbotron))
   .add('ListGroup', story(ListGroup))
   .add('Media', story(Media))
   .add('Modals', story(Modals))
