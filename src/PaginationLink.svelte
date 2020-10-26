@@ -43,7 +43,7 @@
     <span aria-hidden="true">
       <slot>{defaultCaret}</slot>
     </span>
-    <span class="sr-only">{realLabel}</span>
+    <span class="visually-hidden">{realLabel}</span>
   {:else}
     <slot />
   {/if}

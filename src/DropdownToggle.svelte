@@ -48,7 +48,7 @@
     {ariaHaspopup}
     class={classes}>
     <slot>
-      <span class="sr-only">{ariaLabel}</span>
+      <span class="visually-hidden">{ariaLabel}</span>
     </slot>
   </a>
 {:else if tag === 'span'}
@@ -61,7 +61,7 @@
     {color}
     {size}>
     <slot>
-      <span class="sr-only">{ariaLabel}</span>
+      <span class="visually-hidden">{ariaLabel}</span>
     </slot>
   </span>
 {:else}
@@ -75,7 +75,7 @@
     {size}
     {outline}>
     <slot>
-      <span class="sr-only">{ariaLabel}</span>
+      <span class="visually-hidden">{ariaLabel}</span>
     </slot>
   </Button>
 {/if}

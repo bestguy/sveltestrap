@@ -44,5 +44,5 @@
   href="#{direction}"
   on:click|preventDefault={clickHandler}>
   <span class="carousel-control-{direction}-icon" aria-hidden="true" />
-  <span class="sr-only">{srText}</span>
+  <span class="visually-hidden">{srText}</span>
 </a>
