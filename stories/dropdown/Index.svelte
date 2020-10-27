@@ -2,6 +2,8 @@
   import Example from '../Example.svelte';
   import Alignment from './Alignment.svelte';
   import alignmentSource from '!!raw-loader!./Alignment.svelte';
+  import Dark from './Dark.svelte';
+  import darkSource from '!!raw-loader!./Dark.svelte';
   import Direction from './Direction.svelte';
   import directionSource from '!!raw-loader!./Direction.svelte';
   import Sample from './Sample.svelte';
@@ -43,4 +45,8 @@
 
 <Example title="SetActiveFromChild" source={setActiveFromChildSource}>
   <SetActiveFromChild />
+</Example>
+
+<Example title="Dark variant" source={darkSource}>
+  <Dark />
 </Example>
