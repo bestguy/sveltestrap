@@ -13,6 +13,7 @@ export interface ICarouselProps {
   interval?: number | string | boolean;
   mouseEnter?: () => void;
   mouseExit?: () => void;
+  dark?: boolean;
   slide?: boolean;
   enableTouch?: boolean;
 }
