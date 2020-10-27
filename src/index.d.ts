@@ -44,7 +44,6 @@ import InputGroupText from './InputGroupText';
 import Label from './Label';
 import ListGroup from './ListGroup';
 import ListGroupItem from './ListGroupItem';
-import Media from './Media';
 import Modal from './Modal';
 import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
@@ -119,7 +118,6 @@ export {
   Label,
   ListGroup,
   ListGroupItem,
-  Media,
   Modal,
   ModalBody,
   ModalFooter,

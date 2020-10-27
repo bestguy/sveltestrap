@@ -44,7 +44,6 @@ export { default as InputGroupText } from './InputGroupText.svelte';
 export { default as Label } from './Label.svelte';
 export { default as ListGroup } from './ListGroup.svelte';
 export { default as ListGroupItem } from './ListGroupItem.svelte';
-export { default as Media } from './Media.svelte';
 export { default as Modal } from './Modal.svelte';
 export { default as ModalBody } from './ModalBody.svelte';
 export { default as ModalFooter } from './ModalFooter.svelte';
