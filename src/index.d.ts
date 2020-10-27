@@ -38,7 +38,6 @@ import FormGroup from './FormGroup';
 import FormText from './FormText';
 import Input from './Input';
 import InputGroup from './InputGroup';
-import InputGroupAddon from './InputGroupAddon';
 import InputGroupButtonDropdown from './InputGroupButtonDropdown';
 import InputGroupText from './InputGroupText';
 import Label from './Label';
@@ -112,7 +111,6 @@ export {
   FormText,
   Input,
   InputGroup,
-  InputGroupAddon,
   InputGroupButtonDropdown,
   InputGroupText,
   Label,
