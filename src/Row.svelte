@@ -8,7 +8,7 @@
 
   $: classes = classnames(
     className,
-    noGutters ? 'no-gutters' : null,
+    noGutters ? 'gx-0' : null,
     form ? 'form-row' : 'row'
   );
 </script>

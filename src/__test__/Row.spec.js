@@ -13,7 +13,7 @@ describe('Row', () => {
   test('should render noGutters', () => {
     const { container } = render(Row, { props: { noGutters: true } });
     const row = container.querySelector('.row');
-    expect(row.className).toBe('no-gutters row');
+    expect(row.className).toBe('gx-0 row');
   });
 
   test('should render form row', () => {
