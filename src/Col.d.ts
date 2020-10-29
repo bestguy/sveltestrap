@@ -19,6 +19,7 @@ export interface IColProps {
   md?: ColumnProps;
   lg?: ColumnProps;
   xl?: ColumnProps;
+  xxl?: ColumnProps;
 
   // custom widths
   widths?: string[];

@@ -8,6 +8,7 @@
   export let md = undefined;
   export let lg = undefined;
   export let xl = undefined;
+  export let xxl = undefined;
 
   const colClasses = [];
   const lookup = {
@@ -15,7 +16,8 @@
     sm,
     md,
     lg,
-    xl
+    xl,
+    xxl
   };
 
   Object.keys(lookup).forEach((colWidth) => {
