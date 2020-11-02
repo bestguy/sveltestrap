@@ -24,6 +24,7 @@
   let windowWidth = 0;
   let _wasMaximazed = false;
 
+  // TODO wrong to hardcode these here - come from Bootstrap CSS only
   const minWidth = {};
   minWidth['xs'] = 0;
   minWidth['sm'] = 576;
