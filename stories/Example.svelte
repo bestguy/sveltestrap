@@ -15,11 +15,11 @@
   <div class="border p-3">
     <h6 class="text-muted">EXAMPLE</h6>
     <Row>
-      <Col>
+      <Col sm={5}>
         <slot />
       </Col>
       {#if source}
-        <Col xs={stacked ? 12 : undefined}>
+        <Col xs={stacked ? 12 : 7}>
           <PrismCode class="language-html h-100">{source}</PrismCode>
         </Col>
       {/if}
