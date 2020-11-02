@@ -16,13 +16,15 @@
   export let md = '';
   export let lg = '';
   export let xl = '';
+  export let xxl = '';
 
   const colWidths = {
     xs,
     sm,
     md,
     lg,
-    xl
+    xl,
+    xxl
   };
   export let widths = Object.keys(colWidths);
 
@@ -63,7 +65,7 @@
     check ? 'form-check-label' : false,
     size ? `col-form-label-${size}` : false,
     colClasses,
-    colClasses.length ? 'col-form-label' : false
+    colClasses.length ? 'col-form-label' : 'form-label'
   );
 </script>
 

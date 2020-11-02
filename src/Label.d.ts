@@ -13,6 +13,7 @@ export interface ILabelProps {
   md?: ColumnProps;
   lg?: ColumnProps;
   xl?: ColumnProps;
+  xxl?: ColumnProps;
 }
 
 declare class Label extends LocalSvelteComponent<ILabelProps> {}
