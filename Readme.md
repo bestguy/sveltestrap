@@ -1,12 +1,12 @@
 ![sveltestrap](./logo.svg)
 
-## Bootstrap 4 components for Svelte v3
+## Bootstrap 5 components for Svelte v3
 
 **Work in progress, check back soon - PRs are welcome!**
 
-The philosophy of this library is to provide all Bootstrap 4 components for a [Svelte](https://svelte.dev) app, without needing to use Bootstrap component classes or needing to include Bootstrap's JavaScript.
+The philosophy of this library is to provide all Bootstrap 5 components for a [Svelte](https://svelte.dev) app, without needing to use Bootstrap component classes or needing to include Bootstrap's JavaScript.
 
-However, to make using Bootstrap themes easier, this library does _not_ embed Bootstrap styles directly and you will need to include Bootstrap 4 CSS in your page.
+However, to make using Bootstrap themes easier, this library does _not_ embed Bootstrap styles directly and you will need to include Bootstrap 5 CSS in your page.
 
 The component names and interface are inspired by the [reactstrap](https://reactstrap.github.io) library for React.
 
@@ -30,7 +30,7 @@ The component names and interface are inspired by the [reactstrap](https://react
 
 ## Usage
 
-_You need to include a link to Bootstrap 4 stylesheet in your page - these components do not include or embed any Bootstrap styles automatically._
+_You need to include a link to Bootstrap 5 stylesheet in your page - these components do not include or embed any Bootstrap styles automatically._
 
 Either in your HTML layout:
 
