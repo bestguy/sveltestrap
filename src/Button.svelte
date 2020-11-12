@@ -22,7 +22,7 @@
     close ? 'btn-close' : 'btn',
     close || `btn${outline ? '-outline' : ''}-${color}`,
     size ? `btn-${size}` : false,
-    block ? 'btn-block' : false,
+    block ? 'd-block w-100' : false,
     { active }
   );
 

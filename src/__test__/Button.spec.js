@@ -43,7 +43,7 @@ describe('Button', () => {
   test('should render block', () => {
     const container = renderButton({ block: true });
     const button = container.querySelector('.btn');
-    expect(button.className).toBe('btn btn-secondary btn-block');
+    expect(button.className).toBe('btn btn-secondary d-block w-100');
   });
 
   test('should render disabled', () => {
