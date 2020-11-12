@@ -1,5 +1,4 @@
 <script>
-  import FormFile from './FormFile.svelte';
   import FormCheck from './FormCheck.svelte';
 
   import classnames from './utils';
@@ -162,10 +161,10 @@
       {placeholder}
       {readonly} />
   {:else if type === 'file'}
-    <FormFile
+    <input
       {...$$restProps}
-      class={className}
-      size={bsSize}
+      class={classes}
+      type="file"
       on:blur
       on:change
       on:focus

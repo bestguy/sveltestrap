@@ -47,9 +47,6 @@ describe('Input', () => {
         case 'color':
           expect(input.className).toContain('form-control form-control-color');
           break;
-        case 'file':
-          expect(input.className).toContain('form-file-input');
-          break;
         case 'range':
           expect(input.className).toContain('form-range');
           break;
