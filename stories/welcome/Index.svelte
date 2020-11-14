@@ -30,7 +30,7 @@
             SVELTESTRAP
           </h1>
           <p class="lead">
-            <a href="https://getbootstrap.com" target="new" class="text-body">Bootstrap 4</a> components for <a href="https://svelte.dev" target="new" class="text-body">Svelte 3</a>.
+            <a href="https://v5.getbootstrap.com" target="new" class="text-body">Bootstrap 5</a> components for <a href="https://svelte.dev" target="new" class="text-body">Svelte 3</a>.
           </p>
           <p>
             <Button
@@ -94,7 +94,7 @@
         </pre>
 
         <p>
-          You can also use any Bootstrap 4 compatible theme instead of the
+          You can also use any Bootstrap 5 compatible theme instead of the
           default Bootstrap theme. For example:
           <a href="https://www.bootstrapcdn.com/bootswatch/" target="new">
             https://www.bootstrapcdn.com/bootswatch/

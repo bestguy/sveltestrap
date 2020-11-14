@@ -6,16 +6,16 @@
   import Hover from './Hover.svelte';
   import Responsive from './Responsive.svelte';
   import Sample from './Sample.svelte';
-  // import Sizes from './Sizes.svelte';
-  // import Striped from './Striped.svelte';
+  import Sizes from './Sizes.svelte';
+  import Striped from './Striped.svelte';
+  import stripedSource from '!!raw-loader!./Striped.svelte';
   import borderedSource from '!!raw-loader!./Bordered.svelte';
   import borderlessSource from '!!raw-loader!./Borderless.svelte';
   import darkSource from '!!raw-loader!./Dark.svelte';
   import hoverSource from '!!raw-loader!./Hover.svelte';
   import responsiveSource from '!!raw-loader!./Responsive.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
-  // import sizesSource from '!!raw-loader!./Sizes.svelte';
-  // import stripedSource from '!!raw-loader!./Striped.svelte';
+  import sizesSource from '!!raw-loader!./Sizes.svelte';
 </script>
 
 <h1>Table</h1>
@@ -41,6 +41,14 @@
 
 <Example title="Hover" source={hoverSource}>
   <Hover />
+</Example>
+
+<Example title="Striped" source={stripedSource}>
+  <Striped />
+</Example>
+
+<Example title="Sizes" source={sizesSource}>
+  <Sizes />
 </Example>
 
 <Example title="Responsive" source={responsiveSource}>
