@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { IDropdownProps } from './Dropdown';
 import { LocalSvelteComponent } from './shared';
 

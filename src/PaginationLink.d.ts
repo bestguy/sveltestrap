@@ -7,7 +7,7 @@ export interface IPaginationLinkProps {
   previous?: boolean;
   first?: boolean;
   last?: boolean;
-  href?: string | React.ReactType;
+  href?: string;
 }
 
 declare class PaginationLink extends LocalSvelteComponent<

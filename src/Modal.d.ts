@@ -21,7 +21,6 @@ export interface IModalProps {
   zIndex?: number | string;
   fade?: boolean;
   centered?: boolean;
-  external?: React.ReactNode;
   labelledBy?: string;
   unmountOnClose?: boolean;
   returnFocusAfterClose?: boolean;
