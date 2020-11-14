@@ -12,7 +12,7 @@
 
 <h1>Inputs</h1>
 <a
-  href="https://getbootstrap.com/docs/4.5/components/forms/#form-controls"
+  href="https://v5.getbootstrap.com/docs/5.0/components/forms/#form-controls"
   target="_blank">
   Bootstrap Inputs
 </a>

@@ -11,7 +11,7 @@
 </script>
 
 <h1>Card</h1>
-<a href="https://getbootstrap.com/docs/4.5/components/card/" target="_blank">
+<a href="https://v5.getbootstrap.com/docs/5.0/components/card/" target="_blank">
   Bootstrap Card
 </a>
 
