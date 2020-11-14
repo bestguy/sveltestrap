@@ -1,6 +1,6 @@
 <script>
   import classnames from './utils';
-  import Button from './Button';
+  import Button from './Button.svelte';
 
   let className = '';
   export { className as class };
