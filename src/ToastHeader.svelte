@@ -1,12 +1,12 @@
 <script>
   import classnames from './utils';
+  import Button from './Button';
 
   let className = '';
   export { className as class };
   export let icon = null;
   export let toggle = null;
   export let closeAriaLabel = 'Close';
-  export let close = null;
 
   $: classes = classnames(className, 'toast-header');
 
@@ -31,13 +31,12 @@
   <strong class={tagClassName}>
     <slot />
   </strong>
-  {#if close}
-    {close}
-  {:else if toggle}
-    <button
-      type="button"
-      on:click={toggle}
-      class="btn-close"
-      aria-label={closeAriaLabel} />
+  {#if toggle}
+    <slot name="close">
+      <Button
+        close
+        on:click={toggle}
+        aria-label={closeAriaLabel} />
+    </slot>
   {/if}
 </div>
