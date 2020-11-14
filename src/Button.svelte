@@ -54,9 +54,7 @@
     aria-label={ariaLabel || defaultAriaLabel}
     {style}>
     <slot>
-      {#if close}
-        <span aria-hidden="true">×</span>
-      {:else if children}
+      {#if children}
         {children}
       {:else}
         <slot />
