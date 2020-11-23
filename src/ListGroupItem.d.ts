@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { LocalSvelteComponent, Color } from './shared';
 
 export interface IListGroupItemProps {
