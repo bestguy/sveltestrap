@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { LocalSvelteComponent, Color } from './shared';
 
 export interface IListGroupItemProps {
@@ -8,7 +7,6 @@ export interface IListGroupItemProps {
   color?: Color;
   action?: boolean;
   href?: string;
-  onClick?: React.MouseEventHandler<any>;
 }
 
 declare class ListGroupItem extends LocalSvelteComponent<IListGroupItemProps> {}
