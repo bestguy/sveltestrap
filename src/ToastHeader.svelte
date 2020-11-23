@@ -7,7 +7,6 @@
   export let toggle = null;
   export let closeAriaLabel = 'Close';
   export let charCode = 215;
-  export let close = null;
 
   $: classes = classnames(className, 'toast-header');
 
@@ -35,15 +34,15 @@
   <strong class={tagClassName}>
     <slot />
   </strong>
-  {#if close}
-    {close}
-  {:else if toggle}
-    <button
-      type="button"
-      on:click={toggle}
-      class="close"
-      aria-label={closeAriaLabel}>
-      <span aria-hidden="true">{closeIcon}</span>
-    </button>
+  {#if toggle}
+    <slot name="close">
+      <button
+        type="button"
+        on:click={toggle}
+        class="close"
+        aria-label={closeAriaLabel}>
+        <span aria-hidden="true">{closeIcon}</span>
+      </button>
+    </slot>
   {/if}
 </div>

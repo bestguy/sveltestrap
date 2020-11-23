@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { LocalSvelteComponent } from './shared';
 
 export interface FormGroupProps {
@@ -7,7 +6,7 @@ export interface FormGroupProps {
   inline?: boolean;
   disabled?: boolean;
   id?: string;
-  tag?: string | React.ReactType;
+  tag?: string;
 }
 
 declare class FormGroup extends LocalSvelteComponent<FormGroupProps> {}
