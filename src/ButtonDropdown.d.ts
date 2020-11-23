@@ -1,9 +1,6 @@
-import { UncontrolledDropdownProps, IDropdownProps } from './Dropdown';
+import { IDropdownProps } from './Dropdown';
 import { LocalSvelteComponent } from './shared';
-export {
-  UncontrolledDropdownProps as UncontrolledButtonDropdownProps,
-  IDropdownProps as ButtonDropdownProps
-};
+export { IDropdownProps as ButtonDropdownProps };
 
 declare class ButtonDropdown extends LocalSvelteComponent<IDropdownProps> {}
 export default ButtonDropdown;

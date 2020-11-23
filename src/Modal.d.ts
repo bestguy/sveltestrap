@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { IFadeProps } from './Fade';
 import { LocalSvelteComponent } from './shared';
 

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { LocalSvelteComponent } from './shared';
 
 export interface FormGroupProps {
