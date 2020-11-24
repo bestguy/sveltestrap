@@ -6,7 +6,7 @@ export interface FormGroupProps {
   inline?: boolean;
   disabled?: boolean;
   id?: string;
-  tag?: string | React.ReactType;
+  tag?: string;
 }
 
 declare class FormGroup extends LocalSvelteComponent<FormGroupProps> {}
