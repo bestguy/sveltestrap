@@ -1,5 +1,6 @@
 import { storiesOf } from '@storybook/svelte';
 
+import Accordion from './accordion/Index.svelte';
 import Alert from './alert/Index.svelte';
 import Badge from './badge/Index.svelte';
 import Breadcrumbs from './breadcrumb/Index.svelte';
@@ -32,6 +33,7 @@ const story = (Component) => () => ({
 storiesOf('Components', module)
   .add('Get Started', story(Welcome))
   .add('Layout', story(Grid))
+  .add('Accordion', story(Accordion))
   .add('Alert', story(Alert))
   .add('Badge', story(Badge))
   .add('Breadcrumb', story(Breadcrumbs))
