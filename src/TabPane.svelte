@@ -1,13 +1,15 @@
 <script>
+  import { getContext } from 'svelte';
   import classnames from './utils';
-  import { context } from './TabContext';
 
   let className = '';
   export { className as class };
   export let tabId;
 
+  const { activeTabId } = getContext('tabContent');
+
   $: classes = classnames('tab-pane', className, {
-    active: tabId === $context.activeTabId
+    active: tabId === $activeTabId
   });
 </script>
 
