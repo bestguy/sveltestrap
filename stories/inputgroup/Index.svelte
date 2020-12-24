@@ -4,7 +4,7 @@
   import sampleSource from '!!raw-loader!./Sample.svelte';
 </script>
 
-<h1>Navbar</h1>
+<h1>InputGroup</h1>
 <a href="https://getbootstrap.com/docs/4.5/components/input-group/" target="_blank">
   Bootstrap Input Group
 </a>
