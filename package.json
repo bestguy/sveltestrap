@@ -97,6 +97,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@popperjs/core": "^2.6.0",
     "lodash.isobject": "^3.0.2",
     "lodash.tonumber": "^4.0.3"
   },
