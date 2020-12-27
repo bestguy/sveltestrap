@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { createPopper } from '@popperjs/core';
   import classnames, { generateRandomDigits } from './utils';
 
@@ -9,7 +9,7 @@
   export let placement = 'top';
   export let children = undefined;
   let isHover = false;
-  let popperPlacement = '';
+  let popperPlacement = placement;
 
   const tooltipId = `tooltip${generateRandomDigits(0, 100000)}`;
 
@@ -44,10 +44,11 @@
     targetEl.addEventListener('mouseover', enableHover);
     targetEl.addEventListener('mouseleave', disableHover);
 
-    createPopper(targetEl, tooltip, {
+    const temp = createPopper(targetEl, tooltip, {
       placement,
       modifiers: [checkPopperPlacement]
     });
+    console.log(temp);
   });
 
   $: ariaLabel = $$props['aria-label'];
@@ -56,7 +57,7 @@
     className,
     'tooltip',
     'fade',
-    `bs-tooltip-${popperPlacement || placement}`,
+    `bs-tooltip-${popperPlacement}`,
     isHover ? 'show' : false
   );
 </script>
