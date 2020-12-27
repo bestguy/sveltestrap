@@ -6,7 +6,7 @@
 </script>
 
 {#each placements as placement}
-  <div class="mt-5">
+  <div class="mt-3">
     <Button id={`btn-${placement}`}>{placement}</Button>
     <Tooltip target={`btn-${placement}`} {placement}>{placement}</Tooltip>
   </div>
