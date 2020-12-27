@@ -26,11 +26,10 @@
   };
 
   const enableHover = () => {
-    popperInstance = createPopper(targetEl, tooltipEl, {
-      placement,
-      modifiers: [checkPopperPlacement]
-    });
     isHover = true;
+    if (popperInstance) {
+      popperInstance.update();
+    }
   };
 
   const disableHover = () => {
@@ -45,6 +44,10 @@
     targetEl = document.querySelector(`#${target}`);
     targetEl.addEventListener('mouseover', enableHover);
     targetEl.addEventListener('mouseleave', disableHover);
+    popperInstance = createPopper(targetEl, tooltipEl, {
+      placement,
+      modifiers: [checkPopperPlacement]
+    });
   });
 
   $: ariaLabel = $$props['aria-label'];
