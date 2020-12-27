@@ -2,7 +2,6 @@
   import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core';
   import classnames, { generateRandomDigits } from './utils';
-  import Alert from './Alert.svelte';
 
   let className = '';
   export { className as class };
