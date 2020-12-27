@@ -1,6 +1,6 @@
 {
   "name": "sveltestrap",
-  "version": "5.0.0-alpha.3-3",
+  "version": "5.0.0-beta.1",
   "main": "dist/sveltestrap.js",
   "module": "dist/sveltestrap.es.js",
   "jsnext:main": "dist/sveltestrap.es.js",
