@@ -29,12 +29,6 @@
     createPopper(targetEl, tooltip, {
       placement,
       modifiers: [
-        {
-          name: 'preventOverflow',
-          options: {
-            tetherOffset: ({ popper }) => popper.width / 2
-          }
-        }
       ]
     });
   });
