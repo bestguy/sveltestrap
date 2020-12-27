@@ -107,3 +107,9 @@ function toClassName(value) {
 export default function classnames(...args) {
   return args.map(toClassName).filter(Boolean).join(' ');
 }
+
+export const generateRandomDigits = (argMin, argMax) => {
+  const min = Math.ceil(argMin);
+  const max = Math.floor(argMax);
+  return Math.floor(Math.random() * (max - min)) + min;
+};

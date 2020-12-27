@@ -1,25 +1,19 @@
 <script>
   // TODO: ARIA LABEL
-  // TODO: UNIT TEST
   // TODO: STORY BOOK
 
   import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core';
-  import classnames from './utils';
+  import classnames, { generateRandomDigits } from './utils';
 
   let className = '';
   export { className as class };
   export let target = '';
   export let placement = 'top';
+  export let children = undefined;
   let isHover = false;
 
-  const randomDigit = () => {
-    const min = Math.ceil(0);
-    const max = Math.floor(100000);
-    return Math.floor(Math.random() * (max - min)) + min;
-  };
-
-  const tooltipId = `tooltip${randomDigit()}`;
+  const tooltipId = `tooltip${generateRandomDigits(0, 100000)}`;
 
   onMount(() => {
     const tooltip = document.querySelector(`#${tooltipId}`);
@@ -31,21 +25,13 @@
       isHover = false;
     });
 
-    const arrow = document.querySelector(`#${tooltipId} .arrow`);
-
     createPopper(targetEl, tooltip, {
       placement,
       modifiers: [
         {
-          name: 'arrow',
-          options: {
-            element: arrow,
-          }
-        },
-        {
           name: 'preventOverflow',
           options: {
-            tetherOffset: ({ popper, reference, placement }) => popper.width / 2
+            tetherOffset: ({ popper }) => popper.width / 2
           }
         }
       ]
@@ -61,14 +47,13 @@
   );
 </script>
 
-<div
-  id={tooltipId}
-  class={`tooltip fade bs-tooltip-${placement} show`}
-  role="tooltip"
-  x-placement={placement}>
-  <!-- <div id={tooltipId} class={classes} role="tooltip" x-placement={placement}> -->
+<div id={tooltipId} class={classes} role="tooltip" x-placement={placement}>
   <div class="arrow" data-popper-arrow />
   <div class="tooltip-inner">
-    <slot />
+    {#if children}
+      {children}
+    {:else}
+      <slot />
+    {/if}
   </div>
 </div>
