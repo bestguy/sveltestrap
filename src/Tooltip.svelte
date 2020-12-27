@@ -9,45 +9,42 @@
   export let placement = 'top';
   export let children = undefined;
   let isHover = false;
+  let popperInstance;
   let popperPlacement = placement;
+  let tooltipEl;
+  let targetEl;
 
   const tooltipId = `tooltip${generateRandomDigits(0, 100000)}`;
-
-  const enableHover = () => {
-    isHover = true;
-  };
-
-  const disableHover = () => {
-    isHover = false;
-  };
 
   const checkPopperPlacement = {
     name: 'checkPopperPlacement',
     enabled: true,
     phase: 'main',
     fn({ state }) {
-      if (state.placement === 'top') {
-        popperPlacement = 'top';
-      } else if (state.placement === 'bottom') {
-        popperPlacement = 'bottom';
-      } else if (state.placement === 'right') {
-        popperPlacement = 'right'
-      } else {
-        popperPlacement = 'left';
-      }
+      popperPlacement = state.placement;
+    }
+  };
+
+  const enableHover = () => {
+    popperInstance = createPopper(targetEl, tooltipEl, {
+      placement,
+      modifiers: [checkPopperPlacement]
+    });
+    isHover = true;
+  };
+
+  const disableHover = () => {
+    isHover = false;
+    if (popperInstance) {
+      popperInstance.destory();
     }
   };
 
   onMount(() => {
-    const tooltip = document.querySelector(`#${tooltipId}`);
-    const targetEl = document.querySelector(`#${target}`);
+    tooltipEl = document.querySelector(`#${tooltipId}`);
+    targetEl = document.querySelector(`#${target}`);
     targetEl.addEventListener('mouseover', enableHover);
     targetEl.addEventListener('mouseleave', disableHover);
-
-    createPopper(targetEl, tooltip, {
-      placement,
-      modifiers: [checkPopperPlacement]
-    });
   });
 
   $: ariaLabel = $$props['aria-label'];
