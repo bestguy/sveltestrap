@@ -1,6 +1,9 @@
 <script>
   // TODO: FIX ARROW POSITION
   // TODO: GET CHILDREN DATA 
+  // TODO: ARIA LABEL
+  // TODO: UNIT TEST
+  // TODO: STORY BOOK
 
   import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core/lib/popper-lite'
