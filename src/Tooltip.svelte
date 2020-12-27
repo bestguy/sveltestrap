@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core';
   import classnames, { generateRandomDigits } from './utils';
+  import Alert from './Alert.svelte';
 
   let className = '';
   export { className as class };
@@ -9,6 +10,7 @@
   export let placement = 'top';
   export let children = undefined;
   let isHover = false;
+  let popperPlacement = '';
 
   const tooltipId = `tooltip${generateRandomDigits(0, 100000)}`;
 
@@ -20,6 +22,23 @@
     isHover = false;
   };
 
+  const checkPopperPlacement = {
+    name: 'checkPopperPlacement',
+    enabled: true,
+    phase: 'main',
+    fn({ state }) {
+      if (state.placement === 'top') {
+        popperPlacement = 'top';
+      } else if (state.placement === 'bottom') {
+        popperPlacement = 'bottom';
+      } else if (state.placement === 'right') {
+        popperPlacement = 'right'
+      } else {
+        popperPlacement = 'left';
+      }
+    }
+  };
+
   onMount(() => {
     const tooltip = document.querySelector(`#${tooltipId}`);
     const targetEl = document.querySelector(`#${target}`);
@@ -28,8 +47,7 @@
 
     createPopper(targetEl, tooltip, {
       placement,
-      modifiers: [
-      ]
+      modifiers: [checkPopperPlacement]
     });
   });
 
@@ -39,7 +57,7 @@
     className,
     'tooltip',
     'fade',
-    `bs-tooltip-${placement}`,
+    `bs-tooltip-${popperPlacement || placement}`,
     isHover ? 'show' : false
   );
 </script>
@@ -48,7 +66,7 @@
   id={tooltipId}
   class={classes}
   role="tooltip"
-  x-placement={placement}
+  x-placement={popperPlacement}
   aria-label={ariaLabel}>
   <div class="arrow" data-popper-arrow />
   <div class="tooltip-inner">

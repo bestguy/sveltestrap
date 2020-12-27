@@ -6,6 +6,6 @@
 </script>
 
 <div>
-  <Button id="btn-top-html">HTML TOP</Button>
-  <Tooltip target="btn-top-html" placement="top">{@html string}</Tooltip>
+  <Button id="btn-right-html">HTML right</Button>
+  <Tooltip target="btn-right-html" placement="right">{@html string}</Tooltip>
 </div>
