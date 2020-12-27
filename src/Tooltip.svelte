@@ -1,18 +1,16 @@
 <script>
-  // TODO: FIX ARROW POSITION
-  // TODO: OVERFLOW
   // TODO: ARIA LABEL
   // TODO: UNIT TEST
   // TODO: STORY BOOK
 
   import { onMount } from 'svelte';
-  import { createPopper } from '@popperjs/core/lib/popper-lite';
+  import { createPopper } from '@popperjs/core';
   import classnames from './utils';
+
   let className = '';
   export { className as class };
   export let target = '';
   export let placement = 'top';
-
   let isHover = false;
 
   const randomDigit = () => {
@@ -33,9 +31,17 @@
       isHover = false;
     });
 
+    const arrow = document.querySelector(`#${tooltipId} .arrow`);
+
     createPopper(targetEl, tooltip, {
       placement,
       modifiers: [
+        {
+          name: 'arrow',
+          options: {
+            element: arrow,
+          }
+        },
         {
           name: 'preventOverflow',
           options: {
