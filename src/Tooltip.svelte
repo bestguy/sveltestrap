@@ -1,5 +1,4 @@
 <script>
-  // TODO: ARIA LABEL
   // TODO: STORY BOOK
 
   import { onMount } from 'svelte';
@@ -38,6 +37,8 @@
     });
   });
 
+  $: ariaLabel = $$props['aria-label'];
+
   $: classes = classnames(
     className,
     'tooltip',
@@ -47,7 +48,7 @@
   );
 </script>
 
-<div id={tooltipId} class={classes} role="tooltip" x-placement={placement}>
+<div id={tooltipId} class={classes} role="tooltip" x-placement={placement} aria-label={ariaLabel}>
   <div class="arrow" data-popper-arrow />
   <div class="tooltip-inner">
     {#if children}
