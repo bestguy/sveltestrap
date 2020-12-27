@@ -1,6 +1,5 @@
 <script>
   // TODO: STORY BOOK
-
   import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core';
   import classnames, { generateRandomDigits } from './utils';
