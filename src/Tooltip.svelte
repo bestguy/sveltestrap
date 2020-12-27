@@ -10,7 +10,6 @@
   import classnames from './utils';
   let className = '';
   export { className as class };
-  export let children = undefined;
   export let target = '';
   export let placement = 'top';
 
@@ -54,8 +53,6 @@
     `bs-tooltip-${placement}`,
     isHover ? 'show' : false
   );
-
-  console.log(children);
 </script>
 
 <div
