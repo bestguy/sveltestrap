@@ -21,15 +21,16 @@
   export let setActiveFromChild = false;
   export let dropup = false;
 
-  const validDirections = ['up', 'down', 'left', 'right'];
+  const validDirections = ['up', 'down', 'left', 'right', 'start', 'end'];
 
   if (validDirections.indexOf(direction) === -1) {
     throw new Error(
-      `Invalid direction sent: '${direction}' is not one of 'up', 'down', 'left', 'right'`
+      `Invalid direction sent: '${direction}' is not one of 'up', 'down', 'left', 'right', 'start', 'end'`
     );
   }
 
   let component;
+  let dropdownDirection;
 
   $: subItemIsActive = !!(
     setActiveFromChild &&
@@ -38,9 +39,15 @@
     component.querySelector('.active')
   );
 
+  $: {
+    if (direction === 'left') dropdownDirection = 'start';
+    else if (direction === 'right') dropdownDirection = 'end';
+    else dropdownDirection = direction;
+  }
+
   $: classes = classnames(
     className,
-    direction !== 'down' && `drop${direction}`,
+    direction !== 'down' && `drop${dropdownDirection}`,
     nav && active ? 'active' : false,
     setActiveFromChild && subItemIsActive ? 'active' : false,
     {
@@ -49,7 +56,8 @@
       [`btn-group-${size}`]: !!size,
       dropdown: !group && !addonType,
       show: isOpen,
-      'nav-item': nav
+      'nav-item': nav,
+      'd-inline-block': !nav
     }
   );
 

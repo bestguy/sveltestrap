@@ -14,7 +14,7 @@
           <h1
             class="display-4 d-flex align-items-center justify-content-center"
             style="color: purple; font-weight: 200; letter-spacing: .2rem">
-            <svg height=".8em" viewBox="0 0 39.6 45" xmlns="http://www.w3.org/2000/svg" class="mr-2">
+            <svg height=".8em" viewBox="0 0 39.6 45" xmlns="http://www.w3.org/2000/svg" class="me-2">
               <g transform="translate(2.5, 2.5)">
                 <polyline
                    points="0,30 17.3,40 34.6,30 34.6,20 17.3,30 0,20 0,10

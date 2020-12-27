@@ -12,7 +12,7 @@
 </script>
 
 <Navbar color="light" light expand="md">
-  <Nav class="ml-auto" navbar>
+  <Nav class="ms-auto" navbar>
     <NavItem>
       <NavLink href="/components/">Inactive Link</NavLink>
     </NavItem>

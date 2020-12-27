@@ -11,7 +11,7 @@ export declare type Color =
   | 'light'
   | 'dark';
 
-export declare type Direction = 'up' | 'down' | 'left' | 'right';
+export declare type Direction = 'up' | 'down' | 'left' | 'right' | 'start' | 'end';
 
 type LocalSvelteProps = {
   children?: any;

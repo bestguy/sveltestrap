@@ -2,6 +2,7 @@ import { LocalSvelteComponent } from './shared';
 
 export interface IDropdownMenuProps {
   dark?: boolean;
+  end?: boolean;
   right?: boolean;
 }
 

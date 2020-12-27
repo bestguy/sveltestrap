@@ -10,7 +10,7 @@
 
   $: classes = classnames(className, 'toast-header');
 
-  $: tagClassName = classnames('mr-auto', { 'ml-2': icon != null });
+  $: tagClassName = classnames('me-auto', { 'ms-2': icon != null });
 </script>
 
 <div {...$$restProps} class={classes}>

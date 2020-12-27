@@ -11,7 +11,7 @@
 
 <Dropdown {isOpen} toggle={() => (isOpen = !isOpen)}>
   <DropdownToggle caret>Dropdown's menu is right-aligned</DropdownToggle>
-  <DropdownMenu right>
+  <DropdownMenu end>
     <DropdownItem header>Header</DropdownItem>
     <DropdownItem disabled>Action</DropdownItem>
     <DropdownItem>Another Action</DropdownItem>
