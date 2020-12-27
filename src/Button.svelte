@@ -28,15 +28,6 @@
   );
 
   $: defaultAriaLabel = close ? 'Close' : null;
-
-  // $: tooltipClasses = classnames(
-  //   className,
-  //   'tooltip',
-  //   'fade',
-  //   dataPlacement ? `bs-tooltip-${dataPlacement}` : 'bs-tooltip-top',
-  //   isHover ? 'show' : false,
-  // )
-
 </script>
 
 {#if href}
