@@ -1,5 +1,5 @@
 <script>
-  import { onDestroy, onMount, tick } from 'svelte';
+  import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core';
   import classnames, { generateRandomDigits } from './utils';
 
