@@ -1,6 +1,5 @@
 <script>
-  // TODO: STORY BOOK
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
   import { createPopper } from '@popperjs/core';
   import classnames, { generateRandomDigits } from './utils';
 
@@ -13,15 +12,19 @@
 
   const tooltipId = `tooltip${generateRandomDigits(0, 100000)}`;
 
+  const enableHover = () => {
+    isHover = true;
+  };
+
+  const disableHover = () => {
+    isHover = false;
+  };
+
   onMount(() => {
     const tooltip = document.querySelector(`#${tooltipId}`);
     const targetEl = document.querySelector(`#${target}`);
-    targetEl.addEventListener('mouseover', () => {
-      isHover = true;
-    });
-    targetEl.addEventListener('mouseleave', () => {
-      isHover = false;
-    });
+    targetEl.addEventListener('mouseover', enableHover);
+    targetEl.addEventListener('mouseleave', disableHover);
 
     createPopper(targetEl, tooltip, {
       placement,
@@ -47,7 +50,12 @@
   );
 </script>
 
-<div id={tooltipId} class={classes} role="tooltip" x-placement={placement} aria-label={ariaLabel}>
+<div
+  id={tooltipId}
+  class={classes}
+  role="tooltip"
+  x-placement={placement}
+  aria-label={ariaLabel}>
   <div class="arrow" data-popper-arrow />
   <div class="tooltip-inner">
     {#if children}
