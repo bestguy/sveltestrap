@@ -1,4 +1,9 @@
 <script>
+  // TODO: ON MOUSE OVER EVENT
+  // TODO: ON MOUSE LEAVE EVENT
+  // TODO: FIX ARROW POSITION
+  // TODO: GET CHILDREN DATA 
+
   import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core/lib/popper-lite'
   // import classnames from './utils';
