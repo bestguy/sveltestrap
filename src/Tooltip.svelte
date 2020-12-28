@@ -8,7 +8,7 @@
   export let target = '';
   export let placement = 'top';
   export let children = undefined;
-  let animation = true;
+  export let animation = true;
   let isHover = false;
   let popperInstance;
   let popperPlacement = placement;
