@@ -11,6 +11,7 @@
   let animation = true;
   let isHover = false;
   let popperInstance;
+  let bsPlacement;
   let popperPlacement = placement;
   let tooltipEl;
   let targetEl;
@@ -45,11 +46,17 @@
     });
   });
 
+  $: {
+    if (popperPlacement === 'left') bsPlacement = 'start';
+    else if (popperPlacement === 'right') bsPlacement = 'end';
+    else bsPlacement = popperPlacement;
+  }
+
   $: classes = classnames(
     className,
     'tooltip',
     animation ? 'fade' : false,
-    `bs-tooltip-${popperPlacement}`,
+    `bs-tooltip-${bsPlacement}`,
     isHover ? 'show' : false
   );
 </script>
@@ -60,7 +67,7 @@
   class={classes}
   role="tooltip"
   x-placement={popperPlacement}>
-  <div class="arrow" data-popper-arrow />
+  <div class="tooltip-arrow" data-popper-arrow />
   <div class="tooltip-inner">
     {#if children}
       {children}
