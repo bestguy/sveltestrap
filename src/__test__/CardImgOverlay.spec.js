@@ -11,7 +11,9 @@ describe('CardImgOverlay', () => {
   });
 
   test('should render custom class', () => {
-    const { container } = render(CardImgOverlay, { props: { class: 'boogie' } });
+    const { container } = render(CardImgOverlay, {
+      props: { class: 'boogie' }
+    });
 
     const component = container.querySelector('.card-img-overlay');
     expect(component.className).toBe('boogie card-img-overlay');

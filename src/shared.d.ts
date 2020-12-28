@@ -25,7 +25,10 @@ type LocalSvelteProps = {
  */
 export declare class LocalSvelteComponent<Props = {}> {
   constructor(props: Props & LocalSvelteProps);
-  $on<T = any>(event: string, callback: (event: CustomEvent<T>) => void): () => void;
+  $on<T = any>(
+    event: string,
+    callback: (event: CustomEvent<T>) => void
+  ): () => void;
   $$prop_def: Props & LocalSvelteProps;
   render: undefined;
   context: undefined;
