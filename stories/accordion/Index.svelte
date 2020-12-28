@@ -10,7 +10,7 @@
 
 <h1>Accordion</h1>
 <a
-  href="https://v5.getbootstrap.com/docs/5.0/components/accordion/"
+  href="https://getbootstrap.com/docs/5.0/components/accordion/"
   target="_blank">
   Bootstrap Accordion
 </a>

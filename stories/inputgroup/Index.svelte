@@ -5,7 +5,7 @@
 </script>
 
 <h1>InputGroup</h1>
-<a href="https://v5.getbootstrap.com/docs/5.0/components/input-group/" target="_blank">
+<a href="https://getbootstrap.com/docs/5.0/components/input-group/" target="_blank">
   Bootstrap Input Group
 </a>
 

@@ -7,7 +7,7 @@
 </script>
 
 <h1>Layout</h1>
-<a href="https://v5.getbootstrap.com/docs/5.0/layout/grid/" target="_blank">
+<a href="https://getbootstrap.com/docs/5.0/layout/grid/" target="_blank">
   Bootstrap Layout Grid
 </a>
 

@@ -12,7 +12,7 @@
 
 <h1>List Groups</h1>
 <a
-  href="https://v5.getbootstrap.com/docs/5.0/components/list-group/"
+  href="https://getbootstrap.com/docs/5.0/components/list-group/"
   target="_blank">
   Bootstrap List Groups
 </a>

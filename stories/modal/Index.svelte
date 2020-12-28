@@ -9,7 +9,7 @@
 </script>
 
 <h1>Modals</h1>
-<a href="https://v5.getbootstrap.com/docs/5.0/components/modal/" target="_blank">
+<a href="https://getbootstrap.com/docs/5.0/components/modal/" target="_blank">
   Bootstrap Modals
 </a>
 
