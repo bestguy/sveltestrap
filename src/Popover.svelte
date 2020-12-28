@@ -1,5 +1,9 @@
 <script>
-  // TODO: CHECK THERE IS ERROR WHEN TARGET IS MISSING
+  // TODO: STORYBOOK
+  // TODO: UNIT TEST
+  // TODO: TYPES
+  // TODO: CHECK POSITION FOR POPPER
+  // TODO: THROW ERROR FOR TARGET IS MISSING
 
   import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core';
@@ -7,15 +11,14 @@
 
   let className = '';
   export { className as class };
-  export let target = '';
-  export let placement = 'top';
-  export let children = undefined;
   export let animation = true;
-  let isHover = false;
+  export let placement = 'top';
+  export let target = '';
+  let isPopoverShow = false;
+  let targetEl;
+  let popoverEl;
   let popperInstance;
   let popperPlacement = placement;
-  let tooltipEl;
-  let targetEl;
 
   const checkPopperPlacement = {
     name: 'checkPopperPlacement',
@@ -26,22 +29,17 @@
     }
   };
 
-  const enableHover = () => {
-    isHover = true;
+  const onClickTarget = () => {
+    isPopoverShow = !isPopoverShow;
     if (popperInstance) {
       popperInstance.update();
     }
   };
 
-  const disableHover = () => {
-    isHover = false;
-  };
-
   onMount(() => {
     targetEl = document.querySelector(`#${target}`);
-    targetEl.addEventListener('mouseover', enableHover);
-    targetEl.addEventListener('mouseleave', disableHover);
-    popperInstance = createPopper(targetEl, tooltipEl, {
+    targetEl.addEventListener('click', onClickTarget);
+    popperInstance = createPopper(targetEl, popoverEl, {
       placement,
       modifiers: [checkPopperPlacement]
     });
@@ -49,25 +47,22 @@
 
   $: classes = classnames(
     className,
-    'tooltip',
+    'popover',
     animation ? 'fade' : false,
-    `bs-tooltip-${popperPlacement}`,
-    isHover ? 'show' : false
+    `bs-popover-${popperPlacement}`,
+    isPopoverShow ? 'show' : false
   );
 </script>
 
 <div
-  bind:this={tooltipEl}
+  bind:this={popoverEl}
   {...$$restProps}
   class={classes}
   role="tooltip"
   x-placement={popperPlacement}>
   <div class="arrow" data-popper-arrow />
-  <div class="tooltip-inner">
-    {#if children}
-      {children}
-    {:else}
-      <slot />
-    {/if}
+  <h3 class="popover-header">TITLE</h3>
+  <div class="popover-body">
+    <slot />
   </div>
 </div>
