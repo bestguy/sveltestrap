@@ -11,7 +11,9 @@ describe('Breadcrumb', () => {
   });
 
   test('should render custom class', () => {
-    const { container } = render(Breadcrumb, { props: { class: 'boogie', listClassName: 'shoes' } });
+    const { container } = render(Breadcrumb, {
+      props: { class: 'boogie', listClassName: 'shoes' }
+    });
     const nav = container.querySelector('nav');
     expect(nav.className).toBe('boogie');
 

@@ -5,7 +5,9 @@ beforeEach(cleanup);
 
 describe('BreadcrumbItem', () => {
   test('should render correctly', () => {
-    const { container } = render(BreadcrumbItem, { props: { children: 'Alpha' } });
+    const { container } = render(BreadcrumbItem, {
+      props: { children: 'Alpha' }
+    });
     const item = container.querySelector('.breadcrumb-item');
     expect(item.innerHTML).toBe('Alpha');
     expect(item.className).toBe('breadcrumb-item');
@@ -18,7 +20,9 @@ describe('BreadcrumbItem', () => {
   });
 
   test('should render custom class', () => {
-    const { container } = render(BreadcrumbItem, { props: { class: 'boogie', listClassName: 'shoes' } });
+    const { container } = render(BreadcrumbItem, {
+      props: { class: 'boogie', listClassName: 'shoes' }
+    });
     const item = container.querySelector('.breadcrumb-item');
     expect(item.className).toBe('boogie breadcrumb-item');
   });

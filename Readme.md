@@ -106,10 +106,7 @@ Sveltestrap is currently missing support for the following components:
 - [ ] Popover
   - [ ] PopoverContent
   - [ ] PopoverTitle
-- [ ] Tooltip
 
 Please follow (or help out with) these issues for status:
-
-[Missing Tooltip (#31)](https://github.com/bestguy/sveltestrap/issues/31)
 
 [Missing Popover (#32)](https://github.com/bestguy/sveltestrap/issues/32)

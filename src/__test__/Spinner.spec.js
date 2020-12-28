@@ -17,7 +17,9 @@ describe('Spinner', () => {
   });
 
   test('should render specified type', () => {
-    const { container } = render(Spinner, { props: { color: 'warning', type: 'grow' } });
+    const { container } = render(Spinner, {
+      props: { color: 'warning', type: 'grow' }
+    });
     const spinner = container.querySelector('.spinner-grow');
     expect(spinner.className).toBe('spinner-grow text-warning');
   });
@@ -35,7 +37,9 @@ describe('Spinner', () => {
   });
 
   test('should render custom class', () => {
-    const { container } = render(Spinner, { props: { color: 'danger', class: 'boogie' } });
+    const { container } = render(Spinner, {
+      props: { color: 'danger', class: 'boogie' }
+    });
     const spinner = container.querySelector('.spinner-border');
     expect(spinner.className).toBe('boogie spinner-border text-danger');
   });

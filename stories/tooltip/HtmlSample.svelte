@@ -1,11 +1,10 @@
 <script lang="ts">
-  import Tooltip from '../../src/Tooltip.svelte';
-  import { Button } from 'sveltestrap';
-
-  let string = `<strong>Hello</strong> world!`;
+  import { Button, Tooltip } from 'sveltestrap';
 </script>
 
 <div>
   <Button id="btn-right-html">HTML right</Button>
-  <Tooltip target="btn-right-html" placement="right">{@html string}</Tooltip>
+  <Tooltip target="btn-right-html" placement="right">
+    <strong>Hello</strong> <i>World</i>!
+  </Tooltip>
 </div>
