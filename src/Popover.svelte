@@ -31,9 +31,9 @@
 
   const onClickTarget = () => {
     isPopoverShow = !isPopoverShow;
-    if (popperInstance) {
+    if (isPopoverShow) {
       popperInstance.update();
-    }
+    } 
   };
 
   onMount(() => {
@@ -41,7 +41,24 @@
     targetEl.addEventListener('click', onClickTarget);
     popperInstance = createPopper(targetEl, popoverEl, {
       placement,
-      modifiers: [checkPopperPlacement]
+      modifiers: [
+        checkPopperPlacement,
+        {
+          name: 'offset',
+          options: {
+            offset: ({ placement, popper, reference }) => {
+              if (placement === 'bottom') {
+                return [0, popper.width / 2];
+              } else if (placement === 'top') {
+                return [0, popper.width / 2];
+              } else if (placement === 'right') {
+                return [0, 0];
+              }
+              return [popper.height / 2, 0];
+            }
+          }
+        }
+      ]
     });
   });
 
