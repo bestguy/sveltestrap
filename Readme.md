@@ -14,6 +14,8 @@ The component names and interface are inspired by the [reactstrap](https://react
 
 ### Status
 
+#### Current
+
 - See component list below
   - Tooltip & Popover are not implemented yet due to lacking Popper/Tether support [#31](https://github.com/bestguy/sveltestrap/issues/31), [#32](https://github.com/bestguy/sveltestrap/issues/32)
   - Carousel not implemented yet, need to port transitions/state/key handlers. [#30](https://github.com/bestguy/sveltestrap/issues/30)
@@ -21,6 +23,12 @@ The component names and interface are inspired by the [reactstrap](https://react
   - Collapse uses the Svelte slide transistion. In Svelte, the component is removed from the DOM whereas in Bootstrap, it stays in the DOM, but is hidden. This interacts badly with nav bars on small screens.
   - Modal uses Svelte fade transition, which does not use the Bootstrap theme defaults for duration, etc.
 - Most components are missing general DOM events, see [#36](https://github.com/bestguy/sveltestrap/issues/36)
+
+#### Bootstrap V5 compatibility
+
+- Currently WIP, but have compatibility up to Bootstrap v5 alpha 2
+https://github.com/bestguy/sveltestrap/issues/156#issuecomment-727272111
+- Accordion and floating labels are needed for alpha 3 compatibility, currently WIP.
 
 ---
 
@@ -98,10 +106,7 @@ Sveltestrap is currently missing support for the following components:
 - [ ] Popover
   - [ ] PopoverContent
   - [ ] PopoverTitle
-- [ ] Tooltip
 
 Please follow (or help out with) these issues for status:
-
-[Missing Tooltip (#31)](https://github.com/bestguy/sveltestrap/issues/31)
 
 [Missing Popover (#32)](https://github.com/bestguy/sveltestrap/issues/32)

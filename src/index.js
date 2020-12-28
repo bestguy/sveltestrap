@@ -68,6 +68,7 @@ export { default as TabPane } from './TabPane.svelte';
 export { default as Toast } from './Toast.svelte';
 export { default as ToastBody } from './ToastBody.svelte';
 export { default as ToastHeader } from './ToastHeader.svelte';
+export { default as Tooltip } from './Tooltip.svelte';
 export { default as UncontrolledAlert } from './UncontrolledAlert.svelte';
 export { default as UncontrolledButtonDropdown } from './UncontrolledButtonDropdown.svelte';
 export { default as UncontrolledCollapse } from './UncontrolledCollapse.svelte';

@@ -1,19 +1,17 @@
 <script lang="ts">
-  import { Alert } from 'sveltestrap';
+  import Example from '../Example.svelte';
+  import BasicSample from './BasicSample.svelte';
+  import HtmlSample from './HtmlSample.svelte';
+  import basicSampleSource from '!!raw-loader!./BasicSample.svelte';
+  import htmlSampleSource from '!!raw-loader!./HtmlSample.svelte';
 </script>
 
 <h1>Tooltip</h1>
 
-<a
-  href="https://v5.getbootstrap.com/docs/5.0/components/tooltips/"
-  target="_blank">
-  Bootstrap Tooltip
-</a>
-<Alert color="info" class="mt-3">
-  <b>TODO</b>
-  - See
-  <a href="https://github.com/bestguy/sveltestrap/issues/31" target="_blank">
-    Issue 31
-  </a>
-  for status.
-</Alert>
+<Example title="Basic" source={basicSampleSource}>
+  <BasicSample />
+</Example>
+
+<Example title="Html tag" source={htmlSampleSource}>
+  <HtmlSample />
+</Example>

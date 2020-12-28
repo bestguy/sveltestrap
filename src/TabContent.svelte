@@ -1,18 +1,21 @@
 <script>
   import classnames from './utils';
-  import { context } from './TabContext';
+  import { setContext } from 'svelte';
+  import { writable } from 'svelte/store';
 
   let className = '';
   export { className as class };
   export let activeTab;
 
-  $: classes = classnames('tab-content', className);
+  const activeTabId = writable(activeTab);
 
-  $: context.update(() => {
-    return {
-      activeTabId: activeTab
-    };
+  $: activeTabId.set(activeTab);
+
+  setContext('tabContent', {
+    activeTabId
   });
+
+  $: classes = classnames('tab-content', className);
 </script>
 
 <div {...$$restProps} class={classes}>
