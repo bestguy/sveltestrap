@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core';
-  import classnames, { generateRandomDigits } from './utils';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -13,8 +13,6 @@
   let popperPlacement = placement;
   let tooltipEl;
   let targetEl;
-
-  const tooltipId = `tooltip${generateRandomDigits(0, 100000)}`;
 
   const checkPopperPlacement = {
     name: 'checkPopperPlacement',
@@ -34,13 +32,9 @@
 
   const disableHover = () => {
     isHover = false;
-    if (popperInstance) {
-      popperInstance.destory();
-    }
   };
 
   onMount(() => {
-    tooltipEl = document.querySelector(`#${tooltipId}`);
     targetEl = document.querySelector(`#${target}`);
     targetEl.addEventListener('mouseover', enableHover);
     targetEl.addEventListener('mouseleave', disableHover);
@@ -49,8 +43,6 @@
       modifiers: [checkPopperPlacement]
     });
   });
-
-  $: ariaLabel = $$props['aria-label'];
 
   $: classes = classnames(
     className,
@@ -62,11 +54,11 @@
 </script>
 
 <div
-  id={tooltipId}
+  bind:this={tooltipEl}
+  {...$$restProps}
   class={classes}
   role="tooltip"
-  x-placement={popperPlacement}
-  aria-label={ariaLabel}>
+  x-placement={popperPlacement}>
   <div class="arrow" data-popper-arrow />
   <div class="tooltip-inner">
     {#if children}
