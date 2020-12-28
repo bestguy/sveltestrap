@@ -8,6 +8,7 @@
   export let target = '';
   export let placement = 'top';
   export let children = undefined;
+  let animation = true;
   let isHover = false;
   let popperInstance;
   let popperPlacement = placement;
@@ -47,7 +48,7 @@
   $: classes = classnames(
     className,
     'tooltip',
-    'fade',
+    animation ? 'fade' : false,
     `bs-tooltip-${popperPlacement}`,
     isHover ? 'show' : false
   );
