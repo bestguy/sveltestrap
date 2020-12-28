@@ -24,7 +24,7 @@
     close || `btn${outline ? '-outline' : ''}-${color}`,
     size ? `btn-${size}` : false,
     block ? 'btn-block' : false,
-    { active }
+    { active },
   );
 
   $: defaultAriaLabel = close ? 'Close' : null;

@@ -26,6 +26,7 @@
     "prepublish": "npm run dist && git add -A dist",
     "postpublish": "git push && git push --tags",
     "test": "jest --maxWorkers=2 --verbose",
+    "test:watch": "jest --maxWorkers=2 --verbose --watchAll",
     "version": "npm run dist && npm run docs && git add -A"
   },
   "peerDependencies": {
@@ -97,6 +98,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@popperjs/core": "^2.6.0",
     "lodash.isobject": "^3.0.2",
     "lodash.tonumber": "^4.0.3"
   },

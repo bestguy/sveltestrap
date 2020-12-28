@@ -74,3 +74,4 @@ export { default as UncontrolledButtonDropdown } from './UncontrolledButtonDropd
 export { default as UncontrolledCollapse } from './UncontrolledCollapse.svelte';
 export { default as UncontrolledFade } from './UncontrolledFade.svelte';
 export { default as UncontrolledDropdown } from './UncontrolledDropdown.svelte';
+export { default as Tooltip }  from './Tooltip.svelte';
