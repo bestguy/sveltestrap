@@ -1,9 +1,6 @@
 <script>
   // TODO: STORYBOOK
   // TODO: UNIT TEST
-  // TODO: TYPES
-  // TODO: CHECK POSITION FOR POPPER
-  // TODO: THROW ERROR FOR TARGET IS MISSING
 
   import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core';
@@ -11,9 +8,11 @@
 
   let className = '';
   export { className as class };
+  export let children = undefined;
   export let animation = true;
   export let placement = 'top';
   export let target = '';
+  export let title = '';
   let isPopoverShow = false;
   let targetEl;
   let popoverEl;
@@ -33,7 +32,7 @@
     isPopoverShow = !isPopoverShow;
     if (isPopoverShow) {
       popperInstance.update();
-    } 
+    }
   };
 
   onMount(() => {
@@ -46,21 +45,18 @@
         {
           name: 'offset',
           options: {
-            offset: ({ placement, popper, reference }) => {
-              if (placement === 'bottom') {
-                return [0, popper.width / 2];
-              } else if (placement === 'top') {
-                return [0, popper.width / 2];
-              } else if (placement === 'right') {
-                return [0, 0];
-              }
-              return [popper.height / 2, 0];
+            offset: () => {
+              return [0, 8];
             }
           }
         }
       ]
     });
   });
+
+  $: if (!target) {
+    throw new Error("Need target!");
+  }
 
   $: classes = classnames(
     className,
@@ -78,8 +74,14 @@
   role="tooltip"
   x-placement={popperPlacement}>
   <div class="arrow" data-popper-arrow />
-  <h3 class="popover-header">TITLE</h3>
+  <h3 class="popover-header">
+    <slot name="title">{title}</slot>
+  </h3>
   <div class="popover-body">
-    <slot />
+    {#if children}
+      {children}
+    {:else}
+      <slot />
+    {/if}
   </div>
 </div>
