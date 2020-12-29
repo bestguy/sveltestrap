@@ -1,8 +1,5 @@
 <script>
-  // TODO: STORYBOOK
-  // TODO: UNIT TEST
-
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { createPopper } from '@popperjs/core';
   import classnames from './utils';
 
@@ -13,6 +10,7 @@
   export let placement = 'top';
   export let target = '';
   export let title = '';
+  export let debugShowMode = false;
   let isPopoverShow = false;
   let targetEl;
   let popoverEl;
@@ -28,34 +26,37 @@
     }
   };
 
-  const onClickTarget = () => {
+  const onClickTarget = async () => {
     isPopoverShow = !isPopoverShow;
     if (isPopoverShow) {
-      popperInstance.update();
+      await tick();
+      popperInstance = createPopper(targetEl, popoverEl, {
+        placement,
+        modifiers: [
+          checkPopperPlacement,
+          {
+            name: 'offset',
+            options: {
+              offset: () => {
+                return [0, 8];
+              }
+            }
+          }
+        ]
+      });
+    } else {
+      popperInstance.destroy();
+      popperInstance = undefined;
     }
   };
 
   onMount(() => {
     targetEl = document.querySelector(`#${target}`);
     targetEl.addEventListener('click', onClickTarget);
-    popperInstance = createPopper(targetEl, popoverEl, {
-      placement,
-      modifiers: [
-        checkPopperPlacement,
-        {
-          name: 'offset',
-          options: {
-            offset: () => {
-              return [0, 8];
-            }
-          }
-        }
-      ]
-    });
   });
 
   $: if (!target) {
-    throw new Error("Need target!");
+    throw new Error('Need target!');
   }
 
   $: classes = classnames(
@@ -67,21 +68,23 @@
   );
 </script>
 
-<div
-  bind:this={popoverEl}
-  {...$$restProps}
-  class={classes}
-  role="tooltip"
-  x-placement={popperPlacement}>
-  <div class="arrow" data-popper-arrow />
-  <h3 class="popover-header">
-    <slot name="title">{title}</slot>
-  </h3>
-  <div class="popover-body">
-    {#if children}
-      {children}
-    {:else}
-      <slot />
-    {/if}
+{#if isPopoverShow || debugShowMode}
+  <div
+    bind:this={popoverEl}
+    {...$$restProps}
+    class={classes}
+    role="tooltip"
+    x-placement={popperPlacement}>
+    <div class="arrow" data-popper-arrow />
+    <h3 class="popover-header">
+      <slot name="title">{title}</slot>
+    </h3>
+    <div class="popover-body">
+      {#if children}
+        {children}
+      {:else}
+        <slot />
+      {/if}
+    </div>
   </div>
-</div>
+{/if}
