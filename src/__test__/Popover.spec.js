@@ -10,7 +10,7 @@ const renderButton = (props) => {
 
 const renderPopover = (props) => {
   const { container } = render(Popover, { props });
-  return container;
+  return container
 };
 
 const POPOVER_POSITION_CLASS = {
@@ -29,7 +29,8 @@ describe('Popover test', () => {
   it('should render text and default placement(top)', () => {
     const containerPopover = renderPopover({
       children: 'Hello',
-      target: 'btn'
+      target: 'btn',
+      debugShowMode: true
     });
     const popover = containerPopover.querySelector('.popover');
     const popoverContent = containerPopover.querySelector('.popover .popover-body');
@@ -42,6 +43,7 @@ describe('Popover test', () => {
       children: 'Hello',
       target: 'btn',
       placement: 'left',
+      debugShowMode: true
     });
     const popover = containerPopover.querySelector('.popover');
     const popoverContent = containerPopover.querySelector('.popover .popover-body');
