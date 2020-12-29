@@ -1,9 +1,18 @@
 <script lang="ts">
-  import Popover from '../../src/Popover.svelte';
-  import Button from '../../src/Button.svelte';
+  import Example from '../Example.svelte';
+  import BasicSample from './BasicSample.svelte';
+  import MoreSample from './MoreSample.svelte'
+  import basicSampleSource from '!!raw-loader!./BasicSample.svelte';
+  import moreSampleSource from '!!raw-loader!./MoreSample.svelte';
 </script>
 
 <h1>Popover</h1>
 
-<Button id="btn">HELLO</Button>
-<Popover target="btn" placement="right">Hi</Popover>
+<Example title="Basic" source={basicSampleSource}>
+  <BasicSample />
+</Example>
+
+
+<Example title="More" source={moreSampleSource}>
+  <MoreSample />
+</Example>
