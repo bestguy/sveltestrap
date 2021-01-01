@@ -1,20 +1,18 @@
 <script lang="ts">
-  import { Alert } from 'sveltestrap';
+  import Example from '../Example.svelte';
+  import BasicSample from './BasicSample.svelte';
+  import MoreSample from './MoreSample.svelte'
+  import basicSampleSource from '!!raw-loader!./BasicSample.svelte';
+  import moreSampleSource from '!!raw-loader!./MoreSample.svelte';
 </script>
 
 <h1>Popover</h1>
 
-<a
-  href="https://getbootstrap.com/docs/4.5/components/popovers/"
-  target="_blank">
-  Bootstrap Popover
-</a>
+<Example title="Basic" source={basicSampleSource}>
+  <BasicSample />
+</Example>
 
-<Alert color="info" class="mt-3">
-  <b>TODO</b>
-  - See
-  <a href="https://github.com/bestguy/sveltestrap/issues/32" target="_blank">
-    Issue 32
-  </a>
-  for status.
-</Alert>
+
+<Example title="More" source={moreSampleSource}>
+  <MoreSample />
+</Example>

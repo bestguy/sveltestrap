@@ -4,7 +4,7 @@ declare type TooltipPlacement = 'left' | 'top' | 'bottom' | 'right';
 
 interface ITooltipProps {
   animation?: boolean;
-  target?: string;
+  target: string;
   placement?: TooltipPlacement;
 }
 

@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { createPopper } from '@popperjs/core';
   import classnames from './utils';
 
@@ -8,7 +8,8 @@
   export let target = '';
   export let placement = 'top';
   export let children = undefined;
-  let animation = true;
+  export let animation = true;
+  export let debugHover = false;
   let isHover = false;
   let popperInstance;
   let popperPlacement = placement;
@@ -24,25 +25,27 @@
     }
   };
 
-  const enableHover = () => {
+  const enableHover = async () => {
     isHover = true;
-    if (popperInstance) {
-      popperInstance.update();
-    }
+    await tick();
+    popperInstance = createPopper(targetEl, tooltipEl, {
+      placement,
+      modifiers: [checkPopperPlacement]
+    });
   };
 
   const disableHover = () => {
     isHover = false;
+    if (popperInstance) {
+      popperInstance.destroy();
+      popperInstance = undefined;
+    }
   };
 
   onMount(() => {
     targetEl = document.querySelector(`#${target}`);
     targetEl.addEventListener('mouseover', enableHover);
     targetEl.addEventListener('mouseleave', disableHover);
-    popperInstance = createPopper(targetEl, tooltipEl, {
-      placement,
-      modifiers: [checkPopperPlacement]
-    });
   });
 
   $: classes = classnames(
@@ -52,20 +55,26 @@
     `bs-tooltip-${popperPlacement}`,
     isHover ? 'show' : false
   );
+
+  $: if (!target) {
+    throw new Error('Need target!');
+  }
 </script>
 
-<div
-  bind:this={tooltipEl}
-  {...$$restProps}
-  class={classes}
-  role="tooltip"
-  x-placement={popperPlacement}>
-  <div class="arrow" data-popper-arrow />
-  <div class="tooltip-inner">
-    {#if children}
-      {children}
-    {:else}
-      <slot />
-    {/if}
+{#if isHover || debugHover}
+  <div
+    bind:this={tooltipEl}
+    {...$$restProps}
+    class={classes}
+    role="tooltip"
+    x-placement={popperPlacement}>
+    <div class="arrow" data-popper-arrow />
+    <div class="tooltip-inner">
+      {#if children}
+        {children}
+      {:else}
+        <slot />
+      {/if}
+    </div>
   </div>
-</div>
+{/if}
