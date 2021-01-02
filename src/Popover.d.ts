@@ -4,10 +4,11 @@ declare type PopoverPlacement = 'left' | 'top' | 'bottom' | 'right';
 
 interface IPopoverProps {
   animation?: boolean;
-  target: string;
-  placement?: PopoverPlacement;
-  title?: string;
   children?: string;
+  isOpen?: boolean;
+  placement?: PopoverPlacement;
+  target: string;
+  title?: string;
 }
 
 declare class Popover extends LocalSvelteComponent<IPopoverProps> {}

@@ -7,11 +7,11 @@
   export { className as class };
   export let children = undefined;
   export let animation = true;
+  export let hover = false;
   export let placement = 'top';
   export let target = '';
   export let title = '';
-  export let debugShowMode = false;
-  let isPopoverShow = false;
+  export let isOpen = false;
   let targetEl;
   let popoverEl;
   let popperInstance;
@@ -26,10 +26,8 @@
     }
   };
 
-  const onClickTarget = async () => {
-    isPopoverShow = !isPopoverShow;
-    if (isPopoverShow) {
-      await tick();
+  $: {
+    if (isOpen && popoverEl) {
       popperInstance = createPopper(targetEl, popoverEl, {
         placement,
         modifiers: [
@@ -44,7 +42,7 @@
           }
         ]
       });
-    } else {
+    } else if (popperInstance) {
       popperInstance.destroy();
       popperInstance = undefined;
     }
@@ -52,7 +50,14 @@
 
   onMount(() => {
     targetEl = document.querySelector(`#${target}`);
-    targetEl.addEventListener('click', onClickTarget);
+    if (hover) {
+      targetEl.addEventListener('mouseover', () => isOpen = true);
+      targetEl.addEventListener('mouseleave', () => isOpen = false);
+    } else {
+      targetEl.addEventListener('click', () => isOpen = !isOpen);
+    }
+    targetEl.addEventListener('focus', () => isOpen = true);
+    targetEl.addEventListener('blur', () => isOpen = false);
   });
 
   $: if (!target) {
@@ -64,11 +69,11 @@
     'popover',
     animation ? 'fade' : false,
     `bs-popover-${popperPlacement}`,
-    isPopoverShow ? 'show' : false
+    isOpen ? 'show' : false
   );
 </script>
 
-{#if isPopoverShow || debugShowMode}
+{#if isOpen}
   <div
     bind:this={popoverEl}
     {...$$restProps}
