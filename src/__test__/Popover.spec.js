@@ -30,7 +30,7 @@ describe('Popover test', () => {
     const containerPopover = renderPopover({
       children: 'Hello',
       target: 'btn',
-      debugShowMode: true
+      isOpen: true
     });
     const popover = containerPopover.querySelector('.popover');
     const popoverContent = containerPopover.querySelector('.popover .popover-body');
@@ -43,7 +43,7 @@ describe('Popover test', () => {
       children: 'Hello',
       target: 'btn',
       placement: 'left',
-      debugShowMode: true
+      isOpen: true
     });
     const popover = containerPopover.querySelector('.popover');
     const popoverContent = containerPopover.querySelector('.popover .popover-body');
