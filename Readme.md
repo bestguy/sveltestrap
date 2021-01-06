@@ -12,9 +12,6 @@ The component names and props interface are inspired by the [reactstrap](https:/
 
 ### Status
 
-#### Current
-
-- Popover is not implemented yet due to lacking Popper/Tether support [#32](https://github.com/bestguy/sveltestrap/issues/32)
 - Some stateful components have issues
   - Collapse uses the Svelte slide transition. In Svelte, the component is removed from the DOM whereas in Bootstrap, it stays in the DOM, but is hidden. This interacts badly with nav bars on small screens.
   - Modal uses Svelte fade transition, which does not use the Bootstrap theme defaults for duration, etc.
@@ -102,8 +99,3 @@ if you prefer the 'sveltestrap' import, you can move the package to `devDependen
     ...
   },
 ```
-
-
-Please follow (or help out with) these issues for status:
-
-[Missing Popover (#32)](https://github.com/bestguy/sveltestrap/issues/32)

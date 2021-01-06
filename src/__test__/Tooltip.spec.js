@@ -29,7 +29,7 @@ describe('Tooltip', () => {
     const containerTooltip = renderTooltip({
       children: 'Hello world!',
       target: 'btn',
-      debugHover: true
+      isOpen: true
     });
     const tooltip = containerTooltip.querySelector('.tooltip');
     const tooltipInner = containerTooltip.querySelector('.tooltip-inner');
@@ -42,7 +42,7 @@ describe('Tooltip', () => {
       children: 'Hello world!',
       placement: 'left',
       target: 'btn',
-      debugHover: true
+      isOpen: true
     });
     const tooltip = containerTooltip.querySelector('.tooltip');
     const tooltipInner = containerTooltip.querySelector('.tooltip-inner');

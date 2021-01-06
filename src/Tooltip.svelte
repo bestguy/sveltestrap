@@ -9,8 +9,7 @@
   export let placement = 'top';
   export let children = undefined;
   export let animation = true;
-  export let debugHover = false;
-  let isHover = false;
+  export let isOpen = false;
   let popperInstance;
   let popperPlacement = placement;
   let tooltipEl;
@@ -25,18 +24,13 @@
     }
   };
 
-  const enableHover = async () => {
-    isHover = true;
-    await tick();
-    popperInstance = createPopper(targetEl, tooltipEl, {
-      placement,
-      modifiers: [checkPopperPlacement]
-    });
-  };
-
-  const disableHover = () => {
-    isHover = false;
-    if (popperInstance) {
+  $: {
+    if (isOpen && tooltipEl) {
+      popperInstance = createPopper(targetEl, tooltipEl, {
+        placement,
+        modifiers: [checkPopperPlacement]
+      });
+    } else if (popperInstance) {
       popperInstance.destroy();
       popperInstance = undefined;
     }
@@ -44,8 +38,8 @@
 
   onMount(() => {
     targetEl = document.querySelector(`#${target}`);
-    targetEl.addEventListener('mouseover', enableHover);
-    targetEl.addEventListener('mouseleave', disableHover);
+    targetEl.addEventListener('mouseover', () => isOpen = true);
+    targetEl.addEventListener('mouseleave', () => isOpen = false);
   });
 
   $: classes = classnames(
@@ -53,7 +47,7 @@
     'tooltip',
     animation ? 'fade' : false,
     `bs-tooltip-${popperPlacement}`,
-    isHover ? 'show' : false
+    isOpen ? 'show' : false
   );
 
   $: if (!target) {
@@ -61,7 +55,7 @@
   }
 </script>
 
-{#if isHover || debugHover}
+{#if isOpen}
   <div
     bind:this={tooltipEl}
     {...$$restProps}
