@@ -56,8 +56,6 @@
     } else {
       targetEl.addEventListener('click', () => isOpen = !isOpen);
     }
-    targetEl.addEventListener('focus', () => isOpen = true);
-    targetEl.addEventListener('blur', () => isOpen = false);
   });
 
   $: if (!target) {
