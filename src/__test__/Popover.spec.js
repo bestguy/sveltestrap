@@ -16,8 +16,8 @@ const renderPopover = (props) => {
 const POPOVER_POSITION_CLASS = {
   top: 'bs-popover-top',
   bottom: 'bs-popover-bottom',
-  left: 'bs-popover-left',
-  right: 'bs-popover-right',
+  left: 'bs-popover-start',
+  right: 'bs-popover-end',
 };
 
 beforeEach(() => {

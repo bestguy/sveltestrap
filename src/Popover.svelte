@@ -15,6 +15,7 @@
   let targetEl;
   let popoverEl;
   let popperInstance;
+  let bsPlacement;
   let popperPlacement = placement;
 
   const checkPopperPlacement = {
@@ -64,11 +65,17 @@
     throw new Error('Need target!');
   }
 
+  $: {
+    if (popperPlacement === 'left') bsPlacement = 'start';
+    else if (popperPlacement === 'right') bsPlacement = 'end';
+    else bsPlacement = popperPlacement;
+  }
+
   $: classes = classnames(
     className,
     'popover',
     animation ? 'fade' : false,
-    `bs-popover-${popperPlacement}`,
+    `bs-popover-${bsPlacement}`,
     isOpen ? 'show' : false
   );
 </script>
@@ -80,7 +87,7 @@
     class={classes}
     role="tooltip"
     x-placement={popperPlacement}>
-    <div class="arrow" data-popper-arrow />
+    <div class="popover-arrow" data-popper-arrow />
     <h3 class="popover-header">
       <slot name="title">{title}</slot>
     </h3>
