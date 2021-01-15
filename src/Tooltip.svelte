@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { createPopper } from '@popperjs/core';
   import classnames from './utils';
 
@@ -8,8 +8,8 @@
   export let target = '';
   export let placement = 'top';
   export let children = undefined;
-  let animation = true;
-  let isHover = false;
+  export let animation = true;
+  export let isOpen = false;
   let popperInstance;
   let bsPlacement;
   let popperPlacement = placement;
@@ -25,25 +25,22 @@
     }
   };
 
-  const enableHover = () => {
-    isHover = true;
-    if (popperInstance) {
-      popperInstance.update();
+  $: {
+    if (isOpen && tooltipEl) {
+      popperInstance = createPopper(targetEl, tooltipEl, {
+        placement,
+        modifiers: [checkPopperPlacement]
+      });
+    } else if (popperInstance) {
+      popperInstance.destroy();
+      popperInstance = undefined;
     }
-  };
-
-  const disableHover = () => {
-    isHover = false;
   };
 
   onMount(() => {
     targetEl = document.querySelector(`#${target}`);
-    targetEl.addEventListener('mouseover', enableHover);
-    targetEl.addEventListener('mouseleave', disableHover);
-    popperInstance = createPopper(targetEl, tooltipEl, {
-      placement,
-      modifiers: [checkPopperPlacement]
-    });
+    targetEl.addEventListener('mouseover', () => isOpen = true);
+    targetEl.addEventListener('mouseleave', () => isOpen = false);
   });
 
   $: {
@@ -57,22 +54,28 @@
     'tooltip',
     animation ? 'fade' : false,
     `bs-tooltip-${bsPlacement}`,
-    isHover ? 'show' : false
+    isOpen ? 'show' : false
   );
+
+  $: if (!target) {
+    throw new Error('Need target!');
+  }
 </script>
 
-<div
-  bind:this={tooltipEl}
-  {...$$restProps}
-  class={classes}
-  role="tooltip"
-  x-placement={popperPlacement}>
-  <div class="tooltip-arrow" data-popper-arrow />
-  <div class="tooltip-inner">
-    {#if children}
-      {children}
-    {:else}
-      <slot />
-    {/if}
+{#if isOpen}
+  <div
+    bind:this={tooltipEl}
+    {...$$restProps}
+    class={classes}
+    role="tooltip"
+    x-placement={popperPlacement}>
+    <div class="tooltip-arrow" data-popper-arrow />
+    <div class="tooltip-inner">
+      {#if children}
+        {children}
+      {:else}
+        <slot />
+      {/if}
+    </div>
   </div>
-</div>
+{/if}

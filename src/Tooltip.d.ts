@@ -4,8 +4,9 @@ declare type TooltipPlacement = 'left' | 'top' | 'bottom' | 'right';
 
 interface ITooltipProps {
   animation?: boolean;
-  target?: string;
+  isOpen?: boolean;
   placement?: TooltipPlacement;
+  target: string;
 }
 
 declare class Tooltip extends LocalSvelteComponent<ITooltipProps> {}

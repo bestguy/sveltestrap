@@ -2,8 +2,6 @@
 
 ## Bootstrap 5 components for Svelte v3
 
-**Work in progress, check back soon - PRs are welcome!**
-
 The philosophy of this library is to provide all Bootstrap 5 components for a [Svelte](https://svelte.dev) app, without needing to use Bootstrap component classes or needing to include Bootstrap's JavaScript.
 
 However, to make using Bootstrap themes easier, this library does _not_ embed Bootstrap styles directly and you will need to include Bootstrap 5 CSS in your page.
@@ -14,21 +12,16 @@ The component names and interface are inspired by the [reactstrap](https://react
 
 ### Status
 
-#### Current
-
-- See component list below
-  - Tooltip & Popover are not implemented yet due to lacking Popper/Tether support [#31](https://github.com/bestguy/sveltestrap/issues/31), [#32](https://github.com/bestguy/sveltestrap/issues/32)
-  - Carousel not implemented yet, need to port transitions/state/key handlers. [#30](https://github.com/bestguy/sveltestrap/issues/30)
 - Some stateful components have issues
-  - Collapse uses the Svelte slide transistion. In Svelte, the component is removed from the DOM whereas in Bootstrap, it stays in the DOM, but is hidden. This interacts badly with nav bars on small screens.
+  - Collapse uses the Svelte slide transition. In Svelte, the component is removed from the DOM whereas in Bootstrap, it stays in the DOM, but is hidden. This interacts badly with nav bars on small screens.
   - Modal uses Svelte fade transition, which does not use the Bootstrap theme defaults for duration, etc.
 - Most components are missing general DOM events, see [#36](https://github.com/bestguy/sveltestrap/issues/36)
 
 #### Bootstrap V5 compatibility
 
-- Currently WIP, but have compatibility up to Bootstrap v5 alpha 2
+- Currently WIP, but have compatibility up to Bootstrap v5 beta 1
 https://github.com/bestguy/sveltestrap/issues/156#issuecomment-727272111
-- Accordion and floating labels are needed for alpha 3 compatibility, currently WIP.
+- Floating labels are needed for beta 1 compatibility, currently WIP.
 
 ---
 
@@ -51,7 +44,7 @@ Either in your HTML layout:
 </head>
 ```
 
-Or add from your Svelte app:
+Or from your Svelte app, either:
 
 ```html
 <svelte:head>
@@ -59,7 +52,15 @@ Or add from your Svelte app:
 </svelte:head>
 ```
 
-In your svelte component:
+or:
+
+```html
+<style>
+  @import "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css";
+</style>
+```
+
+Then use sveltestrap components in your svelte component:
 
 ```html
 <script>
@@ -90,7 +91,7 @@ it's recommended you import the component source directly, for example:
 </Row>
 ```
 
-if you prefer the 'sveltestrap' import, you can move the package to DevDependencies so that sapper will parse the es bundle
+if you prefer the 'sveltestrap' import, you can move the package to `devDependencies` block in your `package.json` so that sapper will parse the es bundle
 
 ```json
 "devDependencies": {
@@ -98,15 +99,3 @@ if you prefer the 'sveltestrap' import, you can move the package to DevDependenc
     ...
   },
 ```
-
-### Component status
-
-Sveltestrap is currently missing support for the following components:
-
-- [ ] Popover
-  - [ ] PopoverContent
-  - [ ] PopoverTitle
-
-Please follow (or help out with) these issues for status:
-
-[Missing Popover (#32)](https://github.com/bestguy/sveltestrap/issues/32)

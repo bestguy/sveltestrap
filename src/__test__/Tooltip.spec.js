@@ -28,7 +28,8 @@ describe('Tooltip', () => {
   it('should render text and default placement(top)', () => {
     const containerTooltip = renderTooltip({
       children: 'Hello world!',
-      target: 'btn'
+      target: 'btn',
+      isOpen: true
     });
     const tooltip = containerTooltip.querySelector('.tooltip');
     const tooltipInner = containerTooltip.querySelector('.tooltip-inner');
@@ -40,11 +41,20 @@ describe('Tooltip', () => {
     const containerTooltip = renderTooltip({
       children: 'Hello world!',
       placement: 'left',
-      target: 'btn'
+      target: 'btn',
+      isOpen: true
     });
     const tooltip = containerTooltip.querySelector('.tooltip');
     const tooltipInner = containerTooltip.querySelector('.tooltip-inner');
     expect(tooltip.className.includes(TOOLTIP_POSTION_CLASS.left)).toBeTruthy();
     expect(tooltipInner.innerHTML).toBe('Hello world!');
+  });
+
+  it('should throw error when there is no target', () => {
+    try{
+      renderTooltip();
+    } catch(error) {
+      expect(error.message).toBe('Need target!');
+    }
   });
 });
