@@ -1,6 +1,7 @@
 import { LocalSvelteComponent } from './shared';
 
 declare type PopoverPlacement = 'left' | 'top' | 'bottom' | 'right';
+declare type Triggers = 'click' | 'hover' | 'focus';
 
 interface IPopoverProps {
   animation?: boolean;
@@ -9,6 +10,7 @@ interface IPopoverProps {
   placement?: PopoverPlacement;
   target: string;
   title?: string;
+  trigger?: Triggers;
 }
 
 declare class Popover extends LocalSvelteComponent<IPopoverProps> {}

@@ -1,17 +1,17 @@
 <script>
-  import { onMount, tick } from 'svelte';
+  import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core';
   import classnames from './utils';
 
   let className = '';
   export { className as class };
-  export let children = undefined;
   export let animation = true;
-  export let hover = false;
+  export let children = undefined;
+  export let isOpen = false;
   export let placement = 'top';
   export let target = '';
   export let title = '';
-  export let isOpen = false;
+  export let trigger = 'click';
   let targetEl;
   let popoverEl;
   let popperInstance;
@@ -48,16 +48,40 @@
     }
   };
 
+  const open = () => isOpen = true;
+  const close = () => isOpen = false;
+  const toggle = () => isOpen = !isOpen;
+
   onMount(() => {
     targetEl = document.querySelector(`#${target}`);
-    if (hover) {
-      targetEl.addEventListener('mouseover', () => isOpen = true);
-      targetEl.addEventListener('mouseleave', () => isOpen = false);
-    } else {
-      targetEl.addEventListener('click', () => isOpen = !isOpen);
+    switch (trigger) {
+      case 'hover':
+        targetEl.addEventListener('mouseover', open);
+        targetEl.addEventListener('mouseleave', close);
+        break;
+      case 'focus':
+        targetEl.addEventListener('focus', open);
+        targetEl.addEventListener('blur', close);
+        break;
+      default:
+        targetEl.addEventListener('click', toggle);
+        break;
     }
-    targetEl.addEventListener('focus', () => isOpen = true);
-    targetEl.addEventListener('blur', () => isOpen = false);
+    return () => {
+      switch (trigger) {
+        case 'hover':
+          targetEl.removeEventListener('mouseover', open);
+          targetEl.removeEventListener('mouseleave', close);
+          break;
+        case 'focus':
+          targetEl.removeEventListener('focus', open);
+          targetEl.removeEventListener('blur', close);
+          break;
+        default:
+          targetEl.removeEventListener('click', toggle);
+          break;
+      }
+    };
   });
 
   $: if (!target) {
