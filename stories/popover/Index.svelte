@@ -1,10 +1,13 @@
 <script lang="ts">
+  import { Alert } from 'sveltestrap';
   import Example from '../Example.svelte';
   import Controlled from './Controlled.svelte';
+  import Dismissable from './Dismissable.svelte';
   import Sample from './Sample.svelte';
   import Slots from './Slots.svelte'
   import Triggers from './Triggers.svelte'
   import controlledSource from '!!raw-loader!./Controlled.svelte';
+  import dismissableSource from '!!raw-loader!./Dismissable.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
   import slotsSource from '!!raw-loader!./Slots.svelte';
   import triggersSource from '!!raw-loader!./Triggers.svelte';
@@ -25,6 +28,18 @@
 
 <Example title="Trigger" source={triggersSource}>
   <Triggers />
+</Example>
+
+<Example title="Dismissable" source={dismissableSource}>
+  <div slot="info">
+    <Alert color="info">
+      <b>Note:</b>
+      For proper cross-browser and cross-platform behavior for dismiss-on-next-click,
+      you must use the &lt;a&gt; tag, not the &lt;Button&gt; tag,
+      and you also must include a tabindex attribute.
+    </Alert>
+  </div>
+  <Dismissable />
 </Example>
 
 <Example title="Controlled" source={controlledSource}>
