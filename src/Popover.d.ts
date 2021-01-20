@@ -6,7 +6,7 @@ declare type Triggers = 'click' | 'hover' | 'focus';
 interface IPopoverProps {
   animation?: boolean;
   children?: string;
-  dismissable?: boolean;
+  dismissible?: boolean;
   isOpen?: boolean;
   placement?: PopoverPlacement;
   target: string;

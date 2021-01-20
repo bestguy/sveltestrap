@@ -2,8 +2,8 @@
   import Example from '../Example.svelte';
   import Colors from './Colors.svelte';
   import colorsSource from '!!raw-loader!./Colors.svelte';
-  import Dismissable from './Dismissable.svelte';
-  import dismissableSource from '!!raw-loader!./Dismissable.svelte';
+  import Dismissible from './Dismissible.svelte';
+  import dismissibleSource from '!!raw-loader!./Dismissible.svelte';
   import NoFade from './NoFade.svelte';
   import noFadeSource from '!!raw-loader!./NoFade.svelte';
   import uncontrolledSource from '!!raw-loader!./Uncontrolled.svelte';
@@ -18,8 +18,8 @@
   <Colors />
 </Example>
 
-<Example title="Dismissable" source={dismissableSource}>
-  <Dismissable />
+<Example title="Dismissible" source={dismissibleSource}>
+  <Dismissible />
 </Example>
 
 <Example title="Uncontrolled Alerts" source={uncontrolledSource}>
