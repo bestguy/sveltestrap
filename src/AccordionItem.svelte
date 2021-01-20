@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher, getContext, onMount } from 'svelte';
   import classnames from './utils';
-  import { Collapse } from 'sveltestrap';
+  import Collapse from './Collapse.svelte';
   import AccordionHeader from './AccordionHeader.svelte';
 
   let className = '';
