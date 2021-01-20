@@ -21,6 +21,6 @@
   <Icons />
 </Example>
 
-<Example title="Dismissable" source={dismissingSource}>
+<Example title="Dismissible" source={dismissingSource}>
   <Dismissing />
 </Example>
