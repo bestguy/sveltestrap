@@ -7,7 +7,7 @@
   export { className as class };
   export let animation = true;
   export let children = undefined;
-  export let dismissable = false;
+  export let dismissible = false;
   export let isOpen = false;
   export let placement = 'top';
   export let target = '';
@@ -66,7 +66,7 @@
         break;
       default:
         targetEl.addEventListener('click', toggle);
-        if (dismissable) targetEl.addEventListener('blur', close);
+        if (dismissible) targetEl.addEventListener('blur', close);
         break;
     }
     return () => {
@@ -81,7 +81,7 @@
           break;
         default:
           targetEl.removeEventListener('click', toggle);
-          if (dismissable) targetEl.removeEventListener('blur', close);
+          if (dismissible) targetEl.removeEventListener('blur', close);
           break;
       }
     };
