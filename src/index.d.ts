@@ -1,78 +1,82 @@
-import Alert from './Alert';
-import Badge from './Badge';
-import Breadcrumb from './Breadcrumb';
-import BreadcrumbItem from './BreadcrumbItem';
-import Button from './Button';
-import ButtonDropdown from './ButtonDropdown';
-import ButtonGroup from './ButtonGroup';
-import ButtonToolbar from './ButtonToolbar';
-import Card from './Card';
-import CardBody from './CardBody';
-import CardColumns from './CardColumns';
-import CardDeck from './CardDeck';
-import CardFooter from './CardFooter';
-import CardGroup from './CardGroup';
-import CardHeader from './CardHeader';
-import CardImg from './CardImg';
-import CardImgOverlay from './CardImgOverlay';
-import CardLink from './CardLink';
-import CardSubtitle from './CardSubtitle';
-import CardText from './CardText';
-import CardTitle from './CardTitle';
-import Carousel from './Carousel';
-import CarouselControl from './CarouselControl';
-import CarouselIndicators from './CarouselIndicators';
-import CarouselItem from './CarouselItem';
-import CarouselCaption from './CarouselCaption';
-import Col from './Col';
-import Collapse from './Collapse';
-import Container from './Container';
-import CustomInput from './CustomInput';
-import Dropdown from './Dropdown';
-import DropdownItem from './DropdownItem';
-import DropdownMenu from './DropdownMenu';
-import DropdownToggle from './DropdownToggle';
-import Fade from './Fade';
-import Form from './Form';
-import FormFeedback from './FormFeedback';
-import FormGroup from './FormGroup';
-import FormText from './FormText';
-import Input from './Input';
-import InputGroup from './InputGroup';
-import InputGroupAddon from './InputGroupAddon';
-import InputGroupButtonDropdown from './InputGroupButtonDropdown';
-import InputGroupText from './InputGroupText';
-import Jumbotron from './Jumbotron';
-import Label from './Label';
-import ListGroup from './ListGroup';
-import ListGroupItem from './ListGroupItem';
-import Media from './Media';
-import Modal from './Modal';
-import ModalBody from './ModalBody';
-import ModalFooter from './ModalFooter';
-import ModalHeader from './ModalHeader';
-import Nav from './Nav';
-import Navbar from './Navbar';
-import NavItem from './NavItem';
-import NavLink from './NavLink';
-import NavbarBrand from './NavbarBrand';
-import NavbarToggler from './NavbarToggler';
-import Pagination from './Pagination';
-import PaginationItem from './PaginationItem';
-import PaginationLink from './PaginationLink';
-import Progress from './Progress';
-import Row from './Row';
-import Spinner from './Spinner';
-import Table from './Table';
-import TabContent from './TabContent';
-import TabPane from './TabPane';
-import Toast from './Toast';
-import ToastBody from './ToastBody';
-import ToastHeader from './ToastHeader';
-import { UncontrolledAlert } from './UncontrolledAlert';
-import { UncontrolledButtonDropdown } from './UncontrolledButtonDropdown';
-import UncontrolledCollapse from './UncontrolledCollapse';
-import UncontrolledDropdown from './UncontrolledDropdown';
+import Alert from './Alert.svelte';
+import Badge from './Badge.svelte';
+import Breadcrumb from './Breadcrumb.svelte';
+import BreadcrumbItem from './BreadcrumbItem.svelte';
+import Button from './Button.svelte';
+import ButtonDropdown from './ButtonDropdown.svelte';
+import ButtonGroup from './ButtonGroup.svelte';
+import ButtonToolbar from './ButtonToolbar.svelte';
+import Card from './Card.svelte';
+import CardBody from './CardBody.svelte';
+import CardColumns from './CardColumns.svelte';
+import CardDeck from './CardDeck.svelte';
+import CardFooter from './CardFooter.svelte';
+import CardGroup from './CardGroup.svelte';
+import CardHeader from './CardHeader.svelte';
+import CardImg from './CardImg.svelte';
+import CardImgOverlay from './CardImgOverlay.svelte';
+import CardLink from './CardLink.svelte';
+import CardSubtitle from './CardSubtitle.svelte';
+import CardText from './CardText.svelte';
+import CardTitle from './CardTitle.svelte';
+import Carousel from './Carousel.svelte';
+import CarouselControl from './CarouselControl.svelte';
+import CarouselIndicators from './CarouselIndicators.svelte';
+import CarouselItem from './CarouselItem.svelte';
+import CarouselCaption from './CarouselCaption.svelte';
+import Col from './Col.svelte';
+import Collapse from './Collapse.svelte';
+import Container from './Container.svelte';
+import CustomInput from './CustomInput.svelte';
+import Dropdown from './Dropdown.svelte';
+import DropdownItem from './DropdownItem.svelte';
+import DropdownMenu from './DropdownMenu.svelte';
+import DropdownToggle from './DropdownToggle.svelte';
+import Fade from './Fade.svelte';
+import Form from './Form.svelte';
+import FormFeedback from './FormFeedback.svelte';
+import FormGroup from './FormGroup.svelte';
+import FormText from './FormText.svelte';
+import Icon from './Icon.svelte';
+import Input from './Input.svelte';
+import InputGroup from './InputGroup.svelte';
+import InputGroupAddon from './InputGroupAddon.svelte';
+import InputGroupButtonDropdown from './InputGroupButtonDropdown.svelte';
+import InputGroupText from './InputGroupText.svelte';
+import Jumbotron from './Jumbotron.svelte';
+import Label from './Label.svelte';
+import ListGroup from './ListGroup.svelte';
+import ListGroupItem from './ListGroupItem.svelte';
+import Media from './Media.svelte';
+import Modal from './Modal.svelte';
+import ModalBody from './ModalBody.svelte';
+import ModalFooter from './ModalFooter.svelte';
+import ModalHeader from './ModalHeader.svelte';
+import Nav from './Nav.svelte';
+import Navbar from './Navbar.svelte';
+import NavItem from './NavItem.svelte';
+import NavLink from './NavLink.svelte';
+import NavbarBrand from './NavbarBrand.svelte';
+import NavbarToggler from './NavbarToggler.svelte';
+import Pagination from './Pagination.svelte';
+import PaginationItem from './PaginationItem.svelte';
+import PaginationLink from './PaginationLink.svelte';
+import Popover from './Popover.svelte';
+import Progress from './Progress.svelte';
+import Row from './Row.svelte';
+import Spinner from './Spinner.svelte';
+import Table from './Table.svelte';
+import TabContent from './TabContent.svelte';
+import TabPane from './TabPane.svelte';
+import Toast from './Toast.svelte';
+import ToastBody from './ToastBody.svelte';
+import ToastHeader from './ToastHeader.svelte';
+import Tooltip from './Tooltip.svelte';
+import UncontrolledAlert from './UncontrolledAlert.svelte';
+import UncontrolledButtonDropdown from './UncontrolledButtonDropdown.svelte';
+import UncontrolledCollapse from './UncontrolledCollapse.svelte';
+import UncontrolledFade from './UncontrolledFade.svelte';
+import UncontrolledDropdown from './UncontrolledDropdown.svelte';
 
 export {
   Alert,
@@ -114,6 +118,7 @@ export {
   FormFeedback,
   FormGroup,
   FormText,
+  Icon,
   Input,
   InputGroup,
   InputGroupAddon,
@@ -137,6 +142,7 @@ export {
   Pagination,
   PaginationItem,
   PaginationLink,
+  Popover,
   Progress,
   Row,
   Spinner,
@@ -146,8 +152,10 @@ export {
   Toast,
   ToastBody,
   ToastHeader,
+  Tooltip,
   UncontrolledAlert,
   UncontrolledButtonDropdown,
   UncontrolledCollapse,
-  UncontrolledDropdown
+  UncontrolledFade,
+  UncontrolledDropdown,
 };
