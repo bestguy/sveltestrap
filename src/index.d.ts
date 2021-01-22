@@ -20,10 +20,10 @@ import CardSubtitle from './CardSubtitle';
 import CardText from './CardText';
 import CardTitle from './CardTitle';
 import Carousel from './Carousel';
+import CarouselCaption from './CarouselCaption';
 import CarouselControl from './CarouselControl';
 import CarouselIndicators from './CarouselIndicators';
 import CarouselItem from './CarouselItem';
-import CarouselCaption from './CarouselCaption';
 import Col from './Col';
 import Collapse from './Collapse';
 import Container from './Container';
@@ -36,6 +36,7 @@ import Form from './Form';
 import FormFeedback from './FormFeedback';
 import FormGroup from './FormGroup';
 import FormText from './FormText';
+import Icon from './Icon';
 import Input from './Input';
 import InputGroup from './InputGroup';
 import InputGroupButtonDropdown from './InputGroupButtonDropdown';
@@ -48,27 +49,30 @@ import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
 import ModalHeader from './ModalHeader';
 import Nav from './Nav';
-import Navbar from './Navbar';
 import NavItem from './NavItem';
 import NavLink from './NavLink';
+import Navbar from './Navbar';
 import NavbarBrand from './NavbarBrand';
 import NavbarToggler from './NavbarToggler';
 import Pagination from './Pagination';
 import PaginationItem from './PaginationItem';
 import PaginationLink from './PaginationLink';
+import Popover from './Popover';
 import Progress from './Progress';
 import Row from './Row';
 import Spinner from './Spinner';
-import Table from './Table';
 import TabContent from './TabContent';
 import TabPane from './TabPane';
+import Table from './Table';
 import Toast from './Toast';
 import ToastBody from './ToastBody';
 import ToastHeader from './ToastHeader';
+import Tooltip from './ToastHeader';
 import { UncontrolledAlert } from './UncontrolledAlert';
 import { UncontrolledButtonDropdown } from './UncontrolledButtonDropdown';
 import UncontrolledCollapse from './UncontrolledCollapse';
 import UncontrolledDropdown from './UncontrolledDropdown';
+import UncontrolledFade from './UncontrolledFade';
 
 export {
   Alert,
@@ -93,10 +97,10 @@ export {
   CardText,
   CardTitle,
   Carousel,
+  CarouselCaption,
   CarouselControl,
   CarouselIndicators,
   CarouselItem,
-  CarouselCaption,
   Col,
   Collapse,
   Container,
@@ -109,6 +113,7 @@ export {
   FormFeedback,
   FormGroup,
   FormText,
+  Icon,
   Input,
   InputGroup,
   InputGroupButtonDropdown,
@@ -121,25 +126,28 @@ export {
   ModalFooter,
   ModalHeader,
   Nav,
-  Navbar,
   NavItem,
   NavLink,
+  Navbar,
   NavbarBrand,
   NavbarToggler,
   Pagination,
   PaginationItem,
   PaginationLink,
+  Popover,
   Progress,
   Row,
   Spinner,
-  Table,
   TabContent,
   TabPane,
+  Table,
   Toast,
   ToastBody,
   ToastHeader,
+  Tooltip,
   UncontrolledAlert,
   UncontrolledButtonDropdown,
   UncontrolledCollapse,
-  UncontrolledDropdown
+  UncontrolledDropdown,
+  UncontrolledFade
 };
