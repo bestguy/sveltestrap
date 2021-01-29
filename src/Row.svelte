@@ -10,9 +10,10 @@
   export let cols = 0;
 
   function getCols(cols) {
-    if (typeof cols === 'number') {
-      if (cols > 0) {
-        return [`row-cols-${cols}`];
+    const colsValue = parseInt(cols);
+    if (!isNaN(colsValue)) {
+      if (colsValue > 0) {
+        return [`row-cols-${colsValue}`];
       }
     }
     else if (typeof cols === 'object') {
