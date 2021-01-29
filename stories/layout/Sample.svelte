@@ -73,4 +73,16 @@
       <div class={cell}>.col-sm-auto .offset-sm-1</div>
     </Col>
   </Row>
+  <Row cols="2">
+    <Col>col-1</Col>
+    <Col>col-2</Col>      
+    <Col>col-3</Col>    
+    <Col>col-4</Col>    
+  </Row>
+  <Row cols="{{ md: 3 }}">
+    <Col>col-1</Col>
+    <Col>col-2</Col>      
+    <Col>col-3</Col>    
+    <Col>col-4</Col>    
+  </Row>
 </Container>
