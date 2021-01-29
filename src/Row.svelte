@@ -7,6 +7,7 @@
   export let noGutters = false;
   export let form = false;
   export let id = '';
+  export let cols = 0;
 
   const props = clean($$props);
 
@@ -14,6 +15,7 @@
     className,
     noGutters ? 'no-gutters' : null,
     form ? 'form-row' : 'row',
+    cols > 0 ? `row-cols-${cols}` : null,
   );
 </script>
 
