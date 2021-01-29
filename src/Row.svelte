@@ -9,13 +9,33 @@
   export let id = '';
   export let cols = 0;
 
+  function getCols(cols) {
+    if (typeof cols === 'number') {
+      if (cols > 0) {
+        return [`row-cols-${cols}`];
+      }
+    }
+    else if (typeof cols === 'object') {
+      return ['xs', 'sm', 'md', 'lg', 'xl'].map((colWidth) => {
+        const isXs = colWidth === 'xs';
+        const colSizeInterfix = isXs ? '-' : `-${colWidth}-`;
+        const value = cols[colWidth];
+        if (typeof value === 'number' && value > 0) {
+          return `row-cols${colSizeInterfix}${value}`;
+        }
+        return null;
+      }).filter((value) => !!value);
+    }
+    return [];
+  }
+
   const props = clean($$props);
 
   $: classes = clsx(
     className,
     noGutters ? 'no-gutters' : null,
     form ? 'form-row' : 'row',
-    cols > 0 ? `row-cols-${cols}` : null,
+    ...getCols(cols),
   );
 </script>
 
