@@ -27,4 +27,16 @@ describe('Row', () => {
     const row = container.querySelector('.row');
     expect(row.className).toBe('boogie row');
   });
+
+  test('should support cols number', () => {
+    const { container } = render(Row, { props: { cols: '2' } });
+    const row = container.querySelector('.row');
+    expect(row.className).toBe('row row-cols-2');
+  });
+
+  test('should support cols object', () => {
+    const { container } = render(Row, { props: { cols: { sm: 2, md: 3 } } });
+    const row = container.querySelector('.row');
+    expect(row.className).toBe('row row-cols-sm-2 row-cols-md-3');
+  });
 });
