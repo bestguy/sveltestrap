@@ -73,16 +73,44 @@
       <div class={cell}>.col-sm-auto .offset-sm-1</div>
     </Col>
   </Row>
-  <Row cols="2">
-    <Col>col-1</Col>
-    <Col>col-2</Col>      
-    <Col>col-3</Col>    
-    <Col>col-4</Col>    
+  <Row cols={2} class={row}>
+    <Col>
+      <div class={cell}>col-1</div>
+    </Col>
+    <Col>
+      <div class={cell}>col-2</div>
+    </Col>
+    <Col>
+      <div class={cell}>col-3</div>
+    </Col>    
+    <Col>
+      <div class={cell}>col-4</div>
+    </Col>    
+    <Col>
+      <div class={cell}>col-5</div>
+    </Col>    
+    <Col>
+      <div class={cell}>col-6</div>
+    </Col>    
   </Row>
-  <Row cols="{{ md: 3 }}">
-    <Col>col-1</Col>
-    <Col>col-2</Col>      
-    <Col>col-3</Col>    
-    <Col>col-4</Col>    
+  <Row cols={{ lg: 3, md: 2, sm: 1 }} class={row}>
+    <Col>
+      <div class={cell}>col-1</div>
+    </Col>
+    <Col>
+      <div class={cell}>col-2</div>
+    </Col>      
+    <Col>
+      <div class={cell}>col-3</div>
+    </Col>    
+    <Col>
+      <div class={cell}>col-4</div>
+    </Col>    
+    <Col>
+      <div class={cell}>col-5</div>
+    </Col>    
+    <Col>
+      <div class={cell}>col-6</div>
+    </Col>    
   </Row>
 </Container>
