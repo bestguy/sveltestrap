@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Example from '../Example.svelte';
   import Colors from './Colors.svelte';
   import Disabled from './Disabled.svelte';
@@ -15,11 +15,11 @@
 </script>
 
 <h1>Buttons</h1>
-<a href="https://getbootstrap.com/docs/4.3/components/buttons/" target="_blank">
+<a href="https://getbootstrap.com/docs/4.5/components/buttons/" target="_blank">
   Bootstrap Buttons
 </a>
 
-<Example title="Colors" source={source}>
+<Example title="Colors" {source}>
   <Colors />
 </Example>
 

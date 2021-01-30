@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Example from '../Example.svelte';
   import Colors from './Colors.svelte';
   import colorsSource from '!!raw-loader!./Colors.svelte';
@@ -9,7 +9,7 @@
 </script>
 
 <h1>Navbar</h1>
-<a href="https://getbootstrap.com/docs/4.3/components/navbar/" target="_blank">
+<a href="https://getbootstrap.com/docs/4.5/components/navbar/" target="_blank">
   Bootstrap Navbar
 </a>
 
@@ -19,9 +19,15 @@
 
 <Example title="Colors" source={colorsSource} stacked>
   <p slot="info">
-    Change the Navbar's background color using the <code>color</code> prop.
-    Use the <code>light</code> or <code>dark</code> props to change
-    Navbar text color for lighter or darker <code>color</code> values.
+    Change the Navbar's background color using the
+    <code>color</code>
+    prop. Use the
+    <code>light</code>
+    or
+    <code>dark</code>
+    props to change Navbar text color for lighter or darker
+    <code>color</code>
+    values.
   </p>
   <Colors />
 </Example>

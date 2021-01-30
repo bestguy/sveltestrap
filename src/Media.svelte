@@ -1,9 +1,8 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   let className = '';
-  export {className as class};
+  export { className as class };
   export let body = false;
   export let bottom = false;
   export let heading = false;
@@ -17,41 +16,45 @@
   export let src = '';
   export let alt = '';
 
-  const props = clean($$props);
-
-  $: classes = clsx(
-    className,
-    {
-      'media-body': body,
-      'media-heading': heading,
-      'media-left': left,
-      'media-right': right,
-      'media-top': top,
-      'media-bottom': bottom,
-      'media-middle': middle,
-      'media-object': object,
-      'media-list': list,
-      media: !body && !heading && !left && !right && !top && !bottom && !middle && !object && !list,
-    }
-  );
+  $: classes = classnames(className, {
+    'media-body': body,
+    'media-heading': heading,
+    'media-left': left,
+    'media-right': right,
+    'media-top': top,
+    'media-bottom': bottom,
+    'media-middle': middle,
+    'media-object': object,
+    'media-list': list,
+    media:
+      !body &&
+      !heading &&
+      !left &&
+      !right &&
+      !top &&
+      !bottom &&
+      !middle &&
+      !object &&
+      !list
+  });
 </script>
 
 {#if heading}
-  <h4 {...props} class="{classes}">
-    <slot/>
+  <h4 {...$$restProps} class={classes}>
+    <slot />
   </h4>
 {:else if href}
-  <a {...props} class="{classes}" {href}>
-    <slot/>
+  <a {...$$restProps} class={classes} {href}>
+    <slot />
   </a>
 {:else if src || object}
-  <img {...props} class="{classes}" {src} {alt} />
+  <img {...$$restProps} class={classes} {src} {alt} />
 {:else if list}
-  <ul {...props} class="{classes}">
-    <slot/>
+  <ul {...$$restProps} class={classes}>
+    <slot />
   </ul>
 {:else}
-  <div {...props} class="{classes}">
-    <slot/>
+  <div {...$$restProps} class={classes}>
+    <slot />
   </div>
 {/if}

@@ -1,24 +1,18 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
-  import { context } from './TabContext';
+  import { getContext } from 'svelte';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
-  export let activeTab;
   export let tabId;
 
-  const props = clean($$props);
+  const { activeTabId } = getContext('tabContent');
 
-  $: classes = clsx(
-    'tab-pane',
-    className,
-    {
-      active: tabId === $context.activeTabId,
-    },
-  );
+  $: classes = classnames('tab-pane', className, {
+    active: tabId === $activeTabId
+  });
 </script>
 
-<div {...props} class="{classes}">
+<div {...$$restProps} class={classes}>
   <slot />
 </div>

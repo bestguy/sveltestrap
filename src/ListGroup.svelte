@@ -1,20 +1,17 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   let className = '';
-  export {className as class};
+  export { className as class };
   export let flush = false;
 
-  const props = clean($$props);
-
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     'list-group',
-    flush ? 'list-group-flush' : false,
+    flush ? 'list-group-flush' : false
   );
 </script>
 
-<ul {...props} class="{classes}">
-  <slot/>
+<ul {...$$restProps} class={classes}>
+  <slot />
 </ul>

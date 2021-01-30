@@ -1,26 +1,23 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
-  import { context } from './TabContext';
+  import classnames from './utils';
+  import { setContext } from 'svelte';
+  import { writable } from 'svelte/store';
 
   let className = '';
   export { className as class };
   export let activeTab;
 
-  const props = clean($$props);
+  const activeTabId = writable(activeTab);
 
-  $: classes = clsx(
-    'tab-content',
-    className,
-  );
+  $: activeTabId.set(activeTab);
 
-  $: context.update(() => {
-    return {
-      activeTabId: activeTab,
-    };
+  setContext('tabContent', {
+    activeTabId
   });
+
+  $: classes = classnames('tab-content', className);
 </script>
 
-<div {...props} class="{classes}">
+<div {...$$restProps} class={classes}>
   <slot />
 </div>

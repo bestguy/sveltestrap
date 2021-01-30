@@ -1,9 +1,10 @@
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import analyze from 'rollup-plugin-analyzer';
 import autoPreprocess from 'svelte-preprocess';
 import bundleSize from 'rollup-plugin-bundle-size';
-import commonjs from 'rollup-plugin-commonjs';
-import resolve from 'rollup-plugin-node-resolve';
 import svelte from 'rollup-plugin-svelte';
+import typescript from '@rollup/plugin-typescript';
 import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 
@@ -18,14 +19,14 @@ export default {
       file: pkg.module,
       format: 'es',
       sourcemap: true,
-      name,
+      name
     },
     {
       file: pkg.main,
       format: 'umd',
       sourcemap: true,
-      name,
-    },
+      name
+    }
   ],
   plugins: [
     svelte({
@@ -35,17 +36,18 @@ export default {
       hydratable: true,
       preprocess: autoPreprocess({
         postcss: {
-          plugins: [require('autoprefixer')()],
-        },
+          plugins: [require('autoprefixer')()]
+        }
       })
     }),
     resolve(),
     commonjs(),
+    typescript(),
     production && terser(),
     production && analyze(),
-    production && bundleSize(),
+    production && bundleSize()
   ],
   watch: {
-    clearScreen: false,
+    clearScreen: false
   }
-}
+};

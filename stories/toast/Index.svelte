@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Example from '../Example.svelte';
   import Sample from './Sample.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
@@ -9,7 +9,7 @@
 </script>
 
 <h1>Toast</h1>
-<a href="https://getbootstrap.com/docs/4.3/components/toasts/" target="_blank">
+<a href="https://getbootstrap.com/docs/4.5/components/toasts/" target="_blank">
   Bootstrap Toasts
 </a>
 
@@ -21,6 +21,6 @@
   <Icons />
 </Example>
 
-<Example title="Dismissable" source={dismissingSource}>
+<Example title="Dismissible" source={dismissingSource}>
   <Dismissing />
 </Example>

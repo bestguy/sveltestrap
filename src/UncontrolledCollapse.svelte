@@ -1,8 +1,5 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
   import { onMount, onDestroy } from 'svelte';
-  import { slide } from 'svelte/transition';
 
   import Collapse from './Collapse.svelte';
 
@@ -10,15 +7,12 @@
 
   let className = '';
   export { className as class };
-  export let navbar = false;
   export let defaultOpen = false;
-  export let toggler;
+  export let toggler = null;
   export let onEntering = noop;
   export let onEntered = noop;
   export let onExiting = noop;
   export let onExited = noop;
-
-  const props = clean($$props);
 
   let unbindEvents;
   let isOpen = defaultOpen;
@@ -67,21 +61,19 @@
       unbindEvents = undefined;
     }
   });
-
 </script>
 
 <Collapse
-  {...props}
+  {...$$restProps}
   {isOpen}
   on:introstart
   on:introend
   on:outrostart
   on:outroend
-  on:introstart="{onEntering}"
-  on:introend="{onEntered}"
-  on:outrostart="{onExiting}"
-  on:outroend="{onExited}"
-  class="{className}"
->
+  on:introstart={onEntering}
+  on:introend={onEntered}
+  on:outrostart={onExiting}
+  on:outroend={onExited}
+  class={className}>
   <slot />
 </Collapse>

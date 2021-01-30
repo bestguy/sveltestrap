@@ -58,12 +58,52 @@ export function getColumnSizeClass(isXs, colWidth, colSize) {
 
 export function clean($$props) {
   // TODO support keys
+  // eslint-disable-next-line no-unused-vars
   const { children, $$scope, $$slots } = $$props;
   const rest = {};
   for (const key of Object.keys($$props)) {
-    if (key !== "children" && key !== "$$scope" && key !== "$$slots") {
+    if (key !== 'children' && key !== '$$scope' && key !== '$$slots') {
       rest[key] = $$props[key];
     }
   }
   return rest;
+}
+
+export function browserEvent(target, ...args) {
+  target.addEventListener(...args);
+
+  return () => target.removeEventListener(...args);
+}
+
+export function getNewCarouselActiveIndex(direction, items, activeIndex) {
+  if (direction === 'prev') {
+    return activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+  } else if (direction === 'next') {
+    return activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+  }
+}
+
+function toClassName(value) {
+  let result = '';
+
+  if (typeof value === 'string' || typeof value === 'number') {
+    result += value;
+  } else if (typeof value === 'object') {
+    if (Array.isArray(value)) {
+      result = value.map(toClassName).filter(Boolean).join(' ');
+    } else {
+      for (let key in value) {
+        if (value[key]) {
+          result && (result += ' ');
+          result += key;
+        }
+      }
+    }
+  }
+
+  return result;
+}
+
+export default function classnames(...args) {
+  return args.map(toClassName).filter(Boolean).join(' ');
 }

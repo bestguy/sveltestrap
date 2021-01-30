@@ -1,9 +1,8 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   let className = '';
-  export {className as class};
+  export { className as class };
   export let tabs = false;
   export let pills = false;
   export let vertical = false;
@@ -12,8 +11,6 @@
   export let fill = false;
   export let navbar = false;
   export let card = false;
-
-  const props = clean($$props);
 
   function getVerticalClass(vertical) {
     if (vertical === false) {
@@ -24,7 +21,7 @@
     return `flex-${vertical}-column`;
   }
 
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     navbar ? 'navbar-nav' : 'nav',
     horizontal ? `justify-content-${horizontal}` : false,
@@ -35,11 +32,11 @@
       'nav-pills': pills,
       'card-header-pills': card && pills,
       'nav-justified': justified,
-      'nav-fill': fill,
-    },
+      'nav-fill': fill
+    }
   );
 </script>
 
-<ul {...props} class="{classes}">
+<ul {...$$restProps} class={classes}>
   <slot />
 </ul>

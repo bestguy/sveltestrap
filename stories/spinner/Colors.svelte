@@ -1,7 +1,14 @@
-<script>
-  import { Spinner } from "sveltestrap";
+<script lang="ts">
+  import { Spinner } from 'sveltestrap';
   const colors = [
-    "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"
+    'primary',
+    'secondary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'light',
+    'dark'
   ];
 </script>
 

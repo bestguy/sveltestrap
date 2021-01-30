@@ -1,16 +1,14 @@
 <script>
   import { setContext } from 'svelte';
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   import { createContext } from './DropdownContext';
 
   let context = createContext();
-  setContext("dropdownContext", context);
+  setContext('dropdownContext', context);
 
   let className = '';
   export { className as class };
-  export let disabled = false;
   export let direction = 'down';
   export let group = false;
   export let isOpen = false;
@@ -23,19 +21,24 @@
   export let setActiveFromChild = false;
   export let dropup = false;
 
-  const props = clean($$props);
-
   const validDirections = ['up', 'down', 'left', 'right'];
 
   if (validDirections.indexOf(direction) === -1) {
-    throw new Error(`Invalid direction sent: '${direction}' is not one of 'up', 'down', 'left', 'right'`);
+    throw new Error(
+      `Invalid direction sent: '${direction}' is not one of 'up', 'down', 'left', 'right'`
+    );
   }
 
   let component;
 
-  $: subItemIsActive = !!(setActiveFromChild && component && typeof component.querySelector === 'function' && component.querySelector('.active'));
+  $: subItemIsActive = !!(
+    setActiveFromChild &&
+    component &&
+    typeof component.querySelector === 'function' &&
+    component.querySelector('.active')
+  );
 
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     direction !== 'down' && `drop${direction}`,
     nav && active ? 'active' : false,
@@ -47,17 +50,17 @@
       dropdown: !group && !addonType,
       show: isOpen,
       'nav-item': nav
-    },
+    }
   );
 
   $: {
     if (typeof document !== 'undefined') {
       if (isOpen) {
-        ['click', 'touchstart', 'keyup'].forEach(event =>
+        ['click', 'touchstart', 'keyup'].forEach((event) =>
           document.addEventListener(event, handleDocumentClick, true)
         );
       } else {
-        ['click', 'touchstart', 'keyup'].forEach(event =>
+        ['click', 'touchstart', 'keyup'].forEach((event) =>
           document.removeEventListener(event, handleDocumentClick, true)
         );
       }
@@ -69,8 +72,8 @@
       return {
         toggle,
         isOpen,
-        direction: (direction === 'down' && dropup) ? 'up' : direction,
-        inNavbar,
+        direction: direction === 'down' && dropup ? 'up' : direction,
+        inNavbar
       };
     });
   }
@@ -78,7 +81,11 @@
   function handleDocumentClick(e) {
     if (e && (e.which === 3 || (e.type === 'keyup' && e.which !== 9))) return;
 
-    if (component.contains(e.target) && component !== e.target && (e.type !== 'keyup' || e.which === 9)) {
+    if (
+      component.contains(e.target) &&
+      component !== e.target &&
+      (e.type !== 'keyup' || e.which === 9)
+    ) {
       return;
     }
 
@@ -87,11 +94,11 @@
 </script>
 
 {#if nav}
-  <li class="{classes}" bind:this="{component}" {...props}>
+  <li {...$$restProps} class={classes} bind:this={component}>
     <slot />
   </li>
 {:else}
-  <div class="{classes}" bind:this="{component}" {...props}>
+  <div {...$$restProps} class={classes} bind:this={component}>
     <slot />
   </div>
 {/if}

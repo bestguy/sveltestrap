@@ -1,30 +1,21 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   let className = '';
-  export {className as class};
+  export { className as class };
   export let listClassName = '';
   export let size = '';
   export let ariaLabel = 'pagination';
 
-  const props = clean($$props);
+  $: classes = classnames(className);
 
-  $: classes = clsx(
-    className
-  );
-
-  $: listClasses = clsx(
-    listClassName,
-    'pagination',
-    {
-      [`pagination-${size}`]: !!size,
-    },
-  );
+  $: listClasses = classnames(listClassName, 'pagination', {
+    [`pagination-${size}`]: !!size
+  });
 </script>
 
-<nav {...props} class="{classes}" aria-label="{ariaLabel}">
-  <ul class="{listClasses}">
+<nav {...$$restProps} class={classes} aria-label={ariaLabel}>
+  <ul class={listClasses}>
     <slot />
   </ul>
 </nav>

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import {
     Dropdown,
     DropdownItem,
@@ -16,8 +16,7 @@
     group
     isOpen={lgIsOpen}
     size="lg"
-    toggle={() => (lgIsOpen = !lgIsOpen)}
-  >
+    toggle={() => (lgIsOpen = !lgIsOpen)}>
     <DropdownToggle caret>Large Dropdown</DropdownToggle>
     <DropdownMenu>
       <DropdownItem>Shave the modern way</DropdownItem>
@@ -39,8 +38,7 @@
     group
     isOpen={smIsOpen}
     size="sm"
-    toggle={() => (smIsOpen = !smIsOpen)}
-  >
+    toggle={() => (smIsOpen = !smIsOpen)}>
     <DropdownToggle caret>Small Dropdown</DropdownToggle>
     <DropdownMenu>
       <DropdownItem>Burma-Shave</DropdownItem>

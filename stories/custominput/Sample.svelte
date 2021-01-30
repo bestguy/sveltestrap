@@ -1,13 +1,5 @@
-<script>
-  import {
-    Button,
-    CustomInput,
-    Form,
-    FormGroup,
-    FormText,
-    Input,
-    Label
-  } from "sveltestrap";
+<script lang="ts">
+  import { CustomInput, Form, FormGroup, Label } from 'sveltestrap';
 </script>
 
 <Form>
@@ -113,7 +105,7 @@
       <option>Value 5</option>
     </CustomInput>
   </FormGroup>
-  <FormGroup>
+  <!-- <FormGroup>
     <Label for="exampleCustomMutlipleSelect">Custom Multiple Select</Label>
     <CustomInput
       type="select"
@@ -127,7 +119,7 @@
       <option>Value 4</option>
       <option>Value 5</option>
     </CustomInput>
-  </FormGroup>
+  </FormGroup> -->
   <FormGroup>
     <Label for="exampleCustomSelectDisabled">Custom Select Disabled</Label>
     <CustomInput
@@ -143,7 +135,7 @@
       <option>Value 5</option>
     </CustomInput>
   </FormGroup>
-  <FormGroup>
+  <!-- <FormGroup>
     <Label for="exampleCustomMutlipleSelectDisabled">
       Custom Multiple Select Disabled
     </Label>
@@ -160,7 +152,7 @@
       <option>Value 4</option>
       <option>Value 5</option>
     </CustomInput>
-  </FormGroup>
+  </FormGroup> -->
   <FormGroup>
     <Label for="exampleCustomFileBrowser">File Browser</Label>
     <CustomInput type="file" id="exampleCustomFileBrowser" name="customFile" />

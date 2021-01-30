@@ -1,19 +1,13 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
   export let inline = false;
 
-  const props = clean($$props);
-
-  $: classes = clsx(
-    className,
-    inline ? 'form-inline' : false,
-  );
+  $: classes = classnames(className, inline ? 'form-inline' : false);
 </script>
 
-<form {...props} class="{classes}">
+<form {...$$restProps} class={classes} on:submit>
   <slot />
 </form>

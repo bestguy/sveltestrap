@@ -1,19 +1,14 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   let className = '';
-  export {className as class};
+  export { className as class };
   export let light = false;
   export let dark = false;
-  export let full = false;
   export let fixed = '';
   export let sticky = '';
   export let color = '';
-  export let role = '';
-  export let expand = false;
-
-  const props = clean($$props);
+  export let expand = false || '';
 
   function getExpandClass(expand) {
     if (expand === false) {
@@ -25,20 +20,15 @@
     return `navbar-expand-${expand}`;
   }
 
-  $: classes = clsx(
-    className,
-    'navbar',
-    getExpandClass(expand),
-    {
-      'navbar-light': light,
-      'navbar-dark': dark,
-      [`bg-${color}`]: color,
-      [`fixed-${fixed}`]: fixed,
-      [`sticky-${sticky}`]: sticky,
-    },
-  );
+  $: classes = classnames(className, 'navbar', getExpandClass(expand), {
+    'navbar-light': light,
+    'navbar-dark': dark,
+    [`bg-${color}`]: color,
+    [`fixed-${fixed}`]: fixed,
+    [`sticky-${sticky}`]: sticky
+  });
 </script>
 
-<nav {...props} class="{classes}">
+<nav {...$$restProps} class={classes}>
   <slot />
 </nav>

@@ -1,28 +1,24 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
   export let fluid = false;
   export let tag = 'div';
 
-  const props = clean($$props);
-
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     'jumbotron',
-    fluid ? 'jumbotron-fluid' : false,
+    fluid ? 'jumbotron-fluid' : false
   );
 </script>
 
-
 {#if tag === 'section'}
-  <section {...props} class="{classes}">
-    <slot/>
+  <section {...$$restProps} class={classes}>
+    <slot />
   </section>
 {:else}
-  <div {...props} class="{classes}">
-    <slot/>
+  <div {...$$restProps} class={classes}>
+    <slot />
   </div>
 {/if}

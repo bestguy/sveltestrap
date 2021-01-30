@@ -1,10 +1,8 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
-  import toNumber from 'lodash.tonumber';
+  import classnames from './utils';
 
   let className = '';
-  export {className as class};
+  export { className as class };
   export let size = '';
   export let bordered = false;
   export let borderless = false;
@@ -13,9 +11,7 @@
   export let hover = false;
   export let responsive = false;
 
-  const props = clean($$props);
-
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     'table',
     size ? 'table-' + size : false,
@@ -23,21 +19,21 @@
     borderless ? 'table-borderless' : false,
     striped ? 'table-striped' : false,
     dark ? 'table-dark' : false,
-    hover ? 'table-hover' : false,
+    hover ? 'table-hover' : false
   );
 
-  $: responsiveClassName = responsive === true ? 'table-responsive' : `table-responsive-${responsive}`;
+  $: responsiveClassName =
+    responsive === true ? 'table-responsive' : `table-responsive-${responsive}`;
 </script>
 
 {#if responsive}
-  <div class="{responsiveClassName}">
-    <table {...props} class="{classes}">
+  <div class={responsiveClassName}>
+    <table {...$$restProps} class={classes}>
       <slot />
     </table>
   </div>
 {:else}
-  <table {...props} class="{classes}">
+  <table {...$$restProps} class={classes}>
     <slot />
   </table>
 {/if}
-

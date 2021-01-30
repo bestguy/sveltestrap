@@ -1,25 +1,18 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   let className = '';
-  export {className as class};
+  export { className as class };
   export let disabled = false;
   export let active = false;
   export let href = '#';
 
-  const props = clean($$props);
+  $: classes = classnames(className, 'nav-link', {
+    disabled,
+    active
+  });
 
-  $: classes = clsx(
-    className,
-    'nav-link',
-    {
-      disabled,
-      active
-    },
-  );
-
-  function handleClick(e){
+  function handleClick(e) {
     if (disabled) {
       e.preventDefault();
       e.stopImmediatePropagation();
@@ -32,11 +25,6 @@
   }
 </script>
 
-<a
-  {...props}
-  {href}
-  on:click on:click="{handleClick}"
-  class="{classes}"
->
-  <slot/>
+<a {...$$restProps} {href} on:click on:click={handleClick} class={classes}>
+  <slot />
 </a>

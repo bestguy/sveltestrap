@@ -1,6 +1,5 @@
 <script>
   import Dropdown from './Dropdown.svelte';
-  import { clean } from './utils';
 
   let className = '';
   export { className as class };
@@ -16,13 +15,11 @@
   export let setActiveFromChild = false;
   export let size = '';
   export let toggle = undefined;
-
-  const props = clean($$props);
 </script>
 
 <Dropdown
-  {...props}
-  group
+  {...$$restProps}
+  {group}
   class={className}
   {disabled}
   {direction}
@@ -35,7 +32,6 @@
   {inNavbar}
   {setActiveFromChild}
   {dropup}
-  on:click
->
+  on:click>
   <slot />
 </Dropdown>

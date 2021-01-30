@@ -1,18 +1,12 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   let className = '';
-  export {className as class};
+  export { className as class };
 
-  const props = clean($$props);
-
-  $: classes = clsx(
-    className,
-    'modal-footer',
-  );
+  $: classes = classnames(className, 'modal-footer');
 </script>
 
-<div {...props} class="{classes}">
+<div {...$$restProps} class={classes}>
   <slot />
 </div>

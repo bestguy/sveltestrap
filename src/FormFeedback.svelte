@@ -1,6 +1,5 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -8,18 +7,16 @@
   export let tooltip = false;
   let classes;
 
-  const props = clean($$props);
-
   $: {
     const validMode = tooltip ? 'tooltip' : 'feedback';
 
-    classes = clsx(
+    classes = classnames(
       className,
-      valid ? `valid-${validMode}` : `invalid-${validMode}`,
+      valid ? `valid-${validMode}` : `invalid-${validMode}`
     );
   }
 </script>
 
-<div {...props} class="{classes}">
+<div {...$$restProps} class={classes}>
   <slot />
 </div>

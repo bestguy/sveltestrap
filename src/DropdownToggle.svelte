@@ -1,18 +1,17 @@
 <script>
   import { getContext } from 'svelte';
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   import Button from './Button.svelte';
 
-  const context = getContext("dropdownContext");
+  const context = getContext('dropdownContext');
 
   let className = '';
   export { className as class };
   export let caret = false;
   export let color = 'secondary';
   export let disabled = false;
-  export let ariaHaspopup = false;
+  export let ariaHaspopup = true;
   export let ariaLabel = 'Toggle Dropdown';
   export let split = false;
   export let nav = false;
@@ -20,16 +19,11 @@
   export let tag = null;
   export let outline = false;
 
-  const props = clean($$props);
-
-  $: classes = clsx(
-    className,
-    {
-      'dropdown-toggle': caret || split,
-      'dropdown-toggle-split': split,
-      'nav-link': nav
-    },
-  );
+  $: classes = classnames(className, {
+    'dropdown-toggle': caret || split,
+    'dropdown-toggle-split': split,
+    'nav-link': nav
+  });
 
   function toggleButton(e) {
     if (disabled) {
@@ -41,27 +35,47 @@
       e.preventDefault();
     }
 
-    $context.toggle(e)
+    $context.toggle(e);
   }
 </script>
 
 {#if nav}
-  <a {...props} on:click on:click="{toggleButton}" href="#nav" class="{classes}">
+  <a
+    {...$$restProps}
+    on:click
+    on:click={toggleButton}
+    href="#nav"
+    {ariaHaspopup}
+    class={classes}>
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>
   </a>
 {:else if tag === 'span'}
-  <span {...props} on:click on:click="{toggleButton}" class="{classes}" {color} {size}>
+  <span
+    {...$$restProps}
+    on:click
+    on:click={toggleButton}
+    {ariaHaspopup}
+    class={classes}
+    {color}
+    {size}>
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>
   </span>
 {:else}
-  <Button {...props} on:click on:click="{toggleButton}" class="{classes}" {color} {size} {outline}>
+  <Button
+    {...$$restProps}
+    on:click
+    on:click={toggleButton}
+    {ariaHaspopup}
+    class={classes}
+    {color}
+    {size}
+    {outline}>
     <slot>
       <span class="sr-only">{ariaLabel}</span>
     </slot>
   </Button>
 {/if}
-

@@ -15,7 +15,7 @@ describe('ModalHeader', () => {
 
   test('should render close if toggle specified', () => {
     const toggle = jest.fn();
-    const { container } = render(ModalHeader, { props: { toggle }});
+    const { container } = render(ModalHeader, { props: { toggle } });
     const component = container.querySelector('.modal-header');
     expect(component.className).toBe('modal-header');
     const button = container.querySelector('button');

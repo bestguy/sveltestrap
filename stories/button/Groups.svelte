@@ -1,5 +1,5 @@
-<script>
-  import { Button, ButtonGroup } from "sveltestrap";
+<script lang="ts">
+  import { Button, ButtonGroup } from 'sveltestrap';
 </script>
 
 <ButtonGroup>

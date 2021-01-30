@@ -1,6 +1,5 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -8,20 +7,16 @@
   export let size = '';
   export let color = '';
 
-  const props = clean($$props);
-
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     size ? `spinner-${type}-${size}` : false,
     `spinner-${type}`,
-    color ? `text-${color}` : false,
+    color ? `text-${color}` : false
   );
 </script>
 
-<div {...props} role="status" class="{classes}">
+<div {...$$restProps} role="status" class={classes}>
   <span class="sr-only">
-    <slot>
-      Loading...
-    </slot>
+    <slot>Loading...</slot>
   </span>
 </div>

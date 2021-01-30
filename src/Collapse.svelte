@@ -1,6 +1,5 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   import { createEventDispatcher } from 'svelte';
   import { slide } from 'svelte/transition';
@@ -16,12 +15,10 @@
   export let onExited = noop;
   export let expand = false;
 
-  const props = clean($$props);
-
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     // collapseClass,
-    navbar && 'navbar-collapse',
+    navbar && 'navbar-collapse'
   );
 
   let windowWidth = 0;
@@ -53,25 +50,24 @@
       notify();
     }
   }
-
 </script>
 
-<svelte:window bind:innerWidth="{windowWidth}" />
+<svelte:window bind:innerWidth={windowWidth} />
 
 {#if isOpen}
   <div
-    transition:slide
+    style={navbar ? undefined : 'overflow: hidden;'}
+    {...$$restProps}
+    class={classes}
+    transition:slide|local
     on:introstart
     on:introend
     on:outrostart
     on:outroend
-    on:introstart="{onEntering}"
-    on:introend="{onEntered}"
-    on:outrostart="{onExiting}"
-    on:outroend="{onExited}"
-    class="{classes}"
-    {...props}
-  >
+    on:introstart={onEntering}
+    on:introend={onEntered}
+    on:outrostart={onExiting}
+    on:outroend={onExited}>
     <slot />
   </div>
 {/if}

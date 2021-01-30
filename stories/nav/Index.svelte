@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Example from '../Example.svelte';
   import Sample from './Sample.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
@@ -11,7 +11,7 @@
 </script>
 
 <h1>Navs</h1>
-<a href="https://getbootstrap.com/docs/4.3/components/navs/" target="_blank">
+<a href="https://getbootstrap.com/docs/4.5/components/navs/" target="_blank">
   Bootstrap Navs
 </a>
 

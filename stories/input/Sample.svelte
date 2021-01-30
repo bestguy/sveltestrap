@@ -1,5 +1,5 @@
-<script>
-  import { Button, Form, FormGroup, FormText, Input, Label } from 'sveltestrap';
+<script lang="ts">
+  import { Form, FormGroup, FormText, Input, Label } from 'sveltestrap';
 </script>
 
 <Form>
@@ -89,7 +89,7 @@
       <option>5</option>
     </Input>
   </FormGroup>
-  <FormGroup>
+  <!-- <FormGroup>
     <Label for="exampleSelectMulti">Select Multiple</Label>
     <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
       <option>1</option>
@@ -98,7 +98,7 @@
       <option>4</option>
       <option>5</option>
     </Input>
-  </FormGroup>
+  </FormGroup> -->
   <FormGroup>
     <Label for="exampleText">Text Area</Label>
     <Input type="textarea" name="text" id="exampleText" />

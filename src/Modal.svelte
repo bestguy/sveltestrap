@@ -1,28 +1,31 @@
 <script context="module">
-  // TODO fade option, esc key
+  // TODO fade option
   let openCount = 0;
 </script>
 
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
+  import { browserEvent } from './utils';
   import { onDestroy, onMount, afterUpdate } from 'svelte';
-  import { fade as fadeTransition} from 'svelte/transition';
+  import { fade as fadeTransition } from 'svelte/transition';
 
-  import { conditionallyUpdateScrollbar, getOriginalBodyPadding, setScrollbarWidth } from './utils';
+  import {
+    conditionallyUpdateScrollbar,
+    getOriginalBodyPadding,
+    setScrollbarWidth
+  } from './utils';
 
-  function noop() { }
+  function noop() {}
 
   let className = '';
-  export {className as class};
-  export let isOpen;
+  export { className as class };
+  export let isOpen = false;
   export let autoFocus = true;
   export let centered = false;
+  export let backdropDuration = 0;
   export let scrollable = false;
   export let size = '';
   export let toggle = undefined;
-  export let keyboard = true;
-  export let role = 'dialog';
   export let labelledBy = '';
   export let backdrop = true;
   export let onEnter = undefined;
@@ -33,15 +36,12 @@
   export let modalClassName = '';
   export let backdropClassName = '';
   export let contentClassName = '';
-  export let external = undefined;
   export let fade = true;
   export let zIndex = 1050;
-  export let backdropTransition = '';
-  export let modalTransition = '';
   export let unmountOnClose = true;
   export let returnFocusAfterClose = true;
-
-  const props = clean($$props);
+  export let transitionType = fadeTransition;
+  export let transitionOptions = {};
 
   let hasOpened = false;
   let _isMounted = false;
@@ -51,6 +51,7 @@
   let _lastHasOpened = hasOpened;
   let _dialog;
   let _mouseDownElement;
+  let _removeEscListener;
 
   onMount(() => {
     if (isOpen) {
@@ -65,7 +66,6 @@
     if (hasOpened && autoFocus) {
       setFocus();
     }
-
   });
 
   onDestroy(() => {
@@ -79,7 +79,7 @@
     }
   });
 
-  afterUpdate (() => {
+  afterUpdate(() => {
     if (isOpen && !_lastIsOpen) {
       init();
       hasOpened = true;
@@ -93,10 +93,12 @@
     _lastHasOpened = hasOpened;
   });
 
-
   function setFocus() {
-
-    if (_dialog && _dialog.parentNode && typeof _dialog.parentNode.focus === 'function') {
+    if (
+      _dialog &&
+      _dialog.parentNode &&
+      typeof _dialog.parentNode.focus === 'function'
+    ) {
       _dialog.parentNode.focus();
     }
   }
@@ -111,9 +113,9 @@
     _originalBodyPadding = getOriginalBodyPadding();
     conditionallyUpdateScrollbar();
     if (openCount === 0) {
-      document.body.className = clsx(
+      document.body.className = classnames(
         document.body.className,
-        'modal-open',
+        'modal-open'
       );
     }
 
@@ -123,8 +125,11 @@
 
   function manageFocusAfterClose() {
     if (_triggeringElement) {
-      if (typeof _triggeringElement.focus === 'function' && returnFocusAfterClose) {
-        _triggeringElement.focus()
+      if (
+        typeof _triggeringElement.focus === 'function' &&
+        returnFocusAfterClose
+      ) {
+        _triggeringElement.focus();
       }
 
       _triggeringElement = null;
@@ -137,10 +142,13 @@
 
   function close() {
     if (openCount <= 1) {
-
       const modalOpenClassName = 'modal-open';
-      const modalOpenClassNameRegex = new RegExp(`(^| )${modalOpenClassName}( |$)`);
-      document.body.className = document.body.className.replace(modalOpenClassNameRegex, ' ').trim();
+      const modalOpenClassNameRegex = new RegExp(
+        `(^| )${modalOpenClassName}( |$)`
+      );
+      document.body.className = document.body.className
+        .replace(modalOpenClassNameRegex, ' ')
+        .trim();
     }
 
     manageFocusAfterClose();
@@ -163,8 +171,22 @@
     }
   }
 
+  function onModalOpened() {
+    _removeEscListener = browserEvent(document, 'keydown', (event) => {
+      if (event.key && event.key === 'Escape') {
+        toggle(event);
+      }
+    });
+
+    onOpened();
+  }
+
   function onModalClosed() {
     onClosed();
+
+    if (_removeEscListener) {
+      _removeEscListener();
+    }
 
     if (unmountOnClose) {
       destroy();
@@ -182,39 +204,40 @@
 
   const dialogBaseClass = 'modal-dialog';
 
-  $: classes = clsx(
-    dialogBaseClass,
-    className,
-    {
-      [`modal-${size}`]: size,
-      [`${dialogBaseClass}-centered`]: centered,
-      [`${dialogBaseClass}-scrollable`]: scrollable,
-    }
-  );
+  $: classes = classnames(dialogBaseClass, className, {
+    [`modal-${size}`]: size,
+    [`${dialogBaseClass}-centered`]: centered,
+    [`${dialogBaseClass}-scrollable`]: scrollable
+  });
 </script>
 
 {#if _isMounted}
-<div {...props} class="{wrapClassName}" tabindex="-1" style="position: relative; z-index: {zIndex}">
-  {#if isOpen}
-    <div
-      transition:fadeTransition
-      class="{clsx('modal', 'show', modalClassName)}"
-      style="display: block;"
-      on:outroend="{onModalClosed}"
-      on:click="{handleBackdropClick}"
-      on:mousedown="{handleBackdropMouseDown}"
-    >
+  <div
+    {...$$restProps}
+    class={wrapClassName}
+    tabindex="-1"
+    style="position: relative; z-index: {zIndex}">
+    {#if isOpen}
       <div
-        class="{classes}"
-        role="document"
-        bind:this="{_dialog}"
-      >
-        <div class="{clsx('modal-content', contentClassName)}">
-          <slot />
+        transition:transitionType={transitionOptions}
+        ariaLabelledby={labelledBy}
+        class={classnames('modal', 'show', modalClassName)}
+        role="dialog"
+        style="display: block;"
+        on:introend={onModalOpened}
+        on:outroend={onModalClosed}
+        on:click={handleBackdropClick}
+        on:mousedown={handleBackdropMouseDown}>
+        <div class={classes} role="document" bind:this={_dialog}>
+          <div class={classnames('modal-content', contentClassName)}>
+            <slot name="external" />
+            <slot />
+          </div>
         </div>
       </div>
-    </div>
-    <div transition:fadeTransition class="{clsx('modal-backdrop', 'show', backdropClassName)}" />
-  {/if}
-</div>
+      <div
+        transition:fadeTransition={{ duration: fade && backdropDuration }}
+        class={classnames('modal-backdrop', 'show', backdropClassName)} />
+    {/if}
+  </div>
 {/if}

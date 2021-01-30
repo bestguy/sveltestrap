@@ -1,0 +1,26 @@
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 450 50"
+  width="450"
+  height="50"
+>
+  <g transform="translate(2.5, 2.5)">
+    <polyline
+      points="0,30 17.3,40 34.6,30 34.6,20 17.3,30 0,20 0,10
+              17.3,0 34.6,10 17.3,20 0,10"
+      fill="none"
+      stroke="purple"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="3"
+    />
+  </g>
+  <text
+    fill="purple" style="font-family: 'Helvetica', sans-serif; font-size: 50; font-weight: 200; letter-spacing: .25rem"
+    x="49"
+    y="40"
+  >
+    SVELTESTRAP
+  </text>
+</svg>

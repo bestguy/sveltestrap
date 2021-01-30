@@ -1,20 +1,17 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
   export let size = '';
 
-  const props = clean($$props);
-
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     'input-group',
-    size ? `input-group-${size}` : null,
+    size ? `input-group-${size}` : null
   );
 </script>
 
-<div {...props} class="{classes}">
-  <slot/>
+<div {...$$restProps} class={classes}>
+  <slot />
 </div>

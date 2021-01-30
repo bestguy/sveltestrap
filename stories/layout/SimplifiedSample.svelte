@@ -1,5 +1,5 @@
-<script>
-  import { Col, Container, Row } from "sveltestrap";
+<script lang="ts">
+  import { Col, Container, Row } from 'sveltestrap';
 </script>
 
 <Container>
@@ -14,9 +14,7 @@
   </Row>
   <Row>
     <Col xs="3">.col-3</Col>
-    <Col xs="auto">
-      .col-auto - variable width content
-    </Col>
+    <Col xs="auto">.col-auto - variable width content</Col>
     <Col xs="3">.col-3</Col>
   </Row>
   <Row>
@@ -39,11 +37,7 @@
     </Col>
   </Row>
   <Row>
-    <Col sm={{ size: 'auto', offset: 1 }}>
-      .col-sm-auto .offset-sm-1
-    </Col>
-    <Col sm={{ size: 'auto', offset: 1 }}>
-      .col-sm-auto .offset-sm-1
-    </Col>
+    <Col sm={{ size: 'auto', offset: 1 }}>.col-sm-auto .offset-sm-1</Col>
+    <Col sm={{ size: 'auto', offset: 1 }}>.col-sm-auto .offset-sm-1</Col>
   </Row>
 </Container>

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Example from '../Example.svelte';
   import Colors from './Colors.svelte';
   import Size from './Size.svelte';
@@ -9,7 +9,9 @@
 </script>
 
 <h1>Spinner</h1>
-<a href="https://getbootstrap.com/docs/4.3/components/spinners/" target="_blank">
+<a
+  href="https://getbootstrap.com/docs/4.5/components/spinners/"
+  target="_blank">
   Bootstrap Spinner
 </a>
 
@@ -24,4 +26,3 @@
 <Example title="Sizes" source={sizeSource}>
   <Size />
 </Example>
-

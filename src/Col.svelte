@@ -1,19 +1,25 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
   import { getColumnSizeClass, isObject } from './utils';
 
   let className = '';
   export { className as class };
-  export let id = '';
-
-  const props = clean($$props);
+  export let xs = undefined;
+  export let sm = undefined;
+  export let md = undefined;
+  export let lg = undefined;
+  export let xl = undefined;
 
   const colClasses = [];
-  const widths = ['xs', 'sm', 'md', 'lg', 'xl'];
+  const lookup = {
+    xs,
+    sm,
+    md,
+    lg,
+    xl
+  };
 
-  widths.forEach(colWidth => {
-    const columnProp = $$props[colWidth];
+  Object.keys(lookup).forEach((colWidth) => {
+    const columnProp = lookup[colWidth];
     if (!columnProp && columnProp !== '') {
       return; //no value for this width
     }
@@ -50,6 +56,6 @@
   }
 </script>
 
-<div {...props} {id} class={colClasses.join(' ')}>
+<div {...$$restProps} class={colClasses.join(' ')}>
   <slot />
 </div>

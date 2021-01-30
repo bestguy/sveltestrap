@@ -1,31 +1,29 @@
 <script>
   import ButtonDropdown from './ButtonDropdown.svelte';
-  import { clean } from './utils';
 
   let className = '';
   export { className as class };
-  export let disabled = false;
   export let direction = 'down';
+  export let disabled = false;
   export let group = false;
   export let nav = false;
   export let active = false;
   export let addonType = false;
   export let size = '';
-  export let toggle = undefined;
   export let inNavbar = false;
   export let setActiveFromChild = false;
   export let dropup = false;
   export let defaultOpen = false;
 
   let isOpen = defaultOpen;
-  const props = clean($$props);
 </script>
 
 <ButtonDropdown
-  {...props}
+  {...$$restProps}
   {isOpen}
   toggle={() => (isOpen = !isOpen)}
   class={className}
+  {direction}
   {disabled}
   {group}
   {nav}
@@ -34,7 +32,6 @@
   {size}
   {inNavbar}
   {setActiveFromChild}
-  {dropup}
->
+  {dropup}>
   <slot />
 </ButtonDropdown>

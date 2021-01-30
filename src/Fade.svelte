@@ -1,7 +1,4 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
-
   import { fade } from 'svelte/transition';
   const noop = () => undefined;
 
@@ -12,24 +9,21 @@
   export let onEntered = noop;
   export let onExiting = noop;
   export let onExited = noop;
-
-  const props = clean($$props);
 </script>
 
 {#if isOpen}
   <div
-    {...props}
-    transition:fade
+    {...$$restProps}
+    transition:fade|local
     on:introstart
     on:introend
     on:outrostart
     on:outroend
-    on:introstart="{onEntering}"
-    on:introend="{onEntered}"
-    on:outrostart="{onExiting}"
-    on:outroend="{onExited}"
-    class="{className}"
-  >
+    on:introstart={onEntering}
+    on:introend={onEntered}
+    on:outrostart={onExiting}
+    on:outroend={onExited}
+    class={className}>
     <slot />
   </div>
 {/if}

@@ -1,6 +1,5 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -11,17 +10,14 @@
   export let color = 'secondary';
   export let disabled = false;
   export let href = '';
-  export let id = '';
   export let outline = false;
-  export let size = '';
+  export let size = null;
   export let style = '';
   export let value = '';
 
-  const props = clean($$props);
-
   $: ariaLabel = $$props['aria-label'];
 
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     { close },
     close || 'btn',
@@ -36,15 +32,13 @@
 
 {#if href}
   <a
-    {...props}
-    {id}
-    class="{classes}"
+    {...$$restProps}
+    class={classes}
     {disabled}
     on:click
     {href}
-    aria-label="{ariaLabel || defaultAriaLabel}"
-    {style}
-  >
+    aria-label={ariaLabel || defaultAriaLabel}
+    {style}>
     {#if children}
       {children}
     {:else}
@@ -53,15 +47,13 @@
   </a>
 {:else}
   <button
-    {...props}
-    {id}
-    class="{classes}"
+    {...$$restProps}
+    class={classes}
     {disabled}
     on:click
     {value}
-    aria-label="{ariaLabel || defaultAriaLabel}"
-    {style}
-  >
+    aria-label={ariaLabel || defaultAriaLabel}
+    {style}>
     <slot>
       {#if close}
         <span aria-hidden="true">×</span>

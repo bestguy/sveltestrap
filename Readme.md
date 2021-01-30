@@ -1,28 +1,29 @@
-![Logo](./logo.png)
+![sveltestrap](./logo.svg)
 
 ## Bootstrap 4 components for Svelte v3
 
-**Work in progress, check back soon - PRs are welcome!**
+The philosophy of this library is to provide all Bootstrap 4 components for a [Svelte](https://svelte.dev) app, without needing to directly use Bootstrap component classes or needing to include Bootstrap's JavaScript.
 
-The philosophy of this library is to provide all Bootstrap 4 components for a [Svelte](https://svelte.dev) app, without needing to use Bootstrap component classes or needing to include Bootstrap's JavaScript.
+However, to make using Bootstrap themes easier, this library does _not_ embed Bootstrap styles directly and you will need to include Bootstrap 4 CSS in your page  (see 'Usage' below).
 
-However, to make using Bootstrap themes easier, this library does _not_ embed Bootstrap styles directly and you will need to include Bootstrap 4 CSS in your page.
+The component names and props interface are inspired by the [reactstrap](https://reactstrap.github.io) library for React.
 
-The component names and interface are inspired by the [reactstrap](https://reactstrap.github.io) library for React.
-
-[Demo page](https://bestguy.github.io/sveltestrap/)
+[Demo page](https://sveltestrap.js.org/)
 
 ### Status
 
-* See component list below
-  * Tooltip & Popover are not implemented yet due to lacking Popper/Tether support [#31](https://github.com/bestguy/sveltestrap/issues/31), [#32](https://github.com/bestguy/sveltestrap/issues/32)
-  * Carousel not implemented yet, need to port transitions/state/key handlers. [#30](https://github.com/bestguy/sveltestrap/issues/30)
-* Some stateful components have issues
-  * Collapse uses the Svelte slide transistion. In Svelte, the component is removed from the DOM whereas in Bootstrap, it stays in the DOM, but is hidden. This interacts badly with nav bars on small screens.
-  * Modal uses Svelte fade transition, which does not use the Bootstrap theme defaults for duration, etc.
-* Most components are missing general DOM events, see [#36](https://github.com/bestguy/sveltestrap/issues/36)
+- Some stateful components have issues
+  - Collapse uses the Svelte slide transition. In Svelte, the component is removed from the DOM whereas in Bootstrap, it stays in the DOM, but is hidden. This interacts badly with nav bars on small screens.
+  - Modal uses Svelte fade transition, which does not use the Bootstrap theme defaults for duration, etc.
+- Most components are missing general DOM events, see [#36](https://github.com/bestguy/sveltestrap/issues/36)
 
-----
+#### Bootstrap V5 compatibility
+
+- Currently WIP, but have compatibility up to Bootstrap v5 beta 1
+https://github.com/bestguy/sveltestrap/issues/156#issuecomment-727272111
+- Floating labels are needed for beta 1 compatibility, currently WIP.
+
+---
 
 ## Install
 
@@ -36,19 +37,30 @@ Either in your HTML layout:
 
 ```html
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
 </head>
 ```
 
-Or add from your Svelte app:
+Or from your Svelte app, either:
 
-```
+```html
 <svelte:head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </svelte:head>
 ```
 
-In your svelte component:
+or:
+
+```html
+<style>
+  @import "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css";
+</style>
+```
+
+Then use sveltestrap components in your svelte component:
 
 ```html
 <script>
@@ -62,49 +74,28 @@ In your svelte component:
 </Row>
 ```
 
-### Note on server-side rendering (SSR) Usage:
+### Note on server-side rendering (SSR) Usage
 
-If you are using Sveltestrap in an SSR environment like Sapper, 
+If you are using Sveltestrap in an SSR environment like Sapper,
 it's recommended you import the component source directly, for example:
 
 ```html
 <script>
-  import Button from 'sveltestrap/src/Button.svelte';
-  import Col from 'sveltestrap/src/Col.svelte';
-  import Row from 'sveltestrap/src/Row.svelte';
+  import { Button, Col, Row } from 'sveltestrap/src';
 </script>
 
 <Row>
   <Col>
     <Button color="primary" outline>Hello World!</Button>
   </Col>
-<Row>
+</Row>
 ```
 
-### Component status
+if you prefer the 'sveltestrap' import, you can move the package to `devDependencies` block in your `package.json` so that sapper will parse the es bundle
 
-Sveltestrap is currently missing support for the following components:
-
-* [ ] Carousel
-  * [ ] CarouselCaption
-  * [ ] CarouselControl
-  * [ ] CarouselIndicators
-  * [ ] CarouselItem
-* [ ] Popover
-  * [ ] PopoverContent
-  * [ ] PopoverTitle
-* [ ] Tooltip
-
-Please follow (or help out with) these issues for status:
-
-<a href="https://github.com/bestguy/sveltestrap/issues/30">
-  Missing Carousel (#30)
-</a>
-
-<a href="https://github.com/bestguy/sveltestrap/issues/31">
-  Missing Tooltip (#31)
-</a>
-
-<a href="https://github.com/bestguy/sveltestrap/issues/32">
-  Missing Popover (#32)
-</a>
+```json
+"devDependencies": {
+    "sveltestrap": "*.*.*",
+    ...
+  },
+```

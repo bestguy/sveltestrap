@@ -1,6 +1,5 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
@@ -8,8 +7,6 @@
   export let bottom = false;
   export let src;
   export let alt = '';
-
-  const props = clean($$props);
 
   let classes = '';
   $: {
@@ -20,11 +17,8 @@
     if (bottom) {
       cardImgClassName = 'card-img-bottom';
     }
-    classes = clsx(
-      className,
-      cardImgClassName,
-    );
+    classes = classnames(className, cardImgClassName);
   }
 </script>
 
-<img {...props} class="{classes}" {src} {alt} />
+<img {...$$restProps} class={classes} {src} {alt} />

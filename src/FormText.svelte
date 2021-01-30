@@ -1,21 +1,18 @@
 <script>
-  import clsx from 'clsx';
-  import { clean } from './utils';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
   export let inline = false;
   export let color = 'muted';
 
-  const props = clean($$props);
-
-  $: classes = clsx(
+  $: classes = classnames(
     className,
     !inline ? 'form-text' : false,
     color ? `text-${color}` : false
   );
 </script>
 
-<small {...props} class="{classes}">
-  <slot/>
+<small {...$$restProps} class={classes}>
+  <slot />
 </small>
