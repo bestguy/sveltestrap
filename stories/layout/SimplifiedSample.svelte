@@ -40,4 +40,20 @@
     <Col sm={{ size: 'auto', offset: 1 }}>.col-sm-auto .offset-sm-1</Col>
     <Col sm={{ size: 'auto', offset: 1 }}>.col-sm-auto .offset-sm-1</Col>
   </Row>
+  <Row cols={2}>
+    <Col>col-1</Col>
+    <Col>col-2</Col>
+    <Col>col-3</Col>
+    <Col>col-4</Col>
+    <Col>col-5</Col>
+    <Col>col-6</Col>
+  </Row>
+  <Row cols={{ lg: 3, md: 2, sm: 1 }}>
+    <Col>col-1</Col>
+    <Col>col-2</Col>
+    <Col>col-3</Col>
+    <Col>col-4</Col>
+    <Col>col-5</Col>
+    <Col>col-6</Col>
+  </Row>
 </Container>
