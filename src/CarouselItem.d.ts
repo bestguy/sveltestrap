@@ -1,7 +1,6 @@
 import { LocalSvelteComponent } from './shared';
 
 export interface ICarouselItemProps {
-  id?: string;
   itemIndex?: number;
   activeIndex?: number;
 }
