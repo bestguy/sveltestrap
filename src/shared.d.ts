@@ -11,6 +11,20 @@ export declare type Color =
   | 'light'
   | 'dark';
 
+declare type BackgroundOnlyColor =
+  | 'white'
+  | 'transparent';
+
+declare type TextOnlyColor =
+  | 'body'
+  | 'muted'
+  | 'white'
+  | 'black-50'
+  | 'white-50';
+
+export declare type BackgroundColor = Color | BackgroundOnlyColor;
+export declare type TextColor = Color | TextOnlyColor;
+
 export declare type Direction = 'up' | 'down' | 'left' | 'right';
 
 type LocalSvelteProps = {

@@ -1,11 +1,11 @@
-import { Color, LocalSvelteComponent } from './shared';
+import { BackgroundColor, LocalSvelteComponent } from './shared';
 
 export interface INavbarProps {
   light?: boolean;
   dark?: boolean;
   fixed?: string;
   sticky?: string;
-  color?: Color;
+  color?: BackgroundColor;
   expand?: boolean | string;
 }
 

@@ -47,7 +47,7 @@
       popperInstance.destroy();
       popperInstance = undefined;
     }
-  };
+  }
 
   const open = () => isOpen = true;
   const close = () => isOpen = false;
