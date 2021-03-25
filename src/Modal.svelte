@@ -18,11 +18,12 @@
   function noop() {}
 
   let className = '';
+  let staticModal = false;
   export { className as class };
+  export { staticModal as static };
   export let isOpen = false;
   export let autoFocus = true;
   export let centered = false;
-  export let backdropDuration = 0;
   export let scrollable = false;
   export let size = '';
   export let toggle = undefined;
@@ -37,11 +38,11 @@
   export let backdropClassName = '';
   export let contentClassName = '';
   export let fade = true;
-  export let zIndex = 1050;
+  export let backdropDuration = fade ? 150 : 0;
   export let unmountOnClose = true;
   export let returnFocusAfterClose = true;
   export let transitionType = fadeTransition;
-  export let transitionOptions = {};
+  export let transitionOptions = { duration: fade ? 300 : 0 };
 
   let hasOpened = false;
   let _isMounted = false;
@@ -110,16 +111,18 @@
       _triggeringElement = null;
     }
 
-    _originalBodyPadding = getOriginalBodyPadding();
-    conditionallyUpdateScrollbar();
-    if (openCount === 0) {
-      document.body.className = classnames(
-        document.body.className,
-        'modal-open'
-      );
-    }
+    if (!staticModal) {
+      _originalBodyPadding = getOriginalBodyPadding();
+      conditionallyUpdateScrollbar();
+      if (openCount === 0) {
+        document.body.className = classnames(
+          document.body.className,
+          'modal-open'
+        );
+      }
 
-    ++openCount;
+      ++openCount;
+    }
     _isMounted = true;
   }
 
@@ -213,17 +216,20 @@
 
 {#if _isMounted}
   <div
-    {...$$restProps}
     class={wrapClassName}
     tabindex="-1"
-    style="position: relative; z-index: {zIndex}">
-    {#if isOpen}
+    {...$$restProps}>
+    {#key isOpen}
       <div
         transition:transitionType={transitionOptions}
         ariaLabelledby={labelledBy}
-        class={classnames('modal', 'show', modalClassName)}
+        class={classnames('modal', modalClassName, {
+          show: isOpen,
+          'd-block': isOpen,
+          'd-none': !isOpen,
+          'position-static': staticModal
+        })}
         role="dialog"
-        style="display: block;"
         on:introend={onModalOpened}
         on:outroend={onModalClosed}
         on:click={handleBackdropClick}
@@ -235,9 +241,11 @@
           </div>
         </div>
       </div>
-      <div
-        transition:fadeTransition={{ duration: fade && backdropDuration }}
-        class={classnames('modal-backdrop', 'show', backdropClassName)} />
-    {/if}
+      {#if backdrop && !staticModal}
+        <div
+          transition:fadeTransition={{ duration: backdropDuration }}
+          class={classnames('modal-backdrop', 'show', backdropClassName)} />
+      {/if}
+    {/key}
   </div>
 {/if}
