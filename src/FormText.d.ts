@@ -1,8 +1,8 @@
-import { Color, LocalSvelteComponent } from './shared';
+import { TextColor, LocalSvelteComponent } from './shared';
 
 export interface FormTextProps {
   inline?: boolean;
-  color?: Color;
+  color?: TextColor;
 }
 
 declare class FormText extends LocalSvelteComponent<FormTextProps> {}

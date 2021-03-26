@@ -1,9 +1,8 @@
 import { LocalSvelteComponent } from './shared';
 
 export interface ICarouselIndicatorsProps {
-  items: object[];
+  items: any[];
   activeIndex: number;
-  id?: string;
 }
 
 declare class CarouselIndicators extends LocalSvelteComponent<

@@ -8,6 +8,6 @@
   $: classes = classnames(className, 'navbar-brand');
 </script>
 
-<a {...$$restProps} class={classes} {href}>
+<a {...$$restProps} class={classes} {href} on:click>
   <slot />
 </a>

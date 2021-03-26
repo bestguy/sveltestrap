@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Fade, Button, CardBody, Card } from 'sveltestrap';
+  import { Fade, Button, Card } from 'sveltestrap';
   let isOpen = false;
 </script>
 

@@ -1,5 +1,5 @@
 <script>
-  import { onMount, tick } from 'svelte';
+  import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core';
   import classnames from './utils';
 
@@ -35,7 +35,7 @@
       popperInstance.destroy();
       popperInstance = undefined;
     }
-  };
+  }
 
   onMount(() => {
     targetEl = document.querySelector(`#${target}`);

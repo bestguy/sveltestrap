@@ -1,4 +1,4 @@
-import { LocalSvelteComponent, Color } from './shared';
+import { LocalSvelteComponent, BackgroundColor } from './shared';
 
 export interface IProgressProps {
   bar?: boolean;
@@ -7,7 +7,7 @@ export interface IProgressProps {
   max?: string | number;
   animated?: boolean;
   striped?: boolean;
-  color?: Color;
+  color?: BackgroundColor;
   barClassName?: string;
 }
 
