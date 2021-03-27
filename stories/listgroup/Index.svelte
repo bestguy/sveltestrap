@@ -8,6 +8,8 @@
   import actionsSource from '!!raw-loader!./Actions.svelte';
   import Flush from './Flush.svelte';
   import flushSource from '!!raw-loader!./Flush.svelte';
+  import Numbered from './Numbered.svelte';
+  import numberedSource from '!!raw-loader!./Numbered.svelte';
 </script>
 
 <h1>List Groups</h1>
@@ -37,4 +39,8 @@
 
 <Example title="Flush" source={flushSource}>
   <Flush />
+</Example>
+
+<Example title="Numbered" source={numberedSource}>
+  <Numbered />
 </Example>
