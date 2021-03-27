@@ -50,6 +50,7 @@
     "@testing-library/jest-dom": "^5.11.1",
     "@testing-library/svelte": "^3.0.0",
     "@tsconfig/svelte": "^1.0.2",
+    "@types/lodash-es": "^4.17.4",
     "autoprefixer": "^9.8.5",
     "babel-jest": "^26.1.0",
     "babel-loader": "^8.1.0",
@@ -99,8 +100,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.6.0",
-    "lodash.isobject": "^3.0.2",
-    "lodash.tonumber": "^4.0.3"
+    "lodash-es": "^4.17.21"
   },
   "browserslist": "last 2 versions"
 }

@@ -1,6 +1,6 @@
 <script>
   import classnames from './utils';
-  import toNumber from 'lodash.tonumber';
+  import { toNumber } from 'lodash-es';
 
   let className = '';
   export { className as class };
