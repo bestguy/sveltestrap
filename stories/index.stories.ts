@@ -16,6 +16,7 @@ import Inputs from './input/Index.svelte';
 import ListGroup from './listgroup/Index.svelte';
 import Modals from './modal/Index.svelte';
 import Navbar from './navbar/Index.svelte';
+import Offcanvas from './offcanvas/Index.svelte';
 import Nav from './nav/Index.svelte';
 import Grid from './layout/Index.svelte';
 import Pagination from './pagination/Index.svelte';
@@ -51,6 +52,7 @@ storiesOf('Components', module)
   .add('Modals', story(Modals))
   .add('Nav', story(Nav))
   .add('Navbar', story(Navbar))
+  .add('Offcanvas', story(Offcanvas))
   .add('Pagination', story(Pagination))
   .add('Popover', story(Popover))
   .add('Progress', story(Progress))

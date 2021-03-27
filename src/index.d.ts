@@ -54,6 +54,9 @@ import NavLink from './NavLink';
 import Navbar from './Navbar';
 import NavbarBrand from './NavbarBrand';
 import NavbarToggler from './NavbarToggler';
+import Offcanvas from './Offcanvas';
+import OffcanvasBody from './OffcanvasBody';
+import OffcanvasHeader from './OffcanvasHeader';
 import Pagination from './Pagination';
 import PaginationItem from './PaginationItem';
 import PaginationLink from './PaginationLink';
@@ -131,6 +134,9 @@ export {
   Navbar,
   NavbarBrand,
   NavbarToggler,
+  Offcanvas,
+  OffcanvasBody,
+  OffcanvasHeader,
   Pagination,
   PaginationItem,
   PaginationLink,
