@@ -22,7 +22,7 @@
     striped || animated ? 'progress-bar-striped' : null
   );
 
-  $: percent = (paseInt(value) / paseInt(max)) * 100;
+  $: percent = (parseInt(value, 10) / parseInt(max, 10)) * 100;
 </script>
 
 {#if bar}
