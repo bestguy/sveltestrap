@@ -219,7 +219,7 @@
     class={wrapClassName}
     tabindex="-1"
     {...$$restProps}>
-    {#key isOpen}
+    {#if isOpen}
       <div
         transition:transitionType={transitionOptions}
         ariaLabelledby={labelledBy}
@@ -246,6 +246,6 @@
           transition:fadeTransition={{ duration: backdropDuration }}
           class={classnames('modal-backdrop', 'show', backdropClassName)} />
       {/if}
-    {/key}
+    {/if}
   </div>
 {/if}
