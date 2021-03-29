@@ -99,8 +99,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@popperjs/core": "^2.6.0",
-    "lodash-es": "^4.17.21"
+    "@popperjs/core": "^2.6.0"
   },
   "browserslist": "last 2 versions"
 }

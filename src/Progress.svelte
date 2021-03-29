@@ -1,6 +1,5 @@
 <script>
   import classnames from './utils';
-  import { toNumber } from 'lodash-es';
 
   let className = '';
   export { className as class };
@@ -23,7 +22,7 @@
     striped || animated ? 'progress-bar-striped' : null
   );
 
-  $: percent = (toNumber(value) / toNumber(max)) * 100;
+  $: percent = (parseInt(value, 10) / parseInt(max, 10)) * 100;
 </script>
 
 {#if bar}

@@ -17,11 +17,12 @@ The component names and interface are inspired by the [reactstrap](https://react
   - Modal uses Svelte fade transition, which does not use the Bootstrap theme defaults for duration, etc.
 - Most components are missing general DOM events, see [#36](https://github.com/bestguy/sveltestrap/issues/36)
 
-#### Bootstrap V5 compatibility
+### Bootstrap V5 compatibility
 
-- Currently WIP, but have compatibility up to Bootstrap v5 beta 1
-https://github.com/bestguy/sveltestrap/issues/156#issuecomment-727272111
-- Floating labels are needed for beta 1 compatibility, currently WIP.
+- Currently compatibile up to Bootstrap v5 beta 3
+https://github.com/bestguy/sveltestrap/issues/156#issuecomment-808819028
+
+(You need to install `sveltestrap@5.0.0-beta.3` version explicitly to use this beta release.  Also you need to use Bootstrap v5 CSS.)
 
 ---
 
