@@ -74,6 +74,18 @@ Then use sveltestrap components in your svelte component:
 </Row>
 ```
 
+### Note on Icons
+
+If you wish to use the [Icon component](https://sveltestrap.js.org/?path=/story/components--icon),
+you also must include a link to Bootstrap Icon CSS, for example:
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css"
+/>
+
+This component uses and assumes the CSS based webfont.
+
 ### Note on server-side rendering (SSR) Usage
 
 If you are using Sveltestrap in an SSR environment like Sapper,

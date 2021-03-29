@@ -118,6 +118,24 @@
           </PrismCode>
         </pre>
 
+        <h5>Note on Icons</h5>
+        <p>
+          If you wish to optionally use the
+          <a href="https://sveltestrap.js.org/?path=/story/components--icon">Icon component</a>,
+          you also must include a link to Bootstrap Icon CSS, for example:
+        </p>
+        <pre>
+          <PrismCode class="language-html">
+            {`<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css"
+/>`}
+          </PrismCode>
+        </pre>
+        <p>
+          This component uses and assumes the CSS based webfont.
+        </p>
+
         <h3>Using in Svelte app</h3>
         <p>
           Import required sveltestrap components within
