@@ -1,5 +1,5 @@
 <script>
-  import { setContext } from 'svelte';
+  import { setContext, onDestroy } from 'svelte';
   import classnames from './utils';
 
   import { createContext } from './DropdownContext';
@@ -91,6 +91,11 @@
 
     toggle(e);
   }
+  onDestroy(() => {
+    ['click', 'touchstart', 'keyup'].forEach((event) =>
+      document.removeEventListener(event, handleDocumentClick, true)
+    );
+  });
 </script>
 
 {#if nav}
