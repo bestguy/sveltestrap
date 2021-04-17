@@ -1,6 +1,5 @@
 <script lang="ts">
-  import Popover from '../../src/Popover.svelte';
-  import { Button } from 'sveltestrap';
+  import { Button, Popover } from 'sveltestrap';
 </script>
 
 <div class="mt-3">
