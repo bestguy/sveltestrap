@@ -1,6 +1,5 @@
 <script lang="ts">
-  import Popover from '../../src/Popover.svelte';
-  import { Button } from 'sveltestrap';
+  import { Button, Popover } from 'sveltestrap';
 
   let isOpen = false;
 </script>

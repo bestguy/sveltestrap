@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Popover from '../../src/Popover.svelte';
+  import { Popover } from 'sveltestrap';
 </script>
 
 <a class="btn btn-secondary" id="btnDismissible" tabindex="0">Click me</a>

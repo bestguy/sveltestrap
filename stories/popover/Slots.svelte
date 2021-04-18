@@ -1,6 +1,5 @@
 <script lang="ts">
-  import Popover from '../../src/Popover.svelte';
-  import Button from '../../src/Button.svelte';
+  import { Button, Popover } from 'sveltestrap';
 </script>
 
 <Button id="btn">Click me</Button>
