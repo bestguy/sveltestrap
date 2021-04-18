@@ -1,6 +1,5 @@
 <script lang="ts">
-  import Tooltip from '../../src/Tooltip.svelte';
-  import { Button } from 'sveltestrap';
+  import { Button, Tooltip } from 'sveltestrap';
 
   let isOpen = false;
 </script>

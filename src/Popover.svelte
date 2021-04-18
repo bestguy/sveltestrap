@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import { createPopper } from '@popperjs/core';
+  import { createPopper } from '@popperjs/core/dist/esm/popper';
   import classnames from './utils';
 
   let className = '';

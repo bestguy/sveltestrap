@@ -1,8 +1,7 @@
 <script lang="ts">
-  import Tooltip from '../../src/Tooltip.svelte';
-  import { Button } from 'sveltestrap';
+  import { Button, Tooltip } from 'sveltestrap';
 
-  const placements: string[] = ['top', 'right', 'left', 'bottom'];
+  const placements = ['top', 'right', 'left', 'bottom'];
 </script>
 
 {#each placements as placement}
