@@ -80,12 +80,21 @@ Then use sveltestrap components in your svelte component:
 If you wish to use the [Icon component](https://sveltestrap.js.org/?path=/story/components--icon),
 you also must include a link to Bootstrap Icon CSS, for example:
 
+```html
+<svelte:head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+</svelte:head>
+```
+
+or:
+
+```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css"
-/>
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+/>```
 
-This component uses and assumes the CSS based webfont.
+This component uses and assumes the CSS based webfont.  You can host the icon CSS and webfonts on your own domain if needed.
 
 ### Note on server-side rendering (SSR) Usage
 
