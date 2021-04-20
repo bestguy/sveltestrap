@@ -92,7 +92,8 @@ or:
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-/>```
+/>
+```
 
 This component uses and assumes the CSS based webfont.  You can host the icon CSS and webfonts on your own domain if needed.
 
