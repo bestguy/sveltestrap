@@ -62,6 +62,7 @@ export { default as Pagination } from './Pagination.svelte';
 export { default as PaginationItem } from './PaginationItem.svelte';
 export { default as PaginationLink } from './PaginationLink.svelte';
 export { default as Popover } from './Popover.svelte';
+export { default as Portal } from './Portal.svelte';
 export { default as Progress } from './Progress.svelte';
 export { default as Row } from './Row.svelte';
 export { default as Spinner } from './Spinner.svelte';

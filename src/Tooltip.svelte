@@ -2,9 +2,12 @@
   import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core/dist/esm/popper';
   import classnames from './utils';
+  import InlineContainer from './InlineContainer.svelte';
+  import Portal from './Portal.svelte';
 
   let className = '';
   export { className as class };
+  export let container;
   export let target = '';
   export let placement = 'top';
   export let children = undefined;
@@ -53,9 +56,12 @@
   $: if (!target) {
     throw new Error('Need target!');
   }
+
+  $: outer = container === 'inline' ? InlineContainer : Portal;
 </script>
 
 {#if isOpen}
+<svelte:component this={outer}>
   <div
     bind:this={tooltipEl}
     {...$$restProps}
@@ -71,4 +77,5 @@
       {/if}
     </div>
   </div>
+</svelte:component>
 {/if}
