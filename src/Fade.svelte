@@ -1,5 +1,8 @@
 <script>
+  import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
+  import toggle from './toggle';
+
   const noop = () => undefined;
 
   export let isOpen = false;
@@ -9,6 +12,9 @@
   export let onEntered = noop;
   export let onExiting = noop;
   export let onExited = noop;
+  export let toggler = null;
+
+  onMount(() => toggle(toggler, () => isOpen = !isOpen));
 </script>
 
 {#if isOpen}

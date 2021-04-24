@@ -1,14 +1,18 @@
 <script lang="ts">
   import {
-    Dropdown,
+    Button,
+    ButtonDropdown,
     DropdownItem,
     DropdownMenu,
     DropdownToggle
   } from 'sveltestrap';
 </script>
 
-<Dropdown>
-  <DropdownToggle caret>Dropdown</DropdownToggle>
+<ButtonDropdown>
+  <Button color="primary" on:click={() => alert("Cool, I didn't trigger the dropdown")}>
+    Click Me
+  </Button>
+  <DropdownToggle split color="primary" />
   <DropdownMenu>
     <DropdownItem header>Header</DropdownItem>
     <DropdownItem>Some Action</DropdownItem>
@@ -18,4 +22,4 @@
     <DropdownItem>Bar Action</DropdownItem>
     <DropdownItem>Quo Action</DropdownItem>
   </DropdownMenu>
-</Dropdown>
+</ButtonDropdown>

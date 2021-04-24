@@ -24,11 +24,11 @@ Carousels, ListGroups, Modals, and Navs.
   <Events />
 </Example>
 
-<Example title="Uncontrolled Fade" source={uncontrolledSource}>
+<Example title="Uncontrolled" source={uncontrolledSource}>
   <p slot="info">
     For the most basic use-case, an uncontrolled component can provide the
     functionality wanted without the need to manage/control the state of the
-    component. UncontrolledFade does not require an isOpen prop. Instead pass a
+    component. Fade does not require an isOpen prop. Instead pass a
     toggler prop. The toggler prop is a string which will run querySelectorAll
     to find dom elements which will trigger toggle.
   </p>

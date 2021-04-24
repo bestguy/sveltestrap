@@ -6,6 +6,7 @@ export interface IAlertProps {
   color?: Color;
   closeClassName?: string;
   closeAriaLabel?: string;
+  dismissible?: boolean;
   fade?: boolean;
   isOpen?: boolean;
   transition?: IFadeProps;

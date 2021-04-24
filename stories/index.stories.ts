@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/svelte';
 import Alert from './alert/Index.svelte';
 import Badge from './badge/Index.svelte';
 import Breadcrumbs from './breadcrumb/Index.svelte';
+import ButtonDropdown from './buttondropdown/Index.svelte';
 import Button from './button/Index.svelte';
 import Card from './card/Index.svelte';
 import Carousel from './carousel/Index.svelte';
@@ -40,6 +41,7 @@ storiesOf('Components', module)
   .add('Badge', story(Badge))
   .add('Breadcrumb', story(Breadcrumbs))
   .add('Button', story(Button))
+  .add('ButtonDropdown', story(ButtonDropdown))
   .add('Card', story(Card))
   .add('Carousel', story(Carousel))
   .add('Collapse', story(Collapse))

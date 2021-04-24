@@ -5,6 +5,7 @@ export interface IFadeProps {
   onEntered?: () => void;
   onExiting?: () => void;
   onExited?: () => void;
+  toggler?: string;
 }
 
 declare class Fade extends LocalSvelteComponent<IFadeProps> {}
