@@ -25,7 +25,7 @@ export interface IModalProps {
   labelledBy?: string;
   unmountOnClose?: boolean;
   returnFocusAfterClose?: boolean;
-  transitionOptions: IFadeProps | {};
+  transitionOptions?: IFadeProps | {};
 }
 
 declare class Modal extends LocalSvelteComponent<IModalProps> {}
