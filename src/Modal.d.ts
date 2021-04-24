@@ -1,10 +1,11 @@
 import { IFadeProps } from './Fade';
-import { LocalSvelteComponent } from './shared';
+import { ContainerType, LocalSvelteComponent } from './shared';
 
 export interface IModalProps {
   isOpen?: boolean;
   autoFocus?: boolean;
   backdropDuration?: number;
+  container?: ContainerType;
   size?: string;
   toggle?: () => void;
   keyboard?: boolean;
