@@ -5,11 +5,9 @@
     DropdownMenu,
     DropdownToggle
   } from 'sveltestrap';
-
-  let isOpen = false;
 </script>
 
-<Dropdown {isOpen} toggle={() => (isOpen = !isOpen)}>
+<Dropdown>
   <DropdownToggle caret>Dropdown</DropdownToggle>
   <DropdownMenu>
     <DropdownItem header>Header</DropdownItem>
