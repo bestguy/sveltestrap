@@ -2,6 +2,8 @@
   import Example from '../Example.svelte';
   import Backdrop from './Backdrop.svelte';
   import backdropSource from '!!raw-loader!./Backdrop.svelte';
+  import External from './External.svelte';
+  import externalSource from '!!raw-loader!./External.svelte';
   import Fade from './Fade.svelte';
   import fadeSource from '!!raw-loader!./Fade.svelte';
   import Sample from './Sample.svelte';
@@ -35,4 +37,9 @@
 
 <Example title="Static" source={staticSource}>
   <Static />
+</Example>
+
+
+<Example title="External Content" source={externalSource}>
+  <External />
 </Example>

@@ -9,8 +9,8 @@
   import { onDestroy, onMount, afterUpdate } from 'svelte';
   import { fade as fadeTransition } from 'svelte/transition';
   import InlineContainer from './InlineContainer.svelte';
+  import ModalBody from './ModalBody.svelte';
   import Portal from './Portal.svelte';
-
   import {
     conditionallyUpdateScrollbar,
     getOriginalBodyPadding,
@@ -25,6 +25,7 @@
   export { staticModal as static };
   export let isOpen = false;
   export let autoFocus = true;
+  export let body = false;
   export let centered = false;
   export let container;
   export let scrollable = false;
@@ -240,10 +241,16 @@
         on:outroend={onModalClosed}
         on:click={handleBackdropClick}
         on:mousedown={handleBackdropMouseDown}>
+        <slot name="external" />
         <div class={classes} role="document" bind:this={_dialog}>
           <div class={classnames('modal-content', contentClassName)}>
-            <slot name="external" />
-            <slot />
+            {#if body}
+              <ModalBody>
+                <slot />
+              </ModalBody>
+            {:else}
+              <slot />
+            {/if}
           </div>
         </div>
       </div>
