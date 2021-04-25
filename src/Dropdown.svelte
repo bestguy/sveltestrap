@@ -9,17 +9,17 @@
 
   let className = '';
   export { className as class };
-  export let direction = 'down';
-  export let group = false;
-  export let isOpen = false;
-  export let nav = false;
   export let active = false;
   export let addonType = false;
+  export let direction = 'down';
+  export let dropup = false;
+  export let group = false;
+  export let inNavbar = false;
+  export let isOpen = false;
+  export let nav = false;
+  export let setActiveFromChild = false;
   export let size = '';
   export let toggle = undefined;
-  export let inNavbar = false;
-  export let setActiveFromChild = false;
-  export let dropup = false;
 
   const validDirections = ['up', 'down', 'left', 'right', 'start', 'end'];
 
@@ -46,6 +46,7 @@
   }
 
   $: classes = classnames(
+    'd-inline-flex',
     className,
     direction !== 'down' && `drop${dropdownDirection}`,
     nav && active ? 'active' : false,
@@ -78,13 +79,15 @@
   $: {
     context.update(() => {
       return {
-        toggle,
+        toggle: handleToggle,
         isOpen,
         direction: direction === 'down' && dropup ? 'up' : direction,
         inNavbar
       };
     });
   }
+
+  $: handleToggle = toggle || (() => (isOpen = !isOpen));
 
   function handleDocumentClick(e) {
     if (e && (e.which === 3 || (e.type === 'keyup' && e.which !== 9))) return;
@@ -97,7 +100,7 @@
       return;
     }
 
-    toggle(e);
+    handleToggle(e);
   }
   onDestroy(() => {
     ['click', 'touchstart', 'keyup'].forEach((event) =>

@@ -30,7 +30,7 @@
     "version": "npm run dist && npm run docs && git add -A"
   },
   "peerDependencies": {
-    "svelte": "^3.28.0"
+    "svelte": "^3.29.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
@@ -67,7 +67,6 @@
     "jest-transform-svelte": "^2.1.1",
     "json-loader": "^0.5.7",
     "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.5",
     "postcss": "^7.0.32",
     "prettier": "^2.0.5",
@@ -82,7 +81,6 @@
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-livereload": "^1.3.0",
     "rollup-plugin-peer-deps-external": "^2.2.3",
-    "rollup-plugin-scss": "^2.5.0",
     "rollup-plugin-svelte": "^6.1.1",
     "rollup-plugin-terser": "^6.1.0",
     "sirv-cli": "^1.0.3",

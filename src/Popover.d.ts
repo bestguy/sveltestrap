@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { ContainerType, LocalSvelteComponent } from './shared';
 
 declare type PopoverPlacement = 'left' | 'top' | 'bottom' | 'right';
 declare type Triggers = 'click' | 'hover' | 'focus';
@@ -6,6 +6,7 @@ declare type Triggers = 'click' | 'hover' | 'focus';
 interface IPopoverProps {
   animation?: boolean;
   children?: string;
+  container?: ContainerType;
   dismissible?: boolean;
   isOpen?: boolean;
   placement?: PopoverPlacement;

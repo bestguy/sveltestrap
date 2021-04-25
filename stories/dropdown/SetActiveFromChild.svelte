@@ -7,7 +7,7 @@
     NavItem,
     NavLink,
     Navbar,
-    UncontrolledDropdown
+    Dropdown
   } from 'sveltestrap';
 </script>
 
@@ -16,11 +16,11 @@
     <NavItem>
       <NavLink href="/components/">Inactive Link</NavLink>
     </NavItem>
-    <UncontrolledDropdown setActiveFromChild>
+    <Dropdown setActiveFromChild>
       <DropdownToggle nav class="nav-link" caret>Dropdown</DropdownToggle>
       <DropdownMenu>
         <DropdownItem tag="a" href="/blah" active>Link</DropdownItem>
       </DropdownMenu>
-    </UncontrolledDropdown>
+    </Dropdown>
   </Nav>
 </Navbar>

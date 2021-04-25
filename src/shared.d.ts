@@ -1,3 +1,7 @@
+export declare type ContainerType =
+  | 'body'
+  | 'inline';
+
 /**
  * Valid Bootstrap colors
  */

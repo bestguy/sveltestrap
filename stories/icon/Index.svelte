@@ -1284,9 +1284,6 @@
   <Sample />
 </Example>
 
-<h2 class="d-flex">
-  {filteredIcons.length} Icons
-</h2>
 <Input
   bind:value={filter}
   size="lg"

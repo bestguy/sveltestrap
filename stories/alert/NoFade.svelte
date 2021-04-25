@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Alert, UncontrolledAlert } from 'sveltestrap';
+  import { Alert } from 'sveltestrap';
 
   let visible = true;
 </script>
@@ -12,6 +12,6 @@
   I am a primary alert and I can be dismissed without animating!
 </Alert>
 
-<UncontrolledAlert color="info" fade={false}>
-  I am an alert and I can be dismissed without animating!
-</UncontrolledAlert>
+<Alert color="info" fade={false} dismissible>
+  I am a dismissible alert and I can be dismissed without animating!
+</Alert>

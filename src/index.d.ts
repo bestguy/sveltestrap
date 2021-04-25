@@ -71,11 +71,11 @@ import Toast from './Toast';
 import ToastBody from './ToastBody';
 import ToastHeader from './ToastHeader';
 import Tooltip from './ToastHeader';
-import { UncontrolledAlert } from './UncontrolledAlert';
-import { UncontrolledButtonDropdown } from './UncontrolledButtonDropdown';
-import UncontrolledCollapse from './UncontrolledCollapse';
-import UncontrolledDropdown from './UncontrolledDropdown';
-import UncontrolledFade from './UncontrolledFade';
+import UncontrolledAlert from './Alert';
+import UncontrolledButtonDropdown from './Dropdown';
+import UncontrolledCollapse from './Collapse';
+import UncontrolledDropdown from './Dropdown';
+import UncontrolledFade from './Fade';
 
 export {
   Alert,

@@ -7,7 +7,7 @@
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
+    Dropdown,
     DropdownToggle,
     DropdownMenu,
     DropdownItem
@@ -31,7 +31,7 @@
       <NavItem>
         <NavLink href="https://github.com/bestguy/sveltestrap">GitHub</NavLink>
       </NavItem>
-      <UncontrolledDropdown nav inNavbar>
+      <Dropdown nav inNavbar>
         <DropdownToggle nav caret>Options</DropdownToggle>
         <DropdownMenu end>
           <DropdownItem>Option 1</DropdownItem>
@@ -39,7 +39,7 @@
           <DropdownItem divider />
           <DropdownItem>Reset</DropdownItem>
         </DropdownMenu>
-      </UncontrolledDropdown>
+      </Dropdown>
     </Nav>
   </Collapse>
 </Navbar>

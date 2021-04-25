@@ -10,8 +10,8 @@
   import sampleSource from '!!raw-loader!./Sample.svelte';
   import Sizes from './Sizes.svelte';
   import sizesSource from '!!raw-loader!./Sizes.svelte';
-  import Uncontrolled from './Uncontrolled.svelte';
-  import uncontrolledSource from '!!raw-loader!./Uncontrolled.svelte';
+  import Controlled from './Controlled.svelte';
+  import controlledSource from '!!raw-loader!./Controlled.svelte';
   import SetActiveFromChild from './SetActiveFromChild.svelte';
   import setActiveFromChildSource from '!!raw-loader!./SetActiveFromChild.svelte';
 </script>
@@ -39,8 +39,8 @@
   <Sizes />
 </Example>
 
-<Example title="Uncontrolled" source={uncontrolledSource}>
-  <Uncontrolled />
+<Example title="Controlled" source={controlledSource}>
+  <Controlled />
 </Example>
 
 <Example title="SetActiveFromChild" source={setActiveFromChildSource}>

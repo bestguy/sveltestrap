@@ -1,5 +1,7 @@
 <script lang="ts">
-  import { Button, Container, Row, Col } from 'sveltestrap';
+  import { Button, Col, Container, Row } from 'sveltestrap';
+  import { linkTo } from '@storybook/addon-links';
+
   import PrismCode from '../PrismCode.svelte';
   import Example from '../Example.svelte';
   import Sample from './Sample.svelte';
@@ -118,22 +120,28 @@
           </PrismCode>
         </pre>
 
-        <h5>Note on Icons</h5>
+        <h4>Note on Icons</h4>
         <p>
-          If you wish to optionally use the
-          <a href="https://sveltestrap.js.org/?path=/story/components--icon">Icon component</a>,
-          you also must include a link to Bootstrap Icon CSS, for example:
+          If you wish to use the <Button color="link" class="p-0" style="vertical-align: unset;" on:click={linkTo('Components', 'Icon')}>Icon</Button> component, you also must include a link to Bootstrap Icon CSS, for example:
         </p>
+        <pre>
+          <PrismCode class="language-html">
+            {`<svelte:head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+</svelte:head>`}
+          </PrismCode>
+        </pre>
+          or:
         <pre>
           <PrismCode class="language-html">
             {`<link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
 />`}
           </PrismCode>
         </pre>
         <p>
-          This component uses and assumes the CSS based webfont.
+          This component uses and assumes the CSS based webfont. You can host the icon CSS and webfonts on your own domain if needed.
         </p>
 
         <h3>Using in Svelte app</h3>

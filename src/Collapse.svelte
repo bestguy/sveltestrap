@@ -1,8 +1,9 @@
-<script>
+<script>  
+  import { createEventDispatcher, onMount } from 'svelte';
   import classnames from './utils';
-
-  import { createEventDispatcher } from 'svelte';
   import { slide } from 'svelte/transition';
+  import toggle from './toggle';
+
   const noop = () => undefined;
 
   export let isOpen = false;
@@ -14,6 +15,9 @@
   export let onExiting = noop;
   export let onExited = noop;
   export let expand = false;
+  export let toggler = null;
+
+  onMount(() => toggle(toggler, () => isOpen = !isOpen));
 
   $: classes = classnames(
     className,
@@ -22,7 +26,7 @@
   );
 
   let windowWidth = 0;
-  let _wasMaximazed = false;
+  let _wasMaximized = false;
 
   // TODO wrong to hardcode these here - come from Bootstrap CSS only
   const minWidth = {};
@@ -43,11 +47,11 @@
   $: if (navbar && expand) {
     if (windowWidth >= minWidth[expand] && !isOpen) {
       isOpen = true;
-      _wasMaximazed = true;
+      _wasMaximized = true;
       notify();
-    } else if (windowWidth < minWidth[expand] && _wasMaximazed) {
+    } else if (windowWidth < minWidth[expand] && _wasMaximized) {
       isOpen = false;
-      _wasMaximazed = false;
+      _wasMaximized = false;
       notify();
     }
   }

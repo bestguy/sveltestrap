@@ -2,11 +2,14 @@
   import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core/dist/esm/popper';
   import classnames from './utils';
+  import InlineContainer from './InlineContainer.svelte';
+  import Portal from './Portal.svelte';
 
   let className = '';
   export { className as class };
   export let animation = true;
   export let children = undefined;
+  export let container;
   export let dismissible = false;
   export let isOpen = false;
   export let placement = 'top';
@@ -105,9 +108,12 @@
     `bs-popover-${bsPlacement}`,
     isOpen ? 'show' : false
   );
+
+  $: outer = container === 'inline' ? InlineContainer : Portal;
 </script>
 
 {#if isOpen}
+<svelte:component this={outer}>
   <div
     bind:this={popoverEl}
     {...$$restProps}
@@ -126,4 +132,5 @@
       {/if}
     </div>
   </div>
+</svelte:component>
 {/if}

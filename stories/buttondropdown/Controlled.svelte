@@ -1,14 +1,18 @@
 <script lang="ts">
   import {
-    Dropdown,
+    ButtonDropdown,
     DropdownItem,
     DropdownMenu,
     DropdownToggle
   } from 'sveltestrap';
+
+  let isOpen = false;
 </script>
 
-<Dropdown>
-  <DropdownToggle caret>Dropdown</DropdownToggle>
+<ButtonDropdown {isOpen}>
+  <DropdownToggle color="primary" caret onClick={() => isOpen = !isOpen}>
+    I'm a glutton for punishment
+  </DropdownToggle>
   <DropdownMenu>
     <DropdownItem header>Header</DropdownItem>
     <DropdownItem>Some Action</DropdownItem>
@@ -18,4 +22,4 @@
     <DropdownItem>Bar Action</DropdownItem>
     <DropdownItem>Quo Action</DropdownItem>
   </DropdownMenu>
-</Dropdown>
+</ButtonDropdown>
