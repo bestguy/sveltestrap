@@ -2,29 +2,30 @@ import { IFadeProps } from './Fade';
 import { LocalSvelteComponent } from './shared';
 
 export interface IModalProps {
-  isOpen?: boolean;
   autoFocus?: boolean;
-  backdropDuration?: number;
-  size?: string;
-  toggle?: () => void;
-  keyboard?: boolean;
   backdrop?: boolean | 'static';
-  scrollable?: boolean;
+  backdropClassName?: string;
+  backdropDuration?: number;
+  body?: boolean;
+  centered?: boolean;
+  contentClassName?: string;
+  fade?: boolean;
+  isOpen?: boolean;
+  keyboard?: boolean;
+  labelledBy?: string;
+  modalClassName?: string;
+  onClosed?: () => void;
   onEnter?: () => void;
   onExit?: () => void;
   onOpened?: () => void;
-  onClosed?: () => void;
-  wrapClassName?: string;
-  modalClassName?: string;
-  backdropClassName?: string;
-  contentClassName?: string;
-  zIndex?: number | string;
-  fade?: boolean;
-  centered?: boolean;
-  labelledBy?: string;
-  unmountOnClose?: boolean;
   returnFocusAfterClose?: boolean;
+  scrollable?: boolean;
+  size?: string;
+  toggle?: () => void;
   transitionOptions?: IFadeProps | {};
+  unmountOnClose?: boolean;
+  wrapClassName?: string;
+  zIndex?: number | string;
 }
 
 declare class Modal extends LocalSvelteComponent<IModalProps> {}
