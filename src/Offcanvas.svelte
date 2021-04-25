@@ -1,17 +1,20 @@
 <script>
   import { onMount } from 'svelte';
+  import InlineContainer from './InlineContainer.svelte';
   import OffcanvasBody from './OffcanvasBody.svelte';
   import OffcanvasHeader from './OffcanvasHeader.svelte';
+  import Portal from './Portal.svelte';
   import classnames, { browserEvent, getTransitionDuration } from './utils';
 
   let className = '';
   export { className as class };
-  export let placement = 'start';
+  export let backdrop = true;
+  export let container;
+  export let header = undefined;
   export let isOpen = false;
+  export let placement = 'start';
   export let scroll = false;
   export let toggle = undefined;
-  export let header = undefined;
-  export let backdrop = true;
 
   // TODO support these like Modals:
   // export let autoFocus = true;
@@ -52,6 +55,7 @@
     }
   } : undefined;
   $: classes = classnames('offcanvas', `offcanvas-${placement}`, className, { show: isOpen });
+  $: outer = (container === 'inline') ? InlineContainer : Portal;
 </script>
 
 <style>
@@ -63,6 +67,7 @@
 
 <svelte:body on:mousedown={handleMouseDown} />
 
+<svelte:component this={outer}>
 <div
   {...$$restProps}
   bind:this={element}
@@ -86,3 +91,4 @@
     <slot />
   </OffcanvasBody>
 </div>
+</svelte:component>
