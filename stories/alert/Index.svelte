@@ -6,8 +6,6 @@
   import dismissibleSource from '!!raw-loader!./Dismissible.svelte';
   import NoFade from './NoFade.svelte';
   import noFadeSource from '!!raw-loader!./NoFade.svelte';
-  import uncontrolledSource from '!!raw-loader!./Uncontrolled.svelte';
-  import Uncontrolled from './Uncontrolled.svelte';
 </script>
 
 <h1>Alerts</h1>
@@ -21,16 +19,6 @@
 
 <Example title="Dismissible" source={dismissibleSource}>
   <Dismissible />
-</Example>
-
-<Example title="Uncontrolled Alerts" source={uncontrolledSource}>
-  <p slot="info">
-    For the most basic use-case an uncontrolled component can provide the
-    functionality wanted without the need to manage/control the state of the
-    component. UncontrolledAlert does not require isOpen nor toggle props to
-    work.
-  </p>
-  <Uncontrolled />
 </Example>
 
 <Example title="Alerts without fade" source={noFadeSource}>
