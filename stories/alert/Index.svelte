@@ -7,6 +7,7 @@
   import NoFade from './NoFade.svelte';
   import noFadeSource from '!!raw-loader!./NoFade.svelte';
   import uncontrolledSource from '!!raw-loader!./Uncontrolled.svelte';
+  import Uncontrolled from './Uncontrolled.svelte';
 </script>
 
 <h1>Alerts</h1>
@@ -29,7 +30,7 @@
     component. UncontrolledAlert does not require isOpen nor toggle props to
     work.
   </p>
-  <NoFade />
+  <Uncontrolled />
 </Example>
 
 <Example title="Alerts without fade" source={noFadeSource}>

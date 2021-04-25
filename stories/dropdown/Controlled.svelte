@@ -3,11 +3,13 @@
     DropdownItem,
     DropdownMenu,
     DropdownToggle,
-    UncontrolledDropdown
+    Dropdown
   } from 'sveltestrap';
+
+  let isOpen = false;
 </script>
 
-<UncontrolledDropdown>
+<Dropdown {isOpen} toggle={() => isOpen = !isOpen}>
   <DropdownToggle caret>Dropdown</DropdownToggle>
   <DropdownMenu>
     <DropdownItem header>Header</DropdownItem>
@@ -16,4 +18,4 @@
     <DropdownItem divider />
     <DropdownItem>Another Action</DropdownItem>
   </DropdownMenu>
-</UncontrolledDropdown>
+</Dropdown>

@@ -8,7 +8,9 @@
   import { browserEvent } from './utils';
   import { onDestroy, onMount, afterUpdate } from 'svelte';
   import { fade as fadeTransition } from 'svelte/transition';
+  import InlineContainer from './InlineContainer.svelte';
   import ModalBody from './ModalBody.svelte';
+  import Portal from './Portal.svelte';
   import {
     conditionallyUpdateScrollbar,
     getOriginalBodyPadding,
@@ -25,6 +27,7 @@
   export let autoFocus = true;
   export let body = false;
   export let centered = false;
+  export let container;
   export let scrollable = false;
   export let size = '';
   export let toggle = undefined;
@@ -213,9 +216,12 @@
     [`${dialogBaseClass}-centered`]: centered,
     [`${dialogBaseClass}-scrollable`]: scrollable
   });
+
+  $: outer = (container === 'inline' || staticModal) ? InlineContainer : Portal;
 </script>
 
 {#if _isMounted}
+<svelte:component this={outer}>
   <div
     class={wrapClassName}
     tabindex="-1"
@@ -255,4 +261,5 @@
       {/if}
     {/if}
   </div>
+</svelte:component>
 {/if}

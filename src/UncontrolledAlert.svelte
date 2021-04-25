@@ -1,9 +1,7 @@
 <script>
   import Alert from './Alert.svelte';
-
-  let isOpen = true;
 </script>
 
-<Alert {...$$restProps} {isOpen} toggle={() => (isOpen = false)}>
+<Alert {...$$restProps} dismissible>
   <slot />
 </Alert>

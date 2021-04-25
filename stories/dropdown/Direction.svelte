@@ -5,13 +5,9 @@
     DropdownMenu,
     DropdownToggle
   } from 'sveltestrap';
-
-  let isOpen = false;
-  let leftIsOpen = false;
-  let rightIsOpen = false;
 </script>
 
-<Dropdown direction="up" {isOpen} toggle={() => (isOpen = !isOpen)}>
+<Dropdown direction="up">
   <DropdownToggle caret>Dropup</DropdownToggle>
   <DropdownMenu>
     <DropdownItem>Another Action</DropdownItem>
@@ -20,9 +16,7 @@
 </Dropdown>
 
 <Dropdown
-  direction="left"
-  isOpen={leftIsOpen}
-  toggle={() => (leftIsOpen = !leftIsOpen)}>
+  direction="left">
   <DropdownToggle caret>Dropleft</DropdownToggle>
   <DropdownMenu>
     <DropdownItem>Another Action</DropdownItem>
@@ -31,9 +25,7 @@
 </Dropdown>
 
 <Dropdown
-  direction="right"
-  isOpen={rightIsOpen}
-  toggle={() => (rightIsOpen = !rightIsOpen)}>
+  direction="right">
   <DropdownToggle caret>Dropright</DropdownToggle>
   <DropdownMenu>
     <DropdownItem>Another Action</DropdownItem>
