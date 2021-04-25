@@ -32,7 +32,7 @@
   <p slot="info">
     For the most basic use-case, an uncontrolled component can provide the
     functionality wanted without the need to manage/control the state of the
-    component. UncontrolledCollapse does not require an isOpen prop. Instead
+    component. Collapse does not require an isOpen prop. Instead
     pass a toggler prop. The toggler prop is a string which will run
     querySelectorAll to find dom elements which will trigger toggle.
   </p>

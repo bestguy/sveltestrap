@@ -1,9 +1,10 @@
-import { LocalSvelteComponent } from './shared';
+import { ContainerType, LocalSvelteComponent } from './shared';
 
 declare type TooltipPlacement = 'left' | 'top' | 'bottom' | 'right';
 
 interface ITooltipProps {
   animation?: boolean;
+  container?: ContainerType;
   isOpen?: boolean;
   placement?: TooltipPlacement;
   target: string;
