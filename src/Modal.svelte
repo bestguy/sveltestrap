@@ -27,7 +27,7 @@
   export let autoFocus = true;
   export let body = false;
   export let centered = false;
-  export let container;
+  export let container = undefined;
   export let scrollable = false;
   export let size = '';
   export let toggle = undefined;
