@@ -2,12 +2,12 @@
   import Example from '../Example.svelte';
   import Colors from './Colors.svelte';
   import colorsSource from '!!raw-loader!./Colors.svelte';
+  import Controlled from './Controlled.svelte';
+  import controlledSource from '!!raw-loader!./Controlled.svelte';
   import Dismissible from './Dismissible.svelte';
   import dismissibleSource from '!!raw-loader!./Dismissible.svelte';
   import NoFade from './NoFade.svelte';
   import noFadeSource from '!!raw-loader!./NoFade.svelte';
-  import uncontrolledSource from '!!raw-loader!./Uncontrolled.svelte';
-  import Uncontrolled from './Uncontrolled.svelte';
 </script>
 
 <h1>Alerts</h1>
@@ -23,14 +23,12 @@
   <Dismissible />
 </Example>
 
-<Example title="Uncontrolled Alerts" source={uncontrolledSource}>
+<Example title="Controlled Alerts" source={controlledSource}>
   <p slot="info">
-    For the most basic use-case an uncontrolled component can provide the
-    functionality wanted without the need to manage/control the state of the
-    component. UncontrolledAlert does not require isOpen nor toggle props to
-    work.
+    Alert provides the dismissible prop, but if you need to manually control the open state,
+    you manage the <code>isOpen</code> and <code>toggle</code> prop.
   </p>
-  <Uncontrolled />
+  <Controlled />
 </Example>
 
 <Example title="Alerts without fade" source={noFadeSource}>
