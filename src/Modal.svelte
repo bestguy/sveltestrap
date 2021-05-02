@@ -10,6 +10,7 @@
   import { fade as fadeTransition } from 'svelte/transition';
   import InlineContainer from './InlineContainer.svelte';
   import ModalBody from './ModalBody.svelte';
+  import ModalHeader from './ModalHeader.svelte';
   import Portal from './Portal.svelte';
   import {
     conditionallyUpdateScrollbar,
@@ -27,8 +28,9 @@
   export let autoFocus = true;
   export let body = false;
   export let centered = false;
-  export let container;
+  export let container = undefined;
   export let fullscreen = false;
+  export let header = undefined;
   export let scrollable = false;
   export let size = '';
   export let toggle = undefined;
@@ -247,6 +249,11 @@
         <slot name="external" />
         <div class={classes} role="document" bind:this={_dialog}>
           <div class={classnames('modal-content', contentClassName)}>
+            {#if header}
+              <ModalHeader {toggle}>
+                {header}
+              </ModalHeader>
+            {/if}
             {#if body}
               <ModalBody>
                 <slot />
