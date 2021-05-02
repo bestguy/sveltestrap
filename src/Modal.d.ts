@@ -11,6 +11,7 @@ export interface IModalProps {
   container?: ContainerType;
   contentClassName?: string;
   fade?: boolean;
+  header?: string;
   isOpen?: boolean;
   keyboard?: boolean;
   labelledBy?: string;
