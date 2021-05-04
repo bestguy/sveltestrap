@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { Breakpoints, LocalSvelteComponent } from './shared';
 
 export interface TableProps {
   size?: string;
@@ -7,7 +7,7 @@ export interface TableProps {
   striped?: boolean;
   dark?: boolean;
   hover?: boolean;
-  responsive?: boolean | string;
+  responsive?: boolean | Breakpoints;
 }
 
 declare class Table extends LocalSvelteComponent<TableProps> {}

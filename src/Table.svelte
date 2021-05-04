@@ -1,5 +1,6 @@
 <script>
   import classnames from './utils';
+  import ResponsiveContainer from './ResponsiveContainer.svelte';
 
   let className = '';
   export { className as class };
@@ -21,19 +22,11 @@
     dark ? 'table-dark' : false,
     hover ? 'table-hover' : false
   );
-
-  $: responsiveClassName =
-    responsive === true ? 'table-responsive' : `table-responsive-${responsive}`;
 </script>
 
-{#if responsive}
-  <div class={responsiveClassName}>
-    <table {...$$restProps} class={classes}>
-      <slot />
-    </table>
-  </div>
-{:else}
+<ResponsiveContainer {responsive}>
   <table {...$$restProps} class={classes}>
     <slot />
   </table>
-{/if}
+</ResponsiveContainer>
+
