@@ -1,4 +1,10 @@
-export declare type ContainerType =
+export declare type Breakpoints =
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl';
+
+  export declare type ContainerType =
   | 'body'
   | 'inline';
 
