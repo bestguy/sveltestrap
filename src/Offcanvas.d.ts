@@ -1,4 +1,5 @@
-import { ContainerType, LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
+import { ContainerType } from './shared';
 
 declare type Placement = 'start' | 'end' | 'bottom'; // TODO support left & right alias
 
@@ -12,5 +13,5 @@ export interface OffcanvasProps {
   toggle?: () => void;
 }
 
-declare class Offcanvas extends LocalSvelteComponent<OffcanvasProps> {}
+declare class Offcanvas extends SvelteComponentTyped<OffcanvasProps> {}
 export default Offcanvas;

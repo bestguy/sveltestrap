@@ -1,8 +1,8 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface IAccordionProps {
   class?: string;
 }
 
-declare class Accordion extends LocalSvelteComponent<IAccordionProps> {}
+declare class Accordion extends SvelteComponentTyped<IAccordionProps> {}
 export default Accordion;

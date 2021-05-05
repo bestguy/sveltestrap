@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface IAccordionItemProps {
   class?: string;
@@ -6,5 +6,5 @@ export interface IAccordionItemProps {
   active?: boolean;
 }
 
-declare class AccordionItem extends LocalSvelteComponent<IAccordionItemProps> {}
+declare class AccordionItem extends SvelteComponentTyped<IAccordionItemProps> {}
 export default AccordionItem;
