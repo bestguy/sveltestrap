@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface IButtonGroupProps {
   id?: string;
@@ -6,5 +6,5 @@ export interface IButtonGroupProps {
   vertical?: boolean;
 }
 
-declare class ButtonGroup extends LocalSvelteComponent<IButtonGroupProps> {}
+declare class ButtonGroup extends SvelteComponentTyped<IButtonGroupProps> {}
 export default ButtonGroup;

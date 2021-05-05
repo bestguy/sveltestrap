@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface ICardImgProps {
   top?: boolean;
@@ -8,5 +8,5 @@ export interface ICardImgProps {
   alt?: string;
 }
 
-declare class CardImg extends LocalSvelteComponent<ICardImgProps> {}
+declare class CardImg extends SvelteComponentTyped<ICardImgProps> {}
 export default CardImg;

@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface ICollapseProps {
   expand?: boolean | string;
@@ -14,5 +14,5 @@ export interface ICollapseProps {
   onExited?: () => void;
 }
 
-declare class Collapse extends LocalSvelteComponent<ICollapseProps> {}
+declare class Collapse extends SvelteComponentTyped<ICollapseProps> {}
 export default Collapse;

@@ -1,8 +1,8 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface ICardLinkProps {
   href?: string;
 }
 
-declare class CardLink extends LocalSvelteComponent<ICardLinkProps> {}
+declare class CardLink extends SvelteComponentTyped<ICardLinkProps> {}
 export default CardLink;

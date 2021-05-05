@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
-declare class CardDeck extends LocalSvelteComponent {}
+declare class CardDeck extends SvelteComponentTyped {}
 export default CardDeck;

@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
-declare class NavbarToggler extends LocalSvelteComponent {}
+declare class NavbarToggler extends SvelteComponentTyped {}
 export default NavbarToggler;

@@ -1,4 +1,5 @@
-import { BackgroundColor, LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
+import { BackgroundColor } from './shared';
 
 export interface INavbarProps {
   light?: boolean;
@@ -9,5 +10,5 @@ export interface INavbarProps {
   expand?: boolean | string;
 }
 
-declare class Navbar extends LocalSvelteComponent<INavbarProps> {}
+declare class Navbar extends SvelteComponentTyped<INavbarProps> {}
 export default Navbar;

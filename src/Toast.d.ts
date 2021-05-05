@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface IToastProps {
   isOpen?: boolean;
@@ -6,5 +6,5 @@ export interface IToastProps {
   duration?: number;
 }
 
-declare class Toast extends LocalSvelteComponent<IToastProps> {}
+declare class Toast extends SvelteComponentTyped<IToastProps> {}
 export default Toast;

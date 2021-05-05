@@ -1,5 +1,5 @@
 import { IFadeProps } from './Fade';
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 import { Color } from './shared';
 
 export interface IAlertProps {
@@ -13,5 +13,5 @@ export interface IAlertProps {
   toggle?: () => void;
 }
 
-declare class Alert extends LocalSvelteComponent<IAlertProps> {}
+declare class Alert extends SvelteComponentTyped<IAlertProps> {}
 export default Alert;

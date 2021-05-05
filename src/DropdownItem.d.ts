@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface IDropdownItemProps {
   active?: boolean;
@@ -9,5 +9,5 @@ export interface IDropdownItemProps {
   toggle?: boolean;
 }
 
-declare class DropdownItem extends LocalSvelteComponent<IDropdownItemProps> {}
+declare class DropdownItem extends SvelteComponentTyped<IDropdownItemProps> {}
 export default DropdownItem;

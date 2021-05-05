@@ -1,5 +1,5 @@
 import { SvelteComponent } from 'svelte';
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export type CustomInputType =
   | 'select'
@@ -25,5 +25,5 @@ export interface ICustomInputProps {
   for?: string;
 }
 
-declare class CustomInput extends LocalSvelteComponent<ICustomInputProps> {}
+declare class CustomInput extends SvelteComponentTyped<ICustomInputProps> {}
 export default CustomInput;

@@ -1,4 +1,5 @@
-import { LocalSvelteComponent, Color } from './shared';
+import { SvelteComponentTyped } from 'svelte';
+import { Color } from './shared';
 
 export interface IListGroupItemProps {
   tag?: string;
@@ -9,5 +10,5 @@ export interface IListGroupItemProps {
   href?: string;
 }
 
-declare class ListGroupItem extends LocalSvelteComponent<IListGroupItemProps> {}
+declare class ListGroupItem extends SvelteComponentTyped<IListGroupItemProps> {}
 export default ListGroupItem;

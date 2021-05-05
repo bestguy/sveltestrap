@@ -1,4 +1,5 @@
-import { LocalSvelteComponent, BackgroundColor } from './shared';
+import { SvelteComponentTyped } from 'svelte';
+import { BackgroundColor } from './shared';
 
 export interface IProgressProps {
   bar?: boolean;
@@ -11,5 +12,5 @@ export interface IProgressProps {
   barClassName?: string;
 }
 
-declare class Progress extends LocalSvelteComponent<IProgressProps> {}
+declare class Progress extends SvelteComponentTyped<IProgressProps> {}
 export default Progress;

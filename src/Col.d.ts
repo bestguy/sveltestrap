@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export type ColumnProps =
   | string
@@ -24,5 +24,5 @@ export interface IColProps {
   widths?: string[];
 }
 
-declare class Col extends LocalSvelteComponent<IColProps> {}
+declare class Col extends SvelteComponentTyped<IColProps> {}
 export default Col;

@@ -1,4 +1,5 @@
-import { ContainerType, LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
+import { ContainerType } from './shared';
 
 declare type TooltipPlacement = 'left' | 'top' | 'bottom' | 'right';
 
@@ -10,6 +11,6 @@ interface ITooltipProps {
   target: string;
 }
 
-declare class Tooltip extends LocalSvelteComponent<ITooltipProps> {}
+declare class Tooltip extends SvelteComponentTyped<ITooltipProps> {}
 
 export default Tooltip;

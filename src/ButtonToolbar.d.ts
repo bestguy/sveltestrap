@@ -1,8 +1,8 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface IButtonToolbarProps {
   'aria-label'?: string;
 }
 
-declare class ButtonToolbar extends LocalSvelteComponent<IButtonToolbarProps> {}
+declare class ButtonToolbar extends SvelteComponentTyped<IButtonToolbarProps> {}
 export default ButtonToolbar;
