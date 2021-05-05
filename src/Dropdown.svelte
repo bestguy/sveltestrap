@@ -94,10 +94,13 @@
 
     handleToggle(e);
   }
+
   onDestroy(() => {
-    ['click', 'touchstart', 'keyup'].forEach((event) =>
-      document.removeEventListener(event, handleDocumentClick, true)
-    );
+    if (typeof document !== 'undefined') {
+      ['click', 'touchstart', 'keyup'].forEach((event) =>
+        document.removeEventListener(event, handleDocumentClick, true)
+      );
+    }
   });
 </script>
 
