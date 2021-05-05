@@ -9,7 +9,7 @@
   export { className as class };
   export let animation = true;
   export let children = undefined;
-  export let container;
+  export let container = undefined;
   export let dismissible = false;
   export let isOpen = false;
   export let placement = 'top';

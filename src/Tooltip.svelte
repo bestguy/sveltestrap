@@ -7,7 +7,7 @@
 
   let className = '';
   export { className as class };
-  export let container;
+  export let container = undefined;
   export let target = '';
   export let placement = 'top';
   export let children = undefined;

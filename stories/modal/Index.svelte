@@ -12,6 +12,8 @@
   import fullscreenSource from '!!raw-loader!./Fullscreen.svelte';
   import Sizes from './Sizes.svelte';
   import sizesSource from '!!raw-loader!./Sizes.svelte';
+  import Shorthand from './Shorthand.svelte';
+  import shorthandSource from '!!raw-loader!./Shorthand.svelte';
   import Static from './Static.svelte';
   import staticSource from '!!raw-loader!./Static.svelte';
 </script>
@@ -23,6 +25,13 @@
 
 <Example source={sampleSource}>
   <Sample />
+</Example>
+
+<Example title="Shorthand" source={shorthandSource}>
+  <p slot="info">
+    The <code>body</code> and <code>header</code> props let you create simple Modals without needing to add <code>ModalHeader</code> and <code>ModalBody</code>.
+  </p>
+  <Shorthand />
 </Example>
 
 <Example title="Sizes" source={sizesSource}>
@@ -44,7 +53,6 @@
 <Example title="Static" source={staticSource}>
   <Static />
 </Example>
-
 
 <Example title="External Content" source={externalSource}>
   <External />
