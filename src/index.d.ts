@@ -25,6 +25,7 @@ import CarouselControl from './CarouselControl';
 import CarouselIndicators from './CarouselIndicators';
 import CarouselItem from './CarouselItem';
 import Col from './Col';
+import Colgroup from './Colgroup';
 import Collapse from './Collapse';
 import Container from './Container';
 import Dropdown from './Dropdown';
@@ -62,11 +63,14 @@ import PaginationItem from './PaginationItem';
 import PaginationLink from './PaginationLink';
 import Popover from './Popover';
 import Progress from './Progress';
+import ResponsiveContainer from './ResponsiveContainer';
 import Row from './Row';
 import Spinner from './Spinner';
 import TabContent from './TabContent';
 import TabPane from './TabPane';
 import Table from './Table';
+import TableFooter from './TableFooter';
+import TableHeader from './TableHeader';
 import Toast from './Toast';
 import ToastBody from './ToastBody';
 import ToastHeader from './ToastHeader';
@@ -100,6 +104,7 @@ export {
   CarouselIndicators,
   CarouselItem,
   Col,
+  Colgroup,
   Collapse,
   Container,
   Dropdown,
@@ -137,11 +142,14 @@ export {
   PaginationLink,
   Popover,
   Progress,
+  ResponsiveContainer,
   Row,
   Spinner,
   TabContent,
   TabPane,
   Table,
+  TableFooter,
+  TableHeader,
   Toast,
   ToastBody,
   ToastHeader,

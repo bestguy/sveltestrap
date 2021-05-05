@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface IToastHeaderProps {
   toggle?: () => void;
@@ -6,5 +6,5 @@ export interface IToastHeaderProps {
   closeAriaLabel?: string;
 }
 
-declare class ToastHeader extends LocalSvelteComponent<IToastHeaderProps> {}
+declare class ToastHeader extends SvelteComponentTyped<IToastHeaderProps> {}
 export default ToastHeader;

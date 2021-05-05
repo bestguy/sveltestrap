@@ -1,8 +1,8 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface INavItemProps {
   active?: boolean;
 }
 
-declare class NavItem extends LocalSvelteComponent<INavItemProps> {}
+declare class NavItem extends SvelteComponentTyped<INavItemProps> {}
 export default NavItem;

@@ -1,4 +1,5 @@
-import { LocalSvelteComponent, Color } from './shared';
+import { SvelteComponentTyped } from 'svelte';
+import { Color } from './shared';
 
 export type InputType =
   | 'button'
@@ -47,5 +48,5 @@ export interface IInputProps {
   value?: string;
 }
 
-declare class Input extends LocalSvelteComponent<IInputProps> {}
+declare class Input extends SvelteComponentTyped<IInputProps> {}
 export default Input;

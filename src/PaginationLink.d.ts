@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface IPaginationLinkProps {
   arialabel?: string;
@@ -10,7 +10,7 @@ export interface IPaginationLinkProps {
   href?: string;
 }
 
-declare class PaginationLink extends LocalSvelteComponent<
+declare class PaginationLink extends SvelteComponentTyped<
   IPaginationLinkProps
 > {}
 export default PaginationLink;

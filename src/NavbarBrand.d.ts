@@ -1,8 +1,8 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface INavbarBrandProps {
   href?: string;
 }
 
-declare class NavbarBrand extends LocalSvelteComponent<INavbarBrandProps> {}
+declare class NavbarBrand extends SvelteComponentTyped<INavbarBrandProps> {}
 export default NavbarBrand;

@@ -1,5 +1,6 @@
+import { SvelteComponentTyped } from 'svelte';
 import { IFadeProps } from './Fade';
-import { ContainerType, LocalSvelteComponent } from './shared';
+import { ContainerType } from './shared';
 
 export interface IModalProps {
   autoFocus?: boolean;
@@ -30,5 +31,5 @@ export interface IModalProps {
   zIndex?: number | string;
 }
 
-declare class Modal extends LocalSvelteComponent<IModalProps> {}
+declare class Modal extends SvelteComponentTyped<IModalProps> {}
 export default Modal;

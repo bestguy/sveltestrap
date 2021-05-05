@@ -1,5 +1,5 @@
 import { ColumnProps } from './Col';
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface ILabelProps {
   hidden?: boolean;
@@ -16,5 +16,5 @@ export interface ILabelProps {
   xxl?: ColumnProps;
 }
 
-declare class Label extends LocalSvelteComponent<ILabelProps> {}
+declare class Label extends SvelteComponentTyped<ILabelProps> {}
 export default Label;

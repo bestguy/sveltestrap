@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
-declare class ModalFooter extends LocalSvelteComponent {}
+declare class ModalFooter extends SvelteComponentTyped {}
 export default ModalFooter;

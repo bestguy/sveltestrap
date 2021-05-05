@@ -1,4 +1,5 @@
-import { Color, LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
+import { Color } from './shared';
 
 export interface ISpinnerProps {
   type?: string;
@@ -6,5 +7,5 @@ export interface ISpinnerProps {
   color?: Color;
 }
 
-declare class Spinner extends LocalSvelteComponent<ISpinnerProps> {}
+declare class Spinner extends SvelteComponentTyped<ISpinnerProps> {}
 export default Spinner;

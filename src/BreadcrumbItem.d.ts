@@ -1,10 +1,10 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface IBreadcrumbItemProps {
   active?: boolean;
 }
 
-declare class BreadcrumbItem extends LocalSvelteComponent<
+declare class BreadcrumbItem extends SvelteComponentTyped<
   IBreadcrumbItemProps
 > {}
 export default BreadcrumbItem;

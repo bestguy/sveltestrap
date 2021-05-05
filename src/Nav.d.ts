@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface INavProps {
   tabs?: boolean;
@@ -11,5 +11,5 @@ export interface INavProps {
   card?: boolean;
 }
 
-declare class Nav extends LocalSvelteComponent<INavProps> {}
+declare class Nav extends SvelteComponentTyped<INavProps> {}
 export default Nav;

@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 declare type ButtonColor =
   | 'primary'
@@ -25,6 +25,6 @@ interface IButtonProps {
 /**
  * Bootstrap Button
  */
-declare class Button extends LocalSvelteComponent<IButtonProps> {}
+declare class Button extends SvelteComponentTyped<IButtonProps> {}
 
 export default Button;

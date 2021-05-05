@@ -1,8 +1,8 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface ICardBodyProps {
   id?: string;
 }
 
-declare class CardBody extends LocalSvelteComponent<ICardBodyProps> {}
+declare class CardBody extends SvelteComponentTyped<ICardBodyProps> {}
 export default CardBody;

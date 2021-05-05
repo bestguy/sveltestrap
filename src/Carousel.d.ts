@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface ICarouselProps {
   style?: string;
@@ -10,5 +10,5 @@ export interface ICarouselProps {
   dark?: boolean;
 }
 
-declare class Carousel extends LocalSvelteComponent<ICarouselProps> {}
+declare class Carousel extends SvelteComponentTyped<ICarouselProps> {}
 export default Carousel;

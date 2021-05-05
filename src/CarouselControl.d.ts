@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface ICarouselControlProps {
   direction: 'prev' | 'next';
@@ -8,6 +8,6 @@ export interface ICarouselControlProps {
   wrap?: boolean;
 }
 
-export default class CarouselControl extends LocalSvelteComponent<
+export default class CarouselControl extends SvelteComponentTyped<
   ICarouselControlProps
 > {}

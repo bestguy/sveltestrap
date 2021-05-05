@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface IDropdownMenuProps {
   dark?: boolean;
@@ -6,5 +6,5 @@ export interface IDropdownMenuProps {
   right?: boolean;
 }
 
-declare class DropdownMenu extends LocalSvelteComponent<IDropdownMenuProps> {}
+declare class DropdownMenu extends SvelteComponentTyped<IDropdownMenuProps> {}
 export default DropdownMenu;

@@ -1,5 +1,5 @@
 import { Color } from './shared';
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface IBadgeProps {
   color?: Color;
@@ -7,5 +7,5 @@ export interface IBadgeProps {
   pill?: boolean;
 }
 
-declare class Badge extends LocalSvelteComponent<IBadgeProps> {}
+declare class Badge extends SvelteComponentTyped<IBadgeProps> {}
 export default Badge;

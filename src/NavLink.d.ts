@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface INavLinkProps {
   disabled?: boolean;
@@ -6,5 +6,5 @@ export interface INavLinkProps {
   href?: string;
 }
 
-declare class NavLink extends LocalSvelteComponent<INavLinkProps> {}
+declare class NavLink extends SvelteComponentTyped<INavLinkProps> {}
 export default NavLink;

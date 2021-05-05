@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
-declare class ToastBody extends LocalSvelteComponent {}
+declare class ToastBody extends SvelteComponentTyped {}
 export default ToastBody;

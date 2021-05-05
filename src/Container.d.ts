@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface ContainerProps {
   id?: string;
@@ -6,5 +6,5 @@ export interface ContainerProps {
   fluid?: boolean | string;
 }
 
-declare class Container extends LocalSvelteComponent<ContainerProps> {}
+declare class Container extends SvelteComponentTyped<ContainerProps> {}
 export default Container;

@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export type ColumnProps =
   | string
@@ -17,5 +17,5 @@ export interface IRowProps {
   form?: boolean;
 }
 
-declare class Row extends LocalSvelteComponent<IRowProps> {}
+declare class Row extends SvelteComponentTyped<IRowProps> {}
 export default Row;
