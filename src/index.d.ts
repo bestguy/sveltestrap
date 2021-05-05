@@ -27,6 +27,7 @@ import CarouselItem from './CarouselItem';
 import Col from './Col';
 import Colgroup from './Colgroup';
 import Collapse from './Collapse';
+import Column from './Column';
 import Container from './Container';
 import Dropdown from './Dropdown';
 import DropdownItem from './DropdownItem';
@@ -106,6 +107,7 @@ export {
   Col,
   Colgroup,
   Collapse,
+  Column,
   Container,
   Dropdown,
   DropdownItem,
