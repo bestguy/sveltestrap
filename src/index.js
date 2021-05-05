@@ -25,6 +25,7 @@ export { default as CarouselIndicators } from './CarouselIndicators.svelte';
 export { default as CarouselItem } from './CarouselItem.svelte';
 export { default as CarouselCaption } from './CarouselCaption.svelte';
 export { default as Col } from './Col.svelte';
+export { default as Column } from './Column.svelte';
 export { default as Collapse } from './Collapse.svelte';
 export { default as Container } from './Container.svelte';
 export { default as CustomInput } from './CustomInput.svelte';

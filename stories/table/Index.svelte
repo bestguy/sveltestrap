@@ -2,6 +2,7 @@
   import Example from '../Example.svelte';
   import Bordered from './Bordered.svelte';
   import Borderless from './Borderless.svelte';
+  import Column from './Column.svelte';
   import Dark from './Dark.svelte';
   import Hover from './Hover.svelte';
   import Responsive from './Responsive.svelte';
@@ -10,6 +11,7 @@
   // import Striped from './Striped.svelte';
   import borderedSource from '!!raw-loader!./Bordered.svelte';
   import borderlessSource from '!!raw-loader!./Borderless.svelte';
+  import columnSource from '!!raw-loader!./Column.svelte';
   import darkSource from '!!raw-loader!./Dark.svelte';
   import hoverSource from '!!raw-loader!./Hover.svelte';
   import responsiveSource from '!!raw-loader!./Responsive.svelte';
@@ -45,4 +47,8 @@
 
 <Example title="Responsive" source={responsiveSource}>
   <Responsive />
+</Example>
+
+<Example title="Columns" source={columnSource}>
+  <Column />
 </Example>

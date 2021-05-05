@@ -1,6 +1,9 @@
 <script>
   import classnames from './utils';
+  import Colgroup from './Colgroup.svelte';
   import ResponsiveContainer from './ResponsiveContainer.svelte';
+  import TableFooter from './TableFooter.svelte';
+  import TableHeader from './TableHeader.svelte';
 
   let className = '';
   export { className as class };
@@ -11,6 +14,7 @@
   export let dark = false;
   export let hover = false;
   export let responsive = false;
+  export let rows = undefined;
 
   $: classes = classnames(
     className,
@@ -26,7 +30,26 @@
 
 <ResponsiveContainer {responsive}>
   <table {...$$restProps} class={classes}>
-    <slot />
+    {#if rows}
+      <Colgroup>
+        <slot />
+      </Colgroup>
+      <TableHeader>
+        <slot />
+      </TableHeader>
+      <tbody>
+        {#each rows as row}
+          <tr>
+            <slot row={row} />
+          </tr>
+        {/each}
+      </tbody>
+      <TableFooter>
+        <slot />
+      </TableFooter>
+    {:else}
+      <slot />
+    {/if}
   </table>
 </ResponsiveContainer>
 
