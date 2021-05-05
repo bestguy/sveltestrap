@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
-declare class InputGroupText extends LocalSvelteComponent {}
+declare class InputGroupText extends SvelteComponentTyped {}
 export default InputGroupText;

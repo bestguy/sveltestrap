@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface IMediaProps {
   body?: boolean;
@@ -15,5 +15,5 @@ export interface IMediaProps {
   alt?: string;
 }
 
-declare class Media extends LocalSvelteComponent<IMediaProps> {}
+declare class Media extends SvelteComponentTyped<IMediaProps> {}
 export default Media;

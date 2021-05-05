@@ -1,4 +1,5 @@
-import { Color, LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
+import { Color } from './shared';
 
 export interface ICardProps {
   id?: string;
@@ -9,5 +10,5 @@ export interface ICardProps {
   style?: string;
 }
 
-declare class Card extends LocalSvelteComponent<ICardProps> {}
+declare class Card extends SvelteComponentTyped<ICardProps> {}
 export default Card;

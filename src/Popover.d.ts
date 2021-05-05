@@ -1,4 +1,5 @@
-import { ContainerType, LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
+import { ContainerType } from './shared';
 
 declare type PopoverPlacement = 'left' | 'top' | 'bottom' | 'right';
 declare type Triggers = 'click' | 'hover' | 'focus';
@@ -15,6 +16,6 @@ interface IPopoverProps {
   trigger?: Triggers;
 }
 
-declare class Popover extends LocalSvelteComponent<IPopoverProps> {}
+declare class Popover extends SvelteComponentTyped<IPopoverProps> {}
 
 export default Popover;

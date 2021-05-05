@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface IModalHeaderProps {
   ariaToggle?: string;
@@ -6,5 +6,5 @@ export interface IModalHeaderProps {
   charCode?: number;
 }
 
-declare class ModalHeader extends LocalSvelteComponent<IModalHeaderProps> {}
+declare class ModalHeader extends SvelteComponentTyped<IModalHeaderProps> {}
 export default ModalHeader;

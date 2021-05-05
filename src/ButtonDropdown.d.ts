@@ -1,6 +1,6 @@
 import { IDropdownProps } from './Dropdown';
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 export { IDropdownProps as ButtonDropdownProps };
 
-declare class ButtonDropdown extends LocalSvelteComponent<Omit<IDropdownProps, 'group'>> {}
+declare class ButtonDropdown extends SvelteComponentTyped<Omit<IDropdownProps, 'group'>> {}
 export default ButtonDropdown;

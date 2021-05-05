@@ -1,4 +1,5 @@
-import { Direction, LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
+import { Direction } from './shared';
 
 export interface IDropdownProps {
   direction?: Direction;
@@ -16,6 +17,6 @@ export interface IDropdownProps {
   dropup?: boolean;
 }
 
-declare class Dropdown extends LocalSvelteComponent<IDropdownProps> {}
+declare class Dropdown extends SvelteComponentTyped<IDropdownProps> {}
 
 export default Dropdown;

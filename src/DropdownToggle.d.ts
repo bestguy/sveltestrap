@@ -1,4 +1,5 @@
-import { LocalSvelteComponent, Color } from './shared';
+import { SvelteComponentTyped } from 'svelte';
+import { Color } from './shared';
 
 export interface IDropdownToggleProps {
   caret?: boolean;
@@ -14,7 +15,7 @@ export interface IDropdownToggleProps {
   size?: string;
 }
 
-declare class DropdownToggle extends LocalSvelteComponent<
+declare class DropdownToggle extends SvelteComponentTyped<
   IDropdownToggleProps
 > {}
 export default DropdownToggle;

@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
-declare class CardColumns extends LocalSvelteComponent {}
+declare class CardColumns extends SvelteComponentTyped {}
 export default CardColumns;

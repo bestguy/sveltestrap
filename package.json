@@ -21,7 +21,7 @@
     "start": "start-storybook -p 6006",
     "docs": "build-storybook -o docs && cp CNAME ./docs",
     "dist": "rollup -c",
-    "lint": "eslint ./src --ext .js --ext .svelte",
+    "lint": "tsc --noEmit && eslint ./src --ext .js --ext .svelte",
     "typecheck": "svelte-check",
     "prepublish": "npm run dist && git add -A dist",
     "postpublish": "git push && git push --tags",

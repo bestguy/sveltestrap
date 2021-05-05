@@ -1,4 +1,4 @@
-import { LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
 
 export interface IFadeProps {
   onEntering?: () => void;
@@ -8,5 +8,5 @@ export interface IFadeProps {
   toggler?: string;
 }
 
-declare class Fade extends LocalSvelteComponent<IFadeProps> {}
+declare class Fade extends SvelteComponentTyped<IFadeProps> {}
 export default Fade;

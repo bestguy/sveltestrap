@@ -1,9 +1,10 @@
-import { TextColor, LocalSvelteComponent } from './shared';
+import { SvelteComponentTyped } from 'svelte';
+import { TextColor } from './shared';
 
 export interface FormTextProps {
   inline?: boolean;
   color?: TextColor;
 }
 
-declare class FormText extends LocalSvelteComponent<FormTextProps> {}
+declare class FormText extends SvelteComponentTyped<FormTextProps> {}
 export default FormText;
