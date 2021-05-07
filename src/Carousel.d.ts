@@ -1,13 +1,14 @@
 import { SvelteComponentTyped } from 'svelte';
 
 export interface ICarouselProps {
-  style?: string;
-  items: any[];
   activeIndex?: number;
+  dark?: boolean;
+  interval?: number | string | boolean;
+  items: any[];
   keyboard?: boolean;
   pause?: 'hover' | false;
-  interval?: number | string | boolean;
-  dark?: boolean;
+  ride?: boolean;
+  style?: string;
 }
 
 declare class Carousel extends SvelteComponentTyped<ICarouselProps> {}
