@@ -1,6 +1,8 @@
 <script>
   import { getContext } from 'svelte';
 
+  let className = '';
+  export { className as class };
   export let footer = undefined;
   export let header = undefined;
   export let width = undefined;
@@ -23,7 +25,7 @@
     <slot name="header" />
   </th>
 {:else}
-  <td {...$$restProps}>
+  <td class={className} {...$$restProps}>
     <slot />
   </td>
 {/if}
