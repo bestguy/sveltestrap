@@ -16,4 +16,3 @@ export default class Card extends SvelteComponentTyped<
   { click: WindowEventMap['click'] },
   { default: {} }
 > {}
-
