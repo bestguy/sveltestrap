@@ -1,18 +1,11 @@
 import { SvelteComponentTyped } from 'svelte';
-import { Color } from './shared';
+import { IButtonProps } from './Button'
 
-export interface IDropdownToggleProps {
+export interface IDropdownToggleProps extends IButtonProps {
   caret?: boolean;
-  color?: Color;
-  disabled?: boolean;
-  outline?: boolean;
-  ariaHaspopup?: boolean;
-  ariaLabel?: string;
   split?: boolean;
-  tag?: string;
+  tag?: 'a' | 'div' | 'span';
   nav?: boolean;
-
-  size?: string;
 }
 
 declare class DropdownToggle extends SvelteComponentTyped<

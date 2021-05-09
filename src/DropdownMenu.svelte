@@ -10,6 +10,28 @@
   export let end = false;
   export let right = false;
 
+  const popperPlacement = (direction, end) => {
+    let prefix = direction;
+    if (direction === 'up') prefix = 'top';
+    else if (direction === 'down') prefix = 'bottom';
+
+    let suffix = end ? 'end' : 'start';
+    return `${prefix}-${suffix}`;
+  };
+
+  $: popperOptions = {
+		modifiers: [
+			{ name: 'flip' },
+			{
+				name: 'offset',
+				options: {
+					offset: [0, 2],
+				}
+			}
+		],
+		placement: popperPlacement($context.direction, (end || right))
+  };
+
   $: classes = classnames(className, 'dropdown-menu', {
     'dropdown-menu-dark': dark,
     'dropdown-menu-end': end || right,
@@ -17,6 +39,9 @@
   });
 </script>
 
-<div {...$$restProps} class={classes}>
+<div
+  {...$$restProps}
+  class={classes}
+  use:$context.popperContent={popperOptions}>
   <slot />
 </div>

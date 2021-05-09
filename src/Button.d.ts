@@ -11,7 +11,7 @@ declare type ButtonColor =
   | 'dark'
   | 'link';
 declare type ButtonSize = 'lg' | 'sm';
-interface IButtonProps {
+export interface IButtonProps {
   active?: boolean;
   block?: boolean;
   close?: boolean;

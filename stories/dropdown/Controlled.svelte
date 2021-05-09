@@ -3,14 +3,17 @@
     DropdownItem,
     DropdownMenu,
     DropdownToggle,
-    Dropdown
+    Dropdown,
+    Input
   } from 'sveltestrap';
 
   let isOpen = false;
 </script>
 
 <Dropdown {isOpen} toggle={() => isOpen = !isOpen}>
-  <DropdownToggle caret>Dropdown</DropdownToggle>
+  <DropdownToggle tag="div" class="d-inline-block">
+    <Input />
+  </DropdownToggle>
   <DropdownMenu>
     <DropdownItem header>Header</DropdownItem>
     <DropdownItem disabled>Action</DropdownItem>
