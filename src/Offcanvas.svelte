@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import { fade as fadeTransition } from 'svelte/transition';
   import InlineContainer from './InlineContainer.svelte';
   import OffcanvasBody from './OffcanvasBody.svelte';
   import OffcanvasHeader from './OffcanvasHeader.svelte';
@@ -10,6 +11,8 @@
   export { className as class };
   export let backdrop = true;
   export let container;
+  export let fade = true;
+  export let backdropDuration = fade ? 150 : 0;
   export let header = undefined;
   export let isOpen = false;
   export let placement = 'start';
@@ -29,9 +32,6 @@
   onMount(() => body = document.body);
 
   $: if (body) {
-    if (backdrop) {
-      body.classList.toggle('offcanvas-backdrop', isOpen || isTransitioning);
-    }
     if (!scroll) {
       body.classList.toggle('overflow-noscroll', (isOpen || isTransitioning));
     }
@@ -91,4 +91,10 @@
     <slot />
   </OffcanvasBody>
 </div>
+{#if backdrop && isOpen}
+  <div
+    on:click={toggle ? () => toggle() : undefined}
+    transition:fadeTransition={{ duration: backdropDuration }}
+    class={classnames('modal-backdrop', 'show')} />
+{/if}
 </svelte:component>
