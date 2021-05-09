@@ -1,4 +1,3 @@
-/// <reference types="svelte" />
 import { SvelteComponentTyped } from 'svelte';
 
 export type ColumnProps =
