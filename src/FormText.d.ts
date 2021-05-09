@@ -1,10 +1,14 @@
 import { SvelteComponentTyped } from 'svelte';
 import { TextColor } from './shared';
 
-export interface FormTextProps {
-  inline?: boolean;
+export interface FormTextProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['small']> {
   color?: TextColor;
+  inline?: boolean;
 }
 
-declare class FormText extends SvelteComponentTyped<FormTextProps> {}
-export default FormText;
+export default class FormText extends SvelteComponentTyped<
+  FormTextProps,
+  {},
+  { default: {} }
+> {}

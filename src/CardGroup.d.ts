@@ -1,4 +1,10 @@
 import { SvelteComponentTyped } from 'svelte';
 
-declare class CardGroup extends SvelteComponentTyped {}
-export default CardGroup;
+export interface CardGroupProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {}
+
+export default class CardGroup extends SvelteComponentTyped<
+  CardGroupProps,
+  {},
+  { default: {} }
+> {}

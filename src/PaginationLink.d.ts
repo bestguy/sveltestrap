@@ -1,16 +1,17 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface IPaginationLinkProps {
+export interface PaginationLinkProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['a']> {
   arialabel?: string;
-
+  first?: boolean;
+  href?: string;
+  last?: boolean;
   next?: boolean;
   previous?: boolean;
-  first?: boolean;
-  last?: boolean;
-  href?: string;
 }
 
-declare class PaginationLink extends SvelteComponentTyped<
-  IPaginationLinkProps
+export default class PaginationLink extends SvelteComponentTyped<
+  PaginationLinkProps,
+  { click: WindowEventMap['click'] },
+  { default: {} }
 > {}
-export default PaginationLink;

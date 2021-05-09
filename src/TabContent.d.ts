@@ -1,8 +1,12 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface ITabContentProps {
+export interface TabContentProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   activeTab?: number | string;
 }
 
-declare class TabContent extends SvelteComponentTyped<ITabContentProps> {}
-export default TabContent;
+export default class TabContent extends SvelteComponentTyped<
+  TabContentProps,
+  {},
+  { default: {} }
+> {}

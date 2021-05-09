@@ -1,10 +1,10 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface ModalBodyProps
+export interface OffcanvasBodyProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {}
 
-export default class ModalBody extends SvelteComponentTyped<
-  ModalBodyProps,
+export default class OffcanvasBody extends SvelteComponentTyped<
+  OffcanvasBodyProps,
   {},
   { default: {} }
 > {}

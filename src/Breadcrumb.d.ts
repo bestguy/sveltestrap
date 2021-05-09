@@ -1,9 +1,12 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface IBreadcrumbProps {
-  ariaLabel?: string;
+export interface BreadcrumbProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['nav']> {
   listClassName?: string;
 }
 
-declare class Breadcrumb extends SvelteComponentTyped<IBreadcrumbProps> {}
-export default Breadcrumb;
+export default class Breadcrumb extends SvelteComponentTyped<
+  BreadcrumbProps,
+  {},
+  { default: {} }
+> {}

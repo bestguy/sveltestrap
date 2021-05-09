@@ -7,6 +7,6 @@
   $: classes = classnames(className, 'card-title');
 </script>
 
-<div {...$$restProps} class={classes}>
+<h5 {...$$restProps} class={classes}>
   <slot />
-</div>
+</h5>

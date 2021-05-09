@@ -1,8 +1,10 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface ICardBodyProps {
-  id?: string;
-}
+export interface CardBodyProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> { }
 
-declare class CardBody extends SvelteComponentTyped<ICardBodyProps> {}
-export default CardBody;
+export default class CardBody extends SvelteComponentTyped<
+  CardBodyProps,
+  {},
+  { default: {} }
+> {}

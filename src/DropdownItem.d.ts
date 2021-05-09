@@ -1,6 +1,7 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface IDropdownItemProps {
+export interface DropdownItemProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['button']> {
   active?: boolean;
   disabled?: boolean;
   divider?: boolean;
@@ -9,5 +10,8 @@ export interface IDropdownItemProps {
   toggle?: boolean;
 }
 
-declare class DropdownItem extends SvelteComponentTyped<IDropdownItemProps> {}
-export default DropdownItem;
+export default class DropdownItem extends SvelteComponentTyped<
+  DropdownItemProps,
+  { click: WindowEventMap['click'] },
+  { default: {} }
+> {}
