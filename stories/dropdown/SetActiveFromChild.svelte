@@ -19,7 +19,7 @@
     <Dropdown setActiveFromChild>
       <DropdownToggle nav class="nav-link" caret>Dropdown</DropdownToggle>
       <DropdownMenu>
-        <DropdownItem tag="a" href="/blah" active>Link</DropdownItem>
+        <DropdownItem href="/blah" active>Link</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   </Nav>

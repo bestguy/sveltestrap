@@ -1,18 +1,24 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface ICollapseProps {
+export interface CollapseProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   expand?: boolean | string;
   isOpen?: boolean;
   navbar?: boolean;
-  toggler?: string;
-  onOpened?: () => void;
   onClosed?: () => void;
-  onEntering?: () => void;
   onEntered?: () => void;
+  onEntering?: () => void;
   onExit?: () => void;
-  onExiting?: () => void;
   onExited?: () => void;
+  onExiting?: () => void;
+  onOpened?: () => void;
+  toggler?: string;
 }
 
-declare class Collapse extends SvelteComponentTyped<ICollapseProps> {}
-export default Collapse;
+export default class ollapse extends SvelteComponentTyped<
+  CollapseProps,
+  {
+    update: CustomEvent<any>;
+  },
+  { default: {} }
+> {}

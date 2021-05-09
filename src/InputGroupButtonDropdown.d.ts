@@ -1,11 +1,12 @@
-import { IDropdownProps } from './Dropdown';
+import { DropdownProps } from './Dropdown';
 import { SvelteComponentTyped } from 'svelte';
 
-export interface IInputGroupButtonDropdownProps extends IDropdownProps {
-  addonType: 'prepend' | 'append';
+export interface InputGroupButtonDropdownProps extends DropdownProps {
+  addonType: 'prepend' | 'append'; // TODO not used in v5
 }
 
-declare class InputGroupButtonDropdown extends SvelteComponentTyped<
-  IInputGroupButtonDropdownProps
+export default class InputGroupButtonDropdown extends SvelteComponentTyped<
+  InputGroupButtonDropdownProps,
+  {},
+  { default: {} }
 > {}
-export default InputGroupButtonDropdown;

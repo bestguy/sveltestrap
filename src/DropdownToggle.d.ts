@@ -1,7 +1,8 @@
 import { SvelteComponentTyped } from 'svelte';
+import { ButtonProps } from './Button';
 import { Color } from './shared';
 
-export interface IDropdownToggleProps {
+export interface DropdownToggleProps extends ButtonProps {
   caret?: boolean;
   color?: Color;
   disabled?: boolean;

@@ -1,7 +1,8 @@
 import { SvelteComponentTyped } from 'svelte';
 import { Color } from './shared';
 
-export interface ICardProps {
+export interface CardProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   id?: string;
   inverse?: boolean;
   color?: Color;
@@ -10,5 +11,8 @@ export interface ICardProps {
   style?: string;
 }
 
-declare class Card extends SvelteComponentTyped<ICardProps> {}
-export default Card;
+export default class Card extends SvelteComponentTyped<
+  CardProps,
+  { click: WindowEventMap['click'] },
+  { default: {} }
+> {}

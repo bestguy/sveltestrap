@@ -1,4 +1,14 @@
 import { SvelteComponentTyped } from 'svelte';
 
-declare class Colgroup extends SvelteComponentTyped {}
-export default Colgroup;
+export interface ColgroupProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['colgroup']> {
+  footer?: undefined;
+  header?: undefined;
+  width?: undefined;
+}
+
+export default class Colgroup extends SvelteComponentTyped<
+ColgroupProps,
+  {},
+  { default: {} }
+> {}

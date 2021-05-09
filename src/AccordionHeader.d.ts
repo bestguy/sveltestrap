@@ -1,8 +1,10 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface IAccordionHeaderProps {
-  class?: string;
-}
+export interface AccordionHeaderProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['h2']> {}
 
-declare class AccordionHeader extends SvelteComponentTyped<IAccordionHeaderProps> {}
-export default AccordionHeader;
+export default class AccordionHeader extends SvelteComponentTyped<
+  AccordionHeaderProps,
+  {},
+  { default: {} }
+> {}

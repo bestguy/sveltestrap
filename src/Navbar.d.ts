@@ -1,14 +1,18 @@
 import { SvelteComponentTyped } from 'svelte';
 import { BackgroundColor } from './shared';
 
-export interface INavbarProps {
-  light?: boolean;
-  dark?: boolean;
-  fixed?: string;
-  sticky?: string;
+export interface NavbarProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['nav']> {
   color?: BackgroundColor;
+  dark?: boolean;
   expand?: boolean | string;
+  fixed?: string;
+  light?: boolean;
+  sticky?: string;
 }
 
-declare class Navbar extends SvelteComponentTyped<INavbarProps> {}
-export default Navbar;
+export default class Navbar extends SvelteComponentTyped<
+  NavbarProps,
+  {},
+  { default: {} }
+> {}

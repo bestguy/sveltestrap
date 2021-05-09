@@ -1,15 +1,16 @@
 import { Breakpoints } from './shared';
 import { SvelteComponentTyped } from 'svelte';
 
-export interface TableProps<T> {
-  size?: string;
+export interface TableProps<T>
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['table']> {
   bordered?: boolean;
   borderless?: boolean;
-  striped?: boolean;
   dark?: boolean;
   hover?: boolean;
   responsive?: boolean | Breakpoints;
   rows?: T[];
+  size?: string;
+  striped?: boolean;
 }
 
 export interface TableSlots<T> {
@@ -18,5 +19,8 @@ export interface TableSlots<T> {
   }
 }
 
-declare class Table<T> extends SvelteComponentTyped<TableProps<T>, {}, TableSlots<T>> {}
-export default Table;
+export default class Table<T> extends SvelteComponentTyped<
+  TableProps<T>,
+  {},
+  TableSlots<T>
+> {}

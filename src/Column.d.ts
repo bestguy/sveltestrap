@@ -1,10 +1,14 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface IColumnProps {
+export interface ColumnProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['td']> {
   footer?: string;
   header?: string;
   width?: string;
 }
 
-declare class Column extends SvelteComponentTyped<IColumnProps> {}
-export default Column;
+export default class Column extends SvelteComponentTyped<
+  ColumnProps,
+  {},
+  { default: {}; footer: {}; header: {} }
+> {}

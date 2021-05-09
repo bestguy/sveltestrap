@@ -1,8 +1,12 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface IFormProps {
+export interface FormProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['form']> {
   inline?: boolean;
 }
 
-declare class Form extends SvelteComponentTyped<IFormProps> {}
-export default Form;
+export default class Form extends SvelteComponentTyped<
+  FormProps,
+  { submit: WindowEventMap['submit'] },
+  { default: {} }
+> {}
