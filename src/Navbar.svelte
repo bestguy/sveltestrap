@@ -1,14 +1,16 @@
 <script>
   import classnames from './utils';
+  import Container from './Container.svelte';
 
   let className = '';
   export { className as class };
-  export let light = false;
-  export let dark = false;
-  export let fixed = '';
-  export let sticky = '';
+  export let container = 'fluid';
   export let color = '';
+  export let dark = false;
   export let expand = false || '';
+  export let fixed = '';
+  export let light = false;
+  export let sticky = '';
 
   function getExpandClass(expand) {
     if (expand === false) {
@@ -30,5 +32,11 @@
 </script>
 
 <nav {...$$restProps} class={classes}>
-  <slot />
+  {#if container}
+    <Container fluid={container === 'fluid'}>
+      <slot />
+    </Container>
+  {:else}
+    <slot />
+  {/if}
 </nav>
