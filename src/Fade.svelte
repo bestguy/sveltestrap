@@ -1,17 +1,17 @@
 <script>
-  import { onMount } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   import { fade } from 'svelte/transition';
   import toggle from './toggle';
 
-  const noop = () => undefined;
+  const dispatch = createEventDispatcher();
 
   export let isOpen = false;
   let className = '';
   export { className as class };
-  export let onEntering = noop;
-  export let onEntered = noop;
-  export let onExiting = noop;
-  export let onExited = noop;
+  export let onEntering = () => dispatch('opening');
+  export let onEntered = () => dispatch('open');
+  export let onExiting = () => dispatch('closing');
+  export let onExited = () => dispatch('close');
   export let toggler = null;
 
   onMount(() => toggle(toggler, () => isOpen = !isOpen));
