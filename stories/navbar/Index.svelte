@@ -13,7 +13,7 @@
   Bootstrap Navbar
 </a>
 
-<Example source={sampleSource}>
+<Example source={sampleSource} stacked>
   <Sample />
 </Example>
 
