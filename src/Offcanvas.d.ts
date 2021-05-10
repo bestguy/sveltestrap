@@ -18,7 +18,12 @@ export interface OffcanvasProps
 
 export default class Offcanvas extends SvelteComponentTyped<
   OffcanvasProps,
-  {},
+  {
+    open: CustomEvent<void>;
+    opening: CustomEvent<void>;
+    closing: CustomEvent<void>;
+    close: CustomEvent<void>;
+  },
   {
     default: {}
     header: {}

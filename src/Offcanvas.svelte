@@ -1,11 +1,13 @@
 <script>
-  import { onMount } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   import { fade as fadeTransition } from 'svelte/transition';
   import InlineContainer from './InlineContainer.svelte';
   import OffcanvasBody from './OffcanvasBody.svelte';
   import OffcanvasHeader from './OffcanvasHeader.svelte';
   import Portal from './Portal.svelte';
   import classnames, { browserEvent, getTransitionDuration } from './utils';
+
+  const dispatch = createEventDispatcher();
 
   let className = '';
   export { className as class };
@@ -39,7 +41,11 @@
   $: if (element) {
     isOpen = isOpen; // Used to trigger reactive on isOpen changes.
     isTransitioning = true;
-    setTimeout(() => isTransitioning = false, getTransitionDuration(element));
+    dispatch(isOpen ? 'opening' : 'closing');
+    setTimeout(() => {
+      isTransitioning = false;
+      dispatch(isOpen ? 'open' : 'close');
+    }, getTransitionDuration(element));
   }
   $: if (isOpen && toggle) {
     removeEscListener = browserEvent(document, 'keydown', (event) => {

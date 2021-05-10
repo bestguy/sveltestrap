@@ -1,5 +1,7 @@
 <script lang="ts">
   import Example from '../Example.svelte';
+  import Events from './Events.svelte';
+  import eventsSource from '!!raw-loader!./Events.svelte';
   import Sample from './Sample.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
   import Backdrop from './Backdrop.svelte';
@@ -35,4 +37,8 @@
 
 <Example source={manualSource} title="Manual toggling">
   <Manual />
+</Example>
+
+<Example source={eventsSource} title="Events">
+  <Events />
 </Example>
