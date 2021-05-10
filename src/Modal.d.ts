@@ -18,10 +18,6 @@ export interface ModalProps
   keyboard?: boolean;
   labelledBy?: string;
   modalClassName?: string;
-  onClosed?: () => void;
-  onEnter?: () => void;
-  onExit?: () => void;
-  onOpened?: () => void;
   returnFocusAfterClose?: boolean;
   scrollable?: boolean;
   size?: string;
@@ -34,7 +30,12 @@ export interface ModalProps
 
 export default class Modal extends SvelteComponentTyped<
   ModalProps,
-  {},
+  {
+    open: CustomEvent<void>;
+    opening: CustomEvent<void>;
+    closing: CustomEvent<void>;
+    close: CustomEvent<void>;
+  },
   {
     default: {}
     external: {}

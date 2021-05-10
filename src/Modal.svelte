@@ -6,7 +6,7 @@
 <script>
   import classnames from './utils';
   import { browserEvent } from './utils';
-  import { onDestroy, onMount, afterUpdate } from 'svelte';
+  import { createEventDispatcher, onDestroy, onMount, afterUpdate } from 'svelte';
   import { fade as fadeTransition } from 'svelte/transition';
   import InlineContainer from './InlineContainer.svelte';
   import ModalBody from './ModalBody.svelte';
@@ -18,7 +18,7 @@
     setScrollbarWidth
   } from './utils';
 
-  function noop() {}
+  const dispatch = createEventDispatcher();
 
   let className = '';
   let staticModal = false;
@@ -36,10 +36,6 @@
   export let toggle = undefined;
   export let labelledBy = '';
   export let backdrop = true;
-  export let onEnter = undefined;
-  export let onExit = undefined;
-  export let onOpened = noop;
-  export let onClosed = noop;
   export let wrapClassName = '';
   export let modalClassName = '';
   export let backdropClassName = '';
@@ -67,20 +63,12 @@
       hasOpened = true;
     }
 
-    if (typeof onEnter === 'function') {
-      onEnter();
-    }
-
     if (hasOpened && autoFocus) {
       setFocus();
     }
   });
 
   onDestroy(() => {
-    if (typeof onExit === 'function') {
-      onExit();
-    }
-
     destroy();
     if (hasOpened) {
       close();
@@ -182,18 +170,16 @@
   }
 
   function onModalOpened() {
+    dispatch('open');
     _removeEscListener = browserEvent(document, 'keydown', (event) => {
       if (event.key && event.key === 'Escape') {
         toggle(event);
       }
     });
-
-    onOpened();
   }
 
   function onModalClosed() {
-    onClosed();
-
+    dispatch('close');
     if (_removeEscListener) {
       _removeEscListener();
     }
@@ -242,7 +228,9 @@
           'position-static': staticModal
         })}
         role="dialog"
+        on:introstart={() => dispatch('opening')}
         on:introend={onModalOpened}
+        on:outrostart={() => dispatch('closing')}
         on:outroend={onModalClosed}
         on:click={handleBackdropClick}
         on:mousedown={handleBackdropMouseDown}>

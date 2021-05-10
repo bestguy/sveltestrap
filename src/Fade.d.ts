@@ -11,7 +11,12 @@ export interface FadeProps
 }
 
 export default class Fade extends SvelteComponentTyped<
-FadeProps,
-  {},
+  FadeProps,
+  {
+    open: CustomEvent<void>;
+    opening: CustomEvent<void>;
+    closing: CustomEvent<void>;
+    close: CustomEvent<void>;
+  },
   { default: {} }
 > {}
