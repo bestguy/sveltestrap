@@ -1,6 +1,6 @@
 <script>
   import classnames from './utils';
-  import Container from './Container';
+  import Container from './Container.svelte';
 
   let className = '';
   export { className as class };
