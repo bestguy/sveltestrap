@@ -41,7 +41,6 @@ import FormText from './FormText';
 import Icon from './Icon';
 import Input from './Input';
 import InputGroup from './InputGroup';
-import InputGroupButtonDropdown from './InputGroupButtonDropdown';
 import InputGroupText from './InputGroupText';
 import Label from './Label';
 import ListGroup from './ListGroup';
@@ -121,7 +120,6 @@ export {
   Icon,
   Input,
   InputGroup,
-  InputGroupButtonDropdown,
   InputGroupText,
   Label,
   ListGroup,
