@@ -5,6 +5,8 @@
 
   import { createContext } from './DropdownContext';
 
+  const noop = () => undefined;
+
   let context = createContext();
   setContext('dropdownContext', context);
 
@@ -84,8 +86,8 @@
         isOpen,
         direction: direction === 'down' && dropup ? 'up' : direction,
         inNavbar,
-        popperRef,
-        popperContent
+        popperRef: nav ? noop : popperRef,
+        popperContent: nav ? noop : popperContent
       };
     });
   }

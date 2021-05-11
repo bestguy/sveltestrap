@@ -11,15 +11,18 @@
   } from 'sveltestrap';
 </script>
 
-<Navbar color="light" light expand="md">
-  <Nav class="ms-auto" navbar>
+<Navbar color="dark" dark expand="md">
+  <Nav navbar>
     <NavItem>
       <NavLink href="/components/">Inactive Link</NavLink>
     </NavItem>
-    <Dropdown setActiveFromChild>
+    <Dropdown nav setActiveFromChild>
       <DropdownToggle nav class="nav-link" caret>Dropdown</DropdownToggle>
-      <DropdownMenu>
-        <DropdownItem tag="a" href="/blah" active>Link</DropdownItem>
+      <DropdownMenu dark>
+        <DropdownItem tag="a" href="/blah" active>Lancelot</DropdownItem>
+        <DropdownItem tag="a" href="/blah">Link</DropdownItem>
+        <DropdownItem tag="a" href="/blah">Secret</DropdownItem>
+        <DropdownItem tag="a" href="/blah">Chimp</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   </Nav>
