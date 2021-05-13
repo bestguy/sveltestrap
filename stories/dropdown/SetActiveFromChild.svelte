@@ -20,9 +20,9 @@
       <DropdownToggle nav class="nav-link" caret>Dropdown</DropdownToggle>
       <DropdownMenu dark>
         <DropdownItem href="#" active>Lancelot</DropdownItem>
-        <DropdownItem href="#" active>Link</DropdownItem>
-        <DropdownItem href="#" active>Secret</DropdownItem>
-        <DropdownItem href="#" active>Chimp</DropdownItem>
+        <DropdownItem href="#">Link</DropdownItem>
+        <DropdownItem href="#">Secret</DropdownItem>
+        <DropdownItem href="#">Chimp</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   </Nav>
