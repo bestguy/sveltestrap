@@ -18,8 +18,11 @@
     </NavItem>
     <Dropdown nav setActiveFromChild>
       <DropdownToggle nav class="nav-link" caret>Dropdown</DropdownToggle>
-      <DropdownMenu>
-        <DropdownItem href="/blah" active>Link</DropdownItem>
+      <DropdownMenu dark>
+        <DropdownItem href="#" active>Lancelot</DropdownItem>
+        <DropdownItem href="#" active>Link</DropdownItem>
+        <DropdownItem href="#" active>Secret</DropdownItem>
+        <DropdownItem href="#" active>Chimp</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   </Nav>
