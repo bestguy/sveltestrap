@@ -19,6 +19,7 @@ import Modals from './modal/Index.svelte';
 import Navbar from './navbar/Index.svelte';
 import Offcanvas from './offcanvas/Index.svelte';
 import Nav from './nav/Index.svelte';
+import Tab from './tab/Index.svelte';
 import Grid from './layout/Index.svelte';
 import Pagination from './pagination/Index.svelte';
 import Popover from './popover/Index.svelte';
@@ -59,6 +60,7 @@ storiesOf('Components', module)
   .add('Popover', story(Popover))
   .add('Progress', story(Progress))
   .add('Spinner', story(Spinner))
+  .add('Tabs', story(Tab))
   .add('Table', story(Tables))
   .add('Toast', story(Toast))
   .add('Tooltip', story(Tooltip));

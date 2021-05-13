@@ -43,7 +43,6 @@ export { default as FormText } from './FormText.svelte';
 export { default as Icon } from './Icon.svelte';
 export { default as Input } from './Input.svelte';
 export { default as InputGroup } from './InputGroup.svelte';
-export { default as InputGroupButtonDropdown } from './InputGroupButtonDropdown.svelte';
 export { default as InputGroupText } from './InputGroupText.svelte';
 export { default as Label } from './Label.svelte';
 export { default as ListGroup } from './ListGroup.svelte';

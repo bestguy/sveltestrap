@@ -1,11 +1,14 @@
 import { SvelteComponentTyped } from 'svelte';
 import { ContainerType } from './shared';
 
-declare type Placement = 'start' | 'end' | 'bottom'; // TODO support left & right alias
+declare type Placement = 'start' | 'end' | 'top' | 'bottom'; // TODO support left & right alias
 
-export interface OffcanvasProps {
+export interface OffcanvasProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   backdrop?: boolean;
+  backdropDuration?: number;
   container?: ContainerType;
+  fade?: boolean;
   header?: string;
   isOpen: boolean;
   placement?: Placement;
@@ -13,5 +16,16 @@ export interface OffcanvasProps {
   toggle?: () => void;
 }
 
-declare class Offcanvas extends SvelteComponentTyped<OffcanvasProps> {}
-export default Offcanvas;
+export default class Offcanvas extends SvelteComponentTyped<
+  OffcanvasProps,
+  {
+    open: CustomEvent<void>;
+    opening: CustomEvent<void>;
+    closing: CustomEvent<void>;
+    close: CustomEvent<void>;
+  },
+  {
+    default: {}
+    header: {}
+  }
+> {}

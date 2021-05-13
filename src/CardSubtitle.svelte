@@ -7,6 +7,6 @@
   $: classes = classnames(className, 'card-subtitle');
 </script>
 
-<div {...$$restProps} class={classes}>
+<h6 {...$$restProps} class={classes}>
   <slot />
-</div>
+</h6>

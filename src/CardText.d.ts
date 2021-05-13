@@ -1,4 +1,10 @@
 import { SvelteComponentTyped } from 'svelte';
 
-declare class CardText extends SvelteComponentTyped {}
-export default CardText;
+export interface CardTextProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['p']> {}
+
+export default class CardText extends SvelteComponentTyped<
+  CardTextProps,
+  {},
+  { default: {} }
+> {}

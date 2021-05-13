@@ -1,4 +1,10 @@
 import { SvelteComponentTyped } from 'svelte';
+import { ButtonProps } from './Button';
 
-declare class NavbarToggler extends SvelteComponentTyped {}
-export default NavbarToggler;
+export interface NavbarTogglerProps extends ButtonProps {}
+
+export default class NavbarToggler extends SvelteComponentTyped<
+  NavbarTogglerProps,
+  { click: WindowEventMap['click'] },
+  { default: {} }
+> {}

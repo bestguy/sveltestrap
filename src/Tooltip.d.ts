@@ -3,7 +3,8 @@ import { ContainerType } from './shared';
 
 declare type TooltipPlacement = 'left' | 'top' | 'bottom' | 'right';
 
-interface ITooltipProps {
+export interface TooltipProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   animation?: boolean;
   container?: ContainerType;
   isOpen?: boolean;
@@ -11,6 +12,8 @@ interface ITooltipProps {
   target: string;
 }
 
-declare class Tooltip extends SvelteComponentTyped<ITooltipProps> {}
-
-export default Tooltip;
+export default class Tooltip extends SvelteComponentTyped<
+  TooltipProps,
+  {},
+  { default: {} }
+> {}

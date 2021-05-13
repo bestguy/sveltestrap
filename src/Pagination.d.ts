@@ -1,12 +1,14 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface IPaginationProps {
+export interface PaginationProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['nav']> {
   listClassName?: string;
-
   size?: string;
-
   arialabel?: string;
 }
 
-declare class Pagination extends SvelteComponentTyped<IPaginationProps> {}
-export default Pagination;
+export default class Pagination extends SvelteComponentTyped<
+  PaginationProps,
+  {},
+  { default: {} }
+> {}

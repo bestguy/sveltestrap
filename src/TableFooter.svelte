@@ -4,7 +4,7 @@
   setContext('footer', true);
 </script>
 
-<tfoot>
+<tfoot {...$$restProps}>
   <tr>
     <slot />
   </tr>

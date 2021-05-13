@@ -1,11 +1,13 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface IPaginationItemProps {
+export interface PaginationItemProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['li']> {
   active?: boolean;
   disabled?: boolean;
 }
 
-declare class PaginationItem extends SvelteComponentTyped<
-  IPaginationItemProps
+export default class PaginationItem extends SvelteComponentTyped<
+  PaginationItemProps,
+  {},
+  { default: {} }
 > {}
-export default PaginationItem;

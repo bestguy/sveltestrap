@@ -41,7 +41,6 @@ import FormText from './FormText';
 import Icon from './Icon';
 import Input from './Input';
 import InputGroup from './InputGroup';
-import InputGroupButtonDropdown from './InputGroupButtonDropdown';
 import InputGroupText from './InputGroupText';
 import Label from './Label';
 import ListGroup from './ListGroup';
@@ -75,7 +74,7 @@ import TableHeader from './TableHeader';
 import Toast from './Toast';
 import ToastBody from './ToastBody';
 import ToastHeader from './ToastHeader';
-import Tooltip from './ToastHeader';
+import Tooltip from './Tooltip';
 
 export {
   Alert,
@@ -121,7 +120,6 @@ export {
   Icon,
   Input,
   InputGroup,
-  InputGroupButtonDropdown,
   InputGroupText,
   Label,
   ListGroup,

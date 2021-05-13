@@ -1,9 +1,13 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface IFormFeedbackProps {
-  valid?: boolean;
+export interface FormFeedbackProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   tooltip?: boolean;
+  valid?: boolean;
 }
 
-declare class FormFeedback extends SvelteComponentTyped<IFormFeedbackProps> {}
-export default FormFeedback;
+export default class FormFeedback extends SvelteComponentTyped<
+  FormFeedbackProps,
+  {},
+  { default: {} }
+> {}

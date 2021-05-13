@@ -4,5 +4,9 @@ export interface ResponsiveContainerProps {
   responsive?: boolean;
 }
 
-declare class ResponsiveContainer extends SvelteComponentTyped<ResponsiveContainerProps> {}
-export default ResponsiveContainer;
+export default class ResponsiveContainer extends SvelteComponentTyped<
+  ResponsiveContainerProps,
+  {},
+  { default: {} }
+> {}
+

@@ -26,7 +26,8 @@ export type InputType =
   | 'url'
   | 'week';
 
-export interface IInputProps {
+export interface InputProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['input']> {
   addon?: boolean;
   bsSize?: 'lg' | 'sm';
   checked?: boolean;
@@ -48,5 +49,17 @@ export interface IInputProps {
   value?: string;
 }
 
-declare class Input extends SvelteComponentTyped<IInputProps> {}
-export default Input;
+export default class Input extends SvelteComponentTyped<
+  InputProps,
+  {
+    blur: WindowEventMap['blur'];
+    focus: WindowEventMap['focus'];
+    keydown: WindowEventMap['keydown'];
+    keypress: WindowEventMap['keypress'];
+    keyup: WindowEventMap['keyup'];
+    change: WindowEventMap['change'];
+    input: WindowEventMap['input'];
+  },
+  { default: {} }
+> {}
+

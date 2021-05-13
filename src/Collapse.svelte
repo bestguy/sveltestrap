@@ -4,16 +4,16 @@
   import { slide } from 'svelte/transition';
   import toggle from './toggle';
 
-  const noop = () => undefined;
+  const dispatch = createEventDispatcher();
 
   export let isOpen = false;
   let className = '';
   export { className as class };
   export let navbar = false;
-  export let onEntering = noop;
-  export let onEntered = noop;
-  export let onExiting = noop;
-  export let onExited = noop;
+  export let onEntering = () => dispatch('opening');
+  export let onEntered = () => dispatch('open');
+  export let onExiting = () => dispatch('closing');
+  export let onExited = () => dispatch('close');
   export let expand = false;
   export let toggler = null;
 
@@ -36,12 +36,8 @@
   minWidth['lg'] = 992;
   minWidth['xl'] = 1200;
 
-  const dispatch = createEventDispatcher();
-
   function notify() {
-    dispatch('update', {
-      isOpen: isOpen
-    });
+    dispatch('update', isOpen);
   }
 
   $: if (navbar && expand) {

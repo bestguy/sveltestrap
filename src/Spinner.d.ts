@@ -1,11 +1,15 @@
 import { SvelteComponentTyped } from 'svelte';
 import { Color } from './shared';
 
-export interface ISpinnerProps {
-  type?: string;
-  size?: any;
+export interface SpinnerProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   color?: Color;
+  size?: any;
+  type?: string;
 }
 
-declare class Spinner extends SvelteComponentTyped<ISpinnerProps> {}
-export default Spinner;
+export default class Spinner extends SvelteComponentTyped<
+  SpinnerProps,
+  {},
+  { default: {} }
+> {}

@@ -2,6 +2,8 @@
   import Example from '../Example.svelte';
   import Backdrop from './Backdrop.svelte';
   import backdropSource from '!!raw-loader!./Backdrop.svelte';
+  import Events from './Events.svelte';
+  import eventsSource from '!!raw-loader!./Events.svelte';
   import External from './External.svelte';
   import externalSource from '!!raw-loader!./External.svelte';
   import Fade from './Fade.svelte';
@@ -48,6 +50,10 @@
 
 <Example title="Fade" source={fadeSource}>
   <Fade />
+</Example>
+
+<Example title="Events" source={eventsSource}>
+  <Events />
 </Example>
 
 <Example title="Static" source={staticSource}>

@@ -1,6 +1,8 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface IFadeProps {
+export interface FadeProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
+  isOpen?: boolean;
   onEntering?: () => void;
   onEntered?: () => void;
   onExiting?: () => void;
@@ -8,5 +10,13 @@ export interface IFadeProps {
   toggler?: string;
 }
 
-declare class Fade extends SvelteComponentTyped<IFadeProps> {}
-export default Fade;
+export default class Fade extends SvelteComponentTyped<
+  FadeProps,
+  {
+    open: CustomEvent<void>;
+    opening: CustomEvent<void>;
+    closing: CustomEvent<void>;
+    close: CustomEvent<void>;
+  },
+  { default: {} }
+> {}

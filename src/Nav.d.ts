@@ -1,15 +1,19 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface INavProps {
-  tabs?: boolean;
-  pills?: boolean;
-  vertical?: boolean | string;
+export interface NavProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['ul']> {
+  card?: boolean;
+  fill?: boolean;
   horizontal?: string;
   justified?: boolean;
-  fill?: boolean;
   navbar?: boolean;
-  card?: boolean;
+  pills?: boolean;
+  tabs?: boolean;
+  vertical?: boolean | string;
 }
 
-declare class Nav extends SvelteComponentTyped<INavProps> {}
-export default Nav;
+export default class Nav extends SvelteComponentTyped<
+  NavProps,
+  {},
+  { default: {} }
+> {}

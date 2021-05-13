@@ -1,10 +1,16 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface IAccordionItemProps {
-  class?: string;
-  header?: string;
+export interface AccordionItemProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   active?: boolean;
+  header?: string;
 }
 
-declare class AccordionItem extends SvelteComponentTyped<IAccordionItemProps> {}
-export default AccordionItem;
+export default class AccordionItem extends SvelteComponentTyped<
+  AccordionItemProps,
+  {},
+  {
+    default: {},
+    header: {}
+  }
+> {}

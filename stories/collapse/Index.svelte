@@ -21,7 +21,7 @@
 
 <Example title="Events" source={eventsSource}>
   <p slot="info">
-    Use the on:enter, onEntering, onEntered, onExiting and onExited props for
+    Use the on:opening, on:open, on:closing and on:close props for
     callbacks when the Collapse has finished opening (entering) or closing
     (exiting).
   </p>

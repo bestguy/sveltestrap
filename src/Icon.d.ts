@@ -1,8 +1,8 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface IIconProps {
+export interface IconProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['i']> {
   name: string;
 }
 
-declare class Icon extends SvelteComponentTyped<IIconProps> {}
-export default Icon;
+export default class Icon extends SvelteComponentTyped<IconProps, {}, {}> {}

@@ -1,4 +1,10 @@
 import { SvelteComponentTyped } from 'svelte';
 
-declare class ModalFooter extends SvelteComponentTyped {}
-export default ModalFooter;
+export interface ModalFooterProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {}
+
+export default class ModalFooter extends SvelteComponentTyped<
+  ModalFooterProps,
+  {},
+  { default: {} }
+> {}

@@ -16,7 +16,7 @@
 </script>
 
 <div {...$$restProps} class={classes}>
-  <h5>{captionHeader}</h5>
-  <p>{captionText}</p>
+  {#if captionHeader}<h5>{captionHeader}</h5>{/if}
+  {#if captionText}<p>{captionText}</p>{/if}
   <slot />
 </div>

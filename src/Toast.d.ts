@@ -1,10 +1,14 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface IToastProps {
-  isOpen?: boolean;
-  fade?: boolean;
+export interface ToastProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   duration?: number;
+  fade?: boolean;
+  isOpen?: boolean;
 }
 
-declare class Toast extends SvelteComponentTyped<IToastProps> {}
-export default Toast;
+export default class Toast extends SvelteComponentTyped<
+  ToastProps,
+  {},
+  { default: {} }
+> {}

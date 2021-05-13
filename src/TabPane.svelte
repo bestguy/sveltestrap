@@ -1,18 +1,40 @@
 <script>
-  import { getContext } from 'svelte';
+  import { getContext, onMount } from 'svelte';
+  import NavItem from './NavItem.svelte';
+  import NavLink from './NavLink.svelte';
   import classnames from './utils';
 
   let className = '';
   export { className as class };
-  export let tabId;
+  export let active = false;
+  export let tab = undefined;
+  export let tabId = undefined;
 
-  const { activeTabId } = getContext('tabContent');
+  const tabs = getContext('tabs');
+  const { activeTabId, setActiveTab } = getContext('tabContent');
 
+  onMount(() => {
+    if (active) setActiveTab(tabId);
+  });
+
+  $: tabOpen = $activeTabId === tabId;
   $: classes = classnames('tab-pane', className, {
-    active: tabId === $activeTabId
+    active: tabOpen,
+    show: tabOpen
   });
 </script>
 
-<div {...$$restProps} class={classes}>
-  <slot />
-</div>
+{#if tabs}
+  <NavItem>
+    <NavLink
+      active={tabOpen}
+      on:click={() => setActiveTab(tabId)}>
+      {#if tab}{tab}{/if}
+      <slot name="tab" />
+    </NavLink>
+  </NavItem>
+{:else}
+  <div {...$$restProps} class={classes}>
+    <slot />
+  </div>
+{/if}
