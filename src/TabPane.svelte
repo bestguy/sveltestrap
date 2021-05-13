@@ -1,29 +1,33 @@
 <script>
-  import { getContext } from 'svelte';
+  import { getContext, onMount } from 'svelte';
   import NavItem from './NavItem.svelte';
   import NavLink from './NavLink.svelte';
   import classnames from './utils';
 
   let className = '';
   export { className as class };
-  // export let active = false; //TODO initial?
+  export let active = false;
   export let tab = undefined;
   export let tabId = undefined;
 
   const tabs = getContext('tabs');
   const { activeTabId, setActiveTab } = getContext('tabContent');
 
-  $: classes = classnames('tab-pane fadeN', className, {
-    active,
-    show: active
+  onMount(() => {
+    if (active) setActiveTab(tabId);
   });
-  $: active = $activeTabId === tabId;
+
+  $: tabOpen = $activeTabId === tabId;
+  $: classes = classnames('tab-pane', className, {
+    active: tabOpen,
+    show: tabOpen
+  });
 </script>
 
 {#if tabs}
   <NavItem>
     <NavLink
-      {active}
+      active={tabOpen}
       on:click={() => setActiveTab(tabId)}>
       {#if tab}{tab}{/if}
       <slot name="tab" />

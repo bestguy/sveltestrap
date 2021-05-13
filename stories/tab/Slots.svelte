@@ -2,8 +2,8 @@
   import { Icon, TabContent, TabPane } from 'sveltestrap';
 </script>
 
-<TabContent activeTab="alpha">
-  <TabPane tabId="alpha">
+<TabContent>
+  <TabPane tabId="alpha" active>
     <span slot="tab">
       Alpha <Icon name="gear" />
     </span>

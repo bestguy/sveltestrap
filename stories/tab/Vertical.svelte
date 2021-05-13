@@ -2,8 +2,8 @@
   import { TabContent, TabPane } from 'sveltestrap';
 </script>
 
-<TabContent vertical pills activeTab="alpha">
-  <TabPane tabId="alpha" tab="Alpha">
+<TabContent vertical pills>
+  <TabPane tabId="alpha" tab="Alpha" active>
     <h2>Alpha</h2>
     <img
       alt="Alpha Flight"

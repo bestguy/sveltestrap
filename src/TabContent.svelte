@@ -8,15 +8,10 @@
 
   let className = '';
   export { className as class };
-  export let activeTab;
-  // export let fade = false; // TODO
   export let pills = false;
   export let vertical = false;
 
-  const activeTabId = writable(activeTab);
-
-  $: activeTabId.set(activeTab);
-
+  const activeTabId = writable();
   setContext('tabContent', {
     activeTabId,
     setActiveTab: (tabId) => {
