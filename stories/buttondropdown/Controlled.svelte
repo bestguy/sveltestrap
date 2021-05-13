@@ -10,7 +10,7 @@
 </script>
 
 <ButtonDropdown {isOpen}>
-  <DropdownToggle color="primary" caret onClick={() => isOpen = !isOpen}>
+  <DropdownToggle color="primary" caret on:click={() => isOpen = !isOpen}>
     I'm a glutton for punishment
   </DropdownToggle>
   <DropdownMenu>

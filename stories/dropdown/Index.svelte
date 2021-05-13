@@ -39,7 +39,7 @@
   <Sizes />
 </Example>
 
-<Example title="Controlled" source={controlledSource}>
+<Example title="Container" source={controlledSource}>
   <Controlled />
 </Example>
 

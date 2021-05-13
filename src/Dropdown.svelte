@@ -1,8 +1,11 @@
 <script>
   import { setContext, onDestroy } from 'svelte';
+  import { createPopperActions } from './popper';
   import classnames from './utils';
 
   import { createContext } from './DropdownContext';
+
+  const noop = () => undefined;
 
   let context = createContext();
   setContext('dropdownContext', context);
@@ -20,6 +23,8 @@
   export let setActiveFromChild = false;
   export let size = '';
   export let toggle = undefined;
+
+  const [popperRef, popperContent] = createPopperActions();
 
   const validDirections = ['up', 'down', 'left', 'right', 'start', 'end'];
 
@@ -46,7 +51,6 @@
   }
 
   $: classes = classnames(
-    'd-inline-flex',
     className,
     direction !== 'down' && `drop${dropdownDirection}`,
     nav && active ? 'active' : false,
@@ -57,8 +61,7 @@
       [`btn-group-${size}`]: !!size,
       dropdown: !group && !addonType,
       show: isOpen,
-      'nav-item': nav,
-      'd-inline-block': !nav
+      'nav-item': nav
     }
   );
 
@@ -82,7 +85,9 @@
         toggle: handleToggle,
         isOpen,
         direction: direction === 'down' && dropup ? 'up' : direction,
-        inNavbar
+        inNavbar,
+        popperRef: nav ? noop : popperRef,
+        popperContent: nav ? noop : popperContent
       };
     });
   }
