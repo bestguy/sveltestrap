@@ -6,23 +6,11 @@ The philosophy of this library is to provide all Bootstrap 5 components for a [S
 
 However, to make using Bootstrap themes easier, this library does _not_ embed Bootstrap styles directly and you will need to include Bootstrap 5 CSS in your page.
 
+**Note:** Bootstrap 4 CSS users must use Sveltestrap 4 - see docs here: <a href="https://sveltestrap.js.org/v4">Sveltestrap version 4</a>
+
 The component names and interface are inspired by the [reactstrap](https://reactstrap.github.io) library for React.
 
 [Demo page](https://sveltestrap.js.org/)
-
-### Status
-
-- Some stateful components have issues
-  - Collapse uses the Svelte slide transition. In Svelte, the component is removed from the DOM whereas in Bootstrap, it stays in the DOM, but is hidden. This interacts badly with nav bars on small screens.
-  - Modal uses Svelte fade transition, which does not use the Bootstrap theme defaults for duration, etc.
-- Most components are missing general DOM events, see [#36](https://github.com/bestguy/sveltestrap/issues/36)
-
-### Bootstrap V5 compatibility
-
-- Currently compatibile up to Bootstrap v5 beta 3
-https://github.com/bestguy/sveltestrap/issues/156#issuecomment-808819028
-
-(You need to install `sveltestrap@5.0.0-beta.3` version explicitly to use this beta release.  Also you need to use Bootstrap v5 CSS.)
 
 ---
 
@@ -40,7 +28,7 @@ Either in your HTML layout:
 <head>
   <link
     rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
   />
 </head>
 ```
@@ -49,7 +37,7 @@ Or from your Svelte app, either:
 
 ```html
 <svelte:head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
 </svelte:head>
 ```
 
@@ -57,7 +45,7 @@ or:
 
 ```html
 <style>
-  @import "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css";
+  @import "https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css";
 </style>
 ```
 
