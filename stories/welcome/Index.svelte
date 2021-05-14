@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, Col, Container, Row } from 'sveltestrap';
+  import { Button, Col, Container, Icon, Row } from 'sveltestrap';
   import { linkTo } from '@storybook/addon-links';
 
   import PrismCode from '../PrismCode.svelte';
@@ -47,6 +47,11 @@
               Components
             </Button>
           </p>
+          <h6 class="text-danger mt-4">
+            <Icon name="exclamation-triangle-fill" />
+            <b>Note:</b>
+            Bootstrap 4 CSS users must use Sveltestrap 4 - see docs here: <a href="./v4">Sveltestrap version 4</a>
+          </h6>
         </Col>
       </Row>
     </Container>
@@ -54,6 +59,10 @@
   <Container>
     <Row class="justify-content-sm-center">
       <Col sm={8} class="docSearch-content">
+        <Example source={sampleSource} stacked>
+          <Sample />
+        </Example>
+
         <h2>Installation</h2>
         <hr />
         <h3 class="mt-5">NPM</h3>
@@ -63,10 +72,6 @@
             npm install --save sveltestrap svelte
           </PrismCode>
         </pre>
-        <p>Import the components you need</p>
-        <Example source={sampleSource}>
-          <Sample />
-        </Example>
 
         <h4>Adding Bootstrap</h4>
         <p>
@@ -81,7 +86,7 @@
         <pre>
           <PrismCode class="language-html">
             {`<head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
 </head>`}
           </PrismCode>
         </pre>
@@ -90,7 +95,7 @@
         <pre>
           <PrismCode class="language-html">
             {`<svelte:head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
 </svelte:head>`}
           </PrismCode>
         </pre>
@@ -103,7 +108,7 @@
           </a>
         </p>
 
-        <h5>2. Install via npm</h5>
+        <h5>2. or install via npm</h5>
         <pre>
           <PrismCode class="language-bash">
             {`npm install --save bootstrap`}
