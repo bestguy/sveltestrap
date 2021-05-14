@@ -68,6 +68,7 @@ export { default as Portal } from './Portal.svelte';
 export { default as Progress } from './Progress.svelte';
 export { default as Row } from './Row.svelte';
 export { default as Spinner } from './Spinner.svelte';
+export { default as Styles } from './Styles.svelte';
 export { default as Table } from './Table.svelte';
 export { default as TabContent } from './TabContent.svelte';
 export { default as TabPane } from './TabPane.svelte';
