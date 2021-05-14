@@ -91,12 +91,22 @@
           </PrismCode>
         </pre>
 
-        <h6>or add from your Svelte app</h6>
+        <h6>or using &lt;svelte:head&gt; in your Svelte source:</h6>
         <pre>
           <PrismCode class="language-html">
             {`<svelte:head>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
 </svelte:head>`}
+          </PrismCode>
+        </pre>
+
+        <h6>or use the <Button color="link" class="p-0" style="vertical-align: unset;" on:click={linkTo('Components', 'Styles')}>Styles</Button> component:</h6>
+        <pre>
+          <PrismCode class="language-html">
+            {`<script>
+    import { Styles } from 'sveltestrap';
+</script>
+<Styles />`}
           </PrismCode>
         </pre>
 
@@ -136,13 +146,13 @@
 </svelte:head>`}
           </PrismCode>
         </pre>
-          or:
+          or the <Button color="link" class="p-0" style="vertical-align: unset;" on:click={linkTo('Components', 'Styles')}>Styles</Button> component includes the Bootstrap Icon CSS by default:
         <pre>
           <PrismCode class="language-html">
-            {`<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-/>`}
+            {`<script>
+    import { Styles } from 'sveltestrap';
+</script>
+<Styles />`}
           </PrismCode>
         </pre>
         <p>

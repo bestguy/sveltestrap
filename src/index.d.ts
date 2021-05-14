@@ -66,6 +66,7 @@ import Progress from './Progress';
 import ResponsiveContainer from './ResponsiveContainer';
 import Row from './Row';
 import Spinner from './Spinner';
+import Styles from './Styles';
 import TabContent from './TabContent';
 import TabPane from './TabPane';
 import Table from './Table';
@@ -145,6 +146,7 @@ export {
   ResponsiveContainer,
   Row,
   Spinner,
+  Styles,
   TabContent,
   TabPane,
   Table,

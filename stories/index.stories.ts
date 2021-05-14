@@ -25,6 +25,7 @@ import Pagination from './pagination/Index.svelte';
 import Popover from './popover/Index.svelte';
 import Progress from './progress/Index.svelte';
 import Spinner from './spinner/Index.svelte';
+import Styles from './styles/Index.svelte';
 import Tables from './table/Index.svelte';
 import Toast from './toast/Index.svelte';
 import Tooltip from './tooltip/Index.svelte';
@@ -60,6 +61,7 @@ storiesOf('Components', module)
   .add('Popover', story(Popover))
   .add('Progress', story(Progress))
   .add('Spinner', story(Spinner))
+  .add('Styles', story(Styles))
   .add('Tabs', story(Tab))
   .add('Table', story(Tables))
   .add('Toast', story(Toast))
