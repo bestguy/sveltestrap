@@ -9,6 +9,7 @@ export interface AlertProps
   color?: Color;
   dismissible?: boolean;
   fade?: boolean;
+  heading?: string;
   isOpen?: boolean;
   toggle?: () => void;
   transition?: FadeProps;
@@ -17,5 +18,5 @@ export interface AlertProps
 export default class Alert extends SvelteComponentTyped<
   AlertProps,
   {},
-  { default: {} }
+  { default: {}, heading: {} }
 > {}
