@@ -1,13 +1,19 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface ICarouselProps {
-  style?: string;
-  items: any[];
+export interface CarouselProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   activeIndex?: number;
+  dark?: boolean;
+  interval?: number | string | boolean;
+  items: any[];
   keyboard?: boolean;
   pause?: 'hover' | false;
-  interval?: number | string | boolean;
+  ride?: boolean;
+  style?: string;
 }
 
-declare class Carousel extends SvelteComponentTyped<ICarouselProps> {}
-export default Carousel;
+export default class Carousel extends SvelteComponentTyped<
+  CarouselProps,
+  {},
+  { default: {} }
+> {}

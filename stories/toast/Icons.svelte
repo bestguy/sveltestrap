@@ -14,7 +14,7 @@
 
 {#each colors as color}
   <div class="p-3 mb-3">
-    <Toast class="mr-1" {color}>
+    <Toast class="me-1" {color}>
       <ToastHeader icon={color}>{color}</ToastHeader>
       <ToastBody>
         This is a toast with a {color} icon.
@@ -24,7 +24,7 @@
 {/each}
 
 <div class="p-3 mb-3">
-  <Toast class="mr-1">
+  <Toast class="me-1">
     <ToastHeader>
       <Icon slot="icon" name="emoji-sunglasses" class="me-2" />
       Sveltestrap

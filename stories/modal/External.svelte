@@ -7,7 +7,7 @@
 <div>
   <Button color="danger" on:click={toggle}>Open Modal</Button>
   <Modal isOpen={open} {toggle} body>
-    <div slot="external" class="text-right">
+    <div slot="external" class="text-end">
       <Button
         color="link"
         class="text-white"

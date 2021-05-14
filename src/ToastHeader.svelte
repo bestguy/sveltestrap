@@ -1,19 +1,16 @@
 <script>
   import classnames from './utils';
+  import Button from './Button.svelte';
 
   let className = '';
   export { className as class };
   export let icon = null;
   export let toggle = null;
   export let closeAriaLabel = 'Close';
-  export let charCode = 215;
 
   $: classes = classnames(className, 'toast-header');
 
-  $: tagClassName = classnames('mr-auto', { 'ml-2': icon != null });
-
-  $: closeIcon =
-    typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;
+  $: tagClassName = classnames('me-auto', { 'ms-2': icon != null });
 </script>
 
 <div {...$$restProps} class={classes}>
@@ -36,13 +33,10 @@
   </strong>
   {#if toggle}
     <slot name="close">
-      <button
-        type="button"
+      <Button
+        close
         on:click={toggle}
-        class="close"
-        aria-label={closeAriaLabel}>
-        <span aria-hidden="true">{closeIcon}</span>
-      </button>
+        aria-label={closeAriaLabel} />
     </slot>
   {/if}
 </div>

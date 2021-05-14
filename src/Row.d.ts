@@ -11,11 +11,15 @@ export type ColumnProps =
       xl? : number;
     };
 
-export interface IRowProps {
+export interface RowProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   cols?: ColumnProps;
   noGutters?: boolean;
   form?: boolean;
 }
 
-declare class Row extends SvelteComponentTyped<IRowProps> {}
-export default Row;
+export default class Row extends SvelteComponentTyped<
+  RowProps,
+  {},
+  { default: {} }
+> {}

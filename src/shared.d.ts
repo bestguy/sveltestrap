@@ -35,4 +35,4 @@ declare type TextOnlyColor =
 export declare type BackgroundColor = Color | BackgroundOnlyColor;
 export declare type TextColor = Color | TextOnlyColor;
 
-export declare type Direction = 'up' | 'down' | 'left' | 'right';
+export declare type Direction = 'up' | 'down' | 'left' | 'right' | 'start' | 'end';

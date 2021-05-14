@@ -4,7 +4,7 @@
   setContext('header', true);
 </script>
 
-<thead>
+<thead {...$$restProps}>
   <tr>
     <slot />
   </tr>

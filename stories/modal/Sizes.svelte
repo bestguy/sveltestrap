@@ -21,6 +21,10 @@
     size = 'sm';
     open = !open;
   };
+  const toggleXl = () => {
+    size = 'xl';
+    open = !open;
+  };
 </script>
 
 <div>
@@ -28,6 +32,7 @@
     <Button color="success" on:click={toggleSm}>Open Small Modal</Button>
     <Button color="warning" on:click={toggle}>Open Default Modal</Button>
     <Button color="danger" on:click={toggleLg}>Open Large Modal</Button>
+    <Button color="dark" on:click={toggleXl}>Open Extra Large Modal</Button>
   </ButtonGroup>
 
   <Modal isOpen={open} {toggle} {size}>

@@ -30,7 +30,7 @@
   let activeIndex = 0;
 </script>
 
-<Carousel {items} bind:activeIndex ride={true} interval={2000}>
+<Carousel {items} bind:activeIndex ride interval={2000}>
   <CarouselIndicators bind:activeIndex {items} />
 
   <div class="carousel-inner">

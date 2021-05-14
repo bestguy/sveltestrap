@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Form, FormGroup, FormText, Input, Label } from 'sveltestrap';
+  let radioGroup;
 </script>
 
 <Form>
@@ -32,6 +33,17 @@
       placeholder="url placeholder" />
   </FormGroup>
   <FormGroup>
+    <Label for="exampleRange">Range</Label>
+    <Input
+      type="range"
+      name="range"
+      id="exampleRange"
+      min={0}
+      max={100}
+      step={10}
+      placeholder="Range placeholder" />
+  </FormGroup>
+  <FormGroup>
     <Label for="exampleNumber">Number</Label>
     <Input
       type="number"
@@ -42,7 +54,7 @@
   <FormGroup>
     <Label for="exampleDatetime">Datetime</Label>
     <Input
-      type="datetime"
+      type="datetime-local"
       name="datetime"
       id="exampleDatetime"
       placeholder="datetime placeholder" />
@@ -111,16 +123,13 @@
       bit lighter and easily wraps to a new line.
     </FormText>
   </FormGroup>
-  <FormGroup check>
-    <Label check>
-      <Input type="radio" />
-      Option one is this and that—be sure to include why it's great
-    </Label>
+  <FormGroup>
+    <Input id="r1" type="radio" bind:group={radioGroup} value="eenie" label="Eenie" />
+    <Input id="r2" type="radio" bind:group={radioGroup} value="meanie" label="Meanie" />
+    <Input id="r3" type="radio" bind:group={radioGroup} value="minie" label="Minie" />
+    <Input id="r4" type="radio" bind:group={radioGroup} value="moe" label="Moe" />
   </FormGroup>
-  <FormGroup check>
-    <Label check>
-      <Input type="checkbox" />
-      Check me out
-    </Label>
+  <FormGroup>
+    <Input id="c1" type="checkbox" label="Check me out" />
   </FormGroup>
 </Form>

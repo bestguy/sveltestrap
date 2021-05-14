@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, Container, Row, Col, Jumbotron } from 'sveltestrap';
+  import { Button, Col, Container, Icon, Row } from 'sveltestrap';
   import { linkTo } from '@storybook/addon-links';
 
   import PrismCode from '../PrismCode.svelte';
@@ -9,14 +9,14 @@
 </script>
 
 <div>
-  <Jumbotron tag="section" class="jumbotron-header text-center mb-3">
+  <section class="bg-light text-center mb-3 p-5">
     <Container>
       <Row>
         <Col>
           <h1
-            class="jumbotron-heading display-4 d-flex align-items-center justify-content-center"
+            class="display-4 d-flex align-items-center justify-content-center"
             style="color: purple; font-weight: 200; letter-spacing: .2rem">
-            <svg height=".8em" viewBox="0 0 39.6 45" xmlns="http://www.w3.org/2000/svg" class="mr-2">
+            <svg height=".8em" viewBox="0 0 39.6 45" xmlns="http://www.w3.org/2000/svg" class="me-2">
               <g transform="translate(2.5, 2.5)">
                 <polyline
                    points="0,30 17.3,40 34.6,30 34.6,20 17.3,30 0,20 0,10
@@ -32,7 +32,7 @@
             SVELTESTRAP
           </h1>
           <p class="lead">
-            <a href="https://getbootstrap.com" target="new" class="text-body">Bootstrap 4</a> components for <a href="https://svelte.dev" target="new" class="text-body">Svelte 3</a>.
+            <a href="https://v5.getbootstrap.com" target="new" class="text-body">Bootstrap 5</a> components for <a href="https://svelte.dev" target="new" class="text-body">Svelte 3</a>.
           </p>
           <p>
             <Button
@@ -47,13 +47,22 @@
               Components
             </Button>
           </p>
+          <h6 class="text-danger mt-4">
+            <Icon name="exclamation-triangle-fill" />
+            <b>Note:</b>
+            Bootstrap 4 CSS users must use Sveltestrap 4 - see docs here: <a href="./v4">Sveltestrap version 4</a>
+          </h6>
         </Col>
       </Row>
     </Container>
-  </Jumbotron>
+  </section>
   <Container>
     <Row class="justify-content-sm-center">
       <Col sm={8} class="docSearch-content">
+        <Example source={sampleSource} stacked>
+          <Sample />
+        </Example>
+
         <h2>Installation</h2>
         <hr />
         <h3 class="mt-5">NPM</h3>
@@ -63,10 +72,6 @@
             npm install --save sveltestrap svelte
           </PrismCode>
         </pre>
-        <p>Import the components you need</p>
-        <Example source={sampleSource}>
-          <Sample />
-        </Example>
 
         <h4>Adding Bootstrap</h4>
         <p>
@@ -81,7 +86,7 @@
         <pre>
           <PrismCode class="language-html">
             {`<head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
 </head>`}
           </PrismCode>
         </pre>
@@ -90,20 +95,20 @@
         <pre>
           <PrismCode class="language-html">
             {`<svelte:head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
 </svelte:head>`}
           </PrismCode>
         </pre>
 
         <p>
-          You can also use any Bootstrap 4 compatible theme instead of the
+          You can also use any Bootstrap 5 compatible theme instead of the
           default Bootstrap theme. For example:
           <a href="https://www.bootstrapcdn.com/bootswatch/" target="new">
             https://www.bootstrapcdn.com/bootswatch/
           </a>
         </p>
 
-        <h5>2. Install via npm</h5>
+        <h5>2. or install via npm</h5>
         <pre>
           <PrismCode class="language-bash">
             {`npm install --save bootstrap`}

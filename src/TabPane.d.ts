@@ -1,8 +1,14 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface ITabPaneProps {
+export interface TabPaneProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
+  active?: boolean;
+  tab?: string;
   tabId?: number | string;
 }
 
-declare class TabPane extends SvelteComponentTyped<ITabPaneProps> {}
-export default TabPane;
+export default class TabPane extends SvelteComponentTyped<
+  TabPaneProps,
+  {},
+  { default: {}; tab: {}; }
+> {}

@@ -4,9 +4,9 @@ import { ContainerType } from './shared';
 declare type PopoverPlacement = 'left' | 'top' | 'bottom' | 'right';
 declare type Triggers = 'click' | 'hover' | 'focus';
 
-interface IPopoverProps {
+export interface PopoverProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   animation?: boolean;
-  children?: string;
   container?: ContainerType;
   dismissible?: boolean;
   isOpen?: boolean;
@@ -16,6 +16,8 @@ interface IPopoverProps {
   trigger?: Triggers;
 }
 
-declare class Popover extends SvelteComponentTyped<IPopoverProps> {}
-
-export default Popover;
+export default class Popover extends SvelteComponentTyped<
+  PopoverProps,
+  {},
+  { default: {}; title: {} }
+> {}

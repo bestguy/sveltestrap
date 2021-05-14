@@ -24,7 +24,7 @@
   <NavbarBrand href="/">sveltestrap</NavbarBrand>
   <NavbarToggler on:click={() => (isOpen = !isOpen)} />
   <Collapse {isOpen} navbar expand="md" on:update={handleUpdate}>
-    <Nav class="ml-auto" navbar>
+    <Nav class="ms-auto" navbar>
       <NavItem>
         <NavLink href="#components/">Components</NavLink>
       </NavItem>
@@ -33,7 +33,7 @@
       </NavItem>
       <Dropdown nav inNavbar>
         <DropdownToggle nav caret>Options</DropdownToggle>
-        <DropdownMenu right>
+        <DropdownMenu end>
           <DropdownItem>Option 1</DropdownItem>
           <DropdownItem>Option 2</DropdownItem>
           <DropdownItem divider />

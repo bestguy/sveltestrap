@@ -1,4 +1,10 @@
 import { SvelteComponentTyped } from 'svelte';
 
-declare class CardImgOverlay extends SvelteComponentTyped {}
-export default CardImgOverlay;
+export interface CardImgOverlayProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {}
+
+export default class CardImgOverlay extends SvelteComponentTyped<
+  CardImgOverlayProps,
+  {},
+  { default: {} }
+> {}

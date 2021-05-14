@@ -1,80 +1,62 @@
 <script lang="ts">
   import InputGroup from '../../src/InputGroup.svelte';
-  import InputGroupAddon from '../../src/InputGroupAddon.svelte';
   import InputGroupText from '../../src/InputGroupText.svelte';
   import Input from '../../src/Input.svelte';
 </script>
 
 <div>
   <InputGroup>
-    <InputGroupAddon addonType="prepend">
-      <InputGroupText>@</InputGroupText>
-    </InputGroupAddon>
+    <InputGroupText>@</InputGroupText>
     <Input placeholder="username" />
   </InputGroup>
   <br />
   <InputGroup>
-    <InputGroupAddon addonType="prepend">
-      <InputGroupText>
-        <Input
-          addon
-          type="checkbox"
-          aria-label="Checkbox for following text input" />
-      </InputGroupText>
-    </InputGroupAddon>
+
+    <InputGroupText>
+      <Input
+        addon
+        type="checkbox"
+        aria-label="Checkbox for following text input" />
+    </InputGroupText>
+
     <Input placeholder="Check it out" />
   </InputGroup>
   <br />
   <InputGroup>
     <Input placeholder="username" />
-    <InputGroupAddon addonType="append">
-      <InputGroupText>@example.com</InputGroupText>
-    </InputGroupAddon>
+    <InputGroupText>@example.com</InputGroupText>
   </InputGroup>
   <br />
   <InputGroup>
-    <InputGroupAddon addonType="prepend">
-      <InputGroupText>$</InputGroupText>
-      <InputGroupText>$</InputGroupText>
-    </InputGroupAddon>
+    <InputGroupText>$</InputGroupText>
+    <InputGroupText>$</InputGroupText>
     <Input placeholder="Dolla dolla billz yo!" />
-    <InputGroupAddon addonType="append">
-      <InputGroupText>$</InputGroupText>
-      <InputGroupText>$</InputGroupText>
-    </InputGroupAddon>
+    <InputGroupText>$</InputGroupText>
+    <InputGroupText>$</InputGroupText>
+
   </InputGroup>
   <br />
   <InputGroup>
-    <InputGroupAddon addonType="prepend">
-      <InputGroupText>$</InputGroupText>
-    </InputGroupAddon>
+    <InputGroupText>$</InputGroupText>
     <Input placeholder="Amount" min={0} max={100} type="number" step="1" />
-    <InputGroupAddon addonType="append">
-      <InputGroupText>.00</InputGroupText>
-    </InputGroupAddon>
+    <InputGroupText>.00</InputGroupText>
   </InputGroup>
 </div>
 
 <h2>Size</h2>
 <div>
   <InputGroup size="lg">
-    <InputGroupAddon addonType="prepend">
-      <InputGroupText>@lg</InputGroupText>
-    </InputGroupAddon>
+    <InputGroupText>@lg</InputGroupText>
     <Input />
   </InputGroup>
   <br />
   <InputGroup>
-    <InputGroupAddon addonType="prepend">
-      <InputGroupText>@normal</InputGroupText>
-    </InputGroupAddon>
+    <InputGroupText>@normal</InputGroupText>
     <Input />
   </InputGroup>
   <br />
   <InputGroup size="sm">
-    <InputGroupAddon addonType="prepend">
-      <InputGroupText>@sm</InputGroupText>
-    </InputGroupAddon>
+    <InputGroupText>@sm</InputGroupText>
     <Input />
   </InputGroup>
 </div>

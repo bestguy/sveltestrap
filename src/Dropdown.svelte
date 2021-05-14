@@ -1,8 +1,11 @@
 <script>
   import { setContext, onDestroy } from 'svelte';
+  import { createPopperActions } from './popper';
   import classnames from './utils';
 
   import { createContext } from './DropdownContext';
+
+  const noop = () => undefined;
 
   let context = createContext();
   setContext('dropdownContext', context);
@@ -21,15 +24,18 @@
   export let size = '';
   export let toggle = undefined;
 
-  const validDirections = ['up', 'down', 'left', 'right'];
+  const [popperRef, popperContent] = createPopperActions();
+
+  const validDirections = ['up', 'down', 'left', 'right', 'start', 'end'];
 
   if (validDirections.indexOf(direction) === -1) {
     throw new Error(
-      `Invalid direction sent: '${direction}' is not one of 'up', 'down', 'left', 'right'`
+      `Invalid direction sent: '${direction}' is not one of 'up', 'down', 'left', 'right', 'start', 'end'`
     );
   }
 
   let component;
+  let dropdownDirection;
 
   $: subItemIsActive = !!(
     setActiveFromChild &&
@@ -38,10 +44,15 @@
     component.querySelector('.active')
   );
 
+  $: {
+    if (direction === 'left') dropdownDirection = 'start';
+    else if (direction === 'right') dropdownDirection = 'end';
+    else dropdownDirection = direction;
+  }
+
   $: classes = classnames(
-    'd-inline-flex',
     className,
-    direction !== 'down' && `drop${direction}`,
+    direction !== 'down' && `drop${dropdownDirection}`,
     nav && active ? 'active' : false,
     setActiveFromChild && subItemIsActive ? 'active' : false,
     {
@@ -74,7 +85,9 @@
         toggle: handleToggle,
         isOpen,
         direction: direction === 'down' && dropup ? 'up' : direction,
-        inNavbar
+        inNavbar,
+        popperRef: nav ? noop : popperRef,
+        popperContent: nav ? noop : popperContent
       };
     });
   }

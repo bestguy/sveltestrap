@@ -1,14 +1,18 @@
 import { SvelteComponentTyped } from 'svelte';
 import { Color } from './shared';
 
-export interface IListGroupItemProps {
-  tag?: string;
-  active?: boolean;
-  disabled?: boolean;
-  color?: Color;
+export interface ListGroupItemProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['a']> {
   action?: boolean;
+  active?: boolean;
+  color?: Color;
+  disabled?: boolean;
   href?: string;
+  tag?: 'a' | 'button' | 'li';
 }
 
-declare class ListGroupItem extends SvelteComponentTyped<IListGroupItemProps> {}
-export default ListGroupItem;
+export default class ListGroupItem extends SvelteComponentTyped<
+  ListGroupItemProps,
+  { click: WindowEventMap['click'] },
+  { default: {} }
+> {}

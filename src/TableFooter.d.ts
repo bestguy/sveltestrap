@@ -1,4 +1,10 @@
 import { SvelteComponentTyped } from 'svelte';
 
-declare class TableFooter extends SvelteComponentTyped {}
-export default TableFooter;
+export interface TableFooterProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['tfoot']> {}
+
+export default class TableFooter extends SvelteComponentTyped<
+  TableFooterProps,
+  {},
+  { default: {} }
+> {}

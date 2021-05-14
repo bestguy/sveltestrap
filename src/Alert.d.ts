@@ -1,17 +1,22 @@
-import { IFadeProps } from './Fade';
+import { FadeProps } from './Fade';
 import { SvelteComponentTyped } from 'svelte';
 import { Color } from './shared';
 
-export interface IAlertProps {
-  color?: Color;
-  closeClassName?: string;
+export interface AlertProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   closeAriaLabel?: string;
+  closeClassName?: string;
+  color?: Color;
   dismissible?: boolean;
   fade?: boolean;
+  heading?: string;
   isOpen?: boolean;
-  transition?: IFadeProps;
   toggle?: () => void;
+  transition?: FadeProps;
 }
 
-declare class Alert extends SvelteComponentTyped<IAlertProps> {}
-export default Alert;
+export default class Alert extends SvelteComponentTyped<
+  AlertProps,
+  {},
+  { default: {}, heading: {} }
+> {}

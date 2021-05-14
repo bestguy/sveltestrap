@@ -19,11 +19,10 @@
 
   $: classes = classnames(
     className,
-    { close },
-    close || 'btn',
+    close ? 'btn-close' : 'btn',
     close || `btn${outline ? '-outline' : ''}-${color}`,
     size ? `btn-${size}` : false,
-    block ? 'btn-block' : false,
+    block ? 'd-block w-100' : false,
     { active }
   );
 
@@ -55,9 +54,7 @@
     aria-label={ariaLabel || defaultAriaLabel}
     {style}>
     <slot>
-      {#if close}
-        <span aria-hidden="true">×</span>
-      {:else if children}
+      {#if children}
         {children}
       {:else}
         <slot />

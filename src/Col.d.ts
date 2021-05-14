@@ -12,17 +12,22 @@ export type ColumnProps =
       order?: string | number;
     };
 
-export interface IColProps {
+export interface ColProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   id?: string;
   xs?: ColumnProps;
   sm?: ColumnProps;
   md?: ColumnProps;
   lg?: ColumnProps;
   xl?: ColumnProps;
+  xxl?: ColumnProps;
 
   // custom widths
   widths?: string[];
 }
 
-declare class Col extends SvelteComponentTyped<IColProps> {}
-export default Col;
+export default class Col extends SvelteComponentTyped<
+  ColProps,
+  {},
+  { default: {} }
+> {}

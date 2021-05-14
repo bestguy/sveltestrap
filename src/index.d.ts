@@ -29,7 +29,6 @@ import Colgroup from './Colgroup';
 import Collapse from './Collapse';
 import Column from './Column';
 import Container from './Container';
-import CustomInput from './CustomInput';
 import Dropdown from './Dropdown';
 import DropdownItem from './DropdownItem';
 import DropdownMenu from './DropdownMenu';
@@ -42,14 +41,10 @@ import FormText from './FormText';
 import Icon from './Icon';
 import Input from './Input';
 import InputGroup from './InputGroup';
-import InputGroupAddon from './InputGroupAddon';
-import InputGroupButtonDropdown from './InputGroupButtonDropdown';
 import InputGroupText from './InputGroupText';
-import Jumbotron from './Jumbotron';
 import Label from './Label';
 import ListGroup from './ListGroup';
 import ListGroupItem from './ListGroupItem';
-import Media from './Media';
 import Modal from './Modal';
 import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
@@ -60,6 +55,9 @@ import NavLink from './NavLink';
 import Navbar from './Navbar';
 import NavbarBrand from './NavbarBrand';
 import NavbarToggler from './NavbarToggler';
+import Offcanvas from './Offcanvas';
+import OffcanvasBody from './OffcanvasBody';
+import OffcanvasHeader from './OffcanvasHeader';
 import Pagination from './Pagination';
 import PaginationItem from './PaginationItem';
 import PaginationLink from './PaginationLink';
@@ -76,12 +74,7 @@ import TableHeader from './TableHeader';
 import Toast from './Toast';
 import ToastBody from './ToastBody';
 import ToastHeader from './ToastHeader';
-import Tooltip from './ToastHeader';
-import UncontrolledAlert from './Alert';
-import UncontrolledButtonDropdown from './Dropdown';
-import UncontrolledCollapse from './Collapse';
-import UncontrolledDropdown from './Dropdown';
-import UncontrolledFade from './Fade';
+import Tooltip from './Tooltip';
 
 export {
   Alert,
@@ -115,7 +108,6 @@ export {
   Collapse,
   Column,
   Container,
-  CustomInput,
   Dropdown,
   DropdownItem,
   DropdownMenu,
@@ -128,14 +120,10 @@ export {
   Icon,
   Input,
   InputGroup,
-  InputGroupAddon,
-  InputGroupButtonDropdown,
   InputGroupText,
-  Jumbotron,
   Label,
   ListGroup,
   ListGroupItem,
-  Media,
   Modal,
   ModalBody,
   ModalFooter,
@@ -146,6 +134,9 @@ export {
   Navbar,
   NavbarBrand,
   NavbarToggler,
+  Offcanvas,
+  OffcanvasBody,
+  OffcanvasHeader,
   Pagination,
   PaginationItem,
   PaginationLink,
@@ -162,10 +153,5 @@ export {
   Toast,
   ToastBody,
   ToastHeader,
-  Tooltip,
-  UncontrolledAlert,
-  UncontrolledButtonDropdown,
-  UncontrolledCollapse,
-  UncontrolledDropdown,
-  UncontrolledFade
+  Tooltip
 };

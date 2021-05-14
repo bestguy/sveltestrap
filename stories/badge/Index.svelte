@@ -13,7 +13,7 @@
 </script>
 
 <h1>Badges</h1>
-<a href="https://getbootstrap.com/docs/4.5/components/badge/" target="_blank">
+<a href="https://getbootstrap.com/docs/5.0/components/badge/" target="_blank">
   Bootstrap Badges
 </a>
 

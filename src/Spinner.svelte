@@ -16,7 +16,7 @@
 </script>
 
 <div {...$$restProps} role="status" class={classes}>
-  <span class="sr-only">
+  <span class="visually-hidden">
     <slot>Loading...</slot>
   </span>
 </div>

@@ -10,10 +10,15 @@
   $: classes = classnames(className, 'carousel-indicators');
 </script>
 
-<ol {...$$restProps} class={classes}>
-  {#each items as _item, index}
-    <li
+<div {...$$restProps} class={classes}>
+  {#each items as item, index}
+    <button
+      data-bs-target
       class:active={activeIndex === index}
-      on:click={() => (activeIndex = index)} />
+      aria-current={activeIndex === index}
+      aria-label={item.title}
+      on:click={() => (activeIndex = index)}>
+      {item.title ? item.title : ''}
+    </button>
   {/each}
-</ol>
+</div>

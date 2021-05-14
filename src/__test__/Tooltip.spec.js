@@ -20,8 +20,8 @@ beforeEach(() => {
 const TOOLTIP_POSTION_CLASS = {
   top: 'bs-tooltip-top',
   bottom: 'bs-tooltip-bottom',
-  left: 'bs-tooltip-left',
-  right: 'bs-tooltip-right'
+  left: 'bs-tooltip-start',
+  right: 'bs-tooltip-end'
 };
 
 describe('Tooltip', () => {

@@ -5,11 +5,7 @@
   export { className as class };
   export let toggle = undefined;
   export let closeAriaLabel = 'Close';
-  export let charCode = 215;
   export let children = undefined;
-
-  $: closeIcon =
-    typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;
 
   $: classes = classnames(className, 'modal-header');
 </script>
@@ -27,10 +23,8 @@
       <button
         type="button"
         on:click={toggle}
-        class="close"
-        aria-label={closeAriaLabel}>
-        <span aria-hidden="true">{closeIcon}</span>
-      </button>
+        class="btn-close"
+        aria-label={closeAriaLabel} />
     {/if}
   </slot>
 </div>

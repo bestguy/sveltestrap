@@ -1,8 +1,9 @@
 import { SvelteComponentTyped } from 'svelte';
-import { IFadeProps } from './Fade';
+import { FadeProps } from './Fade';
 import { ContainerType } from './shared';
 
-export interface IModalProps {
+export interface ModalProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   autoFocus?: boolean;
   backdrop?: boolean | 'static';
   backdropClassName?: string;
@@ -17,19 +18,26 @@ export interface IModalProps {
   keyboard?: boolean;
   labelledBy?: string;
   modalClassName?: string;
-  onClosed?: () => void;
-  onEnter?: () => void;
-  onExit?: () => void;
-  onOpened?: () => void;
   returnFocusAfterClose?: boolean;
   scrollable?: boolean;
   size?: string;
   toggle?: () => void;
-  transitionOptions?: IFadeProps | {};
+  transitionOptions?: FadeProps | {};
   unmountOnClose?: boolean;
   wrapClassName?: string;
   zIndex?: number | string;
 }
 
-declare class Modal extends SvelteComponentTyped<IModalProps> {}
-export default Modal;
+export default class Modal extends SvelteComponentTyped<
+  ModalProps,
+  {
+    open: CustomEvent<void>;
+    opening: CustomEvent<void>;
+    closing: CustomEvent<void>;
+    close: CustomEvent<void>;
+  },
+  {
+    default: {}
+    external: {}
+  }
+> {}

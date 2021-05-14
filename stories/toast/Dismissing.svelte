@@ -1,14 +1,12 @@
 <script lang="ts">
-  import { Button, Toast, ToastBody, ToastHeader } from 'sveltestrap';
+  import { Toast, ToastBody, ToastHeader } from 'sveltestrap';
 
-  let isOpen = false;
+  let isOpen = true;
 
   function toggle() {
     isOpen = !isOpen;
   }
 </script>
-
-<Button color="primary" on:click={toggle} class="mb-3">Toggle Toast</Button>
 
 <Toast {isOpen}>
   <ToastHeader {toggle}>Toast title</ToastHeader>

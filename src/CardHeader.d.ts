@@ -2,7 +2,7 @@ import { SvelteComponentTyped } from 'svelte';
 
 export interface ICardHeaderProps {
   id?: string;
-  tag?: string;
+  tag?: 'div' | 'h3';
 }
 
 declare class CardHeader extends SvelteComponentTyped<ICardHeaderProps> {}

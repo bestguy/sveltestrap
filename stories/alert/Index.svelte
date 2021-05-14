@@ -11,7 +11,7 @@
 </script>
 
 <h1>Alerts</h1>
-<a href="https://getbootstrap.com/docs/4.5/components/alerts/" target="_blank">
+<a href="https://getbootstrap.com/docs/5.0/components/alerts/" target="_blank">
   Bootstrap Alerts
 </a>
 
@@ -33,9 +33,7 @@
 
 <Example title="Alerts without fade" source={noFadeSource}>
   <p slot="info">
-    Fade can be disabled using
-    <code>fade=false</code>
-    .
+    Fade can be disabled using <code>fade=false</code>.
   </p>
   <NoFade />
 </Example>

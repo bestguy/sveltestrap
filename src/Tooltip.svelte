@@ -14,6 +14,7 @@
   export let animation = true;
   export let isOpen = false;
   let popperInstance;
+  let bsPlacement;
   let popperPlacement = placement;
   let tooltipEl;
   let targetEl;
@@ -45,11 +46,17 @@
     targetEl.addEventListener('mouseleave', () => isOpen = false);
   });
 
+  $: {
+    if (popperPlacement === 'left') bsPlacement = 'start';
+    else if (popperPlacement === 'right') bsPlacement = 'end';
+    else bsPlacement = popperPlacement;
+  }
+
   $: classes = classnames(
     className,
     'tooltip',
     animation ? 'fade' : false,
-    `bs-tooltip-${popperPlacement}`,
+    `bs-tooltip-${bsPlacement}`,
     isOpen ? 'show' : false
   );
 
@@ -68,7 +75,7 @@
     class={classes}
     role="tooltip"
     x-placement={popperPlacement}>
-    <div class="arrow" data-popper-arrow />
+    <div class="tooltip-arrow" data-popper-arrow />
     <div class="tooltip-inner">
       {#if children}
         {children}

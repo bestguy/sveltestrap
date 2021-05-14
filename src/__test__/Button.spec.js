@@ -43,7 +43,7 @@ describe('Button', () => {
   test('should render block', () => {
     const container = renderButton({ block: true });
     const button = container.querySelector('.btn');
-    expect(button.className).toBe('btn btn-secondary btn-block');
+    expect(button.className).toBe('btn btn-secondary d-block w-100');
   });
 
   test('should render disabled', () => {
@@ -60,8 +60,8 @@ describe('Button', () => {
 
   test('should render as close', () => {
     const container = renderButton({ close: true });
-    const button = container.querySelector('.close');
-    expect(button.className).toBe('close');
+    const button = container.querySelector('.btn-close');
+    expect(button.className).toBe('btn-close');
   });
 
   test('should render as link if href specified', () => {

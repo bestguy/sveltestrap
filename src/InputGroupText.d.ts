@@ -1,4 +1,10 @@
 import { SvelteComponentTyped } from 'svelte';
 
-declare class InputGroupText extends SvelteComponentTyped {}
-export default InputGroupText;
+export interface InputGroupTextProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['span']> {}
+
+export default class InputGroupText extends SvelteComponentTyped<
+  InputGroupTextProps,
+  {},
+  { default: {} }
+> {}
