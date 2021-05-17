@@ -93,7 +93,14 @@ or:
 />
 ```
 
-This component uses and assumes the CSS based webfont.  You can host the icon CSS and webfonts on your own domain if needed.
+or the [Styles](https://sveltestrap.js.org/?path=/story/components--styles) component includes the Bootstrap Icon CSS by default:
+ 
+```html
+<script>
+import { Styles } from 'sveltestrap';
+</script>
+<Styles />
+```
 
 ### Note on server-side rendering (SSR) Usage
 
