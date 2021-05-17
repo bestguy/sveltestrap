@@ -49,6 +49,16 @@ or:
 </style>
 ```
 
+or alternately, use the [Styles](https://sveltestrap.js.org/?path=/story/components--styles) component:
+
+```html
+<script>
+  import { Styles } from 'sveltestrap';
+</script>
+
+<Styles />
+```
+
 Then use sveltestrap components in your svelte component:
 
 ```html
