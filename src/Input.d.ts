@@ -5,6 +5,7 @@ export type InputType =
   | 'button'
   | 'checkbox'
   | 'color'
+  | 'datalist'
   | 'date'
   | 'datetime-local'
   | 'email'

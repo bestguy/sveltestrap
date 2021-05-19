@@ -1,6 +1,5 @@
 <script>
   import FormCheck from './FormCheck.svelte';
-
   import classnames from './utils';
 
   let className = '';
@@ -306,6 +305,27 @@
       {name}
       {disabled}
       {placeholder} />
+  {:else if type === 'datalist'}
+    <input
+      {...$$restProps}
+      class={classes}
+      type="text"
+      on:blur
+      on:change
+      on:focus
+      on:input
+      on:keydown
+      on:keypress
+      on:keyup
+      bind:value
+      list="datalistOptions"
+      {disabled}
+      {name}
+      {placeholder}
+      {readonly} />
+    <datalist id="datalistOptions">
+      <slot />
+    </datalist>
   {:else if type === 'range'}
     <input
       {...$$restProps}

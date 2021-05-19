@@ -112,6 +112,16 @@
     </Input>
   </FormGroup> -->
   <FormGroup>
+    <Label for="exampleDataList">Datalist</Label>
+    <Input type="datalist" name="dataList" id="exampleDataList">
+      <option value="Alpha" />
+      <option value="Bravo" />
+      <option value="Charlie" />
+      <option value="Delta" />
+      <option value="Echo" />
+    </Input>
+  </FormGroup>
+  <FormGroup>
     <Label for="exampleText">Text Area</Label>
     <Input type="textarea" name="text" id="exampleText" />
   </FormGroup>
