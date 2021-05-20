@@ -10,7 +10,9 @@
   });
 
   onDestroy(() => {
-    document.body.removeChild(portal);
+    if (typeof document !== 'undefined') {
+      document.body.removeChild(portal);
+    }
   });
 </script>
 
