@@ -47,7 +47,7 @@
       dispatch(isOpen ? 'open' : 'close');
     }, getTransitionDuration(element));
   }
-  $: if (document && isOpen && toggle) {
+  $: if (isOpen && toggle && (typeof window !== 'undefined')) {
     removeEscListener = browserEvent(document, 'keydown', (event) => {
       if (event.key && event.key === 'Escape') toggle();
     });
