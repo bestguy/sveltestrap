@@ -12,15 +12,16 @@
 
   const dispatch = createEventDispatcher();
 
-  const { toggle, open } = getContext('accordion');
+  const { stayOpen, toggle, open } = getContext('accordion');
   $: classes = classnames(className, 'accordion-item');
-  $: accordionOpen = $open === accordionId;
+  $: accordionOpen = stayOpen ? active : $open === accordionId;
 
   onMount(() => {
     if (active) toggle(accordionId);
   });
 
   const onToggle = () => {
+    if (stayOpen) active = !active;    
     toggle(accordionId);
     dispatch('toggle', !accordionOpen);
   }
