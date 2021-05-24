@@ -53,11 +53,13 @@
   });
 
   onDestroy(() => {
-    targetEl.removeEventListener('mouseover', open);
-    targetEl.removeEventListener('mouseleave', close);
-    targetEl.removeEventListener('focus', open);
-    targetEl.removeEventListener('blur', close);
-    targetEl.removeAttribute('aria-describedby');
+    if (targetEl) {
+      targetEl.removeEventListener('mouseover', open);
+      targetEl.removeEventListener('mouseleave', close);
+      targetEl.removeEventListener('focus', open);
+      targetEl.removeEventListener('blur', close);
+      targetEl.removeAttribute('aria-describedby');
+    }
   });
 
   $: if (targetEl) {
