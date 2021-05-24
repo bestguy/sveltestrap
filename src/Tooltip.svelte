@@ -44,6 +44,8 @@
     targetEl = document.querySelector(`#${target}`);
     targetEl.addEventListener('mouseover', () => isOpen = true);
     targetEl.addEventListener('mouseleave', () => isOpen = false);
+    targetEl.addEventListener('focus', () => isOpen = true);
+    targetEl.addEventListener('blur', () => isOpen = false);
   });
 
   $: {
