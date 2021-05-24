@@ -1,23 +1,24 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
   import { createPopper } from '@popperjs/core/dist/esm/popper';
-  import classnames from './utils';
+  import classnames, { uuid } from './utils';
   import InlineContainer from './InlineContainer.svelte';
   import Portal from './Portal.svelte';
 
   let className = '';
   export { className as class };
-  export let container = undefined;
-  export let target = '';
-  export let placement = 'top';
-  export let children = undefined;
   export let animation = true;
+  export let children = undefined;
+  export let container = undefined;
+  export let id = `tooltip_${uuid()}`;
   export let isOpen = false;
-  let popperInstance;
+  export let placement = 'top';
+  export let target = '';
   let bsPlacement;
+  let popperInstance;
   let popperPlacement = placement;
-  let tooltipEl;
   let targetEl;
+  let tooltipEl;
 
   const checkPopperPlacement = {
     name: 'checkPopperPlacement',
@@ -40,11 +41,29 @@
     }
   }
 
+  const open = () => isOpen = true;
+  const close = () => isOpen = false;
+
   onMount(() => {
     targetEl = document.querySelector(`#${target}`);
-    targetEl.addEventListener('mouseover', () => isOpen = true);
-    targetEl.addEventListener('mouseleave', () => isOpen = false);
+    targetEl.addEventListener('mouseover', open);
+    targetEl.addEventListener('mouseleave', close);
+    targetEl.addEventListener('focus', open);
+    targetEl.addEventListener('blur', close);
   });
+
+  onDestroy(() => {
+    targetEl.removeEventListener('mouseover', open);
+    targetEl.removeEventListener('mouseleave', close);
+    targetEl.removeEventListener('focus', open);
+    targetEl.removeEventListener('blur', close);
+    targetEl.removeAttribute('aria-describedby');
+  });
+
+  $: if (targetEl) {
+    if (isOpen) targetEl.setAttribute('aria-describedby', id);
+    else targetEl.removeAttribute('aria-describedby');
+  }
 
   $: {
     if (popperPlacement === 'left') bsPlacement = 'start';
@@ -73,6 +92,7 @@
     bind:this={tooltipEl}
     {...$$restProps}
     class={classes}
+    {id}
     role="tooltip"
     x-placement={popperPlacement}>
     <div class="tooltip-arrow" data-popper-arrow />
