@@ -1,10 +1,11 @@
 <script>
   import { createEventDispatcher, onMount } from 'svelte';
-  import { fade as fadeTransition } from 'svelte/transition';
   import InlineContainer from './InlineContainer.svelte';
+  import ModalBackdrop from './ModalBackdrop.svelte';
   import OffcanvasBody from './OffcanvasBody.svelte';
   import OffcanvasHeader from './OffcanvasHeader.svelte';
   import Portal from './Portal.svelte';
+  import { backdropIn, backdropOut } from './transitions.js';
   import classnames, { browserEvent, getTransitionDuration } from './utils';
 
   const dispatch = createEventDispatcher();
@@ -12,7 +13,7 @@
   let className = '';
   export { className as class };
   export let backdrop = true;
-  export let container;
+  export let container = 'body';
   export let fade = true;
   export let backdropDuration = fade ? 150 : 0;
   export let header = undefined;
@@ -97,10 +98,9 @@
     <slot />
   </OffcanvasBody>
 </div>
-{#if backdrop && isOpen}
-  <div
+{#if backdrop}
+  <ModalBackdrop
     on:click={toggle ? () => toggle() : undefined}
-    transition:fadeTransition={{ duration: backdropDuration }}
-    class={classnames('modal-backdrop', 'show')} />
+    {isOpen} />
 {/if}
 </svelte:component>

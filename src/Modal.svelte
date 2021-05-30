@@ -7,8 +7,9 @@
   import classnames from './utils';
   import { browserEvent } from './utils';
   import { createEventDispatcher, onDestroy, onMount, afterUpdate } from 'svelte';
-  import { fade as fadeTransition } from 'svelte/transition';
+  import { modalIn, modalOut } from './transitions';
   import InlineContainer from './InlineContainer.svelte';
+  import ModalBackdrop from './ModalBackdrop.svelte';
   import ModalBody from './ModalBody.svelte';
   import ModalHeader from './ModalHeader.svelte';
   import Portal from './Portal.svelte';
@@ -38,14 +39,10 @@
   export let backdrop = true;
   export let wrapClassName = '';
   export let modalClassName = '';
-  export let backdropClassName = '';
   export let contentClassName = '';
   export let fade = true;
-  export let backdropDuration = fade ? 150 : 0;
   export let unmountOnClose = true;
   export let returnFocusAfterClose = true;
-  export let transitionType = fadeTransition;
-  export let transitionOptions = { duration: fade ? 300 : 0 };
 
   let hasOpened = false;
   let _isMounted = false;
@@ -219,12 +216,11 @@
     {...$$restProps}>
     {#if isOpen}
       <div
-        transition:transitionType={transitionOptions}
+        in:modalIn
+        out:modalOut
         ariaLabelledby={labelledBy}
         class={classnames('modal', modalClassName, {
-          show: isOpen,
-          'd-block': isOpen,
-          'd-none': !isOpen,
+          fade,
           'position-static': staticModal
         })}
         role="dialog"
@@ -252,12 +248,12 @@
           </div>
         </div>
       </div>
-      {#if backdrop && !staticModal}
-        <div
-          transition:fadeTransition={{ duration: backdropDuration }}
-          class={classnames('modal-backdrop', 'show', backdropClassName)} />
-      {/if}
     {/if}
   </div>
 </svelte:component>
+{/if}
+{#if backdrop && !staticModal}
+  <svelte:component this={outer}>
+    <ModalBackdrop {fade} {isOpen} />
+  </svelte:component>
 {/if}
