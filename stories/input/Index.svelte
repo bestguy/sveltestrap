@@ -26,8 +26,8 @@
     The recommended way to bind values to Inputs is via
     <code>{snippet}</code>
     <br />
-    The Input component also exposes its root HTMLElement with
-    <code>bind:root</code>
+    The Input component also exposes its inner HTMLElement with
+    <code>bind:nner</code>
   </p>
   <Binding />
 </Example>

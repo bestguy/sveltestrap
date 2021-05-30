@@ -6,7 +6,7 @@
   let className = '';
   export { className as class };
 
-  export let root;
+  export let inner;
 
   export let bsSize = undefined;
   export let checked = false;
@@ -76,9 +76,7 @@
       size = undefined;
     }
 
-    classes = classnames(
-      className,
-      formControlClass,
+    classes = classnames(className, formControlClass,
       { 
         'is-invalid': invalid,
         'is-valid': valid,
@@ -107,7 +105,7 @@
       on:keypress
       on:keyup
       bind:value
-      bind:this={root}
+      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -125,7 +123,7 @@
       on:keypress
       on:keyup
       bind:value
-      bind:this={root}
+      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -143,7 +141,7 @@
       on:keypress
       on:keyup
       bind:value
-      bind:this={root}
+      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -161,7 +159,7 @@
       on:keypress
       on:keyup
       bind:value
-      bind:this={root}
+      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -180,7 +178,7 @@
       on:keyup
       bind:files
       bind:value
-      bind:this={root}
+      bind:this={inner}
       {disabled}
       {invalid}
       {multiple}
@@ -204,7 +202,7 @@
       bind:checked
       bind:group
       bind:value
-      bind:this={root}
+      bind:this={inner}
       {disabled}
       {invalid}
       {label}
@@ -225,7 +223,7 @@
       on:keypress
       on:keyup
       bind:value
-      bind:this={root}
+      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -243,7 +241,7 @@
       on:keypress
       on:keyup
       bind:value
-      bind:this={root}
+      bind:this={inner}
       {readonly}
       {name}
       {disabled}
@@ -261,7 +259,7 @@
       on:keypress
       on:keyup
       bind:value
-      bind:this={root}
+      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -279,7 +277,7 @@
       on:keypress
       on:keyup
       bind:value
-      bind:this={root}
+      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -296,7 +294,7 @@
       on:keypress
       on:keyup
       bind:value
-      bind:this={root}
+      bind:this={inner}
       {readonly}
       class={classes}
       {name}
@@ -314,7 +312,7 @@
       on:keypress
       on:keyup
       bind:value
-      bind:this={root}
+      bind:this={inner}
       {readonly}
       class={classes}
       {name}
@@ -332,7 +330,7 @@
       on:keypress
       on:keyup
       bind:value
-      bind:this={root}
+      bind:this={inner}
       {readonly}
       class={classes}
       {name}
@@ -350,7 +348,7 @@
       on:keypress
       on:keyup
       bind:value
-      bind:this={root}
+      bind:this={inner}
       {readonly}
       class={classes}
       {name}
@@ -386,7 +384,7 @@
     on:keypress
     on:keyup
     bind:value
-    bind:this={root}
+    bind:this={inner}
     {disabled}
     {name}
     {placeholder}
@@ -400,7 +398,7 @@
     on:focus
     on:input
     bind:value
-    bind:this={root}
+    bind:this={inner}
     {name}
     {disabled}
     {readonly}>
@@ -417,7 +415,7 @@
     on:change
     on:input
     bind:value
-    bind:this={root}
+    bind:this={inner}
     {name}
     {disabled}>
     <slot />

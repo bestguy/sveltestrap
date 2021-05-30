@@ -3,10 +3,10 @@
 
   let inputValue = '';
 
-  let root: HTMLTextAreaElement;
+  let inner: HTMLTextAreaElement;
   const resize = () => {
-    root.style.height = 'auto';
-    root.style.height = 4 + root.scrollHeight + 'px';
+    inner.style.height = 'auto';
+    inner.style.height = 4 + inner.scrollHeight + 'px';
   };
 </script>
 
@@ -20,5 +20,5 @@
 
 <FormGroup>
   <Label>This textarea resizes as you type</Label>
-  <Input rows={1} type="textarea" bind:root on:input={resize} />
+  <Input rows={1} type="textarea" bind:inner on:input={resize} />
 </FormGroup>
