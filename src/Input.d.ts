@@ -47,6 +47,7 @@ export interface InputProps
   type?: InputType;
   valid?: boolean;
   value?: string;
+  root?: HTMLElement;
 }
 
 export default class Input extends SvelteComponentTyped<
@@ -61,5 +62,5 @@ export default class Input extends SvelteComponentTyped<
     input: WindowEventMap['input'];
   },
   { default: {} }
-> {}
+> { }
 

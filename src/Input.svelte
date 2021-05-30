@@ -6,6 +6,8 @@
   let className = '';
   export { className as class };
 
+  export let root;
+
   export let bsSize = undefined;
   export let checked = false;
   export let color = undefined;
@@ -42,10 +44,10 @@
         break;
       case 'select':
         formControlClass = `form-select`;
-        tag = 'select'
+        tag = 'select';
         break;
       case 'textarea':
-        tag = 'textarea'
+        tag = 'textarea';
         break;
       case 'button':
       case 'reset':
@@ -74,16 +76,12 @@
       size = undefined;
     }
 
-    classes = classnames(
-      className,
-      formControlClass,
-      { 
-        'is-invalid': invalid,
-        'is-valid': valid,
-        [`form-control-${bsSize}`]: bsSize && !isBtn,
-        [`btn-${bsSize}`]: bsSize && isBtn
-      }
-    );
+    classes = classnames(className, formControlClass, {
+      'is-invalid': invalid,
+      'is-valid': valid,
+      [`form-control-${bsSize}`]: bsSize && !isBtn,
+      [`btn-${bsSize}`]: bsSize && isBtn
+    });
   }
 
   const handleInput = (event) => {
@@ -105,12 +103,13 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={root}
       {disabled}
       {name}
       {placeholder}
       {readonly} />
-    {:else if type === 'password'}
-      <input
+  {:else if type === 'password'}
+    <input
       {...$$restProps}
       class={classes}
       type="password"
@@ -122,6 +121,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={root}
       {disabled}
       {name}
       {placeholder}
@@ -139,6 +139,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={root}
       {disabled}
       {name}
       {placeholder}
@@ -156,6 +157,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={root}
       {disabled}
       {name}
       {placeholder}
@@ -174,6 +176,7 @@
       on:keyup
       bind:files
       bind:value
+      bind:this={root}
       {disabled}
       {invalid}
       {multiple}
@@ -181,12 +184,12 @@
       {placeholder}
       {readonly}
       {valid} />
-  {:else if (type === 'checkbox' || type === 'radio' || type === 'switch')}
+  {:else if type === 'checkbox' || type === 'radio' || type === 'switch'}
     <FormCheck
       {...$$restProps}
       class={className}
       size={bsSize}
-      type={type}
+      {type}
       on:blur
       on:change
       on:focus
@@ -197,6 +200,7 @@
       bind:checked
       bind:group
       bind:value
+      bind:this={root}
       {disabled}
       {invalid}
       {label}
@@ -217,6 +221,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={root}
       {disabled}
       {name}
       {placeholder}
@@ -234,6 +239,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={root}
       {readonly}
       {name}
       {disabled}
@@ -251,6 +257,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={root}
       {disabled}
       {name}
       {placeholder}
@@ -268,6 +275,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={root}
       {disabled}
       {name}
       {placeholder}
@@ -284,6 +292,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={root}
       {readonly}
       class={classes}
       {name}
@@ -301,6 +310,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={root}
       {readonly}
       class={classes}
       {name}
@@ -318,6 +328,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={root}
       {readonly}
       class={classes}
       {name}
@@ -335,6 +346,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={root}
       {readonly}
       class={classes}
       {name}
@@ -370,6 +382,7 @@
     on:keypress
     on:keyup
     bind:value
+    bind:this={root}
     {disabled}
     {name}
     {placeholder}
@@ -383,6 +396,7 @@
     on:focus
     on:input
     bind:value
+    bind:this={root}
     {name}
     {disabled}
     {readonly}>
@@ -399,6 +413,7 @@
     on:change
     on:input
     bind:value
+    bind:this={root}
     {name}
     {disabled}>
     <slot />
