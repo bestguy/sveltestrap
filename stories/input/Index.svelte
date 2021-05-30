@@ -25,6 +25,9 @@
   <p slot="info">
     The recommended way to bind values to Inputs is via
     <code>{snippet}</code>
+    <br />
+    The Input component also exposes its root HTMLElement with
+    <code>bind:root</code>
   </p>
   <Binding />
 </Example>
