@@ -47,6 +47,7 @@ export interface InputProps
   type?: InputType;
   valid?: boolean;
   value?: string;
+  inner?: HTMLElement;
 }
 
 export default class Input extends SvelteComponentTyped<

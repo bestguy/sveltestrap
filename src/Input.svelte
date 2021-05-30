@@ -6,6 +6,8 @@
   let className = '';
   export { className as class };
 
+  export let inner;
+
   export let bsSize = undefined;
   export let checked = false;
   export let color = undefined;
@@ -42,10 +44,10 @@
         break;
       case 'select':
         formControlClass = `form-select`;
-        tag = 'select'
+        tag = 'select';
         break;
       case 'textarea':
-        tag = 'textarea'
+        tag = 'textarea';
         break;
       case 'button':
       case 'reset':
@@ -74,9 +76,7 @@
       size = undefined;
     }
 
-    classes = classnames(
-      className,
-      formControlClass,
+    classes = classnames(className, formControlClass,
       { 
         'is-invalid': invalid,
         'is-valid': valid,
@@ -105,12 +105,13 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
       {readonly} />
-    {:else if type === 'password'}
-      <input
+  {:else if type === 'password'}
+    <input
       {...$$restProps}
       class={classes}
       type="password"
@@ -122,6 +123,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -139,6 +141,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -156,6 +159,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -174,6 +178,7 @@
       on:keyup
       bind:files
       bind:value
+      bind:this={inner}
       {disabled}
       {invalid}
       {multiple}
@@ -186,7 +191,7 @@
       {...$$restProps}
       class={className}
       size={bsSize}
-      type={type}
+      {type}
       on:blur
       on:change
       on:focus
@@ -197,6 +202,7 @@
       bind:checked
       bind:group
       bind:value
+      bind:this={inner}
       {disabled}
       {invalid}
       {label}
@@ -217,6 +223,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -234,6 +241,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={inner}
       {readonly}
       {name}
       {disabled}
@@ -251,6 +259,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -268,6 +277,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -284,6 +294,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={inner}
       {readonly}
       class={classes}
       {name}
@@ -301,6 +312,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={inner}
       {readonly}
       class={classes}
       {name}
@@ -318,6 +330,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={inner}
       {readonly}
       class={classes}
       {name}
@@ -335,6 +348,7 @@
       on:keypress
       on:keyup
       bind:value
+      bind:this={inner}
       {readonly}
       class={classes}
       {name}
@@ -370,6 +384,7 @@
     on:keypress
     on:keyup
     bind:value
+    bind:this={inner}
     {disabled}
     {name}
     {placeholder}
@@ -383,6 +398,7 @@
     on:focus
     on:input
     bind:value
+    bind:this={inner}
     {name}
     {disabled}
     {readonly}>
@@ -399,6 +415,7 @@
     on:change
     on:input
     bind:value
+    bind:this={inner}
     {name}
     {disabled}>
     <slot />
