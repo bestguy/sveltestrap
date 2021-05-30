@@ -27,7 +27,7 @@
     <code>{snippet}</code>
     <br />
     The Input component also exposes its inner HTMLElement with
-    <code>bind:nner</code>
+    <code>bind:inner</code>
   </p>
   <Binding />
 </Example>
