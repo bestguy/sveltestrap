@@ -62,5 +62,5 @@ export default class Input extends SvelteComponentTyped<
     input: WindowEventMap['input'];
   },
   { default: {} }
-> { }
+> {}
 

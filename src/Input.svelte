@@ -76,12 +76,16 @@
       size = undefined;
     }
 
-    classes = classnames(className, formControlClass, {
-      'is-invalid': invalid,
-      'is-valid': valid,
-      [`form-control-${bsSize}`]: bsSize && !isBtn,
-      [`btn-${bsSize}`]: bsSize && isBtn
-    });
+    classes = classnames(
+      className,
+      formControlClass,
+      { 
+        'is-invalid': invalid,
+        'is-valid': valid,
+        [`form-control-${bsSize}`]: bsSize && !isBtn,
+        [`btn-${bsSize}`]: bsSize && isBtn
+      }
+    );
   }
 
   const handleInput = (event) => {
@@ -184,7 +188,7 @@
       {placeholder}
       {readonly}
       {valid} />
-  {:else if type === 'checkbox' || type === 'radio' || type === 'switch'}
+  {:else if (type === 'checkbox' || type === 'radio' || type === 'switch')}
     <FormCheck
       {...$$restProps}
       class={className}
