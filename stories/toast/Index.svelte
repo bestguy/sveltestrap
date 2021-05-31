@@ -2,6 +2,8 @@
   import Example from '../Example.svelte';
   import Autohide from './Autohide.svelte';
   import autohideSource from '!!raw-loader!./Autohide.svelte';
+  import Events from './Events.svelte';
+  import eventsSource from '!!raw-loader!./Events.svelte';
   import Sample from './Sample.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
   import Dismissing from './Dismissing.svelte';
@@ -29,4 +31,8 @@
 
 <Example title="Autohide" source={autohideSource}>
   <Autohide />
+</Example>
+
+<Example title="Events" source={eventsSource}>
+  <Events />
 </Example>

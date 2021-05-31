@@ -14,6 +14,11 @@ export interface ToastProps
 
 export default class Toast extends SvelteComponentTyped<
   ToastProps,
-  {},
+  {
+    open: CustomEvent<void>;
+    opening: CustomEvent<void>;
+    closing: CustomEvent<void>;
+    close: CustomEvent<void>;
+  },
   { default: {} }
 > {}

@@ -1,9 +1,11 @@
 <script>
-  import { onDestroy } from 'svelte';
+  import { createEventDispatcher, onDestroy } from 'svelte';
   import { fade as fadeTrans } from 'svelte/transition';
   import ToastBody from './ToastBody.svelte';
   import ToastHeader from './ToastHeader.svelte';
   import classnames from './utils';
+
+  const dispatch = createEventDispatcher();
 
   let className = '';
   export { className as class };
@@ -36,6 +38,10 @@
     {...$$restProps}
     class={classes}
     transition:fadeTrans={{ duration: fade && duration }}
+    on:introstart={() => dispatch('opening')}
+    on:introend={() => dispatch('open')}
+    on:outrostart={() => dispatch('closing')}
+    on:outroend={() => dispatch('close')}
     role="alert">
     {#if header}
       <ToastHeader {toggle}>
