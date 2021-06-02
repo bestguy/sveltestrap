@@ -6,14 +6,13 @@
   let className = '';
   export { className as class };
 
-  export let inner;
-
   export let bsSize = undefined;
   export let checked = false;
   export let color = undefined;
   export let disabled = undefined;
   export let files = undefined;
   export let group = undefined;
+  export let inner = undefined;
   export let invalid = false;
   export let label = undefined;
   export let multiple = undefined;
