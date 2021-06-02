@@ -3,15 +3,16 @@
 
   let className = '';
   export { className as class };
-  export let size = '';
   export let checked = false;
   export let disabled = false;
   export let group = undefined;
   export let id = undefined;
   export let inline = false;
+  export let inner = undefined;
   export let invalid = false;
   export let label = '';
   export let name = '';
+  export let size = '';
   export let type = 'checkbox';
   export let valid = false;
   export let value = undefined;
@@ -47,6 +48,7 @@
       on:focus
       on:input
       bind:group
+      bind:this={inner}
       {disabled}
       {name}
       {value} />
@@ -61,6 +63,7 @@
       on:focus
       on:input
       bind:checked
+      bind:this={inner}
       {disabled}
       {name}
       {value} />
@@ -75,6 +78,7 @@
       on:focus
       on:input
       bind:checked
+      bind:this={inner}
       {disabled}
       {name}
       {value} />

@@ -1,3 +1,6 @@
+import Accordion from './Accordion';
+import AccordionHeader from './AccordionHeader';
+import AccordionItem from './AccordionItem';
 import Alert from './Alert';
 import Badge from './Badge';
 import Breadcrumb from './Breadcrumb';
@@ -35,6 +38,7 @@ import DropdownMenu from './DropdownMenu';
 import DropdownToggle from './DropdownToggle';
 import Fade from './Fade';
 import Form from './Form';
+import FormCheck from './FormCheck';
 import FormFeedback from './FormFeedback';
 import FormGroup from './FormGroup';
 import FormText from './FormText';
@@ -62,6 +66,7 @@ import OffcanvasHeader from './OffcanvasHeader';
 import Pagination from './Pagination';
 import PaginationItem from './PaginationItem';
 import PaginationLink from './PaginationLink';
+import Portal from './Portal';
 import Popover from './Popover';
 import Progress from './Progress';
 import ResponsiveContainer from './ResponsiveContainer';
@@ -79,6 +84,9 @@ import ToastHeader from './ToastHeader';
 import Tooltip from './Tooltip';
 
 export {
+  Accordion,
+  AccordionHeader,
+  AccordionItem,
   Alert,
   Badge,
   Breadcrumb,
@@ -116,6 +124,7 @@ export {
   DropdownToggle,
   Fade,
   Form,
+  FormCheck,
   FormFeedback,
   FormGroup,
   FormText,
@@ -144,6 +153,7 @@ export {
   PaginationItem,
   PaginationLink,
   Popover,
+  Portal,
   Progress,
   ResponsiveContainer,
   Row,
