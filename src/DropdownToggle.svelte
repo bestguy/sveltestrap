@@ -12,6 +12,7 @@
   export let caret = false;
   export let color = 'secondary';
   export let disabled = false;
+  export let inner = undefined;
   export let nav = false;
   export let outline = false;
   export let size = '';
@@ -51,6 +52,7 @@
   <a
     use:$context.popperRef
     {...$$restProps}
+    bind:this={inner}
     on:click
     on:click={toggleButton}
     href="#nav"
@@ -64,6 +66,7 @@
   <div
     use:$context.popperRef
     {...$$restProps}
+    bind:this={inner}
     on:click
     on:click={toggleButton}
     aria-expanded={$context.isOpen}
@@ -76,6 +79,7 @@
   <span
     use:$context.popperRef
     {...$$restProps}
+    bind:this={inner}
     on:click
     on:click={toggleButton}
     aria-expanded={$context.isOpen}
@@ -88,6 +92,7 @@
   <button
     use:$context.popperRef
     {...$$restProps}
+    bind:this={inner}
     on:click
     on:click={toggleButton}
     aria-expanded={$context.isOpen}

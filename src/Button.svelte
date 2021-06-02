@@ -10,6 +10,7 @@
   export let color = 'secondary';
   export let disabled = false;
   export let href = '';
+  export let inner = undefined;
   export let outline = false;
   export let size = null;
   export let style = '';
@@ -34,6 +35,7 @@
     {...$$restProps}
     class={classes}
     {disabled}
+    bind:this={inner}
     on:click
     {href}
     aria-label={ariaLabel || defaultAriaLabel}
@@ -49,6 +51,7 @@
     {...$$restProps}
     class={classes}
     {disabled}
+    bind:this={inner}
     on:click
     {value}
     aria-label={ariaLabel || defaultAriaLabel}
