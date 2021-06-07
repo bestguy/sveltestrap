@@ -4,7 +4,7 @@
 
   export let stacked: boolean = false;
   export let source: any;
-  export let title: any;
+  export let title: any = undefined;
 </script>
 
 <div class="py-3">

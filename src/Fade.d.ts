@@ -7,6 +7,7 @@ export interface FadeProps
   onEntered?: () => void;
   onExiting?: () => void;
   onExited?: () => void;
+  renderWhenClosed?: boolean;
   toggler?: string;
 }
 

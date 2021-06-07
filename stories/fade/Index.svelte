@@ -2,6 +2,8 @@
   import Example from '../Example.svelte';
   import Events from './Events.svelte';
   import eventsSource from '!!raw-loader!./Events.svelte';
+  import RenderClosed from './RenderClosed.svelte';
+  import renderClosedSource from '!!raw-loader!./RenderClosed.svelte';
   import Sample from './Sample.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
   import Uncontrolled from './Uncontrolled.svelte';
@@ -13,6 +15,13 @@ Bootstrap does not have a fade component, but utility CSS and JS is used in
 Carousels, ListGroups, Modals, and Navs.
 <Example source={sampleSource}>
   <Sample />
+</Example>
+
+<Example title="Render when closed" source={renderClosedSource}>
+  <p slot="info">
+    Use the <code>renderWhenClosed</code> prop for to keep Fade content slot in DOM when closed.
+  </p>
+  <RenderClosed />
 </Example>
 
 <Example title="Events" source={eventsSource}>

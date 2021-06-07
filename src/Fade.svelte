@@ -1,35 +1,41 @@
 <script>
   import { createEventDispatcher, onMount } from 'svelte';
-  import { fade } from 'svelte/transition';
   import toggle from './toggle';
+  import classnames from './utils';
 
   const dispatch = createEventDispatcher();
-
+  
   export let isOpen = false;
   let className = '';
   export { className as class };
-  export let onEntering = () => dispatch('opening');
+  export let onEntering = () => {
+    show = true;
+    dispatch('opening');
+  };
   export let onEntered = () => dispatch('open');
   export let onExiting = () => dispatch('closing');
-  export let onExited = () => dispatch('close');
+  export let onExited = () => {
+    show = false;
+    dispatch('close');
+  };
+  export let renderWhenClosed = false;
   export let toggler = null;
 
+  let show = false;
+
   onMount(() => toggle(toggler, () => isOpen = !isOpen));
+
+  $: classes = classnames('fade', className, { show: isOpen })
 </script>
 
-{#if isOpen}
-  <div
-    {...$$restProps}
-    transition:fade|local
-    on:introstart
-    on:introend
-    on:outrostart
-    on:outroend
-    on:introstart={onEntering}
-    on:introend={onEntered}
-    on:outrostart={onExiting}
-    on:outroend={onExited}
-    class={className}>
+<div
+  {...$$restProps}
+  on:transitionstart={() => isOpen ? onEntering() : onExiting()}
+  on:transitionend={() => isOpen ? onEntered() : onExited()}
+  class={classes}>
+  {#if renderWhenClosed}
     <slot />
-  </div>
-{/if}
+  {:else if isOpen || show}
+      <slot />
+  {/if}
+</div>
