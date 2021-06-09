@@ -33,10 +33,10 @@
     "svelte": "^3.29.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.10.5",
-    "@babel/preset-env": "^7.10.4",
-    "@babel/preset-typescript": "^7.10.4",
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-typescript": "^7.13.0",
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@rollup/plugin-typescript": "^8.2.1",
@@ -53,7 +53,7 @@
     "@types/lodash-es": "^4.17.4",
     "autoprefixer": "^9.8.5",
     "babel-jest": "^26.1.0",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "^8.2.2",
     "bootstrap": "^4.5.0",
     "clean-webpack-plugin": "^3.0.0",
     "conventional-changelog-cli": "^2.0.34",
