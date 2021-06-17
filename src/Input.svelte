@@ -110,7 +110,8 @@
       {disabled}
       {name}
       {placeholder}
-      {readonly} />
+      {readonly}
+      {size} />
   {:else if type === 'password'}
     <input
       {...$$restProps}
@@ -128,7 +129,8 @@
       {disabled}
       {name}
       {placeholder}
-      {readonly} />
+      {readonly}
+      {size} />
   {:else if type === 'color'}
     <input
       {...$$restProps}
@@ -162,9 +164,11 @@
       bind:value
       bind:this={inner}
       {disabled}
+      {multiple}
       {name}
       {placeholder}
-      {readonly} />
+      {readonly}
+      {size} />
   {:else if type === 'file'}
     <input
       {...$$restProps}
@@ -228,7 +232,8 @@
       {disabled}
       {name}
       {placeholder}
-      {readonly} />
+      {readonly}
+      {size} />
   {:else if type === 'number'}
     <input
       {...$$restProps}
@@ -301,6 +306,42 @@
       {name}
       {disabled}
       {placeholder} />
+  {:else if type === 'datetime-local'}
+    <input
+      {...$$restProps}
+      class={classes}
+      type="datetime-local"
+      on:blur
+      on:change
+      on:focus
+      on:input
+      on:keydown
+      on:keypress
+      on:keyup
+      bind:value
+      bind:this={inner}
+      {disabled}
+      {name}
+      {placeholder}
+      {readonly} />
+  {:else if type === 'month'}
+    <input
+      {...$$restProps}
+      class={classes}
+      type="month"
+      on:blur
+      on:change
+      on:focus
+      on:input
+      on:keydown
+      on:keypress
+      on:keyup
+      bind:value
+      bind:this={inner}
+      {disabled}
+      {name}
+      {placeholder}
+      {readonly} />
   {:else if type === 'color'}
     <input
       {...$$restProps}
@@ -340,6 +381,7 @@
   {:else if type === 'search'}
     <input
       {...$$restProps}
+      class={classes}
       type="search"
       on:blur
       on:change
@@ -350,11 +392,48 @@
       on:keyup
       bind:value
       bind:this={inner}
-      {readonly}
-      class={classes}
-      {name}
       {disabled}
-      {placeholder} />
+      {name}
+      {placeholder}
+      {readonly}
+      {size} />
+  {:else if type === 'tel'}
+    <input
+      {...$$restProps}
+      class={classes}
+      type="tel"
+      on:blur
+      on:change
+      on:focus
+      on:input
+      on:keydown
+      on:keypress
+      on:keyup
+      bind:value
+      bind:this={inner}
+      {disabled}
+      {name}
+      {placeholder}
+      {readonly}
+      {size} />
+  {:else if type === 'week'}
+    <input
+      {...$$restProps}
+      class={classes}
+      type="week"
+      on:blur
+      on:change
+      on:focus
+      on:input
+      on:keydown
+      on:keypress
+      on:keyup
+      bind:value
+      bind:this={inner}
+      {disabled}
+      {name}
+      {placeholder}
+      {readonly} />
   {:else}
     <input
       {...$$restProps}
