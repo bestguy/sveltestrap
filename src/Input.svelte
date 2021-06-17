@@ -1,5 +1,6 @@
 <script>
   import FormCheck from './FormCheck.svelte';
+  import FormFeedback from './FormFeedback.svelte';
 
   import classnames from './utils';
 
@@ -10,6 +11,7 @@
   export let checked = false;
   export let color = undefined;
   export let disabled = undefined;
+  export let feedback = undefined;
   export let files = undefined;
   export let group = undefined;
   export let inner = undefined;
@@ -419,4 +421,13 @@
     {disabled}>
     <slot />
   </select> -->
+{/if}
+{#if feedback}
+  {#if Array.isArray(feedback)}
+    {#each feedback as msg}
+      <FormFeedback {valid}>{msg}</FormFeedback>
+    {/each}
+  {:else}
+    <FormFeedback {valid}>{feedback}</FormFeedback>
+  {/if}
 {/if}

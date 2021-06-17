@@ -4,6 +4,8 @@
   import bindingSource from '!!raw-loader!./Binding.svelte';
   import On from './On.svelte';
   import onSource from '!!raw-loader!./On.svelte';
+  import Feedback from './Feedback.svelte';
+  import feedbackSource from '!!raw-loader!./Feedback.svelte';
   import Sample from './Sample.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
 
@@ -19,6 +21,10 @@
 
 <Example source={sampleSource}>
   <Sample />
+</Example>
+
+<Example title="Validation Feedback" source={feedbackSource}>
+  <Feedback />
 </Example>
 
 <Example title="Binding" source={bindingSource}>

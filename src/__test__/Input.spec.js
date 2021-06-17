@@ -97,4 +97,36 @@ describe('Input', () => {
     const input = container.querySelector('input');
     expect(input.className).toContain('boogie');
   });
+
+  test('should render invalid feedback', () => {
+    const container = renderInput({ invalid: true, feedback: 'Bad to the bone' });
+    const feedback = container.querySelector('.invalid-feedback');
+    expect(feedback.innerHTML).toBe('Bad to the bone');
+  });
+
+  test('should render valid feedback', () => {
+    const container = renderInput({ valid: true, feedback: 'Goody goody two shoes' });
+    const feedback = container.querySelector('.valid-feedback');
+    expect(feedback.innerHTML).toBe('Goody goody two shoes');
+  });
+
+  test('should render an array of feedback', () => {
+    const container = renderInput({
+      invalid: true,
+      feedback: [
+        'Aint it true',
+        'the sun that shines',
+        'you got yours',
+        'and you got mine'
+      ]
+    });
+    const feedback = container.querySelectorAll('.invalid-feedback');
+    expect(feedback).toHaveLength(4);
+  });
+
+  test('should not render feedback if none', () => {
+    const container = renderInput();
+    expect(container.querySelector('.invalid-feedback')).toBeNull();
+    expect(container.querySelector('.valid-feedback')).toBeNull();
+  });
 });
