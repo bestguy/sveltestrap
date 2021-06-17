@@ -32,6 +32,7 @@ export interface InputProps
   checked?: boolean;
   color?: Color;
   disabled?: boolean;
+  feedback?: string | string[];
   files?: string;
   group?: any;
   id?: string;
