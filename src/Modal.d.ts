@@ -1,6 +1,6 @@
 import { SvelteComponentTyped } from 'svelte';
 import { FadeProps } from './Fade';
-import { ContainerType } from './shared';
+import { Breakpoints, ContainerType } from './shared';
 
 export interface ModalProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
@@ -13,6 +13,7 @@ export interface ModalProps
   container?: ContainerType;
   contentClassName?: string;
   fade?: boolean;
+  fullscreen?: boolean | Breakpoints;
   header?: string;
   isOpen?: boolean;
   keyboard?: boolean;
