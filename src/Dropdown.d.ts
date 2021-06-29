@@ -8,7 +8,6 @@ export interface DropdownProps
   isOpen?: boolean;
   nav?: boolean;
   active?: boolean;
-  addonType?: boolean | 'prepend' | 'append'; // TODO?
   size?: string;
   toggle?: () => void;
   inNavbar?: boolean;
