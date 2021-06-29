@@ -22,6 +22,12 @@ describe('Form', () => {
     expect(component.className).toBe('form-inline');
   });
 
+  test('should render validated', () => {
+    const { container } = render(Form, { props: { validated: true } });
+    const component = container.querySelector('form');
+    expect(component.className).toBe('was-validated');
+  });
+
   test('should render custom class', () => {
     const { container } = render(Form, { props: { class: 'boogie' } });
     const component = container.querySelector('form');

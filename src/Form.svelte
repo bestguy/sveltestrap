@@ -4,8 +4,12 @@
   let className = '';
   export { className as class };
   export let inline = false;
+  export let validated = false;
 
-  $: classes = classnames(className, inline ? 'form-inline' : false);
+  $: classes = classnames(className, {
+    'form-inline': inline,
+    'was-validated': validated
+  });
 </script>
 
 <form {...$$restProps} class={classes} on:submit>
