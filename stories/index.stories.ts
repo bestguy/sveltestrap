@@ -12,6 +12,7 @@ import Collapse from './collapse/Index.svelte';
 import Dropdown from './dropdown/Index.svelte';
 import Fade from './fade/Index.svelte';
 import Icon from './icon/Index.svelte';
+import Image from './image/Index.svelte';
 import InputGroup from './inputgroup/Index.svelte';
 import Inputs from './input/Index.svelte';
 import ListGroup from './listgroup/Index.svelte';
@@ -51,6 +52,7 @@ storiesOf('Components', module)
   .add('Fade', story(Fade))
   .add('Icon', story(Icon))
   .add('Inputs', story(Inputs))
+  .add('Image', story(Image))
   .add('InputGroup', story(InputGroup))
   .add('ListGroup', story(ListGroup))
   .add('Modals', story(Modals))
