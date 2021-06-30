@@ -37,12 +37,14 @@ import DropdownItem from './DropdownItem';
 import DropdownMenu from './DropdownMenu';
 import DropdownToggle from './DropdownToggle';
 import Fade from './Fade';
+import Figure from './Figure';
 import Form from './Form';
 import FormCheck from './FormCheck';
 import FormFeedback from './FormFeedback';
 import FormGroup from './FormGroup';
 import FormText from './FormText';
 import Icon from './Icon';
+import Image from './Image';
 import Input from './Input';
 import InputGroup from './InputGroup';
 import InputGroupText from './InputGroupText';
@@ -123,12 +125,14 @@ export {
   DropdownMenu,
   DropdownToggle,
   Fade,
+  Figure,
   Form,
   FormCheck,
   FormFeedback,
   FormGroup,
   FormText,
   Icon,
+  Image,
   Input,
   InputGroup,
   InputGroupText,
