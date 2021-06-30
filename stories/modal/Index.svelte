@@ -18,6 +18,8 @@
   import shorthandSource from '!!raw-loader!./Shorthand.svelte';
   import Static from './Static.svelte';
   import staticSource from '!!raw-loader!./Static.svelte';
+  import StaticBackdrop from './StaticBackdrop.svelte';
+  import staticBackdropSource from '!!raw-loader!./StaticBackdrop.svelte';
 </script>
 
 <h1>Modals</h1>
@@ -46,6 +48,10 @@
 
 <Example title="Backdrop" source={backdropSource}>
   <Backdrop />
+</Example>
+
+<Example title="Static Backdrop" source={staticBackdropSource}>
+  <StaticBackdrop />
 </Example>
 
 <Example title="Fade" source={fadeSource}>
