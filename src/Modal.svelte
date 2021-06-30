@@ -163,7 +163,7 @@
       }
 
       const backdropElem = _dialog ? _dialog.parentNode : null;
-      if (backdropElem && e.target === backdropElem && toggle) {
+      if (backdrop === true && backdropElem && e.target === backdropElem && toggle) {
         toggle(e);
       }
     }
@@ -173,7 +173,7 @@
     dispatch('open');
     _removeEscListener = browserEvent(document, 'keydown', (event) => {
       if (event.key && event.key === 'Escape') {
-        toggle(event);
+        if (toggle && backdrop === true) toggle(event);
       }
     });
   }
