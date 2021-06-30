@@ -10,6 +10,13 @@ describe('Image', () => {
     expect(component).toBeDefined();
   });
 
+  test('should be figure', () => {
+    const { container } = render(Image, { props: { figure: true } });
+
+    const component = container.querySelector('img');
+    expect(component.className).toBe('figure-img');
+  });
+
   test('should be fluid', () => {
     const { container } = render(Image, { props: { fluid: true } });
 
@@ -30,4 +37,6 @@ describe('Image', () => {
     const component = container.querySelector('img');
     expect(component.className).toBe('boogie');
   });
+
+  test.todo('should render correctly inside Figure'); // TODO when slots/context easier to test
 });

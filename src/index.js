@@ -36,6 +36,7 @@ export { default as DropdownItem } from './DropdownItem.svelte';
 export { default as DropdownMenu } from './DropdownMenu.svelte';
 export { default as DropdownToggle } from './DropdownToggle.svelte';
 export { default as Fade } from './Fade.svelte';
+export { default as Figure } from './Figure.svelte';
 export { default as Form } from './Form.svelte';
 export { default as FormCheck } from './FormCheck.svelte';
 export { default as FormFeedback } from './FormFeedback.svelte';

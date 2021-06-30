@@ -2,6 +2,8 @@
   import Example from '../Example.svelte';
   import Sample from './Sample.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
+  import Figure from './Figure.svelte';
+  import figureSource from '!!raw-loader!./Figure.svelte';
   import Fluid from './Fluid.svelte';
   import fluidSource from '!!raw-loader!./Fluid.svelte';
   import Thumbnail from './Thumbnail.svelte';
@@ -23,4 +25,8 @@
 
 <Example title="Thumbnail" source={thumbnailSource}>
   <Thumbnail />
+</Example>
+
+<Example title="Figure" source={figureSource}>
+  <Figure />
 </Example>
