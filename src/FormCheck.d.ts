@@ -1,10 +1,7 @@
 import { SvelteComponentTyped } from 'svelte';
 import { Color } from './shared';
 
-export type InputType =
-  | 'checkbox'
-  | 'radio'
-  | 'switch';
+export type InputType = 'checkbox' | 'radio' | 'switch';
 
 export interface FormCheckProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['input']> {
@@ -34,4 +31,3 @@ export default class FormCheck extends SvelteComponentTyped<
   },
   { default: {} }
 > {}
-

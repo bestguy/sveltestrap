@@ -1289,10 +1289,12 @@
   size="lg"
   type="search"
   placeholder="Filter..."
-  class="mb-3 w-auto" />
+  class="mb-3 w-auto"
+/>
 <ul
   class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 row-cols-xl-8 list-unstyled
-  list">
+  list"
+>
   {#each filteredIcons as name}
     <li class="col mb-4">
       <div class="d-block text-dark text-decoration-none">

@@ -25,8 +25,8 @@
 
 <Example title="Controlled Alerts" source={controlledSource}>
   <p slot="info">
-    Alert provides the dismissible prop, but if you need to manually control the open state,
-    you manage the <code>isOpen</code> and <code>toggle</code> prop.
+    Alert provides the dismissible prop, but if you need to manually control the
+    open state, you manage the <code>isOpen</code> and <code>toggle</code> prop.
   </p>
   <Controlled />
 </Example>

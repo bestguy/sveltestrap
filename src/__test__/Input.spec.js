@@ -99,13 +99,19 @@ describe('Input', () => {
   });
 
   test('should render invalid feedback', () => {
-    const container = renderInput({ invalid: true, feedback: 'Bad to the bone' });
+    const container = renderInput({
+      invalid: true,
+      feedback: 'Bad to the bone'
+    });
     const feedback = container.querySelector('.invalid-feedback');
     expect(feedback.innerHTML).toBe('Bad to the bone');
   });
 
   test('should render valid feedback', () => {
-    const container = renderInput({ valid: true, feedback: 'Goody goody two shoes' });
+    const container = renderInput({
+      valid: true,
+      feedback: 'Goody goody two shoes'
+    });
     const feedback = container.querySelector('.valid-feedback');
     expect(feedback.innerHTML).toBe('Goody goody two shoes');
   });

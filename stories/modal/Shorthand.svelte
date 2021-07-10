@@ -1,8 +1,5 @@
 <script lang="ts">
-  import {
-    Button,
-    Modal
-  } from 'sveltestrap';
+  import { Button, Modal } from 'sveltestrap';
   let open = false;
   const toggle = () => (open = !open);
 </script>

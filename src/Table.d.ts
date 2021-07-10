@@ -15,8 +15,8 @@ export interface TableProps<T>
 
 export interface TableSlots<T> {
   default: {
-    row?: T
-  }
+    row?: T;
+  };
 }
 
 export default class Table<T> extends SvelteComponentTyped<

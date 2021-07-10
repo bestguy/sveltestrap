@@ -25,7 +25,7 @@
   });
 
   $: if (isOpen && autohide) {
-    timeout = setTimeout(() => isOpen = false, delay);
+    timeout = setTimeout(() => (isOpen = false), delay);
   }
 
   $: classes = classnames(className, 'toast', {
@@ -42,7 +42,8 @@
     on:introend={() => dispatch('open')}
     on:outrostart={() => dispatch('closing')}
     on:outroend={() => dispatch('close')}
-    role="alert">
+    role="alert"
+  >
     {#if header}
       <ToastHeader {toggle}>
         {header}

@@ -63,4 +63,3 @@ export default class Input extends SvelteComponentTyped<
   },
   { default: {} }
 > {}
-

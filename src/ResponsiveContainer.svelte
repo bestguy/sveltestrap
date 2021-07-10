@@ -6,7 +6,7 @@
 
   $: responsiveClassName = classnames(className, {
     'table-responsive': responsive === true,
-    [`table-responsive-${responsive}`]: typeof(responsive) === 'string'
+    [`table-responsive-${responsive}`]: typeof responsive === 'string'
   });
 </script>
 

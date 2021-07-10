@@ -31,11 +31,11 @@
   let element;
   let removeEscListener;
 
-  onMount(() => body = document.body);
+  onMount(() => (body = document.body));
 
   $: if (body) {
     if (!scroll) {
-      body.classList.toggle('overflow-noscroll', (isOpen || isTransitioning));
+      body.classList.toggle('overflow-noscroll', isOpen || isTransitioning);
     }
   }
   $: if (element) {
@@ -47,7 +47,7 @@
       dispatch(isOpen ? 'open' : 'close');
     }, getTransitionDuration(element));
   }
-  $: if (isOpen && toggle && (typeof window !== 'undefined')) {
+  $: if (isOpen && toggle && typeof window !== 'undefined') {
     removeEscListener = browserEvent(document, 'keydown', (event) => {
       if (event.key && event.key === 'Escape') toggle();
     });
@@ -55,14 +55,55 @@
   $: if (!isOpen && removeEscListener) {
     removeEscListener();
   }
-  $: handleMouseDown = (backdrop && toggle && body && isOpen) ? (e) => {
-    if (e.target === body) {
-      toggle();
-    }
-  } : undefined;
-  $: classes = classnames('offcanvas', `offcanvas-${placement}`, className, { show: isOpen });
-  $: outer = (container === 'inline') ? InlineContainer : Portal;
+  $: handleMouseDown =
+    backdrop && toggle && body && isOpen
+      ? (e) => {
+          if (e.target === body) {
+            toggle();
+          }
+        }
+      : undefined;
+  $: classes = classnames('offcanvas', `offcanvas-${placement}`, className, {
+    show: isOpen
+  });
+  $: outer = container === 'inline' ? InlineContainer : Portal;
 </script>
+
+<svelte:body on:mousedown={handleMouseDown} />
+
+<svelte:component this={outer}>
+  <div
+    {...$$restProps}
+    bind:this={element}
+    aria-hidden={!isOpen ? true : undefined}
+    aria-modal={isOpen ? true : undefined}
+    class={classes}
+    role={isOpen || isTransitioning ? 'dialog' : undefined}
+    style={`visibility: ${isOpen || isTransitioning ? 'visible' : 'hidden'}`}
+    tabindex="-1"
+  >
+    {#if toggle || header || $$slots.header}
+      <OffcanvasHeader {toggle}>
+        {#if header}
+          <h5 class="offcanvas-title">
+            {header}
+          </h5>
+        {/if}
+        <slot name="header" />
+      </OffcanvasHeader>
+    {/if}
+    <OffcanvasBody>
+      <slot />
+    </OffcanvasBody>
+  </div>
+  {#if backdrop && isOpen}
+    <div
+      on:click={toggle ? () => toggle() : undefined}
+      transition:fadeTransition={{ duration: backdropDuration }}
+      class={classnames('modal-backdrop', 'show')}
+    />
+  {/if}
+</svelte:component>
 
 <style>
   :global(.overflow-noscroll) {
@@ -70,37 +111,3 @@
     padding-right: 0px;
   }
 </style>
-
-<svelte:body on:mousedown={handleMouseDown} />
-
-<svelte:component this={outer}>
-<div
-  {...$$restProps}
-  bind:this={element}
-  aria-hidden={!isOpen ? true : undefined}
-  aria-modal={isOpen ? true : undefined}
-  class={classes}
-  role={(isOpen || isTransitioning) ? 'dialog' : undefined}
-  style={`visibility: ${isOpen || isTransitioning ? 'visible' : 'hidden'}`}
-  tabindex="-1">
-  {#if toggle || header || $$slots.header}
-    <OffcanvasHeader {toggle}>
-      {#if header}
-        <h5 class="offcanvas-title">
-          {header}
-        </h5>
-      {/if}
-      <slot name="header" />
-    </OffcanvasHeader>
-  {/if}
-  <OffcanvasBody>
-    <slot />
-  </OffcanvasBody>
-</div>
-{#if backdrop && isOpen}
-  <div
-    on:click={toggle ? () => toggle() : undefined}
-    transition:fadeTransition={{ duration: backdropDuration }}
-    class={classnames('modal-backdrop', 'show')} />
-{/if}
-</svelte:component>

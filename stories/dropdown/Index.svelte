@@ -19,7 +19,8 @@
 <h1>Dropdowns</h1>
 <a
   href="https://getbootstrap.com/docs/5.0/components/dropdowns/"
-  target="_blank">
+  target="_blank"
+>
   Bootstrap Dropdowns
 </a>
 

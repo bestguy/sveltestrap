@@ -4,8 +4,8 @@
   import Controlled from './Controlled.svelte';
   import Dismissible from './Dismissible.svelte';
   import Sample from './Sample.svelte';
-  import Slots from './Slots.svelte'
-  import Triggers from './Triggers.svelte'
+  import Slots from './Slots.svelte';
+  import Triggers from './Triggers.svelte';
   import controlledSource from '!!raw-loader!./Controlled.svelte';
   import dismissibleSource from '!!raw-loader!./Dismissible.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
@@ -17,7 +17,8 @@
 
 <a
   href="https://getbootstrap.com/docs/5.0/components/popovers/"
-  target="_blank">
+  target="_blank"
+>
   Bootstrap Popover
 </a>
 
@@ -38,8 +39,8 @@
     <Alert color="info">
       <b>Note:</b>
       For proper cross-browser and cross-platform behavior for dismiss-on-next-click,
-      you must use the &lt;a&gt; tag, not the &lt;Button&gt; tag,
-      and you also must include a tabindex attribute.
+      you must use the &lt;a&gt; tag, not the &lt;Button&gt; tag, and you also must
+      include a tabindex attribute.
     </Alert>
   </div>
   <Dismissible />

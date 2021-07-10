@@ -23,13 +23,17 @@ describe('ListGroupItem', () => {
   });
 
   test('should render a if href', () => {
-    const { container } = render(ListGroupItem, { props: { href: 'http://www.example.com' } });
+    const { container } = render(ListGroupItem, {
+      props: { href: 'http://www.example.com' }
+    });
     const component = container.querySelector('a.list-group-item');
     expect(component.className).toBe('list-group-item');
   });
 
   test('should render color', () => {
-    const { container } = render(ListGroupItem, { props: { color: 'primary' } });
+    const { container } = render(ListGroupItem, {
+      props: { color: 'primary' }
+    });
     const component = container.querySelector('.list-group-item');
     expect(component.className).toBe('list-group-item list-group-item-primary');
   });

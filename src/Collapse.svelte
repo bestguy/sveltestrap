@@ -1,4 +1,4 @@
-<script>  
+<script>
   import { createEventDispatcher, onMount } from 'svelte';
   import classnames from './utils';
   import { slide } from 'svelte/transition';
@@ -17,7 +17,7 @@
   export let expand = false;
   export let toggler = null;
 
-  onMount(() => toggle(toggler, () => isOpen = !isOpen));
+  onMount(() => toggle(toggler, () => (isOpen = !isOpen)));
 
   $: classes = classnames(
     className,
@@ -68,7 +68,8 @@
     on:introstart={onEntering}
     on:introend={onEntered}
     on:outrostart={onExiting}
-    on:outroend={onExited}>
+    on:outroend={onExited}
+  >
     <slot />
   </div>
 {/if}

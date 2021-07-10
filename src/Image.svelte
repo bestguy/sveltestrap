@@ -9,14 +9,11 @@
   export let fluid = false;
   export let thumbnail = false;
 
-  $: classes = classnames(
-    className,
-    {
-      'figure-img': figure,
-      'img-fluid': fluid,
-      'img-thumbnail': thumbnail
-    }
-  );
+  $: classes = classnames(className, {
+    'figure-img': figure,
+    'img-fluid': fluid,
+    'img-thumbnail': thumbnail
+  });
 </script>
 
 <img {alt} {...$$restProps} class={classes} />

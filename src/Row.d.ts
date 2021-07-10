@@ -4,11 +4,11 @@ export type ColumnProps =
   | string
   | number
   | {
-      xs? : number;
-      sm? : number;
-      md? : number;
-      lg? : number;
-      xl? : number;
+      xs?: number;
+      sm?: number;
+      md?: number;
+      lg?: number;
+      xl?: number;
     };
 
 export interface RowProps

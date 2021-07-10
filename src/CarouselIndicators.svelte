@@ -17,7 +17,8 @@
       class:active={activeIndex === index}
       aria-current={activeIndex === index}
       aria-label={item.title}
-      on:click={() => (activeIndex = index)}>
+      on:click={() => (activeIndex = index)}
+    >
       {item.title ? item.title : ''}
     </button>
   {/each}

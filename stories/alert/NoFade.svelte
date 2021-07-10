@@ -8,7 +8,8 @@
   color="primary"
   isOpen={visible}
   toggle={() => (visible = false)}
-  fade={false}>
+  fade={false}
+>
   I am a primary alert and I can be dismissed without animating!
 </Alert>
 

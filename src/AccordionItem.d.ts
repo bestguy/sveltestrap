@@ -10,7 +10,7 @@ export default class AccordionItem extends SvelteComponentTyped<
   AccordionItemProps,
   {},
   {
-    default: {},
-    header: {}
+    default: {};
+    header: {};
   }
 > {}
