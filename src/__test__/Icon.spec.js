@@ -11,7 +11,9 @@ describe('Icon', () => {
   });
 
   test('should render custom class', () => {
-    const { container } = render(Icon, { props: { class: 'text-dark', name: 'book' } });
+    const { container } = render(Icon, {
+      props: { class: 'text-dark', name: 'book' }
+    });
 
     const component = container.querySelector('.bi-book');
     expect(component.className).toBe('text-dark bi-book');

@@ -24,7 +24,8 @@
         type="button"
         on:click={toggle}
         class="btn-close"
-        aria-label={closeAriaLabel} />
+        aria-label={closeAriaLabel}
+      />
     {/if}
   </slot>
 </div>

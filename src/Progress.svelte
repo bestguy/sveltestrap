@@ -36,7 +36,8 @@
       role="progressbar"
       aria-valuenow={value}
       aria-valuemin="0"
-      aria-valuemax={max}>
+      aria-valuemax={max}
+    >
       <slot />
     </div>
   {/if}
@@ -51,7 +52,8 @@
         role="progressbar"
         aria-valuenow={value}
         aria-valuemin="0"
-        aria-valuemax={max}>
+        aria-valuemax={max}
+      >
         <slot />
       </div>
     {/if}

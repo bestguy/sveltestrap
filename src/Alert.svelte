@@ -28,7 +28,8 @@
     {...$$restProps}
     transition:fadeTransition={transition}
     class={classes}
-    role="alert">
+    role="alert"
+  >
     {#if heading || $$slots.heading}
       <h4 class="alert-heading">
         {heading}<slot name="heading" />
@@ -39,7 +40,8 @@
         type="button"
         class={closeClassNames}
         aria-label={closeAriaLabel}
-        on:click={handleToggle} />
+        on:click={handleToggle}
+      />
     {/if}
     {#if children}
       {children}

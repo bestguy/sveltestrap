@@ -6,5 +6,5 @@ export interface FigureProps
 export default class Figure extends SvelteComponentTyped<
   FigureProps,
   {},
-  { default: {}, caption: {} }
+  { default: {}; caption: {} }
 > {}

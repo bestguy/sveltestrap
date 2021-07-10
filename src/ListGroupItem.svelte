@@ -10,24 +10,16 @@
   export let href = null;
   export let tag = null;
 
-  $: classes = classnames(className, 'list-group-item',
-    {
-      active,
-      disabled,
-      'list-group-item-action': action || (tag === 'button'),
-      [`list-group-item-${color}`]: color,
-    }
-  );
+  $: classes = classnames(className, 'list-group-item', {
+    active,
+    disabled,
+    'list-group-item-action': action || tag === 'button',
+    [`list-group-item-${color}`]: color
+  });
 </script>
 
 {#if href}
-  <a
-    {...$$restProps}
-    class={classes}
-    on:click
-    {href}
-    {disabled}
-    {active}>
+  <a {...$$restProps} class={classes} on:click {href} {disabled} {active}>
     <slot />
   </a>
 {:else if tag === 'button'}
@@ -37,16 +29,12 @@
     type="button"
     on:click
     {disabled}
-    {active}>
+    {active}
+  >
     <slot />
   </button>
 {:else}
-  <li 
-    {...$$restProps}
-    class={classes}
-    on:click
-    {disabled}
-    {active}>
+  <li {...$$restProps} class={classes} on:click {disabled} {active}>
     <slot />
   </li>
 {/if}

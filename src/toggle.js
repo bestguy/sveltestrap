@@ -39,5 +39,5 @@ export default (toggler, togglerFn) => {
       unbindEvents();
       unbindEvents = undefined;
     }
-  }
+  };
 };

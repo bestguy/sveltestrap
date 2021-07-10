@@ -53,9 +53,9 @@
     }
   }
 
-  const open = () => isOpen = true;
-  const close = () => isOpen = false;
-  const toggle = () => isOpen = !isOpen;
+  const open = () => (isOpen = true);
+  const close = () => (isOpen = false);
+  const toggle = () => (isOpen = !isOpen);
 
   onMount(() => {
     targetEl = document.querySelector(`#${target}`);
@@ -113,24 +113,25 @@
 </script>
 
 {#if isOpen}
-<svelte:component this={outer}>
-  <div
-    bind:this={popoverEl}
-    {...$$restProps}
-    class={classes}
-    role="tooltip"
-    x-placement={popperPlacement}>
-    <div class="popover-arrow" data-popper-arrow />
-    <h3 class="popover-header">
-      <slot name="title">{title}</slot>
-    </h3>
-    <div class="popover-body">
-      {#if children}
-        {children}
-      {:else}
-        <slot />
-      {/if}
+  <svelte:component this={outer}>
+    <div
+      bind:this={popoverEl}
+      {...$$restProps}
+      class={classes}
+      role="tooltip"
+      x-placement={popperPlacement}
+    >
+      <div class="popover-arrow" data-popper-arrow />
+      <h3 class="popover-header">
+        <slot name="title">{title}</slot>
+      </h3>
+      <div class="popover-body">
+        {#if children}
+          {children}
+        {:else}
+          <slot />
+        {/if}
+      </div>
     </div>
-  </div>
-</svelte:component>
+  </svelte:component>
 {/if}

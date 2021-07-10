@@ -21,16 +21,17 @@
   });
 
   const onToggle = () => {
-    if (stayOpen) active = !active;    
+    if (stayOpen) active = !active;
     toggle(accordionId);
     dispatch('toggle', !accordionOpen);
-  }
+  };
 </script>
 
 <div class={classes} bind:this={accordionId}>
   <AccordionHeader
     on:click={() => onToggle()}
-    class={!accordionOpen && 'collapsed'}>
+    class={!accordionOpen && 'collapsed'}
+  >
     <slot name="header" />
     {header}
   </AccordionHeader>

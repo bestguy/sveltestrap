@@ -57,7 +57,8 @@
     on:click={toggleButton}
     href="#nav"
     aria-expanded={$context.isOpen}
-    class={classes}>
+    class={classes}
+  >
     <slot>
       <span class="visually-hidden">{ariaLabel}</span>
     </slot>
@@ -70,7 +71,8 @@
     on:click
     on:click={toggleButton}
     aria-expanded={$context.isOpen}
-    class={classes}>
+    class={classes}
+  >
     <slot>
       <span class="visually-hidden">{ariaLabel}</span>
     </slot>
@@ -83,7 +85,8 @@
     on:click
     on:click={toggleButton}
     aria-expanded={$context.isOpen}
-    class={classes}>
+    class={classes}
+  >
     <slot>
       <span class="visually-hidden">{ariaLabel}</span>
     </slot>
@@ -96,7 +99,8 @@
     on:click
     on:click={toggleButton}
     aria-expanded={$context.isOpen}
-    class={btnClasses}>
+    class={btnClasses}
+  >
     <slot>
       <span class="visually-hidden">{ariaLabel}</span>
     </slot>

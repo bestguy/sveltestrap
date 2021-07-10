@@ -5,7 +5,9 @@ beforeEach(cleanup);
 
 describe('OffcanvasHeader', () => {
   test('should render correctly', () => {
-    const { container } = render(OffcanvasHeader, { props: { children: 'Zap' } });
+    const { container } = render(OffcanvasHeader, {
+      props: { children: 'Zap' }
+    });
     const component = container.querySelector('.offcanvas-header');
     expect(component.className).toBe('offcanvas-header');
     const title = container.querySelector('.offcanvas-title');
@@ -26,7 +28,9 @@ describe('OffcanvasHeader', () => {
   test.todo('should render close slot if specified');
 
   test('should render custom class', () => {
-    const { container } = render(OffcanvasHeader, { props: { class: 'boogie' } });
+    const { container } = render(OffcanvasHeader, {
+      props: { class: 'boogie' }
+    });
 
     const component = container.querySelector('.offcanvas-header');
     expect(component.className).toBe('boogie offcanvas-header');

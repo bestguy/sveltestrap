@@ -18,5 +18,5 @@ export interface AlertProps
 export default class Alert extends SvelteComponentTyped<
   AlertProps,
   {},
-  { default: {}, heading: {} }
+  { default: {}; heading: {} }
 > {}

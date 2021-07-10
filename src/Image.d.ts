@@ -7,8 +7,4 @@ export interface ImageProps
   thumbnail?: boolean;
 }
 
-export default class Image extends SvelteComponentTyped<
-  ImageProps,
-  {},
-  {}
-> {}
+export default class Image extends SvelteComponentTyped<ImageProps, {}, {}> {}

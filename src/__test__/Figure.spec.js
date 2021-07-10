@@ -18,10 +18,14 @@ describe('Figure', () => {
   });
 
   test('should render caption', () => {
-    const { container } = render(Figure, { props: { caption: 'I want to put on my my my my my boogie shoes' } });
+    const { container } = render(Figure, {
+      props: { caption: 'I want to put on my my my my my boogie shoes' }
+    });
 
     const component = container.querySelector('figure > figcaption');
     expect(component.className).toBe('figure-caption');
-    expect(component.textContent).toBe('I want to put on my my my my my boogie shoes');
+    expect(component.textContent).toBe(
+      'I want to put on my my my my my boogie shoes'
+    );
   });
 });

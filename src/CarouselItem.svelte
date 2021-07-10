@@ -13,6 +13,7 @@
 <div
   {...$$restProps}
   class="{classes} active"
-  class:active={itemIndex === activeIndex}>
+  class:active={itemIndex === activeIndex}
+>
   <slot />
 </div>
