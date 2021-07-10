@@ -19,11 +19,11 @@
   ],
   "scripts": {
     "start": "start-storybook -p 6006",
-    "docs": "build-storybook -o docs && cp CNAME ./docs && cp -r ./v4 ./docs",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
     "dist": "rollup -c",
+    "docs": "build-storybook -o docs && cp CNAME ./docs && cp -r ./v4 ./docs",
     "format": "prettier --write --plugin-search-dir=. ./src ./stories ./.storybook",
     "lint": "tsc --noEmit && eslint ./src --ext .js --ext .svelte",
-    "typecheck": "svelte-check",
     "prepublish": "npm run dist && git add -A dist",
     "postpublish": "git push && git push --tags",
     "test": "jest --maxWorkers=2 --verbose",

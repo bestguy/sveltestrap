@@ -6,7 +6,7 @@
   export let type = 'border';
   export let size = '';
   export let color = '';
-
+  let x = null;
   $: classes = classnames(
     className,
     size ? `spinner-${type}-${size}` : false,
