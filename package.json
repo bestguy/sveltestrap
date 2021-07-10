@@ -21,6 +21,7 @@
     "start": "start-storybook -p 6006",
     "docs": "build-storybook -o docs && cp CNAME ./docs && cp -r ./v4 ./docs",
     "dist": "rollup -c",
+    "format": "prettier --write --plugin-search-dir=. ./src ./stories ./.storybook",
     "lint": "tsc --noEmit && eslint ./src --ext .js --ext .svelte",
     "typecheck": "svelte-check",
     "prepublish": "npm run dist && git add -A dist",
