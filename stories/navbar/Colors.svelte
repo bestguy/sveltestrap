@@ -18,7 +18,8 @@
     {color}
     dark={color === 'dark' || color === 'primary'}
     light={color !== 'dark' && color !== 'primary'}
-    class="mb-2">
+    class="mb-2"
+  >
     <NavbarBrand href="/">{color} Navbar</NavbarBrand>
   </Navbar>
 {/each}

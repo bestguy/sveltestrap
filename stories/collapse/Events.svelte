@@ -12,10 +12,11 @@
 <h5>Current state: {status}</h5>
 <Collapse
   {isOpen}
-  on:opening={() => status = 'Opening...'}
-  on:open={() => status = 'Opened'}
-  on:closing={() => status = 'Closing...'}
-  on:close={() => status = 'Closed'}>
+  on:opening={() => (status = 'Opening...')}
+  on:open={() => (status = 'Opened')}
+  on:closing={() => (status = 'Closing...')}
+  on:close={() => (status = 'Closed')}
+>
   <Card body>
     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
     richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes

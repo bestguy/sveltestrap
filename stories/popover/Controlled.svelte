@@ -10,13 +10,13 @@
     bind:isOpen
     placement="right"
     target="controlledBtn"
-    title="Controlled Popover">
-    This is a Popover controlled externally. 
+    title="Controlled Popover"
+  >
+    This is a Popover controlled externally.
   </Popover>
   <hr />
   <label>
     <input type="checkbox" bind:checked={isOpen} />
     Or you can check this to control the Popover state.
   </label>
-
 </div>

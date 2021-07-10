@@ -13,10 +13,11 @@
     isOpen={open}
     {toggle}
     placement="end"
-    on:opening={() => status = 'Opening...'}
-    on:open={() => status = 'Opened'}
-    on:closing={() => status = 'Closing...'}
-    on:close={() => status = 'Closed'}>
+    on:opening={() => (status = 'Opening...')}
+    on:open={() => (status = 'Opened')}
+    on:closing={() => (status = 'Closing...')}
+    on:close={() => (status = 'Closed')}
+  >
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua.
   </Offcanvas>

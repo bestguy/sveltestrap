@@ -11,12 +11,12 @@
   </InputGroup>
   <br />
   <InputGroup>
-
     <InputGroupText>
       <Input
         addon
         type="checkbox"
-        aria-label="Checkbox for following text input" />
+        aria-label="Checkbox for following text input"
+      />
     </InputGroupText>
 
     <Input placeholder="Check it out" />
@@ -33,7 +33,6 @@
     <Input placeholder="Dolla dolla billz yo!" />
     <InputGroupText>$</InputGroupText>
     <InputGroupText>$</InputGroupText>
-
   </InputGroup>
   <br />
   <InputGroup>

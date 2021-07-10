@@ -8,9 +8,7 @@
 </script>
 
 <ButtonDropdown>
-  <DropdownToggle color="primary" caret>
-    Click Me
-  </DropdownToggle>
+  <DropdownToggle color="primary" caret>Click Me</DropdownToggle>
   <DropdownMenu>
     <DropdownItem header>Header</DropdownItem>
     <DropdownItem>Some Action</DropdownItem>

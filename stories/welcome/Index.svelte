@@ -15,42 +15,54 @@
         <Col>
           <h1
             class="display-4 d-flex align-items-center justify-content-center"
-            style="color: purple; font-weight: 200; letter-spacing: .2rem">
-            <svg height=".8em" viewBox="0 0 39.6 45" xmlns="http://www.w3.org/2000/svg" class="me-2">
+            style="color: purple; font-weight: 200; letter-spacing: .2rem"
+          >
+            <svg
+              height=".8em"
+              viewBox="0 0 39.6 45"
+              xmlns="http://www.w3.org/2000/svg"
+              class="me-2"
+            >
               <g transform="translate(2.5, 2.5)">
                 <polyline
-                   points="0,30 17.3,40 34.6,30 34.6,20 17.3,30 0,20 0,10
+                  points="0,30 17.3,40 34.6,30 34.6,20 17.3,30 0,20 0,10
                            17.3,0 34.6,10 17.3,20 0,10"
-                   fill="none"
-                   stroke="currentcolor"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   stroke-width="3"
-                 />
+                  fill="none"
+                  stroke="currentcolor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                />
               </g>
             </svg>
             SVELTESTRAP
           </h1>
           <p class="lead">
-            <a href="https://v5.getbootstrap.com" target="new" class="text-body">Bootstrap 5</a> components for <a href="https://svelte.dev" target="new" class="text-body">Svelte 3</a>.
+            <a href="https://v5.getbootstrap.com" target="new" class="text-body"
+              >Bootstrap 5</a
+            >
+            components for
+            <a href="https://svelte.dev" target="new" class="text-body"
+              >Svelte 3</a
+            >.
           </p>
           <p>
             <Button
               outline
               color="danger"
-              href="https://github.com/bestguy/sveltestrap">
+              href="https://github.com/bestguy/sveltestrap"
+            >
               GitHub
             </Button>
-            <Button
-              color="danger"
-              href="/?path=/story/components--layout">
+            <Button color="danger" href="/?path=/story/components--layout">
               Components
             </Button>
           </p>
           <h6 class="text-danger mt-4">
             <Icon name="exclamation-triangle-fill" />
             <b>Note:</b>
-            Bootstrap 4 CSS users must use Sveltestrap 4 - see docs here: <a href="./v4">Sveltestrap version 4</a>
+            Bootstrap 4 CSS users must use Sveltestrap 4 - see docs here:
+            <a href="./v4">Sveltestrap version 4</a>
           </h6>
         </Col>
       </Row>
@@ -100,12 +112,17 @@
           </PrismCode>
         </pre>
 
-        <h6>or use the <Button color="link" class="p-0" style="vertical-align: unset;" on:click={linkTo('Components', 'Styles')}>Styles</Button> component:</h6>
+        <h6>
+          or use the <Button
+            color="link"
+            class="p-0"
+            style="vertical-align: unset;"
+            on:click={linkTo('Components', 'Styles')}>Styles</Button
+          > component:
+        </h6>
         <pre>
           <PrismCode class="language-html">
-            {`<script>
-    import { Styles } from 'sveltestrap';
-</script>
+            {`<script ✂prettier:content✂="CiAgICBpbXBvcnQgeyBTdHlsZXMgfSBmcm9tICdzdmVsdGVzdHJhcCc7Cg==" ✂prettier:content✂="e30=">{}</script>
 <Styles />`}
           </PrismCode>
         </pre>
@@ -137,7 +154,12 @@
 
         <h4>Note on Icons</h4>
         <p>
-          If you wish to use the <Button color="link" class="p-0" style="vertical-align: unset;" on:click={linkTo('Components', 'Icon')}>Icon</Button> component, you also must include a link to Bootstrap Icon CSS, for example:
+          If you wish to use the <Button
+            color="link"
+            class="p-0"
+            style="vertical-align: unset;"
+            on:click={linkTo('Components', 'Icon')}>Icon</Button
+          > component, you also must include a link to Bootstrap Icon CSS, for example:
         </p>
         <pre>
           <PrismCode class="language-html">
@@ -146,17 +168,21 @@
 </svelte:head>`}
           </PrismCode>
         </pre>
-          or the <Button color="link" class="p-0" style="vertical-align: unset;" on:click={linkTo('Components', 'Styles')}>Styles</Button> component includes the Bootstrap Icon CSS by default:
+        or the <Button
+          color="link"
+          class="p-0"
+          style="vertical-align: unset;"
+          on:click={linkTo('Components', 'Styles')}>Styles</Button
+        > component includes the Bootstrap Icon CSS by default:
         <pre>
           <PrismCode class="language-html">
-            {`<script>
-    import { Styles } from 'sveltestrap';
-</script>
+            {`<script ✂prettier:content✂="CiAgICBpbXBvcnQgeyBTdHlsZXMgfSBmcm9tICdzdmVsdGVzdHJhcCc7Cg==" ✂prettier:content✂="e30=">{}</script>
 <Styles />`}
           </PrismCode>
         </pre>
         <p>
-          This component uses and assumes the CSS based webfont. You can host the icon CSS and webfonts on your own domain if needed.
+          This component uses and assumes the CSS based webfont. You can host
+          the icon CSS and webfonts on your own domain if needed.
         </p>
 
         <h3>Using in Svelte app</h3>
@@ -189,8 +215,10 @@
         <h2 class="mt-5">About the Project</h2>
         <hr />
         <p>
-          This library was inspired by the <a href="https://reactstrap.github.io">reactstrap</a> library for React.
-          This does not depend on jQuery or Bootstrap's JavaScript, and instead uses Svelte.
+          This library was inspired by the <a
+            href="https://reactstrap.github.io">reactstrap</a
+          > library for React. This does not depend on jQuery or Bootstrap's JavaScript,
+          and instead uses Svelte.
         </p>
       </Col>
     </Row>

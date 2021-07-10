@@ -9,7 +9,10 @@
 </script>
 
 <ButtonDropdown>
-  <Button color="primary" on:click={() => alert("Cool, I didn't trigger the dropdown")}>
+  <Button
+    color="primary"
+    on:click={() => alert("Cool, I didn't trigger the dropdown")}
+  >
     Click Me
   </Button>
   <DropdownToggle split color="primary" />

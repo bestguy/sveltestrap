@@ -12,12 +12,8 @@
 
 <div>
   <Button color="danger" on:click={toggle}>Start</Button>
-  <Button color="warning" on:click={() => (endOpen = !endOpen)}>
-    End
-  </Button>
-  <Button color="success" on:click={() => (topOpen = !topOpen)}>
-    Top
-  </Button>
+  <Button color="warning" on:click={() => (endOpen = !endOpen)}>End</Button>
+  <Button color="success" on:click={() => (topOpen = !topOpen)}>Top</Button>
   <Button color="info" on:click={() => (bottomOpen = !bottomOpen)}>
     Bottom
   </Button>
@@ -37,7 +33,12 @@
     tempor incididunt ut labore et dolore magna aliqua.
   </Offcanvas>
 
-  <Offcanvas isOpen={bottomOpen} toggle={toggleBottom} placement="bottom" header="Bottom">
+  <Offcanvas
+    isOpen={bottomOpen}
+    toggle={toggleBottom}
+    placement="bottom"
+    header="Bottom"
+  >
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua.
   </Offcanvas>

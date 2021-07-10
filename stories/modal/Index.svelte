@@ -33,7 +33,9 @@
 
 <Example title="Shorthand" source={shorthandSource}>
   <p slot="info">
-    The <code>body</code> and <code>header</code> props let you create simple Modals without needing to add <code>ModalHeader</code> and <code>ModalBody</code>.
+    The <code>body</code> and <code>header</code> props let you create simple
+    Modals without needing to add <code>ModalHeader</code> and
+    <code>ModalBody</code>.
   </p>
   <Shorthand />
 </Example>

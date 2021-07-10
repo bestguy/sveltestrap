@@ -15,7 +15,10 @@
 </script>
 
 <h1>Offcanvas</h1>
-<a href="https://getbootstrap.com/docs/5.0/components/offcanvas/" target="_blank">
+<a
+  href="https://getbootstrap.com/docs/5.0/components/offcanvas/"
+  target="_blank"
+>
   Bootstrap Offcanvas
 </a>
 
