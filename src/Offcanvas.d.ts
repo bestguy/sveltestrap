@@ -6,7 +6,6 @@ declare type Placement = 'start' | 'end' | 'top' | 'bottom'; // TODO support lef
 export interface OffcanvasProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   backdrop?: boolean;
-  backdropDuration?: number;
   container?: ContainerType;
   fade?: boolean;
   header?: string;
