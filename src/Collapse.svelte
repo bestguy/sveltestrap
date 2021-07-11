@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher, onMount } from 'svelte';
+  import { collapseIn, collapseOut } from './transitions';
   import classnames from './utils';
-  import { slide } from 'svelte/transition';
   import toggle from './toggle';
 
   const dispatch = createEventDispatcher();
@@ -19,11 +19,7 @@
 
   onMount(() => toggle(toggler, () => (isOpen = !isOpen)));
 
-  $: classes = classnames(
-    className,
-    // collapseClass,
-    navbar && 'navbar-collapse'
-  );
+  $: classes = classnames(className, navbar && 'navbar-collapse');
 
   let windowWidth = 0;
   let _wasMaximized = false;
@@ -60,7 +56,8 @@
     style={navbar ? undefined : 'overflow: hidden;'}
     {...$$restProps}
     class={classes}
-    transition:slide|local
+    in:collapseIn
+    out:collapseOut
     on:introstart
     on:introend
     on:outrostart
