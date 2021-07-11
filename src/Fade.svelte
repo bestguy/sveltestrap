@@ -14,7 +14,7 @@
   export let onExited = () => dispatch('close');
   export let toggler = null;
 
-  onMount(() => toggle(toggler, () => isOpen = !isOpen));
+  onMount(() => toggle(toggler, () => (isOpen = !isOpen)));
 </script>
 
 {#if isOpen}
@@ -29,7 +29,8 @@
     on:introend={onEntered}
     on:outrostart={onExiting}
     on:outroend={onExited}
-    class={className}>
+    class={className}
+  >
     <slot />
   </div>
 {/if}

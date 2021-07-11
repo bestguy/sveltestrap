@@ -19,5 +19,6 @@
     class={classes}
     class:fade
     in:backdropIn
-    out:backdropOut />
+    out:backdropOut
+  />
 {/if}

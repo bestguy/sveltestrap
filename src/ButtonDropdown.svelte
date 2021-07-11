@@ -2,9 +2,6 @@
   import Dropdown from './Dropdown.svelte';
 </script>
 
-<Dropdown
-  {...$$restProps}
-  group
-  on:click>
+<Dropdown {...$$restProps} group on:click>
   <slot />
 </Dropdown>

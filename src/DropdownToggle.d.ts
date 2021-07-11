@@ -9,7 +9,5 @@ export interface DropdownToggleProps extends ButtonProps {
   nav?: boolean;
 }
 
-declare class DropdownToggle extends SvelteComponentTyped<
-  IDropdownToggleProps
-> {}
+declare class DropdownToggle extends SvelteComponentTyped<IDropdownToggleProps> {}
 export default DropdownToggle;

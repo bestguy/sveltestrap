@@ -4,8 +4,4 @@ export interface StylesProps {
   icons?: boolean;
 }
 
-export default class Styles extends SvelteComponentTyped<
-  StylesProps,
-  {},
-  {}
-> {}
+export default class Styles extends SvelteComponentTyped<StylesProps, {}, {}> {}

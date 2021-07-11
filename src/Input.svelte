@@ -75,14 +75,12 @@
       size = undefined;
     }
 
-    classes = classnames(className, formControlClass,
-      { 
-        'is-invalid': invalid,
-        'is-valid': valid,
-        [`form-control-${bsSize}`]: bsSize && !isBtn,
-        [`btn-${bsSize}`]: bsSize && isBtn
-      }
-    );
+    classes = classnames(className, formControlClass, {
+      'is-invalid': invalid,
+      'is-valid': valid,
+      [`form-control-${bsSize}`]: bsSize && !isBtn,
+      [`btn-${bsSize}`]: bsSize && isBtn
+    });
   }
 
   const handleInput = (event) => {
@@ -108,7 +106,8 @@
       {disabled}
       {name}
       {placeholder}
-      {readonly} />
+      {readonly}
+    />
   {:else if type === 'password'}
     <input
       {...$$restProps}
@@ -126,7 +125,8 @@
       {disabled}
       {name}
       {placeholder}
-      {readonly} />
+      {readonly}
+    />
   {:else if type === 'color'}
     <input
       {...$$restProps}
@@ -144,7 +144,8 @@
       {disabled}
       {name}
       {placeholder}
-      {readonly} />
+      {readonly}
+    />
   {:else if type === 'email'}
     <input
       {...$$restProps}
@@ -162,7 +163,8 @@
       {disabled}
       {name}
       {placeholder}
-      {readonly} />
+      {readonly}
+    />
   {:else if type === 'file'}
     <input
       {...$$restProps}
@@ -184,8 +186,9 @@
       {name}
       {placeholder}
       {readonly}
-      {valid} />
-  {:else if (type === 'checkbox' || type === 'radio' || type === 'switch')}
+      {valid}
+    />
+  {:else if type === 'checkbox' || type === 'radio' || type === 'switch'}
     <FormCheck
       {...$$restProps}
       class={className}
@@ -208,7 +211,8 @@
       {name}
       {placeholder}
       {readonly}
-      {valid} />
+      {valid}
+    />
   {:else if type === 'url'}
     <input
       {...$$restProps}
@@ -226,7 +230,8 @@
       {disabled}
       {name}
       {placeholder}
-      {readonly} />
+      {readonly}
+    />
   {:else if type === 'number'}
     <input
       {...$$restProps}
@@ -244,7 +249,8 @@
       {readonly}
       {name}
       {disabled}
-      {placeholder} />
+      {placeholder}
+    />
   {:else if type === 'date'}
     <input
       {...$$restProps}
@@ -262,7 +268,8 @@
       {disabled}
       {name}
       {placeholder}
-      {readonly} />
+      {readonly}
+    />
   {:else if type === 'time'}
     <input
       {...$$restProps}
@@ -280,7 +287,8 @@
       {disabled}
       {name}
       {placeholder}
-      {readonly} />
+      {readonly}
+    />
   {:else if type === 'datetime'}
     <input
       {...$$restProps}
@@ -298,7 +306,8 @@
       class={classes}
       {name}
       {disabled}
-      {placeholder} />
+      {placeholder}
+    />
   {:else if type === 'color'}
     <input
       {...$$restProps}
@@ -316,7 +325,8 @@
       class={classes}
       {name}
       {disabled}
-      {placeholder} />
+      {placeholder}
+    />
   {:else if type === 'range'}
     <input
       {...$$restProps}
@@ -334,7 +344,8 @@
       class={classes}
       {name}
       {disabled}
-      {placeholder} />
+      {placeholder}
+    />
   {:else if type === 'search'}
     <input
       {...$$restProps}
@@ -352,7 +363,8 @@
       class={classes}
       {name}
       {disabled}
-      {placeholder} />
+      {placeholder}
+    />
   {:else}
     <input
       {...$$restProps}
@@ -369,7 +381,8 @@
       {name}
       {disabled}
       {placeholder}
-      {value} />
+      {value}
+    />
   {/if}
 {:else if tag === 'textarea'}
   <textarea
@@ -387,7 +400,8 @@
     {disabled}
     {name}
     {placeholder}
-    {readonly} />
+    {readonly}
+  />
 {:else if tag === 'select' && !multiple}
   <select
     {...$$restProps}
@@ -400,7 +414,8 @@
     bind:this={inner}
     {name}
     {disabled}
-    {readonly}>
+    {readonly}
+  >
     <slot />
   </select>
 

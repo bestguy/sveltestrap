@@ -51,9 +51,9 @@ describe('Tooltip', () => {
   });
 
   it('should throw error when there is no target', () => {
-    try{
+    try {
       renderTooltip();
-    } catch(error) {
+    } catch (error) {
       expect(error.message).toBe('Need target!');
     }
   });

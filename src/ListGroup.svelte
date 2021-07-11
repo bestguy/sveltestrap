@@ -6,14 +6,10 @@
   export let flush = false;
   export let numbered = false;
 
-  $: classes = classnames(
-    className,
-    'list-group',
-    {
-      'list-group-flush' : flush,
-      'list-group-numbered' : numbered
-    }
-  );
+  $: classes = classnames(className, 'list-group', {
+    'list-group-flush': flush,
+    'list-group-numbered': numbered
+  });
 </script>
 
 {#if numbered}

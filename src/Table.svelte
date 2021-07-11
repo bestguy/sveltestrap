@@ -40,7 +40,7 @@
       <tbody>
         {#each rows as row}
           <tr>
-            <slot row={row} />
+            <slot {row} />
           </tr>
         {/each}
       </tbody>
@@ -52,4 +52,3 @@
     {/if}
   </table>
 </ResponsiveContainer>
-

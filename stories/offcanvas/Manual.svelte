@@ -4,9 +4,11 @@
 </script>
 
 <div>
-  <Button color="danger" on:click={() => open = true}>Open Offcanvas</Button>
+  <Button color="danger" on:click={() => (open = true)}>Open Offcanvas</Button>
 
   <Offcanvas header="No toggle or esc" scroll isOpen={open}>
-    <Button color="danger" on:click={() => open = false}>Close Me Offcanvas</Button>
+    <Button color="danger" on:click={() => (open = false)}
+      >Close Me Offcanvas</Button
+    >
   </Offcanvas>
 </div>

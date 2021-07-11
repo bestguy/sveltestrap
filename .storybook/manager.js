@@ -12,6 +12,6 @@ addons.setConfig({
         <small>${pkg.version}</small>
       </div>
     </span>`,
-    brandUrl: 'https://github.com/bestguy/sveltestrap',
+    brandUrl: 'https://github.com/bestguy/sveltestrap'
   })
 });

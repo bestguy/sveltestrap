@@ -37,7 +37,10 @@ export function createPopperActions(initOptions) {
 
     return {
       update(newContentOptions) {
-        options = Object.assign(Object.assign({}, initOptions), newContentOptions);
+        options = Object.assign(
+          Object.assign({}, initOptions),
+          newContentOptions
+        );
         if (popperInstance && options) {
           popperInstance.setOptions(options);
         }

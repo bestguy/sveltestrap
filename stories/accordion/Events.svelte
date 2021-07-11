@@ -6,22 +6,32 @@
 </script>
 
 <Accordion on:toggle={console.log}>
-  <AccordionItem active header="Home" on:toggle={e => {
-    id = 1;
-    open = e.detail;
-  }}>
+  <AccordionItem
+    active
+    header="Home"
+    on:toggle={(e) => {
+      id = 1;
+      open = e.detail;
+    }}
+  >
     Fallbrook
   </AccordionItem>
-  <AccordionItem header="School" on:toggle={e => {
-    id = 2;
-    open = e.detail;
-  }}>
+  <AccordionItem
+    header="School"
+    on:toggle={(e) => {
+      id = 2;
+      open = e.detail;
+    }}
+  >
     <a href="#home">Buena Vista Elementary</a>
   </AccordionItem>
-  <AccordionItem header="Library" on:toggle={e => {
-    id = 3;
-    open = e.detail;
-  }}>
+  <AccordionItem
+    header="Library"
+    on:toggle={(e) => {
+      id = 3;
+      open = e.detail;
+    }}
+  >
     UCSB Library
   </AccordionItem>
 </Accordion>

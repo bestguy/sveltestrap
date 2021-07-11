@@ -10,14 +10,14 @@ const renderButton = (props) => {
 
 const renderPopover = (props) => {
   const { container } = render(Popover, { props });
-  return container
+  return container;
 };
 
 const POPOVER_POSITION_CLASS = {
   top: 'bs-popover-top',
   bottom: 'bs-popover-bottom',
   left: 'bs-popover-start',
-  right: 'bs-popover-end',
+  right: 'bs-popover-end'
 };
 
 beforeEach(() => {
@@ -33,7 +33,9 @@ describe('Popover test', () => {
       isOpen: true
     });
     const popover = containerPopover.querySelector('.popover');
-    const popoverContent = containerPopover.querySelector('.popover .popover-body');
+    const popoverContent = containerPopover.querySelector(
+      '.popover .popover-body'
+    );
     expect(popover.className.includes(POPOVER_POSITION_CLASS.top)).toBeTruthy();
     expect(popoverContent.innerHTML).toBe('Hello');
   });
@@ -46,8 +48,12 @@ describe('Popover test', () => {
       isOpen: true
     });
     const popover = containerPopover.querySelector('.popover');
-    const popoverContent = containerPopover.querySelector('.popover .popover-body');
-    expect(popover.className.includes(POPOVER_POSITION_CLASS.left)).toBeTruthy();
+    const popoverContent = containerPopover.querySelector(
+      '.popover .popover-body'
+    );
+    expect(
+      popover.className.includes(POPOVER_POSITION_CLASS.left)
+    ).toBeTruthy();
     expect(popoverContent.innerHTML).toBe('Hello');
   });
 

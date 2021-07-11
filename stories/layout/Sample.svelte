@@ -82,16 +82,16 @@
     </Col>
     <Col>
       <div class={cell}>col-3</div>
-    </Col>    
+    </Col>
     <Col>
       <div class={cell}>col-4</div>
-    </Col>    
+    </Col>
     <Col>
       <div class={cell}>col-5</div>
-    </Col>    
+    </Col>
     <Col>
       <div class={cell}>col-6</div>
-    </Col>    
+    </Col>
   </Row>
   <Row cols={{ lg: 3, md: 2, sm: 1 }} class={row}>
     <Col>
@@ -99,18 +99,18 @@
     </Col>
     <Col>
       <div class={cell}>col-2</div>
-    </Col>      
+    </Col>
     <Col>
       <div class={cell}>col-3</div>
-    </Col>    
+    </Col>
     <Col>
       <div class={cell}>col-4</div>
-    </Col>    
+    </Col>
     <Col>
       <div class={cell}>col-5</div>
-    </Col>    
+    </Col>
     <Col>
       <div class={cell}>col-6</div>
-    </Col>    
+    </Col>
   </Row>
 </Container>

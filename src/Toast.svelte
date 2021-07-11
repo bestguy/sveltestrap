@@ -42,7 +42,8 @@
     on:introend={() => dispatch('open')}
     on:outrostart={() => dispatch('closing')}
     on:outroend={() => dispatch('close')}
-    role="alert">
+    role="alert"
+  >
     {#if header}
       <ToastHeader {toggle}>
         {header}

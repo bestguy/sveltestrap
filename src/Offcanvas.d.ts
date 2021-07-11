@@ -25,7 +25,7 @@ export default class Offcanvas extends SvelteComponentTyped<
     close: CustomEvent<void>;
   },
   {
-    default: {}
-    header: {}
+    default: {};
+    header: {};
   }
 > {}

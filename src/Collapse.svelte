@@ -1,4 +1,4 @@
-<script>  
+<script>
   import { createEventDispatcher, onMount } from 'svelte';
   import { collapseIn, collapseOut } from './transitions';
   import classnames from './utils';
@@ -17,12 +17,9 @@
   export let expand = false;
   export let toggler = null;
 
-  onMount(() => toggle(toggler, () => isOpen = !isOpen));
+  onMount(() => toggle(toggler, () => (isOpen = !isOpen)));
 
-  $: classes = classnames(
-    className,
-    navbar && 'navbar-collapse'
-  );
+  $: classes = classnames(className, navbar && 'navbar-collapse');
 
   let windowWidth = 0;
   let _wasMaximized = false;
@@ -68,7 +65,8 @@
     on:introstart={onEntering}
     on:introend={onEntered}
     on:outrostart={onExiting}
-    on:outroend={onExited}>
+    on:outroend={onExited}
+  >
     <slot />
   </div>
 {/if}

@@ -9,16 +9,12 @@
   export let row = false;
   export let tag = null;
 
-  $: classes = classnames(
-    className,
-    'mb-3',
-    {
-      row,
-      'form-check': check,
-      'form-check-inline': check && inline,
-      disabled: check && disabled
-    }
-  );
+  $: classes = classnames(className, 'mb-3', {
+    row,
+    'form-check': check,
+    'form-check-inline': check && inline,
+    disabled: check && disabled
+  });
 </script>
 
 {#if tag === 'fieldset'}
