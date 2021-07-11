@@ -67,3 +67,31 @@ export function collapseIn(node) {
     }
   };
 }
+
+export function modalIn(node) {
+  node.style.display = 'block';
+  const duration = getTransitionDuration(node);
+
+  return {
+    duration,
+    tick: (t) => {
+      if (t > 0) {
+        node.classList.add('show');
+      }
+    }
+  };
+}
+
+export function modalOut(node) {
+  node.classList.remove('show');
+  const duration = getTransitionDuration(node);
+
+  return {
+    duration,
+    tick: (t) => {
+      if (t === 1) {
+        node.style.display = 'none';
+      }
+    }
+  };
+}

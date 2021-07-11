@@ -12,7 +12,7 @@
     onMount,
     afterUpdate
   } from 'svelte';
-  import { fade as fadeTransition } from 'svelte/transition';
+  import { modalIn, modalOut } from './transitions';
   import InlineContainer from './InlineContainer.svelte';
   import ModalBackdrop from './ModalBackdrop.svelte';
   import ModalBody from './ModalBody.svelte';
@@ -48,8 +48,6 @@
   export let fade = true;
   export let unmountOnClose = true;
   export let returnFocusAfterClose = true;
-  export let transitionType = fadeTransition;
-  export let transitionOptions = { duration: fade ? 300 : 0 };
 
   let hasOpened = false;
   let _isMounted = false;
@@ -226,12 +224,11 @@
     <div class={wrapClassName} tabindex="-1" {...$$restProps}>
       {#if isOpen}
         <div
-          transition:transitionType={transitionOptions}
+          in:modalIn
+          out:modalOut
           ariaLabelledby={labelledBy}
           class={classnames('modal', modalClassName, {
-            show: isOpen,
-            'd-block': isOpen,
-            'd-none': !isOpen,
+            fade,
             'position-static': staticModal
           })}
           role="dialog"
