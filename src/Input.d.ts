@@ -28,7 +28,6 @@ export type InputType =
 
 export interface InputProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['input']> {
-  addon?: boolean;
   bsSize?: 'lg' | 'sm';
   checked?: boolean;
   color?: Color;
@@ -36,6 +35,7 @@ export interface InputProps
   files?: string;
   group?: any;
   id?: string;
+  inner?: HTMLElement;
   invalid?: boolean;
   label?: string;
   multiple?: boolean;

@@ -22,6 +22,7 @@ export interface ButtonProps
   color?: ButtonColor;
   disabled?: boolean;
   href?: string;
+  inner?: HTMLElement;
   outline?: boolean;
   size?: ButtonSize;
 }

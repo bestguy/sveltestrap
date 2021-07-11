@@ -16,6 +16,6 @@
   });
 </script>
 
-<div bind:this={ref}>
+<div bind:this={ref} {...$$restProps}>
   <slot />
 </div>
