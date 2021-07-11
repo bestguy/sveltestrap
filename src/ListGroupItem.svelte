@@ -31,7 +31,8 @@
     type="button"
     on:click
     {disabled}
-    {active}>
+    {active}
+  >
     <slot />
   </button>
 {:else}

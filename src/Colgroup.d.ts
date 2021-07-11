@@ -8,7 +8,7 @@ export interface ColgroupProps
 }
 
 export default class Colgroup extends SvelteComponentTyped<
-ColgroupProps,
+  ColgroupProps,
   {},
   { default: {} }
 > {}

@@ -18,7 +18,8 @@
     {...$$restProps}
     class={classes}
     transition:fadeTrans={{ duration: fade && duration }}
-    role="alert">
+    role="alert"
+  >
     <slot />
   </div>
 {/if}

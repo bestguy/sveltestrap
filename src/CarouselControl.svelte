@@ -42,7 +42,8 @@
   class={classes}
   role="button"
   href="#{direction}"
-  on:click|preventDefault={clickHandler}>
+  on:click|preventDefault={clickHandler}
+>
   <span class="carousel-control-{direction}-icon" aria-hidden="true" />
   <span class="visually-hidden">{srText}</span>
 </a>

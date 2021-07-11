@@ -1,4 +1,3 @@
-
 import { SvelteComponentTyped } from 'svelte';
 
 declare type ButtonColor =

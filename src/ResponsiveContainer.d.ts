@@ -9,4 +9,3 @@ export default class ResponsiveContainer extends SvelteComponentTyped<
   {},
   { default: {} }
 > {}
-

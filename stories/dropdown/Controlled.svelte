@@ -10,7 +10,7 @@
   let isOpen = false;
 </script>
 
-<Dropdown {isOpen} toggle={() => isOpen = !isOpen}>
+<Dropdown {isOpen} toggle={() => (isOpen = !isOpen)}>
   <DropdownToggle tag="div" class="d-inline-block">
     <Input />
   </DropdownToggle>

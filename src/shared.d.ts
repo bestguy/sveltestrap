@@ -1,12 +1,6 @@
-export declare type Breakpoints =
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl';
+export declare type Breakpoints = 'sm' | 'md' | 'lg' | 'xl';
 
-  export declare type ContainerType =
-  | 'body'
-  | 'inline';
+export declare type ContainerType = 'body' | 'inline';
 
 /**
  * Valid Bootstrap colors
@@ -21,9 +15,7 @@ export declare type Color =
   | 'light'
   | 'dark';
 
-declare type BackgroundOnlyColor =
-  | 'white'
-  | 'transparent';
+declare type BackgroundOnlyColor = 'white' | 'transparent';
 
 declare type TextOnlyColor =
   | 'body'
@@ -35,4 +27,10 @@ declare type TextOnlyColor =
 export declare type BackgroundColor = Color | BackgroundOnlyColor;
 export declare type TextColor = Color | TextOnlyColor;
 
-export declare type Direction = 'up' | 'down' | 'left' | 'right' | 'start' | 'end';
+export declare type Direction =
+  | 'up'
+  | 'down'
+  | 'left'
+  | 'right'
+  | 'start'
+  | 'end';

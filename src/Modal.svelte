@@ -6,7 +6,12 @@
 <script>
   import classnames from './utils';
   import { browserEvent } from './utils';
-  import { createEventDispatcher, onDestroy, onMount, afterUpdate } from 'svelte';
+  import {
+    createEventDispatcher,
+    onDestroy,
+    onMount,
+    afterUpdate
+  } from 'svelte';
   import { modalIn, modalOut } from './transitions';
   import InlineContainer from './InlineContainer.svelte';
   import ModalBackdrop from './ModalBackdrop.svelte';
@@ -200,57 +205,56 @@
   $: classes = classnames(dialogBaseClass, className, {
     [`modal-${size}`]: size,
     'modal-fullscreen': fullscreen === true,
-    [`modal-fullscreen-${fullscreen}-down`]: fullscreen && (typeof fullscreen === 'string'),
+    [`modal-fullscreen-${fullscreen}-down`]:
+      fullscreen && typeof fullscreen === 'string',
     [`${dialogBaseClass}-centered`]: centered,
     [`${dialogBaseClass}-scrollable`]: scrollable
   });
 
-  $: outer = (container === 'inline' || staticModal) ? InlineContainer : Portal;
+  $: outer = container === 'inline' || staticModal ? InlineContainer : Portal;
 </script>
 
 {#if _isMounted}
-<svelte:component this={outer}>
-  <div
-    class={wrapClassName}
-    tabindex="-1"
-    {...$$restProps}>
-    {#if isOpen}
-      <div
-        in:modalIn
-        out:modalOut
-        ariaLabelledby={labelledBy}
-        class={classnames('modal', modalClassName, {
-          fade,
-          'position-static': staticModal
-        })}
-        role="dialog"
-        on:introstart={() => dispatch('opening')}
-        on:introend={onModalOpened}
-        on:outrostart={() => dispatch('closing')}
-        on:outroend={onModalClosed}
-        on:click={handleBackdropClick}
-        on:mousedown={handleBackdropMouseDown}>
-        <slot name="external" />
-        <div class={classes} role="document" bind:this={_dialog}>
-          <div class={classnames('modal-content', contentClassName)}>
-            {#if header}
-              <ModalHeader {toggle}>
-                {header}
-              </ModalHeader>
-            {/if}
-            {#if body}
-              <ModalBody>
+  <svelte:component this={outer}>
+    <div class={wrapClassName} tabindex="-1" {...$$restProps}>
+      {#if isOpen}
+        <div
+          in:modalIn
+          out:modalOut
+          ariaLabelledby={labelledBy}
+          class={classnames('modal', modalClassName, {
+            fade,
+            'position-static': staticModal
+          })}
+          role="dialog"
+          on:introstart={() => dispatch('opening')}
+          on:introend={onModalOpened}
+          on:outrostart={() => dispatch('closing')}
+          on:outroend={onModalClosed}
+          on:click={handleBackdropClick}
+          on:mousedown={handleBackdropMouseDown}
+        >
+          <slot name="external" />
+          <div class={classes} role="document" bind:this={_dialog}>
+            <div class={classnames('modal-content', contentClassName)}>
+              {#if header}
+                <ModalHeader {toggle}>
+                  {header}
+                </ModalHeader>
+              {/if}
+              {#if body}
+                <ModalBody>
+                  <slot />
+                </ModalBody>
+              {:else}
                 <slot />
-              </ModalBody>
-            {:else}
-              <slot />
-            {/if}
+              {/if}
+            </div>
           </div>
         </div>
-      </div>
-    {/if}
-  </div>
-</svelte:component>
+      {/if}
+    </div>
+  </svelte:component>
 {/if}
 {#if backdrop && !staticModal}
   <svelte:component this={outer}>

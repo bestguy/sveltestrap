@@ -15,8 +15,7 @@
   </DropdownMenu>
 </Dropdown>
 
-<Dropdown
-  direction="left">
+<Dropdown direction="left">
   <DropdownToggle caret>Dropleft</DropdownToggle>
   <DropdownMenu>
     <DropdownItem>Another Action</DropdownItem>
@@ -24,8 +23,7 @@
   </DropdownMenu>
 </Dropdown>
 
-<Dropdown
-  direction="right">
+<Dropdown direction="right">
   <DropdownToggle caret>Dropright</DropdownToggle>
   <DropdownMenu>
     <DropdownItem>Another Action</DropdownItem>

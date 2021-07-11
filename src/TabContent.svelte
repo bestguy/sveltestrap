@@ -30,7 +30,8 @@
     class={classnames({ 'me-3': vertical })}
     {pills}
     tabs={!pills}
-    {vertical}>
+    {vertical}
+  >
     <slot />
   </TabHeader>
   <slot />

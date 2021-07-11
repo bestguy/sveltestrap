@@ -29,8 +29,6 @@
       <Icon slot="icon" name="emoji-sunglasses" class="me-2" />
       Sveltestrap
     </ToastHeader>
-    <ToastBody>
-      This is a toast with a custom icon.
-    </ToastBody>
+    <ToastBody>This is a toast with a custom icon.</ToastBody>
   </Toast>
 </div>

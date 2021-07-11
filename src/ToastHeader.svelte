@@ -22,7 +22,8 @@
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid slice"
       focusable="false"
-      role="img">
+      role="img"
+    >
       <rect fill="currentColor" width="100%" height="100%" />
     </svg>
   {:else}
@@ -33,10 +34,7 @@
   </strong>
   {#if toggle}
     <slot name="close">
-      <Button
-        close
-        on:click={toggle}
-        aria-label={closeAriaLabel} />
+      <Button close on:click={toggle} aria-label={closeAriaLabel} />
     </slot>
   {/if}
 </div>

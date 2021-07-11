@@ -41,8 +41,8 @@
     }
   }
 
-  const open = () => isOpen = true;
-  const close = () => isOpen = false;
+  const open = () => (isOpen = true);
+  const close = () => (isOpen = false);
 
   onMount(() => {
     targetEl = document.querySelector(`#${target}`);
@@ -89,22 +89,23 @@
 </script>
 
 {#if isOpen}
-<svelte:component this={outer}>
-  <div
-    bind:this={tooltipEl}
-    {...$$restProps}
-    class={classes}
-    {id}
-    role="tooltip"
-    x-placement={popperPlacement}>
-    <div class="tooltip-arrow" data-popper-arrow />
-    <div class="tooltip-inner">
-      {#if children}
-        {children}
-      {:else}
-        <slot />
-      {/if}
+  <svelte:component this={outer}>
+    <div
+      bind:this={tooltipEl}
+      {...$$restProps}
+      class={classes}
+      {id}
+      role="tooltip"
+      x-placement={popperPlacement}
+    >
+      <div class="tooltip-arrow" data-popper-arrow />
+      <div class="tooltip-inner">
+        {#if children}
+          {children}
+        {:else}
+          <slot />
+        {/if}
+      </div>
     </div>
-  </div>
-</svelte:component>
+  </svelte:component>
 {/if}

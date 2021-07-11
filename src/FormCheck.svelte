@@ -16,22 +16,16 @@
   export let valid = false;
   export let value = undefined;
 
-  $: classes = classnames(
-    className,
-    'form-check',
-    {
-      'form-switch': (type === 'switch'),
-      'form-check-inline': inline,
-      [`form-control-${size}`]: size
-    }
-  );
+  $: classes = classnames(className, 'form-check', {
+    'form-switch': type === 'switch',
+    'form-check-inline': inline,
+    [`form-control-${size}`]: size
+  });
 
-  $: inputClasses = classnames(
-    'form-check-input',
-    {
-      'is-invalid': invalid,
-      'is-valid' : valid
-    });
+  $: inputClasses = classnames('form-check-input', {
+    'is-invalid': invalid,
+    'is-valid': valid
+  });
   $: idFor = id || label;
 </script>
 
@@ -49,7 +43,8 @@
       bind:group
       {disabled}
       {name}
-      {value} />
+      {value}
+    />
   {:else if type === 'switch'}
     <input
       {...$$restProps}
@@ -63,7 +58,8 @@
       bind:checked
       {disabled}
       {name}
-      {value} />
+      {value}
+    />
   {:else}
     <input
       {...$$restProps}
@@ -77,12 +73,11 @@
       bind:checked
       {disabled}
       {name}
-      {value} />
+      {value}
+    />
   {/if}
   {#if label}
-    <label
-      class='form-check-label'
-      for={idFor}>
+    <label class="form-check-label" for={idFor}>
       <slot name="label">{label}</slot>
     </label>
   {/if}

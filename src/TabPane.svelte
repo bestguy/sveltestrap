@@ -26,9 +26,7 @@
 
 {#if tabs}
   <NavItem>
-    <NavLink
-      active={tabOpen}
-      on:click={() => setActiveTab(tabId)}>
+    <NavLink active={tabOpen} on:click={() => setActiveTab(tabId)}>
       {#if tab}{tab}{/if}
       <slot name="tab" />
     </NavLink>

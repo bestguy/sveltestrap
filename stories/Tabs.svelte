@@ -1,5 +1,4 @@
 <script lang="ts">
-
 </script>
 
 <h1>Tabs</h1>

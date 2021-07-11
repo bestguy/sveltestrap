@@ -8,9 +8,7 @@
 </script>
 
 <div class="mb-3">
-  <Dropdown
-    group
-    size="lg">
+  <Dropdown group size="lg">
     <DropdownToggle caret>Large Dropdown</DropdownToggle>
     <DropdownMenu>
       <DropdownItem>Shave the modern way</DropdownItem>
@@ -28,9 +26,7 @@
 </div>
 
 <div class="mb-3">
-  <Dropdown
-    group
-    size="sm">
+  <Dropdown group size="sm">
     <DropdownToggle caret>Small Dropdown</DropdownToggle>
     <DropdownMenu>
       <DropdownItem>Burma-Shave</DropdownItem>

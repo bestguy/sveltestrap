@@ -8,7 +8,7 @@ export function collapseOut(node) {
 
   return {
     duration,
-    tick: t => {
+    tick: (t) => {
       if (t > 0) {
         node.style.height = '';
       } else if (t === 0) {
@@ -16,7 +16,7 @@ export function collapseOut(node) {
         node.classList.add('collapse');
       }
     }
-  }
+  };
 }
 
 export function collapseIn(node) {
@@ -27,7 +27,7 @@ export function collapseIn(node) {
 
   return {
     duration,
-    tick: t => {
+    tick: (t) => {
       if (t < 1) {
         node.style.height = `${node.scrollHeight}px`;
       } else {
@@ -36,7 +36,7 @@ export function collapseIn(node) {
         node.style.height = '';
       }
     }
-  }
+  };
 }
 
 export function backdropIn(node) {
@@ -47,7 +47,7 @@ export function backdropIn(node) {
 
   return {
     duration
-  }
+  };
 }
 
 export function backdropOut(node) {
@@ -56,12 +56,12 @@ export function backdropOut(node) {
 
   return {
     duration,
-    tick: t => {
+    tick: (t) => {
       if (t === 0) {
         node.style.display = 'none';
       }
     }
-  }
+  };
 }
 
 export function modalIn(node) {
@@ -70,12 +70,12 @@ export function modalIn(node) {
 
   return {
     duration,
-    tick: t => {
+    tick: (t) => {
       if (t > 0) {
         node.classList.add('show');
       }
     }
-  }
+  };
 }
 
 export function modalOut(node) {
@@ -84,10 +84,10 @@ export function modalOut(node) {
 
   return {
     duration,
-    tick: t => {
+    tick: (t) => {
       if (t === 1) {
         node.style.display = 'none';
       }
     }
-  }
+  };
 }

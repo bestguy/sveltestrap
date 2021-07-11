@@ -37,7 +37,8 @@
     on:click
     {href}
     aria-label={ariaLabel || defaultAriaLabel}
-    {style}>
+    {style}
+  >
     {#if children}
       {children}
     {:else}
@@ -52,7 +53,8 @@
     on:click
     {value}
     aria-label={ariaLabel || defaultAriaLabel}
-    {style}>
+    {style}
+  >
     <slot>
       {#if children}
         {children}

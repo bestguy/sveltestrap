@@ -5,7 +5,7 @@
 </script>
 
 <h5>Current state: {status}</h5>
-<TabContent on:tab={e => status = e.detail}>
+<TabContent on:tab={(e) => (status = e.detail)}>
   <TabPane tabId="alpha" tab="Alpha" active>
     <h2>Alpha</h2>
   </TabPane>

@@ -13,17 +13,18 @@
       if (colsValue > 0) {
         return [`row-cols-${colsValue}`];
       }
-    }
-    else if (typeof cols === 'object') {
-      return ['xs', 'sm', 'md', 'lg', 'xl'].map((colWidth) => {
-        const isXs = colWidth === 'xs';
-        const colSizeInterfix = isXs ? '-' : `-${colWidth}-`;
-        const value = cols[colWidth];
-        if (typeof value === 'number' && value > 0) {
-          return `row-cols${colSizeInterfix}${value}`;
-        }
-        return null;
-      }).filter((value) => !!value);
+    } else if (typeof cols === 'object') {
+      return ['xs', 'sm', 'md', 'lg', 'xl']
+        .map((colWidth) => {
+          const isXs = colWidth === 'xs';
+          const colSizeInterfix = isXs ? '-' : `-${colWidth}-`;
+          const value = cols[colWidth];
+          if (typeof value === 'number' && value > 0) {
+            return `row-cols${colSizeInterfix}${value}`;
+          }
+          return null;
+        })
+        .filter((value) => !!value);
     }
     return [];
   }
@@ -32,7 +33,7 @@
     className,
     noGutters ? 'gx-0' : null,
     form ? 'form-row' : 'row',
-    ...getCols(cols),
+    ...getCols(cols)
   );
 </script>
 

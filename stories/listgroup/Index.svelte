@@ -15,7 +15,8 @@
 <h1>List Groups</h1>
 <a
   href="https://getbootstrap.com/docs/5.0/components/list-group/"
-  target="_blank">
+  target="_blank"
+>
   Bootstrap List Groups
 </a>
 
@@ -31,8 +32,7 @@
   <p slot="info">
     The
     <code>action</code>
-    prop will fill the ListGroupItem with the clickable area for anchors and
-    buttons.
+    prop will fill the ListGroupItem with the clickable area for anchors and buttons.
   </p>
   <Actions />
 </Example>

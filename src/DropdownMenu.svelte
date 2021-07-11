@@ -20,16 +20,16 @@
   };
 
   $: popperOptions = {
-		modifiers: [
-			{ name: 'flip' },
-			{
-				name: 'offset',
-				options: {
-					offset: [0, 2],
-				}
-			}
-		],
-		placement: popperPlacement($context.direction, (end || right))
+    modifiers: [
+      { name: 'flip' },
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 2]
+        }
+      }
+    ],
+    placement: popperPlacement($context.direction, end || right)
   };
 
   $: classes = classnames(className, 'dropdown-menu', {
@@ -42,6 +42,7 @@
 <div
   {...$$restProps}
   class={classes}
-  use:$context.popperContent={popperOptions}>
+  use:$context.popperContent={popperOptions}
+>
   <slot />
 </div>

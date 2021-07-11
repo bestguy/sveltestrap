@@ -8,7 +8,8 @@
     trigger="hover"
     placement="right"
     target="btn-trigger"
-    title="Popover with hover">
+    title="Popover with hover"
+  >
     This is a Popover with hover as the trigger.
   </Popover>
 </div>
@@ -19,7 +20,8 @@
     trigger="focus"
     placement="right"
     target="btn-trigger2"
-    title="Popover with focus">
+    title="Popover with focus"
+  >
     This is a Popover with focus as the trigger.
   </Popover>
 </div>

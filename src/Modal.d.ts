@@ -37,7 +37,7 @@ export default class Modal extends SvelteComponentTyped<
     close: CustomEvent<void>;
   },
   {
-    default: {}
-    external: {}
+    default: {};
+    external: {};
   }
 > {}

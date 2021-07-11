@@ -10,5 +10,5 @@ export interface TabPaneProps
 export default class TabPane extends SvelteComponentTyped<
   TabPaneProps,
   {},
-  { default: {}; tab: {}; }
+  { default: {}; tab: {} }
 > {}

@@ -23,7 +23,8 @@
     on:blur={() => (focused = false)}
     on:focus={() => (focused = true)}
     on:change={changeEvent}
-    on:input={inputEvent} />
+    on:input={inputEvent}
+  />
 </FormGroup>
 {#if changeValue}
   <p>

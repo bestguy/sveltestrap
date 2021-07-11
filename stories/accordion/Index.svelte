@@ -15,7 +15,8 @@
 <h1>Accordion</h1>
 <a
   href="https://getbootstrap.com/docs/5.0/components/accordion/"
-  target="_blank">
+  target="_blank"
+>
   Bootstrap Accordion
 </a>
 
@@ -29,7 +30,8 @@
 
 <Example title="Stay Open" source={stayOpenSource}>
   <p slot="info">
-    Add the <code>stayOpen</code> prop to make accordion items stay open when another item is opened.
+    Add the <code>stayOpen</code> prop to make accordion items stay open when another
+    item is opened.
   </p>
   <StayOpen />
 </Example>
