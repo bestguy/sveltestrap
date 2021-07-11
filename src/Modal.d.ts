@@ -6,8 +6,6 @@ export interface ModalProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   autoFocus?: boolean;
   backdrop?: boolean | 'static';
-  backdropClassName?: string;
-  backdropDuration?: number;
   body?: boolean;
   centered?: boolean;
   container?: ContainerType;
@@ -23,7 +21,6 @@ export interface ModalProps
   scrollable?: boolean;
   size?: string;
   toggle?: () => void;
-  transitionOptions?: FadeProps | {};
   unmountOnClose?: boolean;
   wrapClassName?: string;
   zIndex?: number | string;

@@ -1,5 +1,34 @@
 import { getTransitionDuration } from './utils';
 
+export function backdropIn(node) {
+  node.style.display = 'block';
+
+  const duration = getTransitionDuration(node);
+
+  return {
+    duration,
+    tick: (t) => {
+      if (t === 0) {
+        node.classList.add('show');
+      }
+    }
+  };
+}
+
+export function backdropOut(node) {
+  node.classList.remove('show');
+  const duration = getTransitionDuration(node);
+
+  return {
+    duration,
+    tick: (t) => {
+      if (t === 0) {
+        node.style.display = 'none';
+      }
+    }
+  };
+}
+
 export function collapseOut(node) {
   node.style.height = `${node.getBoundingClientRect().height}px`;
   node.classList.add('collapsing');
@@ -39,3 +68,30 @@ export function collapseIn(node) {
   };
 }
 
+export function modalIn(node) {
+  node.style.display = 'block';
+  const duration = getTransitionDuration(node);
+
+  return {
+    duration,
+    tick: (t) => {
+      if (t > 0) {
+        node.classList.add('show');
+      }
+    }
+  };
+}
+
+export function modalOut(node) {
+  node.classList.remove('show');
+  const duration = getTransitionDuration(node);
+
+  return {
+    duration,
+    tick: (t) => {
+      if (t === 1) {
+        node.style.display = 'none';
+      }
+    }
+  };
+}

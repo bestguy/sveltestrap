@@ -53,6 +53,7 @@ import Label from './Label';
 import ListGroup from './ListGroup';
 import ListGroupItem from './ListGroupItem';
 import Modal from './Modal';
+import ModalBackdrop from './ModalBackdrop';
 import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
 import ModalHeader from './ModalHeader';
@@ -141,6 +142,7 @@ export {
   ListGroup,
   ListGroupItem,
   Modal,
+  ModalBackdrop,
   ModalBody,
   ModalFooter,
   ModalHeader,
