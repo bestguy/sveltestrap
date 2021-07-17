@@ -32,8 +32,8 @@
       <p style="min-height: 1500px;">This is some placeholder content to show the scrolling behavior for modals. Instead of repeating the text the modal, we use an inline style set a minimum height, thereby extending the length of the overall modal and demonstrating the overflow scrolling. When content becomes longer than the height of the viewport, scrolling will move the modal as needed.</p>
     </ModalBody>
     <ModalFooter>
-      <Button color="primary" on:click={toggle}>Do Something</Button>
-      <Button color="secondary" on:click={toggle}>Cancel</Button>
+      <Button color="primary" on:click={toggleScrollable}>Do Something</Button>
+      <Button color="secondary" on:click={toggleScrollable}>Cancel</Button>
     </ModalFooter>
   </Modal>
 </div>
