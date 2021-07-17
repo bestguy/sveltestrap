@@ -12,6 +12,8 @@
   import sampleSource from '!!raw-loader!./Sample.svelte';
   import Fullscreen from './Fullscreen.svelte';
   import fullscreenSource from '!!raw-loader!./Fullscreen.svelte';
+  import Scrolling from './Scrolling.svelte';
+  import scrollingSource from '!!raw-loader!./Scrolling.svelte';
   import Sizes from './Sizes.svelte';
   import sizesSource from '!!raw-loader!./Sizes.svelte';
   import Shorthand from './Shorthand.svelte';
@@ -46,6 +48,10 @@
 
 <Example title="Fullscreen" source={fullscreenSource}>
   <Fullscreen />
+</Example>
+
+<Example title="Scrolling" source={scrollingSource}>
+  <Scrolling />
 </Example>
 
 <Example title="Backdrop" source={backdropSource}>
