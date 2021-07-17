@@ -142,13 +142,7 @@
 
   function close() {
     if (openCount <= 1) {
-      const modalOpenClassName = 'modal-open';
-      const modalOpenClassNameRegex = new RegExp(
-        `(^| )${modalOpenClassName}( |$)`
-      );
-      document.body.className = document.body.className
-        .replace(modalOpenClassNameRegex, ' ')
-        .trim();
+      document.body.classList.remove('modal-open');
     }
 
     manageFocusAfterClose();
@@ -266,3 +260,10 @@
     <ModalBackdrop {fade} {isOpen} />
   </svelte:component>
 {/if}
+
+<style>
+  :global(.modal-open) {
+    overflow: hidden;
+    padding-right: 0;
+  }
+</style>
