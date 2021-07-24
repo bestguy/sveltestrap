@@ -45,6 +45,7 @@ import FormGroup from './FormGroup';
 import FormText from './FormText';
 import Icon from './Icon';
 import Image from './Image';
+import InlineContainer from './InlineContainer';
 import Input from './Input';
 import InputGroup from './InputGroup';
 import InputGroupText from './InputGroupText';
