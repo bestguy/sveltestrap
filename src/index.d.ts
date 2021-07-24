@@ -135,6 +135,7 @@ export {
   FormText,
   Icon,
   Image,
+  InlineContainer,
   Input,
   InputGroup,
   InputGroupText,
