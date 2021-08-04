@@ -15,6 +15,8 @@
   import DarkSource from '!!raw-loader!./Dark.svelte';
 
   import Example from '../Example.svelte';
+  import FullWidth from './FullWidth.svelte';
+  import FullWidthSource from '!!raw-loader!./FullWidth.svelte';
 </script>
 
 <h1>Carousel</h1>
@@ -28,6 +30,10 @@
 
 <Example title="Slides only" source={sampleSource}>
   <Sample />
+</Example>
+
+<Example title="Full Width" source={FullWidthSource}>
+  <FullWidth />
 </Example>
 
 <Example title="With Controls" source={WithControlsSource}>

@@ -14,11 +14,13 @@
   export let interval = 5000;
   export let pause = true;
   export let keyboard = true;
+  export let fluid = false;
   let _rideTimeoutId = false;
   let _removeVisibilityChangeListener = false;
 
   $: classes = classnames(className, 'carousel', 'slide', {
-    'carousel-dark': dark
+    'carousel-dark': dark,
+    'container-fluid': fluid
   });
 
   onMount(() => {
