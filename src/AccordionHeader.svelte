@@ -7,7 +7,7 @@
 </script>
 
 <h2 class="accordion-header" {...$$restProps}>
-  <button class={classes} on:click>
+  <button type="button" class={classes} on:click>
     <slot />
   </button>
 </h2>
