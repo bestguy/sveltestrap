@@ -96,6 +96,7 @@
     use:$context.popperRef
     {...$$restProps}
     bind:this={inner}
+    type="button"
     on:click
     on:click={toggleButton}
     aria-expanded={$context.isOpen}
