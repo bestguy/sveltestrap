@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher, onMount } from 'svelte';
   import InlineContainer from './InlineContainer.svelte';
-  import ModalBackdrop from './ModalBackdrop.svelte';
+  import OffcanvasBackdrop from './OffcanvasBackdrop.svelte';
   import OffcanvasBody from './OffcanvasBody.svelte';
   import OffcanvasHeader from './OffcanvasHeader.svelte';
   import Portal from './Portal.svelte';
@@ -96,7 +96,7 @@
     </OffcanvasBody>
   </div>
   {#if backdrop}
-    <ModalBackdrop on:click={toggle ? () => toggle() : undefined} {fade} {isOpen} />
+    <OffcanvasBackdrop on:click={toggle ? () => toggle() : undefined} {fade} {isOpen} />
   {/if}
 </svelte:component>
 
