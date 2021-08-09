@@ -98,7 +98,7 @@
         <pre>
           <PrismCode class="language-html">
             {`<head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
 </head>`}
           </PrismCode>
         </pre>
@@ -107,7 +107,7 @@
         <pre>
           <PrismCode class="language-html">
             {`<svelte:head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
 </svelte:head>`}
           </PrismCode>
         </pre>
@@ -158,13 +158,13 @@
             color="link"
             class="p-0"
             style="vertical-align: unset;"
-            on:click={linkTo('Components', 'Icon')}>Icon</Button
-          > component, you also must include a link to Bootstrap Icon CSS, for example:
+            on:click={linkTo('Components', 'Icon')}>Icon</Button>
+          component, you also must include a link to Bootstrap Icon CSS, for example:
         </p>
         <pre>
           <PrismCode class="language-html">
             {`<svelte:head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </svelte:head>`}
           </PrismCode>
         </pre>

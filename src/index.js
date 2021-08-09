@@ -64,6 +64,7 @@ export { default as NavLink } from './NavLink.svelte';
 export { default as NavbarBrand } from './NavbarBrand.svelte';
 export { default as NavbarToggler } from './NavbarToggler.svelte';
 export { default as Offcanvas } from './Offcanvas.svelte';
+export { default as OffcanvasBackdrop } from './OffcanvasBackdrop.svelte';
 export { default as OffcanvasBody } from './OffcanvasBody.svelte';
 export { default as OffcanvasHeader } from './OffcanvasHeader.svelte';
 export { default as Pagination } from './Pagination.svelte';

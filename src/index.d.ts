@@ -65,6 +65,7 @@ import Navbar from './Navbar';
 import NavbarBrand from './NavbarBrand';
 import NavbarToggler from './NavbarToggler';
 import Offcanvas from './Offcanvas';
+import OffcanvasBackdrop from './OffcanvasBackdrop';
 import OffcanvasBody from './OffcanvasBody';
 import OffcanvasHeader from './OffcanvasHeader';
 import Pagination from './Pagination';
