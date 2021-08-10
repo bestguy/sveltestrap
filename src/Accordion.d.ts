@@ -8,6 +8,8 @@ export interface AccordionProps
 
 export default class Accordion extends SvelteComponentTyped<
   AccordionProps,
-  {},
+  {
+    toggle: CustomEvent<any>;
+  },
   { default: {} }
 > {}
