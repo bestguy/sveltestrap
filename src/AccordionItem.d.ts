@@ -8,7 +8,9 @@ export interface AccordionItemProps
 
 export default class AccordionItem extends SvelteComponentTyped<
   AccordionItemProps,
-  {},
+  {
+    toggle: CustomEvent<boolean>;
+  },
   {
     default: {};
     header: {};
