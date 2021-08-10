@@ -122,7 +122,10 @@
         </h6>
         <pre>
           <PrismCode class="language-html">
-            {`<script ✂prettier:content✂="CiAgICBpbXBvcnQgeyBTdHlsZXMgfSBmcm9tICdzdmVsdGVzdHJhcCc7Cg==" ✂prettier:content✂="e30=">{}</script>
+            {`<script>
+  import { Styles } from 'sveltestrap';
+</script>
+
 <Styles />`}
           </PrismCode>
         </pre>
@@ -176,7 +179,10 @@
         > component includes the Bootstrap Icon CSS by default:
         <pre>
           <PrismCode class="language-html">
-            {`<script ✂prettier:content✂="CiAgICBpbXBvcnQgeyBTdHlsZXMgfSBmcm9tICdzdmVsdGVzdHJhcCc7Cg==" ✂prettier:content✂="e30=">{}</script>
+            {`<script>
+  import { Styles } from 'sveltestrap';
+</script>
+            
 <Styles />`}
           </PrismCode>
         </pre>
