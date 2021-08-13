@@ -17,7 +17,10 @@
   export let expand = false;
   export let toggler = null;
 
-  onMount(() => toggle(toggler, () => (isOpen = !isOpen)));
+  onMount(() => toggle(toggler, (e) => {
+    isOpen = !isOpen;
+    e.preventDefault();
+  }));
 
   $: classes = classnames(className, navbar && 'navbar-collapse');
 
