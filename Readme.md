@@ -102,10 +102,10 @@ import { Styles } from 'sveltestrap';
 <Styles />
 ```
 
-### Note on server-side rendering (SSR) Usage
+### Note on usage with Sapper
 
-If you are using Sveltestrap in an SSR environment like Sapper,
-it's recommended you import the component source directly, for example:
+If you are using Sveltestrap with Sapper, it's recommended you import the component source directly.
+Note that this issue does not effect SvelteKit. For example:
 
 ```html
 <script>
