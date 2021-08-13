@@ -105,7 +105,7 @@ import { Styles } from 'sveltestrap';
 ### Note on usage with Sapper
 
 If you are using Sveltestrap with Sapper, it's recommended you import the component source directly.
-Note that this issue does not effect SvelteKit. For example:
+Note that this issue does not affect SvelteKit. For example:
 
 ```html
 <script>
