@@ -12,12 +12,14 @@
   let className = '';
   export { className as class };
   export let backdrop = true;
+  export let body = true;
   export let container = 'body';
   export let fade = true;
   export let header = undefined;
   export let isOpen = false;
   export let placement = 'start';
   export let scroll = false;
+  export let style = '';
   export let toggle = undefined;
 
   // TODO support these like Modals:
@@ -25,16 +27,16 @@
   // export let unmountOnClose = true;
   // TODO focus trap
 
-  let body;
+  let bodyElement;
   let isTransitioning = false;
   let element;
   let removeEscListener;
 
-  onMount(() => (body = document.body));
+  onMount(() => (bodyElement = document.body));
 
-  $: if (body) {
+  $: if (bodyElement) {
     if (!scroll) {
-      body.classList.toggle('overflow-noscroll', isOpen || isTransitioning);
+      bodyElement.classList.toggle('overflow-noscroll', isOpen || isTransitioning);
     }
   }
   $: if (element) {
@@ -55,9 +57,9 @@
     removeEscListener();
   }
   $: handleMouseDown =
-    backdrop && toggle && body && isOpen
+    backdrop && toggle && bodyElement && isOpen
       ? (e) => {
-          if (e.target === body) {
+          if (e.target === bodyElement) {
             toggle();
           }
         }
@@ -78,7 +80,7 @@
     aria-modal={isOpen ? true : undefined}
     class={classes}
     role={isOpen || isTransitioning ? 'dialog' : undefined}
-    style={`visibility: ${isOpen || isTransitioning ? 'visible' : 'hidden'}`}
+    style={`visibility: ${isOpen || isTransitioning ? 'visible' : 'hidden'};${style}`}
     tabindex="-1"
   >
     {#if toggle || header || $$slots.header}
@@ -91,9 +93,13 @@
         <slot name="header" />
       </OffcanvasHeader>
     {/if}
-    <OffcanvasBody>
+    {#if body}
+      <OffcanvasBody>
+        <slot />
+      </OffcanvasBody>
+    {:else}
       <slot />
-    </OffcanvasBody>
+    {/if}
   </div>
   {#if backdrop}
     <OffcanvasBackdrop on:click={toggle ? () => toggle() : undefined} {fade} {isOpen} />
