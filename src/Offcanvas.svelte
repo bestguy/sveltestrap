@@ -85,11 +85,7 @@
   >
     {#if toggle || header || $$slots.header}
       <OffcanvasHeader {toggle}>
-        {#if header}
-          <h5 class="offcanvas-title">
-            {header}
-          </h5>
-        {/if}
+        {#if header}{header}{/if}
         <slot name="header" />
       </OffcanvasHeader>
     {/if}
