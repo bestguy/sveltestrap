@@ -6,5 +6,6 @@ module.exports = {
   transformIgnorePatterns: ['<rootDir>/node_modules/(?!(@popperjs)/)'],
   moduleFileExtensions: ['js', 'svelte'],
   bail: false,
-  verbose: false
+  verbose: false,
+  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"]
 };
