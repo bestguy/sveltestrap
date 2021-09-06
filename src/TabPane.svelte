@@ -7,6 +7,7 @@
   let className = '';
   export { className as class };
   export let active = false;
+  export let disabled = false;
   export let tab = undefined;
   export let tabId = undefined;
 
@@ -26,7 +27,7 @@
 
 {#if tabs}
   <NavItem>
-    <NavLink active={tabOpen} on:click={() => setActiveTab(tabId)}>
+    <NavLink active={tabOpen} {disabled} on:click={() => setActiveTab(tabId)}>
       {#if tab}{tab}{/if}
       <slot name="tab" />
     </NavLink>
