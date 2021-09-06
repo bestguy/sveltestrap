@@ -208,9 +208,9 @@
       on:keypress
       on:keyup
       bind:checked
+      bind:inner
       bind:group
       bind:value
-      bind:this={inner}
       {disabled}
       {invalid}
       {label}
