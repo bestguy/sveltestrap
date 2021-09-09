@@ -60,7 +60,7 @@
     {...$$restProps}
     class={classes}
     in:collapseIn
-    out:collapseOut
+    out:collapseOut|local
     on:introstart
     on:introend
     on:outrostart
