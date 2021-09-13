@@ -3,6 +3,7 @@ import { SvelteComponentTyped } from 'svelte';
 export interface OffcanvasHeaderProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   closeAriaLabel?: string;
+  closeButton?: boolean;
   toggle?: () => void;
 }
 

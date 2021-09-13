@@ -21,6 +21,7 @@
   export let scroll = false;
   export let style = '';
   export let toggle = undefined;
+  export let closeButton = true;
 
   // TODO support these like Modals:
   // export let autoFocus = true;
@@ -83,8 +84,8 @@
     style={`visibility: ${isOpen || isTransitioning ? 'visible' : 'hidden'};${style}`}
     tabindex="-1"
   >
-    {#if toggle || header || $$slots.header}
-      <OffcanvasHeader {toggle}>
+    {#if (toggle && closeButton) || header || $$slots.header}
+      <OffcanvasHeader {toggle} {closeButton}>
         {#if header}{header}{/if}
         <slot name="header" />
       </OffcanvasHeader>

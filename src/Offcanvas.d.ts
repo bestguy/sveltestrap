@@ -13,6 +13,7 @@ export interface OffcanvasProps
   isOpen: boolean;
   placement?: Placement;
   scroll?: boolean;
+  closeButton?: boolean;
   toggle?: () => void;
 }
 

@@ -34,4 +34,16 @@ describe('Offcanvas', () => {
     expect(component.getAttribute('aria-modal')).toBe('true');
     expect(component.getAttribute('role')).toBe('dialog');
   });
+
+  test('should render close button', () => {
+    const { container } = render(Offcanvas, { props: { toggle: () => {} } });
+    const closeButton = container.querySelector('.btn-close');
+    expect(closeButton).not.toBeNull();
+  });
+
+  test('should not render close button', () => {
+    const { container } = render(Offcanvas, { props: { toggle: () => {}, closeButton: false } });
+    const closeButton = container.querySelector('.btn-close');
+    expect(closeButton).toBeNull();
+  });
 });

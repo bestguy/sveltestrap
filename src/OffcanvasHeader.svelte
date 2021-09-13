@@ -6,6 +6,7 @@
   export let children = undefined;
   export let closeAriaLabel = 'Close';
   export let toggle = undefined;
+  export let closeButton = true;
 
   $: classes = classnames(className, 'offcanvas-header');
 </script>
@@ -19,7 +20,7 @@
     {/if}
   </h5>
   <slot name="close">
-    {#if typeof toggle === 'function'}
+    {#if typeof toggle === 'function' && closeButton}
       <button
         aria-label={closeAriaLabel}
         class="btn-close"
