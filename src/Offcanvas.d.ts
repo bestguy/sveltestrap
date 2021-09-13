@@ -13,8 +13,8 @@ export interface OffcanvasProps
   isOpen: boolean;
   placement?: Placement;
   scroll?: boolean;
-  closeButton?: boolean;
   toggle?: () => void;
+  closeButton?: boolean;
 }
 
 export default class Offcanvas extends SvelteComponentTyped<
