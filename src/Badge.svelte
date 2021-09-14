@@ -25,7 +25,7 @@
     {/if}
   </a>
 {:else}
-  <span {...$$restProps} class={classes}>
+  <span role="status" {...$$restProps} class={classes}>
     {#if children}
       {children}
     {:else}

@@ -5,44 +5,54 @@ beforeEach(cleanup);
 
 describe('Badge', () => {
   test('should render text and default color', () => {
-    const { container } = render(Badge, {
+    const { queryByRole } = render(Badge, {
       props: { children: 'Hello world!' }
     });
-    const badge = container.querySelector('.badge');
-    expect(badge.innerHTML).toBe('Hello world!');
-    expect(badge.className).toBe('badge bg-secondary');
+    const badge = queryByRole('status');
+    expect(badge.tagName).toEqual('SPAN');
+    expect(badge.innerHTML).toEqual('Hello world!');
+    expect(badge.className).toEqual('badge bg-secondary');
   });
 
   test('should render specified color', () => {
-    const { container } = render(Badge, {
+    const { queryByRole } = render(Badge, {
       props: { color: 'primary', children: 'Hello world!' }
     });
-    const badge = container.querySelector('.badge');
-    expect(badge.className).toBe('badge bg-primary');
+    const badge = queryByRole('status');
+    expect(badge.tagName).toEqual('SPAN');
+    expect(badge.innerHTML).toEqual('Hello world!');
+    expect(badge.className).toEqual('badge bg-primary');
   });
 
   test('should render custom class', () => {
-    const { container } = render(Badge, {
+    const { queryByRole } = render(Badge, {
       props: { color: 'danger', children: 'Hello world!', class: 'boogie' }
     });
-    const badge = container.querySelector('.badge');
-    expect(badge.className).toBe('boogie badge bg-danger');
+    const badge = queryByRole('status');
+    expect(badge.tagName).toEqual('SPAN');
+    expect(badge.innerHTML).toEqual('Hello world!');
+    expect(badge.className).toEqual('boogie badge bg-danger');
   });
 
   test('should render pill', () => {
-    const { container } = render(Badge, {
+    const { queryByRole } = render(Badge, {
       props: { pill: true, children: 'Hello world!' }
     });
-    const badge = container.querySelector('.badge');
+    const badge = queryByRole('status');
+    expect(badge.tagName).toEqual('SPAN');
+    expect(badge.innerHTML).toEqual('Hello world!');
     expect(badge.className).toBe('badge bg-secondary rounded-pill');
   });
 
   test('should render link with href', () => {
-    const { container } = render(Badge, {
-      props: { href: 'http://example.com/' }
+    const { queryByText } = render(Badge, {
+      props: { href: 'http://example.com/', children: 'Link' }
     });
-    const link = container.querySelector('a');
-    expect(link.className).toBe('badge bg-secondary');
-    expect(link.href).toBe('http://example.com/');
+
+    const link = queryByText("Link");
+    expect(link.tagName).toEqual('A');
+    expect(link.innerHTML).toEqual('Link');
+    expect(link.className).toEqual('badge bg-secondary');
+    expect(link.href).toEqual('http://example.com/');
   });
 });
