@@ -44,6 +44,9 @@
       if (columnProp.offset) {
         colClasses.push(`offset${colSizeInterfix}${columnProp.offset}`);
       }
+      if (columnProp.order || columnProp.order === '') {
+        colClasses.push(`order${colSizeInterfix}${columnProp.order}`);
+      }
     } else {
       colClasses.push(getColumnSizeClass(isXs, colWidth, columnProp));
     }
