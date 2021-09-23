@@ -44,7 +44,7 @@
       if (columnProp.offset) {
         colClasses.push(`offset${colSizeInterfix}${columnProp.offset}`);
       }
-      if (columnProp.order || columnProp.order === '') {
+      if (columnProp.order) {
         colClasses.push(`order${colSizeInterfix}${columnProp.order}`);
       }
     } else {
