@@ -76,7 +76,7 @@ import TableHeader from './TableHeader';
 import Toast from './Toast';
 import ToastBody from './ToastBody';
 import ToastHeader from './ToastHeader';
-import Tooltip from './ToastHeader';
+import Tooltip from './Tooltip';
 import UncontrolledAlert from './Alert';
 import UncontrolledButtonDropdown from './Dropdown';
 import UncontrolledCollapse from './Collapse';
