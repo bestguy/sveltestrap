@@ -3,9 +3,11 @@
   import BasicSample from './BasicSample.svelte';
   import Controlled from './Controlled.svelte';
   import HtmlSample from './HtmlSample.svelte';
+  import ElementTargetSample from './ElementTargetSample.svelte';
   import basicSampleSource from '!!raw-loader!./BasicSample.svelte';
   import controlledSource from '!!raw-loader!./Controlled.svelte';
   import htmlSampleSource from '!!raw-loader!./HtmlSample.svelte';
+  import elementTargetSampleSource from '!!raw-loader!./ElementTargetSample.svelte';
 </script>
 
 <h1>Tooltip</h1>
@@ -26,4 +28,8 @@
 
 <Example title="Controlled" source={controlledSource}>
   <Controlled />
+</Example>
+
+<Example title="Element Target" source={elementTargetSampleSource}>
+  <ElementTargetSample />
 </Example>
