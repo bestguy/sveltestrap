@@ -27,4 +27,20 @@ describe('Col', () => {
     const col = container.querySelector('.test');
     expect(col.className).toBe('col-md-1 push-md-3 pull-md-2 offset-md-4 test');
   });
+
+  test('should render correct order number with objects', () => {
+    const { container } = render(Col, {
+      props: { class: 'test', md: { size: 1, pull: 2, push: 3, offset: 4, order: 1 } }
+    });
+    const col = container.querySelector('.test');
+    expect(col.className).toBe('col-md-1 push-md-3 pull-md-2 offset-md-4 order-md-1 test');
+  });
+
+  test('should render correct order string with objects', () => {
+    const { container } = render(Col, {
+      props: { class: 'test', md: { size: 1, pull: 2, push: 3, offset: 4, order: "first" } }
+    });
+    const col = container.querySelector('.test');
+    expect(col.className).toBe('col-md-1 push-md-3 pull-md-2 offset-md-4 order-md-first test');
+  });
 });
