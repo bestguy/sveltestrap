@@ -50,7 +50,7 @@
   $: if (target) {
     unregisterEventListeners();
     registerEventListeners();
-  };
+  }
 
   function registerEventListeners() {
 
@@ -70,7 +70,7 @@
       targetEl.addEventListener('focus', open);
       targetEl.addEventListener('blur', close);
     }
-  };
+  }
 
   function unregisterEventListeners() { 
     if (targetEl) {
