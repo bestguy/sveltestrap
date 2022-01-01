@@ -174,17 +174,23 @@
     dispatch('open');
     _removeEscListener = browserEvent(document, 'keydown', (event) => {
       if (event.key && event.key === 'Escape') {
-        if (toggle && backdrop === true) toggle(event);
+        if (toggle && backdrop === true) {
+          if (_removeEscListener) _removeEscListener();
+          toggle(event);
+        }
       }
     });
   }
 
-  function onModalClosed() {
-    dispatch('close');
+  function onModalClosing() {
+    dispatch('closing');
     if (_removeEscListener) {
       _removeEscListener();
     }
+  }
 
+  function onModalClosed() {
+    dispatch('close');
     if (unmountOnClose) {
       destroy();
     }
@@ -228,7 +234,7 @@
           role="dialog"
           on:introstart={() => dispatch('opening')}
           on:introend={onModalOpened}
-          on:outrostart={() => dispatch('closing')}
+          on:outrostart={onModalClosing}
           on:outroend={onModalClosed}
           on:click={handleBackdropClick}
           on:mousedown={handleBackdropMouseDown}
