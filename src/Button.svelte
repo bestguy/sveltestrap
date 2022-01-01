@@ -15,6 +15,7 @@
   export let size = null;
   export let style = '';
   export let value = '';
+  export let white = false;
 
   $: ariaLabel = $$props['aria-label'];
 
@@ -24,7 +25,10 @@
     close || `btn${outline ? '-outline' : ''}-${color}`,
     size ? `btn-${size}` : false,
     block ? 'd-block w-100' : false,
-    { active }
+    {
+      active,
+      'btn-close-white': close && white,
+    }
   );
 
   $: defaultAriaLabel = close ? 'Close' : null;

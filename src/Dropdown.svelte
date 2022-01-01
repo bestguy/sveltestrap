@@ -13,7 +13,6 @@
   let className = '';
   export { className as class };
   export let active = false;
-  export let addonType = false;
   export let direction = 'down';
   export let dropup = false;
   export let group = false;
@@ -56,10 +55,9 @@
     nav && active ? 'active' : false,
     setActiveFromChild && subItemIsActive ? 'active' : false,
     {
-      [`input-group-${addonType}`]: addonType,
       'btn-group': group,
       [`btn-group-${size}`]: !!size,
-      dropdown: !group && !addonType,
+      dropdown: !group,
       show: isOpen,
       'nav-item': nav
     }
