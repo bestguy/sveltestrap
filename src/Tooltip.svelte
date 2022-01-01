@@ -43,16 +43,36 @@
 
   const open = () => (isOpen = true);
   const close = () => (isOpen = false);
+  
+  onMount(registerEventListeners);
+  onDestroy(unregisterEventListeners);
 
-  onMount(() => {
-    targetEl = document.querySelector(`#${target}`);
-    targetEl.addEventListener('mouseover', open);
-    targetEl.addEventListener('mouseleave', close);
-    targetEl.addEventListener('focus', open);
-    targetEl.addEventListener('blur', close);
-  });
+  $: if (target) {
+    unregisterEventListeners();
+    registerEventListeners();
+  };
 
-  onDestroy(() => {
+  function registerEventListeners() {
+
+    if (target == null || target.length == 0) {
+      targetEl = null;
+    }
+    else if (target instanceof HTMLElement) {
+      targetEl = target;
+    }
+    else {
+      targetEl = document.querySelector(`#${target}`);
+    } 
+
+    if (targetEl) {
+      targetEl.addEventListener('mouseover', open);
+      targetEl.addEventListener('mouseleave', close);
+      targetEl.addEventListener('focus', open);
+      targetEl.addEventListener('blur', close);
+    }
+  };
+
+  function unregisterEventListeners() { 
     if (targetEl) {
       targetEl.removeEventListener('mouseover', open);
       targetEl.removeEventListener('mouseleave', close);
@@ -60,7 +80,7 @@
       targetEl.removeEventListener('blur', close);
       targetEl.removeAttribute('aria-describedby');
     }
-  });
+  }
 
   $: if (targetEl) {
     if (isOpen) targetEl.setAttribute('aria-describedby', id);
@@ -80,10 +100,6 @@
     `bs-tooltip-${bsPlacement}`,
     isOpen ? 'show' : false
   );
-
-  $: if (!target) {
-    throw new Error('Need target!');
-  }
 
   $: outer = container === 'inline' ? InlineContainer : Portal;
 </script>
