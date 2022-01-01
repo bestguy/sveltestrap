@@ -21,7 +21,8 @@
   import {
     conditionallyUpdateScrollbar,
     getOriginalBodyPadding,
-    setScrollbarWidth
+    setScrollbarWidth,
+    uuid
   } from './utils';
 
   const dispatch = createEventDispatcher();
@@ -40,7 +41,7 @@
   export let scrollable = false;
   export let size = '';
   export let toggle = undefined;
-  export let labelledBy = '';
+  export let labelledBy = header ? `modal-${uuid()}` : undefined;
   export let backdrop = true;
   export let wrapClassName = '';
   export let modalClassName = '';
@@ -226,7 +227,7 @@
         <div
           in:modalIn
           out:modalOut
-          ariaLabelledby={labelledBy}
+          aria-labelledby={labelledBy}
           class={classnames('modal', modalClassName, {
             fade,
             'position-static': staticModal
@@ -243,7 +244,7 @@
           <div class={classes} role="document" bind:this={_dialog}>
             <div class={classnames('modal-content', contentClassName)}>
               {#if header}
-                <ModalHeader {toggle}>
+                <ModalHeader {toggle} id={labelledBy}>
                   {header}
                 </ModalHeader>
               {/if}

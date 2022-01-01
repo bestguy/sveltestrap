@@ -6,12 +6,13 @@
   export let toggle = undefined;
   export let closeAriaLabel = 'Close';
   export let children = undefined;
+  export let id = undefined;
 
   $: classes = classnames(className, 'modal-header');
 </script>
 
 <div {...$$restProps} class={classes}>
-  <h5 class="modal-title">
+  <h5 class="modal-title" id={id}>
     {#if children}
       {children}
     {:else}
