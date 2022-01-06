@@ -12,6 +12,7 @@
   export let container = undefined;
   export let dismissible = false;
   export let isOpen = false;
+  export let hideOnOutClick = false;
   export let placement = 'top';
   export let target = '';
   export let title = '';
@@ -109,9 +110,14 @@
     isOpen ? 'show' : false
   );
 
+  const handleClick = (event) => {
+    if (isOpen && hideOnOutClick && !popoverEl.contains(event.target))
+      isOpen = false;
+  };
   $: outer = container === 'inline' ? InlineContainer : Portal;
 </script>
 
+<svelte:window on:mousedown={handleClick} />
 {#if isOpen}
   <svelte:component this={outer}>
     <div
