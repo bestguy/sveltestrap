@@ -83,7 +83,7 @@
         toggle: handleToggle,
         isOpen,
         direction: direction === 'down' && dropup ? 'up' : direction,
-        inNavbar,
+        inNavbar: nav || inNavbar,
         popperRef: nav ? noop : popperRef,
         popperContent: nav ? noop : popperContent
       };
