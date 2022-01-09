@@ -1,6 +1,11 @@
 <script>
   import classnames from './utils';
   import Container from './Container.svelte';
+  import { setContext } from 'svelte';
+
+  setContext('navbar', {
+    inNavbar: true
+  });
 
   let className = '';
   export { className as class };

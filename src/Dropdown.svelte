@@ -1,5 +1,5 @@
 <script>
-  import { setContext, onDestroy } from 'svelte';
+  import { getContext, setContext, onDestroy } from 'svelte';
   import { createPopperActions } from './popper';
   import classnames from './utils';
 
@@ -9,6 +9,7 @@
 
   let context = createContext();
   setContext('dropdownContext', context);
+  const navbarContext = getContext('navbar');
 
   let className = '';
   export { className as class };
@@ -16,7 +17,7 @@
   export let direction = 'down';
   export let dropup = false;
   export let group = false;
-  export let inNavbar = false;
+  export let inNavbar = navbarContext ? navbarContext.inNavbar : false;
   export let isOpen = false;
   export let nav = false;
   export let setActiveFromChild = false;
