@@ -16,6 +16,7 @@ export interface RowProps
   cols?: ColumnProps;
   noGutters?: boolean;
   form?: boolean;
+  inner?: HTMLElement;
 }
 
 export default class Row extends SvelteComponentTyped<
