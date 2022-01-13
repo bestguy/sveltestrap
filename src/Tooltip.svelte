@@ -55,15 +55,31 @@
   function registerEventListeners() {
 
     if (target == null || target.length == 0) {
-      targetEl = null;
+        targetEl = null;
+        return;
     }
-    else if (target instanceof HTMLElement) {
-      targetEl = target;
-    }
-    else {
-      targetEl = document.querySelector(`#${target}`);
-    } 
 
+    // Check if target is HTMLElement 
+    try {
+        if (target instanceof HTMLElement) {
+            targetEl = target;
+        }
+    } catch (e) {
+        // fails on SSR
+    }
+
+    // If targetEl has not been found yet 
+    if (targetEl == null) {
+        // Check if target can be found via querySelector
+        try {
+            targetEl = document.querySelector(`#${target}`);
+        }
+        catch (e) {
+            // fails on SSR
+        }
+    }
+    
+    // If we've found targetEl
     if (targetEl) {
       targetEl.addEventListener('mouseover', open);
       targetEl.addEventListener('mouseleave', close);
