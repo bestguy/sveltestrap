@@ -1,7 +1,5 @@
 <script lang="ts">
-  import InputGroup from '../../src/InputGroup.svelte';
-  import InputGroupText from '../../src/InputGroupText.svelte';
-  import Input from '../../src/Input.svelte';
+  import { InputGroup, InputGroupText, Input } from 'sveltestrap';
 </script>
 
 <div>
