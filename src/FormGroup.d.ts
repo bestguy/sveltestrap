@@ -7,6 +7,7 @@ export interface FormGroupProps {
   disabled?: boolean;
   id?: string;
   tag?: 'div' | 'fieldset';
+  class?: string;
 }
 
 declare class FormGroup extends SvelteComponentTyped<FormGroupProps> {}
