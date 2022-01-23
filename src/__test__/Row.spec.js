@@ -39,10 +39,4 @@ describe('Row', () => {
     const row = container.querySelector('.row');
     expect(row.className).toBe('row row-cols-sm-2 row-cols-md-3');
   });
-
-  test('should bind inner div', () => {
-    let inner;
-    const { container } = render(Row, { props: { class: "test-123", inner }});
-    expect(inner.classList).toContain("test-123")
-  });
 });
