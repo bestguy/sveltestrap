@@ -6,6 +6,7 @@
   export let noGutters = false;
   export let form = false;
   export let cols = 0;
+  export let inner = undefined;
 
   function getCols(cols) {
     const colsValue = parseInt(cols);
@@ -37,6 +38,6 @@
   );
 </script>
 
-<div {...$$restProps} class={classes}>
+<div {...$$restProps} class={classes} bind:this={inner}>
   <slot />
 </div>
