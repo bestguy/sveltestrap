@@ -11,6 +11,7 @@ import Carousel from './carousel/Index.svelte';
 import Collapse from './collapse/Index.svelte';
 import Dropdown from './dropdown/Index.svelte';
 import Fade from './fade/Index.svelte';
+import FormGroup from './formgroup/Index.svelte';
 import Icon from './icon/Index.svelte';
 import Image from './image/Index.svelte';
 import InputGroup from './inputgroup/Index.svelte';
@@ -50,6 +51,7 @@ storiesOf('Components', module)
   .add('Collapse', story(Collapse))
   .add('Dropdown', story(Dropdown))
   .add('Fade', story(Fade))
+  .add('FormGroup', story(FormGroup))
   .add('Icon', story(Icon))
   .add('Inputs', story(Inputs))
   .add('Image', story(Image))
