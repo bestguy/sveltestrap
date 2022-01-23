@@ -18,7 +18,8 @@
     if (active) setActiveTab(tabId);
   });
 
-  $: tabOpen = $activeTabId === tabId;
+  let tabOpen = active;
+  $: if ($activeTabId !== undefined) tabOpen = $activeTabId === tabId;
   $: classes = classnames('tab-pane', className, {
     active: tabOpen,
     show: tabOpen
