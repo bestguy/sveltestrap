@@ -12,7 +12,7 @@ export interface CollapseProps
   toggler?: string;
 }
 
-export default class ollapse extends SvelteComponentTyped<
+export default class Collapse extends SvelteComponentTyped<
   CollapseProps,
   {
     open: CustomEvent<void>;
