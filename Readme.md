@@ -16,7 +16,7 @@ The component names and interface are inspired by the [reactstrap](https://react
 
 ## Install
 
-`npm install --save svelte sveltestrap`
+`npm install svelte sveltestrap`
 
 ## Usage
 
