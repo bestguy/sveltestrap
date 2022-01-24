@@ -81,7 +81,7 @@
         <p>Install sveltestrap and peer dependencies via NPM</p>
         <pre>
           <PrismCode class="language-bash">
-            npm install --save sveltestrap svelte
+            npm install sveltestrap svelte
           </PrismCode>
         </pre>
 
@@ -141,7 +141,7 @@
         <h5>2. or install via npm</h5>
         <pre>
           <PrismCode class="language-bash">
-            {`npm install --save bootstrap`}
+            {`npm install bootstrap`}
           </PrismCode>
         </pre>
         <p>
