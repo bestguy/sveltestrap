@@ -154,7 +154,6 @@
 
   function handleBackdropClick(e) {
     if (e.target === _mouseDownElement) {
-      e.stopPropagation();
       if (!isOpen || !backdrop) {
         return;
       }
@@ -166,6 +165,7 @@
         e.target === backdropElem &&
         toggle
       ) {
+        e.stopPropagation();
         toggle(e);
       }
     }
