@@ -2,6 +2,8 @@
   import Example from '../Example.svelte';
   import Events from './Events.svelte';
   import eventsSource from '!!raw-loader!./Events.svelte';
+  import Horizontal from './Horizontal.svelte';
+  import horizontalSource from '!!raw-loader!./Horizontal.svelte';
   import Sample from './Sample.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
   import Uncontrolled from './Uncontrolled.svelte';
@@ -18,6 +20,10 @@
 
 <Example source={sampleSource}>
   <Sample />
+</Example>
+
+<Example title="Horizontal" source={horizontalSource}>
+  <Horizontal />
 </Example>
 
 <Example title="Events" source={eventsSource}>

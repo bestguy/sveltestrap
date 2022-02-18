@@ -3,6 +3,7 @@ import { SvelteComponentTyped } from 'svelte';
 export interface CollapseProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   expand?: boolean | string;
+  horizontal?: boolean;
   isOpen?: boolean;
   navbar?: boolean;
   onEntered?: () => void;
