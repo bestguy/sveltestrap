@@ -17,3 +17,7 @@
     <Button {color}>{color}</Button>
   </div>
 {/each}
+
+<div>
+  <Button href="/" color="primary">button with href</Button>
+</div>

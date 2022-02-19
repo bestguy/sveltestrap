@@ -27,7 +27,7 @@
     block ? 'd-block w-100' : false,
     {
       active,
-      'btn-close-white': close && white,
+      'btn-close-white': close && white
     }
   );
 
@@ -38,12 +38,12 @@
   <a
     {...$$restProps}
     class={classes}
-    {disabled}
     bind:this={inner}
     on:click
     {href}
     aria-label={ariaLabel || defaultAriaLabel}
     {style}
+    class:disabled
   >
     {#if children}
       {children}
@@ -71,3 +71,10 @@
     </slot>
   </button>
 {/if}
+
+<style>
+  a.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
+</style>
