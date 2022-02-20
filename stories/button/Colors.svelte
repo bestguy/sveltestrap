@@ -1,6 +1,8 @@
 <script lang="ts">
+  import type { ButtonColor } from 'src/Button';
   import { Button } from 'sveltestrap';
-  const colors: any = [
+
+  const colors: ButtonColor[] = [
     'primary',
     'secondary',
     'success',
@@ -17,3 +19,7 @@
     <Button {color}>{color}</Button>
   </div>
 {/each}
+
+<div>
+  <Button href="/" color="primary">button with href</Button>
+</div>

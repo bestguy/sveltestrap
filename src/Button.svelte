@@ -27,7 +27,7 @@
     block ? 'd-block w-100' : false,
     {
       active,
-      'btn-close-white': close && white,
+      'btn-close-white': close && white
     }
   );
 
@@ -38,7 +38,7 @@
   <a
     {...$$restProps}
     class={classes}
-    {disabled}
+    class:disabled
     bind:this={inner}
     on:click
     {href}
