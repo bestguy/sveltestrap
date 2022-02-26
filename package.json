@@ -70,7 +70,7 @@
     "postcss": "^8.2.10",
     "prettier": "^2.3.1",
     "prettier-plugin-svelte": "^2.3.0",
-    "prismjs": "^1.25.0",
+    "prismjs": "^1.27.0",
     "raw-loader": "^4.0.2",
     "rollup": "^2.51.1",
     "rollup-plugin-alias": "^2.2.0",
