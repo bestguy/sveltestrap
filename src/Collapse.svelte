@@ -1,6 +1,6 @@
 <script>
-  import {createEventDispatcher, onMount} from 'svelte';
-  import {collapseIn, collapseOut} from './transitions';
+  import { createEventDispatcher, onMount } from 'svelte';
+  import { collapseIn, collapseOut } from './transitions';
   import classnames from './utils';
   import toggle from './toggle';
 
@@ -8,29 +8,13 @@
 
   export let isOpen = false;
   let className = '';
-  export {className as class};
+  export { className as class };
   export let horizontal = false;
   export let navbar = false;
-  export let onEntering = () =>
-  {
-    transitioning = true;
-    dispatch('opening')
-  };
-  export let onEntered = () =>
-  {
-    transitioning = false;
-    dispatch('open')
-  };
-  export let onExiting = () =>
-  {
-    transitioning = true;
-    dispatch('closing')
-  };
-  export let onExited = () =>
-  {
-    transitioning = false;
-    dispatch('close')
-  };
+  export let onEntering = () => dispatch('opening');
+  export let onEntered = () => dispatch('open');
+  export let onExiting = () => dispatch('closing');
+  export let onExited = () => dispatch('close');
   export let toggler = null;
   let transitioning = false;
 
@@ -52,6 +36,31 @@
   {
     dispatch('update', isOpen);
   }
+  
+
+  function _onEntering(event)
+  {
+    transitioning = true;
+    onEntering(event);
+  }
+  
+  function _onEntered(event)
+  {
+    transitioning = false;
+    onEntered(event);
+  }
+  
+  function _onExiting(event)
+  {
+    transitioning = true;
+    onExiting(event);
+  }
+  
+  function _onExited(event)
+  {
+    transitioning = false;
+    onExited(event);
+  }
 </script>
 
 {#key isOpen}
@@ -65,10 +74,10 @@
       on:introend
       on:outrostart
       on:outroend
-      on:introstart={onEntering}
-      on:introend={onEntered}
-      on:outrostart={onExiting}
-      on:outroend={onExited}
+      on:introstart={_onEntering}
+      on:introend={_onEntered}
+      on:outrostart={_onExiting}
+      on:outroend={_onExited}
   >
     <slot />
   </div>
