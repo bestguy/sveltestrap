@@ -40,7 +40,6 @@
     {
       isOpen = !isOpen;
     }
-    e.preventDefault();
   }));
 
   $: classes = classnames(className, {
@@ -56,21 +55,21 @@
 </script>
 
 {#key isOpen}
-<div
-    style={navbar ? undefined : 'overflow: hidden;'}
-    {...$$restProps}
-    class={classes}
-    in:collapseIn={{ horizontal }}
-    out:collapseOut|local={{ horizontal }}
-    on:introstart
-    on:introend
-    on:outrostart
-    on:outroend
-    on:introstart={onEntering}
-    on:introend={onEntered}
-    on:outrostart={onExiting}
-    on:outroend={onExited}
->
-  <slot />
-</div>
-  {/key}
+  <div
+      style={navbar ? undefined : 'overflow: hidden;'}
+      {...$$restProps}
+      class={classes}
+      in:collapseIn={{ horizontal }}
+      out:collapseOut|local={{ horizontal }}
+      on:introstart
+      on:introend
+      on:outrostart
+      on:outroend
+      on:introstart={onEntering}
+      on:introend={onEntered}
+      on:outrostart={onExiting}
+      on:outroend={onExited}
+  >
+    <slot />
+  </div>
+{/key}
