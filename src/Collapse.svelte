@@ -18,10 +18,8 @@
   export let toggler = null;
   let transitioning = false;
 
-  onMount(() => toggle(toggler, (e) =>
-  {
-    if(!transitioning)
-    {
+  onMount(() => toggle(toggler, (e) => {
+    if (!transitioning) {
       isOpen = !isOpen;
     }
   }));
@@ -32,32 +30,27 @@
     'd-none': !isOpen
   });
 
-  function notify()
-  {
+  function notify() {
     dispatch('update', isOpen);
   }
   
 
-  function _onEntering(event)
-  {
+  function _onEntering(event) {
     transitioning = true;
     onEntering(event);
   }
   
-  function _onEntered(event)
-  {
+  function _onEntered(event) {
     transitioning = false;
     onEntered(event);
   }
   
-  function _onExiting(event)
-  {
+  function _onExiting(event) {
     transitioning = true;
     onExiting(event);
   }
   
-  function _onExited(event)
-  {
+  function _onExited(event) {
     transitioning = false;
     onExited(event);
   }
