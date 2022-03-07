@@ -34,6 +34,7 @@
   }
 </script>
 
+<li>
 {#if header}
   <h6 {...$$restProps} on:click on:click={handleItemClick} class={classes}>
     <slot />
@@ -51,3 +52,4 @@
     <slot />
   </button>
 {/if}
+</li>
