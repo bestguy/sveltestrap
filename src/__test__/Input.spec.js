@@ -63,13 +63,13 @@ describe('Input', () => {
   });
 
   test('should render sm size', () => {
-    const container = renderInput({ size: 'sm' });
+    const container = renderInput({ bsSize: 'sm' });
     const input = container.querySelector('input');
     expect(input.className).toContain('form-control form-control-sm');
   });
 
   test('should render lg size', () => {
-    const container = renderInput({ size: 'lg' });
+    const container = renderInput({ bsSize: 'lg' });
     const input = container.querySelector('input');
     expect(input.className).toContain('form-control-lg');
   });
