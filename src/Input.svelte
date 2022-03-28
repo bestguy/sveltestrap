@@ -491,12 +491,12 @@
   <select
     {...$$restProps}
     class={classes}
+    bind:value
+    bind:this={inner}
     on:blur
     on:change
     on:focus
     on:input
-    bind:value
-    bind:this={inner}
     {name}
     {disabled}
     {readonly}
