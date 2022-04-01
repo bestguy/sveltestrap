@@ -1,5 +1,6 @@
 import Input from '../Input.svelte';
-import { render, cleanup } from '@testing-library/svelte';
+import {render, cleanup, fireEvent} from '@testing-library/svelte';
+import InputTest from './InputTest.spec.svelte'
 
 const renderInput = (props) => {
   const { container } = render(Input, { props });
@@ -134,5 +135,15 @@ describe('Input', () => {
     const container = renderInput();
     expect(container.querySelector('.invalid-feedback')).toBeNull();
     expect(container.querySelector('.valid-feedback')).toBeNull();
+  });
+
+  test('should have correct bound value in on:change listener', async () => {
+    const {getByTestId} = render(InputTest);
+    expect(getByTestId('checkbox').checked).toBe(false)
+    await fireEvent.click(getByTestId('checkbox'));
+    expect(getByTestId('checkbox').checked).toBe(true)
+
+    expect(getByTestId('reactiveAccountEnabled').innerHTML).toEqual("true");
+    expect(getByTestId('onChangeAccountEnabled').innerHTML).toEqual("true");
   });
 });
