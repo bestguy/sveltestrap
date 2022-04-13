@@ -22,7 +22,8 @@
   $: classes = classnames(className, {
     'dropdown-toggle': caret || split,
     'dropdown-toggle-split': split,
-    'nav-link': nav
+    'nav-link': nav,
+    show: $context.isOpen
   });
 
   function toggleButton(e) {

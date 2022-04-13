@@ -34,20 +34,28 @@
   }
 </script>
 
-{#if header}
-  <h6 {...$$restProps} on:click on:click={handleItemClick} class={classes}>
-    <slot />
-  </h6>
-{:else if divider}
-  <div {...$$restProps} on:click on:click={handleItemClick} class={classes}>
-    <slot />
-  </div>
-{:else if href}
-  <a {...$$restProps} click on:click={handleItemClick} {href} class={classes}>
-    <slot />
-  </a>
-{:else}
-  <button type="button" {...$$restProps} on:click on:click={handleItemClick} class={classes}>
-    <slot />
-  </button>
-{/if}
+<li>
+  {#if header}
+    <h6 {...$$restProps} on:click on:click={handleItemClick} class={classes}>
+      <slot />
+    </h6>
+  {:else if divider}
+    <div {...$$restProps} on:click on:click={handleItemClick} class={classes}>
+      <slot />
+    </div>
+  {:else if href}
+    <a {...$$restProps} click on:click={handleItemClick} {href} class={classes}>
+      <slot />
+    </a>
+  {:else}
+    <button
+      type="button"
+      {...$$restProps}
+      on:click
+      on:click={handleItemClick}
+      class={classes}
+    >
+      <slot />
+    </button>
+  {/if}
+</li>

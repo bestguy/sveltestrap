@@ -2,7 +2,7 @@ import { SvelteComponentTyped } from 'svelte';
 import { Direction } from './shared';
 
 export interface DropdownProps
-  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['ul']> {
   direction?: Direction;
   group?: boolean;
   isOpen?: boolean;
