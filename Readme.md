@@ -16,7 +16,7 @@ The component names and interface are inspired by the [reactstrap](https://react
 
 ## Install
 
-`npm install svelte sveltestrap`
+Follow the installation instructions of [Svelte](https://svelte.dev/) or [Svelte Kit](https://kit.svelte.dev/) then `npm install sveltestrap`
 
 ## Usage
 
@@ -94,7 +94,7 @@ or:
 ```
 
 or the [Styles](https://sveltestrap.js.org/?path=/story/components--styles) component includes the Bootstrap Icon CSS by default:
- 
+
 ```html
 <script>
 import { Styles } from 'sveltestrap';
