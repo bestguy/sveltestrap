@@ -43,7 +43,7 @@
 
   const open = () => (isOpen = true);
   const close = () => (isOpen = false);
-  
+
   onMount(registerEventListeners);
   onDestroy(unregisterEventListeners);
 
@@ -59,16 +59,16 @@
         return;
     }
 
-    // Check if target is HTMLElement 
+    // Check if target is Element
     try {
-        if (target instanceof HTMLElement) {
+        if (target instanceof Element) {
             targetEl = target;
         }
     } catch (e) {
         // fails on SSR
     }
 
-    // If targetEl has not been found yet 
+    // If targetEl has not been found yet
     if (targetEl == null) {
         // Check if target can be found via querySelector
         try {
@@ -78,7 +78,7 @@
             // fails on SSR
         }
     }
-    
+
     // If we've found targetEl
     if (targetEl) {
       targetEl.addEventListener('mouseover', open);
@@ -88,7 +88,7 @@
     }
   }
 
-  function unregisterEventListeners() { 
+  function unregisterEventListeners() {
     if (targetEl) {
       targetEl.removeEventListener('mouseover', open);
       targetEl.removeEventListener('mouseleave', close);
