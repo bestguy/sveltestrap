@@ -6,6 +6,7 @@ export interface DropdownProps
   direction?: Direction;
   group?: boolean;
   isOpen?: boolean;
+  autoClose?: boolean | string;
   nav?: boolean;
   active?: boolean;
   size?: string;

@@ -2,6 +2,8 @@
   import Example from '../Example.svelte';
   import Alignment from './Alignment.svelte';
   import alignmentSource from '!!raw-loader!./Alignment.svelte';
+  import AutoClose from './AutoClose.svelte';
+  import autoCloseSource from '!!raw-loader!./AutoClose.svelte';
   import Dark from './Dark.svelte';
   import darkSource from '!!raw-loader!./Dark.svelte';
   import Direction from './Direction.svelte';
@@ -50,4 +52,8 @@
 
 <Example title="Dark variant" source={darkSource}>
   <Dark />
+</Example>
+
+<Example title="AutoClose" source={autoCloseSource}>
+  <AutoClose />
 </Example>
