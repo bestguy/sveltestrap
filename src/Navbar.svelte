@@ -38,8 +38,8 @@
 
 <nav {...$$restProps} class={classes}>
   {#if container}
-    <Container sm={container === 'sm'} md={container === 'md'} lg={container === 'md'}
-               xl={container === 'sm'} xxl={container === 'md'} fluid={container === 'fluid'}>
+    <Container sm={container === 'sm'} md={container === 'md'} lg={container === 'lg'}
+               xl={container === 'xl'} xxl={container === 'xxl'} fluid={container === 'fluid'}>
       <slot />
     </Container>
   {:else}
