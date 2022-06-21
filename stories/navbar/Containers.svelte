@@ -29,7 +29,7 @@
 
 {#each widths as w}
   <Navbar color="light" light expand="md" container={w}>
-    <NavbarBrand href="/">NavBar with a {w} container</NavbarBrand>
+    <NavbarBrand href="/">NavBar with {w} container</NavbarBrand>
     <NavbarToggler on:click={() => (isOpen = !isOpen)} />
     <Collapse {isOpen} navbar expand="md" on:update={handleUpdate}>
       <Nav class="ms-auto" navbar>
