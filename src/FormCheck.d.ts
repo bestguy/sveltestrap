@@ -14,6 +14,7 @@ export interface FormCheckProps
   label?: string;
   name?: string;
   readonly?: boolean;
+  reverse?: boolean;
   size?: 'lg' | 'sm';
   type?: InputType;
   valid?: boolean;

@@ -167,6 +167,9 @@
     <Input id="c1" type="checkbox" label="Check me out" />
   </FormGroup>
   <FormGroup>
-    <Input id="c1" type="switch" label="Switch me on" />
+    <Input id="c2" type="checkbox" reverse label="Reverse Label" />
+  </FormGroup>
+  <FormGroup>
+    <Input id="c3" type="switch" label="Switch me on" />
   </FormGroup>
 </Form>
