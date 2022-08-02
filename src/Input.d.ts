@@ -35,6 +35,7 @@ export interface InputProps
   invalid?: boolean;
   label?: string;
   plaintext?: boolean;
+  reverse?: boolean;
   type?: InputType;
   valid?: boolean;
   files?: FileList;

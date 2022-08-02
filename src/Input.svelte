@@ -22,6 +22,7 @@
   export let placeholder = '';
   export let plaintext = false;
   export let readonly = undefined;
+  export let reverse = false;
   export let size = undefined;
   export let type = 'text';
   export let valid = false;
@@ -216,6 +217,7 @@
       {label}
       {name}
       {placeholder}
+      {reverse}
       {readonly}
       {valid}
     />

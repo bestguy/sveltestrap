@@ -12,12 +12,14 @@
   export let invalid = false;
   export let label = '';
   export let name = '';
+  export let reverse = false;
   export let size = '';
   export let type = 'checkbox';
   export let valid = false;
   export let value = undefined;
 
   $: classes = classnames(className, 'form-check', {
+    'form-check-reverse': reverse,
     'form-switch': type === 'switch',
     'form-check-inline': inline,
     [`form-control-${size}`]: size
