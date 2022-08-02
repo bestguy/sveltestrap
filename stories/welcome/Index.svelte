@@ -98,7 +98,7 @@
         <pre>
           <PrismCode class="language-html">
             {`<head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 </head>`}
           </PrismCode>
         </pre>
@@ -107,7 +107,7 @@
         <pre>
           <PrismCode class="language-html">
             {`<svelte:head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 </svelte:head>`}
           </PrismCode>
         </pre>

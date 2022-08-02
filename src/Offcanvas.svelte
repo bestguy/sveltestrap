@@ -19,6 +19,11 @@
   export let isOpen = false;
   export let placement = 'start';
   export let scroll = false;
+  export let sm = false;
+  export let md = false;
+  export let lg = false;
+  export let xl = false;
+  export let xxl = false;
   export let style = '';
   export let toggle = undefined;
 
@@ -64,9 +69,15 @@
           }
         }
       : undefined;
-  $: classes = classnames('offcanvas', `offcanvas-${placement}`, className, {
+  $: classes = classnames({
+    offcanvas: !sm && !md && !lg && !xl && !xxl, 
+    'offcanvas-sm': sm,
+    'offcanvas-md': md,
+    'offcanvas-lg': lg,
+    'offcanvas-xl': xl,
+    'offcanvas-xxl': xxl,
     show: isOpen
-  });
+  }, `offcanvas-${placement}`, className);
   $: outer = container === 'inline' ? InlineContainer : Portal;
 </script>
 
