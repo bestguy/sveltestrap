@@ -96,18 +96,18 @@
 
         <h6>Either static HTML layout</h6>
         <pre>
-          <PrismCode class="language-html">
-            {`<head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+          <PrismCode class="language-html">{`
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
 </head>`}
           </PrismCode>
         </pre>
 
         <h6>or using &lt;svelte:head&gt; in your Svelte source:</h6>
         <pre>
-          <PrismCode class="language-html">
-            {`<svelte:head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+          <PrismCode class="language-html">{`
+<svelte:head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
 </svelte:head>`}
           </PrismCode>
         </pre>
@@ -121,8 +121,8 @@
           > component:
         </h6>
         <pre>
-          <PrismCode class="language-html">
-            {`<script>
+          <PrismCode class="language-html">{`
+<script>
   import { Styles } from 'sveltestrap';
 </script>
 
@@ -150,9 +150,7 @@
           file:
         </p>
         <pre>
-          <PrismCode class="language-javascript">
-            import 'bootstrap/dist/css/bootstrap.min.css';
-          </PrismCode>
+          <PrismCode class="language-javascript">import 'bootstrap/dist/css/bootstrap.min.css';</PrismCode>
         </pre>
 
         <h4>Note on Icons</h4>
@@ -165,9 +163,9 @@
           component, you also must include a link to Bootstrap Icon CSS, for example:
         </p>
         <pre>
-          <PrismCode class="language-html">
-            {`<svelte:head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+          <PrismCode class="language-html">{`
+<svelte:head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </svelte:head>`}
           </PrismCode>
         </pre>
@@ -178,8 +176,8 @@
           on:click={linkTo('Components', 'Styles')}>Styles</Button
         > component includes the Bootstrap Icon CSS by default:
         <pre>
-          <PrismCode class="language-html">
-            {`<script>
+          <PrismCode class="language-html">{`
+<script>
   import { Styles } from 'sveltestrap';
 </script>
             
