@@ -96,7 +96,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "@popperjs/core": "^2.9.2"
+    "@popperjs/core": "^2.11.6"
   },
   "browserslist": "last 2 versions"
 }
