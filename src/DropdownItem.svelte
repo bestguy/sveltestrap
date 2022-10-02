@@ -47,7 +47,13 @@
     <slot />
   </a>
 {:else}
-  <button type="button" {...$$restProps} on:click on:click={handleItemClick} class={classes}>
+  <button
+    type="button"
+    {...$$restProps}
+    on:click
+    on:click={handleItemClick}
+    class={classes}
+  >
     <slot />
   </button>
 {/if}

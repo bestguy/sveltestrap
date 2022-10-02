@@ -1,6 +1,7 @@
 import { SvelteComponentTyped } from 'svelte';
 
-export interface FormGroupProps extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
+export interface FormGroupProps
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   check?: boolean;
   disabled?: boolean;
   floating?: boolean;
@@ -11,5 +12,9 @@ export interface FormGroupProps extends svelte.JSX.HTMLAttributes<HTMLElementTag
   tag?: 'div' | 'fieldset';
 }
 
-declare class FormGroup extends SvelteComponentTyped<FormGroupProps, {}, { default: {}; label: {} }> {}
+declare class FormGroup extends SvelteComponentTyped<
+  FormGroupProps,
+  {},
+  { default: {}; label: {} }
+> {}
 export default FormGroup;
