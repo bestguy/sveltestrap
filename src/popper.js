@@ -1,4 +1,4 @@
-import { createPopper } from '@popperjs/core/dist/esm/popper';
+import { createPopper } from 'sveltestrap-popper';
 
 // Code derived from https://github.com/bryanmylee/svelte-popperjs/blob/master/src/index.ts
 export function createPopperActions(initOptions) {
