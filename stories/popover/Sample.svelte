@@ -9,7 +9,7 @@
     <Button id={`btn-${placement}`}>Click for {placement}</Button>
     <Popover
       target={`btn-${placement}`}
-      {placement}
+      placement={placement}
       title={`Popover ${placement}`}
     >
       This is a Popover on the {placement} of the trigger.
