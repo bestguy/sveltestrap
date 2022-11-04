@@ -14,6 +14,7 @@
   let className = '';
   export { className as class };
   export let active = false;
+  export let autoClose = true;
   export let direction = 'down';
   export let dropup = false;
   export let group = false;
@@ -83,6 +84,7 @@
       return {
         toggle: handleToggle,
         isOpen,
+        autoClose,
         direction: direction === 'down' && dropup ? 'up' : direction,
         inNavbar: nav || inNavbar,
         popperRef: nav ? noop : popperRef,
@@ -104,7 +106,9 @@
       return;
     }
 
-    handleToggle(e);
+    if (autoClose === true || autoClose === 'inside') {
+      handleToggle(e);
+    }
   }
 
   onDestroy(() => {
