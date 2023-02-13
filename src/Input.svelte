@@ -81,7 +81,8 @@
     classes = classnames(className, formControlClass, {
       'is-invalid': invalid,
       'is-valid': valid,
-      [`form-control-${bsSize}`]: bsSize && !isBtn,
+      [`form-control-${bsSize}`]: bsSize && !isBtn && tag !== 'select',
+      [`form-select-${bsSize}`]: bsSize && tag === 'select',
       [`btn-${bsSize}`]: bsSize && isBtn
     });
   }
