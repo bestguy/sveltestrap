@@ -27,7 +27,7 @@
   function clickHandler() {
     const endOrBeginning =
       (direction === 'next' && activeIndex + 1 > items.length - 1) ||
-      (direction === 'previous' && activeIndex - 1 < 0);
+      (direction === 'prev' && activeIndex - 1 < 0);
 
     if (!wrap && endOrBeginning) {
       return;
