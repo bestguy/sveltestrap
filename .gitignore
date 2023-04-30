@@ -4,6 +4,7 @@
 .idea
 .Spotlight-V100
 .Trashes
+.vscode
 node_modules
 yarn.lock
 build
