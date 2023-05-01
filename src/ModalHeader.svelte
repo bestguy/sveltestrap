@@ -12,7 +12,7 @@
 </script>
 
 <div {...$$restProps} class={classes}>
-  <h5 class="modal-title" id={id}>
+  <h5 class="modal-title" {id}>
     {#if children}
       {children}
     {:else}
