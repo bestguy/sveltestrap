@@ -9,7 +9,7 @@ export interface TooltipProps
   container?: ContainerType;
   isOpen?: boolean;
   placement?: TooltipPlacement;
-  target: string | HTMLElement;
+  target: string | Element;
 }
 
 export default class Tooltip extends SvelteComponentTyped<
