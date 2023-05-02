@@ -15,65 +15,63 @@
   export let onEntered = () => dispatch('open');
   export let onExiting = () => dispatch('closing');
   export let onExited = () => dispatch('close');
-  export let expand = false;
   export let toggler = null;
+  let transitioning = false;
 
   onMount(() => toggle(toggler, (e) => {
-    isOpen = !isOpen;
-    e.preventDefault();
+    if (!transitioning) {
+      isOpen = !isOpen;
+    }
   }));
 
   $: classes = classnames(className, {
     'collapse-horizontal': horizontal,
-    'navbar-collapse': navbar
+    'navbar-collapse': navbar,
+    'd-none': !isOpen
   });
-
-  let windowWidth = 0;
-  let _wasMaximized = false;
-
-  // TODO wrong to hardcode these here - come from Bootstrap CSS only
-  const minWidth = {};
-  minWidth['xs'] = 0;
-  minWidth['sm'] = 576;
-  minWidth['md'] = 768;
-  minWidth['lg'] = 992;
-  minWidth['xl'] = 1200;
 
   function notify() {
     dispatch('update', isOpen);
   }
+  
 
-  $: if (navbar && expand) {
-    if (windowWidth >= minWidth[expand] && !isOpen) {
-      isOpen = true;
-      _wasMaximized = true;
-      notify();
-    } else if (windowWidth < minWidth[expand] && _wasMaximized) {
-      isOpen = false;
-      _wasMaximized = false;
-      notify();
-    }
+  function _onEntering(event) {
+    transitioning = true;
+    onEntering(event);
+  }
+  
+  function _onEntered(event) {
+    transitioning = false;
+    onEntered(event);
+  }
+  
+  function _onExiting(event) {
+    transitioning = true;
+    onExiting(event);
+  }
+  
+  function _onExited(event) {
+    transitioning = false;
+    onExited(event);
   }
 </script>
 
-<svelte:window bind:innerWidth={windowWidth} />
-
-{#if isOpen}
+{#key isOpen}
   <div
-    style={navbar ? undefined : 'overflow: hidden;'}
-    {...$$restProps}
-    class={classes}
-    in:collapseIn={{ horizontal }}
-    out:collapseOut|local={{ horizontal }}
-    on:introstart
-    on:introend
-    on:outrostart
-    on:outroend
-    on:introstart={onEntering}
-    on:introend={onEntered}
-    on:outrostart={onExiting}
-    on:outroend={onExited}
+      style={navbar ? undefined : 'overflow: hidden;'}
+      {...$$restProps}
+      class={classes}
+      in:collapseIn={{ horizontal }}
+      out:collapseOut|local={{ horizontal }}
+      on:introstart
+      on:introend
+      on:outrostart
+      on:outroend
+      on:introstart={_onEntering}
+      on:introend={_onEntered}
+      on:outrostart={_onExiting}
+      on:outroend={_onExited}
   >
     <slot />
   </div>
-{/if}
+{/key}
