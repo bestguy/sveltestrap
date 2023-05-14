@@ -9,7 +9,7 @@ export interface TabContentProps
 export default class TabContent extends SvelteComponentTyped<
   TabContentProps,
   {
-    tab: CustomEvent<number | string>
+    tab: CustomEvent<number | string>;
   },
   { default: {} }
 > {}

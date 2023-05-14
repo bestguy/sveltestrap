@@ -1857,7 +1857,7 @@
     'fuel-pump-diesel-fill',
     'fuel-pump-diesel',
     'fuel-pump-fill',
-    'fuel-pump',
+    'fuel-pump'
   ];
   let filter;
 

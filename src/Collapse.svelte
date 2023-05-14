@@ -18,10 +18,12 @@
   export let expand = false;
   export let toggler = null;
 
-  onMount(() => toggle(toggler, (e) => {
-    isOpen = !isOpen;
-    e.preventDefault();
-  }));
+  onMount(() =>
+    toggle(toggler, (e) => {
+      isOpen = !isOpen;
+      e.preventDefault();
+    })
+  );
 
   $: classes = classnames(className, {
     'collapse-horizontal': horizontal,

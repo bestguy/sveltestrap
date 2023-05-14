@@ -1,5 +1,10 @@
 import Alert from '../Alert.svelte';
-import { render, cleanup, fireEvent, waitForElementToBeRemoved } from '@testing-library/svelte';
+import {
+  render,
+  cleanup,
+  fireEvent,
+  waitForElementToBeRemoved
+} from '@testing-library/svelte';
 
 beforeEach(cleanup);
 
@@ -32,11 +37,15 @@ describe('Alert', () => {
 
   test('should render dismissible alert', async () => {
     const { queryByRole, queryByLabelText } = render(Alert, {
-      props: { color: "info", children: 'I can be dismissed!', dismissible: true }
+      props: {
+        color: 'info',
+        children: 'I can be dismissed!',
+        dismissible: true
+      }
     });
-    
+
     const alert = queryByRole('alert');
-    const closeBtn = queryByLabelText("Close");
+    const closeBtn = queryByLabelText('Close');
 
     expect(alert).toBeInTheDocument();
     expect(alert.className).toBe('alert alert-info alert-dismissible');
@@ -52,11 +61,15 @@ describe('Alert', () => {
 
   test('should render dismissible alert', async () => {
     const { queryByRole, queryByLabelText } = render(Alert, {
-      props: { color: "info", children: 'I can be dismissed!', dismissible: true }
+      props: {
+        color: 'info',
+        children: 'I can be dismissed!',
+        dismissible: true
+      }
     });
-    
+
     const alert = queryByRole('alert');
-    const closeBtn = queryByLabelText("Close");
+    const closeBtn = queryByLabelText('Close');
 
     expect(alert).toBeInTheDocument();
     expect(alert.className).toBe('alert alert-info alert-dismissible');
@@ -73,15 +86,15 @@ describe('Alert', () => {
   test('should render a controlled  alert', async () => {
     let isOpen = true;
     const toggle = jest.fn(() => {
-      isOpen = false
+      isOpen = false;
     });
 
     const { rerender, queryByRole, queryByLabelText } = render(Alert, {
-      props: { color: "info", children: 'I can be dismissed!', isOpen, toggle }
+      props: { color: 'info', children: 'I can be dismissed!', isOpen, toggle }
     });
 
     const alert = queryByRole('alert');
-    const closeBtn = queryByLabelText("Close");
+    const closeBtn = queryByLabelText('Close');
 
     expect(alert).toBeInTheDocument();
     expect(alert.className).toBe('alert alert-info alert-dismissible');
@@ -94,16 +107,21 @@ describe('Alert', () => {
 
     await rerender({ isOpen, toggle });
 
-    expect(alert).not.toBeInTheDocument();    
+    expect(alert).not.toBeInTheDocument();
   });
 
   test('should render alert without fade', async () => {
     const { queryByRole, queryByLabelText } = render(Alert, {
-      props: { color: "info", children: 'I can be dismissed!', dismissible: true, fade: false }
+      props: {
+        color: 'info',
+        children: 'I can be dismissed!',
+        dismissible: true,
+        fade: false
+      }
     });
-    
+
     const alert = queryByRole('alert');
-    const closeBtn = queryByLabelText("Close");
+    const closeBtn = queryByLabelText('Close');
 
     expect(alert).toBeInTheDocument();
     expect(alert.className).toBe('alert alert-info alert-dismissible');
