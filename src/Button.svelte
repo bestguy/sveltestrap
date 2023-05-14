@@ -27,7 +27,7 @@
     block ? 'd-block w-100' : false,
     {
       active,
-      'btn-close-white': close && white,
+      'btn-close-white': close && white
     }
   );
 

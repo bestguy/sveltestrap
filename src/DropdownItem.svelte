@@ -28,7 +28,10 @@
       return;
     }
 
-    if (toggle && ($context.autoClose === true || $context.autoClose === 'outside')) {
+    if (
+      toggle &&
+      ($context.autoClose === true || $context.autoClose === 'outside')
+    ) {
       $context.toggle(e);
     }
   }
@@ -47,7 +50,13 @@
     <slot />
   </a>
 {:else}
-  <button type="button" {...$$restProps} on:click on:click={handleItemClick} class={classes}>
+  <button
+    type="button"
+    {...$$restProps}
+    on:click
+    on:click={handleItemClick}
+    class={classes}
+  >
     <slot />
   </button>
 {/if}

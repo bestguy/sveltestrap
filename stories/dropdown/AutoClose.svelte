@@ -18,7 +18,7 @@
     </DropdownMenu>
   </Dropdown>
 
-  <Dropdown autoClose='outside'>
+  <Dropdown autoClose="outside">
     <DropdownToggle caret>Outside</DropdownToggle>
     <DropdownMenu>
       <DropdownItem>Menu item</DropdownItem>
@@ -27,7 +27,7 @@
     </DropdownMenu>
   </Dropdown>
 
-  <Dropdown autoClose='inside'>
+  <Dropdown autoClose="inside">
     <DropdownToggle caret>Inside</DropdownToggle>
     <DropdownMenu>
       <DropdownItem>Menu item</DropdownItem>

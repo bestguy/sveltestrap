@@ -41,7 +41,10 @@
 
   $: if (bodyElement) {
     if (!scroll) {
-      bodyElement.classList.toggle('overflow-noscroll', isOpen || isTransitioning);
+      bodyElement.classList.toggle(
+        'overflow-noscroll',
+        isOpen || isTransitioning
+      );
     }
   }
   $: if (element) {
@@ -69,15 +72,19 @@
           }
         }
       : undefined;
-  $: classes = classnames({
-    offcanvas: !sm && !md && !lg && !xl && !xxl, 
-    'offcanvas-sm': sm,
-    'offcanvas-md': md,
-    'offcanvas-lg': lg,
-    'offcanvas-xl': xl,
-    'offcanvas-xxl': xxl,
-    show: isOpen
-  }, `offcanvas-${placement}`, className);
+  $: classes = classnames(
+    {
+      offcanvas: !sm && !md && !lg && !xl && !xxl,
+      'offcanvas-sm': sm,
+      'offcanvas-md': md,
+      'offcanvas-lg': lg,
+      'offcanvas-xl': xl,
+      'offcanvas-xxl': xxl,
+      show: isOpen
+    },
+    `offcanvas-${placement}`,
+    className
+  );
   $: outer = container === 'inline' ? InlineContainer : Portal;
 </script>
 
@@ -91,7 +98,9 @@
     aria-modal={isOpen ? true : undefined}
     class={classes}
     role={isOpen || isTransitioning ? 'dialog' : undefined}
-    style={`visibility: ${isOpen || isTransitioning ? 'visible' : 'hidden'};${style}`}
+    style={`visibility: ${
+      isOpen || isTransitioning ? 'visible' : 'hidden'
+    };${style}`}
     tabindex="-1"
   >
     {#if toggle || header || $$slots.header}
@@ -109,7 +118,11 @@
     {/if}
   </div>
   {#if backdrop}
-    <OffcanvasBackdrop on:click={toggle ? () => toggle() : undefined} {fade} {isOpen} />
+    <OffcanvasBackdrop
+      on:click={toggle ? () => toggle() : undefined}
+      {fade}
+      {isOpen}
+    />
   {/if}
 </svelte:component>
 
