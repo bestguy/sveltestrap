@@ -9,4 +9,9 @@ describe('Pagination', () => {
     const pagination = container.querySelector('.pagination');
     expect(pagination.className).toContain('pagination');
   });
+  test('should render custom class', () => {
+    const { container } = render(Pagination, { props: { class: 'last' } });
+    const pagination = container.querySelector('nav');
+    expect(pagination.className).toContain('last');
+  });
 });
