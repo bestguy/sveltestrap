@@ -2,6 +2,7 @@
   import classnames from './utils';
 
   let className = '';
+  export { className as class };
   export let responsive = false;
 
   $: responsiveClassName = classnames(className, {
