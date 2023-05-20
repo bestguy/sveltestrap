@@ -23,8 +23,6 @@ describe('ModalHeader', () => {
     expect(toggle.mock.calls.length).toEqual(1);
   });
 
-  test.todo('should render close slot if specified');
-
   test('should render custom class', () => {
     const { container } = render(ModalHeader, { props: { class: 'boogie' } });
 

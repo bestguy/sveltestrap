@@ -10,7 +10,7 @@ describe('DropdownMenu', () => {
     expect(dropdownmenu.className).toContain('dropdown-menu');
   });
   test('should render custom class', () => {
-    const { container } = render(TestDropdown, { props: { class: 'cocoa' } });
+    const { container } = render(TestDropdown);
     const dropdownmenu = container.querySelector('.dropdown-menu');
     expect(dropdownmenu.className).toContain('cocoa');
   });

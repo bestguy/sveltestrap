@@ -25,6 +25,4 @@ describe('ResponsiveContainer', () => {
     const responsivecontainer = container.querySelector('.table-responsive-lg');
     expect(responsivecontainer.className).toContain('table-responsive-lg');
   });
-
-  test.todo('responsive === false'); // default
 });
