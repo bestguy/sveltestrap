@@ -39,11 +39,11 @@
   });
 </script>
 
-<div
+<ul
   {...$$restProps}
   class={classes}
   data-bs-popper={$context.inNavbar ? 'static' : undefined}
   use:$context.popperContent={popperOptions}
 >
   <slot />
-</div>
+</ul>

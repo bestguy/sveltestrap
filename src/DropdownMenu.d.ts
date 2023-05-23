@@ -1,7 +1,7 @@
 import { SvelteComponentTyped } from 'svelte';
 
 export interface DropdownMenuProps
-  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['ul']> {
   dark?: boolean;
   end?: boolean;
   right?: boolean;
