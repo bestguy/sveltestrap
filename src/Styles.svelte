@@ -3,7 +3,10 @@
   export let theme = undefined;
 
   $: if (typeof document !== 'undefined' && theme !== undefined) {
-    if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (
+      theme === 'auto' &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
       document.documentElement.setAttribute('data-bs-theme', 'dark');
     } else {
       document.documentElement.setAttribute('data-bs-theme', theme);
@@ -14,7 +17,7 @@
 <svelte:head>
   <link
     rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
   />
   {#if icons}
     <link
