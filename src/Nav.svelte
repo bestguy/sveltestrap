@@ -11,6 +11,7 @@
   export let fill = false;
   export let navbar = false;
   export let card = false;
+  export let underline = false;
 
   function getVerticalClass(vertical) {
     if (vertical === false) {
@@ -32,7 +33,8 @@
       'nav-pills': pills,
       'card-header-pills': card && pills,
       'nav-justified': justified,
-      'nav-fill': fill
+      'nav-fill': fill,
+      'nav-underline': underline
     }
   );
 </script>
