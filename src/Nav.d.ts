@@ -10,6 +10,7 @@ export interface NavProps
   pills?: boolean;
   tabs?: boolean;
   vertical?: boolean | string;
+  underline?: boolean;
 }
 
 export default class Nav extends SvelteComponentTyped<
