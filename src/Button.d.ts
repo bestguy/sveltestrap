@@ -24,7 +24,6 @@ export interface ButtonProps
   inner?: HTMLElement;
   outline?: boolean;
   size?: ButtonSize;
-  white?: boolean;
 }
 
 export default class Button extends SvelteComponentTyped<

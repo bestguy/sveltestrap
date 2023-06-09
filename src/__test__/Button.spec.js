@@ -82,14 +82,4 @@ describe('Button', () => {
     const button = container.querySelector('.btn');
     expect(button.className).toBe('boogie btn btn-danger');
   });
-
-  test('should render white variant', () => {
-    const container = renderButton({
-      color: 'danger',
-      close: true,
-      white: true
-    });
-    const button = container.querySelector('.btn-close');
-    expect(button.className).toBe('btn-close btn-close-white');
-  });
 });

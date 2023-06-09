@@ -11,7 +11,6 @@
   export let bordered = false;
   export let borderless = false;
   export let striped = false;
-  export let dark = false;
   export let hover = false;
   export let responsive = false;
   export let rows = undefined;
@@ -23,7 +22,6 @@
     bordered ? 'table-bordered' : false,
     borderless ? 'table-borderless' : false,
     striped ? 'table-striped' : false,
-    dark ? 'table-dark' : false,
     hover ? 'table-hover' : false
   );
 </script>

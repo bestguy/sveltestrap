@@ -3,7 +3,6 @@ import { SvelteComponentTyped } from 'svelte';
 export interface CarouselProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   activeIndex?: number;
-  dark?: boolean;
   interval?: number | string | boolean;
   items: any[];
   keyboard?: boolean;

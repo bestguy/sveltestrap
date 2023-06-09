@@ -11,9 +11,6 @@
   import WithCaptions from './WithCaptions.svelte';
   import WithCaptionsSource from '!!raw-loader!./WithCaptions.svelte';
 
-  import Dark from './Dark.svelte';
-  import DarkSource from '!!raw-loader!./Dark.svelte';
-
   import Example from '../Example.svelte';
 </script>
 
@@ -40,8 +37,4 @@
 
 <Example title="With Captions" source={WithCaptionsSource}>
   <WithCaptions />
-</Example>
-
-<Example title="Dark variant" source={DarkSource}>
-  <Dark />
 </Example>

@@ -5,7 +5,6 @@ export interface TableProps<T>
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['table']> {
   bordered?: boolean;
   borderless?: boolean;
-  dark?: boolean;
   hover?: boolean;
   responsive?: boolean | Breakpoints;
   rows?: T[];

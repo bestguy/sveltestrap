@@ -3,7 +3,6 @@
   import Bordered from './Bordered.svelte';
   import Borderless from './Borderless.svelte';
   import Column from './Column.svelte';
-  import Dark from './Dark.svelte';
   import Hover from './Hover.svelte';
   import Responsive from './Responsive.svelte';
   import Sample from './Sample.svelte';
@@ -13,7 +12,6 @@
   import borderedSource from '!!raw-loader!./Bordered.svelte';
   import borderlessSource from '!!raw-loader!./Borderless.svelte';
   import columnSource from '!!raw-loader!./Column.svelte';
-  import darkSource from '!!raw-loader!./Dark.svelte';
   import hoverSource from '!!raw-loader!./Hover.svelte';
   import responsiveSource from '!!raw-loader!./Responsive.svelte';
   import sampleSource from '!!raw-loader!./Sample.svelte';
@@ -35,10 +33,6 @@
 
 <Example title="Borderless" source={borderlessSource}>
   <Borderless />
-</Example>
-
-<Example title="Dark" source={darkSource}>
-  <Dark />
 </Example>
 
 <Example title="Hover" source={hoverSource}>

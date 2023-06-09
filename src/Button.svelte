@@ -15,7 +15,6 @@
   export let size = null;
   export let style = '';
   export let value = '';
-  export let white = false;
 
   $: ariaLabel = $$props['aria-label'];
 
@@ -26,8 +25,7 @@
     size ? `btn-${size}` : false,
     block ? 'd-block w-100' : false,
     {
-      active,
-      'btn-close-white': close && white
+      active
     }
   );
 

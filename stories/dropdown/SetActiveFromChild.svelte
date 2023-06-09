@@ -18,7 +18,7 @@
     </NavItem>
     <Dropdown nav setActiveFromChild>
       <DropdownToggle nav class="nav-link" caret>Dropdown</DropdownToggle>
-      <DropdownMenu dark>
+      <DropdownMenu>
         <DropdownItem href="#" active>Lancelot</DropdownItem>
         <DropdownItem href="#">Link</DropdownItem>
         <DropdownItem href="#">Secret</DropdownItem>
