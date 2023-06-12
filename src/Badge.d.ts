@@ -1,9 +1,9 @@
-import { Color } from './shared';
+import { BackgroundColor } from './shared';
 import { SvelteComponentTyped } from 'svelte';
 
 export interface BadgeProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['a']> {
-  color?: Color;
+  color?: BackgroundColor;
   href?: string;
   pill?: boolean;
 }

@@ -1,5 +1,4 @@
 import { SvelteComponentTyped } from 'svelte';
-import { Color } from './shared';
 
 export type InputType = 'checkbox' | 'radio' | 'switch';
 
