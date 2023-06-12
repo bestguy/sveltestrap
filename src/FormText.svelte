@@ -4,7 +4,7 @@
   let className = '';
   export { className as class };
   export let inline = false;
-  export let color = 'muted';
+  export let color = undefined;
 
   $: classes = classnames(
     className,

@@ -28,10 +28,10 @@
 
 <Example title="Theme" source={themeSource}>
   <p slot="info">
-    The optional theme attribute allows you set the color mode for the included styles.
-    The 'light' and 'dark' values explicitly sets the theme, and 'auto' matches the user's system preference.
-    When not specified, the default theme is light.
-    See Bootstrap's 
+    The optional theme attribute allows you set the color mode for the included
+    styles. The 'light' and 'dark' values explicitly sets the theme, and 'auto'
+    matches the user's system preference. When not specified, the default theme
+    is light. See Bootstrap's
     <a
       href="https://getbootstrap.com/docs/5.3/customize/color-modes/"
       rel="noreferrer"

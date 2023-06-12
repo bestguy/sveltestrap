@@ -1,9 +1,28 @@
 <script lang="ts">
   import { Progress } from 'sveltestrap';
+
+  const colors = [
+    'primary',
+    'secondary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'light',
+    'dark',
+    'primary-subtle',
+    'secondary-subtle',
+    'success-subtle',
+    'danger-subtle',
+    'warning-subtle',
+    'info-subtle',
+    'light-subtle',
+    'dark-subtle'
+  ];
 </script>
 
-<Progress value={2 * 5} />
-<Progress color="success" value={25} />
-<Progress color="info" value={50} />
-<Progress color="warning" value={75} />
-<Progress color="danger" value={100} />
+{#each colors as color, i}
+  <Progress {color} value={Math.random() * 50 + 50} class="mb-2">
+    {color}
+  </Progress>
+{/each}

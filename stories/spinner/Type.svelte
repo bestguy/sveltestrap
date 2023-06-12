@@ -14,12 +14,12 @@
 
 <div>
   {#each colors as color}
-    <Spinner {color} type="border" />
+    <Spinner {color} type="border" class="m-1" />
   {/each}
 </div>
 
 <div>
   {#each colors as color}
-    <Spinner {color} type="grow" />
+    <Spinner {color} type="grow" class="m-1" />
   {/each}
 </div>

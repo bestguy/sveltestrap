@@ -1890,7 +1890,7 @@
         <div class="p-3 py-4 mb-2 bg-light text-center rounded">
           <Icon {name} />
         </div>
-        <div class="small text-muted text-decoration-none text-center">
+        <div class="small text-decoration-none text-center">
           {name}
         </div>
       </div>
