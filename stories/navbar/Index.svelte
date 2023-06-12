@@ -9,7 +9,7 @@
 </script>
 
 <h1>Navbar</h1>
-<a href="https://getbootstrap.com/docs/5.0/components/navbar/" target="_blank">
+<a href="https://getbootstrap.com/docs/5.3/components/navbar/" target="_blank">
   Bootstrap Navbar
 </a>
 

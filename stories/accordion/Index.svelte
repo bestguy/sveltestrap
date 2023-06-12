@@ -14,7 +14,7 @@
 
 <h1>Accordion</h1>
 <a
-  href="https://getbootstrap.com/docs/5.0/components/accordion/"
+  href="https://getbootstrap.com/docs/5.3/components/accordion/"
   target="_blank"
 >
   Bootstrap Accordion

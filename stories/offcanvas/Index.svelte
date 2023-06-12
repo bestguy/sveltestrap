@@ -18,7 +18,7 @@
 
 <h1>Offcanvas</h1>
 <a
-  href="https://getbootstrap.com/docs/5.0/components/offcanvas/"
+  href="https://getbootstrap.com/docs/5.3/components/offcanvas/"
   target="_blank"
 >
   Bootstrap Offcanvas

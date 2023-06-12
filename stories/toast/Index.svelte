@@ -13,7 +13,7 @@
 </script>
 
 <h1>Toast</h1>
-<a href="https://getbootstrap.com/docs/5.0/components/toasts/" target="_blank">
+<a href="https://getbootstrap.com/docs/5.3/components/toasts/" target="_blank">
   Bootstrap Toasts
 </a>
 

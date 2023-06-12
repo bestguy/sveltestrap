@@ -13,7 +13,7 @@
 </script>
 
 <h1>Navs</h1>
-<a href="https://getbootstrap.com/docs/5.0/components/navs/" target="_blank">
+<a href="https://getbootstrap.com/docs/5.3/components/navs/" target="_blank">
   Bootstrap Navs
 </a>
 

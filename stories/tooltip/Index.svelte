@@ -12,7 +12,7 @@
 
 <h1>Tooltip</h1>
 <a
-  href="https://getbootstrap.com/docs/5.0/components/tooltips/"
+  href="https://getbootstrap.com/docs/5.3/components/tooltips/"
   target="_blank"
 >
   Bootstrap Tooltip

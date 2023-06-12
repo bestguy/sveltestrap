@@ -12,7 +12,7 @@
 
 <h1>Collapse</h1>
 <a
-  href="https://getbootstrap.com/docs/5.0/components/collapse/"
+  href="https://getbootstrap.com/docs/5.3/components/collapse/"
   target="_blank"
 >
   Bootstrap Collapse
