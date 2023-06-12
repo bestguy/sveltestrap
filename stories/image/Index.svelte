@@ -11,7 +11,7 @@
 </script>
 
 <h1>Images</h1>
-<a href="https://getbootstrap.com/docs/5.0/content/images/" target="_blank">
+<a href="https://getbootstrap.com/docs/5.3/content/images/" target="_blank">
   Bootstrap Image
 </a>
 

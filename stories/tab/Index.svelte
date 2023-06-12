@@ -16,7 +16,7 @@
 
 <h1>TabContent and TabPane</h1>
 <a
-  href="https://getbootstrap.com/docs/5.0/components/navs-tabs/#javascript-behavior"
+  href="https://getbootstrap.com/docs/5.3/components/navs-tabs/#javascript-behavior"
   target="_blank"
 >
   Bootstrap Tabs

@@ -20,7 +20,7 @@
 
 <h1>Progress</h1>
 <a
-  href="https://getbootstrap.com/docs/5.0/components/progress/"
+  href="https://getbootstrap.com/docs/5.3/components/progress/"
   target="_blank"
 >
   Bootstrap Progress

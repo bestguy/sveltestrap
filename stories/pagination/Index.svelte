@@ -8,7 +8,7 @@
 
 <h1>Pagination</h1>
 <a
-  href="https://getbootstrap.com/docs/5.0/components/pagination/"
+  href="https://getbootstrap.com/docs/5.3/components/pagination/"
   target="_blank"
 >
   Bootstrap Pagination

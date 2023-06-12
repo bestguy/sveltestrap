@@ -19,7 +19,7 @@
 </script>
 
 <h1>Table</h1>
-<a href="https://getbootstrap.com/docs/5.0/content/tables/" target="_blank">
+<a href="https://getbootstrap.com/docs/5.3/content/tables/" target="_blank">
   Bootstrap Table
 </a>
 
