@@ -1,7 +1,7 @@
-<script lang="ts">
+<script>
   import { Button, Icon, Styles } from 'sveltestrap';
 
-  let theme = 'auto';
+  let theme = 'light';
 </script>
 
 <Styles {theme} />
@@ -30,4 +30,3 @@
 >
   auto <Icon name="circle-half" />
 </Button>
-

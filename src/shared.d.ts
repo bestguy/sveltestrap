@@ -15,17 +15,55 @@ export declare type Color =
   | 'light'
   | 'dark';
 
-declare type BackgroundOnlyColor = 'white' | 'transparent';
-
-declare type TextOnlyColor =
+export declare type BackgroundColor =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
+  | 'light'
+  | 'dark'
+  | 'primary-subtle'
+  | 'secondary-subtle'
+  | 'success-subtle'
+  | 'danger-subtle'
+  | 'warning-subtle'
+  | 'info-subtle'
+  | 'light-subtle'
+  | 'dark-subtle'
+  | 'black'
+  | 'white'
+  | 'transparent'
   | 'body'
-  | 'muted'
+  | 'body-secondary'
+  | 'body-tertiary';
+
+export declare type TextColor =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
+  | 'light'
+  | 'dark'
+  | 'primary-emphasis'
+  | 'secondary-emphasis'
+  | 'success-emphasis'
+  | 'danger-emphasis'
+  | 'warning-emphasis'
+  | 'info-emphasis'
+  | 'light-emphasis'
+  | 'dark-emphasis'
+  | 'body'
+  | 'body-emphasis'
+  | 'body-secondary'
+  | 'body-tertiary'
+  | 'black'
   | 'white'
   | 'black-50'
   | 'white-50';
-
-export declare type BackgroundColor = Color | BackgroundOnlyColor;
-export declare type TextColor = Color | TextOnlyColor;
 
 export declare type Direction =
   | 'up'

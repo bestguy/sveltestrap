@@ -8,7 +8,6 @@ describe('FormText', () => {
     const { container } = render(FormText);
     const formtext = container.querySelector('.form-text');
     expect(formtext.className).toContain('form-text');
-    expect(formtext.className).toContain('text-muted');
   });
 
   test('should render custom color', () => {
