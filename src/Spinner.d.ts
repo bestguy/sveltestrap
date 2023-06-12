@@ -1,9 +1,9 @@
 import { SvelteComponentTyped } from 'svelte';
-import { Color } from './shared';
+import { TextColor } from './shared';
 
 export interface SpinnerProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
-  color?: Color;
+  color?: TextColor;
   size?: any;
   type?: string;
 }
