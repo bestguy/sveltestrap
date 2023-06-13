@@ -9,15 +9,7 @@
     'warning',
     'info',
     'light',
-    'dark',
-    'primary-subtle',
-    'secondary-subtle',
-    'success-subtle',
-    'danger-subtle',
-    'warning-subtle',
-    'info-subtle',
-    'light-subtle',
-    'dark-subtle'
+    'dark'
   ];
 </script>
 

@@ -18,7 +18,7 @@
     'progress-bar',
     bar ? className || barClassName : barClassName,
     animated ? 'progress-bar-animated' : null,
-    color ? `bg-${color}` : null,
+    color ? `text-bg-${color}` : null,
     striped || animated ? 'progress-bar-striped' : null
   );
 
