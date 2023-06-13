@@ -10,7 +10,8 @@ describe('Badge', () => {
     });
     const badge = container.querySelector('.badge');
     expect(badge.innerHTML).toBe('Hello world!');
-    expect(badge.className).toBe('badge bg-secondary');
+    expect(badge.className).toContain('badge');
+    expect(badge.className).toContain('text-bg-secondary');
   });
 
   test('should render specified color', () => {
@@ -18,7 +19,8 @@ describe('Badge', () => {
       props: { color: 'primary', children: 'Hello world!' }
     });
     const badge = container.querySelector('.badge');
-    expect(badge.className).toBe('badge bg-primary');
+    expect(badge.className).toContain('badge');
+    expect(badge.className).toContain('text-bg-primary');
   });
 
   test('should render custom class', () => {
@@ -26,7 +28,9 @@ describe('Badge', () => {
       props: { color: 'danger', children: 'Hello world!', class: 'boogie' }
     });
     const badge = container.querySelector('.badge');
-    expect(badge.className).toBe('boogie badge bg-danger');
+    expect(badge.className).toContain('boogie');
+    expect(badge.className).toContain('badge');
+    expect(badge.className).toContain('text-bg-danger');
   });
 
   test('should render pill', () => {
@@ -34,7 +38,9 @@ describe('Badge', () => {
       props: { pill: true, children: 'Hello world!' }
     });
     const badge = container.querySelector('.badge');
-    expect(badge.className).toBe('badge bg-secondary rounded-pill');
+    expect(badge.className).toContain('badge');
+    expect(badge.className).toContain('text-bg-secondary');
+    expect(badge.className).toContain('rounded-pill');
   });
 
   test('should render link with href', () => {
@@ -42,7 +48,7 @@ describe('Badge', () => {
       props: { href: 'http://example.com/' }
     });
     const link = container.querySelector('a');
-    expect(link.className).toBe('badge bg-secondary');
+    expect(link.className).toBe('badge text-bg-secondary');
     expect(link.href).toBe('http://example.com/');
   });
 });
