@@ -10,6 +10,8 @@ describe('Breadcrumb', () => {
     expect(breadcrumb.className).toBe('breadcrumb');
   });
 
+  test.todo('should render custom divider');
+
   test('should render custom class', () => {
     const { container } = render(Breadcrumb, {
       props: { class: 'boogie', listClassName: 'shoes' }
