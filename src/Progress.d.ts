@@ -1,12 +1,12 @@
 import { SvelteComponentTyped } from 'svelte';
-import { BackgroundColor } from './shared';
+import { Color } from './shared';
 
 export interface ProgressProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   animated?: boolean;
   bar?: boolean;
   barClassName?: string;
-  color?: BackgroundColor;
+  color?: Color;
   max?: string | number;
   multi?: boolean;
   striped?: boolean;
