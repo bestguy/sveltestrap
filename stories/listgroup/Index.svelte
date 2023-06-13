@@ -8,6 +8,8 @@
   import actionsSource from '!!raw-loader!./Actions.svelte';
   import Flush from './Flush.svelte';
   import flushSource from '!!raw-loader!./Flush.svelte';
+  import Horizontal from './Horizontal.svelte';
+  import horizontalSource from '!!raw-loader!./Horizontal.svelte';
   import Numbered from './Numbered.svelte';
   import numberedSource from '!!raw-loader!./Numbered.svelte';
 </script>
@@ -39,6 +41,10 @@
 
 <Example title="Flush" source={flushSource}>
   <Flush />
+</Example>
+
+<Example title="Horizontal" source={horizontalSource}>
+  <Horizontal />
 </Example>
 
 <Example title="Numbered" source={numberedSource}>
