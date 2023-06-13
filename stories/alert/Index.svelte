@@ -6,6 +6,8 @@
   import controlledSource from '!!raw-loader!./Controlled.svelte';
   import Dismissible from './Dismissible.svelte';
   import dismissibleSource from '!!raw-loader!./Dismissible.svelte';
+  import Heading from './Heading.svelte';
+  import headingSource from '!!raw-loader!./Heading.svelte';
   import NoFade from './NoFade.svelte';
   import noFadeSource from '!!raw-loader!./NoFade.svelte';
 </script>
@@ -17,6 +19,10 @@
 
 <Example title="Colors" source={colorsSource}>
   <Colors />
+</Example>
+
+<Example title="Heading" source={headingSource}>
+  <Heading />
 </Example>
 
 <Example title="Dismissible" source={dismissibleSource}>
