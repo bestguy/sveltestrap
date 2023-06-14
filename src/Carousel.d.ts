@@ -8,7 +8,6 @@ export interface CarouselProps
   keyboard?: boolean;
   pause?: 'hover' | false;
   ride?: boolean;
-  style?: string;
 }
 
 export default class Carousel extends SvelteComponentTyped<

@@ -6,7 +6,6 @@
   let classes = '';
   let className = '';
   export { className as class };
-  export let style = '';
   export let items = [];
   export let activeIndex = 0;
   export let ride = true;
@@ -86,7 +85,6 @@
 <div
   {...$$restProps}
   class={classes}
-  {style}
   on:mouseenter={() => (pause ? clearRideTimeout() : undefined)}
   on:mouseleave={() => (pause ? setRideTimeout() : undefined)}
 >
