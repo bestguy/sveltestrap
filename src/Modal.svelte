@@ -222,6 +222,7 @@
 
 {#if _isMounted}
   <svelte:component this={outer}>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class={wrapClassName} tabindex="-1" {...$$restProps}>
       {#if isOpen}
         <div
