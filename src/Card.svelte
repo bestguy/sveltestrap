@@ -7,7 +7,6 @@
   export let color = '';
   export let inverse = false;
   export let outline = false;
-  export let style = '';
 
   $: classes = classnames(
     className,
@@ -18,6 +17,6 @@
   );
 </script>
 
-<div {...$$restProps} class={classes} on:click {style}>
+<div {...$$restProps} class={classes} on:click>
   <slot />
 </div>

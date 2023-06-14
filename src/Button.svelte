@@ -13,7 +13,6 @@
   export let inner = undefined;
   export let outline = false;
   export let size = null;
-  export let style = '';
   export let value = '';
 
   $: ariaLabel = $$props['aria-label'];
@@ -41,7 +40,6 @@
     on:click
     {href}
     aria-label={ariaLabel || defaultAriaLabel}
-    {style}
   >
     {#if children}
       {children}
@@ -58,7 +56,6 @@
     on:click
     {value}
     aria-label={ariaLabel || defaultAriaLabel}
-    {style}
   >
     <slot>
       {#if children}

@@ -8,7 +8,6 @@ export interface CardProps
   color?: Color;
   body?: boolean;
   outline?: boolean;
-  style?: string;
 }
 
 export default class Card extends SvelteComponentTyped<
