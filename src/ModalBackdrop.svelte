@@ -19,6 +19,7 @@
 
 {#if isOpen && loaded}
   <div
+    role="presentation"
     {...$$restProps}
     on:click
     class={classes}

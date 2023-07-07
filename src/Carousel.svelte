@@ -83,6 +83,7 @@
 <svelte:window on:keydown={handleKeydown} />
 
 <div
+  role="presentation"
   {...$$restProps}
   class={classes}
   on:mouseenter={() => (pause ? clearRideTimeout() : undefined)}

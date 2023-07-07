@@ -34,6 +34,7 @@
     <slot />
   </button>
 {:else}
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
   <li {...$$restProps} class={classes} on:click {disabled} {active}>
     <slot />
   </li>
