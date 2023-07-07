@@ -23,6 +23,10 @@
   Bootstrap Carousel
 </a>
 
+<Example source={WithCaptionsSource}>
+  <WithCaptions />
+</Example>
+
 <Example title="Slides only" source={sampleSource}>
   <Sample />
 </Example>
@@ -35,6 +39,3 @@
   <WithIndicators />
 </Example>
 
-<Example title="With Captions" source={WithCaptionsSource}>
-  <WithCaptions />
-</Example>
