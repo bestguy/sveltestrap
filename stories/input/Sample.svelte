@@ -5,6 +5,10 @@
 
 <Form>
   <FormGroup>
+    <Label for="exampleText">Text</Label>
+    <Input id="exampleText" value="Some text value" />
+  </FormGroup>
+  <FormGroup>
     <Label for="exampleEmail">Plain Text (Static)</Label>
     <Input plaintext value="Some plain text/ static value" />
   </FormGroup>

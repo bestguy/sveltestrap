@@ -27,6 +27,14 @@ describe('Alert', () => {
     expect(alert.className).toBe('alert alert-primary');
   });
 
+  test('should render alert heading', () => {
+    const { container } = render(Alert, {
+      props: { heading: 'Hello world!' }
+    });
+    const heading = container.querySelector('.alert-heading');
+    expect(heading.textContent).toBe('Hello world!');
+  });
+
   test('should render custom class', () => {
     const { queryByRole } = render(Alert, {
       props: { color: 'danger', children: 'Hello world!', class: 'boogie' }
@@ -83,7 +91,7 @@ describe('Alert', () => {
     expect(closeBtn).not.toBeInTheDocument();
   });
 
-  test('should render a controlled  alert', async () => {
+  test('should render a controlled alert', async () => {
     let isOpen = true;
     const toggle = jest.fn(() => {
       isOpen = false;
