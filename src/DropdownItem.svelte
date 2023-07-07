@@ -38,7 +38,7 @@
 </script>
 
 {#if header}
-  <h6 {...$$restProps} on:click on:click={handleItemClick} class={classes}>
+  <h6 {...$$restProps} class={classes}>
     <slot />
   </h6>
 {:else if divider}
