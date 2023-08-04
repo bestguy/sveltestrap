@@ -44,15 +44,49 @@
   const open = () => (isOpen = true);
   const close = () => (isOpen = false);
 
-  onMount(() => {
-    targetEl = document.querySelector(`#${target}`);
-    targetEl.addEventListener('mouseover', open);
-    targetEl.addEventListener('mouseleave', close);
-    targetEl.addEventListener('focus', open);
-    targetEl.addEventListener('blur', close);
-  });
+  onMount(registerEventListeners);
+  onDestroy(unregisterEventListeners);
 
-  onDestroy(() => {
+  $: if (target) {
+    unregisterEventListeners();
+    registerEventListeners();
+  }
+
+  function registerEventListeners() {
+    if (target == null || target.length == 0) {
+      targetEl = null;
+      return;
+    }
+
+    // Check if target is HTMLElement
+    try {
+      if (target instanceof HTMLElement) {
+        targetEl = target;
+      }
+    } catch (e) {
+      // fails on SSR
+    }
+
+    // If targetEl has not been found yet
+    if (targetEl == null) {
+      // Check if target can be found via querySelector
+      try {
+        targetEl = document.querySelector(`#${target}`);
+      } catch (e) {
+        // fails on SSR
+      }
+    }
+
+    // If we've found targetEl
+    if (targetEl) {
+      targetEl.addEventListener('mouseover', open);
+      targetEl.addEventListener('mouseleave', close);
+      targetEl.addEventListener('focus', open);
+      targetEl.addEventListener('blur', close);
+    }
+  }
+
+  function unregisterEventListeners() {
     if (targetEl) {
       targetEl.removeEventListener('mouseover', open);
       targetEl.removeEventListener('mouseleave', close);
@@ -60,7 +94,7 @@
       targetEl.removeEventListener('blur', close);
       targetEl.removeAttribute('aria-describedby');
     }
-  });
+  }
 
   $: if (targetEl) {
     if (isOpen) targetEl.setAttribute('aria-describedby', id);
@@ -80,10 +114,6 @@
     `bs-tooltip-${bsPlacement}`,
     isOpen ? 'show' : false
   );
-
-  $: if (!target) {
-    throw new Error('Need target!');
-  }
 
   $: outer = container === 'inline' ? InlineContainer : Portal;
 </script>

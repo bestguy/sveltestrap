@@ -1,5 +1,7 @@
 <script lang="ts">
   import Example from '../Example.svelte';
+  import Custom from './Custom.svelte';
+  import customSource from '!!raw-loader!./Custom.svelte';
   import Events from './Events.svelte';
   import eventsSource from '!!raw-loader!./Events.svelte';
   import Sample from './Sample.svelte';
@@ -16,7 +18,7 @@
 
 <h1>Offcanvas</h1>
 <a
-  href="https://getbootstrap.com/docs/5.0/components/offcanvas/"
+  href="https://getbootstrap.com/docs/5.3/components/offcanvas/"
   target="_blank"
 >
   Bootstrap Offcanvas
@@ -40,6 +42,10 @@
 
 <Example source={manualSource} title="Manual toggling">
   <Manual />
+</Example>
+
+<Example source={customSource} title="Custom Width & Content">
+  <Custom />
 </Example>
 
 <Example source={eventsSource} title="Events">

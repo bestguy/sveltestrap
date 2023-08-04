@@ -14,7 +14,12 @@
   export let onExited = () => dispatch('close');
   export let toggler = null;
 
-  onMount(() => toggle(toggler, () => (isOpen = !isOpen)));
+  onMount(() =>
+    toggle(toggler, (e) => {
+      isOpen = !isOpen;
+      e.preventDefault();
+    })
+  );
 </script>
 
 {#if isOpen}

@@ -71,6 +71,21 @@
   <Container>
     <Row class="justify-content-sm-center">
       <Col sm={8} class="docSearch-content">
+        <h2 class="mt-5">Introduction</h2>
+        <hr />
+        <p>
+          The goal of this library is to provide all Bootstrap 5 components for
+          a <a href="https://svelte.dev">Svelte</a> app. <br />Sveltestrap makes
+          it easy to use Bootstrap since there is no need to use Bootstrap
+          component classes, to include Bootstrap's JavaScript, nor depend on
+          jQuery. <br />Sveltestrap is free, open-source software published
+          under the permissive
+          <a href="https://github.com/bestguy/sveltestrap/blob/master/LICENSE"
+            >MIT license.</a
+          >
+          <br />This library was inspired by the
+          <a href="https://reactstrap.github.io">reactstrap</a> library for React.
+        </p>
         <Example source={sampleSource} stacked>
           <Sample />
         </Example>
@@ -81,7 +96,7 @@
         <p>Install sveltestrap and peer dependencies via NPM</p>
         <pre>
           <PrismCode class="language-bash">
-            npm install --save sveltestrap svelte
+            npm install sveltestrap svelte
           </PrismCode>
         </pre>
 
@@ -96,18 +111,20 @@
 
         <h6>Either static HTML layout</h6>
         <pre>
-          <PrismCode class="language-html">
-            {`<head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+          <PrismCode class="language-html"
+            >{`
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>`}
           </PrismCode>
         </pre>
 
         <h6>or using &lt;svelte:head&gt; in your Svelte source:</h6>
         <pre>
-          <PrismCode class="language-html">
-            {`<svelte:head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+          <PrismCode class="language-html"
+            >{`
+<svelte:head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </svelte:head>`}
           </PrismCode>
         </pre>
@@ -121,8 +138,9 @@
           > component:
         </h6>
         <pre>
-          <PrismCode class="language-html">
-            {`<script>
+          <PrismCode class="language-html"
+            >{`
+<script>
   import { Styles } from 'sveltestrap';
 </script>
 
@@ -141,7 +159,7 @@
         <h5>2. or install via npm</h5>
         <pre>
           <PrismCode class="language-bash">
-            {`npm install --save bootstrap`}
+            {`npm install bootstrap`}
           </PrismCode>
         </pre>
         <p>
@@ -150,9 +168,9 @@
           file:
         </p>
         <pre>
-          <PrismCode class="language-javascript">
-            import 'bootstrap/dist/css/bootstrap.min.css';
-          </PrismCode>
+          <PrismCode class="language-javascript"
+            >import 'bootstrap/dist/css/bootstrap.min.css';</PrismCode
+          >
         </pre>
 
         <h4>Note on Icons</h4>
@@ -161,13 +179,15 @@
             color="link"
             class="p-0"
             style="vertical-align: unset;"
-            on:click={linkTo('Components', 'Icon')}>Icon</Button>
+            on:click={linkTo('Components', 'Icon')}>Icon</Button
+          >
           component, you also must include a link to Bootstrap Icon CSS, for example:
         </p>
         <pre>
-          <PrismCode class="language-html">
-            {`<svelte:head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+          <PrismCode class="language-html"
+            >{`
+<svelte:head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </svelte:head>`}
           </PrismCode>
         </pre>
@@ -178,8 +198,9 @@
           on:click={linkTo('Components', 'Styles')}>Styles</Button
         > component includes the Bootstrap Icon CSS by default:
         <pre>
-          <PrismCode class="language-html">
-            {`<script>
+          <PrismCode class="language-html"
+            >{`
+<script>
   import { Styles } from 'sveltestrap';
 </script>
             
@@ -217,15 +238,6 @@
             {`import { Card } from 'sveltestrap/src'`}
           </PrismCode>
         </pre>
-
-        <h2 class="mt-5">About the Project</h2>
-        <hr />
-        <p>
-          This library was inspired by the <a
-            href="https://reactstrap.github.io">reactstrap</a
-          > library for React. This does not depend on jQuery or Bootstrap's JavaScript,
-          and instead uses Svelte.
-        </p>
       </Col>
     </Row>
   </Container>

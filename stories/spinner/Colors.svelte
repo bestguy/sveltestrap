@@ -13,5 +13,5 @@
 </script>
 
 {#each colors as color}
-  <Spinner {color} />
+  <Spinner {color} class="m-1" />
 {/each}

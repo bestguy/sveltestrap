@@ -14,7 +14,7 @@
   export let delay = 5000;
   export let duration = 200;
   export let fade = true;
-  export let header;
+  export let header = undefined;
   export let isOpen = true;
   export let toggle = null;
 

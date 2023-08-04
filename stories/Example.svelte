@@ -13,7 +13,7 @@
   {/if}
   <slot name="info" />
   <div class="border p-3">
-    <h6 class="text-muted">EXAMPLE</h6>
+    <h6 class="text-body-tertiary">EXAMPLE</h6>
     <Row>
       <Col md={stacked ? 12 : 5}>
         <slot />

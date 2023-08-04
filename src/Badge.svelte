@@ -11,7 +11,7 @@
   $: classes = classnames(
     className,
     'badge',
-    `bg-${color}`,
+    `text-bg-${color}`,
     pill ? 'rounded-pill' : false
   );
 </script>

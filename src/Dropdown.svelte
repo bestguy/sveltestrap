@@ -1,5 +1,5 @@
 <script>
-  import { setContext, onDestroy } from 'svelte';
+  import { getContext, setContext, onDestroy } from 'svelte';
   import { createPopperActions } from './popper';
   import classnames from './utils';
 
@@ -9,15 +9,16 @@
 
   let context = createContext();
   setContext('dropdownContext', context);
+  const navbarContext = getContext('navbar');
 
   let className = '';
   export { className as class };
   export let active = false;
-  export let addonType = false;
+  export let autoClose = true;
   export let direction = 'down';
   export let dropup = false;
   export let group = false;
-  export let inNavbar = false;
+  export let inNavbar = navbarContext ? navbarContext.inNavbar : false;
   export let isOpen = false;
   export let nav = false;
   export let setActiveFromChild = false;
@@ -56,10 +57,9 @@
     nav && active ? 'active' : false,
     setActiveFromChild && subItemIsActive ? 'active' : false,
     {
-      [`input-group-${addonType}`]: addonType,
       'btn-group': group,
       [`btn-group-${size}`]: !!size,
-      dropdown: !group && !addonType,
+      dropdown: !group,
       show: isOpen,
       'nav-item': nav
     }
@@ -84,8 +84,9 @@
       return {
         toggle: handleToggle,
         isOpen,
+        autoClose,
         direction: direction === 'down' && dropup ? 'up' : direction,
-        inNavbar,
+        inNavbar: nav || inNavbar,
         popperRef: nav ? noop : popperRef,
         popperContent: nav ? noop : popperContent
       };
@@ -105,7 +106,9 @@
       return;
     }
 
-    handleToggle(e);
+    if (autoClose === true || autoClose === 'inside') {
+      handleToggle(e);
+    }
   }
 
   onDestroy(() => {

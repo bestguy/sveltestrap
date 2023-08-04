@@ -7,6 +7,7 @@
   let className = '';
   export { className as class };
   export let active = false;
+  export let disabled = false;
   export let tab = undefined;
   export let tabId = undefined;
 
@@ -17,7 +18,8 @@
     if (active) setActiveTab(tabId);
   });
 
-  $: tabOpen = $activeTabId === tabId;
+  let tabOpen = active;
+  $: if ($activeTabId !== undefined) tabOpen = $activeTabId === tabId;
   $: classes = classnames('tab-pane', className, {
     active: tabOpen,
     show: tabOpen
@@ -26,7 +28,7 @@
 
 {#if tabs}
   <NavItem>
-    <NavLink active={tabOpen} on:click={() => setActiveTab(tabId)}>
+    <NavLink active={tabOpen} {disabled} on:click={() => setActiveTab(tabId)}>
       {#if tab}{tab}{/if}
       <slot name="tab" />
     </NavLink>

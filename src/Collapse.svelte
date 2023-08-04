@@ -9,6 +9,7 @@
   export let isOpen = false;
   let className = '';
   export { className as class };
+  export let horizontal = false;
   export let navbar = false;
   export let onEntering = () => dispatch('opening');
   export let onEntered = () => dispatch('open');
@@ -17,9 +18,17 @@
   export let expand = false;
   export let toggler = null;
 
-  onMount(() => toggle(toggler, () => (isOpen = !isOpen)));
+  onMount(() =>
+    toggle(toggler, (e) => {
+      isOpen = !isOpen;
+      e.preventDefault();
+    })
+  );
 
-  $: classes = classnames(className, navbar && 'navbar-collapse');
+  $: classes = classnames(className, {
+    'collapse-horizontal': horizontal,
+    'navbar-collapse': navbar
+  });
 
   let windowWidth = 0;
   let _wasMaximized = false;
@@ -56,8 +65,8 @@
     style={navbar ? undefined : 'overflow: hidden;'}
     {...$$restProps}
     class={classes}
-    in:collapseIn
-    out:collapseOut
+    in:collapseIn={{ horizontal }}
+    out:collapseOut|local={{ horizontal }}
     on:introstart
     on:introend
     on:outrostart

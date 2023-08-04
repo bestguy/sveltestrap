@@ -5,6 +5,10 @@
 
 <Form>
   <FormGroup>
+    <Label for="exampleText">Text</Label>
+    <Input id="exampleText" value="Some text value" />
+  </FormGroup>
+  <FormGroup>
     <Label for="exampleEmail">Plain Text (Static)</Label>
     <Input plaintext value="Some plain text/ static value" />
   </FormGroup>
@@ -128,7 +132,7 @@
   <FormGroup>
     <Label for="exampleFile">File</Label>
     <Input type="file" name="file" id="exampleFile" />
-    <FormText color="muted">
+    <FormText>
       This is some placeholder block-level help text for the above input. It's a
       bit lighter and easily wraps to a new line.
     </FormText>
@@ -165,5 +169,11 @@
   </FormGroup>
   <FormGroup>
     <Input id="c1" type="checkbox" label="Check me out" />
+  </FormGroup>
+  <FormGroup>
+    <Input id="c2" type="checkbox" reverse label="Reverse Label" />
+  </FormGroup>
+  <FormGroup>
+    <Input id="c3" type="switch" label="Switch me on" />
   </FormGroup>
 </Form>

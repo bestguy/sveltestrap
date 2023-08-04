@@ -21,7 +21,8 @@
   import {
     conditionallyUpdateScrollbar,
     getOriginalBodyPadding,
-    setScrollbarWidth
+    setScrollbarWidth,
+    uuid
   } from './utils';
 
   const dispatch = createEventDispatcher();
@@ -40,7 +41,7 @@
   export let scrollable = false;
   export let size = '';
   export let toggle = undefined;
-  export let labelledBy = '';
+  export let labelledBy = header ? `modal-${uuid()}` : undefined;
   export let backdrop = true;
   export let wrapClassName = '';
   export let modalClassName = '';
@@ -153,7 +154,6 @@
 
   function handleBackdropClick(e) {
     if (e.target === _mouseDownElement) {
-      e.stopPropagation();
       if (!isOpen || !backdrop) {
         return;
       }
@@ -165,6 +165,7 @@
         e.target === backdropElem &&
         toggle
       ) {
+        e.stopPropagation();
         toggle(e);
       }
     }
@@ -174,17 +175,23 @@
     dispatch('open');
     _removeEscListener = browserEvent(document, 'keydown', (event) => {
       if (event.key && event.key === 'Escape') {
-        if (toggle && backdrop === true) toggle(event);
+        if (toggle && backdrop === true) {
+          if (_removeEscListener) _removeEscListener();
+          toggle(event);
+        }
       }
     });
   }
 
-  function onModalClosed() {
-    dispatch('close');
+  function onModalClosing() {
+    dispatch('closing');
     if (_removeEscListener) {
       _removeEscListener();
     }
+  }
 
+  function onModalClosed() {
+    dispatch('close');
     if (unmountOnClose) {
       destroy();
     }
@@ -215,12 +222,13 @@
 
 {#if _isMounted}
   <svelte:component this={outer}>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class={wrapClassName} tabindex="-1" {...$$restProps}>
       {#if isOpen}
         <div
           in:modalIn
           out:modalOut
-          ariaLabelledby={labelledBy}
+          aria-labelledby={labelledBy}
           class={classnames('modal', modalClassName, {
             fade,
             'position-static': staticModal
@@ -228,7 +236,7 @@
           role="dialog"
           on:introstart={() => dispatch('opening')}
           on:introend={onModalOpened}
-          on:outrostart={() => dispatch('closing')}
+          on:outrostart={onModalClosing}
           on:outroend={onModalClosed}
           on:click={handleBackdropClick}
           on:mousedown={handleBackdropMouseDown}
@@ -237,7 +245,7 @@
           <div class={classes} role="document" bind:this={_dialog}>
             <div class={classnames('modal-content', contentClassName)}>
               {#if header}
-                <ModalHeader {toggle}>
+                <ModalHeader {toggle} id={labelledBy}>
                   {header}
                 </ModalHeader>
               {/if}

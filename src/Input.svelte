@@ -22,6 +22,7 @@
   export let placeholder = '';
   export let plaintext = false;
   export let readonly = undefined;
+  export let reverse = false;
   export let size = undefined;
   export let type = 'text';
   export let valid = false;
@@ -208,14 +209,15 @@
       on:keypress
       on:keyup
       bind:checked
+      bind:inner
       bind:group
       bind:value
-      bind:this={inner}
       {disabled}
       {invalid}
       {label}
       {name}
       {placeholder}
+      {reverse}
       {readonly}
       {valid}
     />

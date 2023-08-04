@@ -28,14 +28,17 @@
       return;
     }
 
-    if (toggle) {
+    if (
+      toggle &&
+      ($context.autoClose === true || $context.autoClose === 'outside')
+    ) {
       $context.toggle(e);
     }
   }
 </script>
 
 {#if header}
-  <h6 {...$$restProps} on:click on:click={handleItemClick} class={classes}>
+  <h6 {...$$restProps} class={classes}>
     <slot />
   </h6>
 {:else if divider}
@@ -47,7 +50,13 @@
     <slot />
   </a>
 {:else}
-  <button type="button" {...$$restProps} on:click on:click={handleItemClick} class={classes}>
+  <button
+    type="button"
+    {...$$restProps}
+    on:click
+    on:click={handleItemClick}
+    class={classes}
+  >
     <slot />
   </button>
 {/if}

@@ -15,7 +15,7 @@
 </script>
 
 <h1>Buttons</h1>
-<a href="https://getbootstrap.com/docs/5.0/components/buttons/" target="_blank">
+<a href="https://getbootstrap.com/docs/5.3/components/buttons/" target="_blank">
   Bootstrap Buttons
 </a>
 

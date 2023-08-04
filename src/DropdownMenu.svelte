@@ -6,7 +6,6 @@
 
   let className = '';
   export { className as class };
-  export let dark = false;
   export let end = false;
   export let right = false;
 
@@ -33,7 +32,6 @@
   };
 
   $: classes = classnames(className, 'dropdown-menu', {
-    'dropdown-menu-dark': dark,
     'dropdown-menu-end': end || right,
     show: $context.isOpen
   });
@@ -42,6 +40,7 @@
 <div
   {...$$restProps}
   class={classes}
+  data-bs-popper={$context.inNavbar ? 'static' : undefined}
   use:$context.popperContent={popperOptions}
 >
   <slot />

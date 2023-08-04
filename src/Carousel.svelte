@@ -6,10 +6,8 @@
   let classes = '';
   let className = '';
   export { className as class };
-  export let style = '';
   export let items = [];
   export let activeIndex = 0;
-  export let dark = false;
   export let ride = true;
   export let interval = 5000;
   export let pause = true;
@@ -17,9 +15,7 @@
   let _rideTimeoutId = false;
   let _removeVisibilityChangeListener = false;
 
-  $: classes = classnames(className, 'carousel', 'slide', {
-    'carousel-dark': dark
-  });
+  $: classes = classnames(className, 'carousel', 'slide');
 
   onMount(() => {
     setRideTimeout();
@@ -87,9 +83,9 @@
 <svelte:window on:keydown={handleKeydown} />
 
 <div
+  role="presentation"
   {...$$restProps}
   class={classes}
-  {style}
   on:mouseenter={() => (pause ? clearRideTimeout() : undefined)}
   on:mouseleave={() => (pause ? setRideTimeout() : undefined)}
 >

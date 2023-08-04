@@ -1,5 +1,4 @@
 import { SvelteComponentTyped } from 'svelte';
-import { Color } from './shared';
 
 export type InputType = 'checkbox' | 'radio' | 'switch';
 
@@ -14,6 +13,7 @@ export interface FormCheckProps
   label?: string;
   name?: string;
   readonly?: boolean;
+  reverse?: boolean;
   size?: 'lg' | 'sm';
   type?: InputType;
   valid?: boolean;

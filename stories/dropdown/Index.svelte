@@ -2,8 +2,8 @@
   import Example from '../Example.svelte';
   import Alignment from './Alignment.svelte';
   import alignmentSource from '!!raw-loader!./Alignment.svelte';
-  import Dark from './Dark.svelte';
-  import darkSource from '!!raw-loader!./Dark.svelte';
+  import AutoClose from './AutoClose.svelte';
+  import autoCloseSource from '!!raw-loader!./AutoClose.svelte';
   import Direction from './Direction.svelte';
   import directionSource from '!!raw-loader!./Direction.svelte';
   import Sample from './Sample.svelte';
@@ -18,7 +18,7 @@
 
 <h1>Dropdowns</h1>
 <a
-  href="https://getbootstrap.com/docs/5.0/components/dropdowns/"
+  href="https://getbootstrap.com/docs/5.3/components/dropdowns/"
   target="_blank"
 >
   Bootstrap Dropdowns
@@ -48,6 +48,6 @@
   <SetActiveFromChild />
 </Example>
 
-<Example title="Dark variant" source={darkSource}>
-  <Dark />
+<Example title="AutoClose" source={autoCloseSource}>
+  <AutoClose />
 </Example>

@@ -6,12 +6,14 @@
   import pillsSource from '!!raw-loader!./Pills.svelte';
   import Tabs from './Tabs.svelte';
   import tabsSource from '!!raw-loader!./Tabs.svelte';
+  import Underline from './Underline.svelte';
+  import underlineSource from '!!raw-loader!./Underline.svelte';
   import Vertical from './Vertical.svelte';
   import verticalSource from '!!raw-loader!./Vertical.svelte';
 </script>
 
 <h1>Navs</h1>
-<a href="https://getbootstrap.com/docs/5.0/components/navs/" target="_blank">
+<a href="https://getbootstrap.com/docs/5.3/components/navs/" target="_blank">
   Bootstrap Navs
 </a>
 
@@ -25,6 +27,10 @@
 
 <Example title="Pills" source={pillsSource}>
   <Pills />
+</Example>
+
+<Example title="Underline" source={underlineSource}>
+  <Underline />
 </Example>
 
 <Example title="Vertical" source={verticalSource}>

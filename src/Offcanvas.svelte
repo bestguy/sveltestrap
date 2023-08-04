@@ -12,12 +12,19 @@
   let className = '';
   export { className as class };
   export let backdrop = true;
+  export let body = true;
   export let container = 'body';
   export let fade = true;
   export let header = undefined;
   export let isOpen = false;
   export let placement = 'start';
   export let scroll = false;
+  export let sm = false;
+  export let md = false;
+  export let lg = false;
+  export let xl = false;
+  export let xxl = false;
+  export let style = '';
   export let toggle = undefined;
 
   // TODO support these like Modals:
@@ -25,16 +32,19 @@
   // export let unmountOnClose = true;
   // TODO focus trap
 
-  let body;
+  let bodyElement;
   let isTransitioning = false;
   let element;
   let removeEscListener;
 
-  onMount(() => (body = document.body));
+  onMount(() => (bodyElement = document.body));
 
-  $: if (body) {
+  $: if (bodyElement) {
     if (!scroll) {
-      body.classList.toggle('overflow-noscroll', isOpen || isTransitioning);
+      bodyElement.classList.toggle(
+        'overflow-noscroll',
+        isOpen || isTransitioning
+      );
     }
   }
   $: if (element) {
@@ -55,16 +65,26 @@
     removeEscListener();
   }
   $: handleMouseDown =
-    backdrop && toggle && body && isOpen
+    backdrop && toggle && bodyElement && isOpen
       ? (e) => {
-          if (e.target === body) {
+          if (e.target === bodyElement) {
             toggle();
           }
         }
       : undefined;
-  $: classes = classnames('offcanvas', `offcanvas-${placement}`, className, {
-    show: isOpen
-  });
+  $: classes = classnames(
+    {
+      offcanvas: !sm && !md && !lg && !xl && !xxl,
+      'offcanvas-sm': sm,
+      'offcanvas-md': md,
+      'offcanvas-lg': lg,
+      'offcanvas-xl': xl,
+      'offcanvas-xxl': xxl,
+      show: isOpen
+    },
+    `offcanvas-${placement}`,
+    className
+  );
   $: outer = container === 'inline' ? InlineContainer : Portal;
 </script>
 
@@ -78,25 +98,31 @@
     aria-modal={isOpen ? true : undefined}
     class={classes}
     role={isOpen || isTransitioning ? 'dialog' : undefined}
-    style={`visibility: ${isOpen || isTransitioning ? 'visible' : 'hidden'}`}
+    style={`visibility: ${
+      isOpen || isTransitioning ? 'visible' : 'hidden'
+    };${style}`}
     tabindex="-1"
   >
     {#if toggle || header || $$slots.header}
       <OffcanvasHeader {toggle}>
-        {#if header}
-          <h5 class="offcanvas-title">
-            {header}
-          </h5>
-        {/if}
+        {#if header}{header}{/if}
         <slot name="header" />
       </OffcanvasHeader>
     {/if}
-    <OffcanvasBody>
+    {#if body}
+      <OffcanvasBody>
+        <slot />
+      </OffcanvasBody>
+    {:else}
       <slot />
-    </OffcanvasBody>
+    {/if}
   </div>
   {#if backdrop}
-    <OffcanvasBackdrop on:click={toggle ? () => toggle() : undefined} {fade} {isOpen} />
+    <OffcanvasBackdrop
+      on:click={toggle ? () => toggle() : undefined}
+      {fade}
+      {isOpen}
+    />
   {/if}
 </svelte:component>
 

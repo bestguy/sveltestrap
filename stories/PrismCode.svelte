@@ -21,8 +21,4 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-okaidia.min.css"
 />
 
-<pre>
-  <code class={classes} bind:this={_domNode}>
-    <slot />
-  </code>
-</pre>
+<pre><code class={classes} bind:this={_domNode}><slot /></code></pre>

@@ -10,11 +10,13 @@
   import pillsSource from '!!raw-loader!./Pills.svelte';
   import Vertical from './Vertical.svelte';
   import verticalSource from '!!raw-loader!./Vertical.svelte';
+  import Disabled from './Disabled.svelte';
+  import disabledSource from '!!raw-loader!./Disabled.svelte';
 </script>
 
 <h1>TabContent and TabPane</h1>
 <a
-  href="https://getbootstrap.com/docs/5.0/components/navs-tabs/#javascript-behavior"
+  href="https://getbootstrap.com/docs/5.3/components/navs-tabs/#javascript-behavior"
   target="_blank"
 >
   Bootstrap Tabs
@@ -26,6 +28,10 @@
 
 <Example title="Pills" source={pillsSource}>
   <Pills />
+</Example>
+
+<Example title="Disabled" source={disabledSource}>
+  <Disabled />
 </Example>
 
 <Example title="Slots" source={slotsSource}>

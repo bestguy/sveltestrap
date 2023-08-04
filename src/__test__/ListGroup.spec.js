@@ -16,6 +16,12 @@ describe('ListGroup', () => {
     expect(component.className).toBe('list-group list-group-flush');
   });
 
+  test('should render horizontal', () => {
+    const { container } = render(ListGroup, { props: { horizontal: true } });
+    const component = container.querySelector('.list-group');
+    expect(component.className).toBe('list-group list-group-horizontal');
+  });
+
   test('should render numbered', () => {
     const { container } = render(ListGroup, { props: { numbered: true } });
     const component = container.querySelector('ol.list-group');

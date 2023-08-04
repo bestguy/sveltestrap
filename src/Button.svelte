@@ -13,7 +13,6 @@
   export let inner = undefined;
   export let outline = false;
   export let size = null;
-  export let style = '';
   export let value = '';
 
   $: ariaLabel = $$props['aria-label'];
@@ -24,7 +23,9 @@
     close || `btn${outline ? '-outline' : ''}-${color}`,
     size ? `btn-${size}` : false,
     block ? 'd-block w-100' : false,
-    { active }
+    {
+      active
+    }
   );
 
   $: defaultAriaLabel = close ? 'Close' : null;
@@ -39,7 +40,6 @@
     on:click
     {href}
     aria-label={ariaLabel || defaultAriaLabel}
-    {style}
   >
     {#if children}
       {children}
@@ -56,7 +56,6 @@
     on:click
     {value}
     aria-label={ariaLabel || defaultAriaLabel}
-    {style}
   >
     <slot>
       {#if children}

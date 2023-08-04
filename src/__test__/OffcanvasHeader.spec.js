@@ -25,8 +25,6 @@ describe('OffcanvasHeader', () => {
     expect(toggle.mock.calls.length).toEqual(1);
   });
 
-  test.todo('should render close slot if specified');
-
   test('should render custom class', () => {
     const { container } = render(OffcanvasHeader, {
       props: { class: 'boogie' }

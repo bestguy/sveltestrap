@@ -35,8 +35,11 @@ export interface InputProps
   invalid?: boolean;
   label?: string;
   plaintext?: boolean;
+  reverse?: boolean;
   type?: InputType;
   valid?: boolean;
+  files?: FileList;
+  group?: any;
 }
 
 export default class Input extends SvelteComponentTyped<
