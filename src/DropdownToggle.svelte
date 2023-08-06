@@ -64,6 +64,7 @@
     </slot>
   </a>
 {:else if tag === 'div'}
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div
     use:$context.popperRef
     {...$$restProps}
@@ -78,6 +79,7 @@
     </slot>
   </div>
 {:else if tag === 'span'}
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <span
     use:$context.popperRef
     {...$$restProps}
