@@ -42,6 +42,7 @@
     <slot />
   </h6>
 {:else if divider}
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div {...$$restProps} on:click on:click={handleItemClick} class={classes}>
     <slot />
   </div>

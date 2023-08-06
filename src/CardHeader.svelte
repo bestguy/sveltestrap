@@ -9,10 +9,12 @@
 </script>
 
 {#if tag === 'h3'}
+  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
   <h3 {...$$restProps} class={classes} on:click>
     <slot />
   </h3>
 {:else}
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div {...$$restProps} class={classes} on:click>
     <slot />
   </div>
