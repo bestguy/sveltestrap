@@ -228,10 +228,10 @@
           your component hierarchy.
         </p>
 
-        <h4>Server-side Rendering (SSR) Note:</h4>
+        <h4>Note on usage with Sapper</h4>
         <p>
-          If you are using Sveltestrap in an SSR environment (such as Sapper),
-          it's recommended you import the component src directly:
+          If you are using Sveltestrap with Sapper, it's recommended you import the component source directly.
+          Note that this issue does not affect SvelteKit. For example:
         </p>
         <pre>
           <PrismCode class="language-javascript">
