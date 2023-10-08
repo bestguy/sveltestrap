@@ -1,6 +1,5 @@
 <script context="module">
   // TODO fade option
-  console.log("SVELTESTRAP@MODAL:modile");
   let openCount = 0;
 </script>
 
@@ -25,7 +24,8 @@
     setScrollbarWidth,
     uuid
   } from './utils';
-  console.log("SVELTESTRAP@MODAL:end import");
+  import { fade as svFade} from 'svelte/transition';
+
   const dispatch = createEventDispatcher();
 
   let className = '';
@@ -237,16 +237,22 @@
     <div class={wrapClassName} tabindex="-1" {...$$restProps}>
       {#if isOpen}
         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+        <!-- 
+        in:modalIn 
+        out:modalOut
+        -->
         <div
-          in:modalIn
-          out:modalOut
           aria-labelledby={labelledBy}
           class={classnames('modal', modalClassName, {
             fade,
             'position-static': staticModal
           })}
           role="dialog"
-          on:introstart={() => dispatch('opening')}
+          transition:svFade={{ delay: 250, duration: 300 }}
+          on:introstart={(e) => {
+            console.log("SVELTESTRAP@MODAL:introstart-e",{e});
+             dispatch('opening')
+          }}
           on:introend={(e)=>{
             console.log("SVELTESTRAP@MODAL:introend-e",{e});
             onModalOpened()
