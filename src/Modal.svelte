@@ -241,8 +241,8 @@
          transition:svFade={{ delay: 250, duration: 300 }}
         -->
         <div
-          in:modalIn
-          out:modalOut
+          in:modalIn|global
+          out:modalOut|global
           aria-labelledby={labelledBy}
           class={classnames('modal', modalClassName, {
             fade,
