@@ -35,6 +35,7 @@
   export let isOpen = false;
   export let autoFocus = true;
   export let body = false;
+  console.log("SVELTESTRAP@MODAL:body",{body});
   export let centered = false;
   export let container = undefined;
   export let fullscreen = false;
