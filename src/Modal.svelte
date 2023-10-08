@@ -35,7 +35,6 @@
   export let isOpen = false;
   export let autoFocus = true;
   export let body = false;
-  console.log("SVELTESTRAP@MODAL:body",{body});
   export let centered = false;
   export let container = undefined;
   export let fullscreen = false;
@@ -178,6 +177,7 @@
   }
 
   function onModalOpened() {
+    console.log("SVELTESTRAP@MODAL:onModalOpened");
     dispatch('open');
     _removeEscListener = browserEvent(document, 'keydown', (event) => {
       if (event.key && event.key === 'Escape') {
@@ -224,6 +224,11 @@
   });
 
   $: outer = container === 'inline' || staticModal ? InlineContainer : Portal;
+
+  $: {
+    console.log("SVELTESTRAP@MODAL:$",{body});
+    console.log("SVELTESTRAP@MODAL:$",{classes});
+  }
 </script>
 
 {#if _isMounted}
