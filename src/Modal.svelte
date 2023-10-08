@@ -62,7 +62,6 @@
   let _removeEscListener;
 
   onMount(() => {
-    console.log('SVELTESTRAP@MODAL:onMount');
     if (isOpen) {
       init();
       hasOpened = true;
@@ -105,13 +104,10 @@
   }
 
   function init() {
-    console.log('SVELTESTRAP@MODAL:init');
     try {
       _triggeringElement = document.activeElement;
-      console.log('SVELTESTRAP@MODAL:init-OK');
     } catch (err) {
       _triggeringElement = null;
-      console.log('SVELTESTRAP@MODAL:NOK>', err);
     }
 
     if (!staticModal) {
@@ -127,7 +123,6 @@
       ++openCount;
     }
     _isMounted = true;
-    console.log('SVELTESTRAP@MODAL:_isMounted>', _isMounted);
   }
 
   function manageFocusAfterClose() {
@@ -178,7 +173,6 @@
   }
 
   function onModalOpened() {
-    console.log('SVELTESTRAP@MODAL:onModalOpened');
     dispatch('open');
     _removeEscListener = browserEvent(document, 'keydown', (event) => {
       if (event.key && event.key === 'Escape') {
@@ -225,11 +219,6 @@
   });
 
   $: outer = container === 'inline' || staticModal ? InlineContainer : Portal;
-
-  $: {
-    console.log('SVELTESTRAP@MODAL:$', { body });
-    console.log('SVELTESTRAP@MODAL:$', { classes });
-  }
 </script>
 
 {#if _isMounted}
@@ -237,11 +226,6 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class={wrapClassName} tabindex="-1" {...$$restProps}>
       {#if isOpen}
-        <h1>Checking state</h1>
-        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-        <!-- 
-         transition:svFade={{ delay: 250, duration: 300 }}
-        -->
         <div
           in:modalIn|global
           out:modalOut|global
@@ -251,14 +235,8 @@
             'position-static': staticModal
           })}
           role="dialog"
-          on:introstart={(e) => {
-            console.log('SVELTESTRAP@MODAL:introstart-e', { e });
-            dispatch('opening');
-          }}
-          on:introend={(e) => {
-            console.log('SVELTESTRAP@MODAL:introend-e', { e });
-            onModalOpened();
-          }}
+          on:introstart={() => dispatch('opening')}
+          on:introend={onModalOpened}
           on:outrostart={onModalClosing}
           on:outroend={onModalClosed}
           on:click={handleBackdropClick}
