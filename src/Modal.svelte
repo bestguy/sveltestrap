@@ -247,7 +247,10 @@
           })}
           role="dialog"
           on:introstart={() => dispatch('opening')}
-          on:introend={onModalOpened}
+          on:introend={(e)=>{
+            console.log("SVELTESTRAP@MODAL:introend-e",{e});
+            onModalOpened()
+          }}
           on:outrostart={onModalClosing}
           on:outroend={onModalClosed}
           on:click={handleBackdropClick}
