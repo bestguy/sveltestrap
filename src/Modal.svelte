@@ -127,6 +127,7 @@
       ++openCount;
     }
     _isMounted = true;
+    console.log('SVELTESTRAP@MODAL:_isMounted>', _isMounted);
   }
 
   function manageFocusAfterClose() {
@@ -236,6 +237,7 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class={wrapClassName} tabindex="-1" {...$$restProps}>
       {#if isOpen}
+        <h1>Checking state</h1>
         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
         <!-- 
          transition:svFade={{ delay: 250, duration: 300 }}
