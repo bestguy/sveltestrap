@@ -78,10 +78,11 @@ export function collapseIn(node, params) {
 export function modalIn(node) {
   node.style.display = 'block';
   const duration = getTransitionDuration(node);
-
+  console.log('SVELTESTRAP@MODAL:modalIn', { node });
   return {
     duration,
     tick: (t) => {
+      console.log('SVELTESTRAP@MODAL:modalIn-t>0', { node });
       if (t > 0) {
         node.classList.add('show');
       }

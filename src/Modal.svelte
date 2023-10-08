@@ -24,7 +24,7 @@
     setScrollbarWidth,
     uuid
   } from './utils';
-  import { fade as svFade} from 'svelte/transition';
+  import { fade as svFade } from 'svelte/transition';
 
   const dispatch = createEventDispatcher();
 
@@ -62,7 +62,7 @@
   let _removeEscListener;
 
   onMount(() => {
-    console.log("SVELTESTRAP@MODAL:onMount");
+    console.log('SVELTESTRAP@MODAL:onMount');
     if (isOpen) {
       init();
       hasOpened = true;
@@ -105,13 +105,13 @@
   }
 
   function init() {
-    console.log("SVELTESTRAP@MODAL:init");
+    console.log('SVELTESTRAP@MODAL:init');
     try {
       _triggeringElement = document.activeElement;
-      console.log("SVELTESTRAP@MODAL:init-OK");
+      console.log('SVELTESTRAP@MODAL:init-OK');
     } catch (err) {
       _triggeringElement = null;
-      console.log("SVELTESTRAP@MODAL:NOK>",err);
+      console.log('SVELTESTRAP@MODAL:NOK>', err);
     }
 
     if (!staticModal) {
@@ -177,7 +177,7 @@
   }
 
   function onModalOpened() {
-    console.log("SVELTESTRAP@MODAL:onModalOpened");
+    console.log('SVELTESTRAP@MODAL:onModalOpened');
     dispatch('open');
     _removeEscListener = browserEvent(document, 'keydown', (event) => {
       if (event.key && event.key === 'Escape') {
@@ -226,8 +226,8 @@
   $: outer = container === 'inline' || staticModal ? InlineContainer : Portal;
 
   $: {
-    console.log("SVELTESTRAP@MODAL:$",{body});
-    console.log("SVELTESTRAP@MODAL:$",{classes});
+    console.log('SVELTESTRAP@MODAL:$', { body });
+    console.log('SVELTESTRAP@MODAL:$', { classes });
   }
 </script>
 
@@ -238,24 +238,24 @@
       {#if isOpen}
         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
         <!-- 
-        in:modalIn 
-        out:modalOut
+         transition:svFade={{ delay: 250, duration: 300 }}
         -->
         <div
+          in:modalIn
+          out:modalOut
           aria-labelledby={labelledBy}
           class={classnames('modal', modalClassName, {
             fade,
             'position-static': staticModal
           })}
           role="dialog"
-          transition:svFade={{ delay: 250, duration: 300 }}
           on:introstart={(e) => {
-            console.log("SVELTESTRAP@MODAL:introstart-e",{e});
-             dispatch('opening')
+            console.log('SVELTESTRAP@MODAL:introstart-e', { e });
+            dispatch('opening');
           }}
-          on:introend={(e)=>{
-            console.log("SVELTESTRAP@MODAL:introend-e",{e});
-            onModalOpened()
+          on:introend={(e) => {
+            console.log('SVELTESTRAP@MODAL:introend-e', { e });
+            onModalOpened();
           }}
           on:outrostart={onModalClosing}
           on:outroend={onModalClosed}
