@@ -1,5 +1,6 @@
-import { SvelteComponentTyped } from 'svelte';
-import { Color } from './shared';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
+import type { Color } from './shared.d.ts';
 
 export interface ProgressProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
@@ -11,10 +12,13 @@ export interface ProgressProps
   multi?: boolean;
   striped?: boolean;
   value?: string | number;
+class?: string;
 }
 
-export default class Progress extends SvelteComponentTyped<
+export class Progress extends SvelteComponent<
   ProgressProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

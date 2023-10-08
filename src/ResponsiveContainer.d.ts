@@ -1,11 +1,15 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface ResponsiveContainerProps {
   responsive?: boolean | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+class?: string;
 }
 
-export default class ResponsiveContainer extends SvelteComponentTyped<
+export class ResponsiveContainer extends SvelteComponent<
   ResponsiveContainerProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

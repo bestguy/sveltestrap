@@ -1,4 +1,5 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export type InputType = 'checkbox' | 'radio' | 'switch';
 
@@ -19,9 +20,10 @@ export interface FormCheckProps
   valid?: boolean;
   value?: string;
   inner?: HTMLElement;
+class?: string;
 }
 
-export default class FormCheck extends SvelteComponentTyped<
+export class FormCheck extends SvelteComponent<
   FormCheckProps,
   {
     blur: WindowEventMap['blur'];
@@ -29,5 +31,7 @@ export default class FormCheck extends SvelteComponentTyped<
     focus: WindowEventMap['focus'];
     input: WindowEventMap['input'];
   },
-  { default: {} }
+  any
 > {}
+
+}

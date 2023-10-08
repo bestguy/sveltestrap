@@ -1,5 +1,6 @@
 <script context="module">
   // TODO fade option
+  console.log("SVELTESTRAP@MODAL:modile");
   let openCount = 0;
 </script>
 
@@ -24,7 +25,7 @@
     setScrollbarWidth,
     uuid
   } from './utils';
-
+  console.log("SVELTESTRAP@MODAL:end import");
   const dispatch = createEventDispatcher();
 
   let className = '';
@@ -61,6 +62,7 @@
   let _removeEscListener;
 
   onMount(() => {
+    console.log("SVELTESTRAP@MODAL:onMount");
     if (isOpen) {
       init();
       hasOpened = true;
@@ -103,10 +105,13 @@
   }
 
   function init() {
+    console.log("SVELTESTRAP@MODAL:init");
     try {
       _triggeringElement = document.activeElement;
+      console.log("SVELTESTRAP@MODAL:init-OK");
     } catch (err) {
       _triggeringElement = null;
+      console.log("SVELTESTRAP@MODAL:NOK>",err);
     }
 
     if (!staticModal) {

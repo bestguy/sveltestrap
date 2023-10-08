@@ -1,10 +1,14 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface CardSubtitleProps
-  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['h6']> {}
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['h6']> {class?: string;
+}
 
-export default class CardSubtitle extends SvelteComponentTyped<
+export class CardSubtitle extends SvelteComponent<
   CardSubtitleProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

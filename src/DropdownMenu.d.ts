@@ -1,13 +1,17 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface DropdownMenuProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   end?: boolean;
   right?: boolean;
+class?: string;
 }
 
-export default class DropdownMenu extends SvelteComponentTyped<
+export class DropdownMenu extends SvelteComponent<
   DropdownMenuProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

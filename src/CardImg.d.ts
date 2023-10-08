@@ -1,4 +1,5 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface CardImgProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['img']> {
@@ -6,10 +7,13 @@ export interface CardImgProps
   bottom?: boolean;
   src?: string;
   top?: boolean;
+class?: string;
 }
 
-export default class CardImg extends SvelteComponentTyped<
+export class CardImg extends SvelteComponent<
   CardImgProps,
-  {},
+  any,
   {}
 > {}
+
+}

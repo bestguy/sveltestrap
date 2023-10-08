@@ -1,5 +1,6 @@
-import { SvelteComponentTyped } from 'svelte';
-import { Color } from './shared';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
+import type { Color } from './shared.d.ts';
 
 export interface CardProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
@@ -8,10 +9,13 @@ export interface CardProps
   color?: Color;
   body?: boolean;
   outline?: boolean;
+class?: string;
 }
 
-export default class Card extends SvelteComponentTyped<
+export class Card extends SvelteComponent<
   CardProps,
   { click: WindowEventMap['click'] },
-  { default: {} }
+  any
 > {}
+
+}

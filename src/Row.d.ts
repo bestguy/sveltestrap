@@ -1,4 +1,5 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export type ColumnProps =
   | string
@@ -17,10 +18,13 @@ export interface RowProps
   noGutters?: boolean;
   form?: boolean;
   inner?: HTMLElement;
+class?: string;
 }
 
-export default class Row extends SvelteComponentTyped<
+export class Row extends SvelteComponent<
   RowProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

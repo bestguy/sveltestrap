@@ -1,4 +1,5 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface DropdownItemProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['button']> {
@@ -8,10 +9,13 @@ export interface DropdownItemProps
   header?: boolean;
   href?: string;
   toggle?: boolean;
+class?: string;
 }
 
-export default class DropdownItem extends SvelteComponentTyped<
+export class DropdownItem extends SvelteComponent<
   DropdownItemProps,
   { click: WindowEventMap['click'] },
-  { default: {} }
+  any
 > {}
+
+}

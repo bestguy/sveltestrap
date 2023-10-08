@@ -1,4 +1,5 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface NavProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['ul']> {
@@ -11,10 +12,13 @@ export interface NavProps
   tabs?: boolean;
   vertical?: boolean | string;
   underline?: boolean;
+class?: string;
 }
 
-export default class Nav extends SvelteComponentTyped<
+export class Nav extends SvelteComponent<
   NavProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

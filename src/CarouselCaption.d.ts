@@ -1,13 +1,17 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface CarouselCaptionProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   captionHeader?: string;
   captionText: string;
+class?: string;
 }
 
-export default class CarouselCaption extends SvelteComponentTyped<
+export class CarouselCaption extends SvelteComponent<
   CarouselCaptionProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

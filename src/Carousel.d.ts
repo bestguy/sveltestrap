@@ -1,4 +1,5 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface CarouselProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
@@ -8,10 +9,13 @@ export interface CarouselProps
   keyboard?: boolean;
   pause?: 'hover' | false;
   ride?: boolean;
+class?: string;
 }
 
-export default class Carousel extends SvelteComponentTyped<
+export class Carousel extends SvelteComponent<
   CarouselProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

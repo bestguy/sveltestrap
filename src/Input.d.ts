@@ -1,5 +1,6 @@
-import { SvelteComponentTyped } from 'svelte';
-import { Color } from './shared';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
+import type { Color } from './shared.d.ts';
 
 export type InputType =
   | 'button'
@@ -40,9 +41,10 @@ export interface InputProps
   valid?: boolean;
   files?: FileList;
   group?: any;
+class?: string;
 }
 
-export default class Input extends SvelteComponentTyped<
+export class Input extends SvelteComponent<
   InputProps,
   {
     blur: WindowEventMap['blur'];
@@ -53,5 +55,7 @@ export default class Input extends SvelteComponentTyped<
     change: WindowEventMap['change'];
     input: WindowEventMap['input'];
   },
-  { default: {} }
+  any
 > {}
+
+}
