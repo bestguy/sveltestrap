@@ -1,4 +1,5 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export type ColumnProps =
   | string
@@ -24,10 +25,13 @@ export interface ColProps
 
   // custom widths
   widths?: string[];
+class?: string;
 }
 
-export default class Col extends SvelteComponentTyped<
+export class Col extends SvelteComponent<
   ColProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

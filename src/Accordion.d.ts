@@ -1,15 +1,19 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface AccordionProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   flush?: boolean;
   stayOpen?: boolean;
+class?: string;
 }
 
-export default class Accordion extends SvelteComponentTyped<
+export class Accordion extends SvelteComponent<
   AccordionProps,
   {
     toggle: CustomEvent<any>;
   },
-  { default: {} }
+  any
 > {}
+
+}

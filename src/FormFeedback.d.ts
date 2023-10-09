@@ -1,13 +1,17 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface FormFeedbackProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   tooltip?: boolean;
   valid?: boolean;
+class?: string;
 }
 
-export default class FormFeedback extends SvelteComponentTyped<
+export class FormFeedback extends SvelteComponent<
   FormFeedbackProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

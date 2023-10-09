@@ -1,5 +1,6 @@
-import { SvelteComponentTyped } from 'svelte';
-import { ContainerType } from './shared';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
+import type { ContainerType } from './shared.d.ts';
 
 declare type TooltipPlacement = 'left' | 'top' | 'bottom' | 'right';
 
@@ -10,10 +11,13 @@ export interface TooltipProps
   isOpen?: boolean;
   placement?: TooltipPlacement;
   target: string | HTMLElement;
+class?: string;
 }
 
-export default class Tooltip extends SvelteComponentTyped<
+export class Tooltip extends SvelteComponent<
   TooltipProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

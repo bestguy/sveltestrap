@@ -1,13 +1,17 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface BreadcrumbProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['nav']> {
   divider?: string;
   listClassName?: string;
+class?: string;
 }
 
-export default class Breadcrumb extends SvelteComponentTyped<
+export class Breadcrumb extends SvelteComponent<
   BreadcrumbProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

@@ -1,10 +1,14 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface InlineContainerProps
-  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {}
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {class?: string;
+}
 
-export default class InlineContainer extends SvelteComponentTyped<
+export class InlineContainer extends SvelteComponent<
   InlineContainerProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

@@ -1,14 +1,18 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface ListGroupProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['ul']> {
   flush?: boolean;
   horizontal?: boolean;
   numbered?: boolean;
+class?: string;
 }
 
-export default class ListGroup extends SvelteComponentTyped<
+export class ListGroup extends SvelteComponent<
   ListGroupProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

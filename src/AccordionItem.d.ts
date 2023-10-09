@@ -1,12 +1,14 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface AccordionItemProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   active?: boolean;
   header?: string;
+class?: string;
 }
 
-export default class AccordionItem extends SvelteComponentTyped<
+export class AccordionItem extends SvelteComponent<
   AccordionItemProps,
   {
     toggle: CustomEvent<boolean>;
@@ -16,3 +18,5 @@ export default class AccordionItem extends SvelteComponentTyped<
     header: {};
   }
 > {}
+
+}

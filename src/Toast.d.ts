@@ -1,4 +1,5 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface ToastProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
@@ -10,9 +11,10 @@ export interface ToastProps
   header?: string;
   isOpen?: boolean;
   toggle?: () => void;
+class?: string;
 }
 
-export default class Toast extends SvelteComponentTyped<
+export class Toast extends SvelteComponent<
   ToastProps,
   {
     open: CustomEvent<void>;
@@ -20,5 +22,7 @@ export default class Toast extends SvelteComponentTyped<
     closing: CustomEvent<void>;
     close: CustomEvent<void>;
   },
-  { default: {} }
+  any
 > {}
+
+}

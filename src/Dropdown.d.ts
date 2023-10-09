@@ -1,5 +1,6 @@
-import { SvelteComponentTyped } from 'svelte';
-import { Direction } from './shared';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
+import type { Direction } from './shared.d.ts';
 
 export interface DropdownProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
@@ -14,10 +15,13 @@ export interface DropdownProps
   inNavbar?: boolean;
   setActiveFromChild?: boolean;
   dropup?: boolean;
+class?: string;
 }
 
-export default class Dropdown extends SvelteComponentTyped<
+export class Dropdown extends SvelteComponent<
   DropdownProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

@@ -1,3 +1,4 @@
+declare module 'sveltestrap' {
 export declare type Breakpoints = 'sm' | 'md' | 'lg' | 'xl';
 
 export declare type ContainerType = 'body' | 'inline';
@@ -72,3 +73,5 @@ export declare type Direction =
   | 'right'
   | 'start'
   | 'end';
+
+}

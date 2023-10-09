@@ -1,10 +1,14 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface ImageProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['img']> {
   figure?: boolean;
   fluid?: boolean;
   thumbnail?: boolean;
+class?: string;
 }
 
-export default class Image extends SvelteComponentTyped<ImageProps, {}, {}> {}
+export class Image extends SvelteComponent<ImageProps, any, any> {}
+
+}

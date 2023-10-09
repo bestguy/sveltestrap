@@ -1,10 +1,14 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface TableHeaderProps
-  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['thead']> {}
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['thead']> {class?: string;
+}
 
-export default class TableHeader extends SvelteComponentTyped<
+export class TableHeader extends SvelteComponent<
   TableHeaderProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}
