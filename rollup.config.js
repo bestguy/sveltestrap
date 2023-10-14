@@ -5,7 +5,7 @@ import autoPreprocess from 'svelte-preprocess';
 import bundleSize from 'rollup-plugin-bundle-size';
 import svelte from 'rollup-plugin-svelte';
 import typescript from '@rollup/plugin-typescript';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import pkg from './package.json';
 
 const production = !process.env.ROLLUP_WATCH;
