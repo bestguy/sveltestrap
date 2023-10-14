@@ -1,11 +1,13 @@
-module.exports = {
+export default {
+  testEnvironment: "jsdom",
   transform: {
     '^.+\\.js$': 'babel-jest',
-    '^.+\\.svelte$': ['svelte-jester', { preprocess: true }]
+    '^.+\\.svelte$': ['svelte-jester', { preprocess: true }],
+    '^.+\\.ts$': ['ts-jest', { useESM: true }],
   },
+  extensionsToTreatAsEsm: [ '.svelte', '.ts' ],
   transformIgnorePatterns: ['<rootDir>/node_modules/(?!(@popperjs)/)'],
-  moduleFileExtensions: ['js', 'svelte'],
+  moduleFileExtensions: ['ts', 'js', 'svelte'],
   bail: false,
-  verbose: false,
-  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"]
+  verbose: false
 };

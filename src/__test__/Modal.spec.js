@@ -1,4 +1,5 @@
 import Modal from '../Modal.svelte';
+import {jest} from '@jest/globals';
 import { render, cleanup, fireEvent } from '@testing-library/svelte';
 
 beforeEach(cleanup);
