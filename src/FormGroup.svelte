@@ -24,7 +24,6 @@
   <fieldset {...$$restProps} class={classes}>
     <slot />
     {#if label || $$slots.label}
-      <!-- svelte-ignore a11y-label-has-associated-control -->
       <label>
         {label}
         <slot name="label" />
@@ -35,7 +34,6 @@
   <div {...$$restProps} class={classes}>
     <slot />
     {#if label || $$slots.label}
-      <!-- svelte-ignore a11y-label-has-associated-control -->
       <label>
         {label}
         <slot name="label" />

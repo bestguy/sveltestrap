@@ -132,25 +132,6 @@
       {readonly}
       {size}
     />
-  {:else if type === 'color'}
-    <input
-      {...$$restProps}
-      class={classes}
-      type="color"
-      on:blur
-      on:change
-      on:focus
-      on:input
-      on:keydown
-      on:keypress
-      on:keyup
-      bind:value
-      bind:this={inner}
-      {disabled}
-      {name}
-      {placeholder}
-      {readonly}
-    />
   {:else if type === 'email'}
     <input
       {...$$restProps}

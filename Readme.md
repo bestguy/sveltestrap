@@ -1,6 +1,6 @@
 ![sveltestrap](./logo.svg)
 
-## Bootstrap 5 components for Svelte v3
+## Bootstrap 5 components for Svelte v4
 
 The goal of this library is to provide all Bootstrap 5 components for a [Svelte](https://svelte.dev) app. Sveltestrap makes it easy to use Bootstrap since there is no need to use Bootstrap component classes, to include Bootstrap's JavaScript, nor depend on jQuery. Sveltestrap is free, open-source software published under the permissive [MIT license.](https://github.com/bestguy/sveltestrap/blob/master/LICENSE) This library was inspired by the [reactstrap](https://reactstrap.github.io) library for React.
 
