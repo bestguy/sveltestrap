@@ -1,5 +1,6 @@
-import { SvelteComponentTyped } from 'svelte';
-import { BackgroundColor } from './shared';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
+import type { BackgroundColor } from './shared.d.ts';
 
 export interface NavbarProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['nav']> {
@@ -10,10 +11,13 @@ export interface NavbarProps
   fixed?: string;
   light?: boolean;
   sticky?: string;
+class?: string;
 }
 
-export default class Navbar extends SvelteComponentTyped<
+export class Navbar extends SvelteComponent<
   NavbarProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

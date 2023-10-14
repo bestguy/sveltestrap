@@ -1,10 +1,14 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface FigureProps
-  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['figure']> {}
+  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['figure']> {class?: string;
+}
 
-export default class Figure extends SvelteComponentTyped<
+export class Figure extends SvelteComponent<
   FigureProps,
-  {},
+  any,
   { default: {}; caption: {} }
 > {}
+
+}

@@ -1,5 +1,6 @@
-import { SvelteComponentTyped } from 'svelte';
-import { ButtonProps } from './Button';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
+import type { ButtonProps } from './Button.d.ts';
 
 export interface DropdownToggleProps extends ButtonProps {
   caret?: boolean;
@@ -8,5 +9,7 @@ export interface DropdownToggleProps extends ButtonProps {
   nav?: boolean;
 }
 
-declare class DropdownToggle extends SvelteComponentTyped<IDropdownToggleProps> {}
+declare class DropdownToggle extends SvelteComponent<IDropdownToggleProps> {}
 export default DropdownToggle;
+
+}

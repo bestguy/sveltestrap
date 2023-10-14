@@ -1,12 +1,16 @@
-import { DropdownProps } from './Dropdown';
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import type { DropdownProps } from './Dropdown.d.ts';
+import { SvelteComponent } from 'svelte';
 
-export interface ButtonDropdownProps extends Omit<DropdownProps, 'group'> {}
+export interface ButtonDropdownProps extends Omit<DropdownProps, 'group'> {class?: string;
+}
 
-export default class ButtonDropdown extends SvelteComponentTyped<
+export class ButtonDropdown extends SvelteComponent<
   ButtonDropdownProps,
-  {},
+  any,
   {
     default: {};
   }
 > {}
+
+}

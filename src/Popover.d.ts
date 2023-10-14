@@ -1,5 +1,6 @@
-import { SvelteComponentTyped } from 'svelte';
-import { ContainerType } from './shared';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
+import type { ContainerType } from './shared.d.ts';
 
 declare type PopoverPlacement = 'left' | 'top' | 'bottom' | 'right';
 declare type Triggers = 'click' | 'hover' | 'focus';
@@ -14,10 +15,13 @@ export interface PopoverProps
   target: string;
   title?: string;
   trigger?: Triggers;
+class?: string;
 }
 
-export default class Popover extends SvelteComponentTyped<
+export class Popover extends SvelteComponent<
   PopoverProps,
-  {},
+  any,
   { default: {}; title: {} }
 > {}
+
+}

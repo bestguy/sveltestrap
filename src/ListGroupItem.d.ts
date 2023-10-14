@@ -1,5 +1,6 @@
-import { SvelteComponentTyped } from 'svelte';
-import { Color } from './shared';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
+import type { Color } from './shared.d.ts';
 
 export interface ListGroupItemProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['a']> {
@@ -9,10 +10,13 @@ export interface ListGroupItemProps
   disabled?: boolean;
   href?: string;
   tag?: 'a' | 'button' | 'li';
+class?: string;
 }
 
-export default class ListGroupItem extends SvelteComponentTyped<
+export class ListGroupItem extends SvelteComponent<
   ListGroupItemProps,
   { click: WindowEventMap['click'] },
-  { default: {} }
+  any
 > {}
+
+}

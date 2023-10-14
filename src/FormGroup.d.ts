@@ -1,4 +1,5 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface FormGroupProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
@@ -12,9 +13,11 @@ export interface FormGroupProps
   tag?: 'div' | 'fieldset';
 }
 
-declare class FormGroup extends SvelteComponentTyped<
+declare class FormGroup extends SvelteComponent<
   FormGroupProps,
-  {},
+  any,
   { default: {}; label: {} }
 > {}
 export default FormGroup;
+
+}

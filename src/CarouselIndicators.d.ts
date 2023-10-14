@@ -1,13 +1,17 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface CarouselIndicatorsProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['ol']> {
   activeIndex: number;
   items: any[];
+class?: string;
 }
 
-export default class CarouselIndicators extends SvelteComponentTyped<
+export class CarouselIndicators extends SvelteComponent<
   CarouselIndicatorsProps,
-  {},
+  any,
   {}
 > {}
+
+}

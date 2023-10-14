@@ -1,14 +1,18 @@
-import { SvelteComponentTyped } from 'svelte';
-import { TextColor } from './shared';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
+import type { TextColor } from './shared.d.ts';
 
 export interface FormTextProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['small']> {
   color?: TextColor;
   inline?: boolean;
+class?: string;
 }
 
-export default class FormText extends SvelteComponentTyped<
+export class FormText extends SvelteComponent<
   FormTextProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

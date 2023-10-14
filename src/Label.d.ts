@@ -1,5 +1,6 @@
-import { ColumnProps } from './Col';
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import type { ColumnProps } from './Col.d.ts';
+import { SvelteComponent } from 'svelte';
 
 export interface LabelProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['label']> {
@@ -13,10 +14,13 @@ export interface LabelProps
   xl?: ColumnProps;
   xs?: ColumnProps;
   xxl?: ColumnProps;
+class?: string;
 }
 
-export default class Label extends SvelteComponentTyped<
+export class Label extends SvelteComponent<
   LabelProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

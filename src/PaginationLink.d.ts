@@ -1,4 +1,5 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface PaginationLinkProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['a']> {
@@ -8,10 +9,13 @@ export interface PaginationLinkProps
   last?: boolean;
   next?: boolean;
   previous?: boolean;
+class?: string;
 }
 
-export default class PaginationLink extends SvelteComponentTyped<
+export class PaginationLink extends SvelteComponent<
   PaginationLinkProps,
   { click: WindowEventMap['click'] },
-  { default: {} }
+  any
 > {}
+
+}

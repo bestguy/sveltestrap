@@ -1,14 +1,18 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface ColumnProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['td']> {
   footer?: string;
   header?: string;
   width?: string;
+class?: string;
 }
 
-export default class Column extends SvelteComponentTyped<
+export class Column extends SvelteComponent<
   ColumnProps,
-  {},
+  any,
   { default: {}; footer: {}; header: {} }
 > {}
+
+}

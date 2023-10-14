@@ -1,6 +1,7 @@
-import { FadeProps } from './Fade';
-import { SvelteComponentTyped } from 'svelte';
-import { Color } from './shared';
+declare module 'sveltestrap' {
+import type { FadeProps } from './Fade.d.ts';
+import { SvelteComponent } from 'svelte';
+import type { Color } from './shared.d.ts';
 
 export interface AlertProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
@@ -13,10 +14,13 @@ export interface AlertProps
   isOpen?: boolean;
   toggle?: () => void;
   transition?: FadeProps;
+class?: string;
 }
 
-export default class Alert extends SvelteComponentTyped<
+export class Alert extends SvelteComponent<
   AlertProps,
-  {},
+  any,
   { default: {}; heading: {} }
 > {}
+
+}

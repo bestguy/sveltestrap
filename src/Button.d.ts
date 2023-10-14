@@ -1,4 +1,5 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 declare type ButtonColor =
   | 'primary'
@@ -24,10 +25,13 @@ export interface ButtonProps
   inner?: HTMLElement;
   outline?: boolean;
   size?: ButtonSize;
+class?: string;
 }
 
-export default class Button extends SvelteComponentTyped<
+export class Button extends SvelteComponent<
   ButtonProps,
   { click: WindowEventMap['click'] },
-  { default: {} }
+  any
 > {}
+
+}

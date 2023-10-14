@@ -1,12 +1,16 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface NavItemProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['li']> {
   active?: boolean;
+class?: string;
 }
 
-export default class NavItem extends SvelteComponentTyped<
+export class NavItem extends SvelteComponent<
   NavItemProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

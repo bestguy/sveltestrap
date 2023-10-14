@@ -1,4 +1,5 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface CollapseProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
@@ -11,9 +12,10 @@ export interface CollapseProps
   onExited?: () => void;
   onExiting?: () => void;
   toggler?: string;
+class?: string;
 }
 
-export default class Collapse extends SvelteComponentTyped<
+export class Collapse extends SvelteComponent<
   CollapseProps,
   {
     open: CustomEvent<void>;
@@ -22,5 +24,7 @@ export default class Collapse extends SvelteComponentTyped<
     close: CustomEvent<void>;
     update: CustomEvent<boolean>;
   },
-  { default: {} }
+  any
 > {}
+
+}

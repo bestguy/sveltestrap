@@ -1,6 +1,7 @@
-import { SvelteComponentTyped } from 'svelte';
-import { FadeProps } from './Fade';
-import { Breakpoints, ContainerType } from './shared';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
+import type { FadeProps } from './Fade.d.ts';
+import type { Breakpoints, ContainerType } from './shared.d.ts';
 
 export interface ModalProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
@@ -24,9 +25,10 @@ export interface ModalProps
   unmountOnClose?: boolean;
   wrapClassName?: string;
   zIndex?: number | string;
+class?: string;
 }
 
-export default class Modal extends SvelteComponentTyped<
+export class Modal extends SvelteComponent<
   ModalProps,
   {
     open: CustomEvent<void>;
@@ -39,3 +41,5 @@ export default class Modal extends SvelteComponentTyped<
     external: {};
   }
 > {}
+
+}

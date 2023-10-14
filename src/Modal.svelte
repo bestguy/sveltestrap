@@ -227,8 +227,8 @@
       {#if isOpen}
         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
         <div
-          in:modalIn
-          out:modalOut
+          in:modalIn|global
+          out:modalOut|global
           aria-labelledby={labelledBy}
           class={classnames('modal', modalClassName, {
             fade,

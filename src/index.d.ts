@@ -1,3 +1,4 @@
+declare module 'sveltestrap' {
 import Accordion from './Accordion';
 import AccordionHeader from './AccordionHeader';
 import AccordionItem from './AccordionItem';
@@ -178,3 +179,5 @@ export {
   ToastHeader,
   Tooltip
 };
+
+}

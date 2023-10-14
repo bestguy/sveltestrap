@@ -1,5 +1,6 @@
-import { SvelteComponentTyped } from 'svelte';
-import { ContainerType } from './shared';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
+import type { ContainerType } from './shared.d.ts';
 
 declare type Placement = 'start' | 'end' | 'top' | 'bottom'; // TODO support left & right alias
 
@@ -19,9 +20,10 @@ export interface OffcanvasProps
   xl?: boolean;
   xxl?: boolean;
   toggle?: () => void;
+class?: string;
 }
 
-export default class Offcanvas extends SvelteComponentTyped<
+export class Offcanvas extends SvelteComponent<
   OffcanvasProps,
   {
     open: CustomEvent<void>;
@@ -34,3 +36,5 @@ export default class Offcanvas extends SvelteComponentTyped<
     header: {};
   }
 > {}
+
+}

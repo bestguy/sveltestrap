@@ -1,15 +1,19 @@
-import { Color } from './shared';
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import type { Color } from './shared.d.ts';
+import { SvelteComponent } from 'svelte';
 
 export interface BadgeProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['a']> {
   color?: Color;
   href?: string;
   pill?: boolean;
+class?: string;
 }
 
-export default class Badge extends SvelteComponentTyped<
+export class Badge extends SvelteComponent<
   BadgeProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

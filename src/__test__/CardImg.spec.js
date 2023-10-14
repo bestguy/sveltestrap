@@ -5,25 +5,25 @@ beforeEach(cleanup);
 
 describe('CardImg', () => {
   test('should render correctly', () => {
-    const { container } = render(CardImg);
+    const { container } = render(CardImg, {props:{src:""}});
     const component = container.querySelector('.card-img');
     expect(component.className).toBe('card-img');
   });
 
   test('should render custom class', () => {
-    const { container } = render(CardImg, { props: { class: 'boogie' } });
+    const { container } = render(CardImg, { props: { src: '', class: 'boogie' } });
     const component = container.querySelector('.card-img');
     expect(component.className).toBe('boogie card-img');
   });
 
   test('should render prop top', () => {
-    const { container } = render(CardImg, { props: { top: true } });
+    const { container } = render(CardImg, { props: { src: '', top: true } });
     const component = container.querySelector('.card-img-top');
     expect(component.className).toContain('card-img-top');
   });
 
   test('should render prop bottom', () => {
-    const { container } = render(CardImg, { props: { bottom: true } });
+    const { container } = render(CardImg, { props: { src: '', bottom: true } });
     const component = container.querySelector('.card-img-bottom');
     expect(component.className).toContain('card-img-bottom');
   });

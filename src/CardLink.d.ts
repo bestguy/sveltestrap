@@ -1,4 +1,5 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface CardLinkProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['a']> {
@@ -6,10 +7,13 @@ export interface CardLinkProps
    * @default ''
    */
   href?: string;
+class?: string;
 }
 
-export default class CardLink extends SvelteComponentTyped<
+export class CardLink extends SvelteComponent<
   CardLinkProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}

@@ -5,16 +5,10 @@
     "jest/globals": true,
     "node": true
   },
-  "extends": ["eslint:recommended"],
+  "extends": ["plugin:svelte/recommended"],
   "parserOptions": {
     "ecmaVersion": 2019,
     "sourceType": "module"
   },
-  "plugins": ["jest", "svelte3"],
-  "overrides": [
-    {
-      "files": ["**/*.svelte"],
-      "processor": "svelte3/svelte3"
-    }
-  ]
+  "plugins": ["jest"]
 }

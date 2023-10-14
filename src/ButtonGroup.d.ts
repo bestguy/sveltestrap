@@ -1,13 +1,17 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+import { SvelteComponent } from 'svelte';
 
 export interface ButtonGroupProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
   size?: string;
   vertical?: boolean;
+class?: string;
 }
 
-export default class ButtonGroup extends SvelteComponentTyped<
+export class ButtonGroup extends SvelteComponent<
   ButtonGroupProps,
-  {},
-  { default: {} }
+  any,
+  any
 > {}
+
+}
