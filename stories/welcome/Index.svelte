@@ -43,7 +43,7 @@
             >
             components for
             <a href="https://svelte.dev" target="new" class="text-body"
-              >Svelte 3</a
+              >Svelte 4</a
             >.
           </p>
           <p>

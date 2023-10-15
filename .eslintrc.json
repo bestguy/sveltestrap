@@ -5,10 +5,15 @@
     "jest/globals": true,
     "node": true
   },
-  "extends": ["plugin:svelte/recommended"],
+  "extends": [
+    "plugin:svelte/recommended",
+    "plugin:storybook/recommended"
+  ],
   "parserOptions": {
     "ecmaVersion": 2019,
     "sourceType": "module"
   },
-  "plugins": ["jest"]
+  "plugins": [
+    "jest"
+  ]
 }
