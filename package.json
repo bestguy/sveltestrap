@@ -48,6 +48,7 @@
     "@storybook/svelte": "^7.2.1",
     "@storybook/svelte-webpack5": "^7.2.1",
     "@storybook/testing-library": "^0.2.0",
+    "@storybook/theming": "^7.4.6",
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/svelte": "^3.0.3",
     "@tsconfig/svelte": "^2.0.1",
