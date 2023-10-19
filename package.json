@@ -62,6 +62,13 @@
     "clean-webpack-plugin": "^4.0.0",
     "conventional-changelog-cli": "^4.1.0",
     "copy-webpack-plugin": "^11.0.0",
+    
+    "@storybook/addon-essentials": "^7.4.6",
+    "@storybook/addon-interactions": "^7.4.6",
+    "@storybook/blocks": "^7.4.6",
+    "@storybook/testing-library": "^0.2.0",
+    "@storybook/theming": "^7.4.6",
+
     "cross-env": "^7.0.3",
     "eslint": "^8.51.0",
     "eslint-plugin-jest": "^27.4.2",
