@@ -19,10 +19,10 @@
     "src"
   ],
   "scripts": {
-    "start": "start-storybook -p 6006",
+    "start": "storybook dev -p 6006",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "dist": "rollup -c",
-    "docs": "build-storybook -o docs && cp CNAME ./docs && cp -r ./v4 ./docs",
+    "docs": "storybook build -o docs && cp CNAME ./docs && cp -r ./v4 ./docs",
     "format": "prettier --write --plugin-search-dir=. ./src ./stories ./.storybook",
     "lint": "tsc --noEmit && eslint ./src --ext .js --ext .svelte",
     "prepublish": "npm run dist && git add -A dist",
@@ -61,6 +61,12 @@
     "clean-webpack-plugin": "^4.0.0",
     "conventional-changelog-cli": "^4.1.0",
     "copy-webpack-plugin": "^11.0.0",
+    "@storybook/addon-essentials": "^7.2.1",
+    "@storybook/addon-interactions": "^7.2.1",
+    "@storybook/blocks": "^7.2.1",
+    "@storybook/svelte-webpack5": "^7.2.1",
+    "@storybook/testing-library": "^0.2.0",
+    "@storybook/theming": "^7.4.6",
     "cross-env": "^7.0.3",
     "eslint": "^8.51.0",
     "eslint-plugin-jest": "^27.4.2",
@@ -94,7 +100,8 @@
     "wait-for-localhost-cli": "^3.0.0",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^4.15.1",
+    "storybook": "^7.2.1"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8"
