@@ -1,14 +1,10 @@
 declare module 'sveltestrap' {
-import { SvelteComponent } from 'svelte';
+  import { SvelteComponent } from 'svelte';
 
-export interface CardGroupProps
-  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {class?: string;
-}
+  export interface CardGroupProps
+    extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
+    class?: string;
+  }
 
-export class CardGroup extends SvelteComponent<
-  CardGroupProps,
-  any,
-  any
-> {}
-
+  export class CardGroup extends SvelteComponent<CardGroupProps, any, any> {}
 }

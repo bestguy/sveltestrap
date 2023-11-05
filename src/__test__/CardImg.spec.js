@@ -5,13 +5,15 @@ beforeEach(cleanup);
 
 describe('CardImg', () => {
   test('should render correctly', () => {
-    const { container } = render(CardImg, {props:{src:""}});
+    const { container } = render(CardImg, { props: { src: '' } });
     const component = container.querySelector('.card-img');
     expect(component.className).toBe('card-img');
   });
 
   test('should render custom class', () => {
-    const { container } = render(CardImg, { props: { src: '', class: 'boogie' } });
+    const { container } = render(CardImg, {
+      props: { src: '', class: 'boogie' }
+    });
     const component = container.querySelector('.card-img');
     expect(component.className).toBe('boogie card-img');
   });

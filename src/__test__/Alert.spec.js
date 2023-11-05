@@ -1,5 +1,5 @@
 import Alert from '../Alert.svelte';
-import {jest} from '@jest/globals';
+import { jest } from '@jest/globals';
 import '@testing-library/jest-dom';
 import {
   render,

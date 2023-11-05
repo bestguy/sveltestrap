@@ -1,5 +1,5 @@
 import ModalHeader from '../ModalHeader.svelte';
-import {jest} from '@jest/globals';
+import { jest } from '@jest/globals';
 import { fireEvent, render, cleanup } from '@testing-library/svelte';
 
 beforeEach(cleanup);
