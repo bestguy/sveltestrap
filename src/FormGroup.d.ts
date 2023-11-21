@@ -13,10 +13,9 @@ declare module 'sveltestrap' {
     tag?: 'div' | 'fieldset';
   }
 
-  declare class FormGroup extends SvelteComponent<
+  export class FormGroup extends SvelteComponent<
     FormGroupProps,
     any,
     { default: {}; label: {} }
   > {}
-  export default FormGroup;
 }
