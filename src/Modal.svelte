@@ -24,6 +24,7 @@
     setScrollbarWidth,
     uuid
   } from './utils';
+  import { fade as svFade } from 'svelte/transition';
 
   const dispatch = createEventDispatcher();
 
@@ -225,7 +226,6 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class={wrapClassName} tabindex="-1" {...$$restProps}>
       {#if isOpen}
-        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
         <div
           in:modalIn|global
           out:modalOut|global
