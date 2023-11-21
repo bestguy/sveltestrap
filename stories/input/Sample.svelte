@@ -126,8 +126,8 @@
     </Input>
   </FormGroup> -->
   <FormGroup>
-    <Label for="exampleText">Text Area</Label>
-    <Input type="textarea" name="text" id="exampleText" />
+    <Label for="exampleTextArea">Text Area</Label>
+    <Input type="textarea" name="text" id="exampleTextArea" />
   </FormGroup>
   <FormGroup>
     <Label for="exampleFile">File</Label>
