@@ -1,4 +1,4 @@
-import TestDropdown from './TestDropdown';
+import TestDropdown from './TestDropdown.svelte';
 import { render, cleanup } from '@testing-library/svelte';
 
 beforeEach(cleanup);

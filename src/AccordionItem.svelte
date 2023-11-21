@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher, getContext, onMount } from 'svelte';
-  import classnames from './utils';
+  import classnames from './utils.ts';
   import Collapse from './Collapse.svelte';
   import AccordionHeader from './AccordionHeader.svelte';
 

@@ -1,8 +1,8 @@
 <script>
   // TODO only allow single backdrop open at once.
   import { onMount } from 'svelte';
-  import classnames from './utils';
-  import { backdropIn, backdropOut } from './transitions.js';
+  import classnames from './utils.ts';
+  import { backdropIn, backdropOut } from './transitions.ts';
 
   let className = '';
   export { className as class };

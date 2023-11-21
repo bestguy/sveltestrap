@@ -1,4 +1,4 @@
-import NavLink from '../NavLink';
+import NavLink from '../NavLink.svelte';
 import { render, cleanup } from '@testing-library/svelte';
 
 beforeEach(cleanup);

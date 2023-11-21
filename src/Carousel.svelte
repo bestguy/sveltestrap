@@ -1,7 +1,7 @@
 <script>
   import { onDestroy, onMount } from 'svelte';
-  import classnames from './utils';
-  import { getNewCarouselActiveIndex, browserEvent } from './utils';
+  import classnames from './utils.ts';
+  import { getNewCarouselActiveIndex, browserEvent } from './utils.ts';
 
   let classes = '';
   let className = '';

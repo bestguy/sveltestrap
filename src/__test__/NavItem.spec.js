@@ -1,4 +1,4 @@
-import NavItem from '../NavItem';
+import NavItem from '../NavItem.svelte';
 import { render, cleanup } from '@testing-library/svelte';
 
 beforeEach(cleanup);

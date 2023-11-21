@@ -1,4 +1,4 @@
-import Progress from '../Progress';
+import Progress from '../Progress.svelte';
 import { render, cleanup } from '@testing-library/svelte';
 
 beforeEach(cleanup);

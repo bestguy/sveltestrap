@@ -4,15 +4,15 @@
 </script>
 
 <script>
-  import classnames from './utils';
-  import { browserEvent } from './utils';
+  import classnames from './utils.ts';
+  import { browserEvent } from './utils.ts';
   import {
     createEventDispatcher,
     onDestroy,
     onMount,
     afterUpdate
   } from 'svelte';
-  import { modalIn, modalOut } from './transitions';
+  import { modalIn, modalOut } from './transitions.ts';
   import InlineContainer from './InlineContainer.svelte';
   import ModalBackdrop from './ModalBackdrop.svelte';
   import ModalBody from './ModalBody.svelte';
@@ -23,7 +23,7 @@
     getOriginalBodyPadding,
     setScrollbarWidth,
     uuid
-  } from './utils';
+  } from './utils.ts';
   import { fade as svFade } from 'svelte/transition';
 
   const dispatch = createEventDispatcher();

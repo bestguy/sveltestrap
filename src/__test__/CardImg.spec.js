@@ -35,6 +35,6 @@ describe('CardImg', () => {
       props: { src: 'http://example.com/example.png', alt: 'perfect picture' }
     });
     const image = getByAltText('perfect picture');
-    expect(image.src).toBe('http://example.com/example.png');
+    expect(image.getAttribute('src')).toBe('http://example.com/example.png');
   });
 });

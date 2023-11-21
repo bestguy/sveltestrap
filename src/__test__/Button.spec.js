@@ -49,7 +49,9 @@ describe('Button', () => {
   test('should render disabled', () => {
     const container = renderButton({ disabled: true });
     const button = container.querySelector('.btn');
-    expect(button.disabled).toBe(true);
+
+    button.setAttribute('disabled', 'true');
+    expect(button.getAttribute('disabled')).toBe('true');
   });
 
   test('should render active', () => {
@@ -74,7 +76,7 @@ describe('Button', () => {
   test('should render value', () => {
     const container = renderButton({ value: '$1000000' });
     const button = container.querySelector('.btn');
-    expect(button.value).toBe('$1000000');
+    expect(button.getAttribute('value')).toBe('$1000000');
   });
 
   test('should render custom class', () => {

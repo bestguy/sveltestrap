@@ -1,7 +1,6 @@
 export function getOriginalBodyPadding() {
-  const style = window ? window.getComputedStyle(document.body, null) : {};
-
-  return parseInt((style && style.getPropertyValue('padding-right')) || 0, 10);
+  const style  = window ? window.getComputedStyle(document.body, null) : null;
+  return parseInt(style ? style.getPropertyValue('padding-right') : '0', 10);
 }
 
 export function getScrollbarWidth() {
@@ -36,9 +35,9 @@ export function conditionallyUpdateScrollbar() {
   // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.6/js/src/modal.js#L433
   const fixedContent = document.querySelectorAll(
     '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top'
-  )[0];
+  )[0] as HTMLElement;
   const bodyPadding = fixedContent
-    ? parseInt(fixedContent.style.paddingRight || 0, 10)
+    ? parseInt(fixedContent.style.paddingRight || "0", 10)
     : 0;
 
   if (isBodyOverflowing()) {

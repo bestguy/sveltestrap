@@ -1,6 +1,6 @@
 <script>
-  import classnames from './utils';
-  import { getNewCarouselActiveIndex } from './utils';
+  import classnames from './utils.ts';
+  import { getNewCarouselActiveIndex } from './utils.ts';
 
   let classes = '';
   let className = '';

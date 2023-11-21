@@ -1,4 +1,4 @@
-import Accordion from '../Accordion';
+import Accordion from '../Accordion.svelte';
 import { render, cleanup } from '@testing-library/svelte';
 
 beforeEach(cleanup);

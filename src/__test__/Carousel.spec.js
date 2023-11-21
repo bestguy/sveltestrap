@@ -1,4 +1,4 @@
-import Carousel from '../Carousel';
+import Carousel from '../Carousel.svelte';
 import { render, cleanup } from '@testing-library/svelte';
 
 beforeEach(cleanup);

@@ -1,7 +1,7 @@
 <script>
   import { onDestroy, onMount } from 'svelte';
   import { createPopper } from '@popperjs/core';
-  import classnames, { uuid } from './utils';
+  import classnames, { uuid } from './utils.ts';
   import InlineContainer from './InlineContainer.svelte';
   import Portal from './Portal.svelte';
 

@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core';
-  import classnames from './utils';
+  import classnames from './utils.ts';
   import InlineContainer from './InlineContainer.svelte';
   import Portal from './Portal.svelte';
 

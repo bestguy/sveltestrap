@@ -5,7 +5,7 @@
   import OffcanvasBody from './OffcanvasBody.svelte';
   import OffcanvasHeader from './OffcanvasHeader.svelte';
   import Portal from './Portal.svelte';
-  import classnames, { browserEvent, getTransitionDuration } from './utils';
+  import classnames, { browserEvent, getTransitionDuration } from './utils.ts';
 
   const dispatch = createEventDispatcher();
 

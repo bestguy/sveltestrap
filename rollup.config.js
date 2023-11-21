@@ -13,7 +13,7 @@ const production = !process.env.ROLLUP_WATCH;
 const { name } = pkg;
 
 export default {
-  input: 'src/index.js',
+  input: 'src/index.ts',
   output: [
     {
       file: pkg.module,

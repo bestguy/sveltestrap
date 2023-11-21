@@ -1,5 +1,5 @@
 <script>
-  import classnames from './utils';
+  import classnames from './utils.ts';
   import Colgroup from './Colgroup.svelte';
   import ResponsiveContainer from './ResponsiveContainer.svelte';
   import TableFooter from './TableFooter.svelte';

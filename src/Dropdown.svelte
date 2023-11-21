@@ -1,9 +1,9 @@
 <script>
   import { getContext, setContext, onDestroy } from 'svelte';
-  import { createPopperActions } from './popper';
-  import classnames from './utils';
+  import { createPopperActions } from './popper.ts';
+  import classnames from './utils.ts';
 
-  import { createContext } from './DropdownContext';
+  import { createContext } from './DropdownContext.ts';
 
   const noop = () => undefined;
 

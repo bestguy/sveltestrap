@@ -1,4 +1,4 @@
-import ResponsiveContainer from '../ResponsiveContainer';
+import ResponsiveContainer from '../ResponsiveContainer.svelte';
 import { render, cleanup } from '@testing-library/svelte';
 
 beforeEach(cleanup);

@@ -3,7 +3,7 @@
   import { fade as fadeTrans } from 'svelte/transition';
   import ToastBody from './ToastBody.svelte';
   import ToastHeader from './ToastHeader.svelte';
-  import classnames from './utils';
+  import classnames from './utils.ts';
 
   const dispatch = createEventDispatcher();
 

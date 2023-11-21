@@ -1,4 +1,4 @@
-import PaginationItem from '../PaginationItem';
+import PaginationItem from '../PaginationItem.svelte';
 import { render, cleanup } from '@testing-library/svelte';
 
 beforeEach(cleanup);

@@ -1,7 +1,7 @@
 <script>
-  import classnames from './utils';
+  import classnames from './utils.ts';
 
-  import { getColumnSizeClass, isObject } from './utils';
+  import { getColumnSizeClass, isObject } from './utils.ts';
 
   let className = '';
 

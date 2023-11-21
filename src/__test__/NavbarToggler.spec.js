@@ -1,4 +1,4 @@
-import NavbarToggler from '../NavbarToggler';
+import NavbarToggler from '../NavbarToggler.svelte';
 import { render, cleanup } from '@testing-library/svelte';
 
 beforeEach(cleanup);

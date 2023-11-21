@@ -1,5 +1,5 @@
 <script>
-  import classnames from './utils';
+  import classnames from './utils.ts';
   import { createEventDispatcher, setContext } from 'svelte';
   import { writable } from 'svelte/store';
 

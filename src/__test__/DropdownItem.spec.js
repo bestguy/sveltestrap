@@ -1,4 +1,4 @@
-import DropdownItem from '../DropdownItem';
+import DropdownItem from '../DropdownItem.svelte';
 import { render, cleanup } from '@testing-library/svelte';
 
 beforeEach(cleanup);

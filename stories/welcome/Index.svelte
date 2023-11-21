@@ -164,7 +164,7 @@
         </pre>
         <p>
           Import Bootstrap CSS in the
-          <code>src/index.js</code>
+          <code>src/index.ts</code>
           file:
         </p>
         <pre>

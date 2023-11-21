@@ -1,4 +1,4 @@
-import PaginationLink from '../PaginationLink';
+import PaginationLink from '../PaginationLink.svelte';
 import { render, cleanup } from '@testing-library/svelte';
 
 beforeEach(cleanup);

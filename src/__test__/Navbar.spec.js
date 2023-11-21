@@ -1,4 +1,4 @@
-import Navbar from '../Navbar';
+import Navbar from '../Navbar.svelte';
 import { render, cleanup } from '@testing-library/svelte';
 
 beforeEach(cleanup);
