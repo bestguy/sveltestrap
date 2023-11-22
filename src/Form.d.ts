@@ -1,13 +1,16 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+  import { SvelteComponent } from 'svelte';
 
-export interface FormProps
-  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['form']> {
-  inline?: boolean;
-  validated?: boolean;
+  export interface FormProps
+    extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['form']> {
+    inline?: boolean;
+    validated?: boolean;
+    class?: string;
+  }
+
+  export class Form extends SvelteComponent<
+    FormProps,
+    { submit: WindowEventMap['submit'] },
+    any
+  > {}
 }
-
-export default class Form extends SvelteComponentTyped<
-  FormProps,
-  { submit: WindowEventMap['submit'] },
-  { default: {} }
-> {}

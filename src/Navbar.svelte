@@ -1,5 +1,5 @@
 <script>
-  import classnames from './utils';
+  import classnames from './utils.ts';
   import Container from './Container.svelte';
   import { setContext } from 'svelte';
 

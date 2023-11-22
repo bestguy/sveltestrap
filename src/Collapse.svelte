@@ -1,8 +1,8 @@
 <script>
   import { createEventDispatcher, onMount } from 'svelte';
-  import { collapseIn, collapseOut } from './transitions';
-  import classnames from './utils';
-  import toggle from './toggle';
+  import { collapseIn, collapseOut } from './transitions.ts';
+  import classnames from './utils.ts';
+  import toggle from './toggle.ts';
 
   const dispatch = createEventDispatcher();
 

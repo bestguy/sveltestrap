@@ -1,10 +1,10 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+  import { SvelteComponent } from 'svelte';
 
-export interface ToastBodyProps
-  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {}
+  export interface ToastBodyProps
+    extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
+    class?: string;
+  }
 
-export default class ToastBody extends SvelteComponentTyped<
-  ToastBodyProps,
-  {},
-  { default: {} }
-> {}
+  export class ToastBody extends SvelteComponent<ToastBodyProps, any, any> {}
+}

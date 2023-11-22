@@ -1,10 +1,14 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+  import { SvelteComponent } from 'svelte';
 
-export interface AccordionHeaderProps
-  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['h2']> {}
+  export interface AccordionHeaderProps
+    extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['h2']> {
+    class?: string;
+  }
 
-export default class AccordionHeader extends SvelteComponentTyped<
-  AccordionHeaderProps,
-  {},
-  { default: {} }
-> {}
+  export class AccordionHeader extends SvelteComponent<
+    AccordionHeaderProps,
+    any,
+    any
+  > {}
+}

@@ -1,20 +1,21 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+  import { SvelteComponent } from 'svelte';
 
-export interface FormGroupProps
-  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
-  check?: boolean;
-  disabled?: boolean;
-  floating?: boolean;
-  id?: string;
-  inline?: boolean;
-  label?: string;
-  row?: boolean;
-  tag?: 'div' | 'fieldset';
+  export interface FormGroupProps
+    extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
+    check?: boolean;
+    disabled?: boolean;
+    floating?: boolean;
+    id?: string;
+    inline?: boolean;
+    label?: string;
+    row?: boolean;
+    tag?: 'div' | 'fieldset';
+  }
+
+  export class FormGroup extends SvelteComponent<
+    FormGroupProps,
+    any,
+    { default: {}; label: {} }
+  > {}
 }
-
-declare class FormGroup extends SvelteComponentTyped<
-  FormGroupProps,
-  {},
-  { default: {}; label: {} }
-> {}
-export default FormGroup;

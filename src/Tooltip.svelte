@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { onDestroy, onMount } from 'svelte';
   import { createPopper } from '@popperjs/core';
   import classnames, { uuid } from './utils';
@@ -12,15 +12,15 @@
   export let container = undefined;
   export let id = `tooltip_${uuid()}`;
   export let isOpen = false;
-  export let placement = 'top';
-  export let target = '';
+  export let placement: any = "top";
+  export let target: any = '';
   let bsPlacement;
   let popperInstance;
   let popperPlacement = placement;
   let targetEl;
   let tooltipEl;
 
-  const checkPopperPlacement = {
+  const checkPopperPlacement: any = {
     name: 'checkPopperPlacement',
     enabled: true,
     phase: 'main',

@@ -1,12 +1,12 @@
-<script>
+<script lang="ts">
   import classnames from './utils';
 
   let className = '';
   export { className as class };
   export let bar = false;
   export let multi = false;
-  export let value = 0;
-  export let max = 100;
+  export let value : number = 0;
+  export let max : number = 100;
   export let animated = false;
   export let striped = false;
   export let color = '';
@@ -22,7 +22,7 @@
     striped || animated ? 'progress-bar-striped' : null
   );
 
-  $: percent = (parseInt(value, 10) / parseInt(max, 10)) * 100;
+  $: percent = (value / max) * 100;
 </script>
 
 {#if bar}

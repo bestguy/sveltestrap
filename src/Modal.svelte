@@ -4,15 +4,15 @@
 </script>
 
 <script>
-  import classnames from './utils';
-  import { browserEvent } from './utils';
+  import classnames from './utils.ts';
+  import { browserEvent } from './utils.ts';
   import {
     createEventDispatcher,
     onDestroy,
     onMount,
     afterUpdate
   } from 'svelte';
-  import { modalIn, modalOut } from './transitions';
+  import { modalIn, modalOut } from './transitions.ts';
   import InlineContainer from './InlineContainer.svelte';
   import ModalBackdrop from './ModalBackdrop.svelte';
   import ModalBody from './ModalBody.svelte';
@@ -23,7 +23,7 @@
     getOriginalBodyPadding,
     setScrollbarWidth,
     uuid
-  } from './utils';
+  } from './utils.ts';
 
   const dispatch = createEventDispatcher();
 
@@ -222,13 +222,13 @@
 
 {#if _isMounted}
   <svelte:component this={outer}>
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class={wrapClassName} tabindex="-1" {...$$restProps}>
       {#if isOpen}
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
         <div
-          in:modalIn
-          out:modalOut
+          in:modalIn|global
+          out:modalOut|global
           aria-labelledby={labelledBy}
           class={classnames('modal', modalClassName, {
             fade,

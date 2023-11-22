@@ -43,7 +43,7 @@
             >
             components for
             <a href="https://svelte.dev" target="new" class="text-body"
-              >Svelte 3</a
+              >Svelte 4</a
             >.
           </p>
           <p>
@@ -164,7 +164,7 @@
         </pre>
         <p>
           Import Bootstrap CSS in the
-          <code>src/index.js</code>
+          <code>src/index.ts</code>
           file:
         </p>
         <pre>

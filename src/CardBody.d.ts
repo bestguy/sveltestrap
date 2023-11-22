@@ -1,10 +1,10 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+  import { SvelteComponent } from 'svelte';
 
-export interface CardBodyProps
-  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {}
+  export interface CardBodyProps
+    extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
+    class?: string;
+  }
 
-export default class CardBody extends SvelteComponentTyped<
-  CardBodyProps,
-  {},
-  { default: {} }
-> {}
+  export class CardBody extends SvelteComponent<CardBodyProps, any, any> {}
+}

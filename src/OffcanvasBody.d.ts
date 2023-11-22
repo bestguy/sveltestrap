@@ -1,10 +1,14 @@
-import { SvelteComponentTyped } from 'svelte';
+declare module 'sveltestrap' {
+  import { SvelteComponent } from 'svelte';
 
-export interface OffcanvasBodyProps
-  extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {}
+  export interface OffcanvasBodyProps
+    extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['div']> {
+    class?: string;
+  }
 
-export default class OffcanvasBody extends SvelteComponentTyped<
-  OffcanvasBodyProps,
-  {},
-  { default: {} }
-> {}
+  export class OffcanvasBody extends SvelteComponent<
+    OffcanvasBodyProps,
+    any,
+    any
+  > {}
+}

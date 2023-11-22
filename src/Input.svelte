@@ -1,7 +1,6 @@
-<script>
+<script lang="ts">
   import FormCheck from './FormCheck.svelte';
   import FormFeedback from './FormFeedback.svelte';
-
   import classnames from './utils';
 
   let className = '';
@@ -21,7 +20,7 @@
   export let name = '';
   export let placeholder = '';
   export let plaintext = false;
-  export let readonly = undefined;
+  export let readonly: any = undefined;
   export let reverse = false;
   export let size = undefined;
   export let type = 'text';
@@ -131,25 +130,6 @@
       {placeholder}
       {readonly}
       {size}
-    />
-  {:else if type === 'color'}
-    <input
-      {...$$restProps}
-      class={classes}
-      type="color"
-      on:blur
-      on:change
-      on:focus
-      on:input
-      on:keydown
-      on:keypress
-      on:keyup
-      bind:value
-      bind:this={inner}
-      {disabled}
-      {name}
-      {placeholder}
-      {readonly}
     />
   {:else if type === 'email'}
     <input
