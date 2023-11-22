@@ -1,5 +1,5 @@
 <script lang="ts">
-  import classnames from './utils.ts';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };

@@ -1,8 +1,7 @@
 <script lang="ts">
   import FormCheck from './FormCheck.svelte';
   import FormFeedback from './FormFeedback.svelte';
-
-  import classnames from './utils.ts';
+  import classnames from './utils';
 
   let className = '';
   export { className as class };
