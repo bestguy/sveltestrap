@@ -1,5 +1,5 @@
 {
-  "name": "sveltestrap",
+  "name": "@edraj/sveltestrap",
   "version": "6.0.0",
   "type": "module",
   "main": "dist/sveltestrap.js",
