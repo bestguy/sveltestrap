@@ -12,7 +12,16 @@
   "overrides": [
     {
       "files": ["*.svelte"],
-      "parser": "svelte-eslint-parser"
+      "parser": "svelte-eslint-parser",
+      "parserOptions": {
+      "parser": {
+        "ts": "@typescript-eslint/parser",
+        "typescript": "@typescript-eslint/parser"
+      }
+    },
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
+      }
     },
     {
       "files": ["*.ts"],

@@ -24,7 +24,6 @@
     setScrollbarWidth,
     uuid
   } from './utils.ts';
-  import { fade as svFade } from 'svelte/transition';
 
   const dispatch = createEventDispatcher();
 
