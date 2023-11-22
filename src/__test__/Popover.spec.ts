@@ -8,7 +8,7 @@ const renderButton = (props) => {
   return container;
 };
 
-const renderPopover = (props) => {
+const renderPopover = (props = null) => {
   const { container } = render(Popover, { props });
   return container;
 };

@@ -2,7 +2,7 @@ import Tooltip from '../Tooltip.svelte';
 import Button from '../Button.svelte';
 import { render, cleanup } from '@testing-library/svelte';
 
-const renderTooltip = (props) => {
+const renderTooltip = (props = null) => {
   const { container } = render(Tooltip, { props });
   return container;
 };

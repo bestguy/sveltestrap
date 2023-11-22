@@ -4,7 +4,7 @@ export function getOriginalBodyPadding() {
 }
 
 export function getScrollbarWidth() {
-  let scrollDiv = document.createElement('div');
+  const scrollDiv = document.createElement('div');
   // .modal-scrollbar-measure styles // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.4/scss/_modal.scss#L106-L113
   scrollDiv.style.position = 'absolute';
   scrollDiv.style.top = '-9999px';
@@ -78,7 +78,7 @@ function toClassName(value) {
     if (Array.isArray(value)) {
       result = value.map(toClassName).filter(Boolean).join(' ');
     } else {
-      for (let key in value) {
+      for (const key in value) {
         if (value[key]) {
           result && (result += ' ');
           result += key;

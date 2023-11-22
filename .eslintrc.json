@@ -1,11 +1,28 @@
 {
+  "parser": "@babel/eslint-parser",
   "env": {
     "browser": true,
     "es6": true,
     "jest/globals": true,
     "node": true
   },
+  "settings": {
+    "svelte3/typescript": true
+  },
+  "overrides": [
+    {
+      "files": ["*.svelte"],
+      "parser": "svelte-eslint-parser"
+    },
+    {
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser"
+    }
+  ],
   "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:svelte/recommended",
     "plugin:storybook/recommended"
   ],
@@ -14,6 +31,8 @@
     "sourceType": "module"
   },
   "plugins": [
-    "jest"
+    "jest",
+    "svelte",
+    "@typescript-eslint"
   ]
 }

@@ -7,6 +7,7 @@ import svelte from 'rollup-plugin-svelte';
 import typescript from '@rollup/plugin-typescript';
 import terser from '@rollup/plugin-terser';
 import pkg from './package.json';
+import sveltePreprocess from 'svelte-preprocess';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -29,6 +30,7 @@ export default {
     }
   ],
   plugins: [
+    typescript({ sourceMap: !production }),
     svelte({
       compilerOptions: {
         // enable run-time checks when not in production
@@ -36,7 +38,8 @@ export default {
         // generate: production ? 'dom' : 'ssr',
         hydratable: true
       },
-      preprocess: autoPreprocess({
+      preprocess: sveltePreprocess({
+        sourceMap: !production,
         postcss: {
           plugins: [require('autoprefixer')()]
         }
@@ -45,7 +48,6 @@ export default {
     }),
     resolve(),
     commonjs(),
-    typescript(),
     production && terser(),
     production && analyze(),
     production && bundleSize()

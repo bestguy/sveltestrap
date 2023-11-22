@@ -1,7 +1,7 @@
 import Input from '../Input.svelte';
 import { render, cleanup } from '@testing-library/svelte';
 
-const renderInput = (props) => {
+const renderInput = (props = null) => {
   const { container } = render(Input, { props });
   return container;
 };

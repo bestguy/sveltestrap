@@ -27,7 +27,7 @@ describe('Offcanvas', () => {
   });
 
   test('should render responsive variations', () => {
-    let { container } = render(Offcanvas, { props: { sm: true } });
+    const { container } = render(Offcanvas, { props: { sm: true } });
     const component = container.querySelector('.offcanvas-sm');
     expect(component.className).toBe('offcanvas-sm offcanvas-start');
   });
