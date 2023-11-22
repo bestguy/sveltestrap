@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { getContext, setContext, onDestroy } from 'svelte';
   import { createPopperActions } from './popper.ts';
   import classnames from './utils.ts';
@@ -9,12 +9,12 @@
 
   let context = createContext();
   setContext('dropdownContext', context);
-  const navbarContext = getContext('navbar');
+  const navbarContext: any = getContext('navbar');
 
   let className = '';
   export { className as class };
   export let active = false;
-  export let autoClose = true;
+  export let autoClose: boolean | string = true;
   export let direction = 'down';
   export let dropup = false;
   export let group = false;

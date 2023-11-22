@@ -1,7 +1,7 @@
 import { createPopper } from '@popperjs/core';
 
 // Code derived from https://github.com/bryanmylee/svelte-popperjs/blob/master/src/index.ts
-export function createPopperActions(initOptions) {
+export function createPopperActions(initOptions = null) {
   let contentNode;
   let options = initOptions;
   let popperInstance = null;

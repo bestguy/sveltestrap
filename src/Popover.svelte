@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { onMount } from 'svelte';
   import { createPopper } from '@popperjs/core';
   import classnames from './utils.ts';
@@ -12,7 +12,7 @@
   export let container = undefined;
   export let dismissible = false;
   export let isOpen = false;
-  export let placement = 'top';
+  export let placement: any = 'top';
   export let target = '';
   export let title = '';
   export let trigger = 'click';
@@ -22,7 +22,7 @@
   let bsPlacement;
   let popperPlacement = placement;
 
-  const checkPopperPlacement = {
+  const checkPopperPlacement: any = {
     name: 'checkPopperPlacement',
     enabled: true,
     phase: 'main',
