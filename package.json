@@ -100,5 +100,11 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8"
   },
-  "browserslist": "last 2 versions"
+  "browserslist": "last 2 versions",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "svelte": "./src/index.js"
+    }
+  }
 }
