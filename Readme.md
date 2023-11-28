@@ -14,7 +14,7 @@ To make using Bootstrap themes easier, this library does _not_ embed Bootstrap s
 
 ## Install
 
-`npm install svelte sveltestrap`
+Follow the installation instructions of [Svelte](https://svelte.dev/) or [Svelte Kit](https://kit.svelte.dev/) then `npm install sveltestrap`
 
 ## Usage
 
