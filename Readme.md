@@ -1,5 +1,18 @@
 ![sveltestrap](./logo.svg)
 
+# Important Note: This project is now hosted at [https://github.com/sveltestrap/sveltestrap](https://github.com/sveltestrap/sveltestrap)
+
+## This repo is the legacy repo for Sveltestrap 5 for use with Svelte 3.  No new development will happen here.
+
+sveltestrap.js.org docs now point to @sveltestrap/sveltestrap v6, and the new install/import for sveltestrap v6+ is `npm install @sveltestrap/sveltestrap`
+(You can still use sveltestrap v5.x via `npm install sveltestrap`)
+
+We were unable to migrate this repo to the sponsor's org, so please update your imports, stars, bookmarks, etc to https://github.com/sveltestrap/sveltestrap.  Our apologies for any confusion.
+This repo will eventually be archived.
+
+
+---
+
 ## Bootstrap 5 components for Svelte v3
 
 The goal of this library is to provide all Bootstrap 5 components for a [Svelte](https://svelte.dev) app. Sveltestrap makes it easy to use Bootstrap since there is no need to use Bootstrap component classes, to include Bootstrap's JavaScript, nor depend on jQuery. Sveltestrap is free, open-source software published under the permissive [MIT license.](https://github.com/bestguy/sveltestrap/blob/master/LICENSE) This library was inspired by the [reactstrap](https://reactstrap.github.io) library for React.
