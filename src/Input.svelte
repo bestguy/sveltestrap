@@ -97,6 +97,8 @@
       {...$$restProps}
       class={classes}
       type="text"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -104,8 +106,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -117,6 +117,8 @@
       {...$$restProps}
       class={classes}
       type="password"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -124,8 +126,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -137,6 +137,8 @@
       {...$$restProps}
       class={classes}
       type="color"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -144,8 +146,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -156,6 +156,8 @@
       {...$$restProps}
       class={classes}
       type="email"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -163,8 +165,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {disabled}
       {multiple}
       {name}
@@ -177,6 +177,9 @@
       {...$$restProps}
       class={classes}
       type="file"
+      bind:files
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -184,9 +187,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:files
-      bind:value
-      bind:this={inner}
       {disabled}
       {invalid}
       {multiple}
@@ -201,6 +201,10 @@
       class={className}
       size={bsSize}
       {type}
+      bind:checked
+      bind:inner
+      bind:group
+      bind:value
       on:blur
       on:change
       on:focus
@@ -208,10 +212,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:checked
-      bind:inner
-      bind:group
-      bind:value
       {disabled}
       {invalid}
       {label}
@@ -226,6 +226,8 @@
       {...$$restProps}
       class={classes}
       type="url"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -233,8 +235,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -246,6 +246,8 @@
       {...$$restProps}
       class={classes}
       type="number"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -253,8 +255,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {readonly}
       {name}
       {disabled}
@@ -265,6 +265,8 @@
       {...$$restProps}
       class={classes}
       type="date"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -272,8 +274,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -284,6 +284,8 @@
       {...$$restProps}
       class={classes}
       type="time"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -291,8 +293,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -302,6 +302,8 @@
     <input
       {...$$restProps}
       type="datetime"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -309,8 +311,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {readonly}
       class={classes}
       {name}
@@ -322,6 +322,8 @@
       {...$$restProps}
       class={classes}
       type="datetime-local"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -329,8 +331,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -341,6 +341,8 @@
       {...$$restProps}
       class={classes}
       type="month"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -348,8 +350,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -359,6 +359,8 @@
     <input
       {...$$restProps}
       type="color"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -366,8 +368,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {readonly}
       class={classes}
       {name}
@@ -378,6 +378,8 @@
     <input
       {...$$restProps}
       type="range"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -385,8 +387,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {readonly}
       class={classes}
       {name}
@@ -398,6 +398,8 @@
       {...$$restProps}
       class={classes}
       type="search"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -405,8 +407,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -418,6 +418,8 @@
       {...$$restProps}
       class={classes}
       type="tel"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -425,8 +427,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -438,6 +438,8 @@
       {...$$restProps}
       class={classes}
       type="week"
+      bind:value
+      bind:this={inner}
       on:blur
       on:change
       on:focus
@@ -445,8 +447,6 @@
       on:keydown
       on:keypress
       on:keyup
-      bind:value
-      bind:this={inner}
       {disabled}
       {name}
       {placeholder}
@@ -475,6 +475,8 @@
   <textarea
     {...$$restProps}
     class={classes}
+    bind:value
+    bind:this={inner}
     on:blur
     on:change
     on:focus
@@ -482,8 +484,6 @@
     on:keydown
     on:keypress
     on:keyup
-    bind:value
-    bind:this={inner}
     {disabled}
     {name}
     {placeholder}
@@ -493,12 +493,12 @@
   <select
     {...$$restProps}
     class={classes}
+    bind:value
+    bind:this={inner}
     on:blur
     on:change
     on:focus
     on:input
-    bind:value
-    bind:this={inner}
     {name}
     {disabled}
     {readonly}

@@ -39,12 +39,12 @@
       class={inputClasses}
       id={idFor}
       type="radio"
+      bind:group
+      bind:this={inner}
       on:blur
       on:change
       on:focus
       on:input
-      bind:group
-      bind:this={inner}
       {disabled}
       {name}
       {value}
@@ -55,12 +55,12 @@
       class={inputClasses}
       id={idFor}
       type="checkbox"
+      bind:checked
+      bind:this={inner}
       on:blur
       on:change
       on:focus
       on:input
-      bind:checked
-      bind:this={inner}
       {disabled}
       {name}
       {value}
@@ -71,12 +71,12 @@
       class={inputClasses}
       id={idFor}
       type="checkbox"
+      bind:checked
+      bind:this={inner}
       on:blur
       on:change
       on:focus
       on:input
-      bind:checked
-      bind:this={inner}
       {disabled}
       {name}
       {value}
