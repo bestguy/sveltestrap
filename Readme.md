@@ -19,8 +19,6 @@ The goal of this library is to provide all Bootstrap 5 components for a [Svelte]
 
 To make using Bootstrap themes easier, this library does _not_ embed Bootstrap styles directly and you will need to include Bootstrap 5 CSS in your page.
 
-**Note:** Bootstrap 4 CSS users must use Sveltestrap 4 - see docs here: <a href="https://sveltestrap.js.org/v4">Sveltestrap version 4</a>
-
 [Demo page](https://sveltestrap.js.org/)
 
 ---
