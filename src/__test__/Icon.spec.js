@@ -7,7 +7,7 @@ describe('Icon', () => {
   test('should render correctly', () => {
     const { container } = render(Icon, { props: { name: 'globe' } });
     const component = container.querySelector('.bi-globe');
-    expect(component.className).toBe('bi-globe');
+    expect(component.className).toBe('bi bi-globe');
   });
 
   test('should render custom class', () => {
@@ -16,6 +16,6 @@ describe('Icon', () => {
     });
 
     const component = container.querySelector('.bi-book');
-    expect(component.className).toBe('text-dark bi-book');
+    expect(component.className).toBe('text-dark bi bi-book');
   });
 });

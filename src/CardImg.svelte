@@ -5,7 +5,7 @@
   export { className as class };
   export let top = false;
   export let bottom = false;
-  export let src;
+  export let src = '';
   export let alt = '';
 
   let classes = '';
