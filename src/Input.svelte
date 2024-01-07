@@ -74,7 +74,7 @@
 
     if (size && isNotaNumber.test(size)) {
       console.warn(
-              'Please use the prop "bsSize" instead of the "size" to bootstrap\'s input sizing.'
+        'Please use the prop "bsSize" instead of the "size" to bootstrap\'s input sizing.'
       );
       bsSize = size;
       size = undefined;
