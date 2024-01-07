@@ -80,6 +80,18 @@ describe('Input', () => {
     expect(input.disabled).toBe(true);
   });
 
+  test('should render max', () => {
+    const container = renderInput({ type: 'date', max: '07-01-1987' });
+    const input = container.querySelector('input');
+    expect(input.getAttribute('max')).toBe('07-01-1987');
+  });
+
+  test('should render min', () => {
+    const container = renderInput({ type: 'date', min: '07-01-1987' });
+    const input = container.querySelector('input');
+    expect(input.getAttribute('min')).toBe('07-01-1987');
+  });
+
   test('should render readonly', () => {
     const container = renderInput({ readonly: true });
     const input = container.querySelector('input');
