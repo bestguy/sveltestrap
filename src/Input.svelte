@@ -346,7 +346,7 @@
       {max}
       {min}
       {placeholder}
-            {readonly}
+      {readonly}
     />
   {:else if type === 'month'}
     <input
