@@ -27,6 +27,8 @@
   export let type = 'text';
   export let valid = false;
   export let value = '';
+  export let max = undefined;
+  export let min = undefined;
 
   let classes;
   let tag;
@@ -257,6 +259,8 @@
       bind:this={inner}
       {readonly}
       {name}
+      {max}
+      {min}
       {disabled}
       {placeholder}
     />
@@ -276,6 +280,8 @@
       bind:this={inner}
       {disabled}
       {name}
+      {max}
+      {min}
       {placeholder}
       {readonly}
     />
@@ -295,6 +301,8 @@
       bind:this={inner}
       {disabled}
       {name}
+      {max}
+      {min}
       {placeholder}
       {readonly}
     />
@@ -314,6 +322,8 @@
       {readonly}
       class={classes}
       {name}
+      {max}
+      {min}
       {disabled}
       {placeholder}
     />
@@ -333,6 +343,8 @@
       bind:this={inner}
       {disabled}
       {name}
+      {max}
+      {min}
       {placeholder}
       {readonly}
     />
@@ -352,6 +364,8 @@
       bind:this={inner}
       {disabled}
       {name}
+      {max}
+      {min}
       {placeholder}
       {readonly}
     />
@@ -390,6 +404,8 @@
       {readonly}
       class={classes}
       {name}
+      {max}
+      {min}
       {disabled}
       {placeholder}
     />
@@ -449,6 +465,8 @@
       bind:this={inner}
       {disabled}
       {name}
+      {max}
+      {min}
       {placeholder}
       {readonly}
     />
