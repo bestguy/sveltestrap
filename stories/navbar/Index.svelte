@@ -6,6 +6,8 @@
   import sampleSource from '!!raw-loader!./Sample.svelte';
   import Toggler from './Toggler.svelte';
   import togglerSource from '!!raw-loader!./Toggler.svelte';
+  import Containers from './Containers.svelte';
+  import containersSource from '!!raw-loader!./Containers.svelte';
 </script>
 
 <h1>Navbar</h1>
@@ -34,6 +36,14 @@
 
 <Example title="Toggler" source={togglerSource} stacked>
   <Toggler />
+</Example>
+
+<Example title="Containers" source={containersSource} stacked>
+  <p slot="info">
+    Change the Navbar's container width using the <code>container</code> prop with any of the following values:
+    <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>, <code>xxl</code>, <code>fluid</code> (default).
+  </p>
+  <Containers />
 </Example>
 
 <!-- TODO Add {fixed} {expand} sample -->

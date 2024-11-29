@@ -38,7 +38,8 @@
 
 <nav {...$$restProps} class={classes} data-bs-theme={theme}>
   {#if container}
-    <Container fluid={container === 'fluid'}>
+    <Container sm={container === 'sm'} md={container === 'md'} lg={container === 'lg'}
+               xl={container === 'xl'} xxl={container === 'xxl'} fluid={container === 'fluid'}>
       <slot />
     </Container>
   {:else}

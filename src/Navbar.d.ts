@@ -4,7 +4,7 @@ import { BackgroundColor } from './shared';
 export interface NavbarProps
   extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['nav']> {
   color?: BackgroundColor;
-  container?: boolean | 'fluid'; // TODO also sm-xxl?
+  container?: boolean | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'fluid';
   dark?: boolean;
   expand?: boolean | string;
   fixed?: string;
